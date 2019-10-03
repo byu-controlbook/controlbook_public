@@ -1,0 +1,85 @@
+The block diagram for the inner loop is shown in \fref{fig:hw_pendulum_PD_inner}.
+\controlbookfigure{0.8}
+	{6_design_studies/figures/hw_pendulum_PD_inner}
+	{Block diagram for inner loop of inverted pendulum control}
+	{fig:hw_pendulum_PD_inner}
+The closed loop transfer function from $\tilde{\Theta}_r$ to $\tilde{\Theta}$ is given by
+%\[
+%\tilde{\Theta}(s) = \frac{-\frac{2k_{P_\theta}}{m_2\ell}}{s^2 - \frac{2k_{D_\theta}}{m_2\ell}s-\left(\frac{2(m_1+m_2)g}{m_2\ell}+\frac{2k_{P_\theta}}{m_2\ell}\right)} \tilde{\Theta^d}(s).
+%\]
+\[
+\tilde{\Theta}(s) = \frac{-\frac{k_{P_\theta}}{m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3}}}{s^2 - \frac{k_{D_\theta}}{m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3}}s-\left(\frac{(m_1+m_2)g}{m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3}}+\frac{k_{P_\theta}}{m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3}}\right)} \tilde{\Theta}_r(s).
+\]
+Therefore the closed loop characteristic equation is
+%\[
+%\Delta_{cl}(s) = s^2 - \frac{2k_{D_\theta}}{m_2\ell}s -\left(\frac{2(m_1+m_2)g}{m_2\ell}+\frac{2k_{P_\theta}}{m_2\ell}\right).
+%\]
+\[
+\Delta_{cl}(s) =s^2 - \frac{k_{D_\theta}}{m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3}}s-\left(\frac{(m_1+m_2)g}{m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3}}+\frac{k_{P_\theta}}{m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3}}\right)
+\]
+The desired closed loop characteristic equation is
+\[
+\Delta_{cl}^d(s) = s^2 + 2\zeta_{\theta}\omega_{n_\theta} s + \omega_{n_\theta}^2,
+\]
+where
+\begin{align*}
+\omega_{n_\theta} &= \frac{2.2}{t_{r_\theta}} = 4.4 \\
+\zeta_{\theta} &= 0.707.
+\end{align*}
+Therefore
+\begin{align*}
+k_{P_\theta} &= -(m_1+m_2)g - (m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3})\omega_{n_\theta}^2 = -25.96 \\
+k_{D_\theta} &= -\zeta_{\theta}\omega_{n_\theta} (m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3}) = -4.407.
+\end{align*}
+The DC gain of the inner loop is given by
+\[
+k_{DC_{\theta}} = \frac{k_{P_\theta}}{(m_1+m_2)g+k_{P_\theta}} = 1.893.
+\]
+
+Replacing the inner loop by its DC gain, the block diagram for the outer loop is shown in \fref{fig:hw_pendulum_PD_outer}.
+\controlbookfigure{0.8}
+	{6_design_studies/figures/hw_pendulum_PD_outer}
+	{Block diagram for outer loop of inverted pendulum control}
+	{fig:hw_pendulum_PD_outer}
+The closed loop transfer function from $Z_r$ to $Z$ is given by
+\[
+Z(s) = \frac{\frac{k_{P_z}}{k_{D_z}}(s^2-\frac{3g}{2\ell})}{s^3-s^2 (\frac{3}{2 k_{DC_\theta} k_{D_z} \ell} + \frac{ k_{P_z}}{k_{D_z}}) - s \frac{3 g}{2 \ell} - \frac{3 k_{P_z} g}{2 k_{D_z} \ell}} Z_r.
+\]
+Note that the DC gain for the outer loop is equal to one.
+The closed loop characteristic equation is 
+\[
+\Delta_{cl}(s) = s^3-s^2 (\frac{3}{2 k_{DC_\theta} k_{D_z} \ell} + \frac{ k_{P_z}}{k_{D_z}}) - s \frac{3 g}{2 \ell} - \frac{3 k_{P_z} g}{2 k_{D_z} \ell}.
+\]
+The desired characteristic equation is 
+\[
+\Delta_{cl}^d(s) = s^2 + 2\zeta_z\omega_{n_z}s + \omega_{n_z}^2,
+\]
+it is not possible to pick PD gain values that will create a match between the actual characteristic equation and the desired characteristic equation.  
+
+
+% I don't think what was in the book was right for the TF, but am leaving it in here in case I miscalculated something.  The solution I have is no longer a second order system. ckp.
+%\[
+%Z(s) = \frac{gk_{DC_\theta}k_{P_z}}{s^2 + gk_{DC_\theta}k_{D_z}s + gk_{DC_\theta}k_{P_z}}Z_r(s).
+%\]
+%Note that the DC gain for the outer loop is equal to one.
+%The closed loop characteristic equation is 
+%\[
+%\Delta_{cl}(s) = s^2 + gk_{DC_\theta}k_{D_z}s + gk_{DC_\theta}k_{P_z}.
+%\]
+%The desired characteristic equation is 
+%\[
+%\Delta_{cl}^d(s) = s^2 + 2\zeta_z\omega_{n_z}s + \omega_{n_z}^2,
+%\]
+%where
+%\begin{align*}
+%t_{r_z} &= 10 t_{r_\theta} = 5 \\
+%\omega_{n_z} &= \frac{2.2}{t_{r_z}} = 0.44 \\
+%\zeta_z &= 0.707.
+%\end{align*}
+%The PD gains are therefore
+%\begin{align*}
+%k_{P_z} &= \frac{\omega_{n_z}^2}{gk_{DC_z}} = 1.0434 \\
+%k_{D_z} &= \frac{2\zeta_z\omega_{n_z}}{gk_{DC_\theta}} = 0.3353.
+%\end{align*}
+
+See \controlbookurl{http://controlbook.byu.edu} for the complete solution.

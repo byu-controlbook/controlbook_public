@@ -1,0 +1,78 @@
+
+From HW~\ref{ds:pendulum}.\ref{chap:state_space_models}, the state space equations for the inverted pendulum are given by
+\begin{align}
+\dot{x} &= \begin{pmatrix}
+       0 &        0 &   1.0000 &        0 \\
+       0 &        0 &        0 &   1.0000 \\
+       0 &  -1.7294 &   -0.0471 &        0 \\
+       0 &  17.2941 &   0.0706 &        0 \\
+\end{pmatrix} x + \begin{pmatrix}
+     0 \\
+     0 \\
+0.9412 \\
+-1.4118 \\
+\end{pmatrix} u \notag \\
+y &= \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 
+\end{pmatrix} x, \label{eq:hw_state_feedback_b1}
+\end{align}
+where Equation~\eqref{eq:hw_state_feedback_b1} represents the measured outputs.  The reference output is the position $z$, which implies that
+\[
+y_r = \begin{pmatrix} 1 & 0 & 0 & 0 \end{pmatrix} x.
+\]
+\begin{description}
+\item[Step 1.] 
+The controllability matrix is therefore
+\begin{align*}
+\mathcal{C}_{A,B} &= [B, AB, A^2B, A^3B] \\
+	&= \begin{pmatrix}           
+	0 &   0.9412 &  -0.0443  &  2.4437 \\
+    0  & -1.4118 &   0.0664 & -24.4189 \\
+    0.9412  & -0.0443 &   2.4437 &  -0.2300 \\
+   -1.4118  &  0.0664 & -24.4189 & 1.3217 \end{pmatrix}.
+\end{align*}
+The determinant is $det(\mathcal{C}_{A,B})=-381.54\neq 0$, implying that the system is controllable.  
+\item[Step 2.] The open loop characteristic polynomial is
+\[
+\Delta_{ol}(s)=\text{det}(sI-A) = s^4 + 0.0471 s^3 - 17.2941 s^2 - 0.6925 s
+\]
+which implies that
+\begin{align*}
+\mathbf{a}_A &= (0.0471, -27.2941, -0.6925, 0) \\
+\mathcal{A}_A &= \begin{pmatrix} 
+1 & 0.0471 & -27.2941 & -0.6925 \\ 0 & 1 & 0.0471 & -27.2941 \\ 0 & 0 & 1 & 0.0471 \\ 0 & 0 & 0 & 1
+\end{pmatrix}.
+\end{align*}
+
+\item[Step 3.] The desired closed loop polynomial is
+\begin{align*}
+\Delta_{cl}^d(s) &= (s^2+2\zeta_{\theta}\omega_{n_\theta} s + \omega_{n_\theta}^2)(s^2+2\zeta_{z}\omega_{n_z} s + \omega_{n_z}^2) \\
+&=s^4 + 4.4280 s^3 + 9.5248 s^2 + 9.2280 s + 4.0000       
+\end{align*}
+which implies that
+\[
+\boldsymbol{\alpha} = (4.4280, 9.5248, 9.2280, 4.0000).
+\]
+
+\item[Step 4.]
+The gains are therefore given as
+\begin{align*}
+%K &= (\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1} \\
+%  &= \begin{pmatrix} -0.2041  -17.1144   -0.5208   -2.4494 \end{pmatrix}
+K &= (\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1} 
+= \begin{pmatrix} -26.7516  -43.9136   -3.8833   -5.6919 \end{pmatrix}
+\end{align*}
+The feedforward reference gain $k_r=-1/C_r(A-BK)^{-1}B$ is computed using $C_r=(1,0,0,0)$, which gives
+\begin{align*}
+k_r &= \frac{-1}{C_r(A-BK)^{-1}B} 
+  = -26.7516.
+\end{align*}
+\end{description}
+
+Alternatively, we could have used the following Matlab script.
+
+\lstinputlisting{./6_design_studies/_B_pendulum/simulink/hw11/pendulumParamHW11.m}
+
+The Matlab code for the controller is given by 
+\lstinputlisting{./6_design_studies/_B_pendulum/simulink/hw11/pendulum_ctrl.m}

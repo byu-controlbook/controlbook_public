@@ -1,0 +1,9 @@
+For the single link robot arm, do the following:
+\begin{description}
+
+\item[(a)]  Suppose that the design requirements are that the rise time is
+$t_r \approx 0.8$~seconds, with a damping ratio of $\zeta=0.707$.  Find the desired closed loop characteristic polynomial $\Delta_{cl}^d(s)$, and the associated pole locations. Find the proportional and derivative gains $k_P$ and $k_D$ to achieve these specifications, and modify the simulation from HW~\ref{ds:single_link_arm}.8 to verify that the step response satisfies the requirements.
+
+\item[(b)] Suppose that the input torque for the robot arm is limited to $\abs{\tau}\leq\tau_{\max}=1$~Nm.  Modify the simulation to include a saturation on the torque $\tau$.  Using the rise time $t_r$ and damping ratio $\zeta$ as tuning parameters, tune the PD control law  so that the input just saturates when a step of size $50$~degrees is placed on $\tilde{\theta}^r$.
+
+\end{description}

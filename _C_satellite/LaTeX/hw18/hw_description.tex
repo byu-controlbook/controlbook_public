@@ -1,0 +1,33 @@
+For this homework assignment we will use the loopshaping design technique to design a successive loop closure controller for the satellite attitude problem.
+\begin{itemize}
+	\item[(a)] First consider the inner loop, where $P_{in}(s)$ is the transfer function of the inner loop derived in HW~\ref{ds:satellite}.\ref{chap:transfer_function_models}.  The Bode plot for this system shows an underdamped resonate mode.  We have seen in previous chapters that this resonate mode can be removed by introducing rate feedback of the form
+		\[
+		u = - k_D \dot{y} + u',
+		\] 
+		where $y$ is the output signal and $u'$ is the additional control signal to be designed.
+	  Using the derivative gain $k_{D_\theta}$ found in HW~\ref{ds:satellite}.\ref{chap:PID-digital-implementation}, find the revised transfer function from $\tau'$ to $\theta$, and use this transfer function for $P_{in}(s)$.  Letting 
+	  \[
+	  \tau'(s) = C_{in}(s) E(s),
+	  \]
+	  where $e(t) = \theta_r(t)-\theta(t)$, design $C_{in}(s)$ to meet the following specifications:
+	  \begin{itemize}
+	  \item The inner loop will track $\theta_r$ with frequency content below $\omega_r=0.01$~radians/sec to within $\gamma_r=0.01$.
+	  \item The inner loop will attenuate noise on the measurement of $\theta$ for all frequencies above $\omega_n=20$~rad/sec by $\gamma_n=0.01$.
+	  \item The phase margin of the inner loop should be around $PM=60$~degrees.
+	  \end{itemize}
+	\item[(b)] Now consider the design of the controller for the outer loop system.  As seen from HW~\ref{ds:satellite}.\ref{chap:transfer_function_models}, the transfer function for the outer loop also has a strong resonate mode.  Similar to the inner loop, use the derivative gain  found in HW~\ref{ds:satellite}.\ref{chap:PID-digital-implementation} to introduce rate damping, and find the associated transfer function $P_{out}(s)$.  	The 'plant' for the design of the outer loop controller is
+		\[
+		P = P_{out}\frac{P_{in}C_{in}}{1+P_{in}C_{in}}.
+		\]
+		Design the outer loop controller $C_{out}$ to meet the following specs:
+		\begin{itemize}
+		\item Track steps in $\phi_r$ with zero steady state error.
+		\item Reject input disturbances with frequency content below $\omega_{d_{in}}=0.01$ by $\gamma_{d_{in}}=0.1$.
+		\item Attenuate noise on the measurement of $\phi$ with frequency content above $\omega_n=10$~rad/sec by $\gamma_n=10^{-4}$.
+		\item 	The phase margin of the outer loop should be around $PM=60$~degrees.
+		\item Use a prefilter to reduce any peaking in the closed loop response of the outer loop.
+		\end{itemize}
+		
+\end{itemize}
+
+

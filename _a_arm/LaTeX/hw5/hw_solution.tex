@@ -1,0 +1,23 @@
+
+As shown in Section~\ref{hw:arm_linearization}, the feedback linearized model for the single link robot arm is given by Equation~\eqref{eq:arm_linearized_eom_feedback_linarization} as
+\begin{equation}\label{eq:soln_a6_1}
+\frac{m\ell^2}{3}\ddot{\theta} = \tilde{\tau} - b\dot{\theta}.
+\end{equation}
+Taking the Laplace transform of Equation~\eqref{eq:soln_a6_1} and setting all initial conditions to zero we get
+\[
+\frac{m\ell^2}{3}s^2\Theta(s) + b s\Theta(s) = \tilde{\tau}(s).
+\]
+Solving for $\Theta(s)$ gives
+\[
+\Theta(s) = \left(\frac{1}{\frac{m\ell^2}{3}s^2 + bs}\right)\tilde{\tau}(s).
+\]
+The canonical form for transfer functions is for the leading coefficient in the denominator polynomial to be unity.  This is called monic form.  Putting the transfer function in monic form results in 
+\begin{equation}\label{eq:soln_a6_2}
+\Theta(s) = \left(\frac{\frac{3}{m\ell^2}}{s^2 + \frac{3b}{m\ell^2}s}\right)\tilde{\tau}(s),
+\end{equation}
+where the expression in the parenthesis is the transfer function from $\tilde{\tau}$ to $\theta$, where $\tilde{\tau}$ indicates that we are working with the feedback linearized control in Equation~\eqref{eq:arm_feedback_linarization_control}.  The block diagram associated with Equation~\eqref{eq:soln_a6_2} is shown in \fref{fig:dm_arm_block_diagram}.
+\controlbookfigure{0.5}
+	{6_design_studies/figures/hw_arm_block_diagram.pdf}
+	{A block diagram of the single link robot arm.}
+	{fig:dm_arm_block_diagram}
+	

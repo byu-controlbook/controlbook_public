@@ -1,0 +1,26 @@
+
+{\bf (a)} 
+The Bode plot of the plant $P(s)$, and the loopgain with PD control $P(s)C_{PD}(s)$ are shown in \fref{fig:hw_satellite_bode_specs_in}.
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_satellite_bode_specs_in}
+	{Bode plot for inner loop of the satellite attitude control, plant only, and under PD control.}
+	{fig:hw_satellite_bode_specs_in}
+From \fref{fig:hw_satellite_bode_specs_in} it can be seen that under PD control the inner loop is type~0 and that the loop gain as $\omega\to 0$ is $B_0=50$~dB.  Therefore from Equation~\eqref{eq:loop_type0_error_step}  the steady state error to a step of $\theta_d = 20$~degrees is 
+\[
+\lim_{t\to\infty}\abs{e(t)} \leq \frac{1}{1+M_p} A = \frac{20}{1+10^{50/20}} = 0.0630\text{~degrees}.
+\]
+
+{\bf (b)} 
+If the input disturbance is below $\omega_{d_{in}} = 0.1$~rad/s, then the difference between the loop gain and the plant is $B_{d_{in}}=33$~dB, therefore, from Equation~\eqref{eq:loop_input_dist_rejection} we see that 
+\[
+\gamma_{d_{in}} = 10^{-33/20} = 0.0224,
+\]
+implying that 2.2\% of the input disturbance will show up in the output.
+
+{\bf (c)} 
+The Bode plot of outer loop $P_{out}(s)$, and the loop gain with PI control $P_{out}(s)C_{PI}(s)$ are shown in \fref{fig:hw_satellite_bode_specs_out}.
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_satellite_bode_specs_out}
+	{Bode plot for outer loop of the satellite attitude control, plant only, P control, and PI control.}
+	{fig:hw_satellite_bode_specs_out}
+For noise greater than $\omega_{no}=1$~rad/sec, we see from \fref{fig:hw_satellite_bode_specs_out} that $B_n = 17$~dB.  Therefore, $\gamma_n = 10^{-17/20} = 0.1413$ which implies that $14$\% of the noise will show up in the output signal.

@@ -1,0 +1,72 @@
+Consider the image of the single link robot arm shown in \fref{fig:animation_arm}, where the configuration is completely specified by the angle $\theta$ of the arm from vertical.  The physical parameters of the system that impact the animation are the arm length $\ell$, and the arm width $w$.
+\controlbookfigure{0.5}
+	{app_animation/figures/animation_arm}
+	{Drawing for single link robot arm.  The first step in developing an animation is to draw a figure of the object to be animated and identify all of the physical parameters.}
+	{fig:animation_arm}
+The first step in developing the animation is to determine the position of points that define the animation.  For example, for the single link robot arm in \fref{fig:animation_arm}, the four corners of the arm, when $\theta=0$ are given by
+\[
+p_0 = \begin{pmatrix} 0 & \ell & \ell & 0 \\ -\frac{w}{2} & -\frac{w}{2} & \frac{w}{2} & \frac{w}{2} \end{pmatrix},
+\]
+where the first column of $p_0$ is the lower left corner, the second column is the lower right corner, the third column is the upper right corner, and the last column is the upper left corner.  When $\theta\neq 0$, the points are rotated by $\theta$ to obtain
+\[
+p(\theta) = R(\theta) p_0,
+\]
+where 
+\[
+R=\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}
+\]
+is a rotation matrix that rotates points in $\mathbb{R}^2$ by $\theta$.
+
+The Matlab code that draws the arm link and returns a handle to the image of the link is given by
+\begin{lstlisting}
+function handle = drawLink(theta, L, w, handle)
+  	pts = [ 0, L, L, 0; -w/2, -w/2, w/2, w/2];
+	R = [cos(theta), -sin(theta);...
+	     sin(theta), cos(theta)];
+  	pts = R*pts;
+  	X = pts(1,:);
+  	Y = pts(2,:);
+  
+  	if isempty(handle),
+    	handle = fill(X,Y,'b');
+  	else
+    	set(handle,'XData',X,'YData',Y);
+  	end
+end
+\end{lstlisting}
+Line~2 defines the points when $\theta=0$, and line~3 defines the rotation matrix $R$.  
+The rotated points are given by line~4, and the associated X and Y coordinates are extracted in lines~5 and~6.
+Note that in Line~1, {\tt handle} is both an input and an output.  If an empty array is passed into the function, then the {\tt fill} command is used to plot the arm in Line~9.  On the other hand, if a valid handle is passed into the function, then the arm is redrawn using the {\tt set} command in Line~11.
+
+The main routine for the robot arm animation is listed below.
+\begin{lstlisting}
+function drawArm(u)
+    % process inputs to function
+    theta    = u(1);
+    t        = u(2);
+    % drawing parameters
+    L = 1;
+    w = 0.3;
+    % define persistent variables 
+    persistent link_handle   
+    % at t=0, initialize plot and persistent vars
+    if t==0,
+        figure(1), clf
+        plot([0,L],[0,0],'k--'); % plot track
+        hold on
+        link_handle = drawLink(theta, L, w, []);
+        axis([-2*L, 2*L, -2*L, 2*L]);
+    % at every other time step, redraw link
+    else 
+        drawLink(theta, L, w, link_handle);
+    end
+end
+\end{lstlisting}
+The routine {\tt drawArm} is called from the Simulink file shown in \fref{fig:animation_arm_simulink}, where there are two inputs: the  angle $\theta$, and the time $t$.  Lines~3-4 rename the inputs to $\theta$, and $t$.  Lines~6-7 define the drawing parameters $\ell$ and $w$.  We require that the graphics handle persist between function calls to {\tt drawArm}.  We define a persistent variable {\tt handle} in Line~9.  The {\tt if} statement in Lines~11-20 is used to produce the animation.  Lines~12-16 are called once at the beginning of the simulation, and draw the initial animation.  Line~12 brings the figure~1 window to the front and clears it.  Lines~13 and~14 draw the zero angle line as a visual reference.  Line~15 calls the {\tt drawLink} routine with an empty handle as input, and returns the handle to the link.   Line~16 sets the axes of the figure.  After the initial time step, all that needs to be changed are the locations of link.  Therefore, in Line~19, the {\tt drawLink} routines are called with the figure handles as inputs.
+
+\controlbookfigurefullpage{0.5}
+	{app_animation/figures/animation_arm_simulink}
+	{Simulink file for debugging the arm animation.  There are two inputs to the Matlab m-file {\tt drawArm}: the angle $\theta$, and the time $t$.  A slider gain for $\theta$ is used to verify the animation.}
+	{fig:animation_arm_simulink}
+
+See \controlbookurl{http://controlbook.byu.edu} for the complete solution.

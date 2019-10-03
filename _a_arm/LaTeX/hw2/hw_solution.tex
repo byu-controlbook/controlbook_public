@@ -1,0 +1,36 @@
+
+\controlbookfigure{0.4}
+	{6_design_studies/figures/hw_arm_kinetic_energy} 
+	{Single link robot arm.  Compute the velocity of the center of mass and the angular velocity about the center of mass.}
+	{fig:hw_arm_kinetic_energy}
+The first step is to define an inertial coordinate system as shown in Figure~\ref{fig:hw_arm_kinetic_energy}.  If the pivot point is the origin of the coordinate system as shown in Figure~\ref{fig:hw_arm_kinetic_energy}, then the position of the center of mass is 
+\[
+\mathbf{p}_{cm}(t) = \begin{pmatrix} \frac{\ell}{2}\cos\theta(t) \\ \frac{\ell}{2}\sin\theta(t) \\ 0 \end{pmatrix}.
+\]
+Differentiating to obtain the velocity we get
+\[
+\mathbf{v}_{cm} = \frac{\ell}{2}\dot{\theta} \begin{pmatrix} -\sin\theta \\ \cos\theta \\ 0 \end{pmatrix}.
+\]
+The angular velocity about the center of mass is given by
+\[
+\boldsymbol{\omega} = \begin{pmatrix} 0 \\ 0 \\ \dot{\theta} \end{pmatrix}.
+\]
+Observe that 
+\[
+\boldsymbol{\omega}^\top J \boldsymbol{\omega} = \begin{pmatrix} 0 & 0 & \dot{\theta}\end{pmatrix} 
+\begin{pmatrix} J_x & -J_{xy} & -J_{xz} \\ -J_{xy} & J_y & -J_{yz} \\ -J_{xz} & -J_{yz} & J_z \end{pmatrix} 
+\begin{pmatrix} 0 \\ 0 \\ \dot{\theta} \end{pmatrix} = J_z \dot{\theta}^2,
+\]
+therefore we only need the moment of inertia about the $\hat{k}$ axis $J_z$. From the inertia matrix for a thin rod given in Equation~\eqref{eq:sm_inertia_thin_rod}, we have that $J_z=\frac{m\ell^2}{12}$.
+
+Therefore, the kinetic energy of the single link robot arm is 
+\begin{align*}
+K &= \frac{1}{2} m \mathbf{v}_{cm}^\top \mathbf{v}_{cm} + \frac{1}{2}\boldsymbol{\omega}^\top J_{cm} \boldsymbol{\omega} \\
+  &= \frac{1}{2} m \frac{\ell^2}{4}\dot{\theta}^2(\sin^2\theta + \cos^2\theta) + \frac{1}{2}\dot{\theta}^2\frac{m\ell^2}{12} \\
+  &=\frac{1}{2}\frac{m\ell^2}{3}\dot{\theta}^2.
+\end{align*}
+
+
+
+
+

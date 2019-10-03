@@ -1,0 +1,61 @@
+
+The first two design specifications can be displayed on the Bode magnitude plot as shown in \fref{fig:hw_arm_compensator_design_1}.  To improve the tracking and disturbance rejection by a factor of $10$ for reference signals and disturbances below $\omega_r=0.07$~rad/sec, the loop gain must be $20$~dB above $P(s)C_{PID}(s)$, as shown by the green line in the top left of \fref{fig:hw_arm_compensator_design_1}.
+%
+To improve noise attenuation by a factor of $10$ for frequencies above $\omega_n=1000$~rad/sec, the loop gain must be $20$~dB below $P(s)C_{PID}(s)$, as shown by the green line in the bottom right of \fref{fig:hw_arm_compensator_design_1}.
+%
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_arm_compensator_design_1}
+	{The Bode plot for the open loop plant in HW~\ref{ds:single_link_arm}.\ref{chap:loopshaping_design}, together with the design specifications.}
+	{fig:hw_arm_compensator_design_1}
+
+To increase the loop gain below $\omega_r=0.07$~rad/sec, a phase lag filter can be added with zero at $z=0.7$ with a separation of $M=10$.  \fref{fig:hw_arm_compensator_design_2} shows the loopgain of $PC$ when 
+\begin{align*}
+C(s) &= C_{PID}(s)C_{Lag}(s) \\
+     &=  \left(\frac{0.1036 s^2 + 0.3108 s + 0.1}{0.05 s^2 + s}\right)\left(\frac{s + 0.7}{s + 0.07}\right).
+\end{align*}
+From \fref{fig:hw_arm_compensator_design_2} we see that the closed loop system will satisfy the tracking and input disturbance specifications. 
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_arm_compensator_design_2}
+	{The Bode plot for HW~\ref{ds:single_link_arm}.\ref{chap:loopshaping_design} where $C=C_{PID}C_{lag}$.}
+	{fig:hw_arm_compensator_design_2}
+
+The phase margin after adding the lag filter is $PM=40.9$~degrees.  To increase the phase margin, a phase lead filter is added with center frequency $\omega_c=30$~rad/sec and a separation of $M=10$.  The center frequency for the lead filter is selected to be above the cross over frequency so as not to change the location of the cross over frequency, thereby keeping the closed loop bandwidth, and therefore the control effort, roughly the same as with the PID controller.  After adding the lead filter, the controller is
+\begin{align*}
+C(s) &= C_{PID}(s)C_{Lag}(s)C_{Lead}(s) \\
+     &=  \left(\frac{0.1036 s^2 + 0.3108 s + 0.1}{0.05 s^2 + s}\right)\left(\frac{s + 0.7}{s + 0.07}\right)
+	\left(\frac{10 s + 94.87}{s + 94.87}\right),
+\end{align*}
+and the corresponding loop gain is shown in \fref{fig:hw_arm_compensator_design_3}.
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_arm_compensator_design_3}
+	{The Bode plot for HW~\ref{ds:single_link_arm}.\ref{chap:loopshaping_design} where $C=C_{PID}C_{lag}C_{lead}$.}
+	{fig:hw_arm_compensator_design_3}
+
+In order to satisfy the noise attenuation specification, we start by adding a low pass filter at $p=50$.  The corresponding loop gain is shown in \fref{fig:hw_arm_compensator_design_4}, from which we see that the noise specification is not yet satisfied.  Therefore, we add an additional low pass filter at $p=150$ to obtain the loopgain in \fref{fig:hw_arm_compensator_design_5}.  The phase margin is $PM=64$~degrees. The corresponding controller is
+\begin{align*}
+C(s) &= C_{PID}(s)C_{Lag}(s)C_{Lead}(s) \\
+     &=  \left(\frac{0.1036 s^2 + 0.3108 s + 0.1}{0.05 s^2 + s}\right)\left(\frac{s + 0.7}{s + 0.07}\right)
+     \\ &\qquad\cdot
+	\left(\frac{10 s + 94.87}{s + 94.87}\right)\left(\frac{50}{s+50}\right)\left(\frac{150}{s+150}\right).
+\end{align*}
+Note that we have selected the filter values to leave the cross over frequency the same as with the original PID controller.
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_arm_compensator_design_4}
+	{The Bode plot for HW~\ref{ds:single_link_arm}.\ref{chap:loopshaping_design} where $C=C_{PID}C_{lag}C_{lead}C_{lpf}$.}
+	{fig:hw_arm_compensator_design_4}
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_arm_compensator_design_5}
+	{The Bode plot for HW~\ref{ds:single_link_arm}.\ref{chap:loopshaping_design} where $C=C_{PID}C_{lag}C_{lead}C_{lpf}C_{lpf2}$.}
+	{fig:hw_arm_compensator_design_5}
+
+The closed loop frequency response $PC/(1+PC)$ and the corresponding step response and control effort are shown by the blue lines in \fref{fig:hw_arm_compensator_design_6}.  The overshoot in the step response is caused by the small amount of peaking on the closed loop bode plot.  The peaking can be reduced by adding a prefilter, which in this case is a low pass filter with pole $p=3$.   The prefiltered closed loop frequency response $FPC/(1+PC)$ and the corresponding step response and control effort are shown by the red lines in \fref{fig:hw_arm_compensator_design_6}.  As shown by \fref{fig:hw_arm_compensator_design_6}, the prefilter reduces the overshoot and lowers the control effort.
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_arm_compensator_design_6}
+	{On the left is the closed loop frequency response in blue, and the prefiltered closed loop frequency response in red.  In the middle are the associated closed-loop step response.  On the right is the associated control effort.}
+	{fig:hw_arm_compensator_design_6}
+
+Matlab code for the design of the controller is shown below.
+\lstinputlisting{./6_design_studies/_A_arm/simulink/hw18/loopshape_arm.m}
+%\lstinputlisting{./simulink_a18/loopshape_arm.m}
+
+

@@ -1,0 +1,13 @@
+
+For this homework assignment we will use loopshaping to improve the PID controllers developed in HW~\ref{ds:single_link_arm}.\ref{chap:PID-digital-implementation}.  Let $C_{pid}(s)$ be the PID controller designed in HW~\ref{ds:single_link_arm}.\ref{chap:PID-digital-implementation}.  The final control will be $C(s) = C_{pid}(s)C_{l}(s)$ where $C_l$ is designed using loopshaping techniques.
+\begin{description}
+\item[(a)]  Design $C_l(s)$ to meet the following objectives:
+	\begin{description}
+	\item[(1)] Improve tracking and disturbance rejection by a factor of 10 for reference signals and disturbances below $0.07$~rad/sec, 
+	\item[(2)] Improve noise attention by a factor of 10 for frequencies above $1000$ radians/sec.
+	\item[(3)] Phase margin that is approximately $PM=60$~degrees.
+	\end{description}
+\item[(b)] Add zero mean Gaussian noise with standard deviation $\sigma^2=0.01$ to the Simulink diagram developed in HW~\ref{ds:single_link_arm}.\ref{chap:PID-digital-implementation}.
+\item[(c)] Implement the controller $C(s)$ in Simulink using its state space equivalent.
+\item[(d)] Note that despite having a good phase margin, there is still significant overshoot, due in part to the windup effect in the phase lag filter.  This can be mitigated by adding a prefilter, that essentially modifies the hard step input into the system.  Add a low pass filter for $F(s)$ as a prefilter to flatten out the closed loop Bode response and implement in Simulink using its discrete time state space equivalent.
+\end{description}

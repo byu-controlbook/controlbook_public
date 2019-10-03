@@ -1,0 +1,24 @@
+
+The closed loop block diagram including an integrator is shown in \fref{fig:hw_arm_PID_root_locus}.
+\controlbookfigure{0.8}
+	{6_design_studies/figures/hw_arm_PID_root_locus}
+	{PID control for the single link robot arm.}
+	{fig:hw_arm_PID_root_locus}
+The closed loop transfer function is given by
+\[
+\tilde{\Theta}(s) = \frac{\frac{3k_P}{m\ell^2}s + \frac{3k_I}{m\ell^2}}{s^3 + \left(\frac{3b+3k_D}{m\ell^2}\right)s^2 + \frac{3k_P}{m\ell^2}s + \frac{3k_I}{m\ell^2}} \tilde{\Theta}^d(s).
+\]
+The characteristic equation is therefore
+\[
+s^3 + \left(\frac{3b+3k_D}{m\ell^2}\right)s^2 + \frac{3k_P}{m\ell^2}s + \frac{3k_I}{m\ell^2} = 0.
+\]
+In Evan's form we have
+\[
+1 + k_I\left(\frac{\frac{3}{m\ell^2}}{s^3 + \left(\frac{3b+3k_D}{m\ell^2}\right)s^2 + \frac{3k_P}{m\ell^2}s}\right) = 0.
+\]
+The appropriate Matlab command is therefore
+\begin{lstlisting}
+>> L = tf([3/m/L^2],...
+          [1,(3*b+3*kd)/m/L^2,3*kp/m/L^2,0]);
+>> figure(1), clf, rlocus(L);
+\end{lstlisting}

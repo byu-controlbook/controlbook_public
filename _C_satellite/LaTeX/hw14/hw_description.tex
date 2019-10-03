@@ -1,0 +1,10 @@
+
+\begin{description}
+\item[(a)] Modify the parameter file from HW~\ref{ds:satellite}.18 to use inexact parameters, as in HW~\ref{ds:satellite}.15 and HW~\ref{ds:satellite}.17.  Explicitly add an additional input disturbance of $1$~Newton-meters.  Before adding the disturbance observer, run the simulation and observe the bias in the state.  The integrator anti-windup that limits integral action when $\dot{\phi}$ is small will likely not work because of the state bias.  You may need to comment out the anti-windup scheme for the integrator to work, in which case you will get large steady state error.
+\item[(b)] Add a disturbance observer to the controller, and verify that the steady state error in the estimator has been removed.  Experiment with the system to understand the response with and without the integrator, and with and without anti-windup.
+\end{description}
+
+\begin{description}
+\item[(a)] Modify your solution from HW~\ref{ds:satellite}.\ref{chap:observers} so that the uncertainty parameter in {\tt  satellite\_dynamics.m} is $\alpha=0.2$, representing 20\% inaccuracy in the knowledge of the system parameters, and so that the input disturbance is $1.0$. Also, add noise to the output channels $z_m$ and $\theta_m$ with standard deviation of $0.001$.  
+\item[(b)] Add a disturbance observer to the controller, and verify that the steady state error in the estimator has been removed.  Tune the system to get good response.
+\end{description}

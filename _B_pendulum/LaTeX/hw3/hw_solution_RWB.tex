@@ -1,0 +1,81 @@
+
+\controlbookfigure{0.5}
+	{6_design_studies/figures/hw_pendulum_defn.pdf}
+	{Pendulum on a cart.}
+	{fig:sm_pendulum_defn}
+	
+
+
+Let $P_0$ be the potential energy when $\theta=0$ and $z=0$.  Then the potential energy of the pendulum system is given by
+\[
+P = P_0 + m_1 g \frac{\ell}{2} \cos\theta,
+\]
+where $\ell\cos\theta / 2$ is the height of the center of mass of the rod.
+Note that the potential energy decreases as $\theta$ increases.
+
+The generalized coordinates for the system are the horizontal position $z$ and the angle $\theta$.  Therefore, let $\mathbf{q} = (z, \theta)^\top$.
+
+The external forces acting in the direction of $z$ is $\tau_1 = F$, and the external torque acting in the direction of $\theta$ is $\tau_2=0$.  Therefore, the generalized forces are $\boldsymbol{\tau}=(F, 0)^\top$.  A damping term acts in the direction of $z$, which implies that
+$-B\dot{\mathbf{q}} = (-b\dot{z}, 0)^\top$.
+
+Using Equation~\eqref{eq:pendulum_kinetic_energy}, the kinetic energy can be written in terms of the generalized coordinates as
+\begin{align*}
+K(\mathbf{q},\dot{\mathbf{q}}) &= \frac{1}{2}(m_1+m_2)\dot{z}^2 + \frac{1}{2}m_1\frac{\ell^2}{4}\dot{\theta}^2 + m_1\frac{\ell}{2}\dot{z}\dot{\theta}\cos\theta \\
+&= \frac{1}{2}(m_1+m_2)\dot{q}_1^2 + \frac{1}{2}m_1\frac{\ell^2}{4}\dot{q}_2^2 + m_1\frac{\ell}{2}\dot{q}_1\dot{q}_2\cos q_2,
+\end{align*}
+and the potential energy can be written as
+\begin{align*}
+P(\mathbf{q}) &= P_0 + m_1 g \frac{\ell}{2}\cos\theta\\
+&= P_0 + m_1 g \frac{\ell}{2}\cos q_2.
+\end{align*}
+The Lagrangian is therefore given by
+\begin{multline*}
+L(\mathbf{q},\dot{\mathbf{q}}) = \frac{1}{2}(m_1+m_2)\dot{q}_1^2 + \frac{1}{2}m_1\frac{\ell^2}{4}\dot{q}_2^2 + m_1\frac{\ell}{2}\dot{q}_1\dot{q}_2\cos q_2 \\ - P_0 - m_1 g \frac{\ell}{2}\cos q_2.	
+\end{multline*}
+Therefore
+\begin{align*}
+\frac{\partial L}{\partial\dot{\mathbf{q}}} &= \begin{pmatrix} 
+(m_1+m_2)\dot{z} + m_1\frac{\ell}{2}\dot{\theta}\cos\theta \\
+m_1\frac{\ell^2}{4}\dot{\theta} - m_1\frac{\ell}{2}\dot{z}\cos\theta
+\end{pmatrix} \\
+\frac{\partial L}{\partial\mathbf{q}} &= \begin{pmatrix}
+0 \\ -m_1\frac{\ell}{2}\dot{z}\dot{\theta}\sin\theta + m_1 g \frac{\ell}{2} \sin\theta
+\end{pmatrix}.
+\end{align*}
+Differentiating $\frac{\partial L}{\partial \dot{\mathbf{q}}}$ with respect to time gives
+\[
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\mathbf{q}}}\right) = \begin{pmatrix} 
+(m_1+m_2)\ddot{z} + m_1 \frac{\ell}{2} \ddot{\theta}\cos\theta - m_1 \frac{\ell}{2} \dot{\theta}^2\sin\theta \\
+m_1 \frac{\ell^2}{4} \ddot{\theta} + m_1 \frac{\ell}{2} \ddot{z}\cos\theta - m_1 \frac{\ell}{2} \dot{z}\dot{\theta}\sin\theta
+\end{pmatrix}.
+\]
+Therefore the Euler-Lagrange equation
+\[
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot{\mathbf{q}}} \right) - \frac{\partial L}{\partial \mathbf{q}} =  \boldsymbol{\tau}-B\dot{\mathbf{q}}
+\]
+gives
+\begin{multline*}
+\begin{pmatrix}
+(m_1+m_2)\ddot{z} + m_1 \frac{\ell}{2} \ddot{\theta}\cos\theta - m_1 \frac{\ell}{2} \dot{\theta}^2\sin\theta \\
+m_1 \frac{\ell^2}{4} \ddot{\theta} + m_1 \frac{\ell}{2} \ddot{z}\cos\theta - m_1 \frac{\ell}{2} \dot{z}\dot{\theta}\sin\theta + m_1\frac{\ell}{2}\dot{z}\dot{\theta}\sin\theta - m_1 g \frac{\ell}{2} \sin\theta
+\end{pmatrix}
+\\ = \begin{pmatrix} F \\ 0 \end{pmatrix}-\begin{pmatrix} b\dot{z} \\ 0 \end{pmatrix}.
+\end{multline*}
+Simplifying and moving all second order derivatives to the left and side, and all other terms to the right hand side gives
+\[
+\begin{pmatrix}
+(m_1+m_2)\ddot{z} + m_1 \frac{\ell}{2} \ddot{\theta}\cos\theta  \\
+m_1 \frac{\ell^2}{4} \ddot{\theta} + m_1 \frac{\ell}{2} \ddot{z}\cos\theta   
+\end{pmatrix}
+= \begin{pmatrix}  m_1 \frac{\ell}{2} \dot{\theta}^2\sin\theta + F -b\dot{z} \\ m_1 g \frac{\ell}{2} \sin\theta \end{pmatrix}.
+\]
+Using matrix notation, this equation can be rearranged to isolate the second order derivatives on the left-hand side
+\begin{equation}\label{eq:pendulum_sim_model}
+\begin{pmatrix}
+(m_1+m_2) & m_1 \frac{\ell}{2} \cos\theta \\ 
+m_1 \frac{\ell}{2} \cos\theta & m_1 \frac{\ell^2}{4}
+\end{pmatrix} \begin{pmatrix}\ddot{z} \\ \ddot{\theta} \end{pmatrix}
+= \begin{pmatrix}  m_1 \frac{\ell}{2} \dot{\theta}^2\sin\theta + F -b\dot{z} \\ m_1 g \frac{\ell}{2} \sin\theta \end{pmatrix}.
+\end{equation}
+Equation~\eqref{eq:pendulum_sim_model} represents the simulation model for the pendulum on a cart system.
+

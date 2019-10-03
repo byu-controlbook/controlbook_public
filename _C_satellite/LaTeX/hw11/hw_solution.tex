@@ -1,0 +1,76 @@
+
+From HW~\ref{ds:satellite}.\ref{chap:state_space_models}, the state space equations for the satellite are given by
+\begin{align}
+\dot{x} &= \begin{pmatrix}
+         0  &       0 &   1.0000 &        0 \\
+         0  &       0 &        0 &   1.0000 \\
+   -0.0300  &  0.0300 &  -0.0100 &   0.0100 \\
+    0.1500  & -0.1500 &   0.0500 &  -0.0500 
+\end{pmatrix} x + \begin{pmatrix}
+     0 \\
+     0 \\
+0.2 \\
+     0 \\
+\end{pmatrix} u \notag \\
+y &= \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+-1 & 1 & 0 & 0 
+\end{pmatrix} x\label{eq:hw_state_feedback_c1}
+\end{align}
+where Equation~\eqref{eq:hw_state_feedback_c1} represents the measured outputs.  The reference output is the angle $\phi$, which implies that
+\[
+y_r = \begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix} x.
+\]
+\begin{description}
+\item[Step 1.] 
+The controllability matrix is 
+\begin{align*}
+\mathcal{C}_{A,B} &= [B, AB, A^2B, A^3B] \\
+ 	&= \begin{pmatrix}           
+        0  &  0.2000  & -0.0020  & -0.0059 \\
+         0 &        0 &   0.0100 &   0.0294 \\
+    0.2000 &  -0.0020 &  -0.0059 &   0.0007 \\
+         0 &   0.0100 &   0.0294 &  -0.0036 \end{pmatrix}.
+\end{align*}
+The determinant is $det(\mathcal{C}_{A,B})=-36,000\neq 0$, therefore the system is controllable.  
+\item[Step 2.] The open loop characteristic polynomial is
+\[
+\Delta_{ol}(s)=\text{det}(sI-A) = s^4 + 0.0600 s^3 + 0.18 s^2 
+\]
+which implies that
+\begin{align*}
+\mathbf{a}_A &= (0.06, 0.18, 0, 0) \\
+\mathcal{A}_A &= \begin{pmatrix} 
+1 & 0.06 & 0.18 & 0 \\ 0 & 1 & 0.06 & 0.18 \\ 0 & 0 & 1 & 0.06 \\ 0 & 0 & 0 & 1
+\end{pmatrix}.
+\end{align*}
+
+\item[Step 3.] The desired closed loop polynomial is
+\begin{align*}
+\Delta_{cl}^d(s) &= (s^2+2\zeta_{\theta}\omega_{n_\theta} s + \omega_{n_\theta}^2)(s^2+2\zeta_{\phi}\omega_{n_\phi} s + \omega_{n_\phi}^2) \\
+&=s^4 + 4.9275 s^3 + 12.1420 s^2 + 14.6702 s + 8.8637,              
+\end{align*}
+when $\omega_\theta = 1.9848$, $\zeta_\theta = 0.707$, $\omega_\phi=1.5$, $\zeta_\phi = 0.707$, 
+which implies that
+\[
+\boldsymbol{\alpha} = (4.9275,   12.1420,   14.6702,    8.8637).
+\]
+
+\item[Step 4.]
+The gains are therefore given by
+\begin{align*}
+K &= (\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1} 
+  = (40.2842,  255.1732,   24.3375,  366.1825)
+\end{align*}
+The feedforward reference gain $k_r=-1/C_r(A-BK)^{-1}B$ is computed using $C_r=(0,1,0,0)$, which gives
+\begin{align*}
+k_r &= \frac{-1}{C_r(A-BK)^{-1}B} 
+    = 295.4573.
+\end{align*}
+\end{description}
+
+Alternatively, we could have used the following Matlab script.
+\lstinputlisting{./6_design_studies/_C_satellite/simulink/hw11/satelliteParamHW11.m}
+
+The Matlab code for the controller is given by
+\lstinputlisting{./6_design_studies/_C_satellite/simulink/hw11/satellite_ctrl.m}

@@ -1,0 +1,29 @@
+
+The equations of motion from HW~\ref{ds:satellite}.3 are given by
+\begin{align*}
+\ddot{\theta} &= \frac{1}{J_s}\tau - \frac{b}{J_s}\dot{\theta} + \frac{b}{J_s}\dot{\phi} - \frac{k}{J_s}\theta + \frac{k}{J_s}\phi \\
+\ddot{\phi} &=  \frac{b}{J_p}\dot{\theta} - \frac{b}{J_p}\dot{\phi} + \frac{k}{J_p}\theta - \frac{k}{J_p}\phi.
+\end{align*}
+Defining the state $x\defeq (x_1, x_2, x_3, x_4)^{\top} = (\theta, \phi, \dot{\theta}, \dot{\phi})^{\top}$, the input $u\defeq\tau$, and the output $y\defeq(y_1, y_2)^{\top}=(\theta, \phi-\theta)^{\top}$, the state space equations are given by
+\begin{align*}
+\dot{x} &= \begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \\ \dot{x}_3 \\ \dot{x}_4 \end{pmatrix} = \begin{pmatrix} \dot{\theta} \\ \dot{\phi} \\ \ddot{\theta} \\ \ddot{\phi} \end{pmatrix} = \begin{pmatrix} x_3 \\ x_4 \\ \frac{1}{J_s}u - \frac{b}{J_s}x_3 + \frac{b}{J_s}x_4 - \frac{k}{J_s}x_1 + \frac{k}{J_s}x_2 \\
+\frac{b}{J_p}x_3 - \frac{b}{J_p}x_4 + \frac{k}{J_p}x_1 - \frac{k}{J_p}x_2 \end{pmatrix} \\
+&= \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ -\frac{k}{J_s} & \frac{k}{J_s} & -\frac{b}{J_s} & \frac{b}{J_s} \\ \frac{k}{J_p} & -\frac{k}{J_p} & \frac{b}{J_p} & -\frac{b}{J_p} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \\ \frac{1}{J_s} \\ 0 \end{pmatrix} u.
+\end{align*}
+Similarly
+\begin{align*}
+y&=\begin{pmatrix}\theta \\ \phi-\theta\end{pmatrix} = \begin{pmatrix}x_1 \\ x_2-x_1 \end{pmatrix} \\
+&= \begin{pmatrix} 1 & 0 & 0 & 0 \\ -1 & 1 & 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \end{pmatrix} u.
+\end{align*}
+Therefore, the state space model is
+\begin{align*}
+\dot{x} &= Ax + Bu \\
+y &= Cx + Du,
+\end{align*}
+where
+\begin{align*}
+A &= \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ -\frac{k}{J_s} & \frac{k}{J_s} & -\frac{b}{J_s} & \frac{b}{J_s} \\ \frac{k}{J_p} & -\frac{k}{J_p} & \frac{b}{J_p} & -\frac{b}{J_p} \end{pmatrix} \\
+B &= \begin{pmatrix} 0 \\ 0 \\ \frac{1}{J_s} \\ 0 \end{pmatrix} \\
+C &= \begin{pmatrix} 1 & 0 & 0 & 0 \\ -1 & 1 & 0 & 0 \end{pmatrix} \\
+D &= \begin{pmatrix} 0 \\ 0 \end{pmatrix}.
+\end{align*}

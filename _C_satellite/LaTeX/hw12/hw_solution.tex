@@ -1,0 +1,106 @@
+\begin{description}
+\item[Step 1.]
+The original state space equations are 
+\begin{align*}
+\dot{x} &= \begin{pmatrix} 
+         0 &        0 &   1 &        0 \\
+         0 &        0 &        0 &   1 \\
+   -0.03 &   0.03 &  -0.01 &   0.01 \\
+    0.14 &  -0.14 &   0.05 &  -0.05 
+\end{pmatrix}x + \begin{pmatrix} 
+ 0    \\     0 \\   0.21 \\  0
+\end{pmatrix} u \\
+y &= \begin{pmatrix}
+1 & 0 & 0 & 0 \\ 
+0 & 1 & 0 & 0
+\end{pmatrix}x.
+\end{align*}
+The integrator will only be on $\phi=x_2$, therefore 
+\[
+C_r = \begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix}.
+\]
+The augmented system is therefore
+\begin{align*}
+A_1 &= \begin{pmatrix} A & \mathbf{0} \\ -C_r & \mathbf{0} \end{pmatrix}\\
+ &= \begin{pmatrix} 
+         0 &        0 &   1 &        0 &        0 \\
+         0 &        0 &        0 &   1 &        0 \\
+   -0.03 &   0.03 &  -0.01 &   0.01 &        0 \\
+    0.14 &  -0.14 &   0.05 &  -0.05 &        0 \\
+         0 &   -1 &        0 &        0 &        0 \\
+\end{pmatrix} \\
+B_1 &= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} = \begin{pmatrix} 
+0   \\      0  \\  0.21 \\  0   \\      0 
+\end{pmatrix}
+\end{align*}
+
+\item[Step 2.] 
+After the design in HW~\ref{ds:satellite}.\ref{chap:state-feedback}, the closed loop poles were located at 
+$p_{1,2} = -1.0605 \pm j 1.0608$, 
+$p_{3,4}=  -0.7016 \pm j 0.7018$.
+We will add the integrator pole at $p_I=-1$.
+The new controllability matrix
+\begin{align*}
+\mathcal{C}_{A_1,B_1} &= [B_1, A_1B_1, A_1^2B_1, A_1^3B_1, A_1^4B_1] \\
+&= \begin{pmatrix} 
+         0 &   0.21 &  -0.0023 &  -0.0062 &   0.0008 \\
+         0 &        0 &   0.011 &   0.0279 &  -0.0034 \\
+    0.21 &  -0.0023 &  -0.0062 &   0.0008 &   0.0010 \\
+         0 &   0.011 &   0.0279 &  -0.0034 &  -0.0044 \\
+         0 &        0 &        0 &   0.0105 &   0.0279 
+         \end{pmatrix}.
+\end{align*}
+The determinant is nonzero, therefore the system is controllable.  
+
+The open loop characteristic polynomial
+\begin{align*}
+\Delta_{ol}(s)&=\text{det}(sI-A_1) \\
+&= s^5 + 0.0611 s^4 + 0.1657 s^3,
+\end{align*}
+which implies that
+\begin{align*}
+\mathbf{a}_{A_1} &= \begin{pmatrix}0.0611,  &   0.1657,   &       0,   &       0,     &     0\end{pmatrix} \\
+\mathcal{A}_{A_1} &= \begin{pmatrix} 
+1 & 0.0611 &    0.1657 &         0 &        0 \\ 
+0 & 1 & 0.0611 &    0.1657 &         0 \\ 
+0 & 0 & 1 & 0.0611 &    0.1657 \\
+0 & 0 & 0 & 1 & 0.0611 \\
+0 & 0 & 0 & 0 & 1
+\end{pmatrix}.
+\end{align*}
+
+The desired closed loop polynomial
+\begin{align*}
+\Delta_{cl}^d(s) &= (s+1.0605 - j1.0608)(s+1.0605 +j1.0608)\dots \\
+&\quad
+(s+0.7016-j0.7018)(s+0.7016+j0.7018)
+(s+1) \\
+&=s^5+3.4038 s^4+5.2934 s^3+4.4761 s^2 \\ &\qquad +2.0221 s+0.4356,
+\end{align*}
+which implies that
+\[
+\boldsymbol{\alpha} = \begin{pmatrix} 3.4038, &    5.2934 &    4.4761, &    2.0221, &    0.4356\end{pmatrix}.
+\]
+
+The augmented gains are therefore given as
+\begin{align*}
+K_1 &= (\boldsymbol{\alpha}-\mathbf{a}_{A_1})\mathcal{A}_{A_1}^{-1}\mathcal{C}_{A_1,B_1}^{-1} \\
+  &= \begin{pmatrix} 19.15, &   43.41, &   16.72, &  111.63, &  -14.52 \end{pmatrix}.
+\end{align*}
+
+\item[Step 3.]
+The feedback gains are therefore given by
+\begin{align*}
+K &= K_1(1:2) = \begin{pmatrix} 19.15, &   43.41, &   16.72, &  111.63 \end{pmatrix} \\
+k_I &= K_1(3) = -14.5200.
+\end{align*}
+\end{description}
+
+Alternatively, we could have used the following Matlab script
+\iftoggle{soln}{%
+  \lstinputlisting{simulink/hw12/satelliteParamHW12.m}
+}{%
+  \lstinputlisting{./6_design_studies/_C_satellite/simulink/hw12/satelliteParamHW12.m}
+}
+
+See \controlbookurl{http://controlbook.byu.edu} for the complete solution.

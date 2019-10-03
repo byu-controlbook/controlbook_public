@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+
+\usepackage{latexsym}
+\usepackage[pdftex]{graphicx}
+  \graphicspath{{./figures/},{./../../../}}
+  \DeclareGraphicsExtensions{.pdf,.jpg,.png}
+
+\usepackage{amsmath,amssymb,amstext,amsfonts}
+%\usepackage[all]{xy}
+\usepackage{color}
+%\usepackage{subfigmat}
+\usepackage{enumitem} 
+%\usepackage{keyval,times}
+\usepackage{fancyhdr}
+%\usepackage{theorem}
+%\usepackage[numbered,bw,framed]{mcode} % for Matlab code
+\usepackage[numbered,framed]{mcode}
+%\usepackage{pdfsync}
+\usepackage{algorithmic,algorithm}
+\usepackage{hyperref}
+    \hypersetup{%
+        pdftitle={A Design Study Approach to Classical Control},
+        pdfauthor={R. Beard, T. McLain},
+        bookmarksnumbered,
+        pdfstartview={FitH},
+        colorlinks=true,
+        breaklinks=true,
+        citecolor=blue,
+        linkcolor=blue,
+	pdfborder={0 0 0},
+	bookmarks=true,
+}%
+\usepackage{pdfpages}
+\usepackage{calligra}
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+\usepackage{etoolbox}
+
+
+% this packages allow use of references from controlbook
+\usepackage{xr}
+\externaldocument{./../../../controlbook}
+\externaldocument{./../../../_introduction/introduction}
+\externaldocument{./../../../1_sim_models/sim_models}
+\externaldocument{./../../../2_design_models/design_models}
+\externaldocument{./../../../3_PID/PID}
+\externaldocument{./../../../4_observer_based/observer_based_control}
+\externaldocument{./../../../5_loopshaping/loopshaping}
+\externaldocument{./../../../6_design_studies/design_studies}
+\externaldocument{./../../../app_animation/animation}
+\externaldocument{./../../../app_s_function/s_function}
+\externaldocument{./../../../app_root_locus/root_locus}
+
+
+% macros and formatting
+\newcommand{\defeq}{\stackrel{\triangle}{=}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\re}{{\mathbb{R}}}
+\newcommand{\rwbcomment}[1]{{\color{red} RWB: #1}}
+\newcommand{\oldproblem}[1]{{}} 
+\newcommand*{\textlabel}[2]{%
+  \edef\@currentlabel{#1}% Set target label
+  \phantomsection% Correct hyper reference link
+  #1\label{#2}% Print and store label
+}
+\newcommand{\newcal}[1]{\text{\calligra #1}}
+%\newcommand{\oldproblem}[1]{{\color{blue} OLD: #1}} 
+
+
+\title{ A Design Study Approach to Classical Control}
+\author{ Randal W. Beard \qquad Timothy W. McLain \\ Brigham Young University }
+%\author{ Randal W. Beard \\ Brigham Young University }
+\date{Updated: \today}
+
+% set toggle for including matlab solution files
+\newtoggle{soln}
+\toggletrue{soln}
+
+
+
+

@@ -1,0 +1,41 @@
+
+The closed loop block diagram for the outer loop including an integrator is shown in \fref{fig:hw_satellite_PID_root_locus}.  
+\controlbookfigure{0.8}
+	{6_design_studies/figures/hw_satellite_PID_root_locus}
+	{PID control for the outer loop of the satellite system.}
+	{fig:hw_satellite_PID_root_locus}
+The closed loop transfer function is given by
+\[
+\Phi(s) = \frac{b_2s^2 + b_1 s + b_0}{a_3s^3+a_2s^2+a_1s+a_0}\Phi_r(s),
+\]
+where
+\begin{align*}
+b_2 &=\frac{bk_{DC_\theta}k_{P_\phi}}{J_p} \\
+b_1 &= \frac{bk_{DC_\theta}k_{I_\phi}}{J_p}+\frac{kk_{DC_\theta}k_{P_\phi}}{J_p} \\
+b_0 &= \frac{kk_{DC_\theta}k_{I_\phi}}{J_p} \\
+a_3 &= 1+\frac{bk_{DC_\theta}k_{D_\phi}}{J_p} \\
+a_2 &= \frac{b}{J_p}+\frac{kk_{DC_\theta}k_{D_\phi}}{J_p}+\frac{bk_{DC_\theta}k_{P_\phi}}{J_p} \\
+a_1 &= \frac{k}{J_p}+\frac{bk_{DC_\theta}k_{I_\phi}}{J_p}+\frac{kk_{DC_\theta}k_{P_\phi}}{J_p} \\
+a_0 &= \frac{kk_{DC_\theta}k_{I_\phi}}{J_p}.
+\end{align*}
+The characteristic equation is therefore
+\begin{multline*}
+\left(1+\frac{bk_{DC_\theta}k_{D_\phi}}{J_p}\right)s^3 
++ \left(\frac{b}{J_p}+\frac{kk_{DC_\theta}k_{D_\phi}}{J_p}+\frac{bk_{DC_\theta}k_{P_\phi}}{J_p}\right)s^2 \\ + \left(\frac{k}{J_p}+\frac{bk_{DC_\theta}k_{I_\phi}}{J_p}+\frac{kk_{DC_\theta}k_{P_\phi}}{J_p}\right)s + \frac{kk_{DC_\theta}k_{I_\phi}}{J_p} = 0.
+\end{multline*}
+In Evan's form we have
+\begin{strip}
+\[
+1 + k_{I_\phi}\left(\frac{\frac{bk_{DC_\theta}}{J_p}s+\frac{kk_{DC_\theta}}{J_p}}
+{\left(1+\frac{bk_{DC_\theta}k_{D_\phi}}{J_p}\right)s^3 + \left(\frac{b}{J_p}+\frac{kk_{DC_\theta}k_{D_\phi}}{J_p}+\frac{bk_{DC_\theta}k_{P_\phi}}{J_p}\right)s^2 + \left(\frac{k}{J_p}+\frac{kk_{DC_\theta}k_{P_\phi}}{J_p}\right)s}
+\right) = 0.
+\]
+\end{strip}
+The appropriate Matlab command is therefore
+\begin{lstlisting}
+>> L = tf([b*kDC/Jp, k*kDC/Jp],...
+          [1+b*kDC*kD/Jp,...
+           b/Jp+k*kDC*kD/Jp+b*kDC*kP/Jp,...
+           k/Jp+k*kDC*kP/Jp, 0]);
+>> figure(1), clf, rlocus(L);
+\end{lstlisting}

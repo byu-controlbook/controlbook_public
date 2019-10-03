@@ -1,0 +1,63 @@
+The linear state space equations can be derived in two different ways: (1) directly from the linearized equations of motion, and (2) by linearizing the nonlinear equations of motion.
+
+Starting with the linear state space equation in Equation~\eqref{eq:pendulum_linearized_eom} and solving for $(\ddot{\tilde{z}}, \ddot{\tilde{\theta}})^\top$ gives
+\begin{align*}
+\begin{pmatrix} \ddot{\tilde{z}} \\ \ddot{\tilde{\theta}} \end{pmatrix} &= \frac{\begin{pmatrix} m_1\frac{\ell^2}{3} & -m_1\frac{\ell}2 \\ -m_1\frac{\ell}{2} & (m_1+m_2)\end{pmatrix}}{m_1^2\frac{\ell^2}{3}+m_1m_2\frac{\ell^2}{3}-m_1^2\frac{\ell^2}{4}}\begin{pmatrix} -b\dot{\tilde{z}}+\tilde{F} \\ m_1g\frac{\ell}{2}\tilde{\theta} \end{pmatrix} \\
+&= \begin{pmatrix} -\frac{b}{\frac{1}{4}m_1 + m_2}\dot{\tilde{z}} + \frac{1}{\frac{1}{4}m_1 + m_2}\tilde{F} - \frac{\frac{3}{4} m_1g}{\frac{1}{4}m_1 + m_2}\tilde{\theta} \\ \frac{3b}{2(\frac{1}{4}m_1 + m_2)\ell}\dot{\tilde{z}} - \frac{3}{2( \frac{1}{4}m_1 + m_2)\ell}\tilde{F} + \frac{3 (m_1+m_2)g}{2 (\frac{1}{4}m_1 + m_2)\ell}\tilde{\theta} \end{pmatrix}.
+\end{align*}
+Therefore, defining $\tilde{x}=(\tilde{x}_1, \tilde{x}_2, \tilde{x}_3, \tilde{x}_4)^\top\defeq(\tilde{z},\tilde{\theta},\dot{\tilde{z}},\dot{\tilde{\theta}})^\top$, and $\tilde{u}=\tilde{F}$ gives
+\begin{align*}
+\dot{\tilde{x}} &\defeq \begin{pmatrix} \dot{\tilde{x}}_1 \\ \dot{\tilde{x}}_2 \\ \dot{\tilde{x}}_3 \\ \dot{\tilde{x}}_4\end{pmatrix} = \begin{pmatrix}\dot{\tilde{z}} \\ \dot{\tilde{\theta}} \\ \ddot{\tilde{z}} \\ \ddot{\tilde{\theta}}\end{pmatrix} 
+= \begin{pmatrix} \tilde{x}_3 \\ \tilde{x}_4 \\  
+-\frac{b}{\frac{1}{4}m_1 + m_2}\tilde{x}_3 + \frac{1}{\frac{1}{4}m_1 + m_2}\tilde{u} - \frac{\frac{3}{4} m_1g}{\frac{1}{4}m_1 + m_2}\tilde{x}_2 \\ 
+\frac{3b}{2(\frac{1}{4}m_1 + m_2)\ell}\tilde{x}_3 - \frac{3}{2(\frac{1}{4}m_1 + m_2)\ell}\tilde{u} + \frac{3 (m_1+m_2)g}{2 (\frac{1}{4}m_1 + m_2)\ell} \tilde{x}_2 \end{pmatrix} \\
+&= \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & -\frac{\frac{3}{4} m_1g}{\frac{1}{4}m_1 + m_2} & -\frac{b}{\frac{1}{4}m_1 + m_2} & 0 \\ 0 & \frac{3 (m_1+m_2)g}{2 (\frac{1}{4}m_1 + m_2)\ell} & \frac{3b}{2(\frac{1}{4}m_1 + m_2)\ell} & 0 \end{pmatrix} \begin{pmatrix} \tilde{x}_1 \\ \tilde{x}_2 \\ \tilde{x}_3 \\ \tilde{x}_4 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \\ \frac{1}{\frac{1}{4}m_1 + m_2} \\  \frac{-3}{2(\frac{1}{4}m_1 + m_2)\ell} \end{pmatrix} \tilde{u}.
+\end{align*}
+Assuming that the measured output of the system is $\tilde{y}=(\tilde{z},\tilde{\theta})^\top$, the linearized output is given by
+\[
+\tilde{y} = \begin{pmatrix} \tilde{z} \\ \tilde{\theta}\end{pmatrix} = \begin{pmatrix}\tilde{x}_1 \\ \tilde{x}_2\end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0\end{pmatrix}\begin{pmatrix}\tilde{x}_1 \\ \tilde{x}_2 \\\tilde{x}_3 \\ \tilde{x}_4 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \end{pmatrix}\tilde{u}.
+\]
+Therefore, the linearized state space equations are given by
+\begin{align}
+\dot{\tilde{x}} &= \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & -\frac{\frac{3}{4} m_1g}{\frac{1}{4}m_1 + m_2} & -\frac{b}{\frac{1}{4}m_1 + m_2} & 0 \\ 0 & \frac{3 (m_1+m_2)g}{2 (\frac{1}{4}m_1 + m_2)\ell} & \frac{3b}{2(\frac{1}{4}m_1 + m_2)\ell} & 0 \end{pmatrix} \tilde{x} + \begin{pmatrix} 0 \\ 0 \\ \frac{1}{\frac{1}{4}m_1 + m_2} \\  \frac{-3}{2(\frac{1}{4}m_1 + m_2)\ell} \end{pmatrix} \tilde{u} 
+\notag \\
+\tilde{y} &= \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0\end{pmatrix} \tilde{x}.
+\label{eq:dm_pendulum_linearized_ss}
+\end{align}
+
+Alternatively, the linearized state space equations can be derived from the nonlinear equations of motion.  Starting with Equation~\eqref{eq:pendulum_sim_model} and solving for $(\ddot{z}, \ddot{\theta})^\top$ gives
+{\small
+\begin{align*}
+\begin{pmatrix} \ddot{z} \\ \ddot{\theta} \end{pmatrix}
+  &= \frac{\begin{pmatrix} m_1\frac{\ell^2}{3} & -m_1\frac{\ell}{2}\cos\theta \\ -m_1\frac{\ell}{2}\cos\theta & (m_1+m_2)\end{pmatrix}}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2\theta)}\begin{pmatrix} m_1\frac{\ell}{2}\dot{\theta}^2\sin\theta-b\dot{z}+F \\ m_1g\ell\sin\theta \end{pmatrix} \\
+  &= \frac{\begin{pmatrix} m_1^2\frac{\ell^3}{6}\dot{\theta}^2\sin\theta - bm_1\frac{\ell^2}{3}\dot{z} + m_1\frac{\ell^2}{3}F - m_1^2\frac{\ell^2}{4}g\sin\theta\cos\theta \\ 
+  -m_1^2\frac{\ell^2}{4}\dot{\theta}^2\sin\theta\cos\theta + bm_1\frac{\ell}{2}\dot{z}\cos\theta - m_1\frac{\ell}{2}\cos\theta F + (m_1+m_2)m_1g\frac{\ell}{2}\sin\theta\end{pmatrix}}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2\theta)}.
+\end{align*}
+}
+Defining $x\defeq (z, \theta, \dot{z}, \dot{\theta})^\top$, $u=F$, and $y=(z, \theta)^2$ results in the nonlinear state space equations
+{\normalsize
+\begin{align*}
+\begin{pmatrix}\dot{x}_1 \\ \dot{x}_2 \\ \dot{x}_3 \\ \dot{x}_4 \end{pmatrix} &= \begin{pmatrix} x_3 \\ x_4 \\ 
+\frac{ m_1^2\frac{\ell^3}{6}x_4^2\sin x_2 - bm_1\frac{\ell^2}{3}x_3 + m_1\frac{\ell^2}{3}u - m_1^2\frac{\ell^2}{4}g\sin x_2 \cos x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2 x_2)} \\
+\frac{-m_1^2\frac{\ell^2}{4}x_4^2\sin x_2 \cos x_2 + bm_1\frac{\ell}{2} x_3 \cos x_2 - m_1\frac{\ell}{2}\cos x_2 u + (m_1+m_2)m_1g\frac{\ell}{2}\sin x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2x_2)}
+\end{pmatrix} \\ 
+&\defeq f(x,u) \\
+y &= \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} \defeq h(x,u).
+\end{align*}
+}
+Taking the Jacobians about the equilibrium $x_e=(z_e, 0, 0, 0)^\top$ and $u_e=0$ gives
+\begin{align*}
+A&\defeq \left.\frac{\partial f}{\partial x}\right|_e \\
+	&= \left.\begin{pmatrix} 
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 1 \\
+		0 & \frac{\partial f_3}{\partial x_2} & \frac{-bm_1\frac{\ell^2}{3}}{m_1m_2\frac{\ell^2}{4}+m_1\frac{\ell^2}{4}\sin^2 x_2} & \frac{2m_1^2\frac{\ell^3}{6} x_4\sin x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2x_2)} \\
+		0 & \frac{\partial f_4}{\partial x_2} & \frac{bm_1\frac{\ell}{2}\cos x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2x_2)} & \frac{-2m_1^2\frac{\ell^2}{4} x_4 \sin x_2 \cos x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2x_2)}  \end{pmatrix}\right|_e \\
+		&= \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & -\frac{\frac{3}{4} m_1g}{\frac{1}{4}m_1 + m_2} & -\frac{b}{\frac{1}{4}m_1 + m_2} & 0 \\ 0 & \frac{3 (m_1+m_2)g}{2 (\frac{1}{4}m_1 + m_2)\ell} & \frac{3b}{2(\frac{1}{4}m_1 + m_2)\ell} & 0 \end{pmatrix} \\
+B&\defeq \left.\frac{\partial f}{\partial u}\right|_e = \left.\begin{pmatrix} 0 \\ 0 \\ \frac{m_1\frac{\ell^2}{3}}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2 x_2)} \\ -\frac{m_1\frac{\ell}{2}\cos x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2x_2)} \end{pmatrix}\right|_e 
+= \begin{pmatrix} 0 \\ 0 \\ \frac{1}{\frac{1}{4}m_1 + m_2} \\  \frac{-3}{2(\frac{1}{4}m_1 + m_2)\ell} \end{pmatrix} \\
+C&\defeq \left.\frac{\partial h}{\partial x}\right|_e = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix} \\
+D&\defeq \left.\frac{\partial h}{\partial u}\right|_e = \begin{pmatrix} 0 \\ 0 \end{pmatrix},
+\end{align*}
+resulting in the linearized state space equations given in Equation~\eqref{eq:dm_pendulum_linearized_ss}.
+

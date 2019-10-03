@@ -1,0 +1,79 @@
+
+The differential equations describing the inverted pendulum derived in HW~\ref{ds:pendulum}.3 are
+\begin{align}
+(m_1+m_2)\ddot{z} + m_1 \frac{\ell}{2} \ddot{\theta} \cos\theta  &=
+	 m_1 \frac{\ell}{2} \dot{\theta}^2\sin\theta -b\dot{z} + F 
+	 \label{eq:dm_pendulum_nonlinear_eq} \\
+m_1 \frac{\ell}{2} \ddot{z} \cos\theta +  m_1 \frac{\ell^2}{3} \ddot{\theta} &=
+	m_1 g \frac{\ell}{2} \sin\theta. \notag
+\end{align}
+The equilibria values $(z_e,\theta_e,F_e)$ are found by setting $\dot{z}=\ddot{z}=\dot{\theta}=\ddot{\theta}=0$ in Equation~\eqref{eq:dm_pendulum_nonlinear_eq} to obtain
+\begin{align}
+F_e &= 0 \label{eq:dm_pendulum_equilibria_1} \\ 
+m_1g\frac{\ell}{2}\sin\theta_e &= 0.\label{eq:dm_pendulum_equilibria_2}
+\end{align}
+Therefore, any triple $(z_e, \theta_e, F_e)$ satisfying Equations~\eqref{eq:dm_pendulum_equilibria_1} and~\eqref{eq:dm_pendulum_equilibria_2} is an equilibria, or in other words $z_e$ can be any value, $F_e=0$ and $\theta_e = k\pi$, where $k$ is an integer.  
+
+To linearize around $(z_e, \theta_e, F_e)$ where $k$ is an even integer, note that
+\begin{align*}
+\ddot{\theta}\cos\theta &\approx 
+	\ddot{\theta}_e\cos\theta_e
+		+ \frac{\partial}{\partial\theta}(\ddot{\theta}\cos\theta)\Big|_{(\ddot{\theta}_e,\theta_e)}(\theta-\theta_e)
+%		\\ & \qquad
+		+ \frac{\partial}{\partial\ddot{\theta}}(\ddot{\theta}\cos\theta)\Big|_{(\ddot{\theta}_e,\theta_e)}(\ddot{\theta}-\ddot{\theta}_e) \\
+		&= \ddot{\theta}_e\cos\theta_e
+		- (\ddot{\theta}_e\sin\theta_e)\tilde{\theta}
+		+ (\cos\theta_e)\ddot{\tilde{\theta}} \\
+		&= \ddot{\tilde{\theta}} \\
+%
+\dot{\theta}^2\sin\theta &\approx \dot{\theta}_e^2\sin\theta_e + \frac{\partial}{\partial\theta}(\dot{\theta}^2\sin\theta)\Big|_{(\theta_e,\dot{\theta}_e)}(\theta-\theta_e) 
+%	\\ & \qquad
+	+ \frac{\partial}{\partial\dot{\theta}}(\dot{\theta^2}\sin\theta)\Big|_{(\theta_e,\dot{\theta}_e)}(\dot{\theta}-\dot{\theta}_e) \\
+&= \dot{\theta}_e^2\sin\theta_e + \dot{\theta}_e^2\cos\theta_e\tilde{\theta} + 2\dot{\theta}_e\sin\theta_e\dot{\tilde{\theta}} \\
+&= 0, \\
+%
+\ddot{z}\cos\theta &\approx 
+	\ddot{z}_e\cos\theta_e
+		+ \frac{\partial}{\partial\theta}(\ddot{z}\cos\theta)\Big|_{(\ddot{z}_e,\theta_e)}(\theta-\theta_e)
+%		\\ & \qquad
+		+ \frac{\partial}{\partial\ddot{z}}(\ddot{z}\cos\theta)\Big|_{(\ddot{z}_e,\theta_e)}(\ddot{z}-\ddot{z}_e) \\
+		&= \ddot{z}_e\cos\theta_e
+		- (\ddot{z}_e\sin\theta_e)\tilde{\theta}
+		+ (\cos\theta_e)\ddot{\tilde{z}} \\
+		&= \ddot{\tilde{z}} \\
+%
+\sin\theta &\approx \sin\theta_e + \frac{\partial}{\partial \theta}
+(\sin\theta)\Big|_{\theta_e} 
+(\theta-\theta_e) \\
+	&= \sin\theta_e + (\cos\theta_e) \tilde{\theta} \\
+	&= \tilde{\theta},
+\end{align*}
+where we have defined
+$\tilde{\theta}\defeq\theta-\theta_e$ and $\tilde{z}=z-z_e$.  Also defining $\tilde{F}=F-F_e$, and noting that
+\begin{align*}
+\theta &= \theta_e + \tilde{\theta} = \tilde{\theta} \\
+\dot{\theta} &= \dot{\theta}_e + \dot{\tilde{\theta}} = \dot{\tilde{\theta}} \\
+z &= z_e + \tilde{z} \\
+\dot{z} &= \dot{z}_e + \dot{\tilde{z}} = \dot{\tilde{z}} \\
+\ddot{z} &= \ddot{z}_e + \ddot{\tilde{z}} = \ddot{\tilde{z}} \\
+F &= F_e + \tilde{F} = \tilde{F},
+\end{align*}
+we can write Equation~\eqref{eq:dm_pendulum_nonlinear_eq}
+ in its linearized form as
+\begin{align*}
+(m_1+m_2)[\ddot{z}_e+\ddot{\tilde{z}}] + m_1 \frac{\ell}{2} [\ddot{\tilde{\theta}}]  &=
+	 m_1 \frac{\ell}{2} [ 0 ] -b[\dot{z}_e+\dot{\tilde{z}}] + [F_e+\tilde{F}] 
+	  \\
+m_1 \frac{\ell}{2} [ \ddot{\tilde{z}}] +  m_1 \frac{\ell^2}{3} [\ddot{\theta}_e+\ddot{\tilde{\theta}}] &=
+	m_1 g \frac{\ell}{2} [\tilde{\theta}],
+\end{align*}
+which simplifies to
+\begin{equation}\label{eq:pendulum_linearized_eom}
+\begin{pmatrix} (m_1+m_2) & m_1 \frac{\ell}{2} \\
+m_1 \frac{\ell}{2} & m_1 \frac{\ell^2}{3} \end{pmatrix}\begin{pmatrix}
+\ddot{\tilde{z}} \\ \ddot{\tilde{\theta}} \end{pmatrix}  =
+\begin{pmatrix} -b\dot{\tilde{z}} + \tilde{F} 
+	  \\
+	m_1 g \frac{\ell}{2} \tilde{\theta} \end{pmatrix},
+\end{equation}
+which are the linearized equations of motion.

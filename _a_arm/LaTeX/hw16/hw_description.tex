@@ -1,0 +1,8 @@
+For the single link robot arm, use the Matlab \texttt{bode} command to create a graph that simultaneously displays the Bode plots for (1) the plant, (2) the plant under PID control, using the control gains calculated in HW~\ref{ds:single_link_arm}.\ref{chap:PID-digital-implementation}.  
+\begin{description}
+\item[(a)]  To what percent error can the closed loop system under PID control track the desired input if all of the frequency content of $\theta_r(t)$ is below
+$\omega_r = 0.4$~radians per second?
+\item[(b)] If the reference input is $\theta_r(t) = 5t^2$ for $t\geq 0$, what will be the steady state tracking error to this input when using PID control?
+\item[(c)] If all of the frequency content of the input disturbance $d_{in}(t)$ is below $\omega_{d_{in}} = 0.01$ radians per second, what percentage of the input disturbance shows up in the output $\theta$ under PID control?
+\item[(d)] If all of the frequency content of the noise $n(t)$ is greater than $\omega_{no} = 100$ radians per second, what percentage of the noise shows up in the output signal $\theta$?
+\end{description}

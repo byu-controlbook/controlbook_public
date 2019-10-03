@@ -1,0 +1,10 @@
+The objective of this problem is to implement state feedback controller using the full state.
+Start with the simulation files developed in Homework~\ref{ds:pendulum}.\ref{chap:PID-digital-implementation}.
+\begin{description}
+\item[(a)] Using the values for $\omega_{n_z}$, $\zeta_z$, $\omega_{n_{\theta}}$, and $\zeta_{\theta}$ selected in Homework~\ref{ds:pendulum}.\ref{chap:PID-design-specs}, find the desired closed loop poles.  
+\item[(b)] Add the state space matrices $A$, $B$, $C$, $D$ derived in Homework~\ref{ds:pendulum}.\ref{chap:state_space_models} to your param file.
+\item[(c)] Verify that the state space system is controllable by checking that $\text{rank}(\mathcal{C})=n$.
+\item[(d)] Find the feedback gain $K$ so that the eigenvalues of $(A-BK)$ are equal to desired closed loop poles.  Find the reference gain $k_r$ so that the DC-gain from $z_r$ to $z$ is equal to one.  
+\item[(e)] Implement the state feedback scheme and tune the closed loop poles to get good response.  You should be able to get much faster response using state space methods.
+\end{description}
+

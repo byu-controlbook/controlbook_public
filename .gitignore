@@ -1,0 +1,72 @@
+# MATLAB files & directories
+*.asv
+*.autosave
+*.mex*
+*.slxc
+slprj/
+sccprj/
+*.slx.r2*
+
+# LabVIEW files
+*.lvlps
+
+# LaTeX files
+*.toc
+*.log
+*.aux
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.out
+*.fls
+.texpadtmp/
+*.synctex.gz
+
+# latexmk files
+*.fdb_latexmk
+
+# macos files & directories
+.DS_Store
+__MACOSX/
+
+# Microsoft Office
+~$*
+
+# Dropbox files
+.dropbox
+
+# Generic files (swap, etc.)
+*~
+.#*
+*.zip
+
+# Python files & directories
+*.pyc
+*.ipynb_checkpoints/
+
+# compiled and helper directories
+build/
+devel/
+
+# subversion directories
+.svn/
+
+# LaTeX generated, production files
+controlbook.pdf
+controlbook-Amazon-July-2019.pdf
+whirlybird_manual.pdf
+whirlybird_manual_keep.pdf
+whirlybird_manual_orig.pdf
+solution_manual.pdf
+
+
+
+# =====================================
+
+# for any JetBrains IDE:
+.idea/
+
+# CMake
+cmake-build-*/

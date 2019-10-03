@@ -1,0 +1,11 @@
+
+For the inner loop of the satellite attitude control, use the Matlab \texttt{bode} command to create a graph that simultaneously displays the Bode plots for (1) the plant, and (2) the plant under PD control, using the control gains calculated in Homework~\ref{ds:satellite}.\ref{chap:PID-digital-implementation}.  
+\begin{description}
+\item[(a)]  To what percent error can the closed loop system under PD control track a step in $\theta_r(t)$ of $20$~degrees? 
+\item[(b)] If the input disturbance has frequency content below $\omega_{d_{in}}=0.1$ radians per second, what percentage of the input disturbance appears in the output.  
+\end{description}
+
+For the outer loop of the satellite attitude control, use the Matlab \texttt{bode} command to create a graph that simultaneously displays the Bode plots for (1) the plant, (2) the plant under PID control using the control gains calculated in Homework~\ref{ds:satellite}.\ref{chap:PID-digital-implementation}.  
+\begin{description}
+\item[(c)] If all of the frequency content of the noise $n(t)$ is greater than $\omega_{no} = 10$ radians per second, what percentage of the noise shows up in the output signal $\phi$, using PID control?
+\end{description}

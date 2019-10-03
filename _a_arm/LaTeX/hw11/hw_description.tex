@@ -1,0 +1,10 @@
+
+The objective of this problem is to implement state feedback controller using the full state.
+Start with the simulation files developed in Homework~\ref{ds:single_link_arm}.\ref{chap:PID-digital-implementation}.
+\begin{description}
+\item[(a)] Select the closed loop poles as the roots of the equations $s^2 + 2\zeta\omega_n + \omega_n^2 = 0$ where $\omega_n$, and $\zeta$ were found in Homework~\ref{ds:single_link_arm}.\ref{chap:PID-design-specs}.  
+\item[(b)] Add the state space matrices $A$, $B$, $C$, $D$ derived in Homework~\ref{ds:single_link_arm}.\ref{chap:state_space_models} to your param file.
+\item[(c)] Verify that the state space system is controllable by checking that $\text{rank}(\mathcal{C}_{A,B})=n$.
+\item[(d)] Find the feedback gain $K$ so that the eigenvalues of $(A-BK)$ are equal to desired closed loop poles.  Find the reference gain $k_r$ so that the DC-gain from $\theta_r$ to $\theta$ is equal to one.  Note that $K=(k_p, k_d)$ where $k_p$ and $k_d$ are the proportional and derivative gains found in Homework~\ref{ds:single_link_arm}.\ref{chap:PID-design-specs}.  Why?
+\item[(e)] Modify the control code to implement the state feedback controller.  To construct the state $x=(\theta, \dot{\theta})^{\top}$ use a digital differentiator to estimate $\dot{\theta}$.
+\end{description}

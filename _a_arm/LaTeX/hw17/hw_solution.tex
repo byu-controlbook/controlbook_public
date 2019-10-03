@@ -1,0 +1,29 @@
+
+The Matlab code used to generate the plots is shown below.
+\begin{lstlisting}
+% transfer functions for plant and controller
+Plant = tf([2/P.m/P.ell^2],
+           [1, 2*P.b/P.m/P.ell^2, 0]);
+C_pid = tf([(P.kd+P.kp*P.sigma),
+            (P.kp+P.ki*P.sigma),P.ki],...
+           [P.sigma,1,0]);
+
+% margin and bode plots for PID control
+figure(1), clf, margin(Plant*C_pid), 
+	grid on, hold on
+bode(Plant*C_pid/(1+Plant*C_pid)) 
+legend('Open Loop', 'Closed Loop')
+\end{lstlisting}
+The transfer function for the plant is defined in Line~2.  The transfer function for the PID controller is
+\begin{align*}
+C_{PID}(s) &= k_P + \frac{k_I}{s} + \frac{k_D s}{\sigma s + 1} 
+           = \frac{s(\sigma s+1)k_P + (\sigma s + 1)k_I + k_D s^2}{s(\sigma s + 1)} \\
+           &= \frac{(k_D+\sigma k_P)s^2 + (k_P+\sigma k_I)s + k_I}{s(\sigma s + 1)},
+\end{align*}
+and is defined in Line~3-4.  The {\tt margin} command is similar to the {\tt bode} command except that it also annotates the Bode plot with the phase and gain margins.  The open loop transfer functions are $PC$ as defined in Line~7, and the closed loop transfer functions are $PC/(1+PC)$ as defined in Line~8.  The results of this code are shown in \fref{fig:hw_arm_margins}.
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_arm_margins}
+	{The {\tt margin} plot of the open loop system and the {\tt bode} plot of the closed loop system, of the single link robot arm under PID control.}
+	{fig:hw_arm_margins}
+As seen from \fref{fig:hw_arm_margins} the bandwidth for PID control is approximately $10$~rad/sec, which is slightly larger than the cross over frequency of $6.21$~rad/sec.  The larger bandwidth is due to the small phase margin of $PM=45.6$~degrees.
+

@@ -1,0 +1,48 @@
+The closed loop system is shown in \fref{fig:hw_arm_system_type}.
+\controlbookfigure{0.8}
+	{6_design_studies/figures/hw_arm_system_type}
+	{Closed loop system for problem HW~\ref{ds:single_link_arm}.\ref{chap:PID-system-type}.}
+	{fig:hw_arm_system_type}
+Without the integrator, the open-loop transfer function is given by
+\[
+P(s)C(s) = \left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)\left(k_D s + k_P\right).
+\]
+The system has one free integrator and is therefore type~1, which, from Table~\ref{table:system_type} implies that the tracking error when the input is a step is zero, and the tracking error when the input is a ramp is
+\[
+\lim_{t\to\infty}e(t) = \frac{1}{M_v} = \frac{1}{\lim_{s\to 0} sP(s)C(s)} = \frac{1}{\frac{k_P}{b}} = \frac{b}{k_P}.
+\]
+The tracking error when the input is a parabola, or higher order polynomial, is $\infty$, meaning that $\theta(t)$ and $\theta_r(t)$ diverge as $t\to\infty$.
+
+With the integrator, the open loop transfer function is
+\[
+P(s)C(s) = \left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)\left(\frac{k_D s^2 + k_Ps + k_I}{s}\right).
+\]
+which has two free integrators and is therefore type~2. Therefore, from Table~\ref{table:system_type} the tracking error when the input is either a step or a ramp is zero, and the tracking error when the input is a parabola is
+\[
+\lim_{t\to\infty}e(t) = \frac{1}{M_a} = \frac{1}{\lim_{s\to 0} s^2P(s)C(s)} = \frac{1}{\frac{k_I}{b}} = \frac{b}{k_I}.
+\]
+The tracking error when the input is $t^3$ or a higher order polynomial, is $\infty$.
+
+For the input disturbance, the transfer function from $D(s)$ to $E(s)$ is given by
+\[
+E(s) = \frac{P(s)}{1+P(s)C(s)}D(s).
+\]
+Without the integrator, and when $D(s)= \frac{A}{s^{q+1}}$, the steady state error is given by
+\begin{align*}
+\lim_{t\to\infty} e(t) &= \lim_{s\to 0} \frac{P}{1+PC}\frac{A}{s^q} \\
+&= \lim_{s\to 0} \left(\frac{\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)}{1+\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})(k_Ds+k_P)}\right)}\right)\left(\frac{A}{s^q}\right) \\
+&= \lim_{s\to 0} \left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})+\frac{3}{m\ell^2}(k_Ds+k_P)}\right)\left(\frac{A}{s^q}\right) \\
+&= \frac{A\frac{3}{m\ell^2}}{\frac{3k_P}{m\ell^2}}
+= \frac{A}{k_P},
+\end{align*}
+if $q=0$.  Therefore, to an input disturbance the system is type~0.  The steady state error when a constant step of size $A$ is placed on $d(t)$ is $\frac{A}{k_P}$.  
+
+With the integrator, and when $D(s)= \frac{A}{s^{q+1}}$, the steady state error is given by
+\begin{align*}
+\lim_{t\to\infty} e(t) &= \lim_{s\to 0} \frac{P}{1+PC}\frac{A}{s^q} \\
+&= \lim_{s\to 0} \left(\frac{\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)}{1+\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right)}\right)\left(\frac{A}{s^q}\right) \\
+&= \lim_{s\to 0} \left(s\frac{\frac{3}{m\ell^2}}{s^2(s+\frac{3b}{m\ell^2})+\frac{3}{m\ell^2}(k_Ds^2+k_Ps+k_I)}\right)\left(\frac{A}{s^q}\right) \\
+&= \frac{A\frac{3}{m\ell^2}}{\frac{3k_I}{m\ell^2}} 
+= \frac{A}{k_I},
+\end{align*}
+if $q=1$.  Therefore, to an input disturbance the system is type~1.  The steady state error when $d(t)$ is a constant step is zero, and the steady state error when $d(t)$ is a ramp of slope of size $A$ is $\frac{A}{k_I}$.  

@@ -1,0 +1,11 @@
+For this homework assignment we will use the loopshaping design technique to design a successive loop closure controller for the inverted pendulum.
+\begin{itemize}
+	\item[(a)] First consider the inner loop, where $P_{in}(s)$ is the transfer function of the inner loop derived in HW~\ref{ds:pendulum}.\ref{chap:transfer_function_models}.  Using a proportional and phase-lead controller, design $C_{in}(s)$ to stabilize the system with a phase margin close to 60~deg, and to ensure that noise above $\omega_{no}=200$~rad/s is rejected by $\gamma_{no}=0.1$.  We want the closed-loop bandwidth of the inner loop to be approximately 40~rad/s. Note that since the gain on $P_{in}(s)$ is negative, the proportional gain will also need to be negative.
+	\item[(b)] Now consider the design of the controller for the outer loop system.  The 'plant' for the design of the outer loop controller is
+		\[
+		P = P_{out}\frac{P_{in}C_{in}}{1+P_{in}C_{in}}.
+		\]
+		Design the outer loop controller $C_{out}$ so that the system is stable with phase margin close to $PM=60$~degrees, and so that reference signals with frequency below $\omega_r=0.0032$~radians/sec are tracked with error $\gamma_r=0.01$, and noise with frequency content above $\omega_{no}=1000$~radians/sec are rejected with $\gamma_{no}=0.0001$. Design the crossover frequency so that the rise time of the system is about 2~sec.
+\end{itemize}
+
+

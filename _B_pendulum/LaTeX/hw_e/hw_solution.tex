@@ -1,0 +1,25 @@
+
+The closed loop block diagram for the outer loop of the inverted pendulum including an integrator is shown in \fref{fig:hw_pendulum_PID_root_locus}.  
+\controlbookfigure{0.8}
+	{6_design_studies/figures/hw_pendulum_PID_root_locus}
+	{PID control for the outer loop of the inverted pendulum.}
+	{fig:hw_pendulum_PID_root_locus}
+The closed loop transfer function is given by
+\[
+\tilde{Z}(s) = \frac{(g-\frac{2}{3}\ell s^2 )\left(k_{P_z}s+k_{I_z}\right)}{-\frac{2}{3}\ell k_{D_z} s^4 + \left(\frac{1}{k_{DC_\theta}}-\frac{2}{3} \ell  k_{P_z}\right)s^3 + (g k_{D_z}-\frac{2}{3}\ell  k_{I_z})s^2 + gk_{P_z}s +  g k_{I_z}} \tilde{Z}_r(s).
+\]
+The characteristic equation is therefore
+\[
+-\frac{2}{3}\ell k_{D_z} s^4 + \left(\frac{1}{k_{DC_\theta}}-\frac{2}{3} \ell  k_{P_z}\right)s^3 + (g k_{D_z}-\frac{2}{3}\ell  k_{I_z})s^2 + gk_{P_z}s +  g k_{I_z} = 0.
+\]
+In Evan's form we have
+\[
+1 + k_{I_z}\left(\frac{-\frac{2}{3}\ell s^2+g}{-\frac{2}{3}\ell k_{D_z} s^4 + \left(\frac{1}{k_{DC_\theta}}-\frac{2}{3} \ell  k_{P_z}\right)s^3 + g k_{D_z}s^2 + gk_{P_z}s}\right) = 0.
+\]
+The appropriate Matlab command is therefore
+\begin{lstlisting}
+>> L = tf([-2/3*ell,0,g],...
+          [-2/3*ell*kd,1/kDCth-2/3*ell*kp,g*kd,g*kp,0]);
+>> figure(1), clf, rlocus(L);
+\end{lstlisting}
+

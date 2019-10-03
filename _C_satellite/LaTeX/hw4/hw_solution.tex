@@ -1,0 +1,20 @@
+
+The differential equations describing the motion of the satellite system derived in HW~\ref{ds:satellite}.3 are
+
+\begin{align} \label{eq:dm_diff_eq_mass}
+J_s\ddot{\theta} + b(\dot{\theta}-\dot{\phi}) + k(\theta-\phi)  &= \tau \\
+J_p\ddot{\phi} + b(\dot{\phi}-\dot{\theta}) + k(\phi-\theta) &= 0 .
+\end{align}
+
+Defining $x=(\theta, \phi, \dot{\theta}, \dot{\phi})$, and $u=\tau$ we get
+\begin{align*}
+\dot{x} = \begin{pmatrix} \dot{\theta} \\ \dot{\phi} \\ \ddot{\theta} \\ \ddot{\phi}\end{pmatrix} 
+= \begin{pmatrix} \dot{\theta} \\ \dot{\phi} \\ -\frac{b}{J_s}(\dot{\theta}-\dot{\phi}) -\frac{k}{J_s}(\theta-\phi)+\frac{1}{J_s}\tau \\ - \frac{b}{J_p}(\dot{\phi}-\dot{\theta})-\frac{k}{J_p}(\phi-\theta) \end{pmatrix} \defeq f(x,u).
+\end{align*}
+The equilibrium is when $f(x_e,u_e)=0$, or in other words when
+\begin{equation}\label{dm:satellite_equilibrium}
+\theta_e = \phi_e = \text{~anything~}, \qquad \dot{\theta}_e = \dot{\phi}_e =0, \qquad \tau_e = 0.
+\end{equation}
+
+The equations of motion for this system are linear and do not require linearization. With that said, the information about the system equilibria can be helpful for designing the control system. In this case, understanding that the commanded angular position of the satellite and the panel should be the same to keep the system in equilibrium will influence our control design.
+

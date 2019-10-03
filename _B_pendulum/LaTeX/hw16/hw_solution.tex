@@ -1,0 +1,26 @@
+
+{\bf (a)} The Bode plot of the plant $P(s)$, and the loop gain with PD control $P(s)C_{PD}(s)$ are shown in \fref{fig:hw_pendulum_bode_specs_in}.
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_pendulum_bode_specs_in}
+	{Bode plot for inner loop of the inverted pendulum, plant only, and under PD control.}
+	{fig:hw_pendulum_bode_specs_in}
+From \fref{fig:hw_pendulum_bode_specs_in} we see that below $\omega_r = 1.0$~rad/sec, the loop gain is above $B_r=8$~dB.  Therefore, from Equation~\eqref{eq:loop_tracking_Br} we have that
+\[
+\abs{e(t)} \leq \gamma_r \abs{r(t)},
+\]
+where $\gamma_r = 10^{-8/20} = 0.40$, which implies that the tracking error will be 40\% of the magnitude of the input.
+
+{\bf (b)} For noise greater than $\omega_{no}=200$~rad/sec, we see from \fref{fig:hw_pendulum_bode_specs_in} that $B_n = 44$~dB.  Therefore, $\gamma_n = 10^{-44/20} = 0.0063$ which implies that $0.63$\% of the noise will show up in the output signal.
+
+{\bf (c)}  
+The Bode plot of the outer loop $P(s)$, and the loop gain with PID control $P(s)C_{PID}(s)$ is shown in \fref{fig:hw_pendulum_bode_specs_out}.
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_pendulum_bode_specs_out}
+	{Bode plot for outer loop of the inverted pendulum, plant only, and under PID control.}
+	{fig:hw_pendulum_bode_specs_out}
+From \fref{fig:hw_pendulum_bode_specs_out} it can be seen that the loopgain under PID control for the outer loop is above $B_r=120$~dB for all $\omega<\omega_r=0.001$~radians/second.  Therefore, from Equation~\eqref{eq:loop_tracking_Br} the tracking error satisfies
+\[
+\abs{e(t)}\leq \gamma_r \abs{r(t)},
+\]
+where $\gamma_r = 10^{-120/20}=1.0e-06$.  Therefore, if $\abs{r(t)}\leq 50$, then $\abs{e(t)}\leq 50e-06$.
+

@@ -1,0 +1,87 @@
+
+Consider the image of the inverted pendulum shown in \fref{fig:animation-pendulum}, where the configuration is completely specified by the position of the cart $z$, and the angle of the rod from vertical $\theta$.  The physical parameters of the system are the rod length $L$, the base width $w$, the base height $h$, and the gap between the base and the track $g$.
+\controlbookfigure{0.6}
+	{app_animation/figures/animation-pendulum}
+	{Drawing for inverted pendulum.  The first step in developing an animation is to draw a figure of the object to be animated and identify all of the physical parameters.}
+	{fig:animation-pendulum}
+The first step in developing the animation is to determine the position of points that define the animation.  For example, for the inverted pendulum in \fref{fig:animation-pendulum}, the four corners of the base are
+\[
+(z+w/2, g), (z+w/2, g+h), (z-w/2, g+h), \text{ and } (z-w/2, g),
+\]
+and the two ends of the rod are given by
+\[
+(z, g+h) \text{ and } (z+L\sin\theta, g+h+L\cos\theta).
+\]
+
+Since the base and the rod can move independently, each will need its own figure handle.  The {\tt drawBase} command can be implemented with the following Matlab code:
+\begin{lstlisting}
+function handle...
+         = drawBase(z, width, height, gap, handle)
+  X = [z-width/2,z+width/2,z+width/2,z-width/2];
+  Y = [gap, gap, gap+height, gap+height];
+  if isempty(handle),
+    handle = fill(X,Y,'m');
+  else
+	set(handle,'XData',X,'YData',Y);
+  end
+\end{lstlisting}
+Lines~2 and~3 define the X and Y locations of the corners of the base.
+Note that in Line~1, {\tt handle} is both an input and an output.  If an empty array is passed into the function, then the {\tt fill} command is used to plot the base in Line~5.  On the other hand, if a valid handle is passed into the function, then the base is redrawn using the {\tt set} command in Line~7.
+
+The Matlab code for drawing the rod is similar and is listed below.
+\begin{lstlisting}
+function handle...
+         = drawRod(z,theta,L,gap,height,handle)
+  X = [z, z+L*sin(theta)];
+  Y = [gap+height, gap + height + L*cos(theta)];
+  if isempty(handle),
+    handle = plot(X, Y, 'g');
+  else
+    set(handle,'XData',X,'YData',Y);
+  end
+\end{lstlisting}
+
+The main routine for the pendulum animation is listed below.
+\begin{lstlisting}
+function drawPendulum(u)
+  % process inputs to function
+  z        = u(1);
+  theta    = u(2);
+  t        = u(3);
+
+  % drawing parameters
+  L = 1;
+  gap = 0.01;
+  width = 1.0;
+  height = 0.1;
+
+  % define persistent variables
+  persistent base_handle
+  persistent rod_handle
+
+  % first time function is called, initialize plot 
+  % and persistent vars
+  if t==0,
+    figure(1), clf
+    track_width=3;
+    % plot track
+    plot([-track_width,track_width],[0,0],'k'); 
+    hold on
+    base_handle...
+       =drawBase(z, width, height, gap, []);
+    rod_handle...
+       =drawRod(z, theta, L, gap, height, []);
+    axis([-track_width,track_width,...
+          -L,2*track_width-L]);
+  % at every other time step, redraw base and rod
+  else
+    drawBase(z, width, height, gap, base_handle);
+    drawRod(z, theta, L, gap, height, rod_handle);
+  end
+\end{lstlisting}
+The routine {\tt drawPendulum} is called from the Simulink file shown in \fref{fig:animation-pendulum-simulink}, where there are three inputs: the position $z$, the angle $\theta$, and the time $t$.  Lines~3-5 rename the inputs to $z$, $\theta$, and $t$.  Lines~8-11 define the drawing parameters.  We require that the handle graphics persist between function calls to {\tt drawPendulum}.  Since a handle is needed for both the base and the rod, we define two persistent variables in Lines~14 and~15.  The {\tt if} statement in Lines~19-32 is used to produce the animation.  Lines~20--27 are called once at the beginning of the simulation, and draw the initial animation.  Line~20 brings the figure~1 window to the front and clears it.  Lines~21 and~23 draw the ground along which the pendulum will move.  Line~25 calls the {\tt drawBase} routine with an empty handle as input, and returns the handle \texttt{base\_handle} to the base.   Line~26 calls the {\tt drawRod} routine, and Line~25 sets the axes of the figure.  After the initial time step, all that needs to be changed are the locations of the base and rod.  Therefore, in Lines~30 and~31, the {\tt drawBase} and {\tt drawRod} routines are called with the figure handles as inputs.
+
+\controlbookfigurefullpage{0.5}
+	{app_animation/figures/animation-pendulum-simulink}
+	{Simulink file for debugging the pendulum simulation.  There are three inputs to the Matlab m-file {\tt drawPendulum}: the position $z$, the angle $\theta$, and the time $t$.  Slider gains for $z$ and $\theta$ are used to verify the animation.}
+	{fig:animation-pendulum-simulink}

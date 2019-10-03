@@ -1,0 +1,33 @@
+
+The Matlab code used to generate the plots is shown below.
+\begin{lstlisting}
+% transfer function for inverted pendulum
+P_in  = tf([-2/P.m2/P.ell],...
+           [1, 0, -2*(P.m1+P.m2)*P.g/P.m2/P.ell]);
+P_out = tf([-P.m1*P.g/P.m2],[1, P.b/P.m2, 0]);
+C_in = tf([(P.kd_th+P.sigma*P.kp_th), P.kp_th], 
+          [P.sigma, 1]);
+C_out = tf([(P.kd_z+P.kp_z*P.sigma),...
+            (P.kp_z+P.ki_z*P.sigma),P.ki_z],
+           [P.sigma,1,0]);
+
+% margin and bode plots 
+figure(1), clf, margin(P_in*C_in), grid on, hold on
+bode(P_in*C_in/(1+P_in*C_in)) 
+margin(P_out*C_out)
+bode(P_out*C_out/(1+P_out*C_out))
+legend('Open Loop-Inner', 'Closed Loop-Inner',...
+       'Open Loop-Outer', 'Closed Loop-Outer')
+
+\end{lstlisting}
+
+The transfer functions for the inner and outer loop plants and controller are defined in Lines~2--7.  For this problem we plot both the inner and outer loop frequency response on the same Bode plot, as implemented in Lines~10--15. The results of this code are shown in \fref{fig:hw_pendulum_margins}.
+\controlbookfigurefullpage{0.7}
+	{6_design_studies/figures/hw_pendulum_margins}
+	{The {\tt margin} and {\tt bode} plots for the open and closed loop systems of both the inner and outer loops of the inverted pendulum system.}
+	{fig:hw_pendulum_margins}
+As seen from \fref{fig:hw_pendulum_margins} the bandwidth of the inner loop is approximately $17$~rad/sec, which is slightly larger than the cross over frequency of $11$~rad/sec.  
+%
+Similarly, \fref{fig:hw_pendulum_margins} indicates that the bandwidth of the outer loop is approximately $1.3$~rad/sec, which is slightly larger than the cross over frequency of $1.2$~rad/sec with a phase margin of $PM=55$~degrees.
+
+%The bandwidth separation between the inner and outer loop is about one decade justifying the successive loop closure design approach.  
