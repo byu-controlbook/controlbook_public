@@ -2,7 +2,7 @@ import sys
 sys.path.append('..')  # add parent directory
 import matplotlib.pyplot as plt
 import pendulumParam as P
-from hw_b.pendulumDynamics import pendulumDynamics
+from hw8.pendulumDynamics import pendulumDynamics
 from pendulumController import pendulumController
 from hw_a.signalGenerator import signalGenerator
 from hw_a.pendulumAnimation import pendulumAnimation

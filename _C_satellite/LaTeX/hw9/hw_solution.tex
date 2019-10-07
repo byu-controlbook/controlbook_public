@@ -39,11 +39,11 @@ The open loop system is given by
 \[
 P(s)C(s) = \left(\frac{\frac{b}{J_P}s+\frac{k}{J_p}}{s^2+\frac{b}{J_p}s+\frac{k}{J_p}}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right).
 \]
-When $k_I=0$ there are no free integrator in $P(s)C(s)$ and the system is type~0, and from Table~\ref{table:system_type} the tracking error when the input is a step is \[
+When $k_I=0$ there are no free integrators in $P(s)C(s)$ and the system is type~0, and from Table~\ref{table:system_type} the tracking error when the input is a step is \[
 \lim_{t\to\infty}e(t) = \frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0} P(s)C(s)} = \frac{1}{1+k_P}.
 \]
 When the reference is a ramp or higher order polynomial, the tracking error is infinite.
-When $k_I\neq 0$, there is one free integrators in $P(s)C(s)$ and the system is type~1.  From Table~\ref{table:system_type} the tracking error when the input is a ramp is 
+When $k_I\neq 0$, there is one free integrator in $P(s)C(s)$ and the system is type~1.  From Table~\ref{table:system_type} the tracking error when the input is a ramp is 
 \[
 \lim_{t\to\infty}e(t) = \frac{1}{M_v} = \frac{1}{\lim_{s\to 0} sP(s)C(s)} = \frac{1}{k_I}.
 \]

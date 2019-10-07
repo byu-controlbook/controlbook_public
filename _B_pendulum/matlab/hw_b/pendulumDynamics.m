@@ -21,18 +21,10 @@ classdef pendulumDynamics < handle
                         P.zdot0;...       % zdot initial velocity
                         P.thetadot0;...   % Thetadot initial velocity
                         ];     
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            % The parameters for any physical system are never known exactly.  Feedback
-            % systems need to be designed to be robust to this uncertainty.  In the simulation
-            % we model uncertainty by changing the physical parameters by a uniform random variable
-            % that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
-            % may change by up to 20%.  A different parameter value is chosen every time the simulation
-            % is run.
-            alpha = 0.2;  % Uncertainty parameter
-            self.m1 = P.m1 * (1+2*alpha*rand-alpha);  % Mass of the pendulum, kg
-            self.m2 = P.m2 * (1+2*alpha*rand-alpha);  % Mass of the cart, kg
-            self.ell = P.ell * (1+2*alpha*rand-alpha);  % Length of the rod, m
-            self.b = P.b * (1+2*alpha*rand-alpha);  % Damping coefficient, Ns
+            self.m1 = P.m1;  % Mass of the pendulum, kg
+            self.m2 = P.m2;  % Mass of the cart, kg
+            self.ell = P.ell;  % Length of the rod, m
+            self.b = P.b;  % Damping coefficient, Ns
             self.g = P.g;  % the gravity constant is well known and so we don't change it.
             self.Ts = P.Ts; % sample rate at which dynamics is propagated
           
@@ -109,11 +101,8 @@ classdef pendulumDynamics < handle
             % re-label states for readability
             z = self.state(1);
             theta = self.state(2);
-            % add Gaussian noise to outputs
-            z_m = z + 0.01*randn;
-            theta_m = theta + 0.001*randn;
             % return measured outputs
-            y = [z_m; theta_m];
+            y = [z; theta];
         end
     end
 end

@@ -1,5 +1,5 @@
 
-From HW~\ref{ds:pendulum}.5, the linearized equations of motion are given by
+From HW~\ref{ds:pendulum}.4, the linearized equations of motion are given by
 \[
 \begin{pmatrix} (m_1+m_2) & m_1 \frac{\ell}{2} \\
 m_1 \frac{\ell}{2} & m_1 \frac{\ell^2}{4} \end{pmatrix}\begin{pmatrix}
@@ -42,29 +42,30 @@ s^2 & \frac{\ell}{2}s^2-g \end{pmatrix}\begin{pmatrix}
 %
 Inverting the matrix on the left hand side and solving for the transfer functions gives
 \begin{align*}
-\frac{\tilde{Z}(s)}{\tilde{F}(s)} &= \frac{ \frac{2 \ell}{3} s^2 - g}{(m_1 \frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^4 +b\frac{2\ell}{3} s^3 -(m_1+m_2)gs^2-bgs} \\
-\frac{\tilde{\Theta}(s)}{\tilde{F}(s)} &= \frac{-s^2}{(m_1 \frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^4 +b\frac{2\ell}{3} s^3 -(m_1+m_2)gs^2-bgs} .
+\tilde{Z}(s) &= \left(\frac{ \frac{2 \ell}{3} s^2 - g}{(m_1 \frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^4 +b\frac{2\ell}{3} s^3 -(m_1+m_2)gs^2-bgs}\right) \tilde{F}(s) \\
+\tilde{\Theta}(s) &= \left(\frac{-s^2}{(m_1 \frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^4 +b\frac{2\ell}{3} s^3 -(m_1+m_2)gs^2-bgs}\right) \tilde{F}(s).
 \end{align*}
 
 If we make the assumption that $b \approx 0$, then these transfer functions will simplify further and be even easier to work with from a control design perspective. This is a reasonable and conservative assumption because the damping force $b\dot{z}$ is small relative to the other forces acting on the system. Furthermore, by underestimating the damping in the system, our control design will be conservative because it assumes there is no damping provided by the physics of the system and thus all the damping in the system must come from the feedback control.
 %
 Assuming $b=0$, we get
 \begin{align*}
-\frac{\tilde{Z}(s)}{\tilde{F}(s)} &= \frac{\frac{2 \ell}{3} s^2 - g}{s^2\left[(m_1 \frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^2  -(m_1+m_2)g \right]} \\
-\frac{\tilde{\Theta}(s)}{\tilde{F}(s)} &= \frac{-1}{(m_1 \frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^2  -(m_1+m_2)g}  .
+\tilde{Z}(s) &= \left(\frac{\frac{2 \ell}{3} s^2 - g}{s^2\left[(m_1 \frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^2  -(m_1+m_2)g \right]}\right) \tilde{F}(s) \\
+\tilde{\Theta}(s) &= \left(\frac{-s^2}{(m_1 \frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^2  -(m_1+m_2)g}\right) \tilde{F}(s).
 \end{align*}
 
-From a controls perspective, we will be interested in how the pendulum angle $\theta$ influences the cart position $z$ and so we want to find the $\tilde{Z}(s)/\tilde{\Theta}(s)$ transfer function. This can be easily calculated by recognizing that
+From a controls perspective, we will be interested in how the pendulum angle $\theta$ influences the cart position $z$ and so we want to find the transfer function from $\tilde{\Theta}(s)$ to $\tilde{Z}(s)$. This can be easily calculated by recognizing that
 \[
-\frac{\tilde{Z}(s)}{\tilde{\Theta}(s)} = \frac{\tilde{Z}(s)/\tilde{F}(s)}{\tilde{\Theta}(s)/\tilde{F}(s)} .
+\tilde{Z}(s) = \frac{\tilde{Z}(s)}{\tilde{F}(s)}\frac{\tilde{F}(s)}{\tilde{\Theta}(s)} \tilde{\Theta}(s).
 \]
 Accordingly, 
 \[
-\frac{\tilde{Z}(s)}{\tilde{\Theta}(s)} = -\frac{\frac{2 \ell}{3} s^2 - g}{s^2} .
+\tilde{Z}(s) = \left(\frac{-\frac{2 \ell}{3} s^2 + g}{s^2} \right) \tilde{\Theta}(s).
 \]
 %
 The block diagram for the approximate system is shown in Figure~\ref{fig:dm_soln_b6}.
-\controlbookfigure{0.8}
+
+\controlbookfigure{0.9}
 	{6_design_studies/figures/hw_pendulum_block_diagram}
 	{The inverted pendulum dynamics are approximated by cascade of fast and slow subsystems.  The fast subsystem is the transfer function from the force to the angle, and the slow subsystem is the transfer function from the angle to the position.}
 	{fig:dm_soln_b6}

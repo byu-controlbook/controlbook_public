@@ -15,16 +15,26 @@ class armDynamics:
             [P.thetadot0]
         ])  # initial angular rate
         self.output = 0.0
+        #################################################
+        # The parameters for any physical system are never known exactly.  Feedback
+        # systems need to be designed to be robust to this uncertainty.  In the simulation
+        # we model uncertainty by changing the physical parameters by a uniform random variable
+        # that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
+        # may change by up to 20%.  A different parameter value is chosen every time the simulation
+        # is run.
         alpha = 0.0  # Uncertainty parameter
-        self._m = P.m  # Mass of the arm, kg
-        self._ell = P.ell  # Length of the arm, m
-        self._b = P.b  # Damping coefficient, Ns
-        self._g = P.g
+        self._m = P.m * (1.+alpha*(2.*np.random.rand()-1.))  # Mass of the arm, kg
+        self._ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))  # Length of the arm, m
+        self._b = P.b * (1.+alpha*(2.*np.random.rand()-1.))  # Damping coefficient, Ns
+        self._g = P.g  # the gravity constant is well known and so we don't change it.
         self._Ts = P.Ts  # sample rate at which the dynamics are propagated
+        self.torque_limit = P.tau_max
 
     def update(self, u):
         # This is the external method that takes the input u at time
         # t and returns the output y at time t.
+        # saturate the input torque
+        u = self.saturate(u, self.torque_limit)
         self._rk4_step(u)  # propagate the state by one time sample
         y = self._h()  # return the corresponding output
         self.output = y
@@ -68,3 +78,8 @@ class armDynamics:
             [theta],
         ])
         return y
+
+    def saturate(self, u, limit):
+        if abs(u) > limit:
+            u = limit*np.sign(u)
+        return u

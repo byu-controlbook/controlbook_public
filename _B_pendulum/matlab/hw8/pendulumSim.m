@@ -2,7 +2,7 @@ pendulumParamHW8;  % load parameters
 
 % instantiate pendulum, controller, and reference input classes 
 % Instantiate Dynamics class
-addpath('../hw_b'); pendulum = pendulumDynamics(P);  
+addpath('../hw8'); pendulum = pendulumDynamics(P);  
 ctrl = pendulumController(P);  
 amplitude = 0.5; % amplitude of reference input
 frequency = 0.02; % frequency of reference input

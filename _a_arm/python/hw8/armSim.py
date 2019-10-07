@@ -3,7 +3,7 @@ sys.path.append('..')  # add parent directory
 import matplotlib.pyplot as plt
 import numpy as np
 import armParam as P
-from hw_b.armDynamics import armDynamics
+from hw8.armDynamics import armDynamics
 from armController import armController
 from hw_a.signalGenerator import signalGenerator
 from hw_a.armAnimation import armAnimation

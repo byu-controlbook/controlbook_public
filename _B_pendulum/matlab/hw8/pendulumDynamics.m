@@ -1,34 +1,48 @@
-classdef satelliteDynamics < handle
+classdef pendulumDynamics < handle
     %  Model the physical system
     %----------------------------
     properties
         state
-        Js
-        Jp
-        k
+        m1
+        m2
+        ell
         b
+        g
         Ts
+        force_limit
     end
     %----------------------------
     methods
         %---constructor-------------------------
-        function self = satelliteDynamics(P)
+        function self = pendulumDynamics(P)
             % Initial state conditions
             self.state = [...
-                        P.theta0;...      % initial base angle
-                        P.phi0;...        % initial panel angle
-                        P.thetadot0;...   % initial angular velocity of base
-                        P.phidot0;...     % initial angular velocity of panel
+                        P.z0;...          % z initial position
+                        P.theta0;...      % Theta initial orientation
+                        P.zdot0;...       % zdot initial velocity
+                        P.thetadot0;...   % Thetadot initial velocity
                         ];     
-            self.Js = P.Js;  % inertia of base
-            self.Jp = P.Jp;  % inertia of panel
-            self.k = P.k;    % spring coefficient
-            self.b = P.b;    % Damping coefficient, Ns
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            % The parameters for any physical system are never known exactly.  Feedback
+            % systems need to be designed to be robust to this uncertainty.  In the simulation
+            % we model uncertainty by changing the physical parameters by a uniform random variable
+            % that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
+            % may change by up to 20%.  A different parameter value is chosen every time the simulation
+            % is run.
+            alpha = 0.2;  % Uncertainty parameter
+            self.m1 = P.m1 * (1+2*alpha*rand-alpha);  % Mass of the pendulum, kg
+            self.m2 = P.m2 * (1+2*alpha*rand-alpha);  % Mass of the cart, kg
+            self.ell = P.ell * (1+2*alpha*rand-alpha);  % Length of the rod, m
+            self.b = P.b * (1+2*alpha*rand-alpha);  % Damping coefficient, Ns
+            self.g = P.g;  % the gravity constant is well known and so we don't change it.
             self.Ts = P.Ts; % sample rate at which dynamics is propagated
+            self.force_limit = P.F_max;
           
         end
         %----------------------------
         function y = update(self, u)
+            % saturate the input
+            u = self.saturate(u, self.force_limit);
             self.rk4_step(u);
             y = self.h();
         end
@@ -74,36 +88,44 @@ classdef satelliteDynamics < handle
             % Return xdot = f(x,u), the derivatives of the continuous states, as a matrix
             % 
             % re-label states and inputs for readability
-            theta = state(1);
-            phi = state(2);
-            thetadot = state(3);
-            phidot = state(4);
-            tau = u;
+            z = state(1);
+            theta = state(2);
+            zdot = state(3);
+            thetadot = state(4);
+            F = u;
             % The equations of motion.
-            M = [...
-                self.Js, 0; 0, self.Jp;...
-                ];
-            c = [...
-                tau - self.b*(thetadot-phidot)-self.k*(theta-phi);...
-                -self.b*(phidot-thetadot)-self.k*(phi-theta);...
-                ];
-            tmp = M\c;
-            thetaddot = tmp(1);
-            phiddot = tmp(2);
+            M = [self.m1+self.m2, self.m1*(self.ell/2.0)*cos(theta);...
+                 self.m1*(self.ell/2.0)*cos(theta), self.m1*(self.ell^2/3.0)];
+            C = [self.m1*(self.ell/2.0)*thetadot^2*sin(theta) + F - self.b*zdot;...
+                 self.m1*self.g*(self.ell/2.0)*sin(theta)];
+            tmp = M\C;
+            zddot = tmp(1);
+            thetaddot = tmp(2);
             % build xdot and return
-            xdot = [thetadot; phidot; thetaddot; phiddot];
+            xdot = [zdot; thetadot; zddot; thetaddot];
         end
         %----------------------------
         function y = h(self)
             %
             % Returns the measured outputs as a list
-            % [theta, phi] with added Gaussian noise
+            % [z, theta] with added Gaussian noise
             % 
             % re-label states for readability
-            theta = self.state(1);
-            phi = self.state(2);
+            z = self.state(1);
+            theta = self.state(2);
+            % add Gaussian noise to outputs
+            z_m = z + 0.01*randn;
+            theta_m = theta + 0.001*randn;
             % return measured outputs
-            y = [theta; phi];
+            y = [z_m; theta_m];
+        end
+        %----------------------------
+        function out = saturate(self, in, limit)
+            if abs(in) > limit
+                out = limit * sign(in);
+            else 
+                out = in;
+            end
         end
     end
 end

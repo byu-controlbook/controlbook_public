@@ -2,7 +2,7 @@ armParamHW8;  % load parameters
 
 % instantiate arm, controller, and reference input classes 
 % Instantiate Dynamics class
-addpath('../hw_b'); arm = armDynamics(P);  
+addpath('../hw8'); arm = armDynamics(P);  
 ctrl = armController(P);  
 amplitude = 30*pi/180; % amplitude of reference input
 frequency = 0.05; % frequency of reference input

@@ -47,7 +47,7 @@ wn_z = 2.2/tr_z;  % desired natural frequency
 a  = -(wn_z^2)*sqrt(2.0*P.ell/(3.0*P.g));
 b = (a - 2.0*zeta_z*wn_z)*sqrt(2.0*P.ell/(3.0*P.g));
 P.kd_z = b/(1-b);
-P.kp_z = a*(1+kd_z);
+P.kp_z = a*(1+P.kd_z);
 
 fprintf('\t DC_gain: %f\n', P.DC_gain)
 fprintf('\t kp_th: %f\n', P.kp_th)

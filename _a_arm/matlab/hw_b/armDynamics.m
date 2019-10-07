@@ -18,17 +18,9 @@ classdef armDynamics < handle
                         P.theta0;...      % initial angle
                         P.thetadot0;...   % initial angular rate
                         ]; 
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            % The parameters for any physical system are never known exactly.  Feedback
-            % systems need to be designed to be robust to this uncertainty.  In the simulation
-            % we model uncertainty by changing the physical parameters by a uniform random variable
-            % that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
-            % may change by up to 20%.  A different parameter value is chosen every time the simulation
-            % is run.
-            alpha = 0.2;  % Uncertainty parameter
-            self.m = P.m * (1+2*alpha*rand-alpha);  % Mass of the arm, kg
-            self.ell = P.ell * (1+2*alpha*rand-alpha);  % Length of the arm, m
-            self.b = P.b * (1+2*alpha*rand-alpha);  % Damping coefficient, Ns
+            self.m = P.m;  % Mass of the arm, kg
+            self.ell = P.ell;  % Length of the arm, m
+            self.b = P.b;  % Damping coefficient, Ns
             self.g = P.g;  % the gravity constant is well known and so we don't change it.
             self.Ts = P.Ts; % sample rate at which dynamics is propagated
         end
@@ -97,10 +89,7 @@ classdef armDynamics < handle
             % 
             % re-label states for readability
             theta = self.state(1);
-            % add Gaussian noise to outputs
-            %theta_m = theta + 0.001*randn;
-            % return measured outputs
-            y = [theta];
+            y = theta;
         end
     end
 end

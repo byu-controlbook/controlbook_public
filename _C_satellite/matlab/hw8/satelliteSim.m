@@ -1,7 +1,7 @@
 satelliteParamHW8  % load parameters
 
 % instantiate satellite, and reference input classes 
-addpath('../hw_b'); satellite = satelliteDynamics(P);  
+addpath('../hw8'); satellite = satelliteDynamics(P);  
 ctrl = satelliteController(P);  
 amplitude = 15*pi/180; % amplitude of reference input
 frequency = 0.015; % frequency of reference input

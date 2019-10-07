@@ -11,7 +11,7 @@ Therefore,
 = \begin{pmatrix}\dot{\theta} \\ \ddot{\theta}\end{pmatrix} 
 = \begin{pmatrix} \dot{\theta} \\ \frac{3}{m\ell^2}\tilde{\tau} - \frac{3b}{m\ell^2}\dot{\theta}  \end{pmatrix}
 =\begin{pmatrix} x_2 \\ \frac{3}{m\ell^2}\tilde{u} - \frac{3b}{m\ell^2}x_2  \end{pmatrix} \\
-&= \begin{pmatrix} 0 & 1 \\ 0 & -\frac{3b}{2\ell} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + \begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix} \tilde{u}.
+&= \begin{pmatrix} 0 & 1 \\ 0 & -\frac{3b}{2\ell^2} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + \begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix} \tilde{u}.
 \end{align*}
 Assuming that the measured output of the system is $y=\theta$, the linearized output is given by
 \[
@@ -19,7 +19,7 @@ y = \theta = x_1 = \begin{pmatrix} 1 & 0\end{pmatrix}\begin{pmatrix}x_1 \\ x_2 \
 \]
 Therefore, the linearized state space equations are given by
 \begin{align}
-\dot{x} &= \begin{pmatrix} 0 & 1 \\ 0 & -\frac{3b}{2\ell} \end{pmatrix} x + \begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix} \tilde{u} 
+\dot{x} &= \begin{pmatrix} 0 & 1 \\ 0 & -\frac{3b}{2\ell^2} \end{pmatrix} x + \begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix} \tilde{u} 
 \notag \\
 y &= \begin{pmatrix} 1 & 0\end{pmatrix} x.
 \label{eq:dm_arm_linearized_ss}

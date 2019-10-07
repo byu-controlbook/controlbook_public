@@ -17,15 +17,26 @@ class pendulumDynamics:
             [P.thetadot0],
         ])  # Thetadot initial velocity
         self._Ts = P.Ts
-        self._m1 = P.m1  # Mass of the pendulum, kg
-        self._m2 = P.m2  # Mass of the cart, kg
-        self._ell = P.ell  # Length of the rod, m
-        self._b = P.b  # Damping coefficient, Ns
-        self._g = P.g  # gravity
+        #################################################
+        # The parameters for any physical system are never known exactly.  Feedback
+        # systems need to be designed to be robust to this uncertainty.  In the simulation
+        # we model uncertainty by changing the physical parameters by a uniform random variable
+        # that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
+        # may change by up to 20%.  A different parameter value is chosen every time the simulation
+        # is run.
+        alpha = 0.2  # Uncertainty parameter
+        self._m1 = P.m1 * (1.+alpha*(2.*np.random.rand()-1.))  # Mass of the pendulum, kg
+        self._m2 = P.m2 * (1.+alpha*(2.*np.random.rand()-1.))  # Mass of the cart, kg
+        self._ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))  # Length of the rod, m
+        self._b = P.b * (1.+alpha*(2.*np.random.rand()-1.))  # Damping coefficient, Ns
+        self._g = P.g  # the gravity constant is well known and so we don't change it.
+        self.force_limit = P.F_max
 
     def update(self, u):
         # This is the external method that takes the input u at time
         # t and returns the output y at time t.
+        # saturate the input force
+        u = self.saturate(u, self.force_limit)
         self._rk4_step(u)  # propagate the state by one time sample
         y = self._h()  # return the corresponding output
         return y
@@ -88,3 +99,8 @@ class pendulumDynamics:
             [theta],
         ])
         return y
+
+    def saturate(self, u, limit):
+        if abs(u) > limit:
+            u = limit*np.sign(u)
+        return u

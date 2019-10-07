@@ -8,6 +8,7 @@ classdef satelliteDynamics < handle
         k
         b
         Ts
+        torque_limit
     end
     %----------------------------
     methods
@@ -20,15 +21,25 @@ classdef satelliteDynamics < handle
                         P.thetadot0;...   % initial angular velocity of base
                         P.phidot0;...     % initial angular velocity of panel
                         ];     
-            self.Js = P.Js;  % inertia of base
-            self.Jp = P.Jp;  % inertia of panel
-            self.k = P.k;    % spring coefficient
-            self.b = P.b;    % Damping coefficient, Ns
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            % The parameters for any physical system are never known exactly.  Feedback
+            % systems need to be designed to be robust to this uncertainty.  In the simulation
+            % we model uncertainty by changing the physical parameters by a uniform random variable
+            % that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
+            % may change by up to 20%.  A different parameter value is chosen every time the simulation
+            % is run.
+            alpha = 0.0;  % Uncertainty parameter
+            self.Js = P.Js * (1+2*alpha*rand-alpha);  % inertia of base
+            self.Jp = P.Jp * (1+2*alpha*rand-alpha);  % inertia of panel
+            self.k = P.k * (1+2*alpha*rand-alpha);    % spring coefficient
+            self.b = P.b * (1+2*alpha*rand-alpha);    % Damping coefficient, Ns
             self.Ts = P.Ts; % sample rate at which dynamics is propagated
-          
+            self.torque_limit = P.tau_max;
         end
         %----------------------------
         function y = update(self, u)
+            % saturate the input
+            u = self.saturate(u, self.torque_limit);
             self.rk4_step(u);
             y = self.h();
         end
@@ -102,8 +113,19 @@ classdef satelliteDynamics < handle
             % re-label states for readability
             theta = self.state(1);
             phi = self.state(2);
+            % add Gaussian noise to outputs
+            theta_m = theta + 0.001*randn;
+            phi_m = phi + 0.001*randn;
             % return measured outputs
-            y = [theta; phi];
+            y = [theta_m; phi_m];
+        end
+        %----------------------------
+        function out = saturate(self, in, limit)
+            if abs(in) > limit
+                out = limit * sign(in);
+            else 
+                out = in;
+            end
         end
     end
 end
