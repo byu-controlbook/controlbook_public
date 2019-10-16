@@ -3,6 +3,7 @@ classdef pendulumDynamics < handle
     %----------------------------
     properties
         state
+        output
         m1
         m2
         ell
@@ -21,7 +22,8 @@ classdef pendulumDynamics < handle
                         P.theta0;...      % Theta initial orientation
                         P.zdot0;...       % zdot initial velocity
                         P.thetadot0;...   % Thetadot initial velocity
-                        ];     
+                        ];  
+            self.output = [P.z0; P.theta0];
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             % The parameters for any physical system are never known exactly.  Feedback
             % systems need to be designed to be robust to this uncertainty.  In the simulation
@@ -45,6 +47,7 @@ classdef pendulumDynamics < handle
             u = self.saturate(u, self.force_limit);
             self.rk4_step(u);
             y = self.h();
+            self.output = y;
         end
         %----------------------------
         function self = rk1_step(self, u)

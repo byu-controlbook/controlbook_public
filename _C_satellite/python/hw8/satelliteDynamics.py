@@ -7,7 +7,6 @@ class satelliteDynamics:
     '''
         Model the physical system
     '''
-
     def __init__(self):
         # Initial state conditions
         self.state = np.array([
@@ -16,6 +15,7 @@ class satelliteDynamics:
             [P.thetadot0],  # initial angular velocity of base
             [P.phidot0],
         ])   # nitial angular velocity of panel
+        self.output = np.array([[P.theta0], [P.phi0]])
         self._Ts = P.Ts
         #################################################
         # The parameters for any physical system are never known exactly.  Feedback
@@ -38,6 +38,7 @@ class satelliteDynamics:
         u = self.saturate(u, self.torque_limit)
         self._rk4_step(u)  # propagate the state by one time sample
         y = self._h()  # return the corresponding output
+        self.output = y
         return y
 
     def _rk1_step(self, u):

@@ -24,7 +24,6 @@ The transfer function of the closed loop system is given by
 \begin{align*}
 & \Theta(s) = \left(\frac{66.67}{s^2+0.667s}\right)\left(k_P (\Theta^c(s)-\Theta(s)) - k_D s \Theta(s) \right)  \\
 \implies & (s^2+0.667s)\Theta(s) = \left(66.67k_P (\Theta^c(s)-\Theta(s)) - 66.67k_D s \Theta(s) \right) \\
-\implies & \left[(s^2+0.667s)+\left(66.67k_D s\right)\right]\Theta(s) = 66.67k_P \Theta^c(s)  \\
 \implies & (s^2 + (0.667 + 66.67k_D)s + 66.67k_P)\Theta(s) = 66.67k_P \Theta^c(s)  \\
 \implies & \Theta(s) = \frac{66.67k_P}{s^2 + (0.667 + 66.67k_D)s + 66.67k_P}\Theta^c(s). 
 \end{align*}

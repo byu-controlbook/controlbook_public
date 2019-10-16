@@ -3,6 +3,7 @@ classdef armDynamics < handle
     %----------------------------
     properties
         state
+        output
         m
         ell
         b
@@ -19,6 +20,7 @@ classdef armDynamics < handle
                         P.theta0;...      % initial angle
                         P.thetadot0;...   % initial angular rate
                         ]; 
+            self.output = [P.theta0];
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             % The parameters for any physical system are never known exactly.  Feedback
             % systems need to be designed to be robust to this uncertainty.  In the simulation
@@ -40,6 +42,7 @@ classdef armDynamics < handle
             u = self.saturate(u, self.torque_limit);
             self.rk4_step(u);
             y = self.h();
+            self.output = y;
         end
         %----------------------------
         function self = rk1_step(self, u)

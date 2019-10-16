@@ -3,6 +3,7 @@ classdef satelliteDynamics < handle
     %----------------------------
     properties
         state
+        output
         Js
         Jp
         k
@@ -20,7 +21,8 @@ classdef satelliteDynamics < handle
                         P.phi0;...        % initial panel angle
                         P.thetadot0;...   % initial angular velocity of base
                         P.phidot0;...     % initial angular velocity of panel
-                        ];     
+                        ]; 
+            self.output = [P.theta0; P.phi0];
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             % The parameters for any physical system are never known exactly.  Feedback
             % systems need to be designed to be robust to this uncertainty.  In the simulation
@@ -42,6 +44,7 @@ classdef satelliteDynamics < handle
             u = self.saturate(u, self.torque_limit);
             self.rk4_step(u);
             y = self.h();
+            self.output = y;
         end
         %----------------------------
         function self = rk1_step(self, u)

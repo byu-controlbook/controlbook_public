@@ -16,6 +16,7 @@ class pendulumDynamics:
             [P.zdot0],       # zdot initial velocity
             [P.thetadot0],
         ])  # Thetadot initial velocity
+        self.output = np.array([[P.z0], [P.theta0]])
         self._Ts = P.Ts
         #################################################
         # The parameters for any physical system are never known exactly.  Feedback
@@ -39,6 +40,7 @@ class pendulumDynamics:
         u = self.saturate(u, self.force_limit)
         self._rk4_step(u)  # propagate the state by one time sample
         y = self._h()  # return the corresponding output
+        self.output = y
         return y
 
     def _rk1_step(self, u):

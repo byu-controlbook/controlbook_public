@@ -14,10 +14,10 @@ Since there are two free integrators, the system is type~2, and from Table~\ref{
 \lim_{t\to\infty}e(t) = \frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0} P(s)C(s)} = 0.
 \]
 The tracking error when the input is a ramp is \[
-\lim_{t\to\infty}e(t) = \frac{1}{1+M_v} = \frac{1}{1+\lim_{s\to 0} sP(s)C(s)} = 0.
+\lim_{t\to\infty}e(t) = \frac{1}{M_v} = \frac{1}{\lim_{s\to 0} sP(s)C(s)} = 0.
 \]
 Finally, the tracking error when the input is a parabola is \[
-\lim_{t\to\infty}e(t) = \frac{1}{1+M_v} = \frac{1}{1+\lim_{s\to 0} s^2P(s)C(s)} = \frac{J_p + J_s}{J_p + J_s + k_p}.
+\lim_{t\to\infty}e(t) = \frac{1}{M_a} = \frac{1}{\lim_{s\to 0} s^2P(s)C(s)} = \frac{J_p + J_s}{k_p}.
 \]
 The tracking error for higher order polynomials is $\infty$.
 For a disturbance input of $D(s)=1/s^{q+1}$, the steady state error is

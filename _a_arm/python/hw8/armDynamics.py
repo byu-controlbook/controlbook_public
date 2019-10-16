@@ -14,7 +14,7 @@ class armDynamics:
             [P.theta0],      # initial angle
             [P.thetadot0]
         ])  # initial angular rate
-        self.output = 0.0
+        self.output = np.array([[0.0]])
         #################################################
         # The parameters for any physical system are never known exactly.  Feedback
         # systems need to be designed to be robust to this uncertainty.  In the simulation
