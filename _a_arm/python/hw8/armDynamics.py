@@ -22,7 +22,7 @@ class armDynamics:
         # that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
         # may change by up to 20%.  A different parameter value is chosen every time the simulation
         # is run.
-        alpha = 0.0  # Uncertainty parameter
+        alpha = 0.2  # Uncertainty parameter
         self._m = P.m * (1.+alpha*(2.*np.random.rand()-1.))  # Mass of the arm, kg
         self._ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))  # Length of the arm, m
         self._b = P.b * (1.+alpha*(2.*np.random.rand()-1.))  # Damping coefficient, Ns

@@ -12,7 +12,7 @@ The open loop system is given by
 P(s)C(s) = \left(\frac{-\frac{1}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}{s^2-\frac{(m_1+m_2)g}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}\right)\left(k_Ds+k_P\right).
 \]
 Since there are no free integrators, the system is type~0, and from Table~\ref{table:system_type} the tracking error when the input is a step is \[
-\lim_{t\to\infty}e(t) = \frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0} sP(s)C(s)} = \frac{1}{1+\frac{k_P}{(m_1+m_2)g}}.
+\lim_{t\to\infty}e(t) = \frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0} P(s)C(s)} = \frac{1}{1+\frac{k_P}{(m_1+m_2)g}}.
 \]
 The tracking error when the input is a ramp, or higher order polynomial, is $\infty$.
 
@@ -33,12 +33,12 @@ The block diagram for the outer loop is shown in \fref{fig:hw_pendulum_system_ty
 	{fig:hw_pendulum_system_type_outer}
 The open loop system is given by
 \[
-P(s)C(s) = \left(\frac{\frac{2\ell s^2}{3}-g}{s^2}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right).
+P(s)C(s) = \left(\frac{\frac{-2\ell s^2}{3}+g}{s^2}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right).
 \]
 When $k_I=0$ there are two free integrators in $P(s)C(s)$ and the system is type~2, and from Table~\ref{table:system_type} the tracking error when the input is a parabola is \[
 \lim_{t\to\infty}e(t) = \frac{1}{M_a} = \frac{1}{\lim_{s\to 0} s^2P(s)C(s)} = \frac{1}{-k_Pg}.
 \]
-When $k_I\neq 0$, there are three free integrators in $P(s)C(s)$ and the system is type~3, with zero tracking error for a step, ramp, and parabola.
+When $k_I\neq 0$, there are three free integrators in $P(s)C(s)$ and the system is type~3, with zero tracking error for a step, ramp, and parabola input.
 
 For the disturbance input, the steady state error when $D(s) = \frac{1}{s^{q+1}}$ is
 \begin{align*}

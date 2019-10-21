@@ -30,7 +30,7 @@ E(s) = \frac{P(s)}{1+P(s)C(s)}D(s).
 Without the integrator, and when $D(s)= \frac{A}{s^{q+1}}$, the steady state error is given by
 \begin{align*}
 \lim_{t\to\infty} e(t) &= \lim_{s\to 0} \frac{P}{1+PC}\frac{A}{s^q} \\
-&= \lim_{s\to 0} \left(\frac{\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)}{1+\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})(k_Ds+k_P)}\right)}\right)\left(\frac{A}{s^q}\right) \\
+&= \lim_{s\to 0} \left(\frac{\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)}{1+\left(\frac{\frac{3}{m\ell^2}(k_Ds+k_P)}{s(s+\frac{3b}{m\ell^2})}\right)}\right)\left(\frac{A}{s^q}\right) \\
 &= \lim_{s\to 0} \left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})+\frac{3}{m\ell^2}(k_Ds+k_P)}\right)\left(\frac{A}{s^q}\right) \\
 &= \frac{A\frac{3}{m\ell^2}}{\frac{3k_P}{m\ell^2}}
 = \frac{A}{k_P},
@@ -45,4 +45,4 @@ With the integrator, and when $D(s)= \frac{A}{s^{q+1}}$, the steady state error 
 &= \frac{A\frac{3}{m\ell^2}}{\frac{3k_I}{m\ell^2}} 
 = \frac{A}{k_I},
 \end{align*}
-if $q=1$.  Therefore, to an input disturbance the system is type~1.  The steady state error when $d(t)$ is a constant step is zero, and the steady state error when $d(t)$ is a ramp of slope of size $A$ is $\frac{A}{k_I}$.  
+if $q=1$.  Therefore, to an input disturbance the system is type~1.  The steady state error when $d(t)$ is a constant step is zero, and the steady state error when $d(t)$ is a ramp of slope size $A$ is $\frac{A}{k_I}$.  
