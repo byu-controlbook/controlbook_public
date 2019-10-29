@@ -5,7 +5,7 @@ sys.path.append('..')  # add parent directory
 import armParam as P
 from signalGenerator import signalGenerator
 from armAnimation import armAnimation
-from plotData import plotData
+from dataPlotter import dataPlotter
 
 # instantiate reference input classes
 reference = signalGenerator(amplitude=0.5, frequency=0.1)
@@ -13,7 +13,7 @@ thetaRef = signalGenerator(amplitude=2.0*np.pi, frequency=0.1)
 tauRef = signalGenerator(amplitude=5, frequency=.5)
 
 # instantiate the simulation plots and animation
-dataPlot = plotData()
+dataPlot = dataPlotter()
 animation = armAnimation()
 
 t = P.t_start  # time starts at t_start

@@ -1,8 +1,8 @@
 
 
-The objective of this problem is to implement the PID controller using Matlab code using only measured outputs of the system.
+The objective of this problem is to implement the PID controller using only measured outputs of the system.
 \begin{description}
 \item[(a)]  Modify the system dynamics file so that the parameters vary by up to 20\% each time they are run (uncertainty parameter = 0.2).
-\item[(b)]  Rearrange the block diagram so that the controller is implemented as an m-function implemented at the sample rate of $T_s=0.01$.  The controller should only assume knowledge of the angle $\theta$ and the reference angle $\theta_r$.
-\item[(c)]  Implement the PID controller designed in Problems~\ref{ds:single_link_arm}.\ref{chap:PID-design-specs} using an m-function called arm\_ctrl.m.   Use the dirty derivative gain of $\tau=0.05$.  Tune the integrator to remove the steady state error caused by the uncertain parameters.
+\item[(b)]  Change the simulation files so that the input to the controller is the output and not the state. The controller should only assume knowledge of the angle $\theta$ and the reference angle $\theta_r$.
+\item[(c)]  Implement the PID controller designed in Problems~\ref{ds:single_link_arm}.\ref{chap:PID-design-specs}.  Use the dirty derivative gain of $\tau=0.05$.  Tune the integrator to remove the steady state error caused by the uncertain parameters.
 \end{description}

@@ -5,29 +5,31 @@ import numpy as np
 plt.ion()  # enable interactive drawing
 
 
-class plotData:
+class dataPlotter:
     ''' 
         This class plots the time histories for the pendulum data.
     '''
 
     def __init__(self):
         # Number of subplots = num_of_rows*num_of_cols
-        self.num_rows = 2    # Number of subplot rows
+        self.num_rows = 3    # Number of subplot rows
         self.num_cols = 1    # Number of subplot columns
 
         # Crete figure and axes handles
         self.fig, self.ax = plt.subplots(self.num_rows, self.num_cols, sharex=True)
 
         # Instantiate lists to hold the time and data histories
-        self.time_history = []  # time
-        self.theta_ref_history = []  # reference angle
-        self.theta_history = []  # angle theta
-        self.torque_history = []  # control torque
+        self.time_history = []     # time
+        self.phi_ref_history = []  # reference panel angle
+        self.phi_history = []      # panel angle
+        self.theta_history = []    # base angle
+        self.torque_history = []    # control torque
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='theta(deg)', title='Arm Data'))
-        self.handle.append(myPlot(self.ax[1], xlabel='t(s)', ylabel='torqe(N-m)'))
+        self.handle.append(myPlot(self.ax[0], ylabel='phi(deg)', title='Satellite Data'))
+        self.handle.append(myPlot(self.ax[1], ylabel='theta(deg)'))
+        self.handle.append(myPlot(self.ax[2], xlabel='t(s)', ylabel='torque(Nm)'))
 
     def update(self, t, reference, states, ctrl):
         '''
@@ -35,13 +37,15 @@ class plotData:
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.theta_ref_history.append(180.0/np.pi*reference)  # reference base position
-        self.theta_history.append(180.0/np.pi*states.item(0))  # rod angle (converted to degrees)
-        self.torque_history.append(ctrl)  # force on the base
+        self.phi_ref_history.append(180.0/np.pi*reference)  # reference panel angle
+        self.phi_history.append(180.0/np.pi*states.item(1))  # panel angle
+        self.theta_history.append(180.0/np.pi*states.item(0))  # base angle
+        self.torque_history.append(ctrl)  # torque on the base
 
         # update the plots with associated histories
-        self.handle[0].update(self.time_history, [self.theta_history, self.theta_ref_history])
-        self.handle[1].update(self.time_history, [self.torque_history])
+        self.handle[0].update(self.time_history, [self.phi_history, self.phi_ref_history])
+        self.handle[1].update(self.time_history, [self.theta_history])
+        self.handle[2].update(self.time_history, [self.torque_history])
 
 
 class myPlot:

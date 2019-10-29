@@ -5,7 +5,7 @@ sys.path.append('..')  # add parent directory
 import pendulumParam as P
 from signalGenerator import signalGenerator
 from pendulumAnimation import pendulumAnimation
-from plotData import plotData
+from dataPlotter import dataPlotter
 
 
 # instantiate reference input classes
@@ -15,7 +15,7 @@ thetaRef = signalGenerator(amplitude=.25*np.pi, frequency=.5)
 fRef = signalGenerator(amplitude=5, frequency=.5)
 
 # instantiate the simulation plots and animation
-dataPlot = plotData()
+dataPlot = dataPlotter()
 animation = pendulumAnimation()
 
 t = P.t_start  # time starts at t_start

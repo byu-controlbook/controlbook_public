@@ -5,7 +5,7 @@ sys.path.append('..')  # add parent directory
 import satelliteParam as P
 from signalGenerator import signalGenerator
 from satelliteAnimation import satelliteAnimation
-from plotData import plotData
+from dataPlotter import dataPlotter
 
 
 # instantiate reference input classes
@@ -15,7 +15,7 @@ phiRef = signalGenerator(amplitude=0.5, frequency=0.1)
 tauRef = signalGenerator(amplitude=5, frequency=.5)
 
 # instantiate the simulation plots and animation
-dataPlot = plotData()
+dataPlot = dataPlotter()
 animation = satelliteAnimation()
 
 t = P.t_start  # time starts at t_start

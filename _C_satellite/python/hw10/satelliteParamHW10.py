@@ -5,7 +5,7 @@ import sys
 sys.path.append('..')  # add parent directory
 import satelliteParam as P
 
-# import variables from satelliteParam for later import through current file
+# import variables from satelliteParam
 Ts = P.Ts
 sigma = P.sigma
 beta = P.beta

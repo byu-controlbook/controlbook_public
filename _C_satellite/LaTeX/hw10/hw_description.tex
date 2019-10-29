@@ -1,6 +1,6 @@
-The objective of this problem is to implement the PID controller using Matlab code using only measured outputs of the system.
+The objective of this problem is to implement the PID controller using only measured outputs of the system.
 \begin{description}
 \item[(a)]  Modify the system dynamics file so that the parameters $J_s$, $J_p$, $k$ and $b$ vary by up to 20\% of their nominal value each time they are run (uncertainty parameter = 0.2).
-\item[(b)]  Rearrange the block diagram so that the controller is implemented as an m-function implemented at the sample rate of $T_s=0.01$.  Assume that the controller only has knowledge of the angles $\phi$ and $\theta$ as well as the reference angle $\phi_r$.
-\item[(c)]  Implement the nested PID loops designed in Problems~\ref{ds:satellite}.\ref{chap:PID-design-specs} using an m-function called satellite\_ctrl.m.   Use the dirty derivative gain of $\tau=0.05$. Tune the integrator to remove the steady state error caused by the uncertain parameters.
+\item[(b)]  Change the simulation files so that the input to the controller is the output and not the state.  Assume that the controller only has knowledge of the angles $\phi$ and $\theta$ as well as the reference angle $\phi_r$.
+\item[(c)]  Implement the nested PID loops designed in Problems~\ref{ds:satellite}.\ref{chap:PID-design-specs}.   Use the dirty derivative gain of $\tau=0.05$. Tune the integrator to remove the steady state error caused by the uncertain parameters.
 \end{description}

@@ -5,7 +5,7 @@ import numpy as np
 plt.ion()  # enable interactive drawing
 
 
-class plotData:
+class dataPlotter:
     ''' 
         This class plots the time histories for the pendulum data.
     '''
@@ -19,17 +19,17 @@ class plotData:
         self.fig, self.ax = plt.subplots(self.num_rows, self.num_cols, sharex=True)
 
         # Instantiate lists to hold the time and data histories
-        self.time_history = []     # time
-        self.phi_ref_history = []  # reference panel angle
-        self.phi_history = []      # panel angle
-        self.theta_history = []    # base angle
-        self.torque_history = []    # control torque
+        self.time_history = []  # time
+        self.zref_history = []  # reference position z_r
+        self.z_history = []  # position z
+        self.theta_history = []  # angle theta
+        self.Force_history = []  # control force
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='phi(deg)', title='Satellite Data'))
+        self.handle.append(myPlot(self.ax[0], ylabel='z(m)', title='Pendulum Data'))
         self.handle.append(myPlot(self.ax[1], ylabel='theta(deg)'))
-        self.handle.append(myPlot(self.ax[2], xlabel='t(s)', ylabel='torque(Nm)'))
+        self.handle.append(myPlot(self.ax[2], xlabel='t(s)', ylabel='force(N)'))
 
     def update(self, t, reference, states, ctrl):
         '''
@@ -37,15 +37,15 @@ class plotData:
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.phi_ref_history.append(180.0/np.pi*reference)  # reference panel angle
-        self.phi_history.append(180.0/np.pi*states.item(1))  # panel angle
-        self.theta_history.append(180.0/np.pi*states.item(0))  # base angle
-        self.torque_history.append(ctrl)  # torque on the base
+        self.zref_history.append(reference)  # reference base position
+        self.z_history.append(states.item(0))  # base position
+        self.theta_history.append(180.0/np.pi*states.item(1))  # rod angle (converted to degrees)
+        self.Force_history.append(ctrl)  # force on the base
 
         # update the plots with associated histories
-        self.handle[0].update(self.time_history, [self.phi_history, self.phi_ref_history])
+        self.handle[0].update(self.time_history, [self.z_history, self.zref_history])
         self.handle[1].update(self.time_history, [self.theta_history])
-        self.handle[2].update(self.time_history, [self.torque_history])
+        self.handle[2].update(self.time_history, [self.Force_history])
 
 
 class myPlot:

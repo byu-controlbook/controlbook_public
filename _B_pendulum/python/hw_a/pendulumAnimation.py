@@ -3,23 +3,20 @@ import matplotlib.patches as mpatches
 import numpy as np 
 import pendulumParam as P
 
-
 class pendulumAnimation:
-    '''
-        Create pendulum animation
-    '''
     def __init__(self):
-        self.flagInit = True                  # Used to indicate initialization
-        self.fig, self.ax = plt.subplots()    # Initializes a figure and axes object
-        self.handle = []                      # Initializes a list object that will
-                                              # be used to contain handles to the
-                                              # patches and line objects.
-        plt.axis([-3*P.ell,3*P.ell, -0.1, 3*P.ell]) # Change the x,y axis limits
-        plt.plot([-2*P.ell,2*P.ell],[0,0],'b--')    # Draw a base line
+        self.flagInit = True  # Used to indicate initialization
+        # Initialize a figure and axes object
+        self.fig, self.ax = plt.subplots()
+        # Initializes a list of objects (patches and lines)
+        self.handle = []
+        # Specify the x,y axis limits
+        plt.axis([-3*P.ell,3*P.ell, -0.1, 3*P.ell])
+        # Draw line for the ground
+        plt.plot([-2*P.ell,2*P.ell],[0,0],'b--')
+        # label axes
         plt.xlabel('z')
 
-        # Draw pendulum is the main function that will call the functions:
-        # drawCart, drawCircle, and drawRod to create the animation.
     def update(self, u):
         # Process inputs to function
         z = u[0]        # Horizontal position of cart, m
@@ -84,18 +81,3 @@ class pendulumAnimation:
         else:
             self.handle[2].set_xdata(X)               # Update the line
             self.handle[2].set_ydata(Y)
-
-
-
-# Used see the animation from the command line
-if __name__ == "__main__":
-
-    simAnimation = PendulumAnimation()    # Create Animate object
-    z = 0.0                               # Position of cart, m
-    theta = 0.0*np.pi/180                 # Angle of pendulum, rads
-    simAnimation.update([z, theta, 0, 0])  # Draw the pendulum
-    #plt.show()
-    # Keeps the program from closing until the user presses a button.
-    print('Press key to close')
-    plt.waitforbuttonpress()
-    plt.close()

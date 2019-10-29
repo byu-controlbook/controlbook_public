@@ -15,9 +15,9 @@ From HW~\ref{ds:pendulum}.\ref{chap:state_space_models}, the state space equatio
 y &= \begin{pmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 
-\end{pmatrix} x, \label{eq:hw_state_feedback_b1}
+\end{pmatrix} x, \label{eq:hw_state_feedback_b1_1}
 \end{align}
-where Equation~\eqref{eq:hw_state_feedback_b1} represents the measured outputs.  The reference output is the position $z$, which implies that
+where Equation~\eqref{eq:hw_state_feedback_b1_1} represents the measured outputs.  The reference output is the position $z$, which implies that
 \[
 y_r = \begin{pmatrix} 1 & 0 & 0 & 0 \end{pmatrix} x.
 \]
@@ -70,9 +70,10 @@ k_r &= \frac{-1}{C_r(A-BK)^{-1}B}
 \end{align*}
 \end{description}
 
-Alternatively, we could have used the following Matlab script.
+Alternatively, we could have used the following Python script.
+\lstinputlisting[language=Python, caption=pendulumParamHW11.py]{../control_book_public_solutions/_B_pendulum/python/hw11/pendulumParamHW11.py}
 
-\lstinputlisting{../control_book_public_solutions/_B_pendulum/simulink/hw11/pendulumParamHW11.m}
+The Python code for the controller is given by
+\lstinputlisting[language=Python, caption=pendulumController.py]{../control_book_public_solutions/_B_pendulum/python/hw11/pendulumController.py}
 
-The Matlab code for the controller is given by 
-\lstinputlisting{../control_book_public_solutions/_B_pendulum/simulink/hw11/pendulum_ctrl.m}
+

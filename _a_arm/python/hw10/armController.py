@@ -10,12 +10,12 @@ class armController:
 
     def __init__(self):
         # Instantiates the PD object
-        self.thetaCtrl = PIDControl(P.kp, P.ki, P.kd, P0.tau_max, P.beta, P.Ts)
+        self.thetaCtrl = PIDControl(P.kp, P.ki, P.kd,
+                                    P0.tau_max, P.beta, P.Ts)
         self.limit = P0.tau_max
 
     def update(self, theta_r, y):
         theta = y.item(0)
-
         # compute feedback linearized torque tau_fl
         tau_fl = P0.m * P0.g * (P0.ell / 2.0) * np.cos(theta)
         # compute the linearized torque using PD

@@ -1,8 +1,10 @@
 
-\controlbookfigure{0.5}
-	{6_design_studies/figures/hw_satellite_defn}
-	{Satellite with flexible solar panels.}
-	{fig:sm_satellite_defn}
+\begin{figure}[hbt]
+  \centering\includegraphics[width=0.5\textwidth]{6_design_studies/figures/hw_satellite_defn}
+  \caption{Satellite with flexible solar panels.}
+  \label{fig:sm_satellite_defn}  
+\end{figure}
+
 
 
 The generalized coordinates for the satellite attitude control problem are the angles $\theta$ and $\phi$.  Therefore, we define the generalized coordinates as $\mathbf{q}=(\theta, \phi)^\top$  We will assume the ability to apply torque on the main body ($\theta$) of the satellite, but not on the solar panel.  Therefore, the generalized force is $\boldsymbol{\tau} = (\tau, 0)^\top$.  We will model the dissipation (friction) forces as proportional to the relative motion between the main body and the solar panel.  Therefore, the damping term is given by
