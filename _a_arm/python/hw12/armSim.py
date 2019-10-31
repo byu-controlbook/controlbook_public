@@ -3,7 +3,7 @@ sys.path.append('..')  # add parent directory
 import matplotlib.pyplot as plt
 import numpy as np
 import armParam as P
-from hw_b.armDynamics import armDynamics
+from hw8.armDynamics import armDynamics
 from armController import armController
 from hw_a.signalGenerator import signalGenerator
 from hw_a.armAnimation import armAnimation
@@ -13,7 +13,7 @@ from hw_a.dataPlotter import dataPlotter
 arm = armDynamics()
 controller = armController()
 reference = signalGenerator(amplitude=30*np.pi/180.0, frequency=0.05)
-disturbance = signalGenerator(amplitude=0.01)
+disturbance = signalGenerator(amplitude=0.25)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()

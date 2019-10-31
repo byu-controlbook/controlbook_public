@@ -1,4 +1,4 @@
-classdef plotData < handle
+classdef dataPlotter < handle
     %    This class plots the time histories for the pendulum data.
     %----------------------------
     properties
@@ -17,7 +17,7 @@ classdef plotData < handle
     end
     methods
         %--constructor--------------------------
-        function self = plotData(P)
+        function self = dataPlotter(P)
             % Instantiate lists to hold the time and data histories
             self.time_history = NaN*ones(1,(P.t_end-P.t_start)/P.t_plot);
             self.zref_history = NaN*ones(1,(P.t_end-P.t_start)/P.t_plot);

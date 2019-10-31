@@ -3,7 +3,7 @@ sys.path.append('..')  # add parent directory
 import matplotlib.pyplot as plt
 import numpy as np
 import satelliteParam as P
-from hw_b.satelliteDynamics import satelliteDynamics
+from hw8.satelliteDynamics import satelliteDynamics
 from satelliteController import satelliteController
 from hw_a.signalGenerator import signalGenerator
 from hw_a.satelliteAnimation import satelliteAnimation
@@ -12,7 +12,7 @@ from hw_a.dataPlotter import dataPlotter
 # instantiate satellite, controller, and reference classes
 satellite = satelliteDynamics()
 controller = satelliteController()
-reference = signalGenerator(amplitude=15.0*np.pi/180.0, frequency=0.02)
+reference = signalGenerator(amplitude=15.0*np.pi/180.0, frequency=0.04)
 disturbance = signalGenerator(amplitude=1.0)
 
 # instantiate the simulation plots and animation

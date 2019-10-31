@@ -31,6 +31,14 @@ classdef signalGenerator
             end
         end
         %-----------------------------------
+        function out = step(self, t)
+            if t>=0
+                out = self.amplitude + self.y_offset;
+            else
+                out = 0;
+            end
+        end
+        %-----------------------------------
         function out = sawtooth(self, t)
             out = 4*self.amplitude*self.frequency * mod(t, 0.5/self.frequency)...
                 - self.amplitude + self.y_offset;

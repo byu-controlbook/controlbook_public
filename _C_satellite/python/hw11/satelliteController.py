@@ -26,7 +26,7 @@ class satelliteController:
                       [self.theta_dot], [self.phi_dot]])
         # Compute the state feedback controller
         tau_unsat = -self.K @ x + self.kr * phi_r
-        tau = self.saturate(tau_unsat)
+        tau = self.saturate(tau_unsat.item(0))
         return tau
 
     def differentiatePhi(self, phi):

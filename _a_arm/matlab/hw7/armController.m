@@ -15,10 +15,8 @@ classdef armController
     methods
         %----------------------------
         function self = armController(P)
-            % Instantiates the SS_ctrl object
             self.kp = P.kp;
             self.kd = P.kd;
-            %self.thetaCtrl = PDControl(P.kp, P.kd, P.tau_max, P.beta, P.Ts);
             % plant parameters known to controller
             self.m = P.m;
             self.ell = P.ell;

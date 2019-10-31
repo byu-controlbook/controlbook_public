@@ -1,8 +1,4 @@
 classdef armController
-    % 
-    %    This class inherits other controllers in order to organize multiple controllers.
-    %
-    %----------------------------
     properties
         kp
         kd
@@ -11,7 +7,6 @@ classdef armController
         ell
         g
     end
-    %----------------------------
     methods
         %----------------------------
         function self = armController(P)

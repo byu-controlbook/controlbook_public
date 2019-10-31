@@ -1,4 +1,5 @@
-armParamHW10;  % load parameters
+clear path
+armParamHW12;  % load parameters
 
 % instantiate arm, controller, and reference input classes 
 addpath('../hw8'); arm = armDynamics(P);  

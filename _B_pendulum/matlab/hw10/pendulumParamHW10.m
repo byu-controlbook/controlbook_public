@@ -14,7 +14,7 @@ tr_th = 0.35;          % Rise time for inner loop (theta)
 zeta_th = 0.707;       % Damping Coefficient for inner loop (theta)
 M = 10.0;              % Time scale separation between inner and outer loop
 zeta_z = 0.707;        % Damping Coefficient fop outer loop (z)
-P.ki_z = 0.0;       % select integrator gain
+P.ki_z = -0.01;       % select integrator gain
 
 % saturation limits
 P.error_max = 1;        		  % Max step size,m

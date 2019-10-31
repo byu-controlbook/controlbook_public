@@ -7,7 +7,7 @@ classdef PIDControl < handle
         limit
         beta
         Ts
-        
+        init_flag
         y_dot
         y_d1
         error_dot
@@ -25,6 +25,7 @@ classdef PIDControl < handle
             self.beta = beta;
             self.Ts = Ts;
 
+            self.init_flag = 1;           % true for first time step
             self.y_dot = 0.0;             % estimated derivative of y
             self.y_d1 = 0.0;              % Signal y delayed by one sample
             self.error_dot = 0.0;         % estimated derivative of error
@@ -50,8 +51,12 @@ classdef PIDControl < handle
             % integrate error
             self.integrator = self.integrator...
                 + (self.Ts/2)*(error+self.error_d1);
- 
-
+            % initialize differentiators.
+            if self.init_flag==1
+                self.y_d1 = y;
+                self.error_d1 = error;
+                self.init_flag=0;
+            end
             % PID Control
             if flag==true
                 % differentiate error
@@ -96,7 +101,12 @@ classdef PIDControl < handle
 
             % Compute the current error
             error = y_r - y;
-
+            % initialize differentiators.
+            if self.init_flag==1
+                self.y_d1 = y;
+                self.error_d1 = error;
+                self.init_flag=0;
+            end
             if flag==true
                 % differentiate error
                 self.error_dot = self.beta*self.error_dot...
