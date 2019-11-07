@@ -2,16 +2,16 @@ armParamHW8;  % load parameters
 
 % instantiate arm, controller, and reference input classes 
 % Instantiate Dynamics class
-addpath('../hw8'); arm = armDynamics(P);  
+addpath('../hw3'); arm = armDynamics(P);  
 controller = armController(P);  
 amplitude = 30*pi/180; % amplitude of reference input
 frequency = 0.05; % frequency of reference input
-addpath('../hw_a'); reference = signalGenerator(amplitude, frequency);  
-addpath('../hw_a'); disturbance = signalGenerator(0.0, 0.0);
+addpath('../hw2'); reference = signalGenerator(amplitude, frequency);  
+addpath('../hw2'); disturbance = signalGenerator(0.0, 0.0);
 
 % instantiate the data plots and animation
-addpath('../hw_a'); dataPlot = plotData(P);
-addpath('../hw_a'); animation = armAnimation(P);
+addpath('../hw2'); dataPlot = plotData(P);
+addpath('../hw2'); animation = armAnimation(P);
 
 % main simulation loop
 t = P.t_start;  % time starts at t_start

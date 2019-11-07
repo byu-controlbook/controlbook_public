@@ -2,12 +2,12 @@ pendulumParamHWB;  % load parameters
 
 % instantiate pendulum, and reference input classes 
 pendulum = pendulumDynamics(P);  
-addpath('../hw_a'); reference = signalGenerator(0.5, 0.02);  
-addpath('../hw_a'); force = signalGenerator(1, 1);
+addpath('../hw2'); reference = signalGenerator(0.5, 0.02);  
+addpath('../hw2'); force = signalGenerator(1, 1);
 
 % instantiate the data plots and animation
-addpath('../hw_a'); dataPlot = dataPlotter(P);
-addpath('../hw_a'); animation = pendulumAnimation(P);
+addpath('../hw2'); dataPlot = dataPlotter(P);
+addpath('../hw2'); animation = pendulumAnimation(P);
 
 % main simulation loop
 t = P.t_start;  % time starts at t_start

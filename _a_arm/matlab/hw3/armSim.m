@@ -2,12 +2,12 @@ armParamHWB;  % load parameters
 
 % instantiate arm, and reference input classes 
 arm = armDynamics(P);  
-addpath('../hw_a'); reference = signalGenerator(0.01, 0.02);  
-addpath('../hw_a'); torque = signalGenerator(0.2, 0.05);
+addpath('../hw2'); reference = signalGenerator(0.01, 0.02);  
+addpath('../hw2'); torque = signalGenerator(0.2, 0.05);
 
 % instantiate the data plots and animation
-addpath('../hw_a'); dataPlot = dataPlotter(P);
-addpath('../hw_a'); animation = armAnimation(P);
+addpath('../hw2'); dataPlot = dataPlotter(P);
+addpath('../hw2'); animation = armAnimation(P);
 
 % main simulation loop
 t = P.t_start;  % time starts at t_start

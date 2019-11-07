@@ -7,7 +7,7 @@ tauRef = signalGenerator(5, 0.5);
 
 
 % instantiate the data plots and animation
-dataPlot = plotData(P);
+dataPlot = dataPlotter(P);
 animation = armAnimation(P);
 
 % main simulation loop

@@ -1,20 +1,20 @@
 import matplotlib.pyplot as plt
 import sys
 sys.path.append('..')  # add parent directory
-import satelliteParam as P
-from hw_a.signalGenerator import signalGenerator
-from hw_a.satelliteAnimation import satelliteAnimation
-from hw_a.dataPlotter import dataPlotter
-from satelliteDynamics import satelliteDynamics
+import pendulumParam as P
+from hw2.signalGenerator import signalGenerator
+from hw2.pendulumAnimation import pendulumAnimation
+from hw2.dataPlotter import dataPlotter
+from pendulumDynamics import pendulumDynamics
 
-# instantiate satellite, controller, and reference classes
-satellite = satelliteDynamics()
-reference = signalGenerator(amplitude=0.5, frequency=0.1)
-torque = signalGenerator(amplitude=0.1, frequency=0.1)
+# instantiate pendulum, controller, and reference classes
+pendulum = pendulumDynamics()
+reference = signalGenerator(amplitude=0.5, frequency=0.02)
+force = signalGenerator(amplitude=1, frequency=1)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
-animation = satelliteAnimation()
+animation = pendulumAnimation()
 
 t = P.t_start  # time starts at t_start
 while t < P.t_end:  # main simulation loop
@@ -22,12 +22,12 @@ while t < P.t_end:  # main simulation loop
     t_next_plot = t + P.t_plot
     while t < t_next_plot:  # updates control and dynamics at faster simulation rate
         r = reference.square(t)
-        u = torque.sin(t)
-        y = satellite.update(u)  # Propagate the dynamics
+        u = force.sin(t)
+        y = pendulum.update(u)  # Propagate the dynamics
         t = t + P.Ts  # advance time by Ts
     # update animation and data plots
-    animation.update(satellite.state)
-    dataPlot.update(t, r, satellite.state, u)
+    animation.update(pendulum.state)
+    dataPlot.update(t, r, pendulum.state, u)
     plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
 
 # Keeps the program from closing until the user presses a button.

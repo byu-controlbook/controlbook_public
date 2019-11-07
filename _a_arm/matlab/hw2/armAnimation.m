@@ -1,14 +1,9 @@
 classdef armAnimation < handle
-    %
-    %    Create pendulum animation
-    %
-    %--------------------------------
     properties
         link_handle
         length
         width
     end
-    %--------------------------------
     methods
         %------constructor-----------
         function self = armAnimation(P)
@@ -19,9 +14,10 @@ classdef armAnimation < handle
             plot([0,self.length],[0,0],'k--'); % plot track
             hold on
             self.update([P.theta0; P.thetadot0]);
-            axis([-2*self.length, 2*self.length, -2*self.length, 2*self.length]);
+            axis([-2*self.length, 2*self.length,...
+                  -2*self.length, 2*self.length]);
         end
-        %---------------------------
+        
         function self = update(self, x)
             theta = x(1);
             pts = [...
@@ -36,7 +32,8 @@ classdef armAnimation < handle
             if isempty(self.link_handle)
                 self.link_handle = fill(pts(1,:), pts(2,:), 'b');
             else
-                set(self.link_handle, 'XData', pts(1,:), 'YData', pts(2,:));
+                set(self.link_handle, 'XData', pts(1,:),...
+                                      'YData', pts(2,:));
                 drawnow
             end
         end

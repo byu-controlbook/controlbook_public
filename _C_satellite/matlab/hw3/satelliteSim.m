@@ -2,12 +2,12 @@ satelliteParamHWB  % load parameters
 
 % instantiate satellite, and reference input classes 
 satellite = satelliteDynamics(P);  
-addpath('../hw_a'); reference = signalGenerator(0.5, 0.1);
-addpath('../hw_a'); torque = signalGenerator(.1, .1);
+addpath('../hw2'); reference = signalGenerator(0.5, 0.1);
+addpath('../hw2'); torque = signalGenerator(.1, .1);
 
 % instantiate the data plots and animation
-addpath('../hw_a'); dataPlot = dataPlotter(P);
-addpath('../hw_a'); animation = satelliteAnimation(P);
+addpath('../hw2'); dataPlot = dataPlotter(P);
+addpath('../hw2'); animation = satelliteAnimation(P);
 
 % main simulation loop
 t = P.t_start;  % time starts at t_start

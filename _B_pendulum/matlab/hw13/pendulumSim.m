@@ -3,14 +3,14 @@ pendulumParamHW13;  % load parameters
 % instantiate pendulum, controller, and reference input classes 
 addpath('../hw8'); pendulum = pendulumDynamics(P);  
 controller = pendulumController(P);  
-addpath('../hw_a'); reference = signalGenerator(0.5, 0.02);  
-addpath('../hw_a'); disturbance = signalGenerator(0.1, 0);  
-addpath('../hw_a'); noise_z = signalGenerator(0.01);
-addpath('../hw_a'); noise_th = signalGenerator(0.01);
+addpath('../hw2'); reference = signalGenerator(0.5, 0.02);  
+addpath('../hw2'); disturbance = signalGenerator(0.1, 0);  
+addpath('../hw2'); noise_z = signalGenerator(0.01);
+addpath('../hw2'); noise_th = signalGenerator(0.01);
 
 % instantiate the data plots and animation
-addpath('../hw_a'); dataPlot = dataPlotter(P);
-addpath('../hw_a'); animation = pendulumAnimation(P);
+addpath('../hw2'); dataPlot = dataPlotter(P);
+addpath('../hw2'); animation = pendulumAnimation(P);
 addpath('../hw13'); dataPlotObserver = dataPlotterObserver(P);
 
 % main simulation loop

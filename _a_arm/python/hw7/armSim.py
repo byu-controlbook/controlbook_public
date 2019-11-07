@@ -3,11 +3,11 @@ sys.path.append('..')  # add parent directory
 import matplotlib.pyplot as plt
 import numpy as np
 import armParam as P
-from hw_b.armDynamics import armDynamics
+from hw3.armDynamics import armDynamics
 from armController import armController
-from hw_a.signalGenerator import signalGenerator
-from hw_a.armAnimation import armAnimation
-from hw_a.dataPlotter import dataPlotter
+from hw2.signalGenerator import signalGenerator
+from hw2.armAnimation import armAnimation
+from hw2.dataPlotter import dataPlotter
 
 # instantiate arm, controller, and reference classes
 arm = armDynamics()
