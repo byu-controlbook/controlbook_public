@@ -11,20 +11,20 @@ tau_max = P.tau_max  # limit on control signal
 m = P.m
 ell = P.ell
 g = P.g
-integrator_pole = -5
 
 #  tuning parameters
 tr = 0.4
 zeta = 0.707
+integrator_pole = -5
 
 # State Space Equations
 # xdot = A*x + B*u
 # y = C*x
 A = np.array([[0.0, 1.0],
-               [0.0, -1.0*P.b/P.m/(P.ell**2)]])
+              [0.0, -1.0*P.b/P.m/(P.ell**2)]])
 
 B = np.array([[0.0],
-               [3.0/P.m/(P.ell**2)]])
+              [3.0/P.m/(P.ell**2)]])
 
 C = np.array([[1.0, 0.0]])
 

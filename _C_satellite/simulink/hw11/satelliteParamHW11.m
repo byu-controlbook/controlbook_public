@@ -31,7 +31,8 @@ if rank(ctrb(A,B))~=4
     disp('System Not Controllable'); 
 else
     P.K = place(A,B,des_poles);
-    P.kr = -1/([0, 1, 0, 0]*inv(A-B*P.K)*B);
+    Cr = [0, 1, 0, 0];
+    P.kr = -1/(Cr*inv(A-B*P.K)*B);
 end
 
 sprintf('K: (%f, %f, %f, %f)\nkr: %f\n', ...

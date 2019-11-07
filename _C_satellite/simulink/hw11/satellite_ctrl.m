@@ -4,14 +4,12 @@ function tau=satellite_ctrl(in,P)
     phi     = in(3);
     t       = in(4);
     
-    % digital differentiator for 
-    %  phidot and thetadot
+    % digital differentiator for phidot and thetadot
     persistent phidot
     persistent phi_d1
     persistent thetadot
     persistent theta_d1
-    % reset persistent variables at start of 
-    %  simulation
+    % reset persistent variables at start of simulation
     if t<P.Ts
         phidot        = 0;
         phi_d1        = 0;

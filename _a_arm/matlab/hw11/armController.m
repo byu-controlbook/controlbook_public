@@ -4,13 +4,9 @@ classdef armController < handle
         m
         ell
         g
-        init_flag
-        theta_dot
-        theta_d1
         K
         kr
         limit
-        beta
         Ts
     end
     %----------------------------
@@ -21,45 +17,20 @@ classdef armController < handle
             self.m = P.m;
             self.ell = P.ell;
             self.g = P.g;
-            % initialized object properties
-            self.init_flag = 1;
-            self.theta_dot = 0.0;
-            self.theta_d1 = 0.0;
             self.K = P.K;
             self.kr = P.kr;
             self.limit = P.tau_max;
-            self.beta = P.beta;
             self.Ts = P.Ts;
         end
         %----------------------------
-        function tau = update(self, theta_r, y)
-            theta = y(1);
-            
+        function tau = update(self, theta_r, x)
+            theta = x(1);
             % compute feedback linearizing torque
-            tau_fl = self.m*self.g*(self.ell/2)*cos(theta);
-            
-            % differentiate theta
-            self.differentiateTheta(theta);
-
-            % Construct the state
-            x = [theta; self.theta_dot];
-            
+            tau_fl = self.m*self.g*(self.ell/2)*cos(theta);           
             % Compute the state feedback controller
             tau_tilde = -self.K*x + self.kr*theta_r;
-
             % compute total torque
             tau = self.saturate( tau_fl + tau_tilde);
-        end
-        %----------------------------
-        function self = differentiateTheta(self, theta)
-            if self.init_flag==1
-                self.theta_d1=theta;
-                self.init_flag=0;
-            end
-            self.theta_dot = ...
-                self.beta*self.theta_dot...
-                + (1-self.beta)*((theta-self.theta_d1) / self.Ts);
-            self.theta_d1 = theta;
         end
         %----------------------------
         function out = saturate(self,u)

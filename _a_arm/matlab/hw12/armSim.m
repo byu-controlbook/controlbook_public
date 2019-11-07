@@ -21,7 +21,8 @@ while t < P.t_end
         r = reference.square(t);
         d = disturbance.step(t);
         n = 0;  % noise
-        u = controller.update(r, y+n);  % Calculate the control value
+        x = arm.state;
+        u = controller.update(r, x);  % Calculate the control value
         y = arm.update(u+d);  % Propagate the dynamics
         t = t + P.Ts; % advance time by Ts
     end

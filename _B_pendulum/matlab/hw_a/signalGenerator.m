@@ -45,7 +45,7 @@ classdef signalGenerator
         end
         %-----------------------------------
         function out = random(self, t)
-            out = sqrt(self.amplitude)*randn + self.y_offset;
+            out = self.amplitude*randn + self.y_offset;
         end
         %-----------------------------------
         function out = sin(self, t)

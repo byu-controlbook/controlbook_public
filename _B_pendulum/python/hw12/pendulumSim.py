@@ -27,7 +27,8 @@ while t < P.t_end:  # main simulation loop
         r = reference.square(t)  # reference input
         d = disturbance.step(t)  # input disturbance
         n = 0.0  #noise.random(t)  # simulate sensor noise
-        u = controller.update(r, y + n)  # update controller
+        x = pendulum.state
+        u = controller.update(r, x)  # update controller
         y = pendulum.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
     # update animation and data plots

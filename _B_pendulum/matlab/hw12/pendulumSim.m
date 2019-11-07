@@ -20,7 +20,8 @@ while t < P.t_end
         r = reference.square(t);
         d = disturbance.step(t);
         n = [0; 0];  % noise
-        u = controller.update(r, y + n);  % Calculate the control value
+        x = pendulum.state;
+        u = controller.update(r, x);  % Calculate the control value
         y = pendulum.update(u + d);  % Propagate the dynamics
         t = t + P.Ts; % advance time by Ts
     end

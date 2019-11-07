@@ -4,12 +4,7 @@ import numpy as np
 
 plt.ion()  # enable interactive drawing
 
-
 class dataPlotter:
-    ''' 
-        This class plots the time histories for the pendulum data.
-    '''
-
     def __init__(self):
         # Number of subplots = num_of_rows*num_of_cols
         self.num_rows = 3    # Number of subplot rows
