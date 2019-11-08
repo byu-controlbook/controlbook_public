@@ -25,7 +25,7 @@ while t < P.t_end:  # main simulation loop
     t_next_plot = t + P.t_plot
     while t < t_next_plot: # updates control and dynamics at faster simulation rate
         r = reference.square(t)  # reference input
-        d = disturbance.step(t)  # input disturbance
+        d = 0 # disturbance.step(t)  # input disturbance
         n = 0.0  #noise.random(t)  # simulate sensor noise
         x = pendulum.state
         u = controller.update(r, x)  # update controller

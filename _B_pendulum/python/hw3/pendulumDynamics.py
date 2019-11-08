@@ -1,10 +1,8 @@
 import numpy as np 
-import random
 import pendulumParam as P
 
-
 class pendulumDynamics:
-    def __init__(self):
+    def __init__(self, alpha=0.0):
         # Initial state conditions
         self.state = np.array([
             [P.z0],  # z initial position
@@ -13,19 +11,16 @@ class pendulumDynamics:
             [P.thetadot0],  # Thetadot initial velocity
         ])
         self.Ts = P.Ts
-        #################################################
-        # The parameters for any physical system are never known exactly.  Feedback
-        # systems need to be designed to be robust to this uncertainty.  In the simulation
-        # we model uncertainty by changing the physical parameters by a uniform random variable
-        # that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
-        # may change by up to 20%.  A different parameter value is chosen every time the simulation
-        # is run.
-        alpha = 0.2  # Uncertainty parameter
-        self.m1 = P.m1 * (1.+alpha*(2.*np.random.rand()-1.))  # Mass of the pendulum, kg
-        self.m2 = P.m2 * (1.+alpha*(2.*np.random.rand()-1.))  # Mass of the cart, kg
-        self.ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))  # Length of the rod, m
-        self.b = P.b * (1.+alpha*(2.*np.random.rand()-1.))  # Damping coefficient, Ns
-        self.g = P.g  # the gravity constant is well known and so we don't change it.
+        # Mass of the pendulum, kg
+        self.m1 = P.m1 * (1.+alpha*(2.*np.random.rand()-1.))
+        # Mass of the cart, kg
+        self.m2 = P.m2 * (1.+alpha*(2.*np.random.rand()-1.))
+        # Length of the rod, m
+        self.ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))
+        # Damping coefficient, Ns
+        self.b = P.b * (1.+alpha*(2.*np.random.rand()-1.))
+        # gravity constant is well known, don't change.
+        self.g = P.g
         self.force_limit = P.F_max
 
     def update(self, u):
@@ -38,20 +33,22 @@ class pendulumDynamics:
         return y
 
     def f(self, state, u):
-        '''
-            Return xdot = f(x,u), the derivatives of the continuous states, as a matrix
-        '''
-        # re-label states and inputs for readability
+        # Return xdot = f(x,u)
         z = state.item(0)
         theta = state.item(1)
         zdot = state.item(2)
         thetadot = state.item(3)
         F = u
         # The equations of motion.
-        M = np.array([[self.m1+self.m2, self.m1*(self.ell/2.0)*np.cos(theta)],
-                       [self.m1*(self.ell/2.0)*np.cos(theta), self.m1*(self.ell**2/3.0)]])
-        C = np.array([[self.m1*(self.ell/2.0)*thetadot**2*np.sin(theta) + F - self.b*zdot],
-                       [self.m1*self.g*(self.ell/2.0)*np.sin(theta)]])
+        M = np.array([[self.m1 + self.m2,
+                       self.m1 * (self.ell/2.0) * np.cos(theta)],
+                       [self.m1 * (self.ell/2.0) * np.cos(theta),
+                        self.m1 * (self.ell**2/3.0)]])
+        C = np.array([[self.m1 * (self.ell/2.0)
+                       * thetadot**2 * np.sin(theta)
+                       + F - self.b*zdot],
+                       [self.m1 * self.g * (self.ell/2.0)
+                        * np.sin(theta)]])
         tmp = np.linalg.inv(M) @ C
         zddot = tmp.item(0)
         thetaddot = tmp.item(1)
@@ -63,10 +60,7 @@ class pendulumDynamics:
         # return y = h(x)
         z = self.state.item(0)
         theta = self.state.item(1)
-        y = np.array([
-            [z],
-            [theta],
-        ])
+        y = np.array([[z],[theta]])
         return y
 
     def rk4_step(self, u):

@@ -31,7 +31,7 @@ classdef pendulumController < handle
             self.Ts = P.Ts;
         end
         %----------------------------
-        function [F, x_hat] = update(self, z_r, y)
+        function [F, x_hat, d_hat] = update(self, z_r, y)
             % update the observer and extract z_hat
             [x_hat, d_hat] = self.updateObserver(y);
             z_hat = x_hat(1);

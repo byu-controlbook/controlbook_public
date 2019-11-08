@@ -3,7 +3,7 @@ import random
 import satelliteParam as P
 
 class satelliteDynamics:
-    def __init__(self):
+    def __init__(self, alpha=0.0):
         # Initial state conditions
         self.state = np.array([
             [P.theta0],  # initial base angle
@@ -12,14 +12,6 @@ class satelliteDynamics:
             [P.phidot0],  # initial angular velocity of panel
         ])
         self.Ts = P.Ts
-        #################################################
-        # The parameters for any physical system are never known exactly.  Feedback
-        # systems need to be designed to be robust to this uncertainty.  In the simulation
-        # we model uncertainty by changing the physical parameters by a uniform random variable
-        # that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
-        # may change by up to 20%.  A different parameter value is chosen every time the simulation
-        # is run.
-        alpha = 0.2  # Uncertainty parameter
         self.Js = P.Js * (1.+alpha*(2.*np.random.rand()-1.))  # inertia of base
         self.Jp = P.Jp * (1.+alpha*(2.*np.random.rand()-1.))  # inertia of panel
         self.k = P.k * (1.+alpha*(2.*np.random.rand()-1.))    # spring coefficient

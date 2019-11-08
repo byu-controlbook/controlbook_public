@@ -38,7 +38,7 @@ class satelliteController:
                     - d_hat
         tau = self.saturate(tau_unsat.item(0))
         self.tau_d1 = tau
-        return tau, x_hat
+        return tau, x_hat, d_hat
 
     def update_observer(self, y_m):
         # update the observer using RK4 integration

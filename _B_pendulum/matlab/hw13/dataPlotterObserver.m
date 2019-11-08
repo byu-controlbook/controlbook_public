@@ -10,6 +10,8 @@ classdef dataPlotterObserver < handle
         z_hat_dot_history
         theta_dot_history
         theta_hat_dot_history
+        d_history
+        d_hat_history
         index
         % figure handles
         z_handle
@@ -20,6 +22,9 @@ classdef dataPlotterObserver < handle
         z_hat_dot_handle
         theta_dot_handle
         theta_hat_dot_handle
+        d_handle
+        d_hat_handle
+
     end
     methods
         %--constructor--------------------------
@@ -34,33 +39,40 @@ classdef dataPlotterObserver < handle
             self.z_hat_dot_history = NaN*ones(1,(P.t_end-P.t_start)/P.t_plot);
             self.theta_dot_history = NaN*ones(1,(P.t_end-P.t_start)/P.t_plot);
             self.theta_hat_dot_history = NaN*ones(1,(P.t_end-P.t_start)/P.t_plot);
+            self.d_history = NaN*ones(1,(P.t_end-P.t_start)/P.t_plot);
+            self.d_hat_history = NaN*ones(1,(P.t_end-P.t_start)/P.t_plot);
             self.index = 1;
 
             % Create figure and axes handles
             figure(3), clf
-            subplot(3, 1, 1)
+            subplot(5, 1, 1)
                 hold on
                 self.z_handle = plot(self.time_history, self.z_history, 'b');
                 self.z_hat_handle = plot(self.time_history, self.z_hat_history, 'g');
                 ylabel('z(m)')
                 title('Pendulum State and Observed State')
-            subplot(4, 1, 2)
+            subplot(5, 1, 2)
                 hold on
                 self.theta_handle = plot(self.time_history, self.theta_history, 'b');
                 self.theta_hat_handle = plot(self.time_history, self.theta_hat_history, 'g');
                 ylabel('theta(deg)')
-            subplot(4, 1, 3)
+            subplot(5, 1, 3)
                 hold on
                 self.z_dot_handle = plot(self.time_history, self.z_dot_history, 'b');
                 self.z_hat_dot_handle = plot(self.time_history, self.z_hat_dot_history, 'g');
                 ylabel('zdot(m/s)')
-            subplot(4, 1, 4)
+            subplot(5, 1, 4)
                 hold on
                 self.theta_dot_handle = plot(self.time_history, self.theta_dot_history, 'b');
                 self.theta_hat_dot_handle = plot(self.time_history, self.theta_hat_dot_history, 'g');
                 ylabel('thetadot(deg/s)')
+           subplot(5, 1, 5)
+                hold on
+                self.d_handle = plot(self.time_history, self.d_history, 'b');
+                self.d_hat_handle = plot(self.time_history, self.d_hat_history, 'g');
+                ylabel('d')
         end
-        function self = update(self, t, x, xhat)
+        function self = update(self, t, x, xhat, d, dhat)
             % update the time history of all plot variables
             self.time_history(self.index) = t;
             self.z_history(self.index) = x(1);
@@ -71,6 +83,8 @@ classdef dataPlotterObserver < handle
             self.theta_hat_history(self.index) = 180/pi*xhat(2);
             self.z_hat_dot_history(self.index) = xhat(3);
             self.theta_hat_dot_history(self.index) = 180/pi*xhat(4);
+            self.d_history(self.index) = d;
+            self.d_hat_history(self.index) = dhat;
             self.index = self.index + 1;
 
             % update the plots with associated histories
@@ -82,6 +96,8 @@ classdef dataPlotterObserver < handle
             set(self.theta_hat_handle, 'Xdata', self.time_history, 'Ydata', self.theta_hat_history)
             set(self.z_hat_dot_handle, 'Xdata', self.time_history, 'Ydata', self.z_hat_dot_history)
             set(self.theta_hat_dot_handle, 'Xdata', self.time_history, 'Ydata', self.theta_hat_dot_history)
+            set(self.d_handle, 'Xdata', self.time_history, 'Ydata', self.d_history)
+            set(self.d_hat_handle, 'Xdata', self.time_history, 'Ydata', self.d_hat_history)
         end
     end
 end

@@ -1,4 +1,5 @@
 % satellite parameter file
+clear all
 addpath ./.. % adds the parent directory to the path
 satelliteParam % general parameters
 

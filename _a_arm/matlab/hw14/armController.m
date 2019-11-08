@@ -38,8 +38,7 @@ classdef armController < handle
             self.limit = P.tau_max;
             self.Ts = P.Ts;
         end
-        %----------------------------
-        function [tau, x_hat] = update(self, theta_r, y)
+        function [tau, x_hat, d_hat] = update(self, theta_r, y)
             % update the observer and extract z_hat
             [x_hat, d_hat] = self.updateObserver(y);
             theta_hat = x_hat(1);
@@ -60,7 +59,6 @@ classdef armController < handle
             tau = self.saturate( tau_fl + tau_tilde);
             self.tau_d1 = tau;  
         end
-        
         function [xhat, dhat] = updateObserver(self, y)
             % update observer using RK4 integration
             F1 = self.observer_f(self.observer_state, y);
@@ -72,7 +70,6 @@ classdef armController < handle
             xhat = self.observer_state(1:2);
             dhat = self.observer_state(3);
         end
-        
         function x_hat_dot = observer_f(self, observer_state, y)
             % compute feedback linearizing torque tau_fl
             theta_hat = observer_state(1);
@@ -81,13 +78,11 @@ classdef armController < handle
                         + self.B * (self.tau_d1 - tau_fl)...
                         + self.L * (y - self.C * observer_state);
         end
-        
         function self = integrateError(self, error)
             self.integrator = self.integrator ...
                 + (self.Ts/2.0)*(error+self.error_d1);
             self.error_d1 = error;
         end
-        
         function out = saturate(self,u)
             if abs(u) > self.limit
                 u = self.limit*sign(u);

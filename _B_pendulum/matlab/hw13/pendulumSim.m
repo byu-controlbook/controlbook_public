@@ -1,7 +1,8 @@
 pendulumParamHW13;  % load parameters
 
 % instantiate pendulum, controller, and reference input classes 
-addpath('../hw8'); pendulum = pendulumDynamics(P);  
+alpha = 0.0;
+addpath('../hw3'); pendulum = pendulumDynamics(alpha, P);  
 controller = pendulumController(P);  
 addpath('../hw2'); reference = signalGenerator(0.5, 0.02);  
 addpath('../hw2'); disturbance = signalGenerator(0.1, 0);  
@@ -21,8 +22,8 @@ while t < P.t_end
     t_next_plot = t + P.t_plot;
     while t < t_next_plot % updates control and dynamics at faster simulation rate
         r = reference.square(t);
-        d = disturbance.step(t);
-        n = [noise_z.random(t); noise_th.random(t)];  % noise
+        d = 0; %disturbance.step(t);
+        n = [0;0];%[noise_z.random(t); noise_th.random(t)];  % noise
         [u, xhat] = controller.update(r, y + n);  % Calculate the control value
         y = pendulum.update(u + d);  % Propagate the dynamics
         t = t + P.Ts; % advance time by Ts
@@ -30,5 +31,5 @@ while t < P.t_end
     % update animation and data plots
     animation.update(pendulum.state);
     dataPlot.update(t, r, pendulum.state, u);
-    dataPlotObserver.update(t, pendulum.state, xhat);
+    dataPlotObserver.update(t, pendulum.state, xhat, d, 0);
 end

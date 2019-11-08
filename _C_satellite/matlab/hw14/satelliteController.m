@@ -32,7 +32,7 @@ classdef satelliteController < handle
             self.Ts = P.Ts;
         end
         %----------------------------
-        function [tau, x_hat] = update(self, phi_r, y)
+        function [tau, x_hat, d_hat] = update(self, phi_r, y)
             % update the observer and extract phi_hat
             [x_hat, d_hat] = self.updateObserver(y);
             phi_hat = x_hat(2);

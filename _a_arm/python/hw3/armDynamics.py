@@ -4,20 +4,12 @@ import armParam as P
 
 
 class armDynamics:
-    def __init__(self):
+    def __init__(self, alpha=0.0):
         # Initial state conditions
         self.state = np.array([
             [P.theta0],      # initial angle
             [P.thetadot0]
         ])  # initial angular rate
-        #################################################
-        # The parameters for any physical system are never known exactly.  Feedback
-        # systems need to be designed to be robust to this uncertainty.  In the simulation
-        # we model uncertainty by changing the physical parameters by a uniform random variable
-        # that represents alpha*100 % of the parameter, i.e., alpha = 0.2, means that the parameter
-        # may change by up to 20%.  A different parameter value is chosen every time the simulation
-        # is run.
-        alpha = 0.2  # Uncertainty parameter
         self.m = P.m * (1.+alpha*(2.*np.random.rand()-1.))  # Mass of the arm, kg
         self.ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))  # Length of the arm, m
         self.b = P.b * (1.+alpha*(2.*np.random.rand()-1.))  # Damping coefficient, Ns

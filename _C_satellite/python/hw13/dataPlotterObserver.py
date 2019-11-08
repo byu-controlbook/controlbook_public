@@ -7,7 +7,7 @@ plt.ion()  # enable interactive drawing
 class dataPlotterObserver:
     def __init__(self):
         # Number of subplots = num_of_rows*num_of_cols
-        self.num_rows = 4    # Number of subplot rows
+        self.num_rows = 5    # Number of subplot rows
         self.num_cols = 1    # Number of subplot columns
 
         # Crete figure and axes handles
@@ -23,15 +23,18 @@ class dataPlotterObserver:
         self.theta_hat_dot_history = []
         self.phi_dot_history = []
         self.phi_hat_dot_history = []
+        self.d_history = []  # estimate of disturbance
+        self.d_hat_history = []
 
         # create a handle for every subplot.
         self.handle = []
         self.handle.append(myPlot(self.ax[0], ylabel='theta (deg)', title='Satellite Data'))
         self.handle.append(myPlot(self.ax[1], ylabel='phi (deg)'))
-        self.handle.append(myPlot(self.ax[2], ylabel='theta_dot (m/s)'))
-        self.handle.append(myPlot(self.ax[3], xlabel='t(s)', ylabel='phi_dot (deg/s)'))
+        self.handle.append(myPlot(self.ax[2], ylabel='theta_dot (deg/s)'))
+        self.handle.append(myPlot(self.ax[3], ylabel='phi_dot (deg/s)'))
+        self.handle.append(myPlot(self.ax[4], xlabel='t(s)', ylabel='d'))
 
-    def update(self, t, x, x_hat):
+    def update(self, t, x, x_hat, d, d_hat):
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.theta_history.append(x.item(0))
@@ -42,12 +45,15 @@ class dataPlotterObserver:
         self.phi_hat_history.append(x_hat.item(1))
         self.theta_hat_dot_history.append(x_hat.item(2))
         self.phi_hat_dot_history.append(x_hat.item(3))
+        self.d_history.append(d)
+        self.d_hat_history.append(d_hat)
 
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.theta_history, self.theta_hat_history])
         self.handle[1].update(self.time_history, [self.phi_history, self.phi_hat_history])
         self.handle[2].update(self.time_history, [self.theta_dot_history, self.theta_hat_dot_history])
         self.handle[3].update(self.time_history, [self.phi_dot_history, self.phi_hat_dot_history])
+        self.handle[4].update(self.time_history, [self.d_history, self.d_hat_history])
 
 
 class myPlot:

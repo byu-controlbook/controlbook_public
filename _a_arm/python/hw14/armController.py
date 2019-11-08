@@ -41,7 +41,7 @@ class armController:
         # compute total torque
         tau = self.saturate(tau_fl + tau_tilde.item(0))
         self.tau_d1 = tau
-        return tau, x_hat
+        return tau, x_hat, d_hat
 
     def update_observer(self, y_m):
         # update the observer using RK4 integration

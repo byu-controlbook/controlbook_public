@@ -7,7 +7,7 @@ plt.ion()  # enable interactive drawing
 class dataPlotterObserver:
     def __init__(self):
         # Number of subplots = num_of_rows*num_of_cols
-        self.num_rows = 4    # Number of subplot rows
+        self.num_rows = 5    # Number of subplot rows
         self.num_cols = 1    # Number of subplot columns
 
         # Crete figure and axes handles
@@ -23,15 +23,19 @@ class dataPlotterObserver:
         self.z_hat_dot_history = []
         self.theta_dot_history = []
         self.theta_hat_dot_history = []
+        self.d_history = []  # estimate of disturbance
+        self.d_hat_history = []
 
         # create a handle for every subplot.
         self.handle = []
         self.handle.append(myPlot(self.ax[0], ylabel='z (m)', title='Pendulum Data'))
         self.handle.append(myPlot(self.ax[1], ylabel='theta (deg)'))
         self.handle.append(myPlot(self.ax[2], ylabel='z_dot (m/s)'))
-        self.handle.append(myPlot(self.ax[3], xlabel='t(s)', ylabel='theta_dot (deg/s)'))
+        self.handle.append(myPlot(self.ax[3], ylabel='theta_dot (deg/s)'))
+        self.handle.append(myPlot(self.ax[4], xlabel='t(s)',
+                                  ylabel='d'))
 
-    def update(self, t, x, x_hat):
+    def update(self, t, x, x_hat, d, d_hat):
         '''
             Add to the time and data histories, and update the plots.
         '''
@@ -41,16 +45,19 @@ class dataPlotterObserver:
         self.theta_history.append(x.item(1))
         self.z_dot_history.append(x.item(2))
         self.theta_dot_history.append(x.item(3))
+        self.d_history.append(d)
         self.z_hat_history.append(x_hat.item(0))
         self.theta_hat_history.append(x_hat.item(1))
         self.z_hat_dot_history.append(x_hat.item(2))
         self.theta_hat_dot_history.append(x_hat.item(3))
+        self.d_hat_history.append(d_hat)
 
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.z_history, self.z_hat_history])
         self.handle[1].update(self.time_history, [self.theta_history, self.theta_hat_history])
         self.handle[2].update(self.time_history, [self.z_dot_history, self.z_hat_dot_history])
         self.handle[3].update(self.time_history, [self.theta_dot_history, self.theta_hat_dot_history])
+        self.handle[4].update(self.time_history, [self.d_history, self.d_hat_history])
 
 
 class myPlot:

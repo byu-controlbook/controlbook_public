@@ -1,7 +1,8 @@
 satelliteParamHW13  % load parameters
 
 % instantiate satellite, controller, and reference input classes 
-addpath('../hw3'); satellite = satelliteDynamics(P);  
+alpha = 0.0;
+addpath('../hw3'); satellite = satelliteDynamics(alpha, P);  
 controller = satelliteController(P);  
 addpath('../hw2'); reference = signalGenerator(15*pi/180, 0.02);  
 addpath('../hw2'); disturbance = signalGenerator(1, 0);  
@@ -21,8 +22,8 @@ while t < P.t_end
     t_next_plot = t + P.t_plot;
     while t < t_next_plot % updates control and dynamics at faster simulation rate
         r = reference.square(t);
-        d = disturbance.step(t);
-        n = [noise_phi.random(t); noise_th.random(t)];  % noise
+        d = 0;%disturbance.step(t);
+        n = [0;0];%[noise_phi.random(t); noise_th.random(t)];  % noise
         [u, xhat] = controller.update(r, y + n);  % Calculate the control value
         y = satellite.update(u + d);  % Propagate the dynamics
         t = t + P.Ts; % advance time by Ts
@@ -30,7 +31,7 @@ while t < P.t_end
     % update animation and data plots
     animation.update(satellite.state);
     dataPlot.update(t, r, satellite.state, u);
-    dataPlotObserver.update(t, satellite.state, xhat);
+    dataPlotObserver.update(t, satellite.state, xhat, d, 0.0);
 end
 
 

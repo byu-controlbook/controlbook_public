@@ -11,7 +11,7 @@ from hw2.dataPlotter import dataPlotter
 from dataPlotterObserver import dataPlotterObserver
 
 # instantiate pendulum, controller, and reference classes
-pendulum = pendulumDynamics()
+pendulum = pendulumDynamics(alpha=0.0)
 controller = pendulumController()
 reference = signalGenerator(amplitude=0.5, frequency=0.05)
 disturbance = signalGenerator(amplitude=0.5)
@@ -32,14 +32,14 @@ while t < P.t_end:  # main simulation loop
     while t < t_next_plot: # updates control and dynamics at faster simulation rate
         r = reference.square(t)
         d = 0  #disturbance.step(t)  # input disturbance
-        n = np.array([[noise_z.random(t)], [noise_th.random(t)]])  # simulate sensor noise
+        n = np.array([[0.0], [0.0]]) #np.array([[noise_z.random(t)], [noise_th.random(t)]])  # simulate sensor noise
         u, xhat = controller.update(r, y + n)  # update controller
         y = pendulum.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(pendulum.state)
     dataPlot.update(t, r, pendulum.state, u)
-    dataPlotObserver.update(t, pendulum.state, xhat)
+    dataPlotObserver.update(t, pendulum.state, xhat, d, 0.0)
     plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
 
 # Keeps the program from closing until the user presses a button.

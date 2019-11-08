@@ -39,7 +39,7 @@ class pendulumController:
                   - d_hat
         F = self.saturate(F_unsat.item(0))
         self.F_d1 = F
-        return F, x_hat
+        return F, x_hat, d_hat
 
     def update_observer(self, y_m):
         # update the observer using RK4 integration

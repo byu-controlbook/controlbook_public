@@ -1,4 +1,5 @@
 % inverted pendulum - parameter file for hw11
+clear all
 addpath ./.. % adds the parent directory to the path
 pendulumParam % general pendulum parameters
 
@@ -44,10 +45,10 @@ des_char_poly = conv(conv([1,2*zeta_z*wn_z,wn_z^2],...
 des_poles = roots(des_char_poly);
 
 % is the system controllable?
-if rank(ctrb(A1,B1))~=5
+if rank(ctrb(A1, P.B1))~=5
     disp('System Not Controllable'); 
 else % if so, compute gains
-    K1   = place(A1,B1,des_poles); 
+    K1   = place(A1,P.B1,des_poles); 
     P.K  = K1(1:4);
     P.ki = K1(5);
 end
@@ -76,8 +77,8 @@ end
 
 sprintf('K:\t[%f, %f, %f, %f]\nki:\t%f\nL^T:\t[%f, %f, %f, %f;\n\t %f, %f, %f, %f]\nLd:\t[%f, %f]',...
     P.K(1), P.K(2), P.K(3), P.K(4), P.ki,...
-    P.L(1,1), P.L(2,1), P.L(3,1), P.L(4,1), P.L(1,2), P.L(2,2), P.L(3,2), P.L(4,2),...
-    P.Ld(1), P.Ld(2))
+    L(1,1), L(2,1), L(3,1), L(4,1), L(1,2), L(2,2), L(3,2), L(4,2),...
+    Ld(1), Ld(2))
 
 
 

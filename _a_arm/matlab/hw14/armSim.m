@@ -1,7 +1,8 @@
 armParamHW14;  % load parameters
 
 % instantiate arm, controller, and reference input classes 
-addpath('../hw3'); arm = armDynamics(P);  
+alpha = 0.2;
+addpath('../hw3'); arm = armDynamics(alpha, P);  
 controller = armController(P);  
 addpath('../hw2'); reference = signalGenerator(30*pi/180, 0.05);  
 addpath('../hw2'); disturbance = signalGenerator(0.25, 0.0);
@@ -22,13 +23,13 @@ while t < P.t_end
         r = reference.square(t);
         d = disturbance.step(t);
         n = noise.random(t);  % noise
-        [u, xhat] = controller.update(r, y+n);  % Calculate the control value
+        [u, xhat, dhat] = controller.update(r, y+n);  
         y = arm.update(u+d);  % Propagate the dynamics
         t = t + P.Ts; % advance time by Ts
     end
     % update animation and data plots
     animation.update(arm.state);
     dataPlot.update(t, r, arm.state, u);
-    dataPlotObserver.update(t, arm.state, xhat);
+    dataPlotObserver.update(t, arm.state, xhat, d, dhat);
 end
 

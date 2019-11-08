@@ -71,10 +71,12 @@ classdef armController < handle
         function x_hat_dot = observer_f(self, x_hat, y)
              % compute feedback linearizing torque tau_fl
             theta_hat = x_hat(1);
+            x_e = [0; 0];
+            y_e = 0;
             tau_fl = self.m*self.g*(self.ell/2)*cos(theta_hat);
-            x_hat_dot = self.A * x_hat...
+            x_hat_dot = self.A * (x_hat-x_e)...
                         + self.B*(self.tau_d1 - tau_fl)...
-                        + self.L*(y - self.C * x_hat);
+                        + self.L*((y-y_e) - self.C * (x_hat-x_e));
         end
         
         function self = integrateError(self, error)

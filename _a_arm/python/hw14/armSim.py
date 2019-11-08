@@ -11,7 +11,7 @@ from hw2.dataPlotter import dataPlotter
 from hw13.dataPlotterObserver import dataPlotterObserver
 
 # instantiate arm, controller, and reference classes
-arm = armDynamics()
+arm = armDynamics(alpha=0.2)
 controller = armController()
 reference = signalGenerator(amplitude=30*np.pi/180.0, frequency=0.05)
 disturbance = signalGenerator(amplitude=0.25)
@@ -32,13 +32,13 @@ while t < P.t_end:  # main simulation loop
         r = reference.square(t)
         d = disturbance.step(t)  # input disturbance
         n = noise.random(t)  # simulate sensor noise
-        u, xhat = controller.update(r, y + n)  # update controller
+        u, xhat, dhat = controller.update(r, y + n)  # update controller
         y = arm.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(arm.state)
     dataPlot.update(t, r, arm.state, u)
-    dataPlotObserver.update(t, arm.state, xhat)
+    dataPlotObserver.update(t, arm.state, xhat, d, dhat)
     plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
 
 # Keeps the program from closing until the user presses a button.

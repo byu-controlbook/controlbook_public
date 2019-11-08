@@ -11,7 +11,7 @@ from hw2.dataPlotter import dataPlotter
 from hw13.dataPlotterObserver import dataPlotterObserver
 
 # instantiate satellite, controller, and reference classes
-satellite = satelliteDynamics()
+satellite = satelliteDynamics(alpha=0.2)
 controller = satelliteController()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0, frequency=0.03)
 disturbance = signalGenerator(amplitude=1.0)
@@ -19,9 +19,9 @@ noise_phi = signalGenerator(amplitude=0.01)
 noise_th = signalGenerator(amplitude=0.01)
 
 # instantiate the simulation plots and animation
+dataPlotObserver = dataPlotterObserver()
 dataPlot = dataPlotter()
 animation = satelliteAnimation()
-dataPlotObserver = dataPlotterObserver()
 
 t = P.t_start  # time starts at t_start
 y = satellite.h()  # output of system at start of simulation
@@ -32,13 +32,13 @@ while t < P.t_end:  # main simulation loop
         r = reference.square(t)  # reference input
         d = disturbance.step(t)  # input disturbance
         n = np.array([[noise_phi.random(t)], [noise_th.random(t)]])  # simulate sensor noise
-        u, xhat = controller.update(r, y + n)  # update controller
+        u, xhat, dhat = controller.update(r, y + n)  # update controller
         y = satellite.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(satellite.state)
     dataPlot.update(t, r, satellite.state, u)
-    dataPlotObserver.update(t, satellite.state, xhat)
+    dataPlotObserver.update(t, satellite.state, xhat, d, dhat)
     plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
 
 # Keeps the program from closing until the user presses a button.

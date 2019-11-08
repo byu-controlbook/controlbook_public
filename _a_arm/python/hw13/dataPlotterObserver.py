@@ -8,7 +8,7 @@ plt.ion()  # enable interactive drawing
 class dataPlotterObserver:
     def __init__(self):
         # Number of subplots = num_of_rows*num_of_cols
-        self.num_rows = 2    # Number of subplot rows
+        self.num_rows = 3    # Number of subplot rows
         self.num_cols = 1    # Number of subplot columns
 
         # Crete figure and axes handles
@@ -20,13 +20,17 @@ class dataPlotterObserver:
         self.theta_hat_history = [] # estimate of theta
         self.theta_dot_history = []
         self.theta_hat_dot_history = []
+        self.d_history = []  # estimate of disturbance
+        self.d_hat_history = []
+
 
         # create a handle for every subplot.
         self.handle = []
         self.handle.append(myPlot(self.ax[0], ylabel='theta (deg)', title='Arm Data'))
-        self.handle.append(myPlot(self.ax[1], xlabel='t(s)', ylabel='theta_dot (deg/s)'))
+        self.handle.append(myPlot(self.ax[1], ylabel='theta_dot (deg/s)', title='Arm Data'))
+        self.handle.append(myPlot(self.ax[2], xlabel='t(s)', ylabel='d'))
 
-    def update(self, t, x, x_hat):
+    def update(self, t, x, x_hat, d, d_hat):
         '''
             Add to the time and data histories, and update the plots.
         '''
@@ -36,10 +40,13 @@ class dataPlotterObserver:
         self.theta_dot_history.append(x.item(1))
         self.theta_hat_history.append(x_hat.item(0))
         self.theta_hat_dot_history.append(x_hat.item(1))
+        self.d_history.append(d)
+        self.d_hat_history.append(d_hat)
 
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.theta_history, self.theta_hat_history])
         self.handle[1].update(self.time_history, [self.theta_dot_history, self.theta_hat_dot_history])
+        self.handle[2].update(self.time_history, [self.d_history, self.d_hat_history])
 
 
 class myPlot:
