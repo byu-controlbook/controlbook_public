@@ -7,9 +7,9 @@ class pendulumController:
     def __init__(self):
         # Instantiates the SS_ctrl object
         self.zCtrl = PIDControl(P10.kp_z, P10.ki_z, P10.kd_z,
-                                P10.theta_max, P10.beta, P10.Ts)
+                                P10.theta_max, P10.sigma, P10.Ts)
         self.thetaCtrl = PIDControl(P10.kp_th, 0.0, P10.kd_th,
-                                    P10.F_max, P10.beta, P10.Ts)
+                                    P10.F_max, P10.sigma, P10.Ts)
         self.filter = zeroCancelingFilter()
 
     def update(self, z_r, y):

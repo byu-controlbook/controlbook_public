@@ -2,24 +2,23 @@ import numpy as np
 import pendulumParamHW13 as P
 
 class pendulumController:
-    # state feedback control using dirty derivatives to estimate zdot and thetadot
     def __init__(self):
         self.x_hat = np.array([
-            [0.0],                   # initial estimate for z_hat
-            [0.0],                   # initial estimate for theta_hat
-            [0.0],                   # initial estimate for z_hat_dot
-            [0.0]])                  # initial estimate for theta_hat_dot
-        self.F_d1 = 0.0              # Computed Force, delayed by one sample
-        self.integrator = 0.0        # integrator
-        self.error_d1 = 0.0          # error signal delayed by 1 sample
-        self.K = P.K                 # state feedback gain
-        self.ki = P.ki               # integrator gain
-        self.L = P.L                 # observer gain
-        self.A = P.A                 # system model
+            [0.0],  # initial estimate for z_hat
+            [0.0],  # initial estimate for theta_hat
+            [0.0],  # initial estimate for z_hat_dot
+            [0.0]])  # initial estimate for theta_hat_dot
+        self.F_d1 = 0.0  # Computed Force, delayed by one sample
+        self.integrator = 0.0  # integrator
+        self.error_d1 = 0.0  # error signal delayed by 1 sample
+        self.K = P.K  # state feedback gain
+        self.ki = P.ki  # integrator gain
+        self.L = P.L  # observer gain
+        self.A = P.A  # system model
         self.B = P.B
         self.C = P.C
-        self.limit = P.F_max         # Maximum force
-        self.Ts = P.Ts               # sample rate of controller
+        self.limit = P.F_max  # Maximum force
+        self.Ts = P.Ts  # sample rate of controller
 
     def update(self, z_r, y):
         # update the observer and extract z_hat
@@ -54,7 +53,8 @@ class pendulumController:
         return xhat_dot
 
     def integrate_error(self, error):
-        self.integrator = self.integrator + (self.Ts/2.0)*(error + self.error_d1)
+        self.integrator = self.integrator \
+                          + (self.Ts/2.0)*(error + self.error_d1)
         self.error_d1 = error
 
     def saturate(self,u):

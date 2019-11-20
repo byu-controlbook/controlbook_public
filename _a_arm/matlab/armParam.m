@@ -24,7 +24,6 @@ P.t_plot = 0.1;   % the plotting and animation is updated at this rate
 
 % dirty derivative parameters
 P.sigma = 0.05; % cutoff freq for dirty derivative
-P.beta = (2*P.sigma-P.Ts)/(2*P.sigma+P.Ts); % dirty derivative gain
 
 % control saturation limits
 P.tau_max = 1; % max torque, N-m

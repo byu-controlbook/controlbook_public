@@ -1,4 +1,5 @@
 % satellite parameter file
+
 % tuning parameters
 wn_th   = 0.6;
 zeta_th = 0.707;
@@ -6,8 +7,8 @@ wn_phi    = 1.1;
 zeta_phi  = 0.707;
 integrator_pole = -1;
 % pick observer poles
-wn_th_obs   = 10*wn_th;
-wn_phi_obs    = 10*wn_phi;
+wn_th_obs = 10*wn_th;
+wn_phi_obs = 10*wn_phi;
 
 % state space design
 P.A = [...
@@ -25,8 +26,8 @@ P.C = [...
 
 % form augmented system
 Cout = [0,1,0,0];
-A1 = [P.A, zeros(4,1); -Cout, 0];
-B1 = [P.B; 0];
+P.A1 = [P.A, zeros(4,1); -Cout, 0];
+P.B1 = [P.B; 0];
 
 % compute gains
 ol_char_poly = charpoly(P.A);
@@ -37,31 +38,40 @@ des_char_poly = conv(...
 des_poles = roots(des_char_poly);
 
 % is the system controllable?
-if rank(ctrb(A1,B1))~=5, 
+if rank(ctrb(P.A1,P.B1))~=5
     disp('System Not Controllable'); 
 else % if so, compute gains
-    K1   = place(A1,B1,des_poles); 
+    K1   = place(P.A1,P.B1,des_poles); 
     P.K  = K1(1:4);
     P.ki = K1(5);
 end
 
 % observer design
+% form augmented system for disturbance observer
+P.A2 = [P.A, P.B; zeros(1,4), zeros(1,1)];
+P.C2 = [P.C, zeros(2,1)];
+% pick observer poles
+wn_th_obs   = 10*wn_th;
+wn_phi_obs    = 10*wn_phi;
+dist_obsv_pole = -1;
 des_obsv_char_poly = conv(...
-     [1,2*zeta_phi*wn_phi_obs,wn_phi_obs^2],...
-     [1,2*zeta_th*wn_th_obs,wn_th_obs^2]);
+    conv([1,2*zeta_phi*wn_phi_obs,wn_phi_obs^2],...
+         [1,2*zeta_th*wn_th_obs,wn_th_obs^2]),...
+    poly(dist_obsv_pole));
 des_obsv_poles = roots(des_obsv_char_poly);
 
 % is the system observable?
-if rank(obsv(P.A,P.C))~=4, 
+if rank(obsv(P.A2,P.C2))~=5
     disp('System Not Observable'); 
 else % if so, compute gains
-    P.L = place(P.A', P.C', des_obsv_poles)';
+    P.L2 = place(P.A2', P.C2', des_obsv_poles)';
 end
 
-
-sprintf('K: [%f, %f, %f, %f]\nki: %f\nL: [%f, %f, %f, %f]^T',...
-    P.K(1), P.K(2), P.K(3), P.K(4), P.ki,...
-    P.L(1), P.L(2), P.L(3), P.L(4))
+sprintf('K: [%f, %f, %f, %f]\n',...
+    P.K(1), P.K(2), P.K(3), P.K(4))
+sprintf('ki: %f\n',P.ki)
+sprintf('L:[%f, %f, %f, %f, %f]^T\n',...
+    P.L2(1), P.L2(2), P.L2(3), P.L2(4), P.L2(5))
 
 
 

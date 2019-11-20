@@ -1,7 +1,7 @@
 armParamHW14;  % load parameters
 
 % instantiate arm, controller, and reference input classes 
-alpha = 0.2;
+alpha = 0.2;  % plant uncertainty parameter
 addpath('../hw3'); arm = armDynamics(alpha, P);  
 controller = armController(P);  
 addpath('../hw2'); reference = signalGenerator(30*pi/180, 0.05);  
@@ -19,7 +19,7 @@ y = arm.h();
 while t < P.t_end  
     % Propagate dynamics in between plot samples
     t_next_plot = t + P.t_plot;
-    while t < t_next_plot % updates control and dynamics at faster simulation rate
+    while t < t_next_plot 
         r = reference.square(t);
         d = disturbance.step(t);
         n = noise.random(t);  % noise

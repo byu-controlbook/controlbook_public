@@ -51,7 +51,8 @@ classdef armController < handle
             tau_fl = self.m*self.g*(self.ell/2)*cos(theta_hat);
 
             % Compute the state feedback controller
-            tau_tilde = -self.K * x_hat - self.ki * self.integrator;
+            tau_tilde = -self.K * x_hat...
+                - self.ki * self.integrator;
 
             % compute total torque
             tau = self.saturate( tau_fl + tau_tilde);
@@ -64,7 +65,8 @@ classdef armController < handle
             F2 = self.observer_f(self.x_hat + self.Ts/2*F1, y);
             F3 = self.observer_f(self.x_hat + self.Ts/2*F2, y);
             F4 = self.observer_f(self.x_hat + self.Ts*F3, y);
-            self.x_hat = self.x_hat + self.Ts/6 * (F1 + 2*F2 + 2*F3 + F4);
+            self.x_hat = self.x_hat...
+                + self.Ts/6 * (F1 + 2*F2 + 2*F3 + F4);
             xhat = self.x_hat;
         end
         

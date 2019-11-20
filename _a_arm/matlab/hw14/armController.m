@@ -3,7 +3,7 @@ classdef armController < handle
         m
         ell
         g
-        observer_state
+        obsv_state
         tau_d1
         integrator
         error_d1
@@ -25,7 +25,7 @@ classdef armController < handle
             self.ell = P.ell;
             self.g = P.g;
             % initialized object properties
-            self.observer_state = [0.0; 0.0; 0.0];
+            self.obsv_state = [0.0; 0.0; 0.0];
             self.tau_d1 = 0.0;
             self.integrator = 0.0;
             self.error_d1 = 0.0;
@@ -61,22 +61,22 @@ classdef armController < handle
         end
         function [xhat, dhat] = updateObserver(self, y)
             % update observer using RK4 integration
-            F1 = self.observer_f(self.observer_state, y);
-            F2 = self.observer_f(self.observer_state + self.Ts/2*F1, y);
-            F3 = self.observer_f(self.observer_state + self.Ts/2*F2, y);
-            F4 = self.observer_f(self.observer_state + self.Ts*F3, y);
-            self.observer_state = self.observer_state ...
+            F1 = self.obsv_f(self.obsv_state, y);
+            F2 = self.obsv_f(self.obsv_state + self.Ts/2*F1, y);
+            F3 = self.obsv_f(self.obsv_state + self.Ts/2*F2, y);
+            F4 = self.obsv_f(self.obsv_state + self.Ts*F3, y);
+            self.obsv_state = self.obsv_state ...
                 + self.Ts/6 * (F1 + 2*F2 + 2*F3 + F4);
-            xhat = self.observer_state(1:2);
-            dhat = self.observer_state(3);
+            xhat = self.obsv_state(1:2);
+            dhat = self.obsv_state(3);
         end
-        function x_hat_dot = observer_f(self, observer_state, y)
+        function x_hat_dot = obsv_f(self, obsv_state, y)
             % compute feedback linearizing torque tau_fl
-            theta_hat = observer_state(1);
+            theta_hat = obsv_state(1);
             tau_fl = self.m*self.g*(self.ell/2)*cos(theta_hat);
-            x_hat_dot = self.A * observer_state...
+            x_hat_dot = self.A * obsv_state...
                         + self.B * (self.tau_d1 - tau_fl)...
-                        + self.L * (y - self.C * observer_state);
+                        + self.L * (y - self.C * obsv_state);
         end
         function self = integrateError(self, error)
             self.integrator = self.integrator ...

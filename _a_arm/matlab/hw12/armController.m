@@ -1,5 +1,4 @@
 classdef armController < handle
-    %----------------------------
     properties
         m
         ell
@@ -11,9 +10,7 @@ classdef armController < handle
         limit
         Ts
     end
-    %----------------------------
     methods
-        %----------------------------
         function self = armController(P)
             % plant parameters known to controller
             self.m = P.m;
@@ -27,7 +24,6 @@ classdef armController < handle
             self.limit = P.tau_max;
             self.Ts = P.Ts;
         end
-        %----------------------------
         function tau = update(self, theta_r, x)
             theta = x(1);
             % integrate error
@@ -40,12 +36,11 @@ classdef armController < handle
             % compute total torque
             tau = self.saturate( tau_fl + tau_tilde);
         end
-        %----------------------------
         function self = integrateError(self, error)
-            self.integrator = self.integrator + (self.Ts/2.0)*(error+self.error_d1);
+            self.integrator = self.integrator...
+                + (self.Ts/2.0)*(error+self.error_d1);
             self.error_d1 = error;
         end
-        %----------------------------
         function out = saturate(self,u)
             if abs(u) > self.limit
                 u = self.limit*sign(u);

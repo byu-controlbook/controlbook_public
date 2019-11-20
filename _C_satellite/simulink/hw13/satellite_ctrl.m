@@ -55,8 +55,6 @@ function x_hat_dot = observer_f(x_hat, y, u, P)
                 + P.L * (y - P.C * x_hat);
 end
 
-%-----------------------------------------------------
-% saturation function
 function out = sat(in,limit)
     if     in > limit,      out = limit;
     elseif in < -limit,     out = -limit;

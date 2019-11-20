@@ -1,5 +1,4 @@
 classdef armController < handle
-    %----------------------------
     properties
         m
         ell
@@ -9,9 +8,7 @@ classdef armController < handle
         limit
         Ts
     end
-    %----------------------------
     methods
-        %----------------------------
         function self = armController(P)
             % plant parameters known to controller
             self.m = P.m;
@@ -22,7 +19,6 @@ classdef armController < handle
             self.limit = P.tau_max;
             self.Ts = P.Ts;
         end
-        %----------------------------
         function tau = update(self, theta_r, x)
             theta = x(1);
             % compute feedback linearizing torque
@@ -32,7 +28,6 @@ classdef armController < handle
             % compute total torque
             tau = self.saturate( tau_fl + tau_tilde);
         end
-        %----------------------------
         function out = saturate(self,u)
             if abs(u) > self.limit
                 u = self.limit*sign(u);

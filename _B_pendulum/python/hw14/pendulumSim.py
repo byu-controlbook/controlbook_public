@@ -29,18 +29,18 @@ while t < P.t_end:  # main simulation loop
     # Get referenced inputs from signal generators
     # Propagate dynamics in between plot samples
     t_next_plot = t + P.t_plot
-    while t < t_next_plot: # updates control and dynamics at faster simulation rate
+    while t < t_next_plot:
         r = reference.square(t)
         d = disturbance.step(t)  # input disturbance
-        n = np.array([[noise_z.random(t)], [noise_th.random(t)]])  # simulate sensor noise
-        u, xhat, dhat = controller.update(r, y + n)  # update controller
+        n = np.array([[noise_z.random(t)], [noise_th.random(t)]])
+        u, xhat, dhat = controller.update(r, y + n)
         y = pendulum.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(pendulum.state)
     dataPlot.update(t, r, pendulum.state, u)
     dataPlotObserver.update(t, pendulum.state, xhat, d, dhat)
-    plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
+    plt.pause(0.0001)
 
 # Keeps the program from closing until the user presses a button.
 print('Press key to close')

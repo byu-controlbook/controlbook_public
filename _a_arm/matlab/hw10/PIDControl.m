@@ -1,5 +1,4 @@
 classdef PIDControl < handle
-    %----------------------------
     properties
         kp
         ki
@@ -14,37 +13,34 @@ classdef PIDControl < handle
         error_d1
         integrator
     end
-    %----------------------------
     methods
-        %----------------------------
-        function self = PIDControl(kp, ki, kd, limit, beta, Ts)
-            self.kp = kp;                 % Proportional control gain
-            self.ki = ki;                 % Integral control gain
-            self.kd = kd;                 % Derivative control gain
-            self.limit = limit;           % The output will saturate at this limit
-            self.beta = beta;
+        function self = PIDControl(kp, ki, kd, limit, sigma, Ts)
+            self.kp = kp;  % Proportional control gain
+            self.ki = ki;   % Integral control gain
+            self.kd = kd;  % Derivative control gain
+            self.limit = limit;  % output saturation limit
+            % dirty derivative gain
+            self.beta = (2*sigma-Ts)/(2*sigma+Ts); 
             self.Ts = Ts;
-
-            self.init_flag = 1;           % true for first time step
-            self.y_dot = 0.0;             % estimated derivative of y
-            self.y_d1 = 0.0;              % Signal y delayed by one sample
-            self.error_dot = 0.0;         % estimated derivative of error
-            self.error_d1 = 0.0;          % Error delayed by one sample
-            self.integrator = 0.0;        % value of the integrator
+            self.init_flag = 1;  % true for first time step
+            self.y_dot = 0.0;  % estimated derivative of y
+            self.y_d1 = 0.0;  % Signal y delayed by one sample
+            self.error_dot = 0.0;  % estimated derivative of error
+            self.error_d1 = 0.0;  % Error delayed by one sample
+            self.integrator = 0.0;  % value of the integrator
         end
          %----------------------------
         function u_sat = PID(self, y_r, y, flag)
-            %
             %    PID control,
             %    
             %    if flag==True, then returns
-            %        u = kp*error + ki*integral(error) + kd*error_dot.
+            %      u = kp*error+ki*integral(error)+kd*error_dot.
             %    else returns 
-            %        u = kp*error + ki*integral(error) - kd*y_dot.
+            %      u = kp*error+ki*integral(error)-kd*y_dot.
             %    
-            %    error_dot and y_dot are computed numerically using a dirty derivative
-            %    the integral is computed numerically
-            %
+            %    error_dot and y_dot are computed numerically using 
+            %      a dirty derivative the integral is computed 
+            %      numerically
 
             % Compute the current error
             error = y_r - y;
@@ -61,7 +57,7 @@ classdef PIDControl < handle
             if flag==true
                 % differentiate error
                 self.error_dot = self.beta*self.error_dot...
-                    + (1-self.beta)*((error - self.error_d1) / self.Ts);
+                    + (1-self.beta)/self.Ts*(error - self.error_d1);
                 % PID control
                 u_unsat = self.kp*error...
                         + self.ki*self.integrator...
@@ -86,9 +82,7 @@ classdef PIDControl < handle
             self.error_d1 = error;
             self.y_d1 = y;
         end
-       %----------------------------
         function u_sat = PD(self, y_r, y, flag)
-            %
             %    PD control,
             %    
             %    if flag==True, then returns
@@ -96,8 +90,8 @@ classdef PIDControl < handle
             %    else returns 
             %        u = kp*error - kd*y_dot.
             %    
-            %    error_dot and y_dot are computed numerically using a dirty derivative
-            %
+            %    error_dot and y_dot are computed numerically using 
+            %      a dirty derivative
 
             % Compute the current error
             error = y_r - y;
@@ -110,7 +104,7 @@ classdef PIDControl < handle
             if flag==true
                 % differentiate error
                 self.error_dot = self.beta*self.error_dot...
-                    + (1-self.beta)*((error - self.error_d1) / self.Ts);
+                    + (1-self.beta)/self.Ts*(error - self.error_d1);
                 % PD control
                 u_unsat = self.kp*error + self.kd*self.error_dot;
             else
@@ -126,7 +120,6 @@ classdef PIDControl < handle
             self.error_d1 = error;
             self.y_d1 = y;
         end
-        %----------------------------
         function out = saturate(self,u)
             if abs(u) > self.limit
                 u = self.limit*sign(u);

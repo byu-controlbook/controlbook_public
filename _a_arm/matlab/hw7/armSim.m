@@ -15,12 +15,12 @@ addpath('../hw2'); animation = armAnimation(P);
 t = P.t_start;  % time starts at t_start
 y = arm.h();
 while t < P.t_end  
-    % Propagate dynamics in between plot samples
     t_next_plot = t + P.t_plot;
-    while t < t_next_plot % updates control and dynamics at faster simulation rate
+    % Propagate dynamics in between plot samples
+    while t < t_next_plot 
         r = reference.square(t);
         d = disturbance.step(t);
-        x = arm.state;
+        x = arm.state;  % use the state and not the output
         u = controller.update(r, x);  % Calculate the control value
         y = arm.update(u+d);  % Propagate the dynamics
         t = t + P.Ts; % advance time by Ts

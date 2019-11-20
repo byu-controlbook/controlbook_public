@@ -28,12 +28,12 @@ B1 = [B; 0];
 % desired closed loop polynomial
 wn = 2.2/tr;
 % gains for pole locations
-des_char_poly = conv([1,2*zeta*wn,wn^2],poly(integrator_pole));
+des_char_poly = conv([1,2*zeta*wn,wn^2],...
+                     poly(integrator_pole));
 des_poles = roots(des_char_poly);
 
-
 % is the system controllable?
-if rank(ctrb(A1,B1))~=3, 
+if rank(ctrb(A1,B1))~=3
     disp('System Not Controllable'); 
 else % if so, compute gains
     K1   = place(A1,B1,des_poles); 
