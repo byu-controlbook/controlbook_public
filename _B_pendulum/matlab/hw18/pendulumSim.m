@@ -1,4 +1,8 @@
-pendulumParamHW10;  % load parameters
+% load controller design
+if 0
+    loopshape_pendulum_in
+    loopshape_pendulum_out
+end
 
 % instantiate pendulum, controller, and reference input classes 
 alpha = 0.2;
@@ -15,9 +19,8 @@ addpath('../hw2'); animation = pendulumAnimation(P);
 t = P.t_start;  % time starts at t_start
 y = pendulum.h();
 while t < P.t_end  
-    % Propagate dynamics in between plot samples
     t_next_plot = t + P.t_plot;
-    while t < t_next_plot % updates control and dynamics at faster simulation rate
+    while t < t_next_plot 
         r = reference.square(t);
         d = disturbance.step(t);
         n = [0; 0];  % noise
@@ -29,6 +32,3 @@ while t < P.t_end
     animation.update(pendulum.state);
     dataPlot.update(t, r, pendulum.state, u);
 end
-
-
-

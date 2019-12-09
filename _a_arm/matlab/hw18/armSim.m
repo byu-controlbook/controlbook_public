@@ -1,6 +1,6 @@
 % load controller design
 if 0
-    loopshape_arm
+    P=loopshape_arm;
 end
 
 % instantiate arm, controller, and reference input classes 

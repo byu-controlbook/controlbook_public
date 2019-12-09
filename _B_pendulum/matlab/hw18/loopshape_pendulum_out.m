@@ -1,81 +1,86 @@
-function P = loopshape_arm
-    addpath('./..')
-    armParam
+function P = loopshape_pendulum_out(P)
+    % param
+    % loopshape_pendulum_in
 
-    % load parameters from HW 10
-    addpath ./../hw10
-    armParamHW10
+    % Compute inner open-loop transfer functions
+    % P_out = tf([P.g],[1,0,0]);
+    P.P_out = tf([-P.ell/2,0,P.g],[1,0,0]);
 
-    Plant = tf([2/P.m/P.ell^2],[1, 2*P.b/P.m/P.ell^2, 0]);
-    C_pid = tf([(P.kd+P.kp*P.sigma),(P.kp+P.ki*P.sigma),P.ki],[P.sigma,1,0]);
-
-
-    % start with pid control designed in problem 10
-     figure(3), clf
-        bodemag(Plant*C_pid,logspace(-3,5))
-        hold on
-        grid on
+    Plant = minreal(P.P_out*(P.P_in*P.C_in/(1+P.P_in*P.C_in)));
+    figure(2), clf, bode(Plant,'r'), hold on, grid on
+    figure(3), clf, bodemag(Plant,logspace(-3,5),'r'), hold on, grid on
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %  Define Design Specifications
-    add_spec_disturbance(0.1, 0.07, Plant*C_pid);
-    add_spec_noise(0.01, 100);    
-    % add_spec_tracking(0.1, 0.07);
+    % add_spec_disturbance(0.1, 0.07, Plant*C_pid);
+    add_spec_noise(0.0001, 1000);    
+    add_spec_tracking(0.01, 0.0032);
     % add_spec_tracking_step(0.01);
     % add_spec_tracking_ramp(0.03);
     % add_spec_tracking_parabola(0.010
-        
- 
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %  Control Design
-    C = C_pid;
-    C = add_control_lead(C, 6, 5);
-    C = add_control_lag(C, 2, 40);
-    C = add_control_lpf(C, 50);
+    % Control Design
+    C = tf(1,1);
+    k = P.ell/2/sqrt(2*P.g/P.ell);
+    C = add_control_proportional(C, k);
+    p = sqrt(2*P.g/P.ell);
+    C = add_control_lpf(C, p);
+    C = add_control_proportional(C, 1);    
+    C = add_control_lead(C, .8, 150);
+    C = add_control_integral(C, 0.2);
+    % C = add_control_lag(C, 0.7, 10);
+
     % C = add_control_lpf(C, 150);
-    % C = add_control_integral(C, 0.4);
+
     % C = add_control_proportional(C, 3);
     
+    figure(2), bode(Plant * C)
     figure(3), margin(Plant * C)
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % add a prefilter to eliminate the overshoot
+    % Prefilter Design
+    F = tf(1, 1);
+    %F = add_control_notch(F, 0.5, 10);
+    F = add_control_lpf(F, 10);
+    
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    F = tf(1,1);
-    %F = add_control_lpf(F, 5);
+    % Create plots for analysis
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Create plots
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Open-loop tranfer function 
-    OPEN = Plant*C;
+      OPEN = Plant*C;
     % closed loop transfer function from R to Y
-    CLOSED_R_to_Y = (Plant*C/(1+Plant*C));
+      CLOSED_R_to_Y = (Plant*C/(1+Plant*C));
     % closed loop transfer function from R to U
-    CLOSED_R_to_U = (C/(1+C*Plant));
+      CLOSED_R_to_U = (C/(1+C*Plant));
 
     figure(4), clf
-        subplot(1,3,1), 
+        subplot(3,1,1), 
             bodemag(CLOSED_R_to_Y), hold on
             bodemag(CLOSED_R_to_Y*F)
-            title('Closed Loop Bode Plot'), grid on
-        subplot(1,3,2), 
+            bodemag(P.P_in*P.C_in/(1+P.P_in*P.C_in))
+            title('Closed-loop Bode plot'), grid on
+            legend('closed loop','closed loop + prefilter','open loop');
+        subplot(3,1,2), 
             step(CLOSED_R_to_Y), hold on
             step(CLOSED_R_to_Y*F)
-            title('Closed loop step response'), grid on
-        subplot(1,3,3), 
+            title('Closed-loop step response'), grid on
+        subplot(3,1,3), 
             step(CLOSED_R_to_U), hold on
             step(CLOSED_R_to_U*F)
             title('Control effort for step response'), grid on
+    % print('../../../figures/hw_pendulum_compensator_out_design_5','-depsc')
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Convert controller to state space equations
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    [P.num_C, P.den_C] = tfdata(C,'v');
-    %[P.A_C, P.B_C, P.C_C, P.D_C]=tf2ss(num,den);
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Convert controller to state space equations for implementation
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    C=minreal(C);
+    [P.num_Cout,P.den_Cout] = tfdata(C,'v');
+    [P.Aout_C,P.Bout_C,P.Cout_C,P.Dout_C]=tf2ss(P.num_Cout,P.den_Cout);
 
-    [P.num_F, P.den_F] = tfdata(F,'v');
-    %[P.A_F, P.B_F, P.C_F, P.D_F] = tf2ss(num,den);
+    [P.num_Fout,P.den_Fout] = tfdata(F,'v');
+    [P.Aout_F, P.Bout_F, P.Cout_F, P.Dout_F] = tf2ss(P.num_Fout, P.den_Fout);
 
 end
 
@@ -156,7 +161,8 @@ end
 % M: separation between zero and pole
 function Cnew = add_control_lead(C, omega_L, M)
     gain = (1+sqrt(M))/(1+1/sqrt(M));
-    Lead =tf(gain * [1, omega_L/sqrt(M)], [1, omega_L*sqrt(M)]);
+    Lead =tf([gain * 1, gain * omega_L/sqrt(M)],...
+        [1, omega_L*sqrt(M)]);
 	Cnew = C * Lead;
 end
 
@@ -167,6 +173,8 @@ function Cnew = add_control_notch(C, ws, M)
     Notch = tf([1,2*sqrt(M)*ws,M*ws^2],[1,(M+1)*ws,M*ws^2]);
 	Cnew = Notch * C;
 end
+
+
 
 
 

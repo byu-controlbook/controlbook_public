@@ -1,81 +1,77 @@
-function P = loopshape_arm
+function P = loopshape_satellite_in
     addpath('./..')
-    armParam
+    satelliteParam
 
     % load parameters from HW 10
     addpath ./../hw10
-    armParamHW10
+    satelliteParamHW10
 
-    Plant = tf([2/P.m/P.ell^2],[1, 2*P.b/P.m/P.ell^2, 0]);
-    C_pid = tf([(P.kd+P.kp*P.sigma),(P.kp+P.ki*P.sigma),P.ki],[P.sigma,1,0]);
+    % transfer functions
+    P.P_in = tf(1,[(P.Jp+P.Js), 0, 0]);
+    P.C_pd_in = tf([(P.kd_th + P.sigma*P.kp_th), P.kp_th], [P.sigma, 1]);
+    Plant = P.P_in*P.C_pd_in;
 
-
-    % start with pid control designed in problem 10
-     figure(3), clf
-        bodemag(Plant*C_pid,logspace(-3,5))
-        hold on
-        grid on
+    figure(2), clf, bode(Plant,logspace(-4,4)), hold on, grid on
+    figure(3), clf, bodemag(Plant), hold on, grid on
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %  Define Design Specifications
-    add_spec_disturbance(0.1, 0.07, Plant*C_pid);
-    add_spec_noise(0.01, 100);    
-    % add_spec_tracking(0.1, 0.07);
+    add_spec_tracking(10^(-60/20), 10^-2);
+    add_spec_noise(10^(-40/20), 5*10^1);    
+    % add_spec_disturbance(0.1, 0.07, Plant*C_pid);
     % add_spec_tracking_step(0.01);
     % add_spec_tracking_ramp(0.03);
     % add_spec_tracking_parabola(0.010
-        
- 
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %  Control Design
-    C = C_pid;
-    C = add_control_lead(C, 6, 5);
-    C = add_control_lag(C, 2, 40);
-    C = add_control_lpf(C, 50);
-    % C = add_control_lpf(C, 150);
+    % Control Design
+    C = tf(1, 1);
+    C = add_control_lead(C, 4.4, 3);
+    C = add_control_lag(C, 0.7, 10);     
+    C = add_control_lpf(C, 20);
+
+    %C = add_control_proportional(C, 30);
+    %C = add_control_lpf(C, 10);
+
     % C = add_control_integral(C, 0.4);
-    % C = add_control_proportional(C, 3);
-    
+
+    figure(2), bode(Plant * C)
     figure(3), margin(Plant * C)
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % add a prefilter to eliminate the overshoot
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    F = tf(1,1);
-    %F = add_control_lpf(F, 5);
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Create plots
+    % Create plots for analysis
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     % Open-loop tranfer function 
-    OPEN = Plant*C;
+      OPEN = Plant*C;
     % closed loop transfer function from R to Y
-    CLOSED_R_to_Y = (Plant*C/(1+Plant*C));
+      CLOSED_R_to_Y = minreal((Plant*C/(1+Plant*C)));
     % closed loop transfer function from R to U
-    CLOSED_R_to_U = (C/(1+C*Plant));
+      CLOSED_R_to_U = minreal((C/(1+C*Plant)));
 
+   
     figure(4), clf
-        subplot(1,3,1), 
+        subplot(3,1,1), 
             bodemag(CLOSED_R_to_Y), hold on
-            bodemag(CLOSED_R_to_Y*F)
+            bodemag(CLOSED_R_to_Y)
             title('Closed Loop Bode Plot'), grid on
-        subplot(1,3,2), 
+        subplot(3,1,2), 
             step(CLOSED_R_to_Y), hold on
-            step(CLOSED_R_to_Y*F)
+            step(CLOSED_R_to_Y)
             title('Closed loop step response'), grid on
-        subplot(1,3,3), 
+        subplot(3,1,3), 
             step(CLOSED_R_to_U), hold on
-            step(CLOSED_R_to_U*F)
+            step(CLOSED_R_to_U)
             title('Control effort for step response'), grid on
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Convert controller to state space equations
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    [P.num_C, P.den_C] = tfdata(C,'v');
-    %[P.A_C, P.B_C, P.C_C, P.D_C]=tf2ss(num,den);
-
-    [P.num_F, P.den_F] = tfdata(F,'v');
-    %[P.A_F, P.B_F, P.C_F, P.D_F] = tf2ss(num,den);
+    %print('../../../figures/hw_satellite_compensator_in_design_4','-dpdf','-bestfit')
+        
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Convert controller to state space equations for implementation
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    P.C_in = P.C_pd_in * C;
+    [P.num_Cin, P.den_Cin] = tfdata(P.C_in,'v');
+    [P.Ain_C,P.Bin_C,P.Cin_C,P.Din_C]=tf2ss(P.num_Cin, P.den_Cin);
 
 end
 
@@ -167,6 +163,8 @@ function Cnew = add_control_notch(C, ws, M)
     Notch = tf([1,2*sqrt(M)*ws,M*ws^2],[1,(M+1)*ws,M*ws^2]);
 	Cnew = Notch * C;
 end
+
+
 
 
 

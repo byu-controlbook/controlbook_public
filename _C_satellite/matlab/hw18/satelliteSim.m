@@ -1,4 +1,8 @@
-satelliteParamHW10  % load parameters
+% load controller design
+if 0
+    loopshape_satellite_in
+    loopshape_satellite_out
+end
 
 % instantiate satellite, and reference input classes 
 alpha = 0.2;
@@ -27,7 +31,5 @@ while t < P.t_end
     end
     % update animation and data plots
     animation.update(satellite.state);
-    dataPlot.update(t, r, satellite.state, t);
+    dataPlot.update(t, r, satellite.state, u);
 end
-
-
