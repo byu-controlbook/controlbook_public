@@ -1,9 +1,10 @@
-pendulumParamHWB;  % load parameters
+pendulumParamHW3;  % load parameters
 
 % instantiate pendulum, and reference input classes 
-pendulum = pendulumDynamics(P);  
+alpha = 0.0;
+pendulum = pendulumDynamics(alpha,P);  
 addpath('../hw2'); reference = signalGenerator(0.5, 0.02);  
-addpath('../hw2'); force = signalGenerator(1, 1);
+addpath('../hw2'); force = signalGenerator(.1, .1);
 
 % instantiate the data plots and animation
 addpath('../hw2'); dataPlot = dataPlotter(P);
