@@ -2,6 +2,10 @@
 addpath ./.. % adds the parent directory to the path
 satelliteParam % general parameters
 
+% dirty derivative parameters
+P.sigma = 0.05; % cutoff freq for dirty derivative
+P.beta = (2*P.sigma-P.Ts)/(2*P.sigma+P.Ts); % dirty derivative gain
+
 % tunning parameters
 %tr_phi = 20;  % rise time for outer loop 
 tr_phi = 7;

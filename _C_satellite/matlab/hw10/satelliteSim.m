@@ -27,7 +27,7 @@ while t < P.t_end
     end
     % update animation and data plots
     animation.update(satellite.state);
-    dataPlot.update(t, r, satellite.state, t);
+    dataPlot.update(t, r, satellite.state, u);
 end
 
 
