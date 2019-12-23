@@ -14,13 +14,13 @@ classdef PIDControl < handle
         integrator
     end
     methods
-        function self = PIDControl(kp, ki, kd, limit, sigma, Ts)
+        function self = PIDControl(kp, ki, kd, limit, beta, Ts)
             self.kp = kp;  % Proportional control gain
             self.ki = ki;   % Integral control gain
             self.kd = kd;  % Derivative control gain
             self.limit = limit;  % output saturation limit
             % dirty derivative gain
-            self.beta = (2*sigma-Ts)/(2*sigma+Ts); 
+            self.beta = beta; 
             self.Ts = Ts;
             self.init_flag = 1;  % true for first time step
             self.y_dot = 0.0;  % estimated derivative of y

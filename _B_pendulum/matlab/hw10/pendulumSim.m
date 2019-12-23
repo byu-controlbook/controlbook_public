@@ -2,7 +2,7 @@ pendulumParamHW10;  % load parameters
 
 % instantiate pendulum, controller, and reference input classes 
 alpha = 0.2;
-addpath('../hw8'); pendulum = pendulumDynamics(alpha, P);  
+addpath('../hw3'); pendulum = pendulumDynamics(alpha, P);  
 controller = pendulumController(P);  
 addpath('../hw2'); reference = signalGenerator(0.5, 0.02);  
 addpath('../hw2'); disturbance = signalGenerator(0.1, 0);  

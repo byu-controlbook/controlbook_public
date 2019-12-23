@@ -2,6 +2,10 @@
 addpath ./.. % adds the parent directory to the path
 armParam % general arm parameters
 
+% dirty derivative parameters
+P.sigma = 0.05; % cutoff freq for dirty derivative
+P.beta = (2*P.sigma-P.Ts)/(2*P.sigma+P.Ts); % dirty derivative gain
+
 %  tuning parameters
 %tr = 0.8; % part (a)
 tr = 0.4;  % tuned to get fastest possible rise time before saturation.

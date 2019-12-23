@@ -10,7 +10,7 @@ classdef armController
         function self = armController(P)
             % Instantiates the SS_ctrl object
             self.thetaCtrl = PIDControl(P.kp, P.ki, P.kd,...
-                P.tau_max, P.sigma, P.Ts);
+                P.tau_max, P.beta, P.Ts);
             % plant parameters known to controller
             self.m = P.m;
             self.ell = P.ell;
