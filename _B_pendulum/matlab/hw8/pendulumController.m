@@ -40,6 +40,8 @@ classdef pendulumController  < handle
             F = self.kp_th * (theta_r - theta) - self.kd_th * thetadot;
         end
         %----------------------------
+        % for details on the zero-canceling filter see the answer in the
+        % control book at the end of chapter 8
         function w = zeroCancelingFilter(self, v)
             self.filter_state = self.filter_state...
                 + self.Ts * (-self.filter_pole * self.filter_state ...
