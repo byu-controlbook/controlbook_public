@@ -2,10 +2,6 @@
 addpath ./.. % adds the parent directory to the path
 pendulumParam % general pendulum parameters
 
-% dirty derivative parameters
-P.sigma = 0.05; % cutoff freq for dirty derivative
-P.beta = (2*P.sigma-P.Ts)/(2*P.sigma+P.Ts); % dirty derivative gain
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %       state feedback control with integrator
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
