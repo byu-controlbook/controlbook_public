@@ -1,10 +1,11 @@
 satelliteParamHW11  % load parameters
 
 % instantiate satellite, and reference input classes 
-addpath('../hw3'); satellite = satelliteDynamics(P);  
+alpha = 0.0;
+addpath('../hw3'); satellite = satelliteDynamics(alpha,P);  
 controller = satelliteController(P);  
 addpath('../hw2'); reference = signalGenerator(15*pi/180, 0.015);  
-addpath('../hw2'); disturbance = signalGenerator(1.0, 0);  
+addpath('../hw2'); disturbance = signalGenerator(0.0, 0);  
 
 % instantiate the data plots and animation
 addpath('../hw2'); dataPlot = dataPlotter(P);
@@ -26,7 +27,7 @@ while t < P.t_end
     end
     % update animation and data plots
     animation.update(satellite.state);
-    dataPlot.update(t, r, satellite.state, t);
+    dataPlot.update(t, r, satellite.state, u);
 end
 
 

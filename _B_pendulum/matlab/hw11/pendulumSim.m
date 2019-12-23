@@ -1,10 +1,11 @@
 pendulumParamHW11;  % load parameters
 
 % instantiate pendulum, controller, and reference input classes 
-addpath('../hw8'); pendulum = pendulumDynamics(P);  
+alpha = 0.0;
+addpath('../hw3'); pendulum = pendulumDynamics(alpha,P);  
 controller = pendulumController(P);  
-addpath('../hw2'); reference = signalGenerator(0.5, 0.02);  
-addpath('../hw2'); disturbance = signalGenerator(0.1, 0);  
+addpath('../hw2'); reference = signalGenerator(0.5, 0.03);  
+addpath('../hw2'); disturbance = signalGenerator(0.0, 0);  
 
 % instantiate the data plots and animation
 addpath('../hw2'); dataPlot = dataPlotter(P);
