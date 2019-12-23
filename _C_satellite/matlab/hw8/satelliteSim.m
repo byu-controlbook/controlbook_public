@@ -1,9 +1,10 @@
 satelliteParamHW8  % load parameters
 
 % instantiate satellite, and reference input classes 
-addpath('../hw3'); satellite = satelliteDynamics(P);  
+alpha = 0.0;
+addpath('../hw3'); satellite = satelliteDynamics(alpha,P);  
 controller = satelliteController(P);  
-addpath('../hw2'); reference = signalGenerator(15*pi/180, 0.015);  
+addpath('../hw2'); reference = signalGenerator(15*pi/180, 0.02);  
 addpath('../hw2'); disturbance = signalGenerator(1.0, 0);  
 
 % instantiate the data plots and animation
