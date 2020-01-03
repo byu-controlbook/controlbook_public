@@ -74,7 +74,8 @@ classdef pendulumAnimation
             th = 0:2*pi/10:2*pi;
             % center of bob
             center = [z + (self.ell+self.radius)*sin(theta),...
-                self.gap+self.height+(self.ell+self.radius)*cos(theta)];
+                self.gap+self.height...
+                +(self.ell+self.radius)*cos(theta)];
             % points that define the bob
             X = center(1) + self.radius*cos(th);
             Y = center(2) + self.radius*sin(th);
