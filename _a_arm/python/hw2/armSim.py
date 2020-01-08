@@ -23,12 +23,12 @@ while t < P.t_end:  # main simulation loop
     theta = thetaRef.sin(t)
     tau = tauRef.sawtooth(t)
     # update animation
-    state = [theta[0], 0.0]
+    state = [theta, 0.0]
     animation.update(state)
     dataPlot.update(t, r, state, tau)
 
     t = t + P.t_plot  # advance time by t_plot
-    plt.pause(0.1)
+    plt.pause(0.02)  # adjust plot time to get approximately real time display, lower value for faster
 
 # Keeps the program from closing until the user presses a button.
 print('Press key to close')

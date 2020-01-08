@@ -36,7 +36,7 @@ class dataPlotter:
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.theta_ref_history.append(180.0/np.pi*reference)  # reference base position
-        self.theta_history.append(180.0/np.pi*states.item(0))  # rod angle (converted to degrees)
+        self.theta_history.append(180.0/np.pi*states[0])  # rod angle (converted to degrees)
         self.torque_history.append(ctrl)  # force on the base
 
         # update the plots with associated histories
