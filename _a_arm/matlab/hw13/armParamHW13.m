@@ -6,7 +6,7 @@ armParam % general arm parameters
 wn = 5.5;  % natural frequency for control
 zeta = 0.707; % damping ratio for control
 integrator_pole = -1;  % integrator pole for control
-wn_obs = 10;  % natural frequency for observer
+wn_obs = 15; %10;  % natural frequency for observer
 zeta_obs = 0.707; % damping ratio for observer
 
 % equalibrium torque

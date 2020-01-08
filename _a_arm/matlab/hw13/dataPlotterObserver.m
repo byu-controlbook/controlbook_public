@@ -38,16 +38,19 @@ classdef dataPlotterObserver < handle
                 self.theta_hat_handle = plot(self.time_history, self.theta_hat_history, 'g');
                 ylabel('theta(deg)')
                 title('Arm State and Observed State')
+                legend(["Real","Estimate"])
             subplot(3, 1, 2)
                 hold on
                 self.theta_dot_handle = plot(self.time_history, self.theta_dot_history, 'b');
                 self.theta_hat_dot_handle = plot(self.time_history, self.theta_hat_dot_history, 'g');
                 ylabel('thetadot(deg/s)')
+                %legend(["Arm State","Estimated State"])
             subplot(3, 1, 3)
                 hold on
                 self.d_handle = plot(self.time_history, self.d_history, 'b');
                 self.d_hat_handle = plot(self.time_history, self.d_hat_history, 'g');
                 ylabel('d')
+                %legend(["Input Disturbance","Disturbance estimate"])
         end
         
         function self = update(self, t, x, xhat, d, dhat)

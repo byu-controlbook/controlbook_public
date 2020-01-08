@@ -5,8 +5,8 @@ alpha = 0.0;
 addpath('../hw3'); arm = armDynamics(alpha, P);  
 controller = armController(P);  
 addpath('../hw2'); reference = signalGenerator(30*pi/180, 0.05);  
-addpath('../hw2'); disturbance = signalGenerator(0.25, 0.0);
-addpath('../hw2'); noise = signalGenerator(0.01);
+addpath('../hw2'); disturbance = signalGenerator(0.01, 0.0);
+addpath('../hw2'); noise = signalGenerator(0.0);
 
 % instantiate the data plots and animation
 addpath('../hw2'); dataPlot = dataPlotter(P);
@@ -21,8 +21,8 @@ while t < P.t_end
     t_next_plot = t + P.t_plot;
     while t < t_next_plot 
         r = reference.square(t);
-        d = 0;%disturbance.step(t);
-        n =  0;% noise.random(t);  % noise
+        d = disturbance.step(t);
+        n =  noise.random(t);  % noise
         [u, xhat] = controller.update(r, y+n);  
         y = arm.update(u+d);  % Propagate the dynamics
         t = t + P.Ts; % advance time by Ts

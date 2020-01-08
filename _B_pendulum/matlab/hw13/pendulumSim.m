@@ -5,7 +5,7 @@ alpha = 0.0;
 addpath('../hw3'); pendulum = pendulumDynamics(alpha, P);  
 controller = pendulumController(P);  
 addpath('../hw2'); reference = signalGenerator(0.5, 0.02);  
-addpath('../hw2'); disturbance = signalGenerator(0.1, 0);  
+addpath('../hw2'); disturbance = signalGenerator(.05, 0);  
 addpath('../hw2'); noise_z = signalGenerator(0.01);
 addpath('../hw2'); noise_th = signalGenerator(0.01);
 
@@ -22,7 +22,7 @@ while t < P.t_end
     t_next_plot = t + P.t_plot;
     while t < t_next_plot % updates control and dynamics at faster simulation rate
         r = reference.square(t);
-        d = 0; %disturbance.step(t);
+        d = disturbance.step(t);
         n = [0;0];%[noise_z.random(t); noise_th.random(t)];  % noise
         [u, xhat] = controller.update(r, y + n);  % Calculate the control value
         y = pendulum.update(u + d);  % Propagate the dynamics
