@@ -1,9 +1,4 @@
 % satellite parameter file
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  state feedback control with integrator
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tuning parameters
 wn_th   = 0.6;
 zeta_th = 0.707;

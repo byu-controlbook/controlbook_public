@@ -1,0 +1,110 @@
+#!/bin/bash
+
+# Author: Robert Leishman
+#
+# This Bash script finds the .pdf figure files for the Control Book, converts them to .png files
+# and then places them in an appropriate folder for use by the jupyter/colab notebooks
+# This script should be run from the desired directory you want the figures in 
+# and needs to be pointed to the control_book git directory on your machine. 
+
+#Main input arguments: 
+#1: Path to the controlbook folder (default /home/rleishman/Teaching/control_book)
+
+# *******************************************************
+# Troubleshooting:  If you run into an error like this: 
+# convert-im6.q16: not authorized `./[filename].pdf' @ error/constitute.c/ReadImage/412.
+# convert-im6.q16: no images defined `[filename].png' @ error/convert.c/ConvertImageCommand/3258.
+#
+# See this solution: https://stackoverflow.com/questions/42928765/convertnot-authorized-aaaa-error-constitute-c-readimage-453
+# In the file /etc/ImageMagick-6/policy.xml
+# Change line: <policy domain="coder" rights="none" pattern="PDF" />
+# to this: <policy domain="coder" rights="read|write" pattern="PDF" />
+# *******************************************************
+
+
+# Function to loop through to do the work.  
+# Edit: Will now avoid re-creating files that are already PNG fles and copy them in the new folder
+convertPDF () {
+    # This function expects 2 arguments: 
+    #1 - path to the folder with the pdf figures
+    #2 - name for the folder you want to put the png files in
+    
+    echo "Converting files in folder $2"
+    for file in `find $1 -iname "*.pdf"`;
+    do
+      echo $file;
+      #temp=`echo $file | cut -d "/" -f 8-`;
+      #echo $temp
+      filename=$(basename -- "$file" .pdf);
+      echo $filename
+      convert -density 300 $file -quality 95 "${filename}.png";
+    done
+    
+    # Move the png files to the appropriate folder
+    if [ -d $2 ]; then
+        #echo "This is a Directory!!"
+        cp *.png "./$2";
+    else
+        #echo "NOT DIRECTORY!"
+        mkdir $2
+        cp *.png "./$2";
+    fi
+    
+    # Copy over any .png files that were already in the folder: 
+    for file in `find $1 -iname "*.png"`;
+    do
+      echo $file;
+      cp $file "./$2"
+    done
+    
+}
+
+
+testFileName () {
+
+    echo $1
+    echo "./$1"
+    
+
+}
+
+echo "Finding .pdf files to convert to .png images" 
+echo "Searching in: "
+path=''
+if [ "$1" != "" ]; then
+    #echo "Positional parameter 1 contains something"
+    path=$1
+else
+    echo "No path provided, using default search path: /home/rleishman/Teaching/control_book"
+    path="/home/rleishman/Teaching/control_book"
+fi
+
+# Go through each of the module files and convert and move all the pdf figures
+#section 1: 
+path1="${path}/1_sim_models/figures"
+path2="${path}/2_design_models/figures"
+path3="${path}/3_PID/figures"
+path4="${path}/4_observer_based/figures"
+path5="${path}/5_loopshaping/figures"
+path6="${path}/6_design_studies/figures"
+#path6="${path}/"
+folder1="figures_1"
+folder2="figures_2"
+folder3="figures_3"
+folder4="figures_4"
+folder5="figures_5"
+folder6="figures_hw"
+
+paths=($path1 $path2 $path3 $path4 $path5 $path6)
+#paths=($path6)
+folders=($folder1 $folder2 $folder3 $folder4 $folder5 $folder6)
+#folders=($folder6)
+
+#echo ${paths[*]}
+for i in ${!paths[@]}; do
+    #echo ${paths[$i]}
+    #echo ${folders[$i]}
+    convertPDF ${paths[$i]} ${folders[$i]}
+    #testFileName ${folders[$i]}
+done
+

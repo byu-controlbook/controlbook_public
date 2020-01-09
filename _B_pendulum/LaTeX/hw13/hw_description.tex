@@ -1,9 +1,0 @@
-
-The objective of this problem is to design an observer that estimates the state of the system and to use the estimated state in the controller designed in Homework~\ref{ds:pendulum}.\ref{chap:state-feedback-integrator}.
-\begin{description}\item[]
-\item[(a)] Modify the Simulink diagram from HW~\ref{ds:pendulum}.\ref{chap:state-feedback-integrator} as described in the description of HW~\ref{ds:single_link_arm}.\ref{chap:observers} to add a plot of the true state $x$, and estimated state $\hat{x}$, and the observation error $x-\hat{x}$.
-\item[(b)] For the sake of understanding the function of the observer, for this problem we will use exact parameters, without an input disturbance.  Modify {\tt  pendulum\_dynamics.m} so that the parameters known to the controller are the actual plant parameters (uncertainty parameter $\alpha=0$).
-\item[(d)] In the control block, add an observer to estimate the state $\hat{x}$, and use the estimate of the state in your feedback controller.
-Tune the poles of the controller and observer to obtain good performance.  
-\item[(e)] As motivation for the next chapter, add an input disturbance to the system of $0.05$ and observe that there is steady state error in the response even though there is an integrator.  This is caused by a steady state error in the observation error.  In the next chapter we will show how to remove the steady state error in the observation error.
-\end{description}

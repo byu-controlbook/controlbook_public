@@ -30,9 +30,9 @@ theta_max = 30.0*np.pi/180.0  # Max theta, rads
 #                    Inner Loop
 #---------------------------------------------------
 # parameters of the open loop transfer function
-b0_th = -2.0/(P.m2*(P.ell/2.0))
+b0_th = -1.0/(P.m1*(P.ell/6.0) + P.m2*(2.0*P.ell/3.0))
 a1_th = 0.0
-a0_th = -2.0*(P.m1+P.m2)*P.g/(P.m2*(P.ell/2.0))
+a0_th = -(P.m1+P.m2)*P.g/(P.m1*(P.ell/6.0) + P.m2*(2.0*P.ell/3.0))
 
 # coefficients for desired inner loop
 # Delta_des(s) = s^2 + alpha1*s + alpha0 = s^2 + 2*zeta*wn*s + wn^2
@@ -49,22 +49,18 @@ DC_gain = kp_th/((P.m1+P.m2)*P.g+kp_th)
 #---------------------------------------------------
 #                    Outer Loop
 #---------------------------------------------------
-# parameters of the open loop transfer function
-b0_z = (P.m1*P.g/P.m2)
-a1_z = P.b/P.m2
-a0_z = 0
 
 # coefficients for desired outer loop
 # Delta_des(s) = s^2 + alpha1*s + alpha0 = s^2 + 2*zeta*wn*s + wn^2
 tr_z = M*tr_th  # desired rise time, s
 wn_z = 2.2/tr_z  # desired natural frequency
-alpha1_z = 2.0*zeta_z*wn_z
-alpha0_z = wn_z**2
 
 # compute gains
-# Delta(s) = s^2 + (a1 + b0*kd*DC_gain)*s + (a0 + b0*kp*DC_gain)
-kp_z = (alpha0_z-a0_z)/(DC_gain*b0_z)
-kd_z = (alpha1_z-a1_z)/(DC_gain*b0_z)
+a  = -(wn_z**2)*np.sqrt(2.0*P.ell/(3.0*P.g))
+b = (a - 2.0*zeta_z*wn_z)*np.sqrt(2.0*P.ell/(3.0*P.g))
+kd_z = b/(1-b)
+kp_z = a*(1+kd_z)
+
 
 print('DC_gain', DC_gain)
 print('kp_th: ', kp_th)

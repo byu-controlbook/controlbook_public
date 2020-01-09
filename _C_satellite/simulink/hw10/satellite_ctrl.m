@@ -13,17 +13,17 @@ function tau=satellite_ctrl(in,P)
         flag = 0;
     end
     
-    % compute the desired angled angle using the outer loop control
-    phi_r = phi_r/P.k_DC_phi;
-    theta_r = PID_phi(phi_r,phi,flag,P.kp_phi,P.ki_phi,P.kd_phi,...
+    % outer loop computes theta_r
+    theta_r = PID_phi(phi_r,phi,flag,...
+                      P.kp_phi,P.ki_phi,P.kd_phi,...
                       P.Ts,P.sigma);
-    % compute the force using the inner loop
-    tau     = PD_th(theta_r,theta,flag,P.kp_th,P.kd_th,...
+    % inner loop computes torque tau
+    tau = PD_th(theta_r,theta,flag,P.kp_th,P.kd_th,...
                     P.taumax,P.Ts,P.sigma);
     
 end
 
-%------------------------------------------------------------
+%-----------------------------------------------------
 % PID control for position
 function u = PID_phi(phi_r,phi,flag,kp,ki,kd,Ts,sigma)
     % declare persistent variables
@@ -57,7 +57,6 @@ function u = PID_phi(phi_r,phi,flag,kp,ki,kd,Ts,sigma)
     u = kp*error + ki*integrator -kd*phidot;
     
 end
-
 
 %------------------------------------------------------------
 % PID control for angle theta

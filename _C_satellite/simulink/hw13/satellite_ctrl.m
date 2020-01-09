@@ -1,22 +1,13 @@
 function out=satellite_ctrl(in, P)
     phi_r     = in(1);
-    theta_m   = in(2);
-    phi_m     = in(3);
+    y         = [in(2); in(3)];
     t         = in(4);
     
-    % implement observer
-    persistent xhat % estimated state
     persistent tau
     if t<P.Ts
-        xhat = [0;0;0;0];
         tau    = 0;
     end
-    N = 10;
-    for i=1:N
-        xhat = xhat + ...
-            P.Ts/N*(P.A*xhat+P.B*tau...
-              +P.L*([theta_m;phi_m]-P.C*xhat));
-    end
+    xhat = update_observer(t, y, tau, P);
     phihat = xhat(2);
     
     % integrator
@@ -41,13 +32,29 @@ function out=satellite_ctrl(in, P)
        integrator = integrator...
            + P.Ts/P.ki*(tau-tau_unsat);
     end
-    
     out = [tau; xhat];
-
 end
 
-%-----------------------------------------------------
-% saturation function
+function x_hat = update_observer(t, y, u, P)
+    persistent xhat % estimated state
+    if t<P.Ts
+        xhat = [0;0;0;0];
+    end
+    % update observer using RK4 integration
+    F1 = observer_f(xhat, y, u, P);
+    F2 = observer_f(xhat + P.Ts/2*F1, y, u, P);
+    F3 = observer_f(xhat + P.Ts/2*F2, y, u, P);
+    F4 = observer_f(xhat + P.Ts*F3, y, u, P);
+    xhat = xhat + P.Ts/6 * (F1 + 2*F2 + 2*F3 + F4);
+    x_hat = xhat;
+end
+
+function x_hat_dot = observer_f(x_hat, y, u, P)
+    x_hat_dot = P.A * x_hat...
+                + P.B * u...
+                + P.L * (y - P.C * x_hat);
+end
+
 function out = sat(in,limit)
     if     in > limit,      out = limit;
     elseif in < -limit,     out = -limit;
