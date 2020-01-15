@@ -16,7 +16,7 @@ class pendulumController:
         error = z_r - z
         self.integrateError(error)
         # Compute the state feedback controller
-        F_unsat = -self.K @ x - self.ki*self.integrator
+        F_unsat = np.matmul(-self.K, x) - self.ki*self.integrator
         F_sat = self.saturate(F_unsat)
         return F_sat.item(0)
 
