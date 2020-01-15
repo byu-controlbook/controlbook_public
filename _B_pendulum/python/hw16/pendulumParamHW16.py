@@ -6,7 +6,7 @@ sys.path.append('../hw10')  # add parent directory
 import pendulumParamHW10 as P10
 # import numpy as np
 # from scipy import signal
-import control as cnt
+from control.matlab import bode
 from control import TransferFunction as tf
 import matplotlib.pyplot as plt
 
@@ -22,13 +22,13 @@ C_out = tf([P10.kd_z+P10.kp_z*P10.sigma, P10.kp_z+P10.ki_z*P10.sigma, P10.ki_z],
 
 
 # display bode plots of transfer functions
-plt.figure(1), plt.clf, plt.hold(True), plt.grid(True)
-cnt.matlab.bode(P_in, P_in*C_in, dB=True)
+plt.figure(1), plt.clf, plt.grid(True)
+bode(P_in, P_in*C_in, dB=True)
 #plt.legend('No control', 'PD')
 plt.title('Inverted Pendulum, Inner Loop')
 
-plt.figure(2), plt.clf, plt.hold(True), plt.grid(True)
-cnt.matlab.bode(P_out, P_out*C_out, tf([1.0], [1.0, 0.0]), dB=True)
+plt.figure(2), plt.clf, plt.grid(True)
+bode(P_out, P_out*C_out, tf([1.0], [1.0, 0.0]), dB=True)
 #legend('No control', 'PID','1/s')
 plt.title('Inverted Pendulum, Outer Loop')
 
