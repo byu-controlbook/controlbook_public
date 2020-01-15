@@ -32,7 +32,7 @@ class pendulumController:
         self.integrateError(error)
 
         # Compute the state feedback controller
-        F_unsat = -self.K @ x_hat \
+        F_unsat = np.matmul(-self.K, x_hat) \
                   - self.ki * self.integrator \
                   - d_hat
         F = self.saturate(F_unsat.item(0))
@@ -55,9 +55,9 @@ class pendulumController:
 
     def obsv_f(self, x_hat, y_m):
         # xhatdot = A*xhat + B*(u-ue) + L(y-C*xhat)
-        xhat_dot = self.A @ x_hat \
+        xhat_dot = np.matmul(self.A, x_hat) \
                    + self.B * self.F_d1 \
-                   + self.L @ (y_m - self.C @ x_hat)
+                   + np.matmul(self.L, (y_m - np.matmul(self.C, x_hat)))
         return xhat_dot
 
     def integrateError(self, error):
