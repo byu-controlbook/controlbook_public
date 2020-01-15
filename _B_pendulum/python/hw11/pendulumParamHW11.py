@@ -50,7 +50,7 @@ if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 4:
 else:
     K = cnt.acker(A, B, des_poles)
     Cr = np.array([[1.0, 0.0, 0.0, 0.0]])
-    kr = -1.0/(Cr*np.linalg.inv(A-B@K)@B)
+    kr = -1.0/(Cr*np.matmul(np.linalg.inv(A-np.matmul(B,K)),B))
 
 print('K: ', K)
 print('kr: ', kr)

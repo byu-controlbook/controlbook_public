@@ -10,7 +10,7 @@ class pendulumController:
 
     def update(self, z_r, x):
         # Compute the state feedback controller
-        F_unsat = -self.K @ x + self.kr * z_r
+        F_unsat = np.matmul(-self.K, x) + self.kr * z_r
         F_sat = self.saturate(F_unsat)
         return F_sat.item(0)
 
