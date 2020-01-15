@@ -28,7 +28,7 @@ class dataPlotterObserver:
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='z (m)', title='Pendulum Data'))
+        self.handle.append(myPlot(self.ax[0], ylabel='z (m)', title='Observer Data'))
         self.handle.append(myPlot(self.ax[1], ylabel='theta (deg)'))
         self.handle.append(myPlot(self.ax[2], ylabel='z_dot (m/s)'))
         self.handle.append(myPlot(self.ax[3], ylabel='theta_dot (deg/s)'))

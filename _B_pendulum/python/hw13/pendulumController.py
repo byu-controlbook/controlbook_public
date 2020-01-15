@@ -47,9 +47,9 @@ class pendulumController:
 
     def observer_f(self, x_hat, y_m):
         # xhatdot = A*xhat + B*u + L(y-C*xhat)
-        xhat_dot = self.A @ x_hat \
+        xhat_dot = np.matmul(self.A, x_hat) \
                    + self.B * self.F_d1 \
-                   + self.L @ (y_m-self.C @ x_hat)
+                   + np.matmul(self.L, (y_m-np.matmul(self.C, x_hat)))
         return xhat_dot
 
     def integrate_error(self, error):
