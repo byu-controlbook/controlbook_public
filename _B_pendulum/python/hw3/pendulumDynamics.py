@@ -49,7 +49,8 @@ class pendulumDynamics:
                        + F - self.b*zdot],
                        [self.m1 * self.g * (self.ell/2.0)
                         * np.sin(theta)]])
-        tmp = np.linalg.inv(M) @ C
+        tmp = np.linalg.inv(M)
+        tmp = np.matmul(tmp,C)
         zddot = tmp.item(0)
         thetaddot = tmp.item(1)
         # build xdot and return
