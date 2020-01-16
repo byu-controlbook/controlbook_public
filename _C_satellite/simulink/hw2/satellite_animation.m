@@ -38,22 +38,6 @@ function satellite_animation(u, P)
               -2*P.length, 2*P.length]);
           
           figure(2), clf
-          % plot data
-%           subplot(3, 1, 1)
-%           hold on
-%           phi_ref_handle = plot(time_history, phi_ref_history, 'g');
-%           phi_handle    = plot(time_history, phi_history, 'b');
-%           ylabel('phi(deg)')
-%           title('Satellite Data')
-%           subplot(3, 1, 2)
-%           hold on
-%           theta_handle    = plot(time_history, theta_history, 'b');
-%           ylabel('theta(deg)')
-%           subplot(3, 1, 3)
-%           hold on
-%           torque_handle    = plot(time_history, torque_history, 'b');
-%           ylabel('torque(Nm)')
-
           subplot(3, 1, 1)
           hold on
           phi_ref_handle = plot(0, 0, 'g'); % First plot has to have some values, and at this point time_history, theta_history, etc, are all empty.
