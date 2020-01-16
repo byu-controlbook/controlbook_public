@@ -43,11 +43,11 @@ class transferFunction:
         F3 = self.f(self.state + self.Ts / 2 * F2, u)
         F4 = self.f(self.state + self.Ts * F3, u)
         self.state += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
-        y = self.C @ self.state + self.D * u
+        y = np.matmul(self.C, self.state) + self.D * u
         return y.item(0)
 
     def f(self, state, u):
-        xdot = self.A @ state + self.B * u
+        xdot = np.matmul(self.A, state) + self.B * u
         return xdot
 
 if __name__ == "__main__":

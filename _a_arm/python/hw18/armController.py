@@ -26,7 +26,7 @@ class armController:
 
         # compute total torque
         tau = self.saturate(tau_fl + tau_tilde)
-        return tau
+        return tau.item(0)
 
     def saturate(self,u):
         if abs(u) > self.limit:
