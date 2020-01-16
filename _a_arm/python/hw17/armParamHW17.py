@@ -7,6 +7,7 @@ import armParamHW10 as P10
 import numpy as np
 # from scipy import signal
 import control as cnt
+from control import matlab as mat
 from control import TransferFunction as tf
 import matplotlib.pyplot as plt
 
@@ -21,8 +22,8 @@ C_pid = tf([(P10.kd+P10.kp*P.sigma), (P10.kp+P10.ki*P.sigma), P10.ki],
 
 
 # display bode plots of transfer functions
-plt.figure(3), plt.clf, plt.hold(True), plt.grid(True)
-cnt.matlab.bode(Plant, Plant*C_pid, dB=True)
+plt.figure(3), plt.clf, plt.grid(True)
+mat.bode(Plant, Plant*C_pid, dB=True)
 #plt.legend('No control', 'PID')
 plt.title('Single Link Arm')
 
