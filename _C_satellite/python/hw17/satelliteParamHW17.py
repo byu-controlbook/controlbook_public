@@ -6,6 +6,7 @@ sys.path.append('../hw10')  # add parent directory
 import satelliteParamHW10 as P10
 # import numpy as np
 # from scipy import signal
+from control.matlab import bode
 import control as cnt
 from control import TransferFunction as tf
 import matplotlib.pyplot as plt
@@ -19,13 +20,13 @@ C_in = tf([(P10.kd_th+P10.sigma*P10.kp_th), P10.kp_th], [P10.sigma, 1])
 C_out = tf([(P10.kd_phi+P10.kp_phi*P10.sigma), (P10.kp_phi+P10.ki_phi*P10.sigma), P10.ki_phi], [P10.sigma, 1, 0])
 
 # Plot the closed loop and open loop bode plots for the inner loop
-plt.figure(3), plt.clf(), plt.hold(True), plt.grid(True)
-cnt.matlab.bode(P_in*C_in, dB=True)
+plt.figure(3), plt.clf(), plt.grid(True)
+bode(P_in*C_in, dB=True)
 cnt.bode(P_in*C_in/(1+P_in*C_in), dB = True)
 
 # Plot the closed loop and open loop bode plots for the outer loop
-plt.figure(4), plt.clf(), plt.hold(True), plt.grid(True)
-cnt.matlab.bode(P_out*C_out, dB=True)
+plt.figure(4), plt.clf(), plt.grid(True)
+bode(P_out*C_out, dB=True)
 cnt.bode(P_out*C_out/(1+P_out*C_out), dB = True)
 
 # Calculate the phase and gain margin
