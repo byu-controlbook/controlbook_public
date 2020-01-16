@@ -56,7 +56,7 @@ function satellite_animation(u, P)
 
           subplot(3, 1, 1)
           hold on
-          phi_ref_handle = plot(0, 0, 'g');
+          phi_ref_handle = plot(0, 0, 'g'); % First plot has to have some values, and at this point time_history, theta_history, etc, are all empty.
           phi_handle    = plot(0, 0, 'b');
           ylabel('phi(deg)')
           title('Satellite Data')
