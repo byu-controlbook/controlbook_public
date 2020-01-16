@@ -26,8 +26,8 @@ class dataPlotterObserver:
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='theta (deg)', title='Arm Data'))
-        self.handle.append(myPlot(self.ax[1], ylabel='theta_dot (deg/s)', title='Arm Data'))
+        self.handle.append(myPlot(self.ax[0], ylabel='theta (deg)', title='Observer Data'))
+        self.handle.append(myPlot(self.ax[1], ylabel='theta_dot (deg/s)'))
         self.handle.append(myPlot(self.ax[2], xlabel='t(s)', ylabel='d'))
 
     def update(self, t, x, x_hat, d, d_hat):
