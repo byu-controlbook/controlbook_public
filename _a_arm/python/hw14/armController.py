@@ -36,7 +36,7 @@ class armController:
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta_hat)
 
         # Compute the state feedback controller
-        tau_tilde = -self.K @ x_hat - self.ki * self.integrator - d_hat
+        tau_tilde = np.matmul(-self.K, x_hat) - self.ki * self.integrator - d_hat
 
         # compute total torque
         tau = self.saturate(tau_fl + tau_tilde.item(0))
@@ -59,9 +59,9 @@ class armController:
         theta_hat = x_hat.item(0)
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta_hat)
         # xhatdot = A*xhat + B*(u-ue) + L(y-C*xhat)
-        xhat_dot = self.A2 @ x_hat\
+        xhat_dot = np.matmul(self.A2, x_hat)\
                    + self.B2 * (self.tau_d1 - tau_fl)\
-                   + self.L2 * (y_m - self.C2 @ x_hat)
+                   + self.L2 * (y_m - np.matmul(self.C2, x_hat))
         return xhat_dot
 
     def integrateError(self, error):
