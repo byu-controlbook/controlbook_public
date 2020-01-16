@@ -39,7 +39,7 @@ class satelliteDynamics:
                        [0, self.Jp]])
         C = np.array([[tau - self.b*(thetadot-phidot)-self.k*(theta-phi)],
                        [-self.b*(phidot-thetadot)-self.k*(phi-theta)]])
-        tmp = np.linalg.inv(M) @ C
+        tmp = np.matmul(np.linalg.inv(M), C)
         thetaddot = tmp.item(0)
         phiddot = tmp.item(1)
         # build xdot and return
