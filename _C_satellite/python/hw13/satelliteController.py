@@ -31,7 +31,7 @@ class satelliteController:
         self.integrateError(error)
 
         # Compute the state feedback controller
-        tau_unsat = -self.K @ x_hat \
+        tau_unsat = np.matmul(-self.K, x_hat) \
                     - self.ki*self.integrator
         tau = self.saturate(tau_unsat.item(0))
         self.tau_d1 = tau
@@ -48,9 +48,9 @@ class satelliteController:
 
     def observer_f(self, x_hat, y_m):
         # xhatdot = A*xhat + B*u + L(y-C*xhat)
-        xhat_dot = self.A @ x_hat \
+        xhat_dot = np.matmul(self.A, x_hat) \
                    + self.B * self.tau_d1 \
-                   + self.L @ (y_m - self.C @ x_hat)
+                   + np.matmul(self.L, (y_m - np.matmul(self.C, x_hat)))
         return xhat_dot
 
     def integrateError(self, error):

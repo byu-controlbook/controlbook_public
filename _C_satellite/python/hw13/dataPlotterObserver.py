@@ -28,7 +28,7 @@ class dataPlotterObserver:
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='theta (deg)', title='Satellite Data'))
+        self.handle.append(myPlot(self.ax[0], ylabel='theta (deg)', title='Observer Data'))
         self.handle.append(myPlot(self.ax[1], ylabel='phi (deg)'))
         self.handle.append(myPlot(self.ax[2], ylabel='theta_dot (deg/s)'))
         self.handle.append(myPlot(self.ax[3], ylabel='phi_dot (deg/s)'))
