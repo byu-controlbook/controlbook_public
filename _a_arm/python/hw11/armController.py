@@ -17,11 +17,11 @@ class armController:
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
 
         # Compute the state feedback controller
-        tau_tilde = -self.K @ x + self.kr * theta_r
+        tau_tilde = np.matmul(-self.K, x) + self.kr * theta_r
 
         # compute total torque
         tau = self.saturate(tau_fl + tau_tilde)
-        return tau
+        return tau.item(0)
 
     def saturate(self,u):
         if abs(u) > self.limit:

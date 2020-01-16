@@ -37,7 +37,7 @@ if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 2:
     print("The system is not controllable")
 else:
     K = cnt.acker(A, B, des_poles)
-    kr = -1.0/(C @ np.linalg.inv(A - B @ K) @ B)
+    kr = -1.0/(np.matmul(np.matmul(C, np.linalg.inv(A - np.matmul(B, K))), B))
 
 print('K: ', K)
 print('kr: ', kr)
