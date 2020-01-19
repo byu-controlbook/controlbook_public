@@ -2,11 +2,9 @@ function satellite_animation(u, P)
     % process inputs to function
     theta     = u(1);
     phi       = u(2);
-    thetadot  = u(3);
-    phidot    = u(4);
-    reference = u(5);
-    torque    = u(6);
-    t         = u(7);
+    reference = u(3);
+    ctrl      = u(4);
+    t         = u(5);
     
     % define persistent variables 
     persistent base_handle
@@ -64,7 +62,7 @@ function satellite_animation(u, P)
         phi_ref_history(end+1) = 180/pi*reference;
         phi_history(end+1) = 180/pi*phi;
         theta_history(end+1) = 180/pi*theta;
-        torque_history(end+1) = torque;
+        torque_history(end+1) = ctrl;
         
         % update the plots with associated histories
         set(phi_ref_handle, 'Xdata', time_history, 'Ydata', phi_ref_history)

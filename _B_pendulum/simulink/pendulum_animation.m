@@ -3,11 +3,11 @@ function pendulumAnimation(u)
 % process inputs to function
 z         = u(1);
 theta     = u(2);
-zdot      = u(3);
-thetadot  = u(4);
-reference = u(5);
-ctrl      = u(6);
-t         = u(7);
+%zdot      = u(3);
+%thetadot  = u(4);
+reference = u(3);
+ctrl      = u(4);
+t         = u(5);
 
 % drawing parameters
 L = 1;

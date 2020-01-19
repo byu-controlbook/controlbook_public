@@ -2,10 +2,9 @@ function drawArm(u,P)
 
     % process inputs to function
     theta     = u(1);
-    thetadot  = u(2);
-    reference = u(3);
-    ctrl      = u(4);
-    t         = u(5);
+    reference = u(2);
+    ctrl      = u(3);
+    t         = u(4);
 
 
     % define persistent variables 
@@ -73,7 +72,7 @@ function handle = drawLink(theta, L, w, handle)
   X = pts(1,:);
   Y = pts(2,:);
   
-  if isempty(handle),
+  if isempty(handle)
     handle = fill(X,Y,'b');
   else
     set(handle,'XData',X,'YData',Y);
