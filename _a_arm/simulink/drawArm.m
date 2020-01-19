@@ -4,7 +4,7 @@ function drawArm(u,P)
     theta     = u(1);
     thetadot  = u(2);
     reference = u(3);
-    torque =    u(4);
+    ctrl      = u(4);
     t         = u(5);
 
 
@@ -48,7 +48,7 @@ function drawArm(u,P)
         time_history(end+1) = t;
         theta_ref_history(end+1) = 180/pi*reference;
         theta_history(end+1) = 180/pi*theta;
-        torque_history(end+1) = torque;
+        torque_history(end+1) = ctrl;
         
         % update the plots with associated histories
         set(theta_ref_handle, 'Xdata', time_history, 'Ydata', theta_ref_history)

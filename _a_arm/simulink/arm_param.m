@@ -1,3 +1,4 @@
+% Clear all previous persistent variables
 clear all
 
 % Physical parameters of arm known to the controller

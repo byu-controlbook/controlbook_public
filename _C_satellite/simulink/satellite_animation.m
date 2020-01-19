@@ -1,15 +1,27 @@
 function satellite_animation(u, P)
-
     % process inputs to function
-    theta    = u(1);
-    phi      = u(2);
-    %thetadot = u(3);
-    %phidot   = u(4);
-    t        = u(5);
+    theta     = u(1);
+    phi       = u(2);
+    thetadot  = u(3);
+    phidot    = u(4);
+    reference = u(5);
+    torque    = u(6);
+    t         = u(7);
     
     % define persistent variables 
     persistent base_handle
     persistent panel_handle
+    
+    persistent time_history
+    persistent theta_history
+    persistent phi_history
+    persistent phi_ref_history
+    persistent torque_history
+    
+    persistent phi_ref_handle
+    persistent phi_handle
+    persistent theta_handle
+    persistent torque_handle
     
     % initialize plot and persistent vars at t=0
     if t==0
@@ -24,25 +36,46 @@ function satellite_animation(u, P)
             = drawPanel(phi,P.width,P.length,[]);
         axis([-2*P.length, 2*P.length,...
               -2*P.length, 2*P.length]);
-    
+          
+          figure(2), clf
+          subplot(3, 1, 1)
+          hold on
+          phi_ref_handle = plot(0, 0, 'g'); % First plot has to have some values, and at this point time_history, theta_history, etc, are all empty.
+          phi_handle    = plot(0, 0, 'b');
+          ylabel('phi(deg)')
+          title('Satellite Data')
+          subplot(3, 1, 2)
+          hold on
+          theta_handle    = plot(0, 0, 'b');
+          ylabel('theta(deg)')
+          subplot(3, 1, 3)
+          hold on
+          torque_handle    = plot(0, 0, 'b');
+          ylabel('torque(Nm)')
+          
+          
         
-    % otherwise, redraw base and rod
     else 
         drawBase(theta, P.width, base_handle);
         drawPanel(phi, P.width, P.length, ...
-                  panel_handle);
+            panel_handle);
+        
+        time_history(end+1) = t;
+        phi_ref_history(end+1) = 180/pi*reference;
+        phi_history(end+1) = 180/pi*phi;
+        theta_history(end+1) = 180/pi*theta;
+        torque_history(end+1) = torque;
+        
+        % update the plots with associated histories
+        set(phi_ref_handle, 'Xdata', time_history, 'Ydata', phi_ref_history)
+        set(phi_handle, 'Xdata', time_history, 'Ydata', phi_history)
+        set(theta_handle, 'Xdata', time_history, 'Ydata', theta_history)
+        set(torque_handle, 'Xdata', time_history, 'Ydata', torque_history)
+        drawnow
     end
 end
-
    
-%
 %=============================================
-% drawBase
-% draw the base of the pendulum
-% return handle if 3rd argument is empty, 
-% otherwise use 3rd arg as handle
-%=============================================
-%
 function handle = drawBase(theta, w, handle)
 
   % define points on base (without rotation)
@@ -77,17 +110,8 @@ function handle = drawBase(theta, w, handle)
   end
 end
  
-%
 %=============================================
-% drawPanel
-% draw the solar panel
-% return handle if 3rd argument is empty, 
-% otherwise use 3rd arg as handle
-%=============================================
-%
 function handle = drawPanel(phi, w, L, handle)
-
-% define points on base (without rotation)
   pts = [...
       -L, -w/6;...
        L, -w/6;...
