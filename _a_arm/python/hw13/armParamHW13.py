@@ -42,7 +42,7 @@ B1 = np.array([[0.0],
 wn = 2.2/tr  # natural frequency
 des_char_poly = np.convolve(
     [1, 2*zeta*wn, wn**2],
-    np.poly(integrator_pole))
+    [1, integrator_pole])
 des_poles = np.roots(des_char_poly)
 
 # Compute the gains if the system is controllable
