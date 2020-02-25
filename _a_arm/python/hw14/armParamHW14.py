@@ -42,10 +42,13 @@ B1 = np.array([[0.0],
 
 # gain calculation
 wn = 2.2/tr  # natural frequency
-des_char_poly = np.convolve(
-    [1, 2*zeta*wn, wn**2],
-    np.poly(integrator_pole))
-des_poles = np.roots(des_char_poly)
+#des_char_poly = np.convolve(
+#    [1, 2*zeta*wn, wn**2],
+#    np.poly(integrator_pole))
+#des_poles = np.roots(des_char_poly)
+des_char_est = np.array([1., 2.*zeta*wn_obs, wn_obs**2.])
+des_poles_est = np.roots(des_char_est)
+des_poles = np.concatenate((des_poles_est,dist_obsv_pole*np.ones(1)))
 
 # Compute the gains if the system is controllable
 if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 3:
