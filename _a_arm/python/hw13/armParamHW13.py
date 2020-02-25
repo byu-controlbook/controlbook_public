@@ -8,7 +8,7 @@ import armParam as P
 #  tuning parameters
 tr = 0.4
 zeta = 0.707
-integrator_pole = -5
+integrator_pole = 5
 wn_obs = 10  # natural frequency for observer
 zeta_obs = 0.707  # damping ratio for observer
 
