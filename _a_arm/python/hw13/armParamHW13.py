@@ -8,7 +8,7 @@ import armParam as P
 #  tuning parameters
 tr = 0.4
 zeta = 0.707
-integrator_pole = 5
+integrator_pole = 9
 wn_obs = 10  # natural frequency for observer
 zeta_obs = 0.707  # damping ratio for observer
 
@@ -22,6 +22,7 @@ g = P.g
 # State Space Equations
 A = np.array([[0.0, 1.0],
                [0.0, -1.0*P.b/P.m/(P.ell**2)]])
+n = A.shape[0]
 
 B = np.array([[0.0],
                [3.0/P.m/(P.ell**2)]])
@@ -54,8 +55,8 @@ else:
     ki = K1.item(2)
 
 # observer design
-des_obsv_char_poly = [1, 2*zeta_obs*wn_obs, wn_obs**2]
-des_obsv_poles = np.roots(des_obsv_char_poly)
+#des_obsv_char_poly = [1, 2*zeta_obs*wn_obs, wn_obs**2]
+des_obsv_poles = des_poles[0:n]*2. #np.roots(des_obsv_char_poly)
 
 # Compute the gains if the system is controllable
 if np.linalg.matrix_rank(cnt.ctrb(A.T, C.T)) != 2:
