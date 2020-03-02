@@ -46,7 +46,7 @@ end
 % observer design
 
 % desired observer poles
-des_obsv_char_poly = [1,2*zeta*wn,wn^2];
+des_obsv_char_poly = [1,2*zeta*wn_obs,wn_obs^2];
 des_obsv_poles = roots(des_obsv_char_poly);
 
 % is the system observable?
