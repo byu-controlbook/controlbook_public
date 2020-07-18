@@ -7,7 +7,7 @@ armParam % general arm parameters
 % tuned to get fastest possible rise time before saturation.
 tr = 0.4;  
 zeta = 0.707;
-% equalibrium torque
+% equilibrium torque
 P.theta_e = 0*pi/180;
 P.tau_e   = P.m*P.g*P.ell/2*cos(P.theta_e);
 
