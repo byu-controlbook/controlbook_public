@@ -20,17 +20,20 @@ animation = satelliteAnimation()
 
 t = P.t_start  # time starts at t_start
 while t < P.t_end:  # main simulation loop
+
     # set variables
     r = reference.square(t)
     theta = thetaRef.sin(t)
     phi = phiRef.sin(t)
     tau = tauRef.sawtooth(t)
+
     # update animation
     state = np.array([[theta], [phi], [0.0], [0.0]])
     animation.update(state)
     dataPlot.update(t, r, state, tau)
 
-    t = t + P.t_plot  # advance time by t_plot
+    # advance time by t_plot
+    t = t + P.t_plot  
     plt.pause(0.1)
 
 # Keeps the program from closing until the user presses a button.
