@@ -10,11 +10,21 @@ class armDynamics:
             [P.theta0],      # initial angle
             [P.thetadot0]
         ])  # initial angular rate
-        self.m = P.m * (1.+alpha*(2.*np.random.rand()-1.))  # Mass of the arm, kg
-        self.ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))  # Length of the arm, m
-        self.b = P.b * (1.+alpha*(2.*np.random.rand()-1.))  # Damping coefficient, Ns
-        self.g = P.g  # the gravity constant is well known and so we don't change it.
-        self.Ts = P.Ts  # sample rate at which the dynamics are propagated
+
+        # Mass of the arm, kg
+        self.m = P.m * (1.+alpha*(2.*np.random.rand()-1.))
+
+        # Length of the arm, m
+        self.ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))
+
+        # Damping coefficient, Ns
+        self.b = P.b * (1.+alpha*(2.*np.random.rand()-1.))  
+
+        # the gravity constant is well known, so we don't change it.
+        self.g = P.g
+
+        # sample rate at which the dynamics are propagated
+        self.Ts = P.Ts  
         self.torque_limit = P.tau_max
 
     def update(self, u):
