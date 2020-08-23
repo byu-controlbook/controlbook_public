@@ -23,7 +23,8 @@ while t < P.t_end:  # main simulation loop
     theta = thetaRef.sin(t)
     tau = tauRef.sawtooth(t)
     # update animation
-    state = [theta[0], 0.0]
+
+    state = np.array([[theta], [0.0]])
     animation.update(state)
     dataPlot.update(t, r, state, tau)
 

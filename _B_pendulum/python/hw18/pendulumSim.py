@@ -8,19 +8,17 @@ from pendulumController import pendulumController
 from hw2.signalGenerator import signalGenerator
 from hw2.pendulumAnimation import pendulumAnimation
 from hw2.dataPlotter import dataPlotter
-from dataPlotterObserver import dataPlotterObserver
 
 # instantiate pendulum, controller, and reference classes
-pendulum = pendulumDynamics(alpha=0.0)
+pendulum = pendulumDynamics(alpha = 0.2)
 controller = pendulumController()
 reference = signalGenerator(amplitude=0.5, frequency=0.05)
 disturbance = signalGenerator(amplitude=0.5)
-noise_z = signalGenerator(amplitude=0.01)
-noise_th = signalGenerator(amplitude=0.01)
+noise_z = signalGenerator(amplitude=0.001)
+noise_th = signalGenerator(amplitude=0.001)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
-dataPlotObserver = dataPlotterObserver()
 animation = pendulumAnimation()
 
 t = P.t_start  # time starts at t_start
@@ -33,16 +31,20 @@ while t < P.t_end:  # main simulation loop
 
     while t < t_next_plot:
         r = reference.square(t)
-        d = 0  #disturbance.step(t)
-        n = np.array([[0.0], [0.0]])
-        u, xhat = controller.update(r, y + n)
-        y = pendulum.update(u + d)  # propagate system
+
+        # the homework does not mention disturbance rejection for this
+        # problem
+        d = 0.0  #input disturbance
+        
+        # sensor noise 
+        n = np.array([[noise_z.random(t)], [noise_th.random(t)]])
+        u = controller.update(r, y + n) # calc control
+        y = pendulum.update(u[0] + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
 
     # update animation and data plots
     animation.update(pendulum.state)
     dataPlot.update(t, r, pendulum.state, u)
-    dataPlotObserver.update(t, pendulum.state, xhat, d, 0.0)
     plt.pause(0.0001)
 
 # Keeps the program from closing until the user presses a button.

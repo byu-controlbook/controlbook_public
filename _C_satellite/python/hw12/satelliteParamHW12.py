@@ -5,7 +5,7 @@ import sys
 sys.path.append('..')  # add parent directory
 import satelliteParam as P
 
-# import variables from satelliteParam for later import through current file
+# import variables from satelliteParam 
 Ts = P.Ts
 sigma = P.sigma
 beta = P.beta
@@ -16,7 +16,7 @@ wn_th = 0.6
 wn_phi = 1.1    # rise time for angle
 zeta_phi = 0.707  # damping ratio position
 zeta_th = 0.707  # damping ratio angle
-integrator_pole = -1
+integrator_pole = np.array([-1])
 
 
 # State Space Equations

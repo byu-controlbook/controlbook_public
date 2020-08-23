@@ -32,8 +32,10 @@ class armDynamics:
         # t and returns the output y at time t.
         # saturate the input torque
         u = self.saturate(u, self.torque_limit)
+        
         self.rk4_step(u)  # propagate the state by one time sample
         y = self.h()  # return the corresponding output
+
         return y
 
     def f(self, state, tau):
@@ -41,21 +43,20 @@ class armDynamics:
         # re-label states for readability
         theta = state.item(0)
         thetadot = state.item(1)
-        xdot = np.array([
-            [thetadot],
-            [(3.0/self.m/self.ell**2) *
-             (tau - self.b*thetadot
-              - self.m*self.g*self.ell/2.0*np.cos(theta))],
-        ])
+        thetaddot = (3.0/self.m/self.ell**2) * \
+                    (tau - self.b*thetadot \
+                     - self.m*self.g*self.ell/2.0*np.cos(theta))
+        xdot = np.array([[thetadot],
+                         [thetaddot]])
+        
         return xdot
 
     def h(self):
         # return the output equations
         # could also use input u if needed
         theta = self.state.item(0)
-        y = np.array([
-            [theta],
-        ])
+        y = np.array([[theta]])
+
         return y
 
     def rk4_step(self, u):
@@ -69,4 +70,5 @@ class armDynamics:
     def saturate(self, u, limit):
         if abs(u) > limit:
             u = limit*np.sign(u)
+
         return u

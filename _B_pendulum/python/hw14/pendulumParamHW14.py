@@ -37,6 +37,7 @@ B = np.array([[0.0],
                [-3.0/2/(.25*P.m1+P.m2)/P.ell]])
 C = np.array([[1.0, 0.0, 0.0, 0.0],
                [0.0, 1.0, 0.0, 0.0]])
+
 # form augmented system
 Cr = np.array([[1.0, 0.0, 0.0, 0.0]])
 

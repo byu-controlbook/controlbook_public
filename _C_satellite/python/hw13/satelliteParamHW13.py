@@ -6,7 +6,6 @@ import sys
 sys.path.append('..')  # add parent directory
 import satelliteParam as P
 
-# import variables from satelliteParam for later import through current file
 Ts = P.Ts
 sigma = P.sigma
 beta = P.beta
@@ -69,15 +68,18 @@ else:
     ki = K1.item(4)
 
 # computer observer gains
-des_obs_char_poly = np.convolve([1, 2*zeta_phi*wn_phi_obs, wn_phi_obs**2],
-                                 [1, 2*zeta_th*wn_th_obs, wn_th_obs**2])
+des_obs_char_poly = np.convolve([1, 2*zeta_phi*wn_phi_obs,
+                                 wn_phi_obs**2],
+                                [1, 2*zeta_th*wn_th_obs,
+                                 wn_th_obs**2])
 des_obs_poles = np.roots(des_obs_char_poly)
 
 # Compute the gains if the system is observable
 if np.linalg.matrix_rank(cnt.ctrb(A.T, C.T)) != 4:
     print("The system is not observable")
 else:
-    # place_poles returns an object with various properties.  The gains are accessed through .gain_matrix
+    # place_poles returns an object with various properties.
+    # The gains are accessed through .gain_matrix
     # .T transposes the matrix
     L = signal.place_poles(A.T, C.T, des_obs_poles).gain_matrix.T
 

@@ -168,12 +168,5 @@ if PLOT:
 ##############################################
 #  Convert Controller to State Space Equations
 ##############################################
-C_num = np.asarray(C.num[0])
-C_den = np.asarray(C.den[0])
-F_num = np.asarray(F.num[0])
-F_den = np.asarray(F.den[0])
-
 C_ss = cnt.tf2ss(C)  # convert to state space
 F_ss = cnt.tf2ss(F)  # convert to state space
-foo = 1
-

@@ -15,7 +15,7 @@ g = P.g
 #  tuning parameters
 tr = 0.4
 zeta = 0.707
-integrator_pole = -5
+integrator_pole = np.array([-5])
 
 # State Space Equations
 # xdot = A*x + B*u

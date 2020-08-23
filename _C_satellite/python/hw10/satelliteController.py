@@ -12,12 +12,15 @@ class satelliteController:
     def update(self, phi_r, y):
         theta = y.item(0)
         phi = y.item(1)
+
         # the reference angle for theta comes from
         # the outer loop PD control
         theta_r = self.phiCtrl.PID(phi_r, phi, flag=False)
+
         # the torque applied to the base comes from
         # the inner loop PD control
         tau = self.thetaCtrl.PID(theta_r, theta, flag=False)
+
         return tau
 
 
