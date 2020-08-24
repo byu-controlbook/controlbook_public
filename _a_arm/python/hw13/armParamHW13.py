@@ -69,4 +69,3 @@ print('ki: ', ki)
 print('L^T: ', L.T)
 
 
-

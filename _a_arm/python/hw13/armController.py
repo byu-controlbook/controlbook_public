@@ -65,6 +65,7 @@ class armController:
                    + self.B * (self.tau_d1 - tau_fl)\
                    + self.L * (y_m - self.C @ x_hat)
 
+        
         return xhat_dot
 
     def saturate(self,u):

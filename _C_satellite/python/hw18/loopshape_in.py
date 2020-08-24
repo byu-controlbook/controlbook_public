@@ -8,15 +8,17 @@ from control import TransferFunction as tf
 import control as cnt
 import numpy as np 
 
-P_in = tf([P.sigma, 1],
-          [P.sigma*P.Js, (P.sigma*P.b+P.Js), (P.b+P10.kd_th+P.sigma*P.k), P.k])
+P_in = tf([P.sigma, 1], [P.sigma*P.Js, (P.sigma*P.b+P.Js),
+                         (P.b+P10.kd_th+P.sigma*P.k), P.k])
 Plant = P_in
 
 #PLOT = True
 PLOT = False
 
 if PLOT: plt.figure(3), plt.clf() #, plt.hold(True)
-mag, phase, omega = cnt.bode(Plant, dB=True, omega=np.logspace(-3, 5), Plot=False)
+mag, phase, omega = cnt.bode(Plant, dB=True,
+                             omega=np.logspace(-3, 5),
+                             Plot=False)
 if PLOT: 
     plt.subplot(2, 1, 1), plt.grid(True)
     plantMagPlot, = plt.semilogx(omega, mag, label='Plant')
@@ -33,7 +35,10 @@ gamma_r = 10.0**(-40.0/20.0)  # tracking error below this value
 w = np.logspace(np.log10(omega_r)-2, np.log10(omega_r))
 if PLOT:
     plt.subplot(211)
-    noisePlot, = plt.plot(w, (20*np.log10(1.0/gamma_r))*np.ones(len(w)), color='g', label='tracking spec')
+    noisePlot, = plt.plot(w,
+                          (20*np.log10(1.0/gamma_r))*np.ones(len(w)),
+                          color='g',
+                          label='tracking spec')
 
 #----------- noise specification --------
 omega_n = 20    # attenuate noise above this frequency
@@ -41,7 +46,8 @@ gamma_n = 10.0**(-40.0/20.0)    # attenuate noise by this amount
 w = np.logspace(np.log10(omega_n), np.log10(omega_n)+2)
 if PLOT:
     plt.subplot(211)
-    noisePlot, = plt.plot(w, (20*np.log10(gamma_n))*np.ones(len(w)), color='g', label='noise spec')
+    noisePlot, = plt.plot(w, (20*np.log10(gamma_n))*np.ones(len(w)),
+                          color='g', label='noise spec')
 
 
 #########################################
@@ -57,7 +63,8 @@ if PLOT:
     plt.subplot(211)
     openMagPlot, = plt.semilogx(omega, mag, color='r', label='OPEN')
     plt.subplot(212)
-    openPhasePlot, = plt.semilogx(omega, phase, color='r', label='OPEN')
+    openPhasePlot, = plt.semilogx(omega, phase, color='r',
+                                  label='OPEN')
     # Calculate the phase and gain margin
     gm, pm, Wcg, Wcp = cnt.margin(Plant*Control)
     print("pm: ",pm," gm: ", gm," Wcp: ", Wcp, " Wcg: ", Wcg)
@@ -71,7 +78,8 @@ if PLOT:
     plt.subplot(211)
     openMagPlot, = plt.semilogx(omega, mag, color='r', label='OPEN')
     plt.subplot(212)
-    openPhasePlot, = plt.semilogx(omega, phase, color='r', label='OPEN')
+    openPhasePlot, = plt.semilogx(omega, phase, color='r',
+                                  label='OPEN')
     # Calculate the phase and gain margin
     gm, pm, Wcg, Wcp = cnt.margin(Plant * Control)
     print("pm: ", pm, " gm: ", gm, " Wcp: ", Wcp, " Wcg: ", Wcg)
@@ -86,7 +94,8 @@ if PLOT:
 # C = C*Lead
 #
 # # find gain to set crossover at w_max = 25 rad/s
-# mag, phase, omega = cnt.bode(Plant*C, dB=False, omega=[w_max], Plot=False)
+# mag, phase, omega = cnt.bode(Plant*C, dB=False, omega=[w_max],
+#                     Plot=False)
 # K = tf([1/mag.item(0)], [1])
 # C = K*C
 
@@ -120,8 +129,10 @@ if PLOT:
     plt.plot(T, yout, color='b')
     plt.title('Control Effort for Step Response')
 
-    plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
-    # Keeps the program from closing until the user presses a button.
+    # the pause causes the figure to be displayed during the
+    # simulation Keeps the program closing until the user presses a
+    # button.
+    plt.pause(0.0001)  
     print('Press key to close')
     plt.waitforbuttonpress()
     plt.close()
@@ -131,8 +142,11 @@ if PLOT:
 ##############################################
 C_ss = cnt.tf2ss(Control)  # convert to state space
 
-# ########################################################################
-# #  Convert Controller to discrete transfer functions for implementation
-# ########################################################################
-# C_in_d = tf.sample(C, P.Ts, method='bilinear') #bilinear: Tustin's approximation ("generalized bilinear transformation" with alpha=0.5)
+#########################################################
+#  Convert Controller to discrete transfer functions for
+#  implementation
+#########################################################
+#bilinear: Tustin's approximation ("generalized bilinear
+# transformation" with alpha=0.5) C_in_d = tf.sample(C, P.Ts,
+# method='bilinear')
 
