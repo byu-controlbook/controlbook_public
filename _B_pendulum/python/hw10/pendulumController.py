@@ -15,12 +15,15 @@ class pendulumController:
     def update(self, z_r, y):
         z = y.item(0)
         theta = y.item(1)
+
         # the reference angle for theta comes from
         # the outer loop PID control
         theta_r = self.zCtrl.PID(z_r, z, flag=False)
+
         # low pass filter the outer loop to cancel
         # left-half plane zero and DC-gain
         theta_r = self.filter.update(theta_r)
+
         # the force applied to the cart comes from
         # the inner loop PD control
         F = self.thetaCtrl.PD(theta_r, theta, flag=False)

@@ -10,11 +10,21 @@ class armDynamics:
             [P.theta0],      # initial angle
             [P.thetadot0]
         ])  # initial angular rate
-        self.m = P.m * (1.+alpha*(2.*np.random.rand()-1.))  # Mass of the arm, kg
-        self.ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))  # Length of the arm, m
-        self.b = P.b * (1.+alpha*(2.*np.random.rand()-1.))  # Damping coefficient, Ns
-        self.g = P.g  # the gravity constant is well known and so we don't change it.
-        self.Ts = P.Ts  # sample rate at which the dynamics are propagated
+
+        # Mass of the arm, kg
+        self.m = P.m * (1.+alpha*(2.*np.random.rand()-1.))
+
+        # Length of the arm, m
+        self.ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))
+
+        # Damping coefficient, Ns
+        self.b = P.b * (1.+alpha*(2.*np.random.rand()-1.))  
+
+        # the gravity constant is well known, so we don't change it.
+        self.g = P.g
+
+        # sample rate at which the dynamics are propagated
+        self.Ts = P.Ts  
         self.torque_limit = P.tau_max
 
     def update(self, u):
@@ -22,8 +32,10 @@ class armDynamics:
         # t and returns the output y at time t.
         # saturate the input torque
         u = self.saturate(u, self.torque_limit)
+        
         self.rk4_step(u)  # propagate the state by one time sample
         y = self.h()  # return the corresponding output
+
         return y
 
     def f(self, state, tau):
@@ -31,21 +43,20 @@ class armDynamics:
         # re-label states for readability
         theta = state.item(0)
         thetadot = state.item(1)
-        xdot = np.array([
-            [thetadot],
-            [(3.0/self.m/self.ell**2) *
-             (tau - self.b*thetadot
-              - self.m*self.g*self.ell/2.0*np.cos(theta))],
-        ])
+        thetaddot = (3.0/self.m/self.ell**2) * \
+                    (tau - self.b*thetadot \
+                     - self.m*self.g*self.ell/2.0*np.cos(theta))
+        xdot = np.array([[thetadot],
+                         [thetaddot]])
+        
         return xdot
 
     def h(self):
         # return the output equations
         # could also use input u if needed
         theta = self.state.item(0)
-        y = np.array([
-            [theta],
-        ])
+        y = np.array([[theta]])
+
         return y
 
     def rk4_step(self, u):
@@ -59,4 +70,5 @@ class armDynamics:
     def saturate(self, u, limit):
         if abs(u) > limit:
             u = limit*np.sign(u)
+
         return u

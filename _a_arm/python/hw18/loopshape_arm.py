@@ -11,18 +11,21 @@ import numpy as np
 # Compute plant transfer functions
 th_e = 0
 Plant = tf([2.0/P.m/P.ell**2],
-           [1, 2.0*P.b/P.m/P.ell**2, -3.0*P.g*np.sin(th_e)/2/P.ell])
+           [1, 2.0*P.b/P.m/P.ell**2,
+            -3.0*P.g*np.sin(th_e)/2/P.ell])
 
 # Compute transfer function of controller
-C_pid = tf([(P10.kd+P10.kp*P.sigma), (P10.kp+P10.ki*P.sigma), P10.ki],
+C_pid = tf([(P10.kd+P10.kp*P.sigma),
+            (P10.kp+P10.ki*P.sigma), P10.ki],
            [P.sigma, 1, 0])
-
 
 #PLOT = True
 PLOT = False
 
 # calculate bode plot and gain and phase margin
-mag, phase, omega = cnt.bode(Plant*C_pid, dB=True, omega=np.logspace(-3, 5), Plot=False)
+mag, phase, omega = cnt.bode(Plant*C_pid, dB=True,
+                             omega=np.logspace(-3, 5),
+                             Plot=False)
 gm, pm, Wcg, Wcp = cnt.margin(Plant*C_pid)
 print(" pm: ", pm, " Wcp: ", Wcp, "gm: ", gm, " Wcg: ", Wcg)
 
@@ -43,7 +46,9 @@ gamma_n = 0.1    # attenuate noise by this amount
 w = np.logspace(np.log10(omega_n), np.log10(omega_n)+2)
 if PLOT:
     plt.subplot(211)
-    noisePlot, = plt.plot(w, (20*np.log10(gamma_n))*np.ones(len(w)), color='g', label='noise spec')
+    noisePlot, = plt.plot(w,
+                          (20*np.log10(gamma_n))*np.ones(len(w)),
+                          color=[0, 1, 0], label='noise spec')
 
 #----------- general tracking specification --------
 omega_r = 0.07    # track signals below this frequency
@@ -51,8 +56,11 @@ gamma_r = 0.1    # tracking error below this value
 w = np.logspace(np.log10(omega_r) - 2, np.log10(omega_r))
 if PLOT:
     plt.subplot(211)
-    trackPlot, = plt.plot(w, 20*np.log10(1/gamma_r)*np.ones(len(w)), color='g', label='tracking spec')
+    trackPlot, = plt.plot(w,
+                          20*np.log10(1/gamma_r)*np.ones(len(w)),
+                          color=[0, 1, 0], label='tracking spec')
 
+    
 #########################################
 #   Control Design
 #########################################
@@ -66,9 +74,12 @@ z = 0.7
 p = z / 10.0
 Lag = tf([1, z], [1, p])
 C = C * Lag
-mag, phase, omega = cnt.bode(Plant*C, dB=True, omega=np.logspace(-3, 5), Plot=False)
+mag, phase, omega = cnt.bode(Plant*C, dB=True,
+                             omega=np.logspace(-3, 5),
+                             Plot=False)
 gm, pm, Wcg, Wcp = cnt.margin(Plant*C)
-print(" pm: ", pm, " Wcp: ", Wcp, "gm: ", gm, " Wcg: ", Wcg)
+print(" pm: ", pm, " Wcp: ", Wcp,
+      "gm: ", gm, " Wcg: ", Wcg)
 if PLOT:
     plt.subplot(211),
     plantMagPlot, = plt.semilogx(omega, mag, label='PC')
@@ -82,9 +93,12 @@ wmax = 30.0  # location of maximum frequency bump
 M = 10.0  # separation between zero and pole
 Lead = tf([M, M * wmax / np.sqrt(M)], [1.0, wmax * np.sqrt(M)])
 C = C * Lead
-mag, phase, omega = cnt.bode(Plant*C, dB=True, omega=np.logspace(-3, 5), Plot=False)
+mag, phase, omega = cnt.bode(Plant*C, dB=True,
+                             omega=np.logspace(-3, 5),
+                             Plot=False)
 gm, pm, Wcg, Wcp = cnt.margin(Plant*C)
-print(" pm: ", pm, " Wcp: ", Wcp, "gm: ", gm, " Wcg: ", Wcg)
+print(" pm: ", pm, " Wcp: ", Wcp,
+      "gm: ", gm, " Wcg: ", Wcg)
 if PLOT:
     plt.subplot(211),
     plantMagPlot, = plt.semilogx(omega, mag, label='PC')
@@ -95,7 +109,9 @@ if PLOT:
 p = 50.0
 LPF = tf(p, [1, p])
 C = C * LPF
-mag, phase, omega = cnt.bode(Plant*C, dB=True, omega=np.logspace(-3, 5), Plot=False)
+mag, phase, omega = cnt.bode(Plant*C, dB=True,
+                             omega=np.logspace(-3, 5),
+                             Plot=False)
 gm, pm, Wcg, Wcp = cnt.margin(Plant*C)
 print(" pm: ", pm, " Wcp: ", Wcp, "gm: ", gm, " Wcg: ", Wcg)
 if PLOT:
@@ -108,9 +124,12 @@ if PLOT:
 p = 150.0
 LPF = tf(p, [1, p])
 C = C * LPF
-mag, phase, omega = cnt.bode(Plant*C, dB=True, omega=np.logspace(-3, 5), Plot=False)
+mag, phase, omega = cnt.bode(Plant*C, dB=True,
+                             omega=np.logspace(-3, 5),
+                             Plot=False)
 gm, pm, Wcg, Wcp = cnt.margin(Plant*C)
-print(" pm: ", pm, " Wcp: ", Wcp, "gm: ", gm, " Wcg: ", Wcg)
+print(" pm: ", pm, " Wcp: ", Wcp,
+      "gm: ", gm, " Wcg: ", Wcg)
 if PLOT:
     plt.subplot(211), plt.grid(True)
     plantMagPlot, = plt.semilogx(omega, mag, label='PC')
@@ -141,9 +160,11 @@ if PLOT:
     plt.figure(4), plt.clf()
 
     plt.subplot(311),  plt.grid(True)
-    mag, phase, omega = cnt.bode(CLOSED_R_to_Y, dB=True, Plot=False)
+    mag, phase, omega = cnt.bode(CLOSED_R_to_Y,
+                                 dB=True, Plot=False)
     plt.semilogx(omega, mag, color='b')
-    mag, phase, omega = cnt.bode(CLOSED_R_to_Y_with_F, dB=True, Plot=False)
+    mag, phase, omega = cnt.bode(CLOSED_R_to_Y_with_F,
+                                 dB=True, Plot=False)
     plt.semilogx(omega, mag, color='g')
     plt.title('Close Loop Bode Plot')
 
@@ -159,8 +180,8 @@ if PLOT:
     plt.plot(T, yout, color='b')
     plt.ylabel('Control Effort')
 
-    # Keeps the program from closing until the user presses a button.
-    plt.pause(0.0001)  # not sure why this is needed for both figures to display
+    # Stops program from closing until user presses button.
+    plt.pause(0.0001)
     print('Press key to close')
     plt.waitforbuttonpress()
     plt.close()
@@ -168,12 +189,5 @@ if PLOT:
 ##############################################
 #  Convert Controller to State Space Equations
 ##############################################
-C_num = np.asarray(C.num[0])
-C_den = np.asarray(C.den[0])
-F_num = np.asarray(F.num[0])
-F_den = np.asarray(F.den[0])
-
 C_ss = cnt.tf2ss(C)  # convert to state space
 F_ss = cnt.tf2ss(F)  # convert to state space
-foo = 1
-

@@ -6,7 +6,6 @@ import sys
 sys.path.append('..')  # add parent directory
 import satelliteParam as P
 
-# import variables from satelliteParam for later import through current file
 Ts = P.Ts
 sigma = P.sigma
 beta = P.beta
@@ -66,7 +65,10 @@ if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 5:
     print("The system is not controllable")
 else:
     K1 = cnt.acker(A1, B1, des_poles)
-    K = np.array([K1.item(0), K1.item(1), K1.item(2), K1.item(3)])
+    K = np.array([K1.item(0),
+                  K1.item(1),
+                  K1.item(2),
+                  K1.item(3)])
     ki = K1.item(4)
 
 # compute observer gains
@@ -86,9 +88,12 @@ des_obs_poles = np.roots(des_obs_char_poly)
 if np.linalg.matrix_rank(cnt.ctrb(A2.T, C2.T)) != 5:
     print("The system is not observable")
 else:
-    # place_poles returns an object with various properties.  The gains are accessed through .gain_matrix
+    # place_poles returns an object with various properties.
+    # The gains are accessed through .gain_matrix
     # .T transposes the matrix
-    L2 = signal.place_poles(A2.T, C2.T, des_obs_poles).gain_matrix.T
+    L2 = signal.place_poles(A2.T,
+                            C2.T,
+                            des_obs_poles).gain_matrix.T
     L = L2[0:4, 0:2]
     Ld = L2[4:5, 0:2]
 

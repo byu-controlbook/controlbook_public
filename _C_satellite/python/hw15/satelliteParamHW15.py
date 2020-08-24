@@ -2,7 +2,7 @@
 import sys
 sys.path.append('..')  # add parent directory
 import satelliteParam as P
-import control as cnt
+from control.matlab import *
 from control import TransferFunction as tf
 import matplotlib.pyplot as plt
 
@@ -13,8 +13,8 @@ P_out = tf([P.b/P.Jp, P.k/P.Jp], [1, P.b/P.Jp, P.k/P.Jp])
 
 
 # Plot the closed loop and open loop bode plots for the inner loop
-plt.figure(3), cnt.bode_plot(P_in, dB=True)
-plt.figure(4), cnt.bode_plot(P_out, dB=True)
+plt.figure(3), bode(P_in, dB=True)
+plt.figure(4), bode(P_out, dB=True)
 
 # Closes plot windows when the user presses a button.
 plt.pause(0.0001)  # not sure why this is needed for both figures to display

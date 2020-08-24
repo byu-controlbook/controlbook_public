@@ -1,0 +1,3 @@
+[submodule "python-control"]
+	path = python-control
+	url = https://github.com/python-control/python-control.git

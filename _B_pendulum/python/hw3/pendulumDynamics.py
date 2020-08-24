@@ -10,15 +10,22 @@ class pendulumDynamics:
             [P.zdot0],  # zdot initial velocity
             [P.thetadot0],  # Thetadot initial velocity
         ])
+
+        # simulation time step
         self.Ts = P.Ts
+        
         # Mass of the pendulum, kg
         self.m1 = P.m1 * (1.+alpha*(2.*np.random.rand()-1.))
+
         # Mass of the cart, kg
         self.m2 = P.m2 * (1.+alpha*(2.*np.random.rand()-1.))
+
         # Length of the rod, m
         self.ell = P.ell * (1.+alpha*(2.*np.random.rand()-1.))
+
         # Damping coefficient, Ns
         self.b = P.b * (1.+alpha*(2.*np.random.rand()-1.))
+
         # gravity constant is well known, don't change.
         self.g = P.g
         self.force_limit = P.F_max
@@ -28,8 +35,10 @@ class pendulumDynamics:
         # t and returns the output y at time t.
         # saturate the input force
         u = self.saturate(u, self.force_limit)
+
         self.rk4_step(u)  # propagate the state by one time sample
         y = self.h()  # return the corresponding output
+
         return y
 
     def f(self, state, u):
@@ -39,6 +48,7 @@ class pendulumDynamics:
         zdot = state.item(2)
         thetadot = state.item(3)
         F = u
+
         # The equations of motion.
         M = np.array([[self.m1 + self.m2,
                        self.m1 * (self.ell/2.0) * np.cos(theta)],
@@ -52,8 +62,10 @@ class pendulumDynamics:
         tmp = np.linalg.inv(M) @ C
         zddot = tmp.item(0)
         thetaddot = tmp.item(1)
+
         # build xdot and return
         xdot = np.array([[zdot], [thetadot], [zddot], [thetaddot]])
+
         return xdot
 
     def h(self):
@@ -61,6 +73,7 @@ class pendulumDynamics:
         z = self.state.item(0)
         theta = self.state.item(1)
         y = np.array([[z],[theta]])
+
         return y
 
     def rk4_step(self, u):
@@ -74,4 +87,5 @@ class pendulumDynamics:
     def saturate(self, u, limit):
         if abs(u) > limit:
             u = limit*np.sign(u)
+
         return u

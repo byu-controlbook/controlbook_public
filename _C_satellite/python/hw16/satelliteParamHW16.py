@@ -6,7 +6,7 @@ sys.path.append('../hw10')  # add parent directory
 import satelliteParamHW10 as P10
 # import numpy as np
 # from scipy import signal
-import control as cnt
+from control.matlab import *
 from control import TransferFunction as tf
 import matplotlib.pyplot as plt
 
@@ -20,13 +20,13 @@ C_out = tf([(P10.kd_phi+P10.kp_phi*P10.sigma), (P10.kp_phi+P10.ki_phi*P10.sigma)
 
 
 # display bode plots of transfer functions
-plt.figure(3), plt.clf, plt.hold(True), plt.grid(True)
-cnt.matlab.bode(P_in, P_in*C_in, dB=True)
+plt.figure(3), plt.clf, plt.grid(True)
+bode(P_in, P_in*C_in, dB=True)
 #plt.legend('No control', 'PD')
 plt.title('Satellite, Inner Loop')
 
-plt.figure(4), plt.clf, plt.hold(True), plt.grid(True)
-cnt.matlab.bode(P_out, P_out*C_out, tf([1.0], [1.0, 0.0]), dB=True)
+plt.figure(4), plt.clf, plt.grid(True)
+bode(P_out, P_out*C_out, tf([1.0], [1.0, 0.0]), dB=True)
 #legend('No control', 'PID','1/s')
 plt.title('Satellite, Outer Loop')
 

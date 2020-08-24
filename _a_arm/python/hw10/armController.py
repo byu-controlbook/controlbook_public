@@ -16,18 +16,23 @@ class armController:
 
     def update(self, theta_r, y):
         theta = y.item(0)
+
         # compute feedback linearized torque tau_fl
         tau_fl = P0.m * P0.g * (P0.ell / 2.0) * np.cos(theta)
+
         # compute the linearized torque using PD
         tau_tilde = self.thetaCtrl.PID(theta_r, theta, False)
+
         # compute total torque
         tau = tau_fl + tau_tilde
         tau = self.saturate(tau)
+
         return tau
 
     def saturate(self, u):
         if abs(u) > self.limit:
             u = self.limit*np.sign(u)
+
         return u
 
 

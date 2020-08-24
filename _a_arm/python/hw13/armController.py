@@ -2,15 +2,14 @@ import numpy as np
 import armParamHW13 as P
 
 class armController:
-    # state feedback control using dirty derivatives to estimate thetadot
     def __init__(self):
         self.x_hat = np.array([
             [0.0],  # theta_hat_0
             [0.0],  # thetadot_hat_0
         ])
-        self.tau_d1 = 0.0  # control torque, delayed by one sample
+        self.tau_d1 = 0.0  # control torque, delayed 1 sample
         self.integrator = 0.0  # integrator
-        self.error_d1 = 0.0  # error signal delayed by 1 sample
+        self.error_d1 = 0.0  # error signal, delayed 1 sample
         self.K = P.K  # state feedback gain
         self.ki = P.ki  # Input gain
         self.L = P.L  # observer gain
@@ -41,7 +40,9 @@ class armController:
         return tau, x_hat
 
     def integrateError(self, error):
-        self.integrator = self.integrator + (self.Ts/2.0)*(error + self.error_d1)
+        self.integrator = self.integrator \
+                          + (self.Ts/2.0)*(error + self.error_d1)
+                          
         self.error_d1 = error
 
     def update_observer(self, y_m):
@@ -51,16 +52,20 @@ class armController:
         F3 = self.observer_f(self.x_hat + self.Ts / 2 * F2, y_m)
         F4 = self.observer_f(self.x_hat + self.Ts * F3, y_m)
         self.x_hat += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
+
         return self.x_hat
 
     def observer_f(self, x_hat, y_m):
         # compute feedback linearizing torque tau_fl
         theta_hat = x_hat.item(0)
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta_hat)
+
         # xhatdot = A*xhat + B*(u-ue) + L(y-C*xhat)
         xhat_dot = self.A @ x_hat\
                    + self.B * (self.tau_d1 - tau_fl)\
                    + self.L * (y_m - self.C @ x_hat)
+
+        
         return xhat_dot
 
     def saturate(self,u):

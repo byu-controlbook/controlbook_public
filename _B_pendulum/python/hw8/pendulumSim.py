@@ -20,9 +20,11 @@ animation = pendulumAnimation()
 
 t = P.t_start  # time starts at t_start
 y = pendulum.h()  # output of system at start of simulation
+
 while t < P.t_end:  # main simulation loop
     # Propagate dynamics in between plot samples
     t_next_plot = t + P.t_plot
+
     while t < t_next_plot:
         r = reference.square(t)  # reference input
         d = disturbance.step(t)  # input disturbance
@@ -31,6 +33,7 @@ while t < P.t_end:  # main simulation loop
         u = controller.update(r, x)  # update controller
         y = pendulum.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
+
     # update animation and data plots
     animation.update(pendulum.state)
     dataPlot.update(t, r, pendulum.state, u)

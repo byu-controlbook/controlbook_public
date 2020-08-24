@@ -34,6 +34,7 @@ class pendulumController:
 
         F_sat = self.saturate(F_unsat.item(0))
         self.F_d1 = F_sat
+
         return F_sat, x_hat
 
     def update_observer(self, y_m):
@@ -43,6 +44,7 @@ class pendulumController:
         F3 = self.observer_f(self.x_hat + self.Ts / 2 * F2, y_m)
         F4 = self.observer_f(self.x_hat + self.Ts * F3, y_m)
         self.x_hat += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
+
         return self.x_hat
 
     def observer_f(self, x_hat, y_m):
@@ -50,6 +52,7 @@ class pendulumController:
         xhat_dot = self.A @ x_hat \
                    + self.B * self.F_d1 \
                    + self.L @ (y_m-self.C @ x_hat)
+
         return xhat_dot
 
     def integrate_error(self, error):

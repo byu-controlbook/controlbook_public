@@ -7,7 +7,7 @@ tr = 0.4;
 zeta = 0.707;
 integrator_pole = -5;
 
-% equalibrium torque
+% equilibrium torque
 P.theta_e = 0*pi/180;
 P.tau_e   = P.m*P.g*P.ell/2*cos(P.theta_e);
 

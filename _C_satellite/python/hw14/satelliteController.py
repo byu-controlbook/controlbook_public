@@ -10,18 +10,18 @@ class satelliteController:
             [0.0],  # initial estimate for phi_hat_dot
             [0.0],  # estimate of the disturbance
         ])
-        self.tau_d1 = 0.0            # Computed torque, delayed by one sample
-        self.integrator = 0.0        # integrator
-        self.error_d1 = 0.0          # error signal delayed by 1 sample
-        self.K = P.K                 # state feedback gain
-        self.ki = P.ki               # integrator gain
-        self.L = P.L2                 # observer gain
-        self.Ld = P.Ld               # gain for disturbance observer
-        self.A = P.A2                 # system model
+        self.tau_d1 = 0.0      # Computed torque delayed 1 sample
+        self.integrator = 0.0  # integrator
+        self.error_d1 = 0.0    # error signal delayed by 1 sample
+        self.K = P.K           # state feedback gain
+        self.ki = P.ki         # integrator gain
+        self.L = P.L2          # observer gain
+        self.Ld = P.Ld         # gain for disturbance observer
+        self.A = P.A2          # system model
         self.B = P.B1
         self.C = P.C2
-        self.limit = P.tau_max       # Maxiumum torque
-        self.Ts = P.Ts               # sample rate of controller
+        self.limit = P.tau_max # Maxiumum torque
+        self.Ts = P.Ts         # sample rate of controller
 
     def update(self, phi_r, y):
         # update the observer and extract z_hat
@@ -43,10 +43,14 @@ class satelliteController:
     def update_observer(self, y_m):
         # update the observer using RK4 integration
         F1 = self.observer_f(self.observer_state, y_m)
-        F2 = self.observer_f(self.observer_state + self.Ts / 2 * F1, y_m)
-        F3 = self.observer_f(self.observer_state + self.Ts / 2 * F2, y_m)
-        F4 = self.observer_f(self.observer_state + self.Ts * F3, y_m)
-        self.observer_state += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
+        F2 = self.observer_f(self.observer_state \
+                             + self.Ts / 2 * F1, y_m)
+        F3 = self.observer_f(self.observer_state \
+                             + self.Ts / 2 * F2, y_m)
+        F4 = self.observer_f(self.observer_state \
+                             + self.Ts * F3, y_m)
+        self.observer_state += self.Ts / 6 \
+                               * (F1 + 2 * F2 + 2 * F3 + F4)
         x_hat = np.array([[self.observer_state.item(0)],
                           [self.observer_state.item(1)],
                           [self.observer_state.item(2)],

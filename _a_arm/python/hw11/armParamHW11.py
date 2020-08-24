@@ -35,8 +35,10 @@ des_poles = np.roots(des_char_poly)
 # Compute the gains if the system is controllable
 if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 2:
     print("The system is not controllable")
+
 else:
-    K = cnt.acker(A, B, des_poles)
+    #.A just turns K matrix into a numpy array
+    K = (cnt.acker(A, B, des_poles)).A 
     kr = -1.0/(C @ np.linalg.inv(A - B @ K) @ B)
 
 print('K: ', K)

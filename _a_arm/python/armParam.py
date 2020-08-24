@@ -6,7 +6,7 @@ import numpy as np
 m = 0.5     # Mass of the arm, kg
 ell = 0.3    # Length of the arm, m
 g = 9.8       # Gravity, m/s**2
-b = 0.05      # Damping coefficient, Nms
+b = 0.01      # Damping coefficient, Nms
 
 # parameters for animation
 length = 1    # length of arm in animation
@@ -20,7 +20,7 @@ thetadot0 = 0.0         # ,rads/s
 t_start = 0.0  # Start time of simulation
 t_end = 50.0  # End time of simulation
 Ts = 0.01  # sample time for simulation
-t_plot = 0.1  # the plotting and animation is updated at this rate
+t_plot = 0.05  # the plotting and animation is updated at this rate
 
 # dirty derivative parameters
 sigma = 0.05  # cutoff freq for dirty derivative

@@ -6,30 +6,55 @@ import numpy as np
 from transferFunction import transferFunction
 
 class armController:
+    # state feedback control using dirty derivatives to estimate thetadot
     def __init__(self):
-        self.prefilter = transferFunction(L.F_num, L.F_den, P.Ts)
-        self.control = transferFunction(L.C_num, L.C_den, P.Ts)
+        self.x_C = np.zeros((L.C_ss.A.shape[0], 1))
+        self.x_F = np.zeros((L.F_ss.A.shape[0], 1))
+        self.A_F = L.F_ss.A
+        self.B_F = L.F_ss.B
+        self.C_F = L.F_ss.C
+        self.D_F = L.F_ss.D
+        self.A_C = L.C_ss.A
+        self.B_C = L.C_ss.B
+        self.C_C = L.C_ss.C
+        self.D_C = L.C_ss.D
         self.limit = P.tau_max  # Maximum force
+        self.Ts = P.Ts  # sample rate of controller
+        self.N = 10  # number of Euler integration steps for each sample
 
-    def update(self, theta_r, y):
-        theta = y[0]
+    def update(self, theta_r, theta):
 
-         # prefilter the reference
-        theta_r_filtered = self.prefilter.update(theta_r)
+         # solve differential equation defining prefilter F
+        self.updatePrefilterState(theta_r)
+        theta_r_filtered = self.C_F * self.x_F + self.D_F * theta_r
 
-        # define error and update controller
+        # filtered error signal
         error = theta_r_filtered - theta
-        tau_tilde = self.control.update(error)
 
-        # compute feedback linearized torque
-        tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
+        # solve differential equation defining control C
+        self.updateControlState(error)
+        tau_tilde = self.C_C * self.x_C + self.D_C * error
+
+        # compute equilibrium torque tau_e
+        tau_e = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
 
         # compute total torque
-        tau = self.saturate(tau_fl + tau_tilde)
-        return tau
+        tau = self.saturate(tau_e + tau_tilde)
+        return [tau.item(0)]
+
+    def updatePrefilterState(self, z_r):
+        for i in range(0, self.N):
+            self.x_F = self.x_F + (self.Ts/self.N)*(
+                self.A_F*self.x_F + self.B_F*z_r
+            )
+
+    def updateControlState(self, error):
+        for i in range(0, self.N):
+            self.x_C = self.x_C + (self.Ts/self.N)*(
+                self.A_C*self.x_C + self.B_C*error
+            )
 
     def saturate(self,u):
         if abs(u) > self.limit:
             u = self.limit*np.sign(u)
         return u
-
