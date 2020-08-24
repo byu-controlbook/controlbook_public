@@ -17,14 +17,14 @@ git clone --recurse-submodules <insert URL>
 This will check out the example code along with a python module that we require for later examples in the code to run. If you skip this step and execute "git clone" without the "--recurse-submodules" argument, you can always do the following later (after navigating to the main repo folder):
 
 ```
-*git submodule init
-*git submodule update
+git submodule init
+git submodule update
 ```
 
-Once you have pulled down the repo and the submodule (for python-control), then you can do the following to install the submodule:
+Once you have pulled down the repo and the submodule (for python-control), and are in the main repo folder, then you can do the following to install the submodule:
 ```
-*cd python-control
-*sudo python setup.py install
+cd python-control
+sudo python setup.py install
 ```
 
 Now all of the examples in the python folders under each design study should work. Enjoy!
