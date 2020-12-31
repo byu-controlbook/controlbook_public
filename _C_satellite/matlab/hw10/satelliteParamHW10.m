@@ -19,6 +19,7 @@ wn_th    = 2.2/tr_th;
 P.kp_th  = wn_th^2*P.Js-P.k;
 P.kd_th  = 2*zeta_th*wn_th*P.Js-P.b;
 
+
 % DC gain for inner loop
 k_DC_th = P.kp_th/(P.k+P.kp_th);
 
@@ -34,4 +35,4 @@ P.k_DC_phi = P.k*k_DC_th*P.kp_phi/(P.k+P.k*k_DC_th*P.kp_phi);
 
 
 sprintf('DC_gain: %f\nkp_th: %f\nkd_th: %f\nkp_phi: %f\nkd_phi: %f\n',...
-    k_DC_th, P.kp_th, P.kd_th, P.kp_phi, P.kd_phi)
+    P.k_DC_phi, P.kp_th, P.kd_th, P.kp_phi, P.kd_phi)

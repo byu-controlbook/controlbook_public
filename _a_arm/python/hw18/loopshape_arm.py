@@ -19,8 +19,8 @@ C_pid = tf([(P10.kd+P10.kp*P.sigma),
             (P10.kp+P10.ki*P.sigma), P10.ki],
            [P.sigma, 1, 0])
 
-#PLOT = True
-PLOT = False
+PLOT = True
+# PLOT = False
 
 # calculate bode plot and gain and phase margin
 mag, phase, omega = cnt.bode(Plant*C_pid, dB=True,

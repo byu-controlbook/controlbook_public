@@ -2,13 +2,14 @@ armParamHW7;  % load parameters
 
 % instantiate arm, controller, and reference input classes 
 % Instantiate Dynamics class
-addpath('../hw3'); arm = armDynamics(P);  
+alpha=0;
+addpath('../hw3'); arm = armDynamics(alpha,P);
 controller = armController(P);  
 addpath('../hw2'); reference = signalGenerator(30*pi/180, 0.05); 
 addpath('../hw2'); disturbance = signalGenerator(0.0, 0.0);
 
 % instantiate the data plots and animation
-addpath('../hw2'); dataPlot = plotData(P);
+addpath('../hw2'); dataPlot = dataPlotter(P);
 addpath('../hw2'); animation = armAnimation(P);
 
 % main simulation loop

@@ -1,4 +1,4 @@
-armParamHWB;  % load parameters
+armParamHW3;  % load parameters
 
 % instantiate arm, and reference input classes 
 alpha = 0.0;  % parameter uncertainty coefficient

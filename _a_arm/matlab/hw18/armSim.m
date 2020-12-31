@@ -1,5 +1,5 @@
 % load controller design
-if 0
+if 1
     P=loopshape_arm;
 end
 

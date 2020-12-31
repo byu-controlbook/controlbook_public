@@ -22,7 +22,7 @@ while t < P.t_end
     t_next_plot = t + P.t_plot;
     while t < t_next_plot % updates control and dynamics at faster simulation rate
         r = reference.square(t);
-        d = 0;%disturbance.step(t);
+        d = disturbance.step(t);
         n = [0;0];%[noise_phi.random(t); noise_th.random(t)];  % noise
         [u, xhat] = controller.update(r, y + n);  % Calculate the control value
         y = satellite.update(u + d);  % Propagate the dynamics

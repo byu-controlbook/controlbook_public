@@ -16,6 +16,7 @@ classdef armController < handle
         C
         limit
         Ts
+        kr
     end
     methods
         %--------constructor--------------------
@@ -37,6 +38,7 @@ classdef armController < handle
             self.L  = P.L2;
             self.limit = P.tau_max;
             self.Ts = P.Ts;
+            self.kr = 0;%P.kr;
         end
         function [tau, x_hat, d_hat] = update(self, theta_r, y)
             % update the observer and extract z_hat

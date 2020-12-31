@@ -21,7 +21,7 @@ while t < P.t_end
     t_next_plot = t + P.t_plot;
     while t < t_next_plot 
         r = reference.square(t);
-        d = 0;%disturbance.step(t);
+        d = disturbance.step(t);
         n =  0;% noise.random(t);  % noise
         [u, xhat] = controller.update(r, y+n);  
         y = arm.update(u+d);  % Propagate the dynamics
