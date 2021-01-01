@@ -27,7 +27,7 @@ plt.title('Single Link Arm')
 
 # Calculate the phase and gain margin
 gm, pm, Wcg, Wcp = margin(Plant*C_pid)
-print("gm: ",gm," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
+print("gm: ",mag2db(gm)," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
 
 
 # Closes plot windows when the user presses a button.

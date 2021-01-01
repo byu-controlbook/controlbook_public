@@ -7,7 +7,8 @@ addpath ./../hw10
 satelliteParamHW10
 
 % transfer functions
-P_in = tf([1/P.Js],[1,P.b/P.Js,P.k/P.Js]);
+% P_in = tf([1/P.Js],[1,P.b/P.Js,P.k/P.Js]);
+P_in = tf([1],[P.Js+P.Jp,0,0]);
 P_out = tf([P.b/P.Jp, P.k/P.Jp],[1,P.b/P.Jp,P.k/P.Jp]);
 
 C_in = tf([(P.kd_th+P.sigma*P.kp_th), P.kp_th], [P.sigma, 1]);
