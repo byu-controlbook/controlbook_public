@@ -1,0 +1,23 @@
+# Introduction
+
+These notebooks have been prepared to follow the book and the python examples. 
+They are designed to be used within [Google Colab](https://colab.research.google.com/).
+
+# Redering
+To simply view the contents of the noteboooks, to see if they are worth your time, go ahead 
+and open them in the Gitlab and they will render correctly
+
+
+# Interaction
+To interact with them clone the repository and upload them to your 
+'Colab Notebooks' folder in Google Drive (you have had to visit Google Colab first, signed in, 
+for that folder to show up). 
+
+Once there, you can change values in code and run the examples.  
+
+### Caveauts: 
+ - The python API changed a bit after I first created these.  
+ - These may require some edits before being fully functional.  
+ - The animations I could never get to work within Colab.  
+ - The animations do work when you use them on a local instance of jupyter notebooks. 
+   - When run them on your own instance, don't use the "Prepare the Notebooks" sections
