@@ -31,10 +31,10 @@ bode(P_out*C_out/(1+P_out*C_out), dB = True)
 
 # Calculate the phase and gain margin
 gm, pm, Wcg, Wcp = margin(P_in*C_in)
-print("gm: ",gm," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
+print("gm: ",mag2db(gm)," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
 
 gm, pm, Wcg, Wcp = margin(P_out*C_out)
-print("gm: ",gm," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
+print("gm: ",mag2db(gm)," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
 
 # Closes plot windows when the user presses a button.
 plt.pause(0.0001)

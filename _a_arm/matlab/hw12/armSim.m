@@ -2,7 +2,8 @@ clear path
 armParamHW12;  % load parameters
 
 % instantiate arm, controller, and reference input classes 
-addpath('../hw3'); arm = armDynamics(P);  
+alpha=0.2;
+addpath('../hw3'); arm = armDynamics(alpha,P); 
 controller = armController(P);  
 addpath('../hw2'); reference = signalGenerator(30*pi/180, 0.05);  
 addpath('../hw2'); disturbance = signalGenerator(0.25, 0.0);

@@ -40,6 +40,18 @@ else % if so, compute gains
     P.ki = K1(3);
 end
 
+% des_char_poly = [1,2*zeta*wn,wn^2];
+% des_poles = roots(des_char_poly);
+% 
+% if rank(ctrb(P.A,P.B))~=2 
+%     disp('System Not Controllable'); 
+% else
+%     P.K = place(P.A,P.B,des_poles); 
+%     P.kr = -1/(P.C*inv(P.A-P.B*P.K)*P.B);
+% end
+% P.ki =0;
+
+
 % observer design
 % form augmented system for disturbance observer
 P.A2 = [P.A, P.B; zeros(1,2), 0];

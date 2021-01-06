@@ -16,11 +16,11 @@ wn_th = 0.6
 wn_phi = 1.1    # rise time for angle
 zeta_phi = 0.707  # damping ratio position
 zeta_th = 0.707  # damping ratio angle
-integrator_pole = -1.0
+integrator_pole = np.array([-1.0])
 # pick observer poles
 wn_th_obs = 10.0*wn_th
 wn_phi_obs = 10.0*wn_phi
-dist_obsv_pole = -1.0  # disturbance observer pole
+dist_obsv_pole = np.array([-1.0])  # disturbance observer pole
 
 # State Space Equations
 # xdot = A*x + B*u

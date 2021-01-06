@@ -1,4 +1,4 @@
-satelliteParamHWA  % load parameters
+satelliteParamHW2  % load parameters
 
 % instantiate reference input classes 
 reference = signalGenerator(0.5, 0.1);
@@ -8,7 +8,7 @@ tauRef = signalGenerator(5, 0.5);
 
 
 % instantiate the data plots and animation
-dataPlot = plotData(P);
+dataPlot = dataPlotter(P);
 animation = satelliteAnimation(P);
 
 % main simulation loop

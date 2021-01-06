@@ -28,6 +28,7 @@ while t < P.t_end:  # main simulation loop
     animation.update(state)
     dataPlot.update(t, r, state, tau)
 
+    #plt.show()
     t = t + P.t_plot  # advance time by t_plot
     plt.pause(0.1)
 

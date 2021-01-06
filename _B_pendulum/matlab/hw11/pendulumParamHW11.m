@@ -10,8 +10,10 @@ P.beta = (2*P.sigma-P.Ts)/(2*P.sigma+P.Ts); % dirty derivative gain
 %      State Space Pole Placement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tuning parameters
-tr_z = 1.5;  % rise time for position 
 tr_theta = 0.5; % rise time for angle
+M = 3.0;              % Time scale separation between inner and outer loop
+tr_z = M*tr_theta; % 1.5;  % rise time for position 
+
 zeta_z   = 0.707; % damping ratio position
 zeta_th  = 0.707; % damping ratio angle
 

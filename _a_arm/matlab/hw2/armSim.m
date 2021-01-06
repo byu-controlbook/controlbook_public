@@ -1,4 +1,4 @@
-armParamHWA  % load parameters
+armParamHW2  % load parameters
 
 % instantiate reference input classes 
 reference = signalGenerator(0.5, 0.1);

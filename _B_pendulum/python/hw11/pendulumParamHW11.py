@@ -15,7 +15,7 @@ F_max = 5.0                # Max Force, N
 #                 State Space
 ####################################################
 # tuning parameters
-tr_z = 1.0        # rise time for position
+tr_z = 1.5        # rise time for position
 tr_theta = 0.5    # rise time for angle
 zeta_z   = 0.707  # damping ratio position
 zeta_th  = 0.707  # damping ratio angle

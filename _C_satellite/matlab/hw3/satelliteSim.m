@@ -1,7 +1,8 @@
-satelliteParamHWB  % load parameters
+satelliteParamHW3  % load parameters
 
 % instantiate satellite, and reference input classes 
-satellite = satelliteDynamics(P);  
+alpha=0;
+satellite = satelliteDynamics(alpha,P);
 addpath('../hw2'); reference = signalGenerator(0.5, 0.1);
 addpath('../hw2'); torque = signalGenerator(.1, .1);
 

@@ -19,7 +19,7 @@ C_pid = tf([(P.kd+P.kp*P.sigma),(P.kp+P.ki*P.sigma),P.ki],[P.sigma,1,0]);
         
 % increase tracking by factor of 10 below omega_r=0.007
   omega_r = 0.07;  % reject input dist. below this frequency
-  gamma_r = 0.1;    % amountn of input disturbance in output
+  gamma_r = 0.1;    % amount of input disturbance in output
   w = logspace(log10(omega_r)-2,log10(omega_r));
   Pmag=bode(Plant*C_pid,w);
   for i=1:size(Pmag,3), Pmag_(i)=Pmag(1,1,i); end

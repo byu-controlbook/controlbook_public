@@ -17,10 +17,10 @@ tr_z = 1.5  # rise time for position
 tr_theta = 0.5  # rise time for angle
 zeta_z   = 0.707  # damping ratio position
 zeta_th  = 0.707  # damping ratio angle
-integrator_pole = -10.0  # integrator pole
+integrator_pole = np.array([-10.0])  # integrator pole
 tr_z_obs = tr_z/10.0  # rise time for observer - position
 tr_theta_obs = tr_theta/10.0  # rise time for observer - angle
-dist_obsv_pole = -1.0  # pole for disturbance observer
+dist_obsv_pole = np.array([-1.0])  # pole for disturbance observer
 
 # State Space Equations
 # xdot = A*x + B*u

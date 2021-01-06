@@ -27,7 +27,8 @@ class armAnimation:
                   2.0*P.length])
 
         # Draw a base line
-        plt.plot([0, P.length], [0, 0],'k--')    
+        plt.plot([0, P.length], [0, 0],'k--')
+
 
         # Draw pendulum is the main function that will call the
         # functions:
@@ -53,3 +54,5 @@ class armAnimation:
             self.handle[0].set_xdata(X)   # Update the line
             self.handle[0].set_ydata(Y)
 
+
+        plt.draw()

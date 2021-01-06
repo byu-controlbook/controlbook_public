@@ -26,7 +26,7 @@ classdef satelliteController
             phi = state(2);
             thetadot = state(3);
             phidot = state(4);
-            phi_r = (1+self.kp_phi)/self.kp_phi * phi_r;
+%             phi_r = (1+self.kp_phi)/self.kp_phi * phi_r;
             
             % the reference angle for theta comes from the outer loop PD control
             theta_r = self.kp_phi * (phi_r - phi) - self.kd_phi * phidot;

@@ -1,4 +1,4 @@
-pendulumParamHWA  % load parameters
+pendulumParamHW2  % load parameters
 
 % instantiate reference input classes 
 reference = signalGenerator(0.5, 0.1);
@@ -8,7 +8,7 @@ fRef = signalGenerator(5, 0.5);
 
 
 % instantiate the data plots and animation
-dataPlot = plotData(P);
+dataPlot = dataPlotter(P);
 animation = pendulumAnimation(P);
 
 % main simulation loop

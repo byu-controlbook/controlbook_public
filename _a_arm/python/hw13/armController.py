@@ -60,7 +60,7 @@ class armController:
         theta_hat = x_hat.item(0)
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta_hat)
 
-        # xhatdot = A*xhat + B*(u-ue) + L(y-C*xhat)
+        # xhatdot = A*(xhat-xe) + B*(u-ue) + L(y-C*xhat)
         xhat_dot = self.A @ x_hat\
                    + self.B * (self.tau_d1 - tau_fl)\
                    + self.L * (y_m - self.C @ x_hat)

@@ -112,5 +112,6 @@ class myPlot:
         # Adjusts the axis to fit all of the data
         self.ax.relim()
         self.ax.autoscale()
+        plt.draw()
            
 
