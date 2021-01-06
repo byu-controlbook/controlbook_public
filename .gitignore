@@ -7,6 +7,8 @@ slprj/
 sccprj/
 *.slx.r2*
 
+
+
 # LabVIEW files
 *.lvlps
 
@@ -60,6 +62,12 @@ whirlybird_manual.pdf
 whirlybird_manual_keep.pdf
 whirlybird_manual_orig.pdf
 solution_manual.pdf
+
+# old stuff
+matlab_old/
+python_old/
+python_qt/
+simulink_old/
 
 
 
