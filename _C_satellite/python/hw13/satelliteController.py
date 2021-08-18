@@ -57,7 +57,7 @@ class satelliteController:
         return xhat_dot
 
     def integrateError(self, error):
-        self.integrator = self.integrator + (self.Ts / 2.0) *
+        self.integrator = self.integrator + (self.Ts / 2.0) * \
                           (error + self.error_d1)
         self.error_d1 = error
 

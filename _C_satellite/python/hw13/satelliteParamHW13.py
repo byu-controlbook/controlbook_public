@@ -16,7 +16,7 @@ wn_th = 0.6
 wn_phi = 1.1    # rise time for angle
 zeta_phi = 0.707  # damping ratio position
 zeta_th = 0.707  # damping ratio angle
-integrator_pole = -1.0
+integrator_pole = [-1.0]
 # pick observer poles
 wn_th_obs = 10.0*wn_th
 wn_phi_obs = 10.0*wn_phi
@@ -81,7 +81,7 @@ else:
     # place_poles returns an object with various properties.
     # The gains are accessed through .gain_matrix
     # .T transposes the matrix
-    L = signal.place_poles(A.T, C.T, des_obs_poles).gain_matrix.T
+    L = cnt.place(A.T, C.T, des_obs_poles).T
 
 print('K: ', K)
 print('ki: ', ki)

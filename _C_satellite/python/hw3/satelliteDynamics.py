@@ -56,6 +56,7 @@ class satelliteDynamics:
         tmp = np.linalg.inv(M) @ C
         thetaddot = tmp.item(0)
         phiddot = tmp.item(1)
+
         # build xdot and return
         xdot = np.array([[thetadot], [phidot], [thetaddot],
                          [phiddot]])
