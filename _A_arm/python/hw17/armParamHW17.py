@@ -1,37 +1,38 @@
-# Inverted Pendulum Parameter File
+# Single link arm Parameter File
 import sys
 sys.path.append('..')  # add parent directory
 import armParam as P
-sys.path.append('../hw10')  # add parent directory
-import armParamHW10 as P10
-import numpy as np
-from control import *
+sys.path.append('../hw16')  # add parent directory
+import armParamHW16 as P16
+from control import bode, margin
 import matplotlib.pyplot as plt
 
-# Compute plant transfer functions
-th_e = 0;
-Plant = tf([2.0/P.m/P.ell**2],
-           [1, 2.0*P.b/P.m/P.ell**2,
-            -3.0*P.g*np.sin(th_e)/2/P.ell])
+# flag to define if using dB or absolute scale for M(omega)
+dB_flag = P16.dB_flag
 
-# Compute transfer function of controller
-C_pid = tf([(P10.kd+P10.kp*P.sigma),
-            (P10.kp+P10.ki*P.sigma), P10.ki],
-           [P.sigma, 1, 0])
+# assigning plant and controller from past HW (to make sure we don't introduce additional errors)
+Plant = P16.Plant
+C_pid = P16.C_pid
 
+if __name__=="__main__":
 
-# display bode plots of transfer functions
-plt.figure(3), plt.clf, bode([Plant, Plant*C_pid], dB=True)
-plt.legend(('No control', 'PID'))
-plt.title('Single Link Arm')
+    # display bode plots of transfer functions
+    fig1 = plt.figure()
+    bode([Plant, Plant*C_pid, Plant*C_pid/(1+Plant*C_pid)], dB=dB_flag)
+    plt.legend(('No control - P(s)', 'C(s)P(s)', 'Closed-loop PID'))
+    fig1.axes[0].set_title('Single Link Arm')
 
-# Calculate the phase and gain margin
-gm, pm, Wcg, Wcp = margin(Plant*C_pid)
-print("gm: ",mag2db(gm)," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
+    fig2 = plt.figure()
+    bode([Plant, Plant*C_pid], dB=dB_flag, margins=True)
+    fig2.axes[0].set_title('Single Link Arm - Stability Margins')
 
+    # Calculate the phase and gain margin and frequencies where they are calculated.
+    # Wcp is the crossover frequency used to find phase margin.
+    gm, pm, Wcg, Wcp = margin(Plant*C_pid)
 
-# Closes plot windows when the user presses a button.
-plt.pause(0.0001)
-print('Press key to close')
-plt.waitforbuttonpress()
-plt.close()
+    if dB_flag:
+        print("gm: ", mag2db(gm)," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
+    else:
+        print("gm: ",gm," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
+
+    plt.show()

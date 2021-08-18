@@ -11,12 +11,12 @@ tau_max = P.tau_max  # limit on control signal
 
 #  tuning parameters
 #tr = 0.8 # part (a)
-tr = 0.4  # tuned for fastest possible rise time before saturation.
-zeta = 0.707
-ki = .1  # integrator gain
+tr = 0.6  # tuned for fastest possible rise time before saturation.
+zeta = 0.90
+ki = .25  # integrator gain
 
 # desired natural frequency
-wn = 2.2/tr
+wn = 0.5*np.pi/(tr*np.sqrt(1-zeta**2))
 alpha1 = 2.0*zeta*wn
 alpha0 = wn**2
 

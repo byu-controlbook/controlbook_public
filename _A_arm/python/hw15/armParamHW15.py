@@ -2,23 +2,29 @@
 import sys
 sys.path.append('..')  # add parent directory
 import armParam as P
-import numpy as np
-import control as cnt
-from control import TransferFunction as tf
+from control import tf, bode
 import matplotlib.pyplot as plt
 
+# flag to define if using dB or absolute scale for M(omega)
+dB_flag = True
 
 # Compute plant transfer functions
 th_e = 0
-Plant = tf([2.0/P.m/P.ell**2],
-           [1, 2.0*P.b/P.m/P.ell**2, -3.0*P.g*np.sin(th_e)/2/P.ell])
+Plant = tf([3.0/P.m/P.ell**2],
+           [1, 3.0*P.b/P.m/P.ell**2, 0.0])
 
 
-# Bode plot of the plant
-plt.figure(3), cnt.bode_plot(Plant, dB=True)
+if __name__=="__main__":
 
-# Closes plot windows when the user presses a button.
-plt.pause(0.0001)  # not sure why this is needed for both figures to display
-print('Press key to close')
-plt.waitforbuttonpress()
-plt.close()
+    # Bode plot for the plant
+    fig = plt.figure()
+    bode(Plant, dB=dB_flag, margins=False)
+    fig.axes[0].set_title('P(s) for arm')
+
+    # if you want specific values at specific frequencies, you can do the following
+    # (but the magnitudes are absolute, not dB):
+    mag, phase, omega = bode(Plant, plot=False, omega = [0.3, 10.0, 1000.0])
+
+    print('Close window to end program')
+    plt.show()
+

@@ -15,7 +15,7 @@ g = P.g
 #  tuning parameters
 tr = 0.4
 zeta = 0.707
-integrator_pole = np.array([-5])
+integrator_pole = np.array([-0.5])
 
 # State Space Equations
 # xdot = A*x + B*u
@@ -38,7 +38,9 @@ B1 = np.array([[0.0],
                [0.0]])
 
 # gain calculation
-wn = 2.2/tr  # natural frequency
+#wn = 2.2/tr  # natural frequency if zeta = 0.707
+wn = 0.5*np.pi/(tr*np.sqrt(1-zeta**2)) # natural frequency
+
 des_char_poly = np.convolve(
     [1, 2*zeta*wn, wn**2],
     np.poly(integrator_pole))
@@ -54,6 +56,3 @@ else:
 
 print('K: ', K)
 print('ki: ', ki)
-
-
-

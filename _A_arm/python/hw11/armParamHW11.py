@@ -37,8 +37,7 @@ if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 2:
     print("The system is not controllable")
 
 else:
-    #.A just turns K matrix into a numpy array
-    K = (cnt.acker(A, B, des_poles)).A 
+    K = (cnt.acker(A, B, des_poles))
     kr = -1.0/(C @ np.linalg.inv(A - B @ K) @ B)
 
 print('K: ', K)
