@@ -12,9 +12,9 @@ import matplotlib.pyplot as plt
 # flag to define if using dB or absolute scale for M(omega)
 dB_flag = P15.dB_flag
 
-# Assign inner and outer open-loop transfer functions from previous HW solution
-P_in = P15.P_in
-P_out = P15.P_out
+# Compute inner and outer open-loop transfer functions
+P_in = tf([1],[P.Js+P.Jp,0,0])
+P_out = tf([P.b/P.Jp, P.k/P.Jp], [1, P.b/P.Jp, P.k/P.Jp])
 
 # Compute controller transfer functions
 

@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 dB_flag = P16.dB_flag
 
 # Compute inner and outer open-loop transfer functions
-P_in = tf([1/P.Js], [1, P.b/P.Js, P.k/P.Js])
+P_in = tf([1],[P.Js+P.Jp,0,0])
 P_out = tf([P.b/P.Jp, P.k/P.Jp], [1, P.b/P.Jp, P.k/P.Jp])
 
 # Compute the controller transfer functions from HW10 (to make sure we don't introduce additional errors)
