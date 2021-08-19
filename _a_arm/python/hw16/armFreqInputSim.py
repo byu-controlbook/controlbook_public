@@ -1,5 +1,6 @@
 ######## this file is incomplete, but would be used to give more intuition behind
 ######## what frequency response is by just simulating different sine inputs on arm.
+###### This is the functionality to change the freq. that is missing - https://matplotlib.org/stable/gallery/widgets/slider_demo.html
 
 import sys
 sys.path.append('..')  # add parent directory
