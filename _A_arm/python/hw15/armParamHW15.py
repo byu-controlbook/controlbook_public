@@ -21,9 +21,10 @@ if __name__=="__main__":
     bode(Plant, dB=dB_flag, margins=False)
     fig.axes[0].set_title('P(s) for arm')
 
-    # if you want specific values at specific frequencies, you can do the following
-    # (but the magnitudes are absolute, not dB):
-    mag, phase, omega = bode(Plant, plot=False, omega = [0.3, 10.0, 1000.0])
+    # if you want specific values at specific frequencies, you can
+    # do the following (but the magnitudes are absolute, not dB)
+    mag, phase, omega = bode(Plant, plot=False,
+                             omega = [0.3, 10.0, 1000.0])
 
     print('Close window to end program')
     plt.show()
