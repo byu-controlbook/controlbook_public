@@ -20,7 +20,10 @@ P_out = P15.P_out
 C_in = tf([P10.kd_th + P10.sigma * P10.kp_th, P10.kp_th], [P10.sigma, 1])
 
 # PID xfer function for outer loop
-C_out = tf([P10.kd_z + P10.kp_z * P10.sigma, P10.kp_z + P10.ki_z * P10.sigma, P10.ki_z], [P10.sigma, 1, 0])
+C_out = tf([P10.kd_z + P10.kp_z * P10.sigma,
+            P10.kp_z + P10.ki_z * P10.sigma,
+            P10.ki_z],
+           [P10.sigma, 1, 0])
 
 if __name__=="__main__":
 
@@ -30,9 +33,11 @@ if __name__=="__main__":
     plt.legend(['$P_{in}(s)$', '$C_{in}(s)P_{in}(s)$'])
     fig1.axes[0].set_title('Inverted Pendulum, Inner Loop')
 
+
     fig2 = plt.figure()
-    bode([P_out, P_out * C_out, tf([1.0], [1.0, 0.0])], dB=dB_flag)
-    plt.legend(['$P_{out}(s)$', '$C_{out}(s)P_{out}(s)$', '$\\frac{1}{s}$'])
+    bode([P_out, P_out * C_out],
+         omega_limits=[10**(-5), 10**(3)], dB=dB_flag)
+    plt.legend(['$P_{out}(s)$', '$C_{out}(s)P_{out}(s)$'])
     fig2.axes[0].set_title('Inverted Pendulum, Outer Loop')
 
 
