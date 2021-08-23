@@ -24,7 +24,7 @@ class armController:
             self.prefilter = discreteFilter(L.F.num, L.F.den, P.Ts)
             self.control = discreteFilter(L.C.num, L.C.den, P.Ts)
 
-        self.limit = P.tau_max  # Maximum force
+        self.limit = P.tau_max  # Maximum torque
         self.Ts = P.Ts  # sample rate of
         self.method = method
 

@@ -13,7 +13,7 @@ from hw2.dataPlotter import dataPlotter
 arm = armDynamics(alpha=0.2)
 controller = armController()
 reference = signalGenerator(amplitude=30*np.pi/180.0, frequency=0.05)
-disturbance = signalGenerator(amplitude=0.1)
+disturbance = signalGenerator(amplitude=0.1, frequency=0.07)
 noise = signalGenerator(amplitude=0.01)
 
 # instantiate the simulation plots and animation
@@ -30,7 +30,7 @@ while t < P.t_end:  # main simulation loop
 
     while t < t_next_plot:
         r = reference.square(t)
-        d = disturbance.step(t)  # input disturbance
+        d = disturbance.sin(t)  # input disturbance
         n = noise.random(t)  # simulate sensor noise
         u = controller.update(r, y + n)  # update controller
         y = arm.update(u + d)  # propagate system

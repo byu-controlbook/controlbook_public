@@ -1,132 +1,134 @@
 import sys
 sys.path.append('..')  # add parent directory
+sys.path.append('../hw16')  # add parent directory
 import pendulumParam as P
+import pendulumParamHW16 as P16
 import matplotlib.pyplot as plt
-from control import TransferFunction as tf
-import control as cnt
-import numpy as np 
+from control import tf, step_response, bode, tf2ss, margin, mag2db
+import numpy as np
+import helper_functions as hf
 
-P_in = tf([-1/(P.m1*P.ell/6+P.m2*2*P.ell/3)],
-          [1, 0, -(P.m1+P.m2)*P.g/(P.m1*P.ell/6+P.m2*2*P.ell/3)])
+
+# flag to define if using dB or absolute scale for M(omega)
+dB_flag = P16.dB_flag
+
+# assigning plant and controller from past HW
+# (to make sure we don't introduce additional errors)
+P_in = P16.P_in
 Plant = P_in
-
-#PLOT = True
-PLOT = False
-
-if PLOT:
-    plt.figure(3), plt.clf() 
-    mag, phase, omega = cnt.bode(Plant, dB=True,
-                                 omega=np.logspace(-3, 5),
-                                 Plot=False)
-    plt.subplot(2, 1, 1), plt.grid(True)
-    plantMagPlot, = plt.semilogx(omega, mag, label='Plant')
-    plt.subplot(2, 1, 2), plt.grid(True)
-    plantPhasePlot, = plt.semilogx(omega, phase, label='Plant')
-
-#########################################
-#   Define Design Specifications
-#########################################
-
-#----------- noise specification --------
-omega_n = 200    # attenuate noise above this frequency
-gamma_n = 0.1    # attenuate noise by this amount
-w = np.logspace(np.log10(omega_n), np.log10(omega_n)+2)
-if PLOT:
-    plt.subplot(211)
-    noisePlot, = plt.plot(w,
-                          (20*np.log10(gamma_n))*np.ones(len(w)),
-                          color='g', label='noise spec')
-
 
 #########################################
 #   Control Design
 #########################################
-
 C = tf([1], [1])
 
-# Proportional control: correct for negative sign in plant 
-K = tf([-1], [1])
-C = C*K
+# Proportional control: correct for negative sign in plant
+K_neg = hf.get_control_proportional(-1)
+C = C*K_neg
 
 #  phase lead: increase PM (stability)
-w_max = 40 #location of maximum frequency bump 
+w_max = 40 #location of maximum frequency bump
 phi_max = 60*np.pi/180
 M = (1 + np.sin(phi_max))/(1 - np.sin(phi_max))  # lead ratio
-z = w_max/np.sqrt(M)
-p = w_max*np.sqrt(M)
-Lead = tf([1/z, 1], [1/p, 1])
+Lead = hf.get_control_lead(w_max, M)
 C = C*Lead
 
-# find gain to set crossover at w_max = 25 rad/s
-mag, phase, omega = cnt.bode(Plant*C, dB=False,
-                             omega=[w_max], Plot=False)
-K = tf([1/mag.item(0)], [1])
-C = K*C
+# find gain to set crossover at w_max
+mag, phase, omega = bode(Plant*C*Lead, dB=False,
+                             omega=[w_max], plot=False)
 
-############################################
-#  Create Plots
-############################################
-# Open-loop transfer function
-OPEN = Plant*C
-# Closed loop transfer function from R to Y
-CLOSED_R_to_Y = (Plant*C/(1.0+Plant*C))
-# Closed loop transfer function from R to U
-CLOSED_R_to_U = (C/(1.0+Plant*C))
-
-mag, phase, omega = cnt.bode(OPEN,
-                             omega=np.logspace(-3, 5),
-                             dB=True, Plot=False)
-if PLOT: 
-    openMagPlot, = plt.semilogx(omega,mag, color='r',
-                                label='OPEN')
-    plt.subplot(212)
-    openPhasePlot, = plt.semilogx(omega,phase, color='r',
-                                  label='OPEN')
-    plt.legend(handles=[plantMagPlot,
-                        noisePlot,
-                        openMagPlot])
-
-    # the pause causes the figure to be displayed during the
-    # simulation
-    plt.pause(0.0001)  
-
-if PLOT:
-    plt.figure(4), plt.clf()
-
-    plt.subplot(311),  plt.grid(True)
-    mag, phase, omega = cnt.bode(CLOSED_R_to_Y,
-                                 dB=True, Plot=False)
-    plt.semilogx(omega, mag, color='b')
-    plt.title('Close Loop Bode Plot')
-
-    plt.subplot(312), plt.grid(True)
-    T = np.linspace(0, 2, 100)
-    T, yout = step_response(CLOSED_R_to_Y, T)
-    plt.plot(T, yout, color='b')
-    plt.title('Close Loop Step Response')
-
-    plt.subplot(313), plt.grid(True)
-    T = np.linspace(0, 2, 100)
-    T, yout = step_response(CLOSED_R_to_U, T)
-    plt.plot(T, yout, color='b')
-    plt.title('Control Effort for Step Response')
-
-if PLOT:
-    # Stops program from closing until the user presses button.
-    print('Press key to close')
-    plt.waitforbuttonpress()
-    plt.close()
+# Proportional control: correct for negative sign in plant
+K = hf.get_control_proportional(1/mag[0])
+C = C*K
 
 ##############################################
 #  Convert Controller to State Space Equations
 ##############################################
-C_ss = cnt.tf2ss(C)  # convert to state space
+C_ss = tf2ss(C)  # convert to state space
 
-########################################################
-#  Convert Controller to discrete transfer functions for
-#  implementation
-########################################################
-#bilinear: Tustin's approximation ("generalized bilinear
-#transformation" with alpha=0.5)
-C_in_d = tf.sample(C, P.Ts, method='bilinear') 
+
+if __name__=="__main__":
+    # calculate bode plot and gain and phase margin
+    # for original PID * plant dynamics
+    mag, phase, omega = bode(Plant, dB=dB_flag,
+                             omega=np.logspace(-3, 5),
+                             plot=True, label="$P(s)$")
+
+    gm, pm, Wcg, Wcp = margin(Plant)
+    print("for original system:")
+    if dB_flag == True:
+        print(" pm: ", pm, " Wcp: ", Wcp,
+              "gm: ", mag2db(gm), " Wcg: ", Wcg)
+    elif dB_flag == False:
+        print(" pm: ", pm, " Wcp: ", Wcp,
+              "gm: ", gm, " Wcg: ", Wcg)
+
+
+    #########################################
+    #   Define Design Specifications
+    #########################################
+    # ----------- noise specification --------
+    omega_n = 200  # attenuate noise above this frequency
+    gamma_n = 0.1  # attenuate noise by this amount
+    hf.add_spec_noise(gamma_n, omega_n, dB_flag)
+
+    ## plot the effect of adding the new compensator terms
+    mag, phase, omega = bode(Plant * C, dB=dB_flag,
+                             omega=np.logspace(-3, 5),
+                             plot=True, label="$C_{final}(s)P(s)$",
+                             color='orange')
+
+    gm, pm, Wcg, Wcp = margin(Plant * C)
+    print("for final C*P:")
+    if dB_flag == True:
+        print(" pm: ", pm, " Wcp: ", Wcp,
+              "gm: ", mag2db(gm), " Wcg: ", Wcg)
+    elif dB_flag == False:
+        print(" pm: ", pm, " Wcp: ", Wcp,
+              "gm: ", gm, " Wcg: ", Wcg)
+
+    fig = plt.gcf()
+    fig.axes[0].legend()
+    fig.axes[0].set_title('Inner Open-loop Bode Plot')
+    plt.show()
+
+    ############################################
+    # now check the closed-loop response
+    ############################################
+    # Open-loop transfer function
+    OPEN = Plant*C
+    # Closed loop transfer function from R to Y
+    CLOSED_R_to_Y = (Plant*C/(1.0+Plant*C))
+    # Closed loop transfer function from R to U
+    CLOSED_R_to_U = (C/(1.0+Plant*C))
+
+    plt.figure()
+    plt.subplot(311)
+    mag, phase, omega = bode(CLOSED_R_to_Y,
+                             dB=dB_flag, plot=False)
+    if dB_flag:
+        plt.semilogx(omega, mag2db(mag), color=[0,0,1])
+    else:
+        plt.loglog(omega, mag, color=[0,0,1])
+    plt.grid(True)
+    plt.ylabel('Magnitude (dB)')
+    plt.title('closed-loop magnitude ratio $\\frac{Y}{R}$')
+
+    plt.subplot(312), plt.grid(True)
+    T = np.linspace(0, 2, 100)
+    _, yout = step_response(CLOSED_R_to_Y, T)
+    plt.plot(T, yout, color=[0,0,1])
+    plt.ylabel('Amplitude')
+    plt.title('Step Response')
+
+    plt.subplot(313), plt.grid(True)
+    _, Uout = step_response(CLOSED_R_to_U, T)
+    plt.plot(T, Uout, color=[0,0,1])
+    plt.ylabel('Amplitude')
+    plt.title('Control Effort')
+
+    plt.tight_layout()
+    plt.show()
+
+
 

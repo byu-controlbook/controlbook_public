@@ -7,7 +7,7 @@ class armController:
         self.error_d1 = 0.0  # error signal delayed by 1 sample
         self.K = P.K  # state feedback gain
         self.ki = P.ki  # Input gain
-        self.limit = P.tau_max  # Maxiumum force
+        self.limit = P.tau_max  # Maximum torque
         self.Ts = P.Ts  # sample rate of controller
 
     def update(self, theta_r, x):

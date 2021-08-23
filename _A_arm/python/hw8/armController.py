@@ -11,7 +11,7 @@ class armController:
         # Instantiates the PD object
         self.kp = P.kp
         self.kd = P.kd
-        self.tau_max = P.tau_max
+        self.tau_max = P.tau_max # Maximum torque
 
     def update(self, theta_r, state):
         theta = state.item(0)

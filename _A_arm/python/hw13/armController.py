@@ -16,7 +16,7 @@ class armController:
         self.A = P.A  # system model
         self.B = P.B
         self.C = P.C
-        self.limit = P.tau_max  # Maxiumum force
+        self.limit = P.tau_max  # Maximum torque
         self.Ts = P.Ts  # sample rate of controller
 
     def update(self, theta_r, y):

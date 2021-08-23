@@ -6,7 +6,7 @@ class armController:
     def __init__(self):
         self.K = P.K  # state feedback gain
         self.kr = P.kr  # Input gain
-        self.limit = P.tau_max  # Maxiumum force
+        self.limit = P.tau_max  # Maximum torque
         self.Ts = P.Ts  # sample rate of controller
 
     def update(self, theta_r, x):
