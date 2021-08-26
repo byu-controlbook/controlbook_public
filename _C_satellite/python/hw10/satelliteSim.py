@@ -10,7 +10,7 @@ from hw2.satelliteAnimation import satelliteAnimation
 from hw2.dataPlotter import dataPlotter
 
 # instantiate satellite, controller, and reference classes
-satellite = satelliteDynamics()
+satellite = satelliteDynamics(alpha=0.2)
 controller = satelliteController()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0,
                             frequency=0.02)

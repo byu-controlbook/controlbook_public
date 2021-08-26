@@ -13,7 +13,7 @@ from hw2.dataPlotter import dataPlotter
 satellite = satelliteDynamics(alpha=0.2)
 controller = satelliteController()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0,
-                            frequency=0.03)
+                            frequency=0.02)
 disturbance = signalGenerator(amplitude=1.0)
 noise_phi = signalGenerator(amplitude=0.01)
 noise_th = signalGenerator(amplitude=0.01)

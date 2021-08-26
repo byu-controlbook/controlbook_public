@@ -38,7 +38,7 @@ while t < P.t_end:  # main simulation loop
 
         # simulate sensor noise -
         # #np.array([[noise_phi.random(t)],[noise_th.random(t)]])
-        n = np.array([[0.0], [0.0]])
+        n = np.array([[noise_phi.random(t)],[noise_th.random(t)]])
         
         u, xhat = controller.update(r, y + n)  # update controller
         y = satellite.update(u + d)  # propagate system

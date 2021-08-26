@@ -1,43 +1,99 @@
 # Inverted Pendulum Parameter File
 import sys
 sys.path.append('..')
+sys.path.append('../hw16')
 import pendulumParam as P
-import hw10.pendulumParamHW10 as P10
-from control.matlab import *
-from control import TransferFunction as tf
+import pendulumParamHW16 as P16
+from control import bode, margin, mag2db
 import matplotlib.pyplot as plt
 
-# Compute inner and outer open-loop transfer functions
-temp = P.m1*P.ell/6+P.m2*2*P.ell/3
-P_in = tf([-1/temp], [1, 0, -(P.m1+P.m2)*P.g/temp])
-P_out = tf([-2*P.ell/3, 0, P.g], [1, 0, 0])
+# flag to define if using dB or absolute scale for M(omega)
+dB_flag = P16.dB_flag
+
+# Assign inner and outer open-loop transfer functions from
+# previous HW solution
+P_in = P16.P_in
+P_out = P16.P_out
 
 # Compute inner and outer closed-loop transfer functions
-C_in = tf([P10.kd_th+P10.sigma*P10.kp_th, P10.kp_th],
-          [P10.sigma, 1])
-C_out = tf([P10.kd_z+P10.kp_z*P10.sigma,
-            P10.kp_z+P10.ki_z*P10.sigma, P10.ki_z],
-           [P10.sigma, 1, 0])
+C_in = P16.C_in
+C_out = P16.C_out
 
-# Plot the closed loop and open loop bode plots for the inner loop
-plt.figure(1), plt.clf(),  plt.grid(True)
-bode(P_in*C_in, dB=True)
-bode(P_in*C_in/(1+P_in*C_in), dB = True)
+if __name__=="__main__":
 
-# Plot the closed loop and open loop bode plots for the outer loop
-plt.figure(2), plt.clf(),  plt.grid(True)
-bode(P_out*C_out, dB=True)
-bode(P_out*C_out/(1+P_out*C_out), dB = True)
+    ##################################################
+    ########### Inner loop ###########################
+    # Calculate the phase and gain margins
+    if dB_flag:
+        gm, pm, Wcg, Wcp = margin(P_in*C_in)
+        gm = mag2db(gm)
+        print("Inner Loop:", "gm: ",gm,
+              " pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
 
-# Calculate the phase and gain margin
-gm, pm, Wcg, Wcp = margin(P_in*C_in)
-print("gm: ",mag2db(gm)," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
+    else:
+        gm, pm, Wcg, Wcp = margin(P_in * C_in)
+        print("Inner Loop:", "gm: ", gm,
+              " pm: ", pm, " Wcg: ", Wcg, " Wcp: ", Wcp)
 
-gm, pm, Wcg, Wcp = margin(P_out*C_out)
-print("gm: ",mag2db(gm)," pm: ", pm," Wcg: ", Wcg, " Wcp: ", Wcp)
+    # display bode plots of transfer functions
+    fig1 = plt.figure()
 
-# Closes plot windows when the user presses a button.
-plt.pause(0.0001)
-print('Press key to close')
-plt.waitforbuttonpress()
-plt.close()
+    # this makes two bode plots for open and closed loop
+    bode(P_in * C_in, dB=dB_flag,
+         label='$C_{in}P_{in}$ - Open-loop')
+    bode(P_in*C_in/(1+P_in*C_in), dB=dB_flag, 
+         label=r'$\frac{P_{in}C_{in}}{1+P_{in}C_{in}}$'
+               +'- Closed-loop')
+
+    # now we can add lines to show where we calculated the GM and PM
+    gm_line = fig1.axes[0].plot([Wcg, Wcg],
+                                plt.ylim(), 'k--', label='GM')
+    gm_line[0].set_label('GM')
+    fig1.axes[0].legend()
+    fig1.axes[1].plot([Wcp, Wcp], plt.ylim(), 'b--', label='PM')
+    plt.legend()
+
+    # setting axis title
+    fig1.axes[0].set_title('Pendulum Inner Loop - '+
+                           'GM:'+str(round(gm, 2))+
+                           ', PM:'+str(round(pm, 2)))
+
+    ##################################################
+    ########### Outer loop ###########################
+    # Calculate the phase and gain margins
+    if dB_flag:
+        gm, pm, Wcg, Wcp = margin(P_out * C_out)
+        gm = mag2db(gm)
+        print("Outer Loop:", "gm: ", gm,
+              " pm: ", pm, " Wcg: ", Wcg, " Wcp: ", Wcp)
+
+    else:
+        gm, pm, Wcg, Wcp = margin(P_out * C_out)
+        print("Outer Loop:", "gm: ", gm,
+              " pm: ", pm, " Wcg: ", Wcg, " Wcp: ", Wcp)
+
+    # display bode plots of transfer functions
+    fig2 = plt.figure()
+
+    # this makes two bode plots for open and closed loop
+    bode(P_out * C_out, dB=dB_flag,
+         label='$C_{out}P_{out}$ - Open-loop')
+    bode(P_out*C_out/(1+P_out*C_out), dB=dB_flag, 
+         label=r'$\frac{P_{out}C_{out}}{1+P_{out}C_{out}}$'
+               +' - Closed-loop')
+
+    # now we can add lines to show where we calculated the GM and PM
+    gm_line = fig2.axes[0].plot([Wcg, Wcg],
+                                plt.ylim(), 'k--', label='GM')
+    gm_line[0].set_label('GM')
+    fig2.axes[0].legend()
+    fig2.axes[1].plot([Wcp, Wcp], plt.ylim(), 'b--', label='PM')
+    plt.legend()
+
+    # setting axis title
+    fig2.axes[0].set_title('Pendulum Outer Loop - '+
+                           'GM:'+str(round(gm, 2))+
+                           ', PM:'+str(round(pm, 2)))
+
+    print('Close window to end program')
+    plt.show()

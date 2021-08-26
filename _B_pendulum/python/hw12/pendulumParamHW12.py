@@ -20,7 +20,7 @@ tr_z = 1.5             # rise time for position
 tr_theta = 0.5         # rise time for angle
 zeta_z   = 0.707       # damping ratio position
 zeta_th  = 0.707       # damping ratio angle
-integrator_pole = -2  # integrator pole
+integrator_pole = [-2]  # integrator pole
 
 # State Space Equations
 # xdot = A*x + B*u
@@ -61,7 +61,7 @@ wn_z = 2.2/tr_z  # natural frequency for position
 des_char_poly = np.convolve(
     np.convolve([1, 2*zeta_z*wn_z, wn_z**2],
                 [1, 2*zeta_th*wn_th, wn_th**2]),
-    np.poly(integrator_pole))
+    np.array(integrator_pole))
 des_poles = np.roots(des_char_poly)
 
 # Compute the gains if the system is controllable

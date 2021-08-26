@@ -3,22 +3,28 @@ import sys
 sys.path.append('..')  # add parent directory
 import pendulumParam as P
 #from control.matlab import *
-from control import bode
-from control import tf
+from control import tf, bode
 import matplotlib.pyplot as plt
 
+# flag to define if using dB or absolute scale for M(omega)
+dB_flag = True
 
 # Compute inner and outer open-loop transfer functions
-P_in = tf([-1/(P.m1*P.ell/6+P.m2*2*P.ell/3)],
-          [1, 0, -(P.m1+P.m2)*P.g/(P.m1*P.ell/6+P.m2*2*P.ell/3)])
-P_out = tf([P.ell/2,0,-P.g], [1, 0, 0])
+temp = (P.m1*P.ell/6.0+P.m2*2*P.ell/3.0)
+P_in = tf([-1/temp],
+          [1, 0, -(P.m1+P.m2)*P.g/temp])
+P_out = tf([-2*P.ell/3.0, 0, P.g], [1, 0, 0])
 
-# Plot the closed loop and open loop bode plots for the inner loop
-plt.figure(1), bode(P_in, dB=True)
-plt.figure(2), bode(P_out, dB=True)
+if __name__=="__main__":
 
-# Closes plot windows when the user presses a button.
-plt.pause(0.0001)
-print('Press key to close')
-plt.waitforbuttonpress()
-plt.close()
+    # Plot the open loop bode plots for the inner loop
+    fig1 = plt.figure()
+    bode(P_in, dB=dB_flag)
+    fig1.axes[0].set_title('$P_{in}(s)$')
+
+    fig2 = plt.figure()
+    bode(P_out, dB=dB_flag)
+    fig2.axes[0].set_title('$P_{out}(s)$')
+
+    print('Close window to end program')
+    plt.show()

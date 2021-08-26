@@ -6,36 +6,46 @@ import satelliteParamHW10 as P10
 import loopshape_in as L_in
 import loopshape_out as L_out
 import numpy as np
+from discreteFilter import discreteFilter
 
 
 class satelliteController:
     # state feedback control using dirty derivatives to estimate zdot and thetadot
-    def __init__(self):
+    def __init__(self, method="state_space"):
         self.phi_dot = 0.0           # derivative of phi
         self.theta_dot = 0.0         # derivative of theta
         self.phi_d1 = 0.             # angle phi delayed by 1 sample
         self.theta_d1 = 0.0          # Angle theta delayed by 1 sample
         self.kd_phi = P10.kd_phi
         self.kd_th = P10.kd_th
-        self.xout_C = np.zeros((L_out.C_ss.A.shape[0], 1))
-        self.x_F = np.zeros((L_out.F_ss.A.shape[0], 1))
-        self.xin_C  = np.zeros((L_in.C_ss.A.shape[0], 1))
-        self.A_F = L_out.F_ss.A
-        self.B_F = L_out.F_ss.B
-        self.C_F = L_out.F_ss.C
-        self.D_F = L_out.F_ss.D
-        self.Aout_C = L_out.C_ss.A
-        self.Bout_C = L_out.C_ss.B
-        self.Cout_C = L_out.C_ss.C
-        self.Dout_C = L_out.C_ss.D
-        self.Ain_C = L_in.C_ss.A
-        self.Bin_C = L_in.C_ss.B
-        self.Cin_C = L_in.C_ss.C
-        self.Din_C = L_in.C_ss.D
+        self.method = method
+
+        if method == "state_space":
+            self.xout_C = np.zeros((L_out.C_ss.A.shape[0], 1))
+            self.x_F = np.zeros((L_out.F_ss.A.shape[0], 1))
+            self.xin_C  = np.zeros((L_in.C_ss.A.shape[0], 1))
+            self.A_F = L_out.F_ss.A
+            self.B_F = L_out.F_ss.B
+            self.C_F = L_out.F_ss.C
+            self.D_F = L_out.F_ss.D
+            self.Aout_C = L_out.C_ss.A
+            self.Bout_C = L_out.C_ss.B
+            self.Cout_C = L_out.C_ss.C
+            self.Dout_C = L_out.C_ss.D
+            self.Ain_C = L_in.C_ss.A
+            self.Bin_C = L_in.C_ss.B
+            self.Cin_C = L_in.C_ss.C
+            self.Din_C = L_in.C_ss.D
+            self.N = 10
+
+        elif method == "digital_filter":
+            self.control_out = discreteFilter(L_out.C.num, L_out.C.den, P.Ts)
+            self.prefilter_out = discreteFilter(L_out.F.num, L_out.F.den, P.Ts)
+            self.control_in = discreteFilter(L_in.C.num, L_in.C.den, P.Ts)
+
         self.limit = P.tau_max       # Maxiumum torque
         self.beta = P.beta           # dirty derivative gain
         self.Ts = P.Ts               # sample rate of controller
-        self.N = 10
 
     def update(self, y_r, y):
         # y_r is the referenced input
@@ -48,26 +58,53 @@ class satelliteController:
         self.differentiatePhi(phi)
         self.differentiateTheta(theta)
 
-        # solve differential equation defining prefilter F
-        self.updatePrefilterState(phi_r)
-        phi_r_filtered = self.C_F * self.x_F + self.D_F * phi_r
+        if self.method == "state_space":
+            # solve differential equation defining prefilter F
+            self.updatePrefilterState(phi_r)
+            phi_r_filtered = self.C_F * self.x_F + self.D_F * phi_r
 
-        # error signal for outer loop
-        error_out = phi_r_filtered - phi
+            # error signal for outer loop
+            error_out = phi_r_filtered - phi
 
-        # Outer loop control C_out
-        self.updateControlOutState(error_out)
-        theta_r = -self.kd_phi*self.phi_dot + self.Cout_C * self.xout_C + self.Dout_C * error_out
+            # Outer loop control C_out
+            self.updateControlOutState(error_out)
+            theta_r = -self.kd_phi*self.phi_dot + self.Cout_C * self.xout_C + self.Dout_C * error_out
 
-        # error signal for inner loop
-        error_in = theta_r - theta
+            # error signal for inner loop
+            error_in = theta_r - theta
 
-        # Inner loop control C_in
-        self.updateControlInState(error_in)
-        tau_unsat = -self.kd_th*self.theta_dot + self.Cin_C * self.xin_C + self.Din_C * error_in
+            # Inner loop control C_in
+            self.updateControlInState(error_in)
+            tau_unsat = -self.kd_th*self.theta_dot + self.Cin_C * self.xin_C + self.Din_C * error_in
 
-        tau = self.saturate(tau_unsat)
-        return [tau.item(0)]
+            tau = self.saturate(tau_unsat)
+            return [tau.item(0)]
+
+        elif self.method == "digital_filter":
+            # prefilter for outer loop
+            phi_r_filtered = self.prefilter_out.update(phi_r)
+
+            # error signal for outer loop
+            error_out = phi_r_filtered - phi
+
+            # Outer loop control (based on form in chapter 18)
+            theta_r = -self.kd_phi * self.phi_dot + \
+                      self.control_out.update(error_out[0])
+
+            # error signal for inner loop
+            error_in = theta_r - theta
+
+            # Inner loop control (based on form in chapter 18)
+            tau_unsat = -self.kd_th * self.theta_dot + \
+                        self.control_in.update(error_in[0])
+
+            tau = self.saturate(tau_unsat)
+            return [tau.item(0)]
+
+        else:
+            print('that method for control is not implemented')
+            sys.exit()
+
 
     def differentiatePhi(self, phi):
         '''
