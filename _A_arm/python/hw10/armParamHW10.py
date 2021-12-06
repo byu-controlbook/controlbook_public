@@ -6,14 +6,14 @@ sys.path.append('..')  # add parent directory
 import armParam as P
 
 Ts = P.Ts  # sample rate of the controller
-beta = P.beta  # dirty derivative gain
+sigma = 0.05  # cutoff freq for dirty derivative
 tau_max = P.tau_max  # limit on control signal
 
 #  tuning parameters
 #tr = 0.8 # part (a)
 tr = 0.6  # tuned for fastest possible rise time before saturation.
 zeta = 0.90
-ki = .25  # integrator gain
+ki = 0.1  # integrator gain
 
 # desired natural frequency
 wn = 0.5*np.pi/(tr*np.sqrt(1-zeta**2))

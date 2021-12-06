@@ -1,14 +1,13 @@
 import numpy as np
 
 class PIDControl:
-    def __init__(self, kp, ki, kd, limit, beta, Ts):
+    def __init__(self, kp, ki, kd, limit, sigma, Ts):
         self.kp = kp                 # Proportional control gain
         self.ki = ki                 # Integral control gain
         self.kd = kd                 # Derivative control gain
         self.limit = limit           # The output will saturate at this limit
-        self.beta = beta             # gain for dirty derivative
+        self.beta = (2.0 * sigma - Ts) / (2.0 * sigma + Ts)  # dirty derivative gain
         self.Ts = Ts                 # sample rate
-
         self.y_dot = 0.0             # estimated derivative of y
         self.y_d1 = 0.0              # Signal y delayed by one sample
         self.error_dot = 0.0         # estimated derivative of error

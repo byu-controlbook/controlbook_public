@@ -19,8 +19,8 @@ class armController:
         self.A2 = P.A2         # system model
         self.B2 = P.B2
         self.C2 = P.C2
-        self.limit = P.tau_max # Maximum torque
-        self.Ts = P.Ts         # sample rate of controller
+        self.limit = P.tau_max  # Maximum torque
+        self.Ts = P.Ts          # sample rate of controller
 
     def update(self, theta_r, y_m):
         # update the observer and extract theta_hat
@@ -77,7 +77,7 @@ class armController:
                           + (self.Ts/2.0)*(error + self.error_d1)
         self.error_d1 = error
 
-    def saturate(self,u):
+    def saturate(self, u):
         if abs(u) > self.limit:
             u = self.limit*np.sign(u)
         return u

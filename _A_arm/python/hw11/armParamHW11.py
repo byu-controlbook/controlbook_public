@@ -6,7 +6,6 @@ sys.path.append('..')  # add parent directory
 import armParam as P
 
 Ts = P.Ts  # sample rate of the controller
-beta = P.beta  # dirty derivative gain
 tau_max = P.tau_max  # limit on control signal
 m = P.m
 ell = P.ell
@@ -42,6 +41,7 @@ else:
 
 print('K: ', K)
 print('kr: ', kr)
+print(des_poles)
 
 
 

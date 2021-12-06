@@ -11,7 +11,7 @@ from hw2.dataPlotter import dataPlotter
 # instantiate pendulum, controller, and reference classes
 pendulum = pendulumDynamics()
 controller = pendulumController()
-reference = signalGenerator(amplitude=0.5, frequency=0.05)
+reference = signalGenerator(amplitude=0.5, frequency=0.06)
 disturbance = signalGenerator(amplitude=0.1)
 noise = signalGenerator(amplitude=0.01)
 

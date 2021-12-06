@@ -10,11 +10,11 @@ from hw2.armAnimation import armAnimation
 from hw2.dataPlotter import dataPlotter
 
 # instantiate arm, controller, and reference classes
-arm = armDynamics()
+arm = armDynamics(alpha=0)
 controller = armController()
 reference = signalGenerator(amplitude=30*np.pi/180.0,
                             frequency=0.05)
-disturbance = signalGenerator(amplitude=0.25)
+disturbance = signalGenerator(amplitude=0.1)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()

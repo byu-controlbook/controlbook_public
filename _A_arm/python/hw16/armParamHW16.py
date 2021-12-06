@@ -17,8 +17,8 @@ dB_flag = P15.dB_flag
 Plant = P15.Plant
 
 # Compute transfer function of controller
-C_pid = tf([(P10.kd+P10.kp*P.sigma), (P10.kp+P10.ki*P.sigma), P10.ki],
-           [P.sigma, 1, 0])
+C_pid = tf([(P10.kd+P10.kp*P10.sigma), (P10.kp+P10.ki*P10.sigma), P10.ki],
+           [P10.sigma, 1, 0])
 
 if __name__=="__main__":
     # display bode plots of transfer functions

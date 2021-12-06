@@ -13,7 +13,7 @@ from hw2.dataPlotter import dataPlotter
 satellite = satelliteDynamics()
 controller = satelliteController()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0, frequency=0.04)
-disturbance = signalGenerator(amplitude=1.0)
+disturbance = signalGenerator(amplitude=0.0)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()

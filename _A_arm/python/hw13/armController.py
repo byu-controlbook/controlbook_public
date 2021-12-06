@@ -42,7 +42,6 @@ class armController:
     def integrateError(self, error):
         self.integrator = self.integrator \
                           + (self.Ts/2.0)*(error + self.error_d1)
-                          
         self.error_d1 = error
 
     def update_observer(self, y_m):
@@ -64,8 +63,6 @@ class armController:
         xhat_dot = self.A @ x_hat\
                    + self.B * (self.tau_d1 - tau_fl)\
                    + self.L * (y_m - self.C @ x_hat)
-
-        
         return xhat_dot
 
     def saturate(self,u):

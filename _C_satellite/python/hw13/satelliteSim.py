@@ -34,7 +34,7 @@ while t < P.t_end:  # main simulation loop
     # updates control and dynamics at faster simulation rate
     while t < t_next_plot:  
         r = reference.square(t)  # reference input
-        d = 0 #disturbance.step(t)  # input disturbance
+        d = disturbance.step(t)  # input disturbance
 
         # simulate sensor noise -
         # #np.array([[noise_phi.random(t)],[noise_th.random(t)]])

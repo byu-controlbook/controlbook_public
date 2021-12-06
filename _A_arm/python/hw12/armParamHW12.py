@@ -6,7 +6,7 @@ sys.path.append('..')  # add parent directory
 import armParam as P
 
 Ts = P.Ts  # sample rate of the controller
-beta = P.beta  # dirty derivative gain
+#beta = P.beta  # dirty derivative gain
 tau_max = P.tau_max  # limit on control signal
 m = P.m
 ell = P.ell
@@ -50,7 +50,7 @@ des_poles = np.roots(des_char_poly)
 if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 3:
     print("The system is not controllable")
 else:
-    K1 = cnt.acker(A1, B1, des_poles)
+    K1 = cnt.place(A1, B1, des_poles)
     K = np.array([[K1.item(0), K1.item(1)]])
     ki = K1.item(2)
 

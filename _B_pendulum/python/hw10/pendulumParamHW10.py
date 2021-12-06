@@ -15,11 +15,11 @@ sigma = 0.05  # cutoff freq for dirty derivative
 #       PD Control: Time Design Strategy
 ####################################################
 # tuning parameters
-tr_th = 0.35  # Rise time for inner loop (theta)
+tr_th = 0.2  # Rise time for inner loop (theta)
 zeta_th = 0.707  # Damping Coefficient for inner loop (theta)
 M = 10.0  # Time scale separation between inner and outer loop
 zeta_z = 0.707  # Damping Coefficient fop outer loop (z)
-ki_z = -0.005  # select integrator gain
+ki_z = -0.01  # select integrator gain
 
 # saturation limits
 F_max = 5             		  # Max Force, N

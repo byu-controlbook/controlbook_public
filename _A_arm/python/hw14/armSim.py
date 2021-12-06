@@ -36,7 +36,6 @@ while t < P.t_end:  # main simulation loop
         r = reference.square(t)
         d = disturbance.step(t)  # input disturbance
         n = noise.random(t)  # simulate sensor noise
-
         # update controller
         u, xhat, dhat = controller.update(r, y + n)  
         y = arm.update(u + d)  # propagate system

@@ -9,9 +9,8 @@ import satelliteParamHW8 as P8
 
 # import variables from satelliteParam
 Ts = P.Ts
-sigma = P.sigma
-beta = P.beta
 tau_max = P.tau_max
+sigma = 0.05  # cutoff freq for dirty derivative
 
 ####################################################
 #       PD Control: Time Design Strategy

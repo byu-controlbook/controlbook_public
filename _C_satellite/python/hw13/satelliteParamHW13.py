@@ -7,8 +7,8 @@ sys.path.append('..')  # add parent directory
 import satelliteParam as P
 
 Ts = P.Ts
-sigma = P.sigma
-beta = P.beta
+#sigma = P.sigma
+#beta = P.beta
 tau_max = P.tau_max
 
 # tuning parameters

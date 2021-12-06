@@ -30,8 +30,7 @@ class pendulumController:
         self.integrate_error(error)
 
         # Compute the state feedback controller
-        F_unsat = -self.K*x_hat - self.ki*self.integrator
-
+        F_unsat = -self.K @ x_hat - self.ki * self.integrator
         F_sat = self.saturate(F_unsat.item(0))
         self.F_d1 = F_sat
 
@@ -44,7 +43,6 @@ class pendulumController:
         F3 = self.observer_f(self.x_hat + self.Ts / 2 * F2, y_m)
         F4 = self.observer_f(self.x_hat + self.Ts * F3, y_m)
         self.x_hat += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
-
         return self.x_hat
 
     def observer_f(self, x_hat, y_m):
@@ -60,7 +58,7 @@ class pendulumController:
                           + (self.Ts/2.0)*(error + self.error_d1)
         self.error_d1 = error
 
-    def saturate(self,u):
+    def saturate(self, u):
         if abs(u) > self.limit:
             u = self.limit*np.sign(u)
         return u

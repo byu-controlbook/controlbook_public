@@ -27,9 +27,9 @@ class armController:
         tau_tilde = self.kp * (theta_r - theta) - self.kd * thetadot
 
         # compute total torque
-        tau = tau_fl + tau_tilde
+        #tau = tau_fl + tau_tilde
 
-        #tau = tau_e + tau_tilde
+        tau = tau_e + tau_tilde
         # always saturate to protect hardware
         tau = self.saturate(tau)
 

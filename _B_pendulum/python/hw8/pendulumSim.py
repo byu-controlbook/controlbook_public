@@ -11,7 +11,7 @@ from hw2.dataPlotter import dataPlotter
 # instantiate pendulum, controller, and reference classes
 pendulum = pendulumDynamics()
 controller = pendulumController()
-reference = signalGenerator(amplitude=0.5, frequency=0.05)
+reference = signalGenerator(amplitude=0.5, frequency=0.02)
 disturbance = signalGenerator(amplitude=0)
 
 # instantiate the simulation plots and animation
@@ -26,7 +26,7 @@ while t < P.t_end:  # main simulation loop
     t_next_plot = t + P.t_plot
 
     while t < t_next_plot:
-        r = reference.square(t)  # reference input
+        r = reference.sin(t)  # reference input
         d = disturbance.step(t)  # input disturbance
         n = 0.0  #noise.random(t)  # simulate sensor noise
         x = pendulum.state  # use state instead of output

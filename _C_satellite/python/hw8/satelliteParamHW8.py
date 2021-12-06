@@ -6,8 +6,6 @@ import satelliteParam as P
 
 # import variables from satelliteParam for later import through current file
 Ts = P.Ts
-sigma = P.sigma
-beta = P.beta
 tau_max = P.tau_max
 
 ####################################################
@@ -16,20 +14,23 @@ tau_max = P.tau_max
 # PD design for inner loop
 zeta_th = 0.9  # damping ratio for inner loop
 theta_max = 30.0*np.pi/180.0  # maximum commanded base angle
-tr_th = 1.0
-wn_th = 0.5 * np.pi / (tr_th * np.sqrt(1 - zeta_th**2))# 2.2/tr_th
+tr_th = 0.5
+wn_th = 2.2/tr_th
+#wn_th = 0.5 * np.pi / (tr_th * np.sqrt(1 - zeta_th**2))# 2.2/tr_th
 kp_th = wn_th**2 * (P.Js + P.Jp)
 kd_th = 2*zeta_th * wn_th * (P.Js + P.Jp)
 
 # DC gain for inner loop
-k_DC_th = kp_th/(P.k+kp_th)
+#k_DC_th = kp_th/(P.k+kp_th)
+k_DC_th = 1
 
 # PD design for outer loop
 # tuning parameters
 M = 10.0  # time scale separation between inner and outer loop
 tr_phi = M*tr_th  # rise time for outer loop
 zeta_phi = 0.9  # damping ratio for outer loop
-wn_phi = 0.5 * np.pi / (tr_phi * np.sqrt(1 - zeta_phi**2)) #2.2/tr_phi
+#wn_phi = 0.5 * np.pi / (tr_phi * np.sqrt(1 - zeta_phi**2)) #2.2/tr_phi
+wn_phi =2.2/tr_phi
 
 AA = np.array([
     [P.k*k_DC_th, -P.b*k_DC_th*wn_phi**2],

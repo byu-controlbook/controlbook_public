@@ -8,10 +8,10 @@ import armParam as P
 #  tuning parameters
 tr = 0.4
 zeta = 0.707
-integrator_pole = np.array([-5])
+integrator_pole = -5
 wn_obs = 10            # natural frequency for observer
 zeta_obs = 0.707       # damping ratio for observer
-dist_obsv_pole = np.array([-5.5])  # pole for disturbance observer
+dist_obsv_pole = -5.5  # pole for disturbance observer
 
 
 Ts = P.Ts  # sample rate of the controller
@@ -47,10 +47,10 @@ wn = 2.2/tr  # natural frequency
 #    [1, 2*zeta*wn, wn**2],
 #    np.poly(integrator_pole))
 #des_poles = np.roots(des_char_poly)
-des_char_poly = np.array([1., 2.*zeta*wn_obs, wn_obs**2.])
-des_poles_poly = np.roots(des_char_poly)
-des_poles = np.concatenate((des_poles_poly,
-                            integrator_pole*np.ones(1)))
+des_char = np.array([1., 2.*zeta*wn_obs, wn_obs**2.])
+des_char_augmented = np.convolve(des_char,
+                                 np.poly([integrator_pole]))
+des_poles = np.roots(des_char_augmented)
 
 # Compute the gains if the system is controllable
 if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 3:
@@ -69,18 +69,14 @@ A2 = np.concatenate((
 B2 = np.concatenate((B, np.zeros((1, 1))), axis=0)
 C2 = np.concatenate((C, np.zeros((1, 1))), axis=1)
 
-#des_obsv_char_poly = np.convolve(
-#    [1, 2*zeta*wn_obs, wn_obs**2],
-#    np.poly(dist_obsv_pole))
-#des_obsv_poles = np.roots(des_obsv_char_poly)
 des_char_est = np.array([1., 2.*zeta*wn_obs, wn_obs**2.])
-des_poles_est = np.roots(des_char_est)
-des_obsv_poles = np.concatenate((des_poles_est,
-                                 dist_obsv_pole*np.ones(1)))
+des_char_est_aug = np.convolve(des_char_est,
+                               np.poly([dist_obsv_pole]))
+des_obsv_poles = np.roots(des_char_est_aug)
 
 # Compute the gains if the system is controllable
 if np.linalg.matrix_rank(cnt.ctrb(A2.T, C2.T)) != 3:
-    print("The system is not observerable")
+    print("The system is not observable")
 else:
     L2 = cnt.acker(A2.T, C2.T, des_obsv_poles).T
     L = np.array([[L2.item(0)], [L2.item(1)]])

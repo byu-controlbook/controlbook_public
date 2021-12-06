@@ -16,7 +16,7 @@ controller = armController()
 reference = signalGenerator(amplitude=30*np.pi/180.0,
                             frequency=0.05)
 disturbance = signalGenerator(amplitude=0.25)
-noise = signalGenerator(amplitude=0.01)
+noise = signalGenerator(amplitude=0.1)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
@@ -34,8 +34,8 @@ while t < P.t_end:  # main simulation loop
     # updates control and dynamics at faster simulation rate
     while t < t_next_plot: 
         r = reference.square(t)
-        d = 0  #disturbance.step(t)  # input disturbance
-        n = 0  #noise.random(t)  # simulate sensor noise
+        d = disturbance.step(t)  # input disturbance
+        n = noise.random(t)  # simulate sensor noise
         u, xhat = controller.update(r, y + n)  # update controller
         y = arm.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts

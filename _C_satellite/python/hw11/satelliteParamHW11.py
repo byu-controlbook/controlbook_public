@@ -7,13 +7,11 @@ import satelliteParam as P
 
 # import variables from satelliteParam
 Ts = P.Ts
-sigma = P.sigma
-beta = P.beta
 tau_max = P.tau_max
 
 # tuning parameters
-wn_th = 0.6
-wn_phi = 1.1    # rise time for angle
+tr_phi = 2
+tr_th = 3.66
 zeta_phi = 0.707  # damping ratio position
 zeta_th = 0.707  # damping ratio angle
 
@@ -34,6 +32,8 @@ C = np.array([[1.0, 0.0, 0.0, 0.0],
                [0.0, 1.0, 0.0, 0.0]])
 
 # gain calculation
+wn_th = 2.2/tr_th
+wn_phi = 2.2/tr_phi
 des_char_poly = np.convolve([1, 2*zeta_th*wn_th, wn_th**2],
                             [1, 2*zeta_phi*wn_phi, wn_phi**2])
 des_poles = np.roots(des_char_poly)

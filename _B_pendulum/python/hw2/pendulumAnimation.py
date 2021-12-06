@@ -35,12 +35,12 @@ class pendulumAnimation:
         y = P.gap
         corner = (x, y)
         # create rectangle on first call, update on subsequent calls
-        if self.flag_init == True:
+        if self.flag_init is True:
             # Create the Rectangle patch and append its handle
             # to the handle list
             self.handle.append(
                 mpatches.Rectangle(corner, P.w, P.h,
-                                   fc = 'blue', ec = 'black'))
+                                   fc='blue', ec='black'))
             # Add the patch to the axes
             self.ax.add_patch(self.handle[0])
         else:
@@ -50,28 +50,28 @@ class pendulumAnimation:
         # specify center of circle
         x = z+(P.ell+P.radius)*np.sin(theta)
         y = P.gap+P.h+(P.ell+P.radius)*np.cos(theta)
-        center = (x,y)
+        center = (x, y)
         # create circle on first call, update on subsequent calls
-        if self.flag_init == True:
+        if self.flag_init is True:
             # Create the CirclePolygon patch and append its handle
             # to the handle list
             self.handle.append(
                 mpatches.CirclePolygon(center, radius=P.radius,
-                    resolution=15, fc='limegreen', ec='black'))
+                                       resolution=15, fc='limegreen', ec='black'))
             # Add the patch to the axes
             self.ax.add_patch(self.handle[1])
         else:
-            self.handle[1]._xy = center
+            self.handle[1].xy = center
 
     def draw_rod(self, z, theta):
         # specify x-y points of the rod
         X = [z, z+P.ell*np.sin(theta)]
         Y = [P.gap+P.h, P.gap+P.h+P.ell*np.cos(theta)]
         # create rod on first call, update on subsequent calls
-        if self.flag_init == True:
+        if self.flag_init is True:
             # Create the line object and append its handle
             # to the handle list.
-            line, =self.ax.plot(X, Y, lw=1, c='black')
+            line, = self.ax.plot(X, Y, lw=1, c='black')
             self.handle.append(line)
         else:
             self.handle[2].set_xdata(X)

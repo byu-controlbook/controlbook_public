@@ -25,7 +25,8 @@ class transferFunction:
             self.A[0][i] = - den.item(i + 1)
         for i in range(1, n-1):
             self.A[i][i - 1] = 1.0
-        self.B[0][0] = 1.0
+        if n>1:
+            self.B[0][0] = 1.0
         if m == n:
             self.D = num.item(0)
             for i in range(0, n-1):
@@ -33,22 +34,26 @@ class transferFunction:
                                - num.item(0)*den.item(i+1)
         else:
             self.D = 0.0
-            for i in range(m-1, n-1):
-                self.C[0][i] = num.item(i-m+1)
+            for i in range(n-m-1, n-1):
+                self.C[0][i] = num.item(i)
 
     def update(self, u):
+        x = self.rk4(u)
+        y = self.C @ x + self.D * u
+        return y.item(0)
+
+    def f(self, state, u):
+        xdot = self.A @ state + self.B * u
+        return xdot
+
+    def rk4(self, u):
         # Integrate ODE using Runge-Kutta 4 algorithm
         F1 = self.f(self.state, u)
         F2 = self.f(self.state + self.Ts / 2 * F1, u)
         F3 = self.f(self.state + self.Ts / 2 * F2, u)
         F4 = self.f(self.state + self.Ts * F3, u)
         self.state += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
-        y = self.C @ self.state + self.D * u
-        return y.item(0)
-
-    def f(self, state, u):
-        xdot = self.A @ state + self.B * u
-        return xdot
+        return self.state
 
 if __name__ == "__main__":
     # instantiate the system
