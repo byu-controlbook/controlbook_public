@@ -1,6 +1,6 @@
 # Introduction to Feedback Control Using Design Studies
 
-<img src="./bookcover.jpg" width="100" />
+<img src="./bookcover.png" width="100" />
 
 [Randal W. Beard](https://ece.byu.edu/directory/randy-beard), 
 [Timothy W. McLain](http://me.byu.edu/faculty/timmclain)
@@ -21,10 +21,10 @@
 | Chapter | PDF Slides | Powerpoint | Last Modified |
 |---------|------------|------------|----------|
 | Chapter 1 - Introduction                  | [chapter1.pdf](https://drive.google.com/file/d/1EEJYRFGhS33oQ6utmfpvlL_AwMsa_qnA/view?usp=sharing)  | [chapter1.pptx](https://docs.google.com/presentation/d/1E64UCiuXwzBCBfGddauZVB_SIuUA60Qf/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2019 |
-| Chapter 2 - Kinetic Energy                | [chapter2.pdf]()  | [chapter2.pptx]()  | Sept 2021 |
-| Chapter 3 - Euler Lagrange                | [chapter3.pdf]()  | [chapter3.pptx]()  | Sept 2021 |
-| Chapter 4 - Linearization                 | [chapter4.pdf]()  | [chapter4.pptx]()  | Sept 2021 |
-| Chapter 5 - Transfer Function Models      | [chapter5.pdf]()  | [chapter5.pptx]()  | Sept 2021 |
+| Chapter 2 - Kinetic Energy                | [chapter2.pdf](https://drive.google.com/file/d/1Ey-o1F22cvjoc-gGlguOWAAwI1S_JLEC/view?usp=sharing)  | [chapter2.pptx](https://docs.google.com/presentation/d/1ExZBt4HSP8Nq1pJT9_alLNjg4Rqma-ok/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2021 |
+| Chapter 3 - Euler Lagrange                | [chapter3.pdf](https://drive.google.com/file/d/1EyYrhTzkqkcdqUtvDrF7Jwe9Sgk1C-wH/view?usp=sharing)  | [chapter3.pptx](https://docs.google.com/presentation/d/1FAJS49tG-3L4GBOjQdPihNfToJ42EOQr/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2021 |
+| Chapter 4 - Linearization                 | [chapter4.pdf](https://drive.google.com/file/d/1F7BPUXK1KO9s7lyXbmucp07YO9DHKcHl/view?usp=sharing)  | [chapter4.pptx](https://docs.google.com/presentation/d/1FD64VFeKZhbFzBC1Uc8AuH-NRQJMivWf/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2021 |
+| Chapter 5 - Transfer Function Models      | [chapter5.pdf](https://drive.google.com/file/d/1Er4SM3FTgFibvc0HSsgzES2N8pPXGFiG/view?usp=sharing)  | [chapter5.pptx](https://docs.google.com/presentation/d/1EngIns0Yo4-K2jL7vCNXFfuNH3YyhOx9/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2021 |
 | Chapter 6 - State Space Models            | [chapter6.pdf]()  | [chapter6.pptx]()  |  |
 | Chapter 7 - Second Order Systems          | [chapter7.pdf]()  | [chapter7.pptx]()  |  |
 | Chapter 8 - Second Order Design           | [chapter8.pdf]()  | [chapter8.pptx]()  |  |
@@ -34,10 +34,10 @@
 | Chapter 12 - Full State with Integrators  | [chapter12.pdf]() | [chapter12.pptx]() |  |
 | Chapter 13 - Observers                    | [chapter13.pdf]() | [chapter13.pptx]() |  |
 | Chapter 14 - Disturbance Observers        | [chapter14.pdf]() | [chapter14.pptx]() |  |
-| Chapter 15 - Frequency Response           | [chapter15.pdf]() | [chapter15.pptx]() | Nov 2021  |
-| Chapter 16 - Frequency Specifications     | [chapter16.pdf]() | [chapter16.pptx]() | Nov 2021  |
-| Chapter 17 - Robustness Margins           | [chapter17.pdf]() | [chapter17.pptx]() | Nov 2021 |
-| Chapter 18 - Compensator Design           | [chapter18.pdf]() | [chapter18.pptx]() | Nov 2021 |
+| Chapter 15 - Frequency Response           | [chapter15.pdf](https://drive.google.com/file/d/1EfjgR3Tijt5eJG9_ZFZc6v76ggy6iF6H/view?usp=sharing) | [chapter15.pptx](https://docs.google.com/presentation/d/1EeHZRrOXjGOTIN6TB_irWqs0YIlUc446/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true) | Nov 2021  |
+| Chapter 16 - Frequency Specifications     | [chapter16.pdf](https://drive.google.com/file/d/1EbImcppDqorO7fxp4Tn93zJfX9J23sGP/view?usp=sharing) | [chapter16.pptx](https://docs.google.com/presentation/d/1E_spVCx6YU-OHUQY4QAqBG2nLR6G_rgR/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true) | Nov 2021  |
+| Chapter 17 - Robustness Margins           | [chapter17.pdf](https://drive.google.com/file/d/1EOx9_QtNbere-bT1zuSy8or5f4SPR57C/view?usp=sharing) | [chapter17.pptx](https://docs.google.com/presentation/d/1ENBydG22LrYo_jAXgsT7P20unb50yNVK/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true) | Nov 2021 |
+| Chapter 18 - Compensator Design           | [chapter18.pdf](https://drive.google.com/file/d/1EMXKKlGUF-OCkaB1ffKkopsRwKZjPI7i/view?usp=sharing) | [chapter18.pptx](https://docs.google.com/presentation/d/1EF8tgs-kEVPWVJt7G7b3sa-eP1eNIGmJ/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true) | Nov 2021 |
 
 
 # Homework Solutions
