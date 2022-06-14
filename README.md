@@ -7,7 +7,7 @@
 [Cammy Peterson](https://ece.byu.edu/directory/cammy-peterson)
 [Marc Killpack](https://www.me.byu.edu/directory/marc-killpack)
 
-[Amazon](https://www.amazon.com/Introduction-Feedback-Control-Design-Studies/dp/1073396711/ref=sr_1_8?crid=36TN6HXOVZL2J&keywords=introduction+to+feedback+control&qid=1563317351&s=gateway&sprefix=introduction+to+feedba%2Caps%2C158&sr=8-8)
+Hardcopy available on [Amazon](https://www.amazon.com/Introduction-Feedback-Control-Design-Studies/dp/1073396711/ref=sr_1_8?crid=36TN6HXOVZL2J&keywords=introduction+to+feedback+control&qid=1563317351&s=gateway&sprefix=introduction+to+feedba%2Caps%2C158&sr=8-8)
 
 [PDF Version of Book](https://drive.google.com/file/d/1DxioCcBOJl-DoIBkDm8J2_ThItXbGx6e/view?usp=sharing)
     - A PDF version of the book is available at this link.
@@ -16,7 +16,7 @@
 
 
 # LECTURE MATERIAL 
-(Under construction) The following lecture materials are included as a resource for instructors.  The slides closely follow the book.  We welcome suggestions on how these slides might be improved.//
+(Under construction) The following lecture materials are included as a resource for instructors.  The slides closely follow the book.  We welcome suggestions on how these slides might be improved.
 
 | Chapter | PDF Slides | Powerpoint | Last Modified |
 |---------|------------|------------|----------|
@@ -39,6 +39,11 @@
 | Chapter 17 - Robustness Margins           | [chapter17.pdf](https://drive.google.com/file/d/1EOx9_QtNbere-bT1zuSy8or5f4SPR57C/view?usp=sharing) | [chapter17.pptx](https://docs.google.com/presentation/d/1ENBydG22LrYo_jAXgsT7P20unb50yNVK/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true) | Nov 2021 |
 | Chapter 18 - Compensator Design           | [chapter18.pdf](https://drive.google.com/file/d/1EMXKKlGUF-OCkaB1ffKkopsRwKZjPI7i/view?usp=sharing) | [chapter18.pptx](https://docs.google.com/presentation/d/1EF8tgs-kEVPWVJt7G7b3sa-eP1eNIGmJ/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true) | Nov 2021 |
 
+# Jupyter Notebooks
+
+The Jupyter notebooks in this repository were developed by Dr. Robert Leishman at Air Force Institute of Technology.
+
+They are designed to be run in google colab.
 
 # Homework Solutions
 
@@ -73,6 +78,27 @@ Now all of the examples in the python folders under each design study should wor
 
 # Hummingbird Lab
 [PDF Lab Manual](https://drive.google.com/file/d/1DzFGTip7jdT5Q33OeuZrK28yvU95lOPe/view?usp=sharing)
+
+## Whirlybird_ws
 Whirlybird_ws
-Support Files
-ROS Tutorial
+The whirlybird workspace is the catkin workspace used to connect to the Whirlybirds via ROS. The Whirlybird workspace provided includes the necessary files to operate the whirlybird and also includes templates for lab assignments. It is necessary to clone this repository in order to complete the labs.
+
+The whirlybird_ws directory is large and complex, but you will only need to modify the files in the sub-directories whirlbyird_controller and whirlybird_sim. These are contained in the directory 
+
+whirlybird_ws/src/
+
+The repository is hosted on BYU [MAGICC Lab's Gitlab server](https://gitlab.magiccvs.byu.edu/whirlybird/whirlybird_ws?). The README explains how to configure the workspace.
+
+## Support Files
+The support files are used to help rendering simulation in python easier. Read the comments in each file to see how to use it, or look in the Whirlbird Manual to see how the files are implemented.
+    - [Slider Input](https://drive.google.com/file/d/1GpNxenJV3nRUAQEmlEXJT7mhDP6qWJIw/view?usp=sharing)
+    - [Signal Generator](https://drive.google.com/file/d/1GoiYxUun2PyLZPWDcPSxUR35Bb80nRjJ/view?usp=sharing)
+    - [Simulation Plot](https://drive.google.com/file/d/1H2d8O5XlL7YMymf5HlUM6lvGfenWT5xf/view?usp=sharing)
+    - [PD Controller](https://drive.google.com/file/d/1GjIG1b3lM-ewPDqSEFot__S0sEUMEbEp/view?usp=sharing)
+    - [Step Function](https://drive.google.com/file/d/1GUrNX2Sio_NO5muddL8Wf_CiotXo9Wkv/view?usp=sharing)
+
+## ROS Tutorial
+For Students that would like to learn ROS more thoroughly, we have provided the following references to excellent ROS tutorials.
+    - [Official ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
+    - [A Gentile Introduction of ROS by Jason M O'Kane](https://cse.sc.edu/~jokane/agitr/)
+    - [Magicc Lab ROS Tutorials](https://wiki.magiccvs.byu.edu/#!ros_tutorials/intro.md)
