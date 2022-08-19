@@ -1,7 +1,5 @@
 import numpy as np
-import armParamHW8 as P
-import sys
-sys.path.append('..')  # add parent directory
+import hw8.armParamHW8 as P
 import armParam as P0
 
 
@@ -26,6 +24,7 @@ class armController:
         # compute total torque
         tau = tau_fl + tau_tilde
         tau = self.saturate(tau, self.tau_max)
+        
         return tau
 
     def saturate(self, u, limit):
