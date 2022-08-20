@@ -1,8 +1,6 @@
 # Single link arm Parameter File
 import numpy as np
 import control as cnt
-import sys
-sys.path.append('..')  # add parent directory
 import armParam as P
 
 Ts = P.Ts  # sample rate of the controller
@@ -10,6 +8,10 @@ tau_max = P.tau_max  # limit on control signal
 m = P.m
 ell = P.ell
 g = P.g
+
+# for dirty derivative of theta
+sigma = 0.05  # cutoff freq for dirty derivative
+beta = (2.0*sigma-Ts)/(2.0*sigma+Ts)  # dirty derivative gain
 
 #  tuning parameters
 tr = 0.4

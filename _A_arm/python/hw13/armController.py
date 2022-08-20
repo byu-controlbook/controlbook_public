@@ -1,5 +1,5 @@
 import numpy as np
-import armParamHW13 as P
+import hw13.armParamHW13 as P
 
 class armController:
     def __init__(self):

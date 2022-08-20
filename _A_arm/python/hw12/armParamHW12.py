@@ -1,12 +1,9 @@
 # Single link arm Parameter File
 import numpy as np
 import control as cnt
-import sys
-sys.path.append('..')  # add parent directory
 import armParam as P
 
 Ts = P.Ts  # sample rate of the controller
-#beta = P.beta  # dirty derivative gain
 tau_max = P.tau_max  # limit on control signal
 m = P.m
 ell = P.ell
@@ -15,7 +12,7 @@ g = P.g
 #  tuning parameters
 tr = 0.4
 zeta = 0.707
-integrator_pole = np.array([-0.5])
+integrator_pole = np.array([-5])
 
 # State Space Equations
 # xdot = A*x + B*u

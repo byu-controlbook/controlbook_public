@@ -1,20 +1,19 @@
-import sys
-sys.path.append('..')  # add parent directory
 import matplotlib.pyplot as plt
 import numpy as np
 import armParam as P
-from hw3.armDynamics import armDynamics
-from armController import armController
 from hw2.signalGenerator import signalGenerator
 from hw2.armAnimation import armAnimation
 from hw2.dataPlotter import dataPlotter
+from hw3.armDynamics import armDynamics
+from hw11.armController import armController
+
 
 # instantiate arm, controller, and reference classes
-arm = armDynamics(alpha=0.2)
+arm = armDynamics(alpha=0)
 controller = armController()
 reference = signalGenerator(amplitude=30*np.pi/180.0,
                             frequency=0.05)
-disturbance = signalGenerator(amplitude=0)
+disturbance = signalGenerator(amplitude=0.1)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
@@ -24,7 +23,6 @@ t = P.t_start  # time starts at t_start
 y = arm.h()  # output of system at start of simulation
 
 while t < P.t_end:  # main simulation loop
-
     # Get referenced inputs from signal generators
     # Propagate dynamics in between plot samples
     t_next_plot = t + P.t_plot
@@ -32,10 +30,10 @@ while t < P.t_end:  # main simulation loop
     # updates control and dynamics at faster simulation rate
     while t < t_next_plot: 
         r = reference.square(t)
-        d = disturbance.step(t)  # input disturbance
-        n = 0.0  #noise.random(t)  # simulate sensor noise
-        u = controller.update(r, y + n)  # update controller
-        y = arm.update(u + d)  # propagate system
+        d = 0.0  # book does not define an input disturbance
+        n = 0.0  # for simulating sensor noise
+        u = controller.update(r, y+n)  # update controller
+        y = arm.update(u.item(0) + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
 
     # update animation and data plots

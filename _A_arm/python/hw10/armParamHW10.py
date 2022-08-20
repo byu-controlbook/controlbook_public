@@ -1,8 +1,5 @@
 # Single link arm Parameter File
 import numpy as np
-# import control as cnt
-import sys
-sys.path.append('..')  # add parent directory
 import armParam as P
 
 Ts = P.Ts  # sample rate of the controller

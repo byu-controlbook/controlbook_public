@@ -1,9 +1,7 @@
 import numpy as np
-import armParamHW10 as P
-import sys
-sys.path.append('..')  # add parent directory
+import hw10.armParamHW10 as P
 import armParam as P0
-from PIDControl import PIDControl
+from hw10.PIDControl import PIDControl
 
 
 class armController:
@@ -16,9 +14,6 @@ class armController:
 
     def update(self, theta_r, y):
         theta = y.item(0)
-
-        # compute feedback linearized torque tau_fl
-        #tau_e = P0.m * P0.g * (P0.ell / 2.0) * np.cos(0.0)
 
         # compute feedback linearized torque tau_fl
         tau_fl = P0.m * P0.g * (P0.ell / 2.0) * np.cos(theta)
