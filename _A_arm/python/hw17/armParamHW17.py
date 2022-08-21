@@ -1,8 +1,5 @@
 # Single link arm Parameter File
-import sys
-sys.path.append('..')  # add parent directory
-sys.path.append('../hw16')
-import armParamHW16 as P16
+import hw16.armParamHW16 as P16
 from control import bode, margin, mag2db
 import matplotlib.pyplot as plt
 
@@ -14,7 +11,7 @@ dB_flag = P16.dB_flag
 Plant = P16.Plant
 C_pid = P16.C_pid
 
-if __name__=="__main__":
+def main():
     # Calculate the phase and gain margins
     if dB_flag:
         gm, pm, Wcg, Wcp = margin(Plant*C_pid)

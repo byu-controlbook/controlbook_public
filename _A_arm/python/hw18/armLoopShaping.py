@@ -1,11 +1,9 @@
-import sys
-sys.path.append('..')  # add parent directory
-sys.path.append('../hw16')  # add parent directory
-import armParamHW16 as P16
 import matplotlib.pyplot as plt
-from control import tf, bode, margin, step_response, mag2db
+from control import tf, bode, margin, step_response, mag2db, tf2ss, c2d
 import numpy as np
-import loopshape_tools as ls
+import armParam as P
+import hw16.armParamHW16 as P16
+import hw18.loopshape_tools as ls
 
 # flag to define if using dB or absolute scale for M(omega)
 dB_flag = P16.dB_flag
@@ -18,33 +16,40 @@ C_pid = P16.C_pid
 ###################################################################
 #   Control Design
 ###################################################################
+w_lead = 10.0
+M_lead = 3.0
+z_lag = 1.0
+M_lag = 40.0
+p_lpf = 50.0
+
 C = C_pid \
-    * ls.lead(w_L=10.0, M=3.0) \
-    * ls.lag(z=1.0, M=40.0) \
-    * ls.lpf(p=50.0) \
-    #* ls.lpf(p=150.0)
+    * ls.get_control_lead(w_lead, M_lead) \
+    * ls.get_control_lag(z_lag, M_lag) \
+    * ls.get_control_lpf(p_lpf) \
 
 ###########################################################
 # add a prefilter to eliminate the overshoot
 ###########################################################
 F = tf(1, 1) \
-    * ls.lpf(3.0)
-    #* ls.notch(p1=3.0, p2=50.0, M=10)
+    * ls.get_control_lpf(3.0)
 
-
-##############################################
-#  Convert Controller to State Space Equations if following
-#  method in 18.1.7
-##############################################
-# C_ss = tf2ss(C)  # convert to state space
-# F_ss = tf2ss(F)  # convert to state space
+###########################################################
+# Extracting coefficients for controller and prefilter
+###########################################################
 C_num = np.asarray(C.num[0])
 C_den = np.asarray(C.den[0])
 F_num = np.asarray(F.num[0])
 F_den = np.asarray(F.den[0])
 
+###########################################################
+#  Convert Controller to State Space Equations if following
+#  method in 18.1.7
+###########################################################
+C_ss = tf2ss(C)  # convert to state space
+F_ss = tf2ss(F)  # convert to state space
 
-if __name__=="__main__":
+
+def main():
     # calculate bode plot and gain and phase margin
     # for original PID * plant dynamics
     mag, phase, omega = bode(Plant * C_pid, dB=dB_flag,
@@ -70,12 +75,12 @@ if __name__=="__main__":
     mag, phase, omega = bode(Plant * C_pid, dB=dB_flag,
                              omega=[omega_n])
     gamma_n = 0.1*mag[0]    # attenuate noise by this amount
-    ls.spec_noise(gamma_n, omega_n, dB_flag)
+    ls.add_spec_noise(gamma_n, omega_n, dB_flag)
 
     #----------- general tracking specification --------
     omega_d = 0.07  # track signals below this frequency
     gamma_d = 0.1   # tracking improvement over original system
-    ls.spec_input_disturbance(gamma_d, omega_d,
+    ls.add_spec_input_disturbance(gamma_d, omega_d,
                                   Plant*C_pid, dB_flag)
 
     ## plot the effect of adding the new compensator terms
