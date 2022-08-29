@@ -2,8 +2,6 @@
 import numpy as np
 import control as cnt
 from scipy import signal
-import sys
-sys.path.append('..')  # add parent directory
 import satelliteParam as P
 
 Ts = P.Ts

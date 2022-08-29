@@ -1,8 +1,6 @@
 # satellite Parameter File
 import numpy as np
 import control as cnt
-import sys
-sys.path.append('..')  # add parent directory
 import satelliteParam as P
 
 # import variables from satelliteParam

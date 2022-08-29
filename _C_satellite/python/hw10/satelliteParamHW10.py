@@ -1,16 +1,13 @@
 # satellite Parameter File
 import numpy as np
-# import control as cnt
-import sys
-sys.path.append('..')  # add parent directory
-sys.path.append('../hw8')
 import satelliteParam as P
-import satelliteParamHW8 as P8
+import hw8.satelliteParamHW8 as P8
 
 # import variables from satelliteParam
 Ts = P.Ts
 tau_max = P.tau_max
 sigma = 0.05  # cutoff freq for dirty derivative
+beta =  (2 * sigma - Ts) / (2 * sigma + Ts)  # dirty derivative gain
 
 ####################################################
 #       PD Control: Time Design Strategy

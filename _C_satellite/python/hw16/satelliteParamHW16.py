@@ -1,11 +1,7 @@
 # satellite parameter file
-import sys
-sys.path.append('..')  # add parent directory
 import satelliteParam as P
-sys.path.append('../hw10')  # add parent directory
-sys.path.append('../hw15')  # add parent directory
-import satelliteParamHW10 as P10
-import satelliteParamHW15 as P15
+import hw10.satelliteParamHW10 as P10
+import hw15.satelliteParamHW15 as P15
 from control import tf, bode
 import matplotlib.pyplot as plt
 import numpy as np
@@ -28,7 +24,7 @@ C_out = tf([(P10.kd_phi+P10.kp_phi*P10.sigma),
             P10.ki_phi],
            [P10.sigma, 1, 0])
 
-if __name__=="__main__":
+def main():
 
     omegas = np.logspace(-2, 3, 1000)
 

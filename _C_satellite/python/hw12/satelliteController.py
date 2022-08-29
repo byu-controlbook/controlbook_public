@@ -1,5 +1,5 @@
 import numpy as np
-import satelliteParamHW12 as P
+import hw12.satelliteParamHW12 as P
 
 class satelliteController:
     def __init__(self):

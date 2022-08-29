@@ -1,14 +1,12 @@
-import sys
-sys.path.append('..')  # add parent directory
 import matplotlib.pyplot as plt
 import numpy as np
 import satelliteParam as P
-from hw3.satelliteDynamics import satelliteDynamics
-from satelliteController import satelliteController
 from hw2.signalGenerator import signalGenerator
 from hw2.satelliteAnimation import satelliteAnimation
 from hw2.dataPlotter import dataPlotter
-from dataPlotterObserver import dataPlotterObserver
+from hw3.satelliteDynamics import satelliteDynamics
+from hw13.satelliteController import satelliteController
+from hw13.dataPlotterObserver import dataPlotterObserver
 
 # instantiate satellite, controller, and reference classes
 satellite = satelliteDynamics(alpha=0.0)

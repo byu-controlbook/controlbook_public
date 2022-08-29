@@ -1,4 +1,4 @@
-import satelliteParamHW8 as P
+import hw8.satelliteParamHW8 as P
 
 class satelliteController:
     def __init__(self):

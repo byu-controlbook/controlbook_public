@@ -1,22 +1,19 @@
-import sys
-sys.path.append('..')  # add parent directory
-import satelliteParam as P
-sys.path.append('../hw10')  # add parent directory
-sys.path.append('../hw16')  # add parent directory
-import satelliteParamHW10 as P10
-import satelliteParamHW16 as P16
-import matplotlib.pyplot as plt
 from control import tf, margin, bode, tf2ss, step_response, mag2db
 import numpy as np
-import helper_functions as hf
+import matplotlib.pyplot as plt
+
+import satelliteParam as P
+import hw10.satelliteParamHW10 as P10
+import hw16.satelliteParamHW16 as P16
+import hw18.loopshape_tools as lt
 
 # flag to define if using dB or absolute scale for M(omega)
 dB_flag = P16.dB_flag
 
 # Compute open-loop transfer functions as described in Chapter 18
-Plant = tf([P.sigma, 1],
-           [P.sigma*P.Js, P.sigma*P.b+P.Js,
-            P.sigma*P.k+P.b+P10.kd_th, P.k])
+Plant = tf([P10.sigma, 1],
+           [P10.sigma*P.Js, P10.sigma*P.b+P.Js,
+            P10.sigma*P.k+P.b+P10.kd_th, P.k])
 
 #########################################
 #   Control Design
@@ -25,11 +22,11 @@ C = tf([1], [1])
 
 #  -----proportional control: change cross over frequency----
 kp = 45.0
-C_k = hf.get_control_proportional(kp)
+C_k = lt.get_control_proportional(kp)
 
 #  -----low pass filter: decrease gain at high frequency (noise)----
 p = 8.0
-C_lpf = hf.get_control_lpf(p)
+C_lpf = lt.get_control_lpf(p)
 
 # calculating final controller
 C = C * C_lpf * C_k
@@ -40,8 +37,8 @@ C = C * C_lpf * C_k
 C_ss = tf2ss(C)  # convert to state space
 
 
-if __name__=="__main__":
-
+def main():
+    
     # calculate bode plot and gain and phase margin
     # for original PID * plant dynamics
     mag, phase, omega = bode(Plant, dB=dB_flag,
@@ -58,12 +55,12 @@ if __name__=="__main__":
     #----------- general tracking specification --------
     omega_r = 0.01  # track signals below this frequency
     gamma_r = 0.01  # tracking error below this value
-    hf.add_spec_ref_tracking(gamma_r, omega_r, dB_flag)
+    lt.add_spec_ref_tracking(gamma_r, omega_r, dB_flag)
 
     #----------- noise specification --------
     omega_n = 20    # attenuate noise above this frequency
     gamma_n = 0.01  # attenuate noise by this amount
-    hf.add_spec_noise(gamma_n, omega_n, dB_flag)
+    lt.add_spec_noise(gamma_n, omega_n, dB_flag)
 
     ## plot the effect of adding the new compensator terms
     mag, phase, omega = bode(Plant * C, dB=dB_flag,

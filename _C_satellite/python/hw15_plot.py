@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
 
 if __name__ == '__main__':
-    import hw16.pendulumParamHW16 as P
+    import hw15.satelliteParamHW15 as P
     P.main()

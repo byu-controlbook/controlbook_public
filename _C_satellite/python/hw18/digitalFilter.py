@@ -1,7 +1,7 @@
 import numpy as np
 from control import tf, c2d
 
-class discreteFilter:
+class digitalFilter:
     def __init__(self, num, den, Ts):
         self.Ts = Ts
         sys = tf(num, den)

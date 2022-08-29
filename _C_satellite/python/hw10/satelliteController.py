@@ -1,5 +1,5 @@
-import satelliteParamHW10 as P
-from PIDControl import PIDControl
+import hw10.satelliteParamHW10 as P
+from hw10.PIDControl import PIDControl
 
 class satelliteController:
     def __init__(self):

@@ -1,9 +1,6 @@
 # Satellite Parameter File
-import sys
-sys.path.append('..')  # add parent directory
 import satelliteParam as P
-sys.path.append('../hw16')  # add parent directory
-import satelliteParamHW16 as P16
+import hw16.satelliteParamHW16 as P16
 from control import *
 import matplotlib.pyplot as plt
 
@@ -19,8 +16,8 @@ P_out = P16.P_out
 C_in = P16.C_in
 C_out = P16.C_out
 
-if __name__=="__main__":
-
+def main():
+    
     # we have to define the frequencies, or we get non-smooth
     # bode plots.
     omegas = np.logspace(-2, 3, 1000)

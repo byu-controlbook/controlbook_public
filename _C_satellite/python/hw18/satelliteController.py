@@ -1,12 +1,9 @@
-import sys
-sys.path.append('..')  # add parent directory
 import satelliteParam as P
-sys.path.append('../hw10')  # add parent directory
-import satelliteParamHW10 as P10
-import loopshape_in as L_in
-import loopshape_out as L_out
 import numpy as np
-from discreteFilter import discreteFilter
+import hw10.satelliteParamHW10 as P10
+import hw18.satelliteLoopShapingInner as L_in
+import hw18.satelliteLoopShapingOuter as L_out
+from hw18.digitalFilter import digitalFilter
 
 
 class satelliteController:
@@ -39,12 +36,12 @@ class satelliteController:
             self.N = 10
 
         elif method == "digital_filter":
-            self.control_out = discreteFilter(L_out.C.num, L_out.C.den, P.Ts)
-            self.prefilter_out = discreteFilter(L_out.F.num, L_out.F.den, P.Ts)
-            self.control_in = discreteFilter(L_in.C.num, L_in.C.den, P.Ts)
+            self.control_out = digitalFilter(L_out.C.num, L_out.C.den, P.Ts)
+            self.prefilter_out = digitalFilter(L_out.F.num, L_out.F.den, P.Ts)
+            self.control_in = digitalFilter(L_in.C.num, L_in.C.den, P.Ts)
 
         self.limit = P.tau_max       # Maxiumum torque
-        self.beta = P.beta           # dirty derivative gain
+        self.beta = P10.beta           # dirty derivative gain
         self.Ts = P.Ts               # sample rate of controller
 
     def update(self, y_r, y):
