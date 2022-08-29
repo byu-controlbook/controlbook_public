@@ -1,9 +1,6 @@
 # Inverted Pendulum Parameter File
-import sys
-sys.path.append('..')
-sys.path.append('../hw16')
 import pendulumParam as P
-import pendulumParamHW16 as P16
+import hw16.pendulumParamHW16 as P16
 from control import bode, margin, mag2db
 import matplotlib.pyplot as plt
 
@@ -19,7 +16,7 @@ P_out = P16.P_out
 C_in = P16.C_in
 C_out = P16.C_out
 
-if __name__=="__main__":
+def main():
 
     ##################################################
     ########### Inner loop ###########################

@@ -1,11 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
-sys.path.append('..')  # add parent directory
 import pendulumParam as P
-from signalGenerator import signalGenerator
-from pendulumAnimation import pendulumAnimation
-from dataPlotter import dataPlotter
+from hw2.signalGenerator import signalGenerator
+from hw2.pendulumAnimation import pendulumAnimation
+from hw2.dataPlotter import dataPlotter
 
 
 # instantiate reference input classes

@@ -1,8 +1,5 @@
 # Inverted Pendulum Parameter File
 import numpy as np
-# import control as cnt
-import sys
-sys.path.append('..')  # add parent directory
 import pendulumParam as P
 
 # sample rate of the controller
@@ -16,7 +13,7 @@ beta = (2 * sigma - Ts) / (2 * sigma + Ts)  # dirty derivative gain
 #       PD Control: Time Design Strategy
 ####################################################
 # tuning parameters
-tr_th = 0.15          # Rise time for inner loop (theta)
+tr_th = 0.5          # Rise time for inner loop (theta)
 zeta_th = 0.707       # Damping Coefficient for inner loop (theta)
 M = 25.0              # Time scale separation between inner and outer loop
 zeta_z = 0.707        # Damping Coefficient fop outer loop (z)
@@ -56,6 +53,8 @@ tr_z = M*tr_th  # desired rise time, s
 wn_z = 2.2/tr_z  # desired natural frequency
 
 # compute gains
+#kp_z_check = wn_z**2/(-(1/1_k)
+
 a  = -(wn_z**2)*np.sqrt(2.0*P.ell/(3.0*P.g))
 b = (a - 2.0*zeta_z*wn_z)*np.sqrt(2.0*P.ell/(3.0*P.g))
 kd_z = b/(1-b)

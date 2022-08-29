@@ -1,10 +1,6 @@
 # Inverted Pendulum Parameter File
-import sys
-sys.path.append('..')  # add parent directory
-sys.path.append('../hw10')  # add parent directory
-sys.path.append('../hw15')  # add parent directory
-import pendulumParamHW10 as P10
-import pendulumParamHW15 as P15
+import hw10.pendulumParamHW10 as P10
+import hw15.pendulumParamHW15 as P15
 from control import tf, bode
 import matplotlib.pyplot as plt
 
@@ -25,8 +21,8 @@ C_out = tf([P10.kd_z + P10.kp_z * P10.sigma,
             P10.ki_z],
            [P10.sigma, 1, 0])
 
-if __name__=="__main__":
-
+def main():
+    
     # display bode plots of transfer functions
     fig1 = plt.figure()
     bode([P_in, P_in * C_in], dB=dB_flag)

@@ -1,11 +1,9 @@
 import matplotlib.pyplot as plt
-import sys
-sys.path.append('..')  # add parent directory
 import pendulumParam as P
 from hw2.signalGenerator import signalGenerator
 from hw2.pendulumAnimation import pendulumAnimation
 from hw2.dataPlotter import dataPlotter
-from pendulumDynamics import pendulumDynamics
+from hw3.pendulumDynamics import pendulumDynamics
 
 # instantiate pendulum, controller, and reference classes
 pendulum = pendulumDynamics(alpha=0.0)

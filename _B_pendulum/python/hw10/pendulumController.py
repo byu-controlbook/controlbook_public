@@ -1,7 +1,7 @@
 import numpy as np
 import pendulumParam as P
-import pendulumParamHW10 as P10
-from PIDControl import PIDControl
+import hw10.pendulumParamHW10 as P10
+from hw10.PIDControl import PIDControl
 
 class pendulumController:
     def __init__(self):

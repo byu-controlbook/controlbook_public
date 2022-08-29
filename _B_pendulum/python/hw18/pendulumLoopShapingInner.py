@@ -1,12 +1,9 @@
-import sys
-sys.path.append('..')  # add parent directory
-sys.path.append('../hw16')  # add parent directory
 import pendulumParam as P
-import pendulumParamHW16 as P16
 import matplotlib.pyplot as plt
 from control import tf, step_response, bode, tf2ss, margin, mag2db
 import numpy as np
-import helper_functions as hf
+import hw16.pendulumParamHW16 as P16
+import hw18.loopshape_tools as lt
 
 
 # flag to define if using dB or absolute scale for M(omega)
@@ -23,14 +20,14 @@ Plant = P_in
 C = tf([1], [1])
 
 # Proportional control: correct for negative sign in plant
-K_neg = hf.get_control_proportional(-1)
+K_neg = lt.get_control_proportional(-1)
 C = C*K_neg
 
 #  phase lead: increase PM (stability)
 w_max = 40 #location of maximum frequency bump
 phi_max = 60*np.pi/180
 M = (1 + np.sin(phi_max))/(1 - np.sin(phi_max))  # lead ratio
-Lead = hf.get_control_lead(w_max, M)
+Lead = lt.get_control_lead(w_max, M)
 C = C*Lead
 
 # find gain to set crossover at w_max
@@ -38,7 +35,7 @@ mag, phase, omega = bode(Plant*C*Lead, dB=False,
                              omega=[w_max], plot=False)
 
 # Proportional control: correct for negative sign in plant
-K = hf.get_control_proportional(1/mag[0])
+K = lt.get_control_proportional(1/mag[0])
 C = C*K
 
 ##############################################
@@ -47,7 +44,7 @@ C = C*K
 C_ss = tf2ss(C)  # convert to state space
 
 
-if __name__=="__main__":
+def main():
     # calculate bode plot and gain and phase margin
     # for original PID * plant dynamics
     mag, phase, omega = bode(Plant, dB=dB_flag,
@@ -70,7 +67,7 @@ if __name__=="__main__":
     # ----------- noise specification --------
     omega_n = 200  # attenuate noise above this frequency
     gamma_n = 0.1  # attenuate noise by this amount
-    hf.add_spec_noise(gamma_n, omega_n, dB_flag)
+    lt.add_spec_noise(gamma_n, omega_n, dB_flag)
 
     ## plot the effect of adding the new compensator terms
     mag, phase, omega = bode(Plant * C, dB=dB_flag,

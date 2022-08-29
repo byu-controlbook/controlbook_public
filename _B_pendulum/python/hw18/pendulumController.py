@@ -1,9 +1,7 @@
-import sys
-sys.path.append('..')  # add parent directory
 import pendulumParam as P
-import loopshape_in as L_in
-import loopshape_out as L_out
 import numpy as np
+import hw18.pendulumLoopShapingInner as L_in
+import hw18.pendulumLoopShapingOuter as L_out
 
 class pendulumController:
     # state feedback control using dirty derivatives to estimate zdot and thetadot

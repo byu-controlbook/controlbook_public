@@ -1,14 +1,10 @@
-import sys
-sys.path.append('..')  # add parent directory
-sys.path.append('../hw16')  # add parent directory
-import pendulumParamHW16 as P16
 import matplotlib.pyplot as plt
 from control import tf, step_response, bode, tf2ss, \
     margin, mag2db, minreal
 import numpy as np
-import helper_functions as hf
-import numpy as np
-import loopshape_in as L_in
+import hw16.pendulumParamHW16 as P16
+import hw18.loopshape_tools as lt
+import hw18.pendulumLoopShapingInner as L_in
 
 # flag to define if using dB or absolute scale for M(omega)
 dB_flag = P16.dB_flag
@@ -39,13 +35,13 @@ gamma_n = 0.0001  # attenuate noise by this amount
 #location of maximum frequency bump (desired crossover)
 w_max = 1.1
 M = 32   # lead ratio
-Lead = hf.get_control_lead(w_max, M)
+Lead = lt.get_control_lead(w_max, M)
 C = C*Lead
 
 # find gain to set crossover at w_max = 1.1 rad/s
 mag, phase, omega = bode(Plant*C, dB=False,
                          omega=[w_max], Plot=False)
-K = hf.get_control_proportional(1.0/mag[0])
+K = lt.get_control_proportional(1.0/mag[0])
 C = K*C
 
 ## boost low-frequency gain
@@ -59,14 +55,14 @@ gain_increase_needed = 1/gamma_r/mag.item(0)
 M = 8
 p = omega_r # set pole at omega_r
 z = M*p # set zero at M*omega_r
-Lag = hf.get_control_lag(z, M)
+Lag = lt.get_control_lag(z, M)
 C = C*Lag
 
 
 # Noise attenuation constraint not quite satisfied can be
 # satisfied by reducing gain at 400 rad/s by a factor of 2 Use
 # a low-pass filter
-lpf = hf.get_control_lpf(100.0)
+lpf = lt.get_control_lpf(100.0)
 C = lpf*C
 
 ############################################
@@ -86,7 +82,7 @@ C_ss = tf2ss(C)
 F_ss = tf2ss(F)
 
 
-if __name__=="__main__":
+def main():
     # calculate bode plot and gain and phase margin
     # for original PID * plant dynamics
     mag, phase, omega = bode(Plant, dB=dB_flag,
@@ -106,10 +102,10 @@ if __name__=="__main__":
     #   Define Design Specifications
     #########################################
     # ----------- general tracking specification --------
-    hf.add_spec_ref_tracking(gamma_r, omega_r, dB_flag)
+    lt.add_spec_ref_tracking(gamma_r, omega_r, dB_flag)
 
     # ----------- noise specification --------
-    hf.add_spec_noise(gamma_n, omega_n, dB_flag)
+    lt.add_spec_noise(gamma_n, omega_n, dB_flag)
 
     mag, phase, omega = bode(Plant * C, dB=dB_flag,
                              omega=np.logspace(-3, 5),

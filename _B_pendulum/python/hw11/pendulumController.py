@@ -1,5 +1,5 @@
 import numpy as np
-import pendulumParamHW11 as P
+import hw11.pendulumParamHW11 as P
 
 class pendulumController:
     def __init__(self):

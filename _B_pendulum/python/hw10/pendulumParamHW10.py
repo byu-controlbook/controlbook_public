@@ -1,8 +1,5 @@
 # Inverted Pendulum Parameter File
 import numpy as np
-# import control as cnt
-import sys
-sys.path.append('..')  # add parent directory
 import pendulumParam as P
 
 # sample rate of the controller

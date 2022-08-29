@@ -1,6 +1,4 @@
 # Inverted Pendulum Parameter File
-import sys
-sys.path.append('..')  # add parent directory
 import pendulumParam as P
 import numpy as np
 from scipy import signal

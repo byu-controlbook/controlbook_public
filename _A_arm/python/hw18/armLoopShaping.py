@@ -3,7 +3,7 @@ from control import tf, bode, margin, step_response, mag2db, tf2ss, c2d
 import numpy as np
 import armParam as P
 import hw16.armParamHW16 as P16
-import hw18.loopshape_tools as ls
+import hw18.loopshape_tools as lt
 
 # flag to define if using dB or absolute scale for M(omega)
 dB_flag = P16.dB_flag
@@ -23,15 +23,15 @@ M_lag = 40.0
 p_lpf = 50.0
 
 C = C_pid \
-    * ls.get_control_lead(w_lead, M_lead) \
-    * ls.get_control_lag(z_lag, M_lag) \
-    * ls.get_control_lpf(p_lpf) \
+    * lt.get_control_lead(w_lead, M_lead) \
+    * lt.get_control_lag(z_lag, M_lag) \
+    * lt.get_control_lpf(p_lpf) \
 
 ###########################################################
 # add a prefilter to eliminate the overshoot
 ###########################################################
 F = tf(1, 1) \
-    * ls.get_control_lpf(3.0)
+    * lt.get_control_lpf(3.0)
 
 ###########################################################
 # Extracting coefficients for controller and prefilter
@@ -75,12 +75,12 @@ def main():
     mag, phase, omega = bode(Plant * C_pid, dB=dB_flag,
                              omega=[omega_n])
     gamma_n = 0.1*mag[0]    # attenuate noise by this amount
-    ls.add_spec_noise(gamma_n, omega_n, dB_flag)
+    lt.add_spec_noise(gamma_n, omega_n, dB_flag)
 
     #----------- general tracking specification --------
     omega_d = 0.07  # track signals below this frequency
     gamma_d = 0.1   # tracking improvement over original system
-    ls.add_spec_input_disturbance(gamma_d, omega_d,
+    lt.add_spec_input_disturbance(gamma_d, omega_d,
                                   Plant*C_pid, dB_flag)
 
     ## plot the effect of adding the new compensator terms
