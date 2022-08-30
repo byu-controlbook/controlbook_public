@@ -48,8 +48,8 @@ if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 3:
     print("The system is not controllable")
 else:
     K1 = cnt.place(A1, B1, des_poles)
-    K = K1[0,0:2]
-    ki = K1[0,2]
+    K = K1[0,0:2].reshape(1,2)
+    ki = K1[0,2].reshape(1,1)
 
 print('K: ', K)
 print('ki: ', ki)
