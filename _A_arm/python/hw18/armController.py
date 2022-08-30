@@ -1,7 +1,6 @@
 import armParam as P
 import numpy as np
 from hw18.digitalFilter import digitalFilter
-from hw18.transferFunction import transferFunction
 import hw18.armLoopShaping as L
 
 class armController:
@@ -29,12 +28,12 @@ class armController:
 
 
     def update(self, theta_r, y):
-        theta = y.item(0)
+        theta = y[0,0]
 
         # prefilter
         if self.method == "state_space":
             self.updatePrefilterState(theta_r)
-            theta_r_filtered = self.C_F @ self.x_F + self.D_F * theta_r
+            theta_r_filtered = (self.C_F @ self.x_F + self.D_F * theta_r)[0,0]
         elif self.method == "digital_filter":
             theta_r_filtered = self.prefilter.update(theta_r)
 
@@ -52,7 +51,7 @@ class armController:
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
 
         # compute total torque
-        tau = self.saturate(tau_fl + tau_tilde.item(0))
+        tau = self.saturate(tau_fl + tau_tilde)
         return tau
 
     def updatePrefilterState(self, theta_r):

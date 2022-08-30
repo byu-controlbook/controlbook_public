@@ -25,7 +25,7 @@ class armController:
     def update(self, theta_r, y_m):
         # update the observer and extract theta_hat
         x_hat, d_hat = self.update_observer(y_m)
-        theta_hat = x_hat.item(0)
+        theta_hat = x_hat[0,0]
 
         # integrate error
         error = theta_r - theta_hat
@@ -39,7 +39,7 @@ class armController:
                             - self.ki * self.integrator - d_hat
 
         # compute total torque
-        tau = self.saturate(tau_fl + tau_tilde.item(0))
+        tau = self.saturate(tau_fl + tau_tilde[0,0])
         self.tau_d1 = tau
 
         return tau, x_hat, d_hat
@@ -55,15 +55,14 @@ class armController:
                              + self.Ts * F3, y_m)
         self.observer_state += self.Ts / 6 * \
                                (F1 + 2 * F2 + 2 * F3 + F4)
-        x_hat = np.array([[self.observer_state.item(0)],
-                          [self.observer_state.item(1)]])
-        d_hat = self.observer_state.item(2)
+        x_hat = self.observer_state[0:2,0].reshape(2,1)
+        d_hat = self.observer_state[2,0].reshape(1,1)
 
         return x_hat, d_hat
 
     def observer_f(self, x_hat, y_m):
         # compute feedback linearizing torque tau_fl
-        theta_hat = x_hat.item(0)
+        theta_hat = x_hat[0,0]
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta_hat)
         # xhatdot = A*xhat + B*(u-ue) + L(y-C*xhat)
         xhat_dot = self.A2 @ x_hat\

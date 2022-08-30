@@ -55,8 +55,8 @@ if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 3:
     print("The system is not controllable")
 else:
     K1 = cnt.acker(A1, B1, des_poles)
-    K = np.array([K1.item(0), K1.item(1)])
-    ki = K1.item(2)
+    K = K1[0,0:2].reshape(1,2)
+    ki = K1[0,2].reshape(1,1)
 
 # observer design
 # Augmented Matrices
@@ -77,8 +77,8 @@ if np.linalg.matrix_rank(cnt.ctrb(A2.T, C2.T)) != 3:
     print("The system is not observable")
 else:
     L2 = cnt.acker(A2.T, C2.T, des_obsv_poles).T
-    L = np.array([[L2.item(0)], [L2.item(1)]])
-    Ld = L2.item(0)
+    L = L2[0:2,0].reshape(2,1)
+    Ld = L2[2,0].reshape(1,1)
 
 print('K: ', K)
 print('ki: ', ki)

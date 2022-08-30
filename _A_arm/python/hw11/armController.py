@@ -12,7 +12,7 @@ class armController:
         self.Ts = P.Ts  # sample rate of controller
 
     def update(self, theta_r, y):
-        theta = y.item(0)
+        theta = y[0,0]
 
         # differentiate theta
         self.differentiateTheta(theta)

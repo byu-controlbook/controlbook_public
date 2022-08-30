@@ -11,7 +11,7 @@ class armController:
         self.Ts = P.Ts  # sample rate of controller
 
     def update(self, theta_r, x):
-        theta = x.item(0)
+        theta = x[0,0]
 
         # integrate error
         error = theta_r - theta

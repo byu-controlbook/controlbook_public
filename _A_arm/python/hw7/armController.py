@@ -11,8 +11,8 @@ class armController:
         self.limit = P0.tau_max
 
     def update(self, theta_r, x):
-        theta = x.item(0)
-        thetadot = x.item(1)
+        theta = x[0,0]
+        thetadot = x[1,0]
 
         # feedback linearized torque
         tau_fl = P0.m * P0.g * (P0.ell / 2.0) * np.cos(theta)

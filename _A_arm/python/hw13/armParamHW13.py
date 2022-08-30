@@ -49,8 +49,8 @@ if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 3:
     print("The system is not controllable")
 else:
     K1 = cnt.acker(A1, B1, des_poles)
-    K = np.array([K1.item(0), K1.item(1)])
-    ki = K1.item(2)
+    K = K1[0,0:2].reshape(1,2)
+    ki = K1[0,2].reshape(1,1)
 
 # observer design
 #des_obsv_char_poly = [1, 2*zeta_obs*wn_obs, wn_obs**2]

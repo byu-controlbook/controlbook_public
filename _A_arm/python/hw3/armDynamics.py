@@ -41,8 +41,8 @@ class armDynamics:
     def f(self, state, tau):
         # Return xdot = f(x,u), the system state update equations
         # re-label states for readability
-        theta = state.item(0)
-        thetadot = state.item(1)
+        theta = state[0,0]
+        thetadot = state[1,0]
         thetaddot = (3.0/self.m/self.ell**2) * \
                     (tau - self.b*thetadot \
                      - self.m*self.g*self.ell/2.0*np.cos(theta))
@@ -54,7 +54,7 @@ class armDynamics:
     def h(self):
         # return the output equations
         # could also use input u if needed
-        theta = self.state.item(0)
+        theta = self.state[0,0]
         y = np.array([[theta]])
 
         return y
