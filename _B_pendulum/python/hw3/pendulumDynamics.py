@@ -43,10 +43,10 @@ class pendulumDynamics:
 
     def f(self, state, u):
         # Return xdot = f(x,u)
-        z = state.item(0)
-        theta = state.item(1)
-        zdot = state.item(2)
-        thetadot = state.item(3)
+        z = state[0,0]
+        theta = state[1,0]
+        zdot = state[2,0]
+        thetadot = state[3,0]
         F = u
 
         # The equations of motion.
@@ -60,8 +60,8 @@ class pendulumDynamics:
                        [self.m1 * self.g * (self.ell/2.0)
                         * np.sin(theta)]])
         tmp = np.linalg.inv(M) @ C
-        zddot = tmp.item(0)
-        thetaddot = tmp.item(1)
+        zddot = tmp[0,0]
+        thetaddot = tmp[1,0]
 
         # build xdot and return
         xdot = np.array([[zdot], [thetadot], [zddot], [thetaddot]])
@@ -70,8 +70,8 @@ class pendulumDynamics:
 
     def h(self):
         # return y = h(x)
-        z = self.state.item(0)
-        theta = self.state.item(1)
+        z = self.state[0,0]
+        theta = self.state[1,0]
         y = np.array([[z],[theta]])
 
         return y

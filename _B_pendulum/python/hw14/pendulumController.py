@@ -25,7 +25,7 @@ class pendulumController:
     def update(self, z_r, y):
         # update the observer and extract z_hat
         x_hat, d_hat = self.update_observer(y)
-        z_hat = x_hat.item(0)
+        z_hat = x_hat[0,0]
 
         # integrate error
         error = z_r - z_hat
@@ -35,7 +35,7 @@ class pendulumController:
         F_unsat = -self.K @ x_hat \
                   - self.ki * self.integrator \
                   - d_hat
-        F = self.saturate(F_unsat.item(0))
+        F = self.saturate(F_unsat[0,0])
         self.F_d1 = F
         return F, x_hat, d_hat
 
@@ -46,11 +46,8 @@ class pendulumController:
         F3 = self.obsv_f(self.obsv_state + self.Ts / 2 * F2, y)
         F4 = self.obsv_f(self.obsv_state + self.Ts * F3, y)
         self.obsv_state += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
-        x_hat = np.array([[self.obsv_state.item(0)],
-                          [self.obsv_state.item(1)],
-                          [self.obsv_state.item(2)],
-                          [self.obsv_state.item(3)]])
-        d_hat = self.obsv_state.item(4)
+        x_hat = self.obsv_state[0:4, 0].reshape(4,1)
+        d_hat = self.obsv_state[4,0].reshape(1,1)
 
         return x_hat, d_hat
 

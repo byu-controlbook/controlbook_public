@@ -41,17 +41,17 @@ class pendulumController:
 
         # Outer loop control C_out
         self.updateControlOutState(error_out)
-        theta_r = self.Cout_C * self.xout_C + self.Dout_C * error_out
+        theta_r = self.Cout_C @ self.xout_C + self.Dout_C @ error_out
 
         # error signal for inner loop
         error_in = theta_r - theta
 
         # Inner loop control C_in
         self.updateControlInState(error_in)
-        F_unsat = self.Cin_C * self.xin_C + self.Din_C * error_in
+        F_unsat = self.Cin_C @ self.xin_C + self.Din_C @ error_in
 
         F_sat = self.saturate(F_unsat)
-        return [F_sat.item(0)]
+        return F_sat[0,0]
 
     def updatePrefilterState(self, z_r):
         for i in range(0, self.N):
@@ -62,13 +62,13 @@ class pendulumController:
     def updateControlOutState(self, error_out):
         for i in range(0, self.N):
             self.xout_C = self.xout_C + (self.Ts/self.N)*(
-                self.Aout_C*self.xout_C + self.Bout_C*error_out
+                self.Aout_C @ self.xout_C + self.Bout_C @ error_out
             )
 
     def updateControlInState(self, error_in):
         for i in range(0, self.N):
             self.xin_C = self.xin_C + (self.Ts/self.N)*(
-                self.Ain_C * self.xin_C + self.Bin_C * error_in
+                self.Ain_C @ self.xin_C + self.Bin_C @ error_in
             )
 
     def saturate(self,u):

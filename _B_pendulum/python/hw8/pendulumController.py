@@ -11,10 +11,10 @@ class pendulumController:
         self.filter = zeroCancelingFilter()
 
     def update(self, z_r, state):
-        z = state.item(0)
-        theta = state.item(1)
-        zdot = state.item(2)
-        thetadot = state.item(3)
+        z = state[0,0]
+        theta = state[1,0]
+        zdot = state[2,0]
+        thetadot = state[3,0]
 
         # the reference angle for theta comes from the
         # outer loop PD control

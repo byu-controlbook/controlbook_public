@@ -33,8 +33,8 @@ class dataPlotter:
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.phi_ref_history.append(180.0/np.pi*reference)  # reference panel angle
-        self.phi_history.append(180.0/np.pi*states.item(1))  # panel angle
-        self.theta_history.append(180.0/np.pi*states.item(0))  # base angle
+        self.phi_history.append(180.0/np.pi*states[1,0])  # panel angle
+        self.theta_history.append(180.0/np.pi*states[0,0])  # base angle
         self.torque_history.append(ctrl)  # torque on the base
 
         # update the plots with associated histories

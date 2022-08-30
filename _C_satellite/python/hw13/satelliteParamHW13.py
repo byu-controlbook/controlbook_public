@@ -62,8 +62,8 @@ if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 5:
     print("The system is not controllable")
 else:
     K1 = cnt.acker(A1, B1, des_poles)
-    K = np.matrix([K1.item(0), K1.item(1), K1.item(2), K1.item(3)])
-    ki = K1.item(4)
+    K = K1[0, 0:4].reshape(1,4)
+    ki = K1[0, 4].reshape(1,1)
 
 # computer observer gains
 des_obs_char_poly = np.convolve([1, 2*zeta_phi*wn_phi_obs,

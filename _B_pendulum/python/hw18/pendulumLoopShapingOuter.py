@@ -48,7 +48,7 @@ C = K*C
 # Find gain increase needed at omega_r
 mag, phase, omega = bode(Plant*C, omega=[omega_r],
                          Plot=False)
-gain_increase_needed = 1/gamma_r/mag.item(0)
+gain_increase_needed = 1/gamma_r/mag[0]
 
 # minimum gain increase at low frequencies is 4.8 let lag ratio
 # be 8.

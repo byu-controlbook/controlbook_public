@@ -23,7 +23,7 @@ class pendulumController:
     def update(self, z_r, y):
         # update the observer and extract z_hat
         x_hat = self.update_observer(y)
-        z_hat = x_hat.item(0)
+        z_hat = x_hat[0,0]
 
         # integrate error
         error = z_r - z_hat
@@ -31,7 +31,7 @@ class pendulumController:
 
         # Compute the state feedback controller
         F_unsat = -self.K @ x_hat - self.ki * self.integrator
-        F_sat = self.saturate(F_unsat.item(0))
+        F_sat = self.saturate(F_unsat[0,0])
         self.F_d1 = F_sat
 
         return F_sat, x_hat

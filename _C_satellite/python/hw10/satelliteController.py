@@ -10,8 +10,8 @@ class satelliteController:
                                     P.tau_max, P.sigma, P.Ts)
 
     def update(self, phi_r, y):
-        theta = y.item(0)
-        phi = y.item(1)
+        theta = y[0,0]
+        phi = y[1,0]
 
         # the reference angle for theta comes from
         # the outer loop PD control

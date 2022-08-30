@@ -39,8 +39,8 @@ bb = np.array([
     [-P.b+2*P.Jp*zeta_phi*wn_phi]])
 tmp = np.linalg.inv(AA) @ bb
 
-kp_phi = tmp.item(0)
-kd_phi = tmp.item(1)
+kp_phi = tmp[0,0]
+kd_phi = tmp[1,0]
 
 # DC gain for outer loop
 k_DC_phi = P.k*k_DC_th*kp_phi/(P.k+P.k*k_DC_th*kp_phi)

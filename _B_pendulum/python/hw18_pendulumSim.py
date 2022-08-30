@@ -37,7 +37,7 @@ while t < P.t_end:  # main simulation loop
         # sensor noise 
         n = np.array([[noise_z.random(t)], [noise_th.random(t)]])
         u = controller.update(r, y + n) # calc control
-        y = pendulum.update(u[0] + d)  # propagate system
+        y = pendulum.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
 
     # update animation and data plots

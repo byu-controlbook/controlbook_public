@@ -22,9 +22,9 @@ class satelliteController:
         self.Ts = P.Ts         # sample rate of controller
 
     def update(self, phi_r, y):
-        # update the observer and extract z_hat
+        # update the observer and extract phi_hat
         x_hat = self.update_observer(y)
-        phi_hat = x_hat.item(1)
+        phi_hat = x_hat[1,0]
 
         # integrate error
         error = phi_r - phi_hat
@@ -33,7 +33,7 @@ class satelliteController:
         # Compute the state feedback controller
         tau_unsat = -self.K @ x_hat \
                     - self.ki*self.integrator
-        tau = self.saturate(tau_unsat.item(0))
+        tau = self.saturate(tau_unsat[0,0])
         self.tau_d1 = tau
 
         return tau, x_hat

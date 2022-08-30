@@ -28,7 +28,7 @@ class dataPlotterObserver:
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='z (m)', title='Pendulum Data'))
+        self.handle.append(myPlot(self.ax[0], ylabel='z (m)', title='Estimated Pendulum Data'))
         self.handle.append(myPlot(self.ax[1], ylabel='theta (deg)'))
         self.handle.append(myPlot(self.ax[2], ylabel='z_dot (m/s)'))
         self.handle.append(myPlot(self.ax[3], ylabel='theta_dot (deg/s)'))
@@ -41,15 +41,15 @@ class dataPlotterObserver:
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.z_history.append(x.item(0))
-        self.theta_history.append(x.item(1))
-        self.z_dot_history.append(x.item(2))
-        self.theta_dot_history.append(x.item(3))
+        self.z_history.append(x[0,0])
+        self.theta_history.append(x[1,0])
+        self.z_dot_history.append(x[2,0])
+        self.theta_dot_history.append(x[3,0])
         self.d_history.append(d)
-        self.z_hat_history.append(x_hat.item(0))
-        self.theta_hat_history.append(x_hat.item(1))
-        self.z_hat_dot_history.append(x_hat.item(2))
-        self.theta_hat_dot_history.append(x_hat.item(3))
+        self.z_hat_history.append(x_hat[0,0])
+        self.theta_hat_history.append(x_hat[1,0])
+        self.z_hat_dot_history.append(x_hat[2,0])
+        self.theta_hat_dot_history.append(x_hat[3,0])
         self.d_hat_history.append(d_hat)
 
         # update the plots with associated histories

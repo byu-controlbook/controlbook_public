@@ -11,7 +11,7 @@ class satelliteController:
     def update(self, phi_r, x):
         # Compute the state feedback controller
         tau_unsat = -self.K @ x + self.kr * phi_r
-        tau = self.saturate(tau_unsat.item(0))
+        tau = self.saturate(tau_unsat[0,0])
         return tau
 
     def saturate(self,u):

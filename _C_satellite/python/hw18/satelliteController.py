@@ -8,7 +8,7 @@ from hw18.digitalFilter import digitalFilter
 
 class satelliteController:
     # state feedback control using dirty derivatives to estimate zdot and thetadot
-    def __init__(self, method="state_space"):
+    def __init__(self, method="digital_filter"):
         self.phi_dot = 0.0           # derivative of phi
         self.theta_dot = 0.0         # derivative of theta
         self.phi_d1 = 0.             # angle phi delayed by 1 sample
@@ -58,24 +58,24 @@ class satelliteController:
         if self.method == "state_space":
             # solve differential equation defining prefilter F
             self.updatePrefilterState(phi_r)
-            phi_r_filtered = self.C_F * self.x_F + self.D_F * phi_r
+            phi_r_filtered = self.C_F @ self.x_F + self.D_F * phi_r
 
             # error signal for outer loop
             error_out = phi_r_filtered - phi
 
             # Outer loop control C_out
             self.updateControlOutState(error_out)
-            theta_r = -self.kd_phi*self.phi_dot + self.Cout_C * self.xout_C + self.Dout_C * error_out
+            theta_r = -self.kd_phi*self.phi_dot + self.Cout_C @ self.xout_C + self.Dout_C * error_out
 
             # error signal for inner loop
             error_in = theta_r - theta
 
             # Inner loop control C_in
             self.updateControlInState(error_in)
-            tau_unsat = -self.kd_th*self.theta_dot + self.Cin_C * self.xin_C + self.Din_C * error_in
+            tau_unsat = -self.kd_th*self.theta_dot + self.Cin_C @ self.xin_C + self.Din_C @ error_in
 
             tau = self.saturate(tau_unsat)
-            return [tau.item(0)]
+            return tau[0,0]
 
         elif self.method == "digital_filter":
             # prefilter for outer loop
@@ -96,7 +96,7 @@ class satelliteController:
                         self.control_in.update(error_in[0])
 
             tau = self.saturate(tau_unsat)
-            return [tau.item(0)]
+            return tau[0]
 
         else:
             print('that method for control is not implemented')
@@ -120,19 +120,19 @@ class satelliteController:
     def updatePrefilterState(self, r):
         for i in range(0, self.N):
             self.x_F = self.x_F + (self.Ts/self.N)*(
-                self.A_F*self.x_F + self.B_F*r
+                self.A_F @ self.x_F + self.B_F*r
             )
 
     def updateControlOutState(self, error_out):
         for i in range(0, self.N):
             self.xout_C = self.xout_C + (self.Ts/self.N)*(
-                self.Aout_C*self.xout_C + self.Bout_C*error_out
+                self.Aout_C @ self.xout_C + self.Bout_C*error_out
             )
 
     def updateControlInState(self, error_in):
         for i in range(0, self.N):
             self.xin_C = self.xin_C + (self.Ts/self.N)*(
-                self.Ain_C * self.xin_C + self.Bin_C * error_in
+                self.Ain_C @ self.xin_C + self.Bin_C * error_in
             )
 
     def saturate(self,u):

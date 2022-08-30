@@ -26,7 +26,7 @@ class satelliteController:
     def update(self, phi_r, y):
         # update the observer and extract z_hat
         x_hat, d_hat = self.update_observer(y)
-        phi_hat = x_hat.item(1)
+        phi_hat = x_hat[1,0]
 
         # integrate error
         error = phi_r - phi_hat
@@ -36,7 +36,7 @@ class satelliteController:
         tau_unsat = -self.K @ x_hat \
                     - self.ki*self.integrator \
                     - d_hat
-        tau = self.saturate(tau_unsat.item(0))
+        tau = self.saturate(tau_unsat[0,0])
         self.tau_d1 = tau
         return tau, x_hat, d_hat
 
@@ -51,11 +51,8 @@ class satelliteController:
                              + self.Ts * F3, y_m)
         self.observer_state += self.Ts / 6 \
                                * (F1 + 2 * F2 + 2 * F3 + F4)
-        x_hat = np.array([[self.observer_state.item(0)],
-                          [self.observer_state.item(1)],
-                          [self.observer_state.item(2)],
-                          [self.observer_state.item(3)]])
-        d_hat = self.observer_state.item(4)
+        x_hat = self.observer_state[0:4, 0].reshape(4,1)
+        d_hat = self.observer_state[4,0].reshape(1,1)
         return x_hat, d_hat
 
     def observer_f(self, x_hat, y_m):

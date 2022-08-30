@@ -27,8 +27,8 @@ class satelliteAnimation:
 
     def update(self, u):
         # Process inputs to function
-        theta = u.item(0)   # Angle of base, rad
-        phi = u.item(1)     # angle of panel, rad
+        theta = u[0,0]   # Angle of base, rad
+        phi = u[1,0]     # angle of panel, rad
 
         self.drawBase(theta)
         self.drawPanel(phi)

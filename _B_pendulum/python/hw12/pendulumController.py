@@ -11,14 +11,14 @@ class pendulumController:
         self.Ts = P.Ts  # sample rate of controller
 
     def update(self, z_r, x):
-        z = x.item(0)
+        z = x[0,0]
         # integrate error
         error = z_r - z
         self.integrateError(error)
         # Compute the state feedback controller
         F_unsat = -self.K @ x - self.ki*self.integrator
         F_sat = self.saturate(F_unsat)
-        return F_sat.item(0)
+        return F_sat[0,0]
 
     def integrateError(self, error):
         self.integrator = self.integrator \

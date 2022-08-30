@@ -13,8 +13,8 @@ class pendulumController:
         self.filter = zeroCancelingFilter()
 
     def update(self, z_r, y):
-        z = y.item(0)
-        theta = y.item(1)
+        z = y[0,0]
+        theta = y[1,0]
 
         # the reference angle for theta comes from
         # the outer loop PID control

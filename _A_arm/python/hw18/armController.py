@@ -4,7 +4,7 @@ from hw18.digitalFilter import digitalFilter
 import hw18.armLoopShaping as L
 
 class armController:
-    def __init__(self, method="digital_filter"):
+    def __init__(self, method="state_space"):
         if method == "state_space":
             self.x_C = np.zeros((L.C_ss.A.shape[0], 1))
             self.x_F = np.zeros((L.F_ss.A.shape[0], 1))
@@ -43,7 +43,7 @@ class armController:
         # update controller
         if self.method == "state_space":
             self.updateControlState(error)
-            tau_tilde = self.C_C @ self.x_C + self.D_C * error
+            tau_tilde = (self.C_C @ self.x_C + self.D_C * error)[0,0]
         elif self.method == "digital_filter":
             tau_tilde = self.control.update(error)
 
@@ -57,13 +57,13 @@ class armController:
     def updatePrefilterState(self, theta_r):
         for i in range(0, self.N):
             self.x_F = self.x_F + (self.Ts/self.N)*(
-                self.A_F*self.x_F + self.B_F*theta_r
+                self.A_F @ self.x_F + self.B_F * theta_r
             )
 
     def updateControlState(self, error_out):
         for i in range(0, self.N):
             self.x_C = self.x_C + (self.Ts/self.N)*(
-                self.A_C*self.x_C + self.B_C*error_out
+                self.A_C @ self.x_C + self.B_C * error_out
             )
     
     def saturate(self,u):

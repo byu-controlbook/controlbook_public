@@ -67,9 +67,8 @@ if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 5:
     print("The system is not controllable")
 else:
     K1 = cnt.acker(A1, B1, des_poles)
-    K = np.array([[K1.item(0), K1.item(1),
-                   K1.item(2), K1.item(3)]])
-    ki = K1.item(4)
+    K = K1[0, 0:4].reshape(1,4)
+    ki = K1[0, 4].reshape(1,1)
 
 print('K: ', K)
 print('ki: ', ki)

@@ -60,8 +60,8 @@ if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 5:
     print("The system is not controllable")
 else:
     K1 = cnt.acker(A1, B1, des_poles)
-    K = K1[0, 0:4]
-    ki = K1[0, 4]
+    K = K1[0, 0:4].reshape(1,4)
+    ki = K1[0, 4].reshape(1,1)
 
 # compute observer gains
 # Augmented Matrices
