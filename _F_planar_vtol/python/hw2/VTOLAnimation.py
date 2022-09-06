@@ -18,11 +18,11 @@ class VTOLAnimation:
         plt.plot([0.0, P.length], [0.0, 0.0], 'k')    # Draw a base line
         plt.axis([-P.length / 5, P.length + P.length / 5, -P.length/5, P.length+P.length/5])  # Change the x,y axis limits
 
-    def update(self, x, target):
+    def update(self, x, target=0.0):
         # Process inputs to function
-        z = x.item(0)  # lateral position of VTOL (m)
-        h = x.item(1)  # altitude of VTOL (m)
-        theta = x.item(2)   # Angle of VTOL (rad)
+        z = x[0,0]  # lateral position of VTOL (m)
+        h = x[1,0]  # altitude of VTOL (m)
+        theta = x[2,0]   # Angle of VTOL (rad)
 
         self.drawVehicle(z, h, theta)
         self.drawTarget(target)
@@ -78,7 +78,7 @@ class VTOLAnimation:
         else:
             self.handle[0].set_xy(xy)         # Update polygon
 
-    def drawTarget(self, target):
+    def drawTarget(self, target=0.0):
         w = 0.1
         h = 0.05
         pts = np.matrix([

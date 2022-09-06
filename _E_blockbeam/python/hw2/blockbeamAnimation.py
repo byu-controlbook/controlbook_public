@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np 
-import ballbeamParam as P
+import blockbeamParam as P
 
 
-class ballbeamAnimation:
+class blockbeamAnimation:
     '''
-        Create ballbeam animation
+        Create blockbeam animation
     '''
     def __init__(self):
         self.flagInit = True                  # Used to indicate initialization
@@ -18,14 +18,14 @@ class ballbeamAnimation:
         plt.plot([0.0, P.length], [0.0, 0.0], 'k')    # Draw a base line
         #plt.xlabel('z')
 
-        # Draw ballbeam is the main function that will call the functions:
-        # drawCart, drawCircle, and drawRod to create the animation.
+    # Draw blockbeam is the main function that will call the functions:
+    # drawBlock, drawBeam to create the animation.
     def update(self, u):
         # Process inputs to function
         z = u.item(0)        # Horizontal position of cart, m
-        theta = u.item(1)   # Angle of ballbeam, rads
+        theta = u.item(1)   # Angle of block-beam, rads
 
-        self.drawBall(z, theta)
+        self.drawBlock(z, theta)
         self.drawBeam(theta)
         self.ax.axis('equal') # This will cause the image to not distort
 
@@ -33,23 +33,24 @@ class ballbeamAnimation:
         if self.flagInit == True:
             self.flagInit = False
 
-    def drawBall(self, z, theta):
-        x = z*np.cos(theta) - P.radius*np.sin(theta)
-        y = z*np.sin(theta) + P.radius*np.cos(theta)
-        xy = (x, y)  # Center of circle
+    def drawBlock(self, z, theta):
+        x = z*np.cos(theta) - P.width/2.0*np.sin(theta)
+        y = z*np.sin(theta) + P.height/2.0*np.cos(theta)
+        xy = (x, y)  # bottom left of block
 
-        # When the class is initialized, a CirclePolygon patch object will
+        # When the class is initialized, a Rectangle patch object will
         # be created and added to the axes. After initialization, the
-        # CirclePolygon patch object will only be updated.
+        # patch object will only be updated.
         if self.flagInit == True:
-            # Create the CirclePolygon patch and append its handle
+            # Create the Rectangle patch and append its handle
             # to the handle list
-            self.handle.append(mpatches.CirclePolygon(xy,
-                radius=P.radius, resolution=25,
-                fc='limegreen', ec='black'))
+            self.handle.append(mpatches.Rectangle(xy, width=P.width, 
+                                height=P.width*0.25, angle=theta, 
+                                fc='limegreen', ec='black'))
             self.ax.add_patch(self.handle[0])  # Add the patch to the axes
         else:
-            self.handle[0]._xy = xy
+            self.handle[0].xy = xy  # "set" function, or "set_xy" don't work
+            self.handle[0].angle = theta*180.0/np.pi
 
     def drawBeam(self, theta):
         X = [0, P.length*np.cos(theta)]  # X data points
@@ -61,7 +62,7 @@ class ballbeamAnimation:
         if self.flagInit == True:
             # Create the line object and append its handle
             # to the handle list.
-            line, = self.ax.plot(X, Y, lw=2, c='black')
+            line, = self.ax.plot(X, Y, lw=3, c='black')
             self.handle.append(line)
         else:
             self.handle[1].set_xdata(X)               # Update the line

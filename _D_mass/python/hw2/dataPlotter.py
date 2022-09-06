@@ -32,7 +32,7 @@ class dataPlotter:
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.z_ref_history.append(reference)  # reference mass position
-        self.z_history.append(states.item(0))  # mass position
+        self.z_history.append(states[0,0])  # mass position
         self.force_history.append(ctrl)  # force on the base
 
         # update the plots with associated histories

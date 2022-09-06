@@ -23,7 +23,7 @@ class massAnimation:
         # Draw mass is the main function that will call the functions:
     def update(self, u):
         # Process inputs to function
-        z = u.item(0)   # position of mass, m
+        z = u[0,0]   # position of mass, m
 
         self.drawWeight(z)
         self.drawSpring(z)

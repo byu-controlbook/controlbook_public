@@ -31,10 +31,10 @@ class dataPlotterObserver:
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.z_history.append(x.item(0))
-        self.z_dot_history.append(x.item(1))
-        self.z_hat_history.append(x_hat.item(0))
-        self.z_hat_dot_history.append(x_hat.item(1))
+        self.z_history.append(x[0,0])
+        self.z_dot_history.append(x[1,0])
+        self.z_hat_history.append(x_hat[0,0])
+        self.z_hat_dot_history.append(x_hat[1,0])
 
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.z_history, self.z_hat_history])

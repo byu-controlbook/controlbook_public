@@ -43,18 +43,18 @@ class dataPlotterObserver:
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.z_history.append(x.item(0))
-        self.h_history.append(x.item(1))
-        self.theta_history.append(x.item(2))
-        self.z_dot_history.append(x.item(3))
-        self.h_dot_history.append(x.item(4))
-        self.theta_dot_history.append(x.item(5))
-        self.z_hat_history.append(xhat_lat.item(0))
-        self.h_hat_history.append(xhat_lon.item(0))
-        self.theta_hat_history.append(xhat_lat.item(1))
-        self.z_hat_dot_history.append(xhat_lat.item(2))
-        self.h_hat_dot_history.append(xhat_lon.item(1))
-        self.theta_hat_dot_history.append(xhat_lat.item(3))
+        self.z_history.append(x[0,0])
+        self.h_history.append(x[1,0])
+        self.theta_history.append(x[2,0])
+        self.z_dot_history.append(x[3,0])
+        self.h_dot_history.append(x[4,0])
+        self.theta_dot_history.append(x[5,0])
+        self.z_hat_history.append(xhat_lat[0,0])
+        self.h_hat_history.append(xhat_lon[0,0])
+        self.theta_hat_history.append(xhat_lat[1,0])
+        self.z_hat_dot_history.append(xhat_lat[2,0])
+        self.h_hat_dot_history.append(xhat_lon[1,0])
+        self.theta_hat_dot_history.append(xhat_lat[3,0])
 
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.z_history, self.z_hat_history])

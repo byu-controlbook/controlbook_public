@@ -8,7 +8,7 @@ Jc =   # kg m^2
 d =   # m
 mu =   # kg/s
 g =   # m/s^2
-F_wind =  # wind disturbance force
+F_wind =  # wind disturbance force is zero in initial homeworks
 
 # parameters for animation
 length = 10.0

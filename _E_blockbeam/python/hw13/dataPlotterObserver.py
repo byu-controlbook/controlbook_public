@@ -4,10 +4,10 @@ import numpy as np
 
 plt.ion()  # enable interactive drawing
 
-class dataPlotter:
+class dataPlotterObserver:
     def __init__(self):
         # Number of subplots = num_of_rows*num_of_cols
-        self.num_rows = 3    # Number of subplot rows
+        self.num_rows = 5    # Number of subplot rows
         self.num_cols = 1    # Number of subplot columns
 
         # Crete figure and axes handles
@@ -15,32 +15,48 @@ class dataPlotter:
 
         # Instantiate lists to hold the time and data histories
         self.time_history = []  # time
-        self.zref_history = []  # reference position z_r
         self.z_history = []  # position z
+        self.z_hat_history = []  # estimate of z
         self.theta_history = []  # angle theta
-        self.Force_history = []  # control force
+        self.theta_hat_history = [] # estimate of theta
+        self.d_history = []  # estimate of disturbance
+        self.z_dot_history = []
+        self.z_hat_dot_history = []
+        self.theta_dot_history = []
+        self.theta_hat_dot_history = []
+        self.d_hat_history = []
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='z(m)', title='Ball on Beam Data'))
-        self.handle.append(myPlot(self.ax[1], ylabel='theta(deg)'))
-        self.handle.append(myPlot(self.ax[2], xlabel='t(s)', ylabel='force(N)'))
+        self.handle.append(myPlot(self.ax[0], ylabel='z (m)', title='Ball on Beam Data'))
+        self.handle.append(myPlot(self.ax[1], ylabel='theta (deg)'))
+        self.handle.append(myPlot(self.ax[2], ylabel='z_dot (m/s)'))
+        self.handle.append(myPlot(self.ax[3], ylabel='theta_dot (deg/s)'))
+        self.handle.append(myPlot(self.ax[4], xlabel='t(s)', ylabel='d'))
 
-    def update(self, t, reference, states, ctrl):
+    def update(self, t, x, x_hat, d, d_hat):
         '''
             Add to the time and data histories, and update the plots.
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.zref_history.append(reference)  # reference base position
-        self.z_history.append(states.item(0))  # base position
-        self.theta_history.append(180.0/np.pi*states.item(1))  # rod angle (converted to degrees)
-        self.Force_history.append(ctrl)  # force on the base
+        self.z_history.append(x[0,0])
+        self.theta_history.append(x[1,0])
+        self.z_dot_history.append(x[2,0])
+        self.theta_dot_history.append(x[3,0])
+        self.z_hat_history.append(x_hat[0,0])
+        self.theta_hat_history.append(x_hat[1,0])
+        self.z_hat_dot_history.append(x_hat[2,0])
+        self.theta_hat_dot_history.append(x_hat[3,0])
+        self.d_history.append(d)
+        self.d_hat_history.append(d_hat)
 
         # update the plots with associated histories
-        self.handle[0].update(self.time_history, [self.z_history, self.zref_history])
-        self.handle[1].update(self.time_history, [self.theta_history])
-        self.handle[2].update(self.time_history, [self.Force_history])
+        self.handle[0].update(self.time_history, [self.z_history, self.z_hat_history])
+        self.handle[1].update(self.time_history, [self.theta_history, self.theta_hat_history])
+        self.handle[2].update(self.time_history, [self.z_dot_history, self.z_hat_dot_history])
+        self.handle[3].update(self.time_history, [self.theta_dot_history, self.theta_hat_dot_history])
+        self.handle[4].update(self.time_history, [self.d_history, self.d_hat_history])
 
 
 class myPlot:

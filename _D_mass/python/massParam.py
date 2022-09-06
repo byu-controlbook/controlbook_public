@@ -1,6 +1,5 @@
-# Inverted Pendulum Parameter File
+# mass-spring-damper Parameter File
 import numpy as np
-# import control as cnt
 
 # Physical parameters of the arm known to the controller
 m =   # mass kg

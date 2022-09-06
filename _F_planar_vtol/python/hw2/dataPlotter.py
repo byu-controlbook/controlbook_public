@@ -25,7 +25,7 @@ class dataPlotter:
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='z(m)', title='Ball on Beam Data'))
+        self.handle.append(myPlot(self.ax[0], ylabel='z(m)', title='VTOL System Data'))
         self.handle.append(myPlot(self.ax[1], ylabel='h(m)'))
         self.handle.append(myPlot(self.ax[2], ylabel='theta(deg)'))
         self.handle.append(myPlot(self.ax[3], ylabel='force(N)'))
@@ -38,10 +38,10 @@ class dataPlotter:
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.zref_history.append(z_ref)  # reference position
-        self.z_history.append(states.item(0))  # position
+        self.z_history.append(states[0,0])  # position
         self.href_history.append(h_ref)  # reference position
-        self.h_history.append(states.item(1))  # position
-        self.theta_history.append(180.0/np.pi*states.item(2))  # VTOL angle (converted to degrees)
+        self.h_history.append(states[1,0])  # position
+        self.theta_history.append(180.0/np.pi*states[2,0])  # VTOL angle (converted to degrees)
         self.Force_history.append(force)  # force
         self.Torque_history.append(torque)  # torque
 
