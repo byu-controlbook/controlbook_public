@@ -1,3 +1,4 @@
+import numpy as np
 import hw8.satelliteParamHW8 as P
 
 class satelliteController:
@@ -6,6 +7,7 @@ class satelliteController:
         self.kd_phi = P.kd_phi
         self.kp_th = P.kp_th
         self.kd_th = P.kd_th
+        self.tau_max = P.tau_max
 
     def update(self, phi_r, state):
 
@@ -21,8 +23,15 @@ class satelliteController:
         theta_r = self.kp_phi * (phi_r - phi) \
                   - self.kd_phi * phidot + phi_r
 
-        # inner loop: outputs the torque applied to the base
+        # inner loop: outputs the torque applied to the satellite base
         tau = self.kp_th * (theta_r - theta) \
               - self.kd_th * thetadot
 
+        tau = self.saturate(tau, self.tau_max)
+        
         return tau
+
+    def saturate(self, u, limit):
+        if abs(u) > limit:
+            u = limit*np.sign(u)
+        return u

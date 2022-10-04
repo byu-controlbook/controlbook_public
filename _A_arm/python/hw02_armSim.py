@@ -21,9 +21,9 @@ while t < P.t_end:  # main simulation loop
     r = reference.square(t)
     theta = thetaRef.sin(t)
     tau = tauRef.sawtooth(t)
-    # update animation
 
-    state = np.array([[theta], [0.0]])
+    # update animation
+    state = np.array([[theta], [0.0]])  #state is made of theta, and theta_dot
     animation.update(state)
     dataPlot.update(t, r, state, tau)
 

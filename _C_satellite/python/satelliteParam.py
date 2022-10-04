@@ -1,11 +1,9 @@
 # Inverted Pendulum Parameter File
-#import numpy as np
-#import control as cnt
 
 # Physical parameters of the satellite known to the controller
 Js = 5.0      # kg m^2
 Jp = 1.0      # kg m^2
-k = 0.1      # N m  #### in HW 8 this is set to 0.1, but it's 0.15 before that.
+k = 0.1      # N m 
 b = 0.05      # N m s
 
 # parameters for animation
