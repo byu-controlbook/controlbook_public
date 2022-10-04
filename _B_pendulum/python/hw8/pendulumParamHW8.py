@@ -15,7 +15,7 @@ beta = (2 * sigma - Ts) / (2 * sigma + Ts)  # dirty derivative gain
 # tuning parameters
 tr_th = 0.5          # Rise time for inner loop (theta)
 zeta_th = 0.707       # Damping Coefficient for inner loop (theta)
-M = 25.0              # Time scale separation between inner and outer loop
+M = 10.0              # Time scale separation between inner and outer loop
 zeta_z = 0.707        # Damping Coefficient fop outer loop (z)
 
 # saturation limits
@@ -43,9 +43,15 @@ kp_th = (alpha0_th-a0_th)/b0_th
 kd_th = (alpha1_th-a1_th)/b0_th
 DC_gain = kp_th/((P.m1+P.m2)*P.g+kp_th)
 
+
 #---------------------------------------------------
 #                    Outer Loop
 #---------------------------------------------------
+# we don't need to include the DC gain in the outer loop
+# because it doesn't show up in the C.E. and we cancel it
+# using our added low-pass filter in the controller 
+# (see hw8/pendulumController.py, function "zeroCancelingFilter"). 
+
 
 # coefficients for desired outer loop
 # Delta_des(s) = s^2 + alpha1*s + alpha0 = s^2 + 2*zeta*wn*s + wn^2
