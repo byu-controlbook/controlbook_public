@@ -1,11 +1,10 @@
 # Inverted Pendulum Parameter File
 import numpy as np
-#import control as cnt
 
 # Physical parameters of the inverted pendulum known to the controller
 m1 = 0.25     # Mass of the pendulum, kg
 m2 = 1.0      # Mass of the cart, kg
-ell = 0.5    # Length of the rod, m
+ell = 1.0    # Length of the rod, m
 g = 9.8       # Gravity, m/s**2
 b = 0.05      # Damping coefficient, Ns
 
