@@ -32,13 +32,15 @@ C = np.array([[1.0, 0.0]])
 wn = 2.2/tr  # natural frequency
 des_char_poly = [1, 2*zeta*wn, wn**2]
 des_poles = np.roots(des_char_poly)
+des_poles = [-10+0.1j, -10-0.1j]
+print('desired poles are:\n', des_poles)
 
 # Compute the gains if the system is controllable
 if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 2:
     print("The system is not controllable")
 
 else:
-    K = (cnt.acker(A, B, des_poles))
+    K = (cnt.place(A, B, des_poles))
     kr = -1.0/(C @ np.linalg.inv(A - B @ K) @ B)
 
 print('K: ', K)

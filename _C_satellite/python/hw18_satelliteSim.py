@@ -9,12 +9,12 @@ from hw18.satelliteController import satelliteController
 
 # instantiate satellite, controller, and reference classes
 satellite = satelliteDynamics(alpha=0.2)
-controller = satelliteController()
+controller = satelliteController(method='state_space')
 reference = signalGenerator(amplitude=15.0*np.pi/180.0,
-                            frequency=0.02)
+                            frequency=0.01)
 disturbance = signalGenerator(amplitude=1.0)
-noise_phi = signalGenerator(amplitude=0.01)
-noise_th = signalGenerator(amplitude=0.01)
+noise_phi = signalGenerator(amplitude=0.03, frequency=10*np.pi*2)
+noise_th = signalGenerator(amplitude=0.03, frequency=20*np.pi*2)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
@@ -33,8 +33,8 @@ while t < P.t_end:  # main simulation loop
         d = disturbance.step(t)  # input disturbance
 
         # simulate sensor noise
-        n = np.array([[noise_phi.random(t)],
-                      [noise_th.random(t)]])  
+        n = np.array([[noise_phi.sin(t)],
+                      [noise_th.sin(t)]])  
 
         # update controller
         u = controller.update(r, y + n)  

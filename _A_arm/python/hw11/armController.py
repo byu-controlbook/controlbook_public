@@ -27,7 +27,7 @@ class armController:
         tau_tilde = -self.K @ x + self.kr * theta_r
 
         # compute total torque
-        tau = self.saturate(tau_fl + tau_tilde)
+        tau = self.saturate(tau_fl + tau_tilde[0,0])
         return tau
 
     def differentiateTheta(self, theta):

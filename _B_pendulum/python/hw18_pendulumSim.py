@@ -9,7 +9,7 @@ from hw18.pendulumController import pendulumController
 
 # instantiate pendulum, controller, and reference classes
 pendulum = pendulumDynamics(alpha = 0.2)
-controller = pendulumController()
+controller = pendulumController(method="state_space")
 reference = signalGenerator(amplitude=0.5, frequency=0.05)
 disturbance = signalGenerator(amplitude=0.5)
 noise_z = signalGenerator(amplitude=0.001)

@@ -14,7 +14,7 @@ zeta_phi = 0.707  # damping ratio position
 zeta_th = 0.707  # damping ratio angle
 
 # State Space Equations
-# xdot = A*x + B*u
+# xdot = A*x + B*u,  x = [theta, phi, theta_dot, phi_dot]
 # y = C*x
 A = np.array([[0.0, 0.0,               1.0,      0.0],
                [0.0, 0.0,               0.0,      1.0],
@@ -40,7 +40,7 @@ des_poles = np.roots(des_char_poly)
 if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 4:
     print("The system is not controllable")
 else:
-    K = cnt.acker(A, B, des_poles)
+    K = cnt.place(A, B, des_poles)
     Cr = np.array([[1.0, 0.0, 0.0, 0.0]])
     kr = -1.0/(Cr @ np.linalg.inv(A - B @ K) @ B)
 

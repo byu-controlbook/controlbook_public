@@ -1,3 +1,4 @@
+import sys
 import satelliteParam as P
 import numpy as np
 import hw10.satelliteParamHW10 as P10

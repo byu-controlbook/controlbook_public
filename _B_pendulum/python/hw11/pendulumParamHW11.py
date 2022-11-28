@@ -40,13 +40,16 @@ wn_th = 2.2/tr_theta  # natural frequency for angle
 wn_z = 2.2/tr_z  # natural frequency for position
 des_char_poly = np.convolve([1, 2*zeta_z*wn_z, wn_z**2],
                             [1, 2*zeta_th*wn_th, wn_th**2])
+
 des_poles = np.roots(des_char_poly)
 
 # Compute the gains if the system is controllable
+
+# np.array([B, A@B, A@A@B, A@A@A@B])
 if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 4:
     print("The system is not controllable")
 else:
-    K = cnt.acker(A, B, des_poles)
+    K = cnt.place(A, B, des_poles)
     Cr = np.array([[1.0, 0.0, 0.0, 0.0]])
     kr = -1.0/(Cr @ np.linalg.inv(A - B @ K) @ B)
 
