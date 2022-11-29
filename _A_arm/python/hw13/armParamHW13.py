@@ -53,8 +53,8 @@ else:
     ki = K1[0,2].reshape(1,1)
 
 # observer design
-#des_obsv_char_poly = [1, 2*zeta_obs*wn_obs, wn_obs**2]
-des_obsv_poles = des_poles[0:n]*2. #np.roots(des_obsv_char_poly)
+des_obsv_char_poly = [1, 2*zeta_obs*wn_obs, wn_obs**2]
+des_obsv_poles = np.roots(des_obsv_char_poly)
 
 # Compute the gains if the system is controllable
 if np.linalg.matrix_rank(cnt.ctrb(A.T, C.T)) != 2:
