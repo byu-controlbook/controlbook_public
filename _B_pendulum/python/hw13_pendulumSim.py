@@ -1,16 +1,16 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pendulumParam as P
-from hw2.signalGenerator import signalGenerator
-from hw2.pendulumAnimation import pendulumAnimation
-from hw2.dataPlotter import dataPlotter
-from hw3.pendulumDynamics import pendulumDynamics
-from hw13.pendulumController import pendulumController
-from hw13.dataPlotterObserver import dataPlotterObserver
+from signalGenerator import signalGenerator
+from pendulumAnimation import pendulumAnimation
+from dataPlotter import dataPlotter
+from pendulumDynamics import pendulumDynamics
+from ctrlObserver import ctrlObserver
+from dataPlotterObserver import dataPlotterObserver
 
 # instantiate pendulum, controller, and reference classes
 pendulum = pendulumDynamics(alpha=0.0)
-controller = pendulumController()
+controller = ctrlObserver()
 reference = signalGenerator(amplitude=0.5, frequency=0.05)
 disturbance = signalGenerator(amplitude=0.5)
 noise_z = signalGenerator(amplitude=0.01)

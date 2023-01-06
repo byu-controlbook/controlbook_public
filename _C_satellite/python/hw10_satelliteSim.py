@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import satelliteParam as P
-from hw2.signalGenerator import signalGenerator
-from hw2.satelliteAnimation import satelliteAnimation
-from hw2.dataPlotter import dataPlotter
-from hw3.satelliteDynamics import satelliteDynamics
-from hw10.satelliteController import satelliteController
+from signalGenerator import signalGenerator
+from satelliteAnimation import satelliteAnimation
+from dataPlotter import dataPlotter
+from satelliteDynamics import satelliteDynamics
+from ctrlPID import ctrlPID
 
 # instantiate satellite, controller, and reference classes
 satellite = satelliteDynamics(alpha=0.2)
-controller = satelliteController()
+controller = ctrlPID()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0,
                             frequency=0.02)
 disturbance = signalGenerator(amplitude=0.0)

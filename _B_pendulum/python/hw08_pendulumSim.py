@@ -1,16 +1,16 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pendulumParam as P
-from hw2.signalGenerator import signalGenerator
-from hw2.pendulumAnimation import pendulumAnimation
-from hw2.dataPlotter import dataPlotter
-from hw3.pendulumDynamics import pendulumDynamics
-from hw8.pendulumController import pendulumController
+from signalGenerator import signalGenerator
+from pendulumAnimation import pendulumAnimation
+from dataPlotter import dataPlotter
+from pendulumDynamics import pendulumDynamics
+from ctrlPD import ctrlPD
 
 # instantiate pendulum, controller, and reference classes
 pendulum = pendulumDynamics()
-controller = pendulumController()
-reference = signalGenerator(amplitude=0.5, frequency=0.08)
+controller = ctrlPD()
+reference = signalGenerator(amplitude=0.5, frequency=0.04)
 disturbance = signalGenerator(amplitude=0)
 
 # instantiate the simulation plots and animation
@@ -30,7 +30,7 @@ while t < P.t_end:  # main simulation loop
     t_next_plot = t + P.t_plot
 
     while t < t_next_plot:
-        r = reference.step(t)  # reference input
+        r = reference.square(t)  # reference input
         d = disturbance.step(t)  # input disturbance
         n = 0.0  #noise.random(t)  # simulate sensor noise
         x = pendulum.state  # use state instead of output

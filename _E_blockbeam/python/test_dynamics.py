@@ -7,7 +7,7 @@
 # $\left[ \begin{array}{c} 0.25001051 \\ 0.01173116 \\ 0.00420385 \\ 2.34618816 \end{array} \right]$
 #%%
 
-from hw3.blockbeamDynamics import blockbeamDynamics
+from blockbeamDynamics import blockbeamDynamics
 blockbeam = blockbeamDynamics()
 
 # this number of "100" for input is just for testing purposes

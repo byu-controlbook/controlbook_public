@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
 import pendulumParam as P
-from hw2.signalGenerator import signalGenerator
-from hw2.pendulumAnimation import pendulumAnimation
-from hw2.dataPlotter import dataPlotter
-from hw3.pendulumDynamics import pendulumDynamics
-from hw12.pendulumController import pendulumController
+from signalGenerator import signalGenerator
+from pendulumAnimation import pendulumAnimation
+from dataPlotter import dataPlotter
+from pendulumDynamics import pendulumDynamics
+from ctrlStateFeedbackIntegrator import ctrlStateFeedbackIntegrator
 
 # instantiate pendulum, controller, and reference classes
 pendulum = pendulumDynamics()
-controller = pendulumController()
-reference = signalGenerator(amplitude=0.5, frequency=0.05)
+controller = ctrlStateFeedbackIntegrator()
+reference = signalGenerator(amplitude=0.5, frequency=0.04)
 disturbance = signalGenerator(amplitude=0.1)
 
 # instantiate the simulation plots and animation

@@ -1,16 +1,16 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import armParam as P
-from hw2.signalGenerator import signalGenerator
-from hw2.armAnimation import armAnimation
-from hw2.dataPlotter import dataPlotter
-from hw3.armDynamics import armDynamics
-from hw11.armController import armController
+from signalGenerator import signalGenerator
+from armAnimation import armAnimation
+from dataPlotter import dataPlotter
+from armDynamics import armDynamics
+from ctrlStateFeedback import ctrlStateFeedback
 
 
 # instantiate arm, controller, and reference classes
 arm = armDynamics(alpha=0)
-controller = armController()
+controller = ctrlStateFeedback()
 reference = signalGenerator(amplitude=30*np.pi/180.0,
                             frequency=0.05)
 disturbance = signalGenerator(amplitude=0.1)
@@ -32,7 +32,7 @@ while t < P.t_end:  # main simulation loop
         r = reference.square(t)
         d = 0.0  # book does not define an input disturbance
         n = 0.0  # for simulating sensor noise
-        u = controller.update(r, y+n)  # update controller
+        u = controller.update(r, arm.state)  # update controller
         y = arm.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
 

@@ -9,7 +9,7 @@
 
 #%%
 
-from hw3.massDynamics import massDynamics
+from massDynamics import massDynamics
 mass = massDynamics()
 
 # this number of "100" for input is just for testing purposes

@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import pendulumParam as P
-from hw2.signalGenerator import signalGenerator
-from hw2.pendulumAnimation import pendulumAnimation
-from hw2.dataPlotter import dataPlotter
-from hw3.pendulumDynamics import pendulumDynamics
+from signalGenerator import signalGenerator
+from pendulumAnimation import pendulumAnimation
+from dataPlotter import dataPlotter
+from pendulumDynamics import pendulumDynamics
 
 # instantiate pendulum, controller, and reference classes
 pendulum = pendulumDynamics(alpha=0.0)

@@ -7,7 +7,7 @@
 # $\left[ \begin{array}{c} -6.09755153e-06 \\ 5.50949070e-03 \\  6.09756098e-03 \\ -2.43860844e-03 \\ 1.10189442e+00 \\ 1.21951220e+00 \end{array} \right]$
 #%%
 
-from hw3.VTOLDynamics import VTOLDynamics
+from VTOLDynamics import VTOLDynamics
 import numpy as np
 VTOL = VTOLDynamics()
 

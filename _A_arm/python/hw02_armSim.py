@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import armParam as P
-from hw2.signalGenerator import signalGenerator
-from hw2.armAnimation import armAnimation
-from hw2.dataPlotter import dataPlotter
+from signalGenerator import signalGenerator
+from armAnimation import armAnimation
+from dataPlotter import dataPlotter
 
 # instantiate reference input classes
 reference = signalGenerator(amplitude=0.5, frequency=0.1)

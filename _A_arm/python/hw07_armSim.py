@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import armParam as P
-from hw2.signalGenerator import signalGenerator
-from hw2.armAnimation import armAnimation
-from hw2.dataPlotter import dataPlotter
-from hw3.armDynamics import armDynamics
-from hw7.armController import armController
+from signalGenerator import signalGenerator
+from armAnimation import armAnimation
+from dataPlotter import dataPlotter
+from armDynamics import armDynamics
+from ctrlPDhw7 import ctrlPD
 
 # instantiate arm, controller, and reference classes
 arm = armDynamics()
-controller = armController()
+controller = ctrlPD()
 reference = signalGenerator(amplitude=30.0*np.pi/180.0, frequency=0.05)
 disturbance = signalGenerator(amplitude=0.01)
 noise = signalGenerator(amplitude=0.01)

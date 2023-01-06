@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 import sys
 import armParam as P
-from hw2.signalGenerator import signalGenerator
-from hw2.armAnimation import armAnimation
-from hw2.dataPlotter import dataPlotter
-from hw3.armDynamics import armDynamics
+from signalGenerator import signalGenerator
+from armAnimation import armAnimation
+from dataPlotter import dataPlotter
+from armDynamics import armDynamics
 
 # instantiate arm, controller, and reference classes
 arm = armDynamics()
