@@ -73,7 +73,7 @@ pip3 install numpy
 
 If you are using pycharm, open Settings>Project:python>Python Interpreter.  Make sure that the latest python interpreter is selected at the top, and then click "+" do add a package and search for the needed package.  For example, my system is set up as shown below.
 
-![Alt text](images/pythonpackages.jpg?raw=true "Title")
+![Alt text](_images/pythonpackages.png?raw=true "Title")
 
 # Hummingbird Lab
 [PDF Lab Manual](https://drive.google.com/file/d/1DzFGTip7jdT5Q33OeuZrK28yvU95lOPe/view?usp=sharing)
