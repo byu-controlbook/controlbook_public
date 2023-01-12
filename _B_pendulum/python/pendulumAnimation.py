@@ -1,7 +1,10 @@
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
+import matplotlib
+matplotlib.use('qtagg')
+from matplotlib import pyplot as plt
+from matplotlib import patches as mpatches
 import numpy as np 
 import pendulumParam as P
+
 
 class pendulumAnimation:
     def __init__(self):
