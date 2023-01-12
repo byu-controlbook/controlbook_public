@@ -23,6 +23,7 @@ Hardcopy available on [Amazon](https://www.amazon.com/Introduction-Feedback-Cont
 | Chapter 1 - Introduction                  | [chapter1.pdf](https://drive.google.com/file/d/1EEJYRFGhS33oQ6utmfpvlL_AwMsa_qnA/view?usp=sharing)  | [chapter1.pptx](https://docs.google.com/presentation/d/1E64UCiuXwzBCBfGddauZVB_SIuUA60Qf/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2019 |
 | Chapter 2 - Kinetic Energy                | [chapter2.pdf](https://drive.google.com/file/d/1Ey-o1F22cvjoc-gGlguOWAAwI1S_JLEC/view?usp=sharing)  | [chapter2.pptx](https://docs.google.com/presentation/d/1ExZBt4HSP8Nq1pJT9_alLNjg4Rqma-ok/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2021 |
 | Chapter 3 - Euler Lagrange                | [chapter3.pdf](https://drive.google.com/file/d/1EyYrhTzkqkcdqUtvDrF7Jwe9Sgk1C-wH/view?usp=sharing)  | [chapter3.pptx](https://docs.google.com/presentation/d/1FAJS49tG-3L4GBOjQdPihNfToJ42EOQr/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2021 |
+| Equations of Motion + Physics Engine      | [eom.pdf](https://drive.google.com/file/d/19B5zrmxzZRDFJ9q0CrgtNcQCdQ53D0gk/view?usp=sharing)  | [eom.pptx](https://docs.google.com/presentation/d/19ESYDPCLuB2XN8aPnVYTzh2pOxe7tTvF/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Jan 2023 |
 | Chapter 4 - Linearization                 | [chapter4.pdf](https://drive.google.com/file/d/1F7BPUXK1KO9s7lyXbmucp07YO9DHKcHl/view?usp=sharing)  | [chapter4.pptx](https://docs.google.com/presentation/d/1FD64VFeKZhbFzBC1Uc8AuH-NRQJMivWf/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2021 |
 | Chapter 5 - Transfer Function Models      | [chapter5.pdf](https://drive.google.com/file/d/1Er4SM3FTgFibvc0HSsgzES2N8pPXGFiG/view?usp=sharing)  | [chapter5.pptx](https://docs.google.com/presentation/d/1EngIns0Yo4-K2jL7vCNXFfuNH3YyhOx9/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Sept 2021 |
 | Chapter 6 - State Space Models            | [chapter6.pdf]()  | [chapter6.pptx]()  |  |
@@ -51,30 +52,29 @@ This Gitlab account contains complete python, matlab, and simulink solutions to 
 
 ## Prerequisites
 
-It is expected that you have installed python 3 and git. You may also want to install an IDE such as [PyCharm](https://www.jetbrains.com/pycharm/) to help you develop code more effectively. 
+You will need to install a version of python 3 on your computer.  Download the latest version of python from 
+[https://www.python.org](https://www.python.org).
 
-## Installing
+You will also want to install an IDE.  We recommend either:
+- [PyCharm](https://www.jetbrains.com/pycharm/) or
+- [VS Code](https://code.visualstudio.com)
 
-First, you need to clone the repo. Navigate to the folder where you want to keep this code. You will then need to copy the url found under the blue "clone" button above on this page, and then insert that url into the command below:
+## Python packages
+Install the following python packages:
+- numpy
+- slipy
+- matplotlib
+- control
+- pyqtgraph
+- pyqt6
 
-```
-git clone --recurse-submodules <insert URL>
-```
+In linux or macos, you can install a python package using the command
 
-This will check out the example code along with a python module that we require for later examples in the code to run. If you skip this step and execute "git clone" without the "--recurse-submodules" argument, you can always do the following later (after navigating to the main repo folder):
+pip3 install numpy
 
-```
-git submodule init
-git submodule update
-```
+If you are using pycharm, open Settings>Project:python>Python Interpreter.  Make sure that the latest python interpreter is selected at the top, and then click "+" do add a package and search for the needed package.  For example, my system is set up as shown below.
 
-Once you have pulled down the repo and the submodule (for python-control), and are in the main repo folder, then you can do the following to install the submodule:
-```
-cd python-control
-sudo python setup.py install
-```
-
-Now all of the examples in the python folders under each design study should work. Enjoy!
+![Alt text](_images/pythonpackages.png?raw=true "Title")
 
 # Hummingbird Lab
 [PDF Lab Manual](https://drive.google.com/file/d/1DzFGTip7jdT5Q33OeuZrK28yvU95lOPe/view?usp=sharing)
