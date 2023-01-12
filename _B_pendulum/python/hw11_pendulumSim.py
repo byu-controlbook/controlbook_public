@@ -1,5 +1,4 @@
-import matplotlib
-matplotlib.use('qtagg')
+
 import matplotlib.pyplot as plt
 import pendulumParam as P
 from signalGenerator import signalGenerator

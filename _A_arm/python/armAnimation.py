@@ -1,3 +1,16 @@
+import matplotlib
+# use one of the following backends if matplotlib does not
+# render correctly.  See https://matplotlib.org/stable/users/explain/backends.html
+# matplotlib.use('qtagg')
+# matplotlib.use('ipympl')
+# matplotlib.use('gkt3agg')
+# matplotlib.use('gkt4agg')
+# matplotlib.use('macosx')
+# matplotlib.use('tkagg')
+# matplotlib.use('nbagg')
+# matplotlib.use('gkt3cairo')
+# matplotlib.use('gkt4cairo')
+# matplotlib.use('wxagg')
 import sys
 sys.path.append('..')  # add parent directory
 import matplotlib.pyplot as plt

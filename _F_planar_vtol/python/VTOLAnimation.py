@@ -1,7 +1,19 @@
+import matplotlib
+# use one of the following backends if matplotlib does not
+# render correctly.  See https://matplotlib.org/stable/users/explain/backends.html
+# matplotlib.use('qtagg')
+# matplotlib.use('ipympl')
+# matplotlib.use('gkt3agg')
+# matplotlib.use('gkt4agg')
+# matplotlib.use('macosx')
+# matplotlib.use('tkagg')
+# matplotlib.use('nbagg')
+# matplotlib.use('gkt3cairo')
+# matplotlib.use('gkt4cairo')
+# matplotlib.use('wxagg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
-import numpy.matlib
 import VTOLParam as P
 
 
@@ -64,7 +76,7 @@ class VTOLAnimation:
             [-np.sin(theta), np.cos(theta)],
         ])
         pts = R.T @ pts
-        pts = pts + np.matlib.repmat(np.array([[z],[h]]), 1, pts.shape[1])
+        pts = pts + np.repmat(np.array([[z],[h]]), 1, pts.shape[1])
         xy = np.array(pts.T)
 
         # When the class is initialized, a polygon patch object will be
@@ -81,7 +93,7 @@ class VTOLAnimation:
     def drawTarget(self, target=0.0):
         w = 0.1
         h = 0.05
-        pts = np.matrix([
+        pts = np.array([
                [target+w/2.0, h],
                [target+w/2.0, 0],
                [target-w/2.0, 0],
