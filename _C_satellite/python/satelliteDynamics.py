@@ -2,6 +2,7 @@ import numpy as np
 import random
 import satelliteParam as P
 
+
 class satelliteDynamics:
     def __init__(self, alpha=0.0):
         # Initial state conditions
@@ -11,19 +12,14 @@ class satelliteDynamics:
             [P.thetadot0],  # initial angular velocity of base
             [P.phidot0],  # initial angular velocity of panel
         ])
-
         # simulation time step
         self.Ts = P.Ts
-
         # inertia of base
         self.Js = P.Js * (1.+alpha*(2.*np.random.rand()-1.))
-
         # inertia of panel
         self.Jp = P.Jp * (1.+alpha*(2.*np.random.rand()-1.))
-
         # spring coefficient
         self.k = P.k * (1.+alpha*(2.*np.random.rand()-1.))
-
         # Damping coefficient, Ns
         self.b = P.b * (1.+alpha*(2.*np.random.rand()-1.))    
         self.torque_limit = P.tau_max
@@ -32,19 +28,17 @@ class satelliteDynamics:
         # This is the external method that takes the input u at time
         # t and returns the output y at time t.
         # saturate the input torque
-        u = self.saturate(u, self.torque_limit)
-
+        u = saturate(u, self.torque_limit)
         self.rk4_step(u)  # propagate the state by one time sample
         y = self.h()  # return the corresponding output
-
         return y
 
     def f(self, state, u):
         # Return xdot = f(x,u)
-        theta = state[0,0]
-        phi = state[1,0]
-        thetadot = state[2,0]
-        phidot = state[3,0]
+        theta = state[0][0]
+        phi = state[1][0]
+        thetadot = state[2][0]
+        phidot = state[3][0]
         tau = u
         # The equations of motion.
         M = np.array([[self.Js, 0],
@@ -54,9 +48,8 @@ class satelliteDynamics:
                       [-self.b*(phidot-thetadot)-self.k*(phi-theta)
                       ]])
         tmp = np.linalg.inv(M) @ C
-        thetaddot = tmp[0,0]
-        phiddot = tmp[1,0]
-
+        thetaddot = tmp[0][0]
+        phiddot = tmp[1][0]
         # build xdot and return
         xdot = np.array([[thetadot], [phidot], [thetaddot],
                          [phiddot]])
@@ -64,10 +57,9 @@ class satelliteDynamics:
 
     def h(self):
         # return y = h(x)
-        theta = self.state[0,0]
-        phi = self.state[1,0]
+        theta = self.state[0][0]
+        phi = self.state[1][0]
         y = np.array([[theta], [phi]])
-
         return y
 
     def rk4_step(self, u):
@@ -78,7 +70,8 @@ class satelliteDynamics:
         F4 = self.f(self.state + self.Ts * F3, u)
         self.state += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
 
-    def saturate(self, u, limit):
-        if abs(u) > limit:
-            u = limit*np.sign(u)
-        return u
+        
+def saturate(u, limit):
+    if abs(u) > limit:
+        u = limit*np.sign(u)
+    return u
