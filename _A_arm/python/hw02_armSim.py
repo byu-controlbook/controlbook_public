@@ -26,7 +26,7 @@ while t < P.t_end:  # main simulation loop
     dataPlot.update(t, r, state, tau)
     # advance time by t_plot
     t = t + P.t_plot  
-    plt.pause(0.01)  # allow time for animation to draw
+    plt.pause(0.001)  # allow time for animation to draw
 
 # Keeps the program from closing until the user presses a button.
 print('Press key to close')

@@ -9,7 +9,7 @@ g = 9.8       # Gravity, m/s**2
 b = 0.01      # Damping coefficient, Nms
 
 # parameters for animation
-length = 1    # length of arm in animation
+length = 1.    # length of arm in animation
 width = 0.3   # width of arm in animation
 
 # Initial Conditions

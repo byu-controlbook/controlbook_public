@@ -32,9 +32,9 @@ class armAnimation:
         # Draw a base line
         plt.plot([0, P.length], [0, 0],'k--')
 
-    def update(self, u):
+    def update(self, x):
         # Process inputs to function
-        theta = u[0][0]   # angle of arm, rads
+        theta = x[0][0]   # angle of arm, rads
         X = [0, self.length*np.cos(theta)]  # X data points
         Y = [0, self.length*np.sin(theta)]  # Y data points
         # When the class is initialized, a line object will be

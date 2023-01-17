@@ -31,8 +31,8 @@ class pendulumAnimation:
         plt.xlabel('z')
 
     def update(self, state):
-        z = state[0,0]  # Horizontal position of cart, m
-        theta = state[1,0]  # Angle of pendulum, rads
+        z = state[0][0]  # Horizontal position of cart, m
+        theta = state[1][0]  # Angle of pendulum, rads
         # draw plot elements: cart, bob, rod
         self.draw_cart(z)
         self.draw_bob(z, theta)
