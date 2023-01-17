@@ -2,6 +2,17 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np 
 import pendulumParam as P
+# if you are having difficulty with the graphics, 
+# try using one of the following backends
+# import matplotlib
+# matplotlib.use('qtagg')  # requires pyqt or pyside
+# matplotlib.use('ipympl')  # requires ipympl
+# matplotlib.use('gtk3agg')  # requires pyGObject and pycairo
+# matplotlib.use('gtk4agg')  # requires pyGObject and pycairo
+# matplotlib.use('gtk3cairo')  # requires pyGObject and pycairo
+# matplotlib.use('gtk4cairo')  # requires pyGObject and pycairo
+# matplotlib.use('tkagg')  # requires TkInter
+# matplotlib.use('wxagg')  # requires wxPython
 
 class pendulumAnimation:
     def __init__(self):
