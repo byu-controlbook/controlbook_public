@@ -56,19 +56,16 @@ class ctrlPD:
         self.filter = zeroCancelingFilter(DC_gain)
 
     def update(self, z_r, state):
-        z = state.item(0)
-        theta = state.item(1)
-        zdot = state.item(2)
-        thetadot = state.item(3)
-
+        z = state[0][0]
+        theta = state[1][0]
+        zdot = state[2][0]
+        thetadot = state[3][0]
         # the reference angle for theta comes from the
         # outer loop PD control
         tmp = self.kp_z * (z_r - z) - self.kd_z * zdot
-
         # low pass filter the outer loop to cancel
         # left-half plane zero and DC-gain
         theta_r = self.filter.update(tmp)
-
         # the force applied to the cart comes from the
         # inner loop PD control
         F = self.kp_th * (theta_r - theta) - self.kd_th * thetadot

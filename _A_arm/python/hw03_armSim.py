@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import sys
 import armParam as P
 from signalGenerator import signalGenerator
 from armAnimation import armAnimation

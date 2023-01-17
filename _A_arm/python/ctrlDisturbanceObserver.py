@@ -111,7 +111,7 @@ class ctrlDisturbanceObserver :
 
     def observer_f(self, x_hat, y_m):
         # compute feedback linearizing torque tau_fl
-        theta_hat = x_hat.item(0)
+        theta_hat = x_hat[0][0]
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta_hat)
         # xhatdot = A*xhat + B*(u-ue) + L(y-C*xhat)
         xhat_dot = self.A @ x_hat\

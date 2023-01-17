@@ -42,6 +42,7 @@ while t < P.t_end:  # main simulation loop
     plt.pause(0.0001)  
 
 # Keeps the program from closing until the user presses a button.
+dataPlot.write_data_file()
 print('Press key to close')
 plt.waitforbuttonpress()
 plt.close()

@@ -14,7 +14,6 @@ class ctrlObserver:
         integrator_pole = 9
         wn_obs = 10  # natural frequency for observer
         zeta_obs = 0.707  # damping ratio for observer
-
         # State Space Equations
         # xdot = A*x + B*u
         # y = C*x
@@ -30,7 +29,6 @@ class ctrlObserver:
         B1 = np.array([[0.0],
                        [3.0 / P.m / (P.ell**2)],
                        [0.0]])
-
         # gain calculation
         wn = 2.2 / tr  # natural frequency
         #wn = 0.5*np.pi/(tr*np.sqrt(1-zeta**2)) # natural frequency

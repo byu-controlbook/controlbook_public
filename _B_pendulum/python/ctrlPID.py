@@ -16,8 +16,6 @@ class ctrlPID:
         zeta_z = 0.707  # Damping Coefficient fop outer loop (z)
         self.ki_z = -0.01  # select integrator gain
         # saturation limits
-        F_max = 5             		  # Max Force, N
-        error_max = 1        		  # Max step size,m
         self.theta_max = 30.0 * np.pi / 180.0  # Max theta, rads
         #---------------------------------------------------
         #                    Inner Loop

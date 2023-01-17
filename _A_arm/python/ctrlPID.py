@@ -33,13 +33,10 @@ class ctrlPID:
 
     def update(self, theta_r, y):
         theta = y[0][0]
-
         # compute feedback linearized torque tau_fl
         #tau_e = P0.m * P0.g * (P0.ell / 2.0) * np.cos(0.0)
-
         # compute feedback linearized torque tau_fl
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
-
         # compute the linearized torque using PID
         # Compute the current error
         error = theta_r - theta
