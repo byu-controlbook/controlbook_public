@@ -7,8 +7,8 @@ class armDynamics:
         # Initial state conditions
         self.state = np.array([
             [P.theta0],      # initial angle
-            [P.thetadot0]
-        ])  # initial angular rate
+            [P.thetadot0]    # initial angular rate
+        ])  
         # Mass of the arm, kg
         self.m = P.m * (1.+alpha*(2.*np.random.rand()-1.))
         # Length of the arm, m
@@ -35,11 +35,10 @@ class armDynamics:
         # re-label states for readability
         theta = state[0][0]
         thetadot = state[1][0]
-        thetaddot = (3.0/self.m/self.ell**2) * \
+        thetaddot = (3.0 / self.m / self.ell**2) * \
                     (tau - self.b*thetadot \
-                     - self.m*self.g*self.ell/2.0*np.cos(theta))
-        xdot = np.array([[thetadot],
-                         [thetaddot]])
+                     - self.m * self.g * self.ell / 2.0*np.cos(theta))
+        xdot = np.array([[thetadot], [thetaddot]])
         return xdot
 
     def h(self):
