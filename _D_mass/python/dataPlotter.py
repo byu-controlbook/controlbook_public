@@ -10,16 +10,13 @@ class dataPlotter:
         # Number of subplots = num_of_rows*num_of_cols
         self.num_rows = 2    # Number of subplot rows
         self.num_cols = 1    # Number of subplot columns
-
         # Crete figure and axes handles
         self.fig, self.ax = plt.subplots(self.num_rows, self.num_cols, sharex=True)
-
         # Instantiate lists to hold the time and data histories
         self.time_history = []  # time
         self.z_ref_history = []  # reference position
         self.z_history = []  # position z
         self.force_history = []  # control force
-
         # create a handle for every subplot.
         self.handle = []
         self.handle.append(myPlot(self.ax[0], ylabel='z(m)', title='Mass Data'))
@@ -34,7 +31,6 @@ class dataPlotter:
         self.z_ref_history.append(reference)  # reference mass position
         self.z_history.append(states[0,0])  # mass position
         self.force_history.append(ctrl)  # force on the base
-
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.z_history, self.z_ref_history])
         self.handle[1].update(self.time_history, [self.force_history])
@@ -68,15 +64,12 @@ class myPlot:
         # A list of line styles.  The first line style in the list
         # corresponds to the first line object.
         # '-' solid, '--' dashed, '-.' dash_dot, ':' dotted
-
         self.line = []
-
         # Configure the axes
         self.ax.set_ylabel(ylabel)
         self.ax.set_xlabel(xlabel)
         self.ax.set_title(title)
         self.ax.grid(True)
-
         # Keeps track of initialization
         self.init = True   
 
@@ -104,7 +97,6 @@ class myPlot:
             for i in range(len(self.line)):
                 self.line[i].set_xdata(time)
                 self.line[i].set_ydata(data[i])
-
         # Adjusts the axis to fit all of the data
         self.ax.relim()
         self.ax.autoscale()

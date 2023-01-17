@@ -1,5 +1,4 @@
 import numpy as np 
-import random
 import satelliteParam as P
 
 
@@ -42,17 +41,14 @@ class satelliteDynamics:
         tau = u
         # The equations of motion.
         M = np.array([[self.Js, 0],
-                       [0, self.Jp]])
-        C = np.array([[tau -
-                       self.b*(thetadot-phidot)-self.k*(theta-phi)],
-                      [-self.b*(phidot-thetadot)-self.k*(phi-theta)
-                      ]])
+                      [0, self.Jp]])
+        C = np.array([[tau - self.b*(thetadot-phidot)-self.k*(theta-phi)],
+                      [-self.b*(phidot-thetadot)-self.k*(phi-theta)]])
         tmp = np.linalg.inv(M) @ C
         thetaddot = tmp[0][0]
         phiddot = tmp[1][0]
         # build xdot and return
-        xdot = np.array([[thetadot], [phidot], [thetaddot],
-                         [phiddot]])
+        xdot = np.array([[thetadot], [phidot], [thetaddot], [phiddot]])
         return xdot
 
     def h(self):

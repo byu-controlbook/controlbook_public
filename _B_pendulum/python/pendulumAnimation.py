@@ -1,22 +1,10 @@
-import matplotlib
-# use one of the following backends if matplotlib does not
-# render correctly.  See https://matplotlib.org/stable/users/explain/backends.html
-#matplotlib.use('qtagg')
-#matplotlib.use('ipympl')
-#matplotlib.use('gkt3agg')
-#matplotlib.use('gkt4agg')
-#matplotlib.use('macosx')
-#matplotlib.use('tkagg')
-#matplotlib.use('nbagg')
-#matplotlib.use('gkt3cairo')
-#matplotlib.use('gkt4cairo')
-#matplotlib.use('wxagg')
 from matplotlib import pyplot as plt
 from matplotlib import patches as mpatches
 import numpy as np 
 import pendulumParam as P
 # if you are having difficulty with the graphics, 
-# try using one of the following backends
+# try using one of the following backends  
+# See https://matplotlib.org/stable/users/explain/backends.html
 # import matplotlib
 # matplotlib.use('qtagg')  # requires pyqt or pyside
 # matplotlib.use('ipympl')  # requires ipympl
@@ -64,8 +52,7 @@ class pendulumAnimation:
             # Create the Rectangle patch and append its handle
             # to the handle list
             self.handle.append(
-                mpatches.Rectangle(corner, P.w, P.h,
-                                   fc='blue', ec='black'))
+                mpatches.Rectangle(corner, P.w, P.h, fc='blue', ec='black'))
             # Add the patch to the axes
             self.ax.add_patch(self.handle[0])
         else:

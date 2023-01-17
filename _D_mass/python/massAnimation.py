@@ -1,22 +1,10 @@
-import matplotlib
-# use one of the following backends if matplotlib does not
-# render correctly.  See https://matplotlib.org/stable/users/explain/backends.html
-# matplotlib.use('qtagg')
-# matplotlib.use('ipympl')
-# matplotlib.use('gkt3agg')
-# matplotlib.use('gkt4agg')
-# matplotlib.use('macosx')
-# matplotlib.use('tkagg')
-# matplotlib.use('nbagg')
-# matplotlib.use('gkt3cairo')
-# matplotlib.use('gkt4cairo')
-# matplotlib.use('wxagg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np 
 import massParam as P
 # if you are having difficulty with the graphics, 
-# try using one of the following backends
+# try using one of the following backends.  
+# See https://matplotlib.org/stable/users/explain/backends.html
 # import matplotlib
 # matplotlib.use('qtagg')  # requires pyqt or pyside
 # matplotlib.use('ipympl')  # requires ipympl
@@ -47,11 +35,9 @@ class massAnimation:
         # Draw mass is the main function that will call the functions:
     def update(self, u):
         # Process inputs to function
-        z = u[0,0]   # position of mass, m
-
+        z = u[0][0]   # position of mass, m
         self.drawWeight(z)
         self.drawSpring(z)
-
         # After each function has been called, initialization is over.
         if self.flagInit == True:
             self.flagInit = False
@@ -60,7 +46,6 @@ class massAnimation:
         x = z-P.width/2.0  # x coordinate
         y = 0.0      # y coordinate
         xy = (x, y)     # Bottom left corner of rectangle
-
         # When the class is initialized, a Rectangle patch object will be
         # created and added to the axes. After initialization, the Rectangle
         # patch object will only be updated.
@@ -76,7 +61,6 @@ class massAnimation:
     def drawSpring(self, z):
         X = [-self.length, z-self.width/2.0]  # X data points
         Y = [self.width/2.0, self.width/2.0]  # Y data points
-
         # When the class is initialized, a line object will be
         # created and added to the axes. After initialization, the
         # line object will only be updated.

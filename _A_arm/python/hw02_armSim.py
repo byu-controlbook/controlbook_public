@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
 import armParam as P
 from signalGenerator import signalGenerator
 from armAnimation import armAnimation
@@ -21,15 +20,13 @@ while t < P.t_end:  # main simulation loop
     r = reference.square(t)
     theta = thetaRef.sin(t)
     tau = tauRef.sawtooth(t)
-
     # update animation
     state = np.array([[theta], [0.0]])  #state is made of theta, and theta_dot
     animation.update(state)
     dataPlot.update(t, r, state, tau)
-
-    #plt.show()
-    t = t + P.t_plot  # advance time by t_plot
-    plt.pause(0.1)
+    # advance time by t_plot
+    t = t + P.t_plot  
+    plt.pause(0.01)  # allow time for animation to draw
 
 # Keeps the program from closing until the user presses a button.
 print('Press key to close')

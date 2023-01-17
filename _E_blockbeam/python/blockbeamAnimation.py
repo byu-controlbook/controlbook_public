@@ -1,22 +1,10 @@
-import matplotlib
-# use one of the following backends if matplotlib does not
-# render correctly.  See https://matplotlib.org/stable/users/explain/backends.html
-# matplotlib.use('qtagg')
-# matplotlib.use('ipympl')
-# matplotlib.use('gkt3agg')
-# matplotlib.use('gkt4agg')
-# matplotlib.use('macosx')
-# matplotlib.use('tkagg')
-# matplotlib.use('nbagg')
-# matplotlib.use('gkt3cairo')
-# matplotlib.use('gkt4cairo')
-# matplotlib.use('wxagg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np 
 import blockbeamParam as P
 # if you are having difficulty with the graphics, 
-# try using one of the following backends
+# try using one of the following backends. 
+# See https://matplotlib.org/stable/users/explain/backends.html
 # import matplotlib
 # matplotlib.use('qtagg')  # requires pyqt or pyside
 # matplotlib.use('ipympl')  # requires ipympl
@@ -41,18 +29,15 @@ class blockbeamAnimation:
         plt.axis([-P.length/5, P.length+P.length/5, -P.length, P.length]) # Change the x,y axis limits
         plt.plot([0.0, P.length], [0.0, 0.0], 'k')    # Draw a base line
         #plt.xlabel('z')
-
     # Draw blockbeam is the main function that will call the functions:
     # drawBlock, drawBeam to create the animation.
-    def update(self, u):
+    def update(self, x):
         # Process inputs to function
-        z = u.item(0)        # Horizontal position of cart, m
-        theta = u.item(1)   # Angle of block-beam, rads
-
+        z = x[0][0]        # Horizontal position of cart, m
+        theta = x[1][0]   # Angle of block-beam, rads
         self.drawBlock(z, theta)
         self.drawBeam(theta)
         self.ax.axis('equal') # This will cause the image to not distort
-
         # After each function has been called, initialization is over.
         if self.flagInit == True:
             self.flagInit = False
@@ -61,7 +46,6 @@ class blockbeamAnimation:
         x = z*np.cos(theta) - P.width/2.0*np.sin(theta)
         y = z*np.sin(theta) + P.height/2.0*np.cos(theta)
         xy = (x, y)  # bottom left of block
-
         # When the class is initialized, a Rectangle patch object will
         # be created and added to the axes. After initialization, the
         # patch object will only be updated.
@@ -79,7 +63,6 @@ class blockbeamAnimation:
     def drawBeam(self, theta):
         X = [0, P.length*np.cos(theta)]  # X data points
         Y = [0, P.length*np.sin(theta)]  # Y data points
-
         # When the class is initialized, a line object will be
         # created and added to the axes. After initialization, the
         # line object will only be updated.

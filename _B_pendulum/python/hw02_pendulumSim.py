@@ -5,7 +5,6 @@ from signalGenerator import signalGenerator
 from pendulumAnimation import pendulumAnimation
 from dataPlotter import dataPlotter
 
-
 # instantiate reference input classes
 reference = signalGenerator(amplitude=0.5, frequency=0.1)
 zRef = signalGenerator(amplitude=0.5, frequency=0.1)
@@ -27,9 +26,9 @@ while t < P.t_end:  # main simulation loop
     state = np.array([[z], [theta], [0.0], [0.0]])
     animation.update(state)
     dataPlot.update(t, r, state, f)
-
-    t = t + P.t_plot  # advance time by t_plot
-    plt.pause(0.05)
+    # advance time by t_plot    
+    t = t + P.t_plot  
+    plt.pause(0.05)  # allow time for animation to draw
 
 # Keeps the program from closing until the user presses a button.
 print('Press key to close')
