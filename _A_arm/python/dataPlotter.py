@@ -6,39 +6,28 @@ plt.ion()  # enable interactive drawing
 
 
 class dataPlotter:
-    ''' 
-        This class plots the time histories for the pendulum data.
-    '''
-
     def __init__(self):
         # Number of subplots = num_of_rows*num_of_cols
         self.num_rows = 2    # Number of subplot rows
         self.num_cols = 1    # Number of subplot columns
-
         # Crete figure and axes handles
         self.fig, self.ax = plt.subplots(self.num_rows, self.num_cols, sharex=True)
-
         # Instantiate lists to hold the time and data histories
         self.time_history = []  # time
         self.theta_ref_history = []  # reference angle
         self.theta_history = []  # angle theta
         self.torque_history = []  # control torque
-
         # create a handle for every subplot.
         self.handle = []
         self.handle.append(myPlot(self.ax[0], ylabel='theta(deg)', title='Arm Data'))
         self.handle.append(myPlot(self.ax[1], xlabel='t(s)', ylabel='torqe(N-m)'))
 
     def update(self, t, reference, states, ctrl):
-        '''
-            Add to the time and data histories, and update the plots.
-        '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.theta_ref_history.append(180.0/np.pi*reference)  # reference base position
         self.theta_history.append(180.0/np.pi*states[0,0])  # rod angle (converted to degrees)
         self.torque_history.append(ctrl)  # force on the base
-
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.theta_history, self.theta_ref_history])
         self.handle[1].update(self.time_history, [self.torque_history])
