@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
+import numpy.matlib
 import VTOLParam as P
 # if you are having difficulty with the graphics, 
 # try using one of the following backends.  
@@ -73,7 +74,7 @@ class VTOLAnimation:
             [-np.sin(theta), np.cos(theta)],
         ])
         pts = R.T @ pts
-        pts = pts + np.repmat(np.array([[z],[h]]), 1, pts.shape[1])
+        pts = pts + np.matlib.repmat(np.array([[z],[h]]), 1, pts.shape[1])
         xy = np.array(pts.T)
         # When the class is initialized, a polygon patch object will be
         # created and added to the axes. After initialization, the polygon
