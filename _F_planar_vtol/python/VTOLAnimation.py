@@ -2,24 +2,9 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
 import VTOLParam as P
-# if you are having difficulty with the graphics, 
-# try using one of the following backends.  
-# See https://matplotlib.org/stable/users/explain/backends.html
-# import matplotlib
-# matplotlib.use('qtagg')  # requires pyqt or pyside
-# matplotlib.use('ipympl')  # requires ipympl
-# matplotlib.use('gtk3agg')  # requires pyGObject and pycairo
-# matplotlib.use('gtk4agg')  # requires pyGObject and pycairo
-# matplotlib.use('gtk3cairo')  # requires pyGObject and pycairo
-# matplotlib.use('gtk4cairo')  # requires pyGObject and pycairo
-# matplotlib.use('tkagg')  # requires TkInter
-# matplotlib.use('wxagg')  # requires wxPython
 
 
 class VTOLAnimation:
-    '''
-        Create VTOL animation
-    '''
     def __init__(self):
         self.flagInit = True                  # Used to indicate initialization
         self.fig, self.ax = plt.subplots()    # Initializes a figure and axes object
@@ -31,11 +16,13 @@ class VTOLAnimation:
 
     def update(self, x, target=0.0):
         # Process inputs to function
-        z = x[0][0]  # lateral position of VTOL (m)
-        h = x[1][0]  # altitude of VTOL (m)
-        theta = x[2][0]   # Angle of VTOL (rad)
+        z = x.item(0)  # lateral position of VTOL (m)
+        h = x.item(1)  # altitude of VTOL (m)
+        theta = x.item(2)   # Angle of VTOL (rad)
+
         self.drawVehicle(z, h, theta)
         self.drawTarget(target)
+
         # After each function has been called, initialization is over.
         if self.flagInit == True:
             self.flagInit = False
@@ -73,8 +60,9 @@ class VTOLAnimation:
             [-np.sin(theta), np.cos(theta)],
         ])
         pts = R.T @ pts
-        pts = pts + np.repmat(np.array([[z],[h]]), 1, pts.shape[1])
+        pts = pts + np.tile(np.array([[z],[h]]), (1, pts.shape[1]))
         xy = np.array(pts.T)
+
         # When the class is initialized, a polygon patch object will be
         # created and added to the axes. After initialization, the polygon
         # patch object will only be updated.
@@ -89,12 +77,13 @@ class VTOLAnimation:
     def drawTarget(self, target=0.0):
         w = 0.1
         h = 0.05
-        pts = np.array([
+        pts = np.matrix([
                [target+w/2.0, h],
                [target+w/2.0, 0],
                [target-w/2.0, 0],
                [target-w/2.0, h],
                [target+w/2.0, h]])
+
         if self.flagInit == True:
             # Create the Rectangle patch and append its handle
             # to the handle list
