@@ -6,7 +6,7 @@ class ctrlPD:
     def __init__(self):
         #  tuning parameters
         #tr = 0.8 # part (a)
-        tr = 0.4  # tuned to get fastest possible rise time before saturation.
+        tr = 0.4  # tuned for faster rise time before saturation.
         zeta = 0.707
         # desired natural frequency
         wn = 2.2 / tr
@@ -14,7 +14,8 @@ class ctrlPD:
         alpha0 = wn**2
         # compute PD gains
         self.kp = alpha0*(P.m * P.ell**2) / 3.0
-        self.kd = (P.m * P.ell**2) / 3.0 * (alpha1 - 3.0 * P.b / (P.m * P.ell**2))
+        self.kd = (P.m * P.ell**2) \
+                    / 3.0 * (alpha1 - 3.0 * P.b / (P.m * P.ell**2))
         print('kp: ', self.kp)
         print('kd: ', self.kd)        
 
@@ -24,7 +25,8 @@ class ctrlPD:
         # compute feedback linearizing torque tau_fl
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
         # compute the linearized torque using PD
-        tau_tilde = self.kp * (theta_r - theta) - self.kd * thetadot
+        tau_tilde = self.kp * (theta_r - theta) \
+                    - self.kd * thetadot
         # compute total torque
         tau = tau_fl + tau_tilde
         tau = saturate(tau, P.tau_max)

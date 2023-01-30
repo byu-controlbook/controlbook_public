@@ -10,7 +10,8 @@ from ctrlPD import ctrlPD
 # instantiate arm, controller, and reference classes
 arm = armDynamics()
 controller = ctrlPD()
-reference = signalGenerator(amplitude=30*np.pi/180.0, frequency=0.05)
+reference = signalGenerator(amplitude=30*np.pi/180.0, 
+                            frequency=0.05)
 disturbance = signalGenerator(amplitude=0.0)
 
 # instantiate the simulation plots and animation
