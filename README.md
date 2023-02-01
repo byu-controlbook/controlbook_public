@@ -40,15 +40,19 @@ Hardcopy available on [Amazon](https://www.amazon.com/Introduction-Feedback-Cont
 | Chapter 17 - Robustness Margins           | [chapter17.pdf](https://drive.google.com/file/d/1EOx9_QtNbere-bT1zuSy8or5f4SPR57C/view?usp=sharing) | [chapter17.pptx](https://docs.google.com/presentation/d/1ENBydG22LrYo_jAXgsT7P20unb50yNVK/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true) | Nov 2021 |
 | Chapter 18 - Compensator Design           | [chapter18.pdf](https://drive.google.com/file/d/1EMXKKlGUF-OCkaB1ffKkopsRwKZjPI7i/view?usp=sharing) | [chapter18.pptx](https://docs.google.com/presentation/d/1EF8tgs-kEVPWVJt7G7b3sa-eP1eNIGmJ/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true) | Nov 2021 |
 
-# Jupyter Notebooks
-
-The Jupyter notebooks in this repository were developed by Dr. Robert Leishman at Air Force Institute of Technology.
-
-They are designed to be run in google colab.
 
 # Homework Solutions
 
 This Gitlab account contains complete python, matlab, and simulink solutions to the three design problems presented in the book.  We will be actively maintaining the Python solutions.
+
+# Hummingbird Lab
+The lab description and assignments are described in the hummingbird lab manual, which can be accessed below.  During Winter 2023, the manual will be under construction and will be updated frequently.  You should re-download the manual before doing each lab.
+
+[PDF Lab Manual](https://drive.google.com/file/d/1DzFGTip7jdT5Q33OeuZrK28yvU95lOPe/view?usp=sharing)
+
+Template files for the hummingbird simulation are contained in the GitHub directory "_hummingbird_sim."
+
+Template files for the hummingbird hardware lab are contained in the GitHub directory "_hummingbird_lab."
 
 ## Prerequisites
 
@@ -76,12 +80,10 @@ If you are using pycharm, open Settings>Project:python>Python Interpreter.  Make
 
 ![Alt text](_images/pythonpackages.png?raw=true "Title")
 
-# Hummingbird Lab
-The lab description and assignments are described in the hummingbird lab manual, which can be accessed below.  During Winter 2023, the manual will be under construction and will be updated frequently.  You should re-download the manual before doing each lab.
 
-[PDF Lab Manual](https://drive.google.com/file/d/1DzFGTip7jdT5Q33OeuZrK28yvU95lOPe/view?usp=sharing)
+# Jupyter Notebooks
 
-Template files for the hummingbird simulation are contained in the GitHub directory "hummingbird_sim."
+The Jupyter notebooks in this repository were developed by Dr. Robert Leishman at Air Force Institute of Technology.
 
-Template files for the hummingbird hardware lab are contained in the GitHub directory "hummingbird_lab."
+They are designed to be run in google colab.
 
