@@ -77,28 +77,11 @@ If you are using pycharm, open Settings>Project:python>Python Interpreter.  Make
 ![Alt text](_images/pythonpackages.png?raw=true "Title")
 
 # Hummingbird Lab
+The lab description and assignments are described in the hummingbird lab manual, which can be accessed below.  During Winter 2023, the manual will be under construction and will be updated frequently.  You should re-download the manual before doing each lab.
+
 [PDF Lab Manual](https://drive.google.com/file/d/1DzFGTip7jdT5Q33OeuZrK28yvU95lOPe/view?usp=sharing)
 
-## Whirlybird_ws
-Whirlybird_ws
-The whirlybird workspace is the catkin workspace used to connect to the Whirlybirds via ROS. The Whirlybird workspace provided includes the necessary files to operate the whirlybird and also includes templates for lab assignments. It is necessary to clone this repository in order to complete the labs.
+Template files for the hummingbird simulation are contained in the GitHub directory "hummingbird_sim."
 
-The whirlybird_ws directory is large and complex, but you will only need to modify the files in the sub-directories whirlbyird_controller and whirlybird_sim. These are contained in the directory 
+Template files for the hummingbird hardware lab are contained in the GitHub directory "hummingbird_lab."
 
-whirlybird_ws/src/
-
-The repository is hosted on BYU [MAGICC Lab's Gitlab server](https://gitlab.magiccvs.byu.edu/whirlybird/whirlybird_ws?). The README explains how to configure the workspace.
-
-## Support Files
-The support files are used to help rendering simulation in python easier. Read the comments in each file to see how to use it, or look in the Whirlbird Manual to see how the files are implemented.
-    - [Slider Input](https://drive.google.com/file/d/1GpNxenJV3nRUAQEmlEXJT7mhDP6qWJIw/view?usp=sharing)
-    - [Signal Generator](https://drive.google.com/file/d/1GoiYxUun2PyLZPWDcPSxUR35Bb80nRjJ/view?usp=sharing)
-    - [Simulation Plot](https://drive.google.com/file/d/1H2d8O5XlL7YMymf5HlUM6lvGfenWT5xf/view?usp=sharing)
-    - [PD Controller](https://drive.google.com/file/d/1GjIG1b3lM-ewPDqSEFot__S0sEUMEbEp/view?usp=sharing)
-    - [Step Function](https://drive.google.com/file/d/1GUrNX2Sio_NO5muddL8Wf_CiotXo9Wkv/view?usp=sharing)
-
-## ROS Tutorial
-For Students that would like to learn ROS more thoroughly, we have provided the following references to excellent ROS tutorials.
-    - [Official ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
-    - [A Gentile Introduction of ROS by Jason M O'Kane](https://cse.sc.edu/~jokane/agitr/)
-    - [Magicc Lab ROS Tutorials](https://wiki.magiccvs.byu.edu/#!ros_tutorials/intro.md)
