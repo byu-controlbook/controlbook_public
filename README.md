@@ -28,7 +28,7 @@ Hardcopy available on [Amazon](https://www.amazon.com/Introduction-Feedback-Cont
 | Chapter 5 - Transfer Function Models      | [chapter5.pdf](https://drive.google.com/file/d/1Er4SM3FTgFibvc0HSsgzES2N8pPXGFiG/view?usp=sharing)  | [chapter5.pptx](https://docs.google.com/presentation/d/1EngIns0Yo4-K2jL7vCNXFfuNH3YyhOx9/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Jan 2023 |
 | Chapter 6 - State Space Models            | [chapter6.pdf](https://drive.google.com/file/d/1qr_P4s65w9PvPU8GiBhgGGHoBGeE0ZWd/view?usp=sharing)  | [chapter6.pptx](https://docs.google.com/presentation/d/1AI8FVqTYM8W1slYB6TLXmVs0Ih1o7BLq/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Jan 2023 |
 | Chapter 7 - Second Order Systems          | [chapter7.pdf](https://drive.google.com/file/d/1AKxaAxtgJps_CaCiwF3VseUzWk15Omo6/view?usp=sharing)  | [chapter7.pptx](https://docs.google.com/presentation/d/1qa7zVWeXmlwrV7rSMSs3gUZ01fEqKUUr/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Jan 2023 |
-| Chapter 8 - Second Order Design           | [chapter8.pdf]()  | [chapter8.pptx]()  |  |
+| Chapter 8 - Second Order Design           | [chapter8.pdf](https://drive.google.com/file/d/1r9kbpxmI_UinmSa4cV2MQtXk3uWdb29l/view?usp=sharing)  | [chapter8.pptx](https://docs.google.com/presentation/d/1AQSjAgWB67AWLuEF-j9jAQA4T2-uorxg/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Jan 2023 |
 | Chapter 9 - Integrators                   | [chapter9.pdf]()  | [chapter9.pptx]()  |  |
 | Chapter 10 - Digital PID                  | [chapter10.pdf]() | [chapter10.pptx]() |  |
 | Chapter 11 - Full State Feedback          | [chapter11.pdf]() | [chapter11.pptx]() |  |

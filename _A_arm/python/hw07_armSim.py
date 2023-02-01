@@ -29,7 +29,7 @@ while t < P.t_end:  # main simulation loop
     # updates control and dynamics at faster simulation rate
     while t < t_next_plot: 
         r = reference.square(t)
-        d = disturbance.random(t)  # input disturbance
+        d = disturbance.step(t)  # input disturbance
         n = noise.random(t)  # simulate sensor noise
         x = arm.state
         u = controller.update(r, x)  # update controller
