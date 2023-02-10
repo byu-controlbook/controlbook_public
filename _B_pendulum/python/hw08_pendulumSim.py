@@ -8,7 +8,7 @@ from pendulumDynamics import pendulumDynamics
 from ctrlPD import ctrlPD
 
 # instantiate pendulum, controller, and reference classes
-pendulum = pendulumDynamics()
+pendulum = pendulumDynamics(alpha=0.1)
 controller = ctrlPD()
 reference = signalGenerator(amplitude=0.5, frequency=0.04)
 disturbance = signalGenerator(amplitude=0)

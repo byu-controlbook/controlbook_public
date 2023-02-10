@@ -9,7 +9,7 @@ class ctrlPD:
         # tuning parameters
         tr_th = 0.15          # Rise time for inner loop (theta)
         zeta_th = 0.707       # inner loop Damping Coefficient
-        M = 25.0              # Time scale separation 
+        M = 15.0              # Time scale separation 
         zeta_z = 0.707        # outer loop Damping Coefficient
         # saturation limits
         F_max = 5             		  # Max Force, N
