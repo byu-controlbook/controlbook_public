@@ -30,7 +30,7 @@ Hardcopy available on [Amazon](https://www.amazon.com/Introduction-Feedback-Cont
 | Chapter 7 - Second Order Systems          | [chapter7.pdf](https://drive.google.com/file/d/1AKxaAxtgJps_CaCiwF3VseUzWk15Omo6/view?usp=sharing)  | [chapter7.pptx](https://docs.google.com/presentation/d/1qa7zVWeXmlwrV7rSMSs3gUZ01fEqKUUr/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Jan 2023 |
 | Chapter 8 - Second Order Design           | [chapter8.pdf](https://drive.google.com/file/d/1r9kbpxmI_UinmSa4cV2MQtXk3uWdb29l/view?usp=sharing)  | [chapter8.pptx](https://docs.google.com/presentation/d/1AQSjAgWB67AWLuEF-j9jAQA4T2-uorxg/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Jan 2023 |
 | Chapter 9 - Integrators                   | [chapter9.pdf](https://drive.google.com/file/d/1rS9nYeiaxyOx-9L0e7a0JWNOBxlurVRE/view?usp=sharing)  | [chapter9.pptx](https://docs.google.com/presentation/d/1AiYayPKykU5U4BMv4uaPOSIg2SlJwsy3/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true)  | Feb 2023 |
-| Chapter 10 - Digital PID                  | [chapter10.pdf]() | [chapter10.pptx]() |  |
+| Chapter 10 - Digital PID                  | [chapter10.pdf](https://drive.google.com/file/d/1CID0y97BZ6E0cXBWePNukyrb_0N5SNEo/view?usp=sharing) | [chapter10.pptx](https://docs.google.com/presentation/d/1AnKnWk66TnoEEDYMEfZL09p80aClkAkf/edit?usp=sharing&ouid=115325376918178448854&rtpof=true&sd=true) | Feb 2023 |
 | Chapter 11 - Full State Feedback          | [chapter11.pdf]() | [chapter11.pptx]() |  |
 | Chapter 12 - Full State with Integrators  | [chapter12.pdf]() | [chapter12.pptx]() |  |
 | Chapter 13 - Observers                    | [chapter13.pdf]() | [chapter13.pptx]() |  |
