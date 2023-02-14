@@ -15,12 +15,15 @@ class ctrlStateFeedback:
         # State Space Equations
         # xdot = A*x + B*u
         # y = C*x
-        A = np.array([[0.0, 0.0, 1.0, 0.0],
-                      [0.0, 0.0, 0.0, 1.0],
-                      [0.0, -3 * P.m1 * P.g / 4 / (.25 * P.m1 + P.m2),
-                       -P.b / (.25 * P.m1 + P.m2), 0.0],
-                      [0.0, 3 * (P.m1 + P.m2) * P.g / 2 / (.25 * P.m1 + P.m2) / P.ell,
-                       3 * P.b / 2 / (.25 * P.m1 + P.m2) / P.ell, 0.0]])
+        A = np.array([
+            [0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 0.0, 1.0],
+            [0.0, -3 * P.m1 * P.g / 4 / (.25 * P.m1 + P.m2),
+                -P.b / (.25 * P.m1 + P.m2), 0.0],
+            [0.0, 
+                3*(P.m1+P.m2) * P.g/2/(.25 * P.m1 + P.m2)/P.ell,
+                3 * P.b / 2 / (.25 * P.m1 + P.m2) / P.ell, 0.0]
+            ])
         B = np.array([[0.0],
                       [0.0],
                       [1 / (.25 * P.m1 + P.m2)],
@@ -30,8 +33,9 @@ class ctrlStateFeedback:
         # gain calculation
         wn_th = 2.2 / tr_theta  # natural frequency for angle
         wn_z = 2.2 / tr_z  # natural frequency for position
-        des_char_poly = np.convolve([1, 2 * zeta_z * wn_z, wn_z**2],
-                                    [1, 2 * zeta_th * wn_th, wn_th**2])
+        des_char_poly = np.convolve(
+            [1, 2 * zeta_z * wn_z, wn_z**2],
+            [1, 2 * zeta_th * wn_th, wn_th**2])
         des_poles = np.roots(des_char_poly)
         # Compute the gains if the system is controllable
         if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 4:
@@ -39,7 +43,7 @@ class ctrlStateFeedback:
         else:
             self.K = cnt.acker(A, B, des_poles)
             Cr = np.array([[1.0, 0.0, 0.0, 0.0]])
-            self.kr = -1.0 / (Cr @ np.linalg.inv(A - B @ self.K) @ B)
+            self.kr = -1.0 / (Cr @ np.linalg.inv(A-B @ self.K) @ B)
         # print gains to terminal
         print('K: ', self.K)
         print('kr: ', self.kr)
