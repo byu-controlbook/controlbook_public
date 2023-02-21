@@ -16,10 +16,10 @@ class ctrlStateFeedbackIntegrator:
         # State Space Equations
         # xdot = A*x + B*u
         # y = C*x
-        A = np.array([[0.0, 0.0,               1.0,      0.0],
-                      [0.0, 0.0,               0.0,      1.0],
-                      [-P.k / P.Js, P.k / P.Js, -P.b / P.Js, P.b / P.Js],
-                      [P.k / P.Jp, -P.k / P.Jp, P.b / P.Jp, -P.b / P.Jp]])
+        A = np.array([[0.0, 0.0, 1.0, 0.0],
+                      [0.0, 0.0, 0.0, 1.0],
+                      [-P.k/P.Js, P.k/P.Js, -P.b/P.Js, P.b/P.Js],
+                      [P.k/P.Jp, -P.k/P.Jp, P.b/P.Jp, -P.b/P.Jp]])
         B = np.array([[0.0],
                       [0.0],
                       [1.0 / P.Js],
@@ -27,22 +27,15 @@ class ctrlStateFeedbackIntegrator:
         C = np.array([[1.0, 0.0, 0.0, 0.0],
                       [0.0, 1.0, 0.0, 0.0]])
         # form augmented system
-        Cout = np.array([[0.0, 1.0, 0.0, 0.0]])
-        A1 = np.array([[0.0, 0.0, 1.0, 0.0, 0.0],
-                       [0.0, 0.0, 0.0, 1.0, 0.0],
-                       [-P.k / P.Js, P.k / P.Js, -P.b / P.Js, P.b / P.Js, 0.0],
-                       [P.k / P.Jp, -P.k / P.Jp, P.b / P.Jp, -P.b / P.Jp, 0.0],
-                       [0.0, -1.0, 0.0, 0.0, 0.0]])
-        B1 = np.array([[0.0],
-                       [0.0],
-                       [1.0 / P.Js],
-                       [0.0],
-                       [0.0]])
+        Cr = np.array([[0.0, 1.0, 0.0, 0.0]])
+        A1 = np.vstack((np.hstack((A, np.zeros((np.size(A,1),1)))), 
+                        np.hstack((-Cr, np.array([[0.0]]))) ))
+        B1 = np.vstack( (B, 0.0) )
         # gain calculation
         des_char_poly = np.convolve(
-                            np.convolve([1, 2 * zeta_phi * wn_phi, wn_phi**2],
-                                        [1, 2 * zeta_th * wn_th, wn_th**2]),
-                            [1, -integrator_pole])
+                np.convolve([1, 2 * zeta_phi * wn_phi, wn_phi**2],
+                            [1, 2 * zeta_th * wn_th, wn_th**2]),
+                [1, -integrator_pole])
         des_poles = np.roots(des_char_poly)
         # Compute the gains if the system is controllable
         if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 5:
@@ -62,7 +55,8 @@ class ctrlStateFeedbackIntegrator:
         # integrate error
         error_phi = phi_r - phi
         # integrate error
-        self.integrator_phi = self.integrator_phi + (P.Ts / 2.0) * (error_phi + self.error_phi_d1)
+        self.integrator_phi = self.integrator_phi \
+            + (P.Ts / 2.0) * (error_phi + self.error_phi_d1)
         self.error_phi_d1 = error_phi
         # Compute the state feedback controller
         tau_unsat = -self.K @ x - self.ki * self.integrator_phi

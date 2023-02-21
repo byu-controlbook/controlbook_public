@@ -19,15 +19,11 @@ class ctrlStateFeedbackIntegrator:
                       [0.0, -1.0 * P.b / P.m / (P.ell**2)]])
         B = np.array([[0.0],
                       [3.0 / P.m / (P.ell**2)]])        
-        C = np.array([[1.0, 0.0]])
+        Cr = np.array([[1.0, 0.0]])
         # form augmented system
-        A1 = np.array([[0.0, 1.0, 0.0],
-                       [0.0, -1.0 * P.b / P.m / (P.ell**2), 0.0],
-                       [-1.0, 0.0, 0.0]])
-        B1 = np.array([[0.0],
-                       [3.0 / P.m / (P.ell**2)],
-                       [0.0]])
-
+        A1 = np.vstack((np.hstack((A, np.zeros((np.size(A,1),1)))), 
+                        np.hstack((-Cr, np.array([[0.0]]))) ))
+        B1 = np.vstack( (B, 0.0) )
         # gain calculation
         wn = 2.2 / tr  # natural frequency
         #wn = 0.5*np.pi/(tr*np.sqrt(1-zeta**2)) # natural frequency
