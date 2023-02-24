@@ -7,7 +7,7 @@ class ctrlPID:
         #  tuning parameters
         tr = 0.6  
         zeta = 0.90
-        self.ki = 0.1  # integrator gain
+        self.ki = 0.2  # integrator gain
         # desired natural frequency
         wn = 2.2 / tr
         #wn = 0.5*np.pi/(tr*np.sqrt(1-zeta**2))

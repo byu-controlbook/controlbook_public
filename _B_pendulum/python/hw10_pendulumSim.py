@@ -10,7 +10,7 @@ from ctrlPID import ctrlPID
 pendulum = pendulumDynamics(alpha=0.2)
 controller = ctrlPID()
 reference = signalGenerator(amplitude=0.5, frequency=0.04)
-disturbance = signalGenerator(amplitude=0.1)
+disturbance = signalGenerator(amplitude=1.5)
 noise = signalGenerator(amplitude=0.01)
 
 # instantiate the simulation plots and animation
