@@ -21,12 +21,14 @@ class ctrlDisturbanceObserver:
         # State Space Equations
         # xdot = A*x + B*u
         # y = C*x
-        A = np.array([[0.0, 0.0, 1.0, 0.0],
-                      [0.0, 0.0, 0.0, 1.0],
-                      [0.0, -3 * P.m1 * P.g / 4 / (.25 * P.m1 + P.m2),
-                       -P.b / (.25 * P.m1 + P.m2), 0.0],
-                      [0.0, 3 * (P.m1 + P.m2) * P.g / 2 / (.25 * P.m1 + P.m2) / P.ell,
-                       3 * P.b / 2 / (.25 * P.m1 + P.m2) / P.ell, 0.0]])
+        A = np.array([
+            [0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 0.0, 1.0],
+            [0.0, -3 * P.m1 * P.g / 4 / (.25 * P.m1 + P.m2),
+                -P.b / (.25 * P.m1 + P.m2), 0.0],
+            [0.0, 
+             3 * (P.m1 + P.m2)*P.g/2/(0.25*P.m1 + P.m2) / P.ell,
+            3 * P.b / 2 / (.25 * P.m1 + P.m2) / P.ell, 0.0]])
         B = np.array([[0.0],
                       [0.0],
                       [1 / (.25 * P.m1 + P.m2)],
@@ -44,9 +46,9 @@ class ctrlDisturbanceObserver:
         wn_th = 2.2 / tr_theta  # natural frequency for angle
         wn_z = 2.2 / tr_z  # natural frequency for position
         des_char_poly = np.convolve(
-                            np.convolve([1, 2 * zeta_z * wn_z, wn_z**2],
-                                        [1, 2 * zeta_th * wn_th, wn_th**2]),
-                            np.poly([integrator_pole]))
+                np.convolve([1, 2 * zeta_z * wn_z, wn_z**2],
+                            [1, 2 * zeta_th * wn_th, wn_th**2]),
+                np.poly([integrator_pole]))
         des_poles = np.roots(des_char_poly)
         # Compute the control gains if the system is controllable
         if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 5:
@@ -65,9 +67,9 @@ class ctrlDisturbanceObserver:
         wn_z_obs = 2.2 / tr_z_obs
         wn_th_obs = 2.2 / tr_theta_obs
         des_obs_char_poly = np.convolve(
-                                    np.convolve([1, 2 * zeta_z * wn_z_obs, wn_z_obs**2],
-                                                [1, 2*zeta_th*wn_th_obs, wn_th_obs**2]),
-                                    np.poly([dist_obsv_pole]))
+                np.convolve([1, 2 * zeta_z * wn_z_obs, wn_z_obs**2],
+                            [1, 2*zeta_th*wn_th_obs, wn_th_obs**2]),
+                np.poly([dist_obsv_pole]))
         des_obs_poles = np.roots(des_obs_char_poly)
         # Compute the observer gains if the system is observable
         if np.linalg.matrix_rank(cnt.ctrb(A2.T, C2.T)) != 5:
@@ -105,7 +107,8 @@ class ctrlDisturbanceObserver:
         z_hat = x_hat[0][0]
         # integrate error
         error_z = z_r - z_hat
-        self.integrator_z = self.integrator_z + (P.Ts / 2.0) * (error_z + self.error_z_d1)
+        self.integrator_z = self.integrator_z \
+            + (P.Ts / 2.0) * (error_z + self.error_z_d1)
         self.error_z_d1 = error_z
         # Compute the observer based controller
         F_unsat = -self.K @ x_hat - self.ki * self.integrator_z - d_hat

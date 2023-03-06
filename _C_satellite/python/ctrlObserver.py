@@ -21,10 +21,11 @@ class ctrlObserver:
         # State Space Equations
         # xdot = A*x + B*u
         # y = C*x
-        self.A = np.array([[0.0, 0.0,               1.0,      0.0],
-                           [0.0, 0.0,               0.0,      1.0],
-                           [-P.k / P.Js, P.k / P.Js, -P.b / P.Js, P.b / P.Js],
-                           [P.k / P.Jp, -P.k / P.Jp, P.b / P.Jp, -P.b / P.Jp]])
+        self.A = np.array([
+            [0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 0.0, 1.0],
+            [-P.k / P.Js, P.k / P.Js, -P.b / P.Js, P.b / P.Js],
+            [P.k / P.Jp, -P.k / P.Jp, P.b / P.Jp, -P.b / P.Jp]])
         self.B = np.array([[0.0],
                            [0.0],
                            [1.0 / P.Js],
@@ -33,11 +34,12 @@ class ctrlObserver:
                            [0.0, 1.0, 0.0, 0.0]])
         # form augmented system
         Cout = np.array([[0.0, 1.0, 0.0, 0.0]])
-        A1 = np.array([[0.0, 0.0, 1.0, 0.0, 0.0],
-                       [0.0, 0.0, 0.0, 1.0, 0.0],
-                       [-P.k / P.Js, P.k / P.Js, -P.b / P.Js, P.b / P.Js, 0.0],
-                       [P.k / P.Jp, -P.k / P.Jp, P.b / P.Jp, -P.b / P.Jp, 0.0],
-                       [0.0, -1.0, 0.0, 0.0, 0.0]])
+        A1 = np.array([
+            [0.0, 0.0, 1.0, 0.0, 0.0],
+            [0.0, 0.0, 0.0, 1.0, 0.0],
+            [-P.k/P.Js, P.k/P.Js, -P.b/P.Js, P.b/P.Js, 0.0],
+            [P.k/P.Jp, -P.k/P.Jp, P.b/P.Jp, -P.b/P.Jp, 0.0],
+            [0.0, -1.0, 0.0, 0.0, 0.0]])
         B1 = np.array([[0.0],
                        [0.0],
                        [1.0 / P.Js],
@@ -45,9 +47,9 @@ class ctrlObserver:
                        [0.0]])
         # gain calculation
         des_char_poly = np.convolve(
-                            np.convolve([1, 2 * zeta_phi * wn_phi, wn_phi**2],
-                                        [1, 2 * zeta_th * wn_th, wn_th**2]),
-                            [1, -integrator_pole])
+                np.convolve([1, 2 * zeta_phi * wn_phi, wn_phi**2],
+                            [1, 2 * zeta_th * wn_th, wn_th**2]),
+                [1, -integrator_pole])
         des_poles = np.roots(des_char_poly)
         # Compute the gains if the system is controllable
         if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 5:
@@ -57,8 +59,9 @@ class ctrlObserver:
             self.K = K1[0][0:4]
             self.ki = K1[0][4]
         # compute observer gains
-        des_obs_char_poly = np.convolve([1, 2 * zeta_phi * wn_phi_obs, wn_phi_obs**2],
-                                        [1, 2 * zeta_th * wn_th_obs, wn_th_obs**2])
+        des_obs_char_poly = np.convolve(
+            [1, 2 * zeta_phi * wn_phi_obs, wn_phi_obs**2],
+            [1, 2 * zeta_th * wn_th_obs, wn_th_obs**2])
         des_obs_poles = np.roots(des_obs_char_poly)
         # Compute the gains if the system is observable
         if np.linalg.matrix_rank(cnt.ctrb(self.A.T, self.C.T)) != 4:
@@ -91,7 +94,8 @@ class ctrlObserver:
         phi_hat = x_hat[1][0]
         # integrate error
         error_phi = phi_r - phi_hat
-        self.integrator_phi = self.integrator_phi + (P.Ts / 2.0) * (error_phi + self.error_phi_d1)
+        self.integrator_phi = self.integrator_phi \
+            + (P.Ts / 2.0) * (error_phi + self.error_phi_d1)
         self.error_phi_d1 = error_phi
         # Compute the state feedback controller
         tau_unsat = -self.K @ x_hat - self.ki * self.integrator_phi

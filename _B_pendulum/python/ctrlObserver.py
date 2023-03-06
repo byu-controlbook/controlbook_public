@@ -15,17 +15,18 @@ class ctrlObserver:
         zeta_z = 0.707  # damping ratio position
         zeta_th = 0.707  # damping ratio angle
         integrator_pole = -2  # integrator pole
-        tr_z_obs = tr_z/5.0          # rise time for observer - position
-        tr_theta_obs = tr_theta / 5.0  # rise time for observer - angle
+        tr_z_obs = tr_z/5.0 # rise time for position
+        tr_theta_obs = tr_theta / 5.0  # rise time for angle
         # State Space Equations
         # xdot = A*x + B*u
         # y = C*x
-        self.A = np.array([[0.0, 0.0, 1.0, 0.0],
-                           [0.0, 0.0, 0.0, 1.0],
-                           [0.0, -3 * P.m1 * P.g / 4 / (.25 * P.m1 + P.m2),
-                           -P.b / (.25 * P.m1 + P.m2), 0.0],
-                           [0.0, 3 * (P.m1 + P.m2) * P.g / 2 / (.25 * P.m1 + P.m2) / P.ell,
-                            3 * P.b / 2 / (.25 * P.m1 + P.m2) / P.ell, 0.0]])
+        self.A = np.array([
+            [0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 0.0, 1.0],
+            [0.0, -3 * P.m1 * P.g / 4 / (.25 * P.m1 + P.m2),
+                -P.b / (.25 * P.m1 + P.m2), 0.0],
+            [0.0, 3*(P.m1 + P.m2)*P.g/2/(0.25*P.m1 + P.m2)/P.ell,
+                3 * P.b / 2 / (.25 * P.m1 + P.m2) / P.ell, 0.0]])
         self.B = np.array([[0.0],
                            [0.0],
                            [1 / (.25 * P.m1 + P.m2)],
@@ -43,9 +44,9 @@ class ctrlObserver:
         wn_th = 2.2 / tr_theta  # natural frequency for angle
         wn_z = 2.2 / tr_z  # natural frequency for position
         des_char_poly = np.convolve(
-                            np.convolve([1, 2 * zeta_z * wn_z, wn_z**2],
-                                        [1, 2 * zeta_th * wn_th, wn_th**2]),
-                            np.poly([integrator_pole]))
+                np.convolve([1, 2 * zeta_z * wn_z, wn_z**2],
+                            [1, 2 * zeta_th * wn_th, wn_th**2]),
+                np.poly([integrator_pole]))
         des_poles = np.roots(des_char_poly)
         # Compute the control gains if the system is controllable
         if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 5:
@@ -58,14 +59,15 @@ class ctrlObserver:
         wn_z_obs = 2.2 / tr_z_obs
         wn_th_obs = 2.2 / tr_theta_obs
         des_obs_char_poly = np.convolve(
-                            [1, 2 * zeta_z * wn_z_obs, wn_z_obs**2],
-                            [1, 2 * zeta_th * wn_th_obs, wn_th_obs**2])
+                [1, 2 * zeta_z * wn_z_obs, wn_z_obs**2],
+                [1, 2 * zeta_th * wn_th_obs, wn_th_obs**2])
         des_obs_poles = np.roots(des_obs_char_poly)
         # Compute the observer gains if the system is observable
         if np.linalg.matrix_rank(cnt.ctrb(self.A.T, self.C.T)) != 4:
             print("The system is not observable")
         else:
-            self.L = signal.place_poles(self.A.T, self.C.T, des_obs_poles).gain_matrix.T
+            self.L = signal.place_poles(self.A.T, self.C.T, 
+                                        des_obs_poles).gain_matrix.T
         # print gains to terminal
         print('K: ', self.K)
         print('ki: ', self.ki)
@@ -91,7 +93,8 @@ class ctrlObserver:
         z_hat = x_hat[0][0]
         # integrate error
         error_z = z_r - z_hat
-        self.integrator_z = self.integrator_z + (P.Ts / 2.0) * (error_z + self.error_z_d1)
+        self.integrator_z = self.integrator_z \
+            + (P.Ts / 2.0) * (error_z + self.error_z_d1)
         self.error_z_d1 = error_z
         # Compute the state feedback controller
         F_unsat = -self.K @ x_hat - self.ki * self.integrator_z
