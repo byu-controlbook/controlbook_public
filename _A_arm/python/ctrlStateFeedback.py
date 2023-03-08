@@ -18,7 +18,7 @@ class ctrlStateFeedback:
         C = np.array([[1.0, 0.0]])
         # gain calculation
         wn = 2.2 / tr  # natural frequency
-        des_char_poly = [1, 2 * zeta*wn, wn**2]
+        des_char_poly = [1, 2 * zeta * wn, wn**2]
         des_poles = np.roots(des_char_poly)
         # Compute the gains if the system is controllable
         if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 2:
@@ -32,7 +32,6 @@ class ctrlStateFeedback:
 
     def update(self, theta_r, x):
         theta = x[0][0]
-        thetadot = x[1][0]
         # compute feedback linearizing torque tau_fl
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
         # Compute the state feedback controller
