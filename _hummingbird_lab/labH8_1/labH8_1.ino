@@ -10,7 +10,6 @@
 //=============================================================================
 
 // instantiate structures
-State state;
 Reference reference;
 
 // instantiate classes as global variables
@@ -25,15 +24,17 @@ CtrlLonPID controller;
 //=============================================================================
 void setup()
 {
-  // set up serial communication
+  // start serial communication
   Serial.begin(9600);
 
+  // initialize all classes
   timing.init();  // initialize current time and sample rate
   sensors.init();  // initialize sensors
   controller.init();  // initialize controller
   signal_generator.init(15*3.14/180, 0.1, 0.0);
 
-  initialize_buttons();  
+  // initialize buttons on breakout board and watchdog timers
+  initialize_buttons();
 }
 
 //=============================================================================
@@ -43,43 +44,19 @@ void loop()
 {
   timing.update();  // update current time and sample rate
   sensors.update();  // update sensors
-  state.theta = sensors.pitch; // update the estimator
-  float theta_ref = signal_generator.square_signal(timing.current);
-  //float theta_ref = signal_generator.joystick_pitch();
-  controller.update(theta_ref, state, rotors, timing.Ts);  // update controller
+  //float theta_ref = signal_generator.square_signal(timing.current);
+  float theta_ref = signal_generator.joystick_pitch();
+  controller.update(theta_ref, sensors, rotors, timing.Ts);  // update controller
 
   // zero encoders if zero button pushed
   zeroButton.update();  
-  if ( zeroButton.pressed() ) sensors.zero();    
-  
-  // calibrate ESCs if calibrate button pushed
+  if ( zeroButton.pressed() ) sensors.zero(); 
+   
+  // calibrate rotors if calibrate button pushed
   calButton.update();
   if ( calButton.pressed() ) rotors.init();
   
   // reset watchdog timer
   wdt_reset();
   digitalWrite(LED_RX, LOW);
-}
-
-//=============================================
-// print state and references to the serial port
-void printState() {
-  // send references and signals to serial line
-  Serial.print("Theta_ref: ");
-  Serial.print(reference.theta);
-  Serial.print(",");
-  Serial.print("theta: ");
-  Serial.print(state.theta);
-  Serial.print(",");
-  Serial.print("Psi_ref: ");
-  Serial.print(reference.psi);
-  Serial.print(",");
-  Serial.print("psi: ");
-  Serial.print(state.psi);
-  Serial.print(",");
-  Serial.print("Phi_ref: ");
-  Serial.print(reference.phi);
-  Serial.print(",");
-  Serial.print("phi: ");
-  Serial.println(state.phi);
 }

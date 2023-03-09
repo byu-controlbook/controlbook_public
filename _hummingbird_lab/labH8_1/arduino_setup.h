@@ -4,7 +4,6 @@
 #include <SPI.h>
 #include <avr/wdt.h>
 #include <Bounce2.h>
-#include "hb_serial.h"
 
 //=============================================================================
 // pin definitions
@@ -25,6 +24,7 @@
 //   RX LED : A2
 //   ARM LED: A3
 //   Supply On : A7
+//   Joystick A4, A5, A6
 
 //=============================================================================
 // encoders
@@ -56,10 +56,13 @@ static constexpr unsigned long ARM_SWITCH_DEBOUNCE_PERIOD_MS = 50;
 Bounce2::Button calButton = Bounce2::Button();
 Bounce2::Button zeroButton = Bounce2::Button();
 
+#define JOYSTICK_PUSH A4
 #define JOYSTICK_UPDOWN A5
 #define JOYSTICK_SIDESIDE A6
 
 #define PI 3.14159
+
+
 
 //=============================================================================
 // global variables
@@ -71,12 +74,14 @@ volatile bool send_armed_status;
 bool serial_debug = false;
 
 //=============================================================================
-void arm_switch_ISR() {
+void arm_switch_ISR()
+{
   MsTimer2::start();
 }
 
 //=============================================================================
-void debounce_timer_ISR() {
+void debounce_timer_ISR()
+{
   MsTimer2::stop();
 
   bool new_armed = digitalRead(ARM_SWITCH);
@@ -92,9 +97,6 @@ void debounce_timer_ISR() {
       //motor_right_setpoint = 0.0f;
     }
 
-    if (serial_debug) Serial.println("Updating motors");
-    //update_motors(motor_left_setpoint, motor_right_setpoint);
-    if (serial_debug) Serial.println("Digital write armed led");
     digitalWrite(LED_ARM, (armed ? HIGH : LOW));
 
     // set flag to send status message next time through loop
@@ -103,8 +105,15 @@ void debounce_timer_ISR() {
 }
 
 //=============================================================================
+// Function to read pin voltage
+float getPinVoltage(int pin) {
+  return( 5.0 * ( (float) analogRead(pin) ) / 1024.0 );
+}
+
+//=============================================================================
+// Function to initialize buttons on breakout board
 void initialize_buttons() {
-  // initialize armed state
+    // initialize armed state
   armed = false;
   send_armed_status = false;
 
@@ -134,11 +143,3 @@ void initialize_buttons() {
   // enable watchdog timer
   wdt_enable(WDTO_60MS);
 }
-
-
-// Function to read pin voltage
-float getPinVoltage(int pin) {
-  return( 5.0 * ( (float) analogRead(pin) ) / 1024.0 );
-}
-
-

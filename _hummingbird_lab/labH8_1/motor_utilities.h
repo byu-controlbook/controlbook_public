@@ -23,7 +23,7 @@ static constexpr unsigned long SETPOINT_TIMEOUT_MS = 100;
     // motor setpoint timeout (ms), turn off motors if no messages within this time
 static constexpr unsigned long PWM_FREQ_HZ = 1000; //50; 
     // This is about right according to some sites//was 50, 1000 and 2000
-static constexpr unsigned long PWM_MIN_US = 1000; 
+static constexpr unsigned long PWM_MIN_US = 950; 
     //ALT IS 20 0 and 180
 static constexpr unsigned long PWM_MAX_US = 1650;
 

@@ -1,12 +1,26 @@
+/**
+ * \file sensors.h
+ * \author Randy Beard <beard@byu.edu>
+ *
+ * class to implement controller
+ */
+
 #ifndef CONTROL_H
 #define CONTROL_H
 
 #include <math.h>
+
+struct {
+  float kp_theta = ;
+  float kd_theta = ;
+  float ki_theta = ; 
+  float km = ; 
+} gains;
+
 #include "tuning_utilities.h"
 
 // physical parameters of the system
 static struct {
-  float km=0.54;  // this will be different for every hummingbird
   float m1=0.108862;
   float ell1=0.247;
   float m2=0.4717;
@@ -37,97 +51,81 @@ struct Reference {
   float phi = 0.0;  
 };
 
-// use these classes to tune different gain values
-GainTuning tune_kp;
-GainTuning tune_kd;
-GainTuning tune_ki;
-GainTuning tune_km;
-
 // Controller to find the motor constant km
 class CtrlLonPID {
   public:
-    float ki_pitch;
-    float kp_pitch;
-    float kd_pitch;
-    float theta_d1;
-    float theta_dot;
-    float theta_dot_d1;
-    float theta_ddot;
+    float theta_d2;
+    float theta_d3;
+    float theta_dot_d2;
+    float theta_dot_d3;
     float integrator_theta;
     float error_theta_d1;
-    float beta;
-    float b_theta;
-    float km;
     
     CtrlLonPID() {  
-      // tuning parameters
-      tr_pitch = ; // rise time for pitch
-      zeta_pitch = ; // damping ratio for pitch
-      ki_pitch = ;  // integrator gain for pitch
-      // gain calculation
-      b_theta = P.ellT / (P.m1 * P.ell1 * P.ell1 + P.m2 * P.ell2 * P.ell2 + P.J1y + P.J2y);
-      float wn_pitch = ;  // natural frequency for pitch
-      kp_pitch = ;  
-      kd_pitch = ; 
-      km = P.km; 
     }
 
     void init() {
-      // delayed variables
-      theta_d1 = 0.0;
-      theta_dot = 0.0;
+      // persistent variables
       integrator_theta = 0.0;
+      theta_d2 = 0.0;
+      theta_d3 = 0.0;
+      theta_dot_d2 = 0.0;
+      theta_dot_d3 = 0.0;
       error_theta_d1 = 0.0;
-
-      // Use these to setup gain tuning with the joystick
-      tune_kp.init(JOYSTICK_UPDOWN, kp_pitch, 0.1);
-      tune_kd.init(JOYSTICK_SIDESIDE, kd_pitch, 0.1);
-      //tune_ki.init(JOYSTICK_UPDOWN, ki_pitch, 0.01);
-      //tune_km.init(JOYSTICK_UPDOWN, km, 0.01);
     }
 
-    void update(float theta_ref, State state, MotorUtilities &rotors, float Ts) {
+    void update(float theta_ref, 
+                SensorUtilities &sensors, 
+                MotorUtilities &rotors, 
+                float Ts) {
+
       // tune gains
-      //km = tune_km.update();
-      kp_pitch = tune_kp.update();  
-      kd_pitch = tune_kd.update(); 
-      //ki_pitch = tune_ki.update();  
+      tuneGains();
 
-      theta_dot = (state.theta - theta_d1) / Ts;
+      // compute theta and theta_dot (with quadratic prediction)
+      float theta_d1 = sensors.pitch;
+      float theta = 3*theta_d1 - 3*theta_d2 + theta_d3;
+      float theta_dot_d1 = (sensors.pitch - theta_d2) / Ts;
+      float theta_dot = 3*theta_dot_d1 - 3*theta_dot_d2 + theta_dot_d3;
 
-      float force = ; 
+      // compute feedback linearized force      
+      float force_fl = 
+
+      // compute error
+      float error_theta = 
+      
+      // update integrator 
+      integrator_theta += 
+      
+      // pitch control
+      float f_tilde =                        
+      float force = 
       float torque = 0.0;
-
+      
       // convert force and torque to pwm and send to motors
-      float left_pwm = (force+torque/P.d)/(2.0*km);
-      float right_pwm = (force-torque/P.d)/(2.0*km);
+      float left_pwm = (force+torque/P.d)/(2.0*gains.km);
+      float right_pwm = (force-torque/P.d)/(2.0*gains.km);
       rotors.update(left_pwm, right_pwm); 
 
       // update all delayed variables
-      theta_d1 = state.theta;
-      theta_dot_d1 = theta_dot;
+      theta_d3 = theta_d2;
+      theta_d2 = theta_d1;
+      theta_dot_d3 = theta_dot_d2;
+      theta_dot_d2 = theta_dot_d1;
       error_theta_d1 = error_theta;
-
-      // print stuff for serial plotter
+      // print theta and km
       Serial.print("Theta_ref:");
       Serial.print(theta_ref*180/PI);
       Serial.print(",");
       Serial.print("Theta:");
-      Serial.print(state.theta*180/PI);
-      Serial.print(",");
-      Serial.print("Theta_dot:");
-      Serial.print(theta_dot*180/PI);
-      Serial.print(",");
-      Serial.print("kp:");
-      Serial.print(kp_pitch);
-      Serial.print(",");
-      Serial.print("kd:");
-      Serial.println(kd_pitch);             
-      //Serial.print("force:");
-      //Serial.println(10*force);
-      //Serial.print(",");
-      //Serial.print("b_theta:");
-      //Serial.println(b_theta);      
+      Serial.println(theta*180/PI);
+//      Serial.print(",");
+//      Serial.print("Theta_dot:");
+//      Serial.print(theta_dot*180/PI);
+//      Serial.print(",");
+//      Serial.print("force:");
+//      Serial.println(10*force);
+     
     }
 
     float saturate(float value, float min_value, float max_value) {
