@@ -11,7 +11,7 @@ class ctrlStateFeedbackIntegrator:
         #  tuning parameters
         tr = 0.4
         zeta = 0.707
-        integrator_pole = np.array([-0.5])
+        integrator_pole = -5.
         # State Space Equations
         # xdot = A*x + B*u
         # y = C*x
@@ -28,7 +28,7 @@ class ctrlStateFeedbackIntegrator:
         wn = 2.2 / tr  # natural frequency
         #wn = 0.5*np.pi/(tr*np.sqrt(1-zeta**2)) # natural frequency
         des_char_poly = np.convolve([1, 2 * zeta * wn, wn**2], 
-                                     np.poly(integrator_pole))
+                                    [1, -integrator_pole])
         des_poles = np.roots(des_char_poly)
         # Compute the gains if the system is controllable
         if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 3:
@@ -55,7 +55,7 @@ class ctrlStateFeedbackIntegrator:
         # compute feedback linearizing torque tau_fl
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
         # Compute the state feedback controller
-        tau_tilde = -self.K @ x - self.ki*self.integrator
+        tau_tilde = -self.K @ x - self.ki * self.integrator
         # compute total torque
         tau = saturate(tau_fl + tau_tilde[0], P.tau_max)
         return tau

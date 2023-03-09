@@ -11,7 +11,7 @@ from ctrlStateFeedbackIntegrator import ctrlStateFeedbackIntegrator
 satellite = satelliteDynamics()
 controller = ctrlStateFeedbackIntegrator()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0,
-                            frequency=0.02)
+                            frequency=0.01)
 disturbance = signalGenerator(amplitude=1.0)
 
 # instantiate the simulation plots and animation

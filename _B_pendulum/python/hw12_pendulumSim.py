@@ -10,7 +10,7 @@ from ctrlStateFeedbackIntegrator import ctrlStateFeedbackIntegrator
 pendulum = pendulumDynamics()
 controller = ctrlStateFeedbackIntegrator()
 reference = signalGenerator(amplitude=0.5, frequency=0.04)
-disturbance = signalGenerator(amplitude=0.1)
+disturbance = signalGenerator(amplitude=2.1)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()

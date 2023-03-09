@@ -17,21 +17,27 @@ class ctrlStateFeedbackIntegrator:
         # Augmented State Space Equations
         # xdot = A*x + B*u
         # y = C*x
-        # form augmented system
-        A1 = np.array([
-            [0.0, 0.0, 1.0, 0.0, 0.0],
-            [0.0, 0.0, 0.0, 1.0, 0.0],
+        A = np.array([
+            [0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 0.0, 1.0],
             [0.0, -3 * P.m1 * P.g / 4 / (.25 * P.m1 + P.m2),
-                -P.b / (.25 * P.m1 + P.m2), 0.0, 0.0],
-            [0.0, 3*(P.m1 + P.m2)*P.g/2./(.25*P.m1+P.m2)/P.ell,
-                3*P.b / 2 / (.25 * P.m1 + P.m2) / P.ell, 0.0, 0.0],
-            [-1.0, 0.0, 0.0, 0.0, 0.0]])
-        B1 = np.array([[0.0],
-                       [0.0],
-                       [1/(.25 * P.m1 + P.m2)],
-                       [-3.0 / 2 / (.25 * P.m1 + P.m2) / P.ell],
-                       [0.0]])
-        Cout = np.array([[1.0, 0.0, 0.0, 0.0]])
+                -P.b / (.25 * P.m1 + P.m2), 0.0],
+            [0.0, 
+                3*(P.m1+P.m2) * P.g/2/(.25 * P.m1 + P.m2)/P.ell,
+                3 * P.b / 2 / (.25 * P.m1 + P.m2) / P.ell, 0.0]
+            ])
+        B = np.array([[0.0],
+                      [0.0],
+                      [1 / (.25 * P.m1 + P.m2)],
+                      [-3.0 / 2 / (.25 * P.m1 + P.m2) / P.ell]])
+        C = np.array([[1.0, 0.0, 0.0, 0.0],
+                      [0.0, 1.0, 0.0, 0.0]])
+        Cr = np.array([[1.0, 0.0, 0.0, 0.0]])
+        # form augmented system
+        A1 = np.vstack((
+                np.hstack((A, np.zeros((4,1)))),
+                np.hstack((-Cr, np.zeros((1,1))))))
+        B1 = np.vstack((B, np.zeros((1,1))))
         # gain calculation
         wn_th = 2.2 / tr_theta  # natural frequency for angle
         wn_z = 2.2 / tr_z  # natural frequency for position
