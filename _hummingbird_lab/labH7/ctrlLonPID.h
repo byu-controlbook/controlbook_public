@@ -10,6 +10,9 @@
 
 #include <math.h>
 
+// the gains are stored in this structure for easy access. 
+// Enter your current best gains in this structure.  After tuning,
+// modify the structure to reflect the tuned gains.
 struct {
   float kp_theta = ;
   float kd_theta = ;
@@ -20,6 +23,8 @@ struct {
 #include "tuning_utilities.h"
 
 // physical parameters of the system
+// This creates a global structure that allows all system parameters
+// to be accessed via, for example, P.m1
 static struct {
   float m1=0.108862;
   float ell1=0.247;
@@ -53,6 +58,9 @@ struct Reference {
 
 // Controller to find the motor constant km
 class CtrlLonPID {
+  // these define public internal variables.  In C++ you don't need to use
+  // the "self.*" syntax.  Public variables are available within the class
+  // and can be accessed outside the class using classname.variable.
   public:
     float theta_d2;
     float theta_d3;
@@ -60,10 +68,13 @@ class CtrlLonPID {
     float theta_dot_d3;
     float integrator_theta;
     float error_theta_d1;
-    
+
+    // This is the constructor, but we will put initialization stuff
+    // inside the init() function.
     CtrlLonPID() {  
     }
 
+    // This function gets called once in the Arduino setup() function
     void init() {
       // persistent variables
       integrator_theta = 0.0;
@@ -74,12 +85,15 @@ class CtrlLonPID {
       error_theta_d1 = 0.0;
     }
 
+    // This is the update function that gets called in every
+    // Arduino loop
     void update(float theta_ref, 
                 SensorUtilities &sensors, 
                 MotorUtilities &rotors, 
                 float Ts) {
 
-      // tune gains
+      // This function can be used to tune the gains in real-time using 
+      // the joystick
       tuneGains();
 
       // compute theta and theta_dot (with quadratic prediction)
@@ -113,7 +127,7 @@ class CtrlLonPID {
       theta_dot_d3 = theta_dot_d2;
       theta_dot_d2 = theta_dot_d1;
       error_theta_d1 = error_theta;
-      // print theta and km
+      // print stuff to the Arduino plotter/monitor for debugging
       Serial.print("Theta_ref:");
       Serial.print(theta_ref*180/PI);
       Serial.print(",");

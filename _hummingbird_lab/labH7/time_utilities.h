@@ -12,7 +12,7 @@ class TimeUtilities  {
   public:
     unsigned long start_ms;  // start time in microseconds
     unsigned long previous_ms;  // previous time through loop
-    unsigned long current_ms;  // curret time in microseconds
+    unsigned long current_ms;  // current time in microseconds
     float current;  // current time in seconds
     float Ts;  // current sample rate in seconds
 
@@ -30,10 +30,11 @@ class TimeUtilities  {
 
     void update() {
       //current_ms = micros() - start_ms; 
-      current_ms = millis() - start_ms;
       //current = float(current_ms) / 1000000.0;  // convert to seconds 
-      current = float(current_ms) / 1000.0;  // convert to seconds
       //Ts = (float(current_ms) - float(previous_ms) ) / 1000000.0; 
+      current_ms = millis() - start_ms;
+      current = float(current_ms) / 1000.0;  
+        // current run time seconds
       Ts = (float(current_ms) - float(previous_ms) ) / 1000.0; 
         // sample rate in seconds 
       previous_ms = current_ms;

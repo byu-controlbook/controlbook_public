@@ -38,6 +38,7 @@ struct Measurement {
 #define AMT203_POSITIONS 4096
 #define AMT203_DELAY_US 20
 
+// This class was written by Dan Koch
 class AMT203
 {
 public:
@@ -144,7 +145,9 @@ class SensorUtilities  {
     SensorUtilities() {
       POLL_INTERVAL = 4; // sensor poll interval in micro seconds
     }
-    
+
+    // the init function starts SPI communication and sets up reading on
+    // the encoders
     void init() {
       // set up encoders
       SPI.begin();
@@ -158,6 +161,8 @@ class SensorUtilities  {
       yaw = (-1.0) * encoder_yaw.read();
     }
 
+    // The update function is used to read the encoders and place their
+    // values in the roll, pitch, and yaw fields
     void update() {
       unsigned long current_time = micros();
       if ((current_time - previous_poll_time) >= POLL_INTERVAL) {
@@ -168,6 +173,8 @@ class SensorUtilities  {
       }
     }
 
+    // The zero function is called during calibration and defines
+    // The current roll, pitch, and yaw readings as "zero"
     void zero() {
       // turn off interrupts and watchdog, they mess with the code
       detachInterrupt(digitalPinToInterrupt(ARM_SWITCH));

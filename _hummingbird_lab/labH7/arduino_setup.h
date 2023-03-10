@@ -27,39 +27,44 @@
 //   Joystick A4, A5, A6
 
 //=============================================================================
-// encoders
+// encoders are attached to these digital pins
 #define PIN_ENCODER_YAW_CS 8
 #define PIN_ENCODER_PITCH_CS 7
 #define PIN_ENCODER_ROLL_CS 6
 
-// motor ESCs
+// motor ESCs (electronic speed controllers) are attached to these pins
 #define PIN_MOTOR_LEFT_PWM 9    // timer1 PWM pin
 #define PIN_MOTOR_RIGHT_PWM 10  // timer1 PWM pin
 
 // arming switch
+The arm, zero, and calibration buttons are attached to these pins
 #define ARM_SWITCH 2          // Pins 2 and 3 are hardware interrupt pins
 #define ZERO_SWITCH 4         // Pin to the button that should zero the encoders
 #define CALIBRATION_SWITCH 5  // Pin to the button that should calibrate the ESCs
 
 // Supply Voltage present
+// I don't know if this is being used
 #define SUPPLY_ON_PIN A7 // Voltage divider from power supply on pin A2 (A7?)
 
 // status LEDs
 // NOTE: A6 and A7 are the only two pins that cannot be digital outputs, 
 // they only function as analog inputs
+// these drive the LEDs that indicate the status of the arduino
 #define LED_ARM A3
 #define LED_RX A2
   
-// setup arm switch debouncing
+// setup arm switch debouncing for the zero and calibration buttons
 static constexpr unsigned long ARM_SWITCH_DEBOUNCE_PERIOD_MS = 50;
 // calibration switch debouncing
 Bounce2::Button calButton = Bounce2::Button();
 Bounce2::Button zeroButton = Bounce2::Button();
 
+// The joystick is attached to these pins
 #define JOYSTICK_PUSH A4
 #define JOYSTICK_UPDOWN A5
 #define JOYSTICK_SIDESIDE A6
 
+// We use PI for display purposes
 #define PI 3.14159
 
 

@@ -2,7 +2,7 @@
  * \file reference.h
  * \author Randy Beard <beard@byu.edu>
  *
- * class to manage references
+ * class and function to allow real-time tuning with joystick
  */
 
 #ifndef TUNING_H
@@ -11,6 +11,8 @@
 #include <math.h>
 #include <string.h>
 
+// This class is instantiated for each gain that needs to be tuned
+// The current gain and increment are stored in the class
 class SingleGainTuning  {
   public:
     int state;
@@ -29,7 +31,10 @@ class SingleGainTuning  {
     }
 
     float update() {
-      float joy = getPinVoltage(pin);
+      float joy = getPinVoltage(pin);  
+      // state machine that manages the joystick. 
+      // Pushing to the right will provide a single increment of the gain
+      // Pushing to the lest will provide a single decrement of the gain
       switch(state) {
         case 0:
           if (joy > 4.0) { state = 1; }
@@ -54,11 +59,18 @@ class SingleGainTuning  {
     }
 };
 
+// need to define one of these for each gain you want to tune
 SingleGainTuning tune_kp_theta;
 SingleGainTuning tune_kd_theta;
 SingleGainTuning tune_ki_theta;
 SingleGainTuning tune_km;
 
+// This function will be different for each lab
+// joystick push function will cycle through different gains
+// The idea is that you tune one gain at a time with side-to-side
+// motion of the joystick, and that you cycle through the gains by
+// pushing the joystick.  The "active gain" and its current value will
+// be displayed on the serial plotter/monitor
 int tuneGains() {
   float joy = getPinVoltage(JOYSTICK_PUSH);
   char buffer[40];
@@ -81,7 +93,7 @@ int tuneGains() {
       Serial.print(",");
       if (abs(joy)<0.1) state=2;
       break;
-    case 2: // button pushed
+    case 2: // button pushed, cycle to next gain when released
       if (abs(joy)>=0.1) state=3;
       break;
     case 3: // tune kd_theta
@@ -93,7 +105,7 @@ int tuneGains() {
       Serial.print(",");
       if (abs(joy)<0.1) state=4;
       break;
-    case 4: // button pushed
+    case 4: // button pushed, cycle to next gain when released
       if (abs(joy)>=0.1) state=5;
       break; 
     case 5: // tune ki_theta
@@ -105,7 +117,7 @@ int tuneGains() {
       Serial.print(",");
       if (abs(joy)<0.1) state=6;
       break;
-    case 6: // button pushed
+    case 6: // button pushed, cycle to next gain when released
       if (abs(joy)>=0.1) state=7; // change to 7 to include km
       break;     
     case 7: // tune km
@@ -117,7 +129,7 @@ int tuneGains() {
       Serial.print(",");
       if (abs(joy)<0.1) state=8;
       break;
-    case 8: // button pushed
+    case 8: // button pushed, cycle to first gain when released
       if (abs(joy)>=0.1) state=1;
       break;     
   }
