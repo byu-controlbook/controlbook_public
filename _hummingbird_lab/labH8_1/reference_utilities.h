@@ -77,8 +77,8 @@ class ReferenceUtilities  {
       // when the stick is full left, return -50 degrees
       float psi_ref = ((float) analogRead(JOYSTICK_SIDESIDE) ) / 1024.0;
         // psi_ref in [0, 1]
-      psi_ref = 60 * (PI/180) * (psi_ref - 0.5);
-        // psi_ref in [-30, 30] * PI/180
+      psi_ref = 100 * (PI/180) * (psi_ref - 0.5);
+        // psi_ref in [-50, 50] * PI/180
       return psi_ref;
     }    
 };

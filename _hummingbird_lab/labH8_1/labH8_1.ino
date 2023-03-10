@@ -3,7 +3,7 @@
 #include "sensor_utilities.h"
 #include "motor_utilities.h"
 #include "reference_utilities.h"
-#include "ctrlLatPID.h"
+#include "ctrlRollPD.h"
 
 //=============================================================================
 // declare global structures
@@ -17,7 +17,7 @@ TimeUtilities timing;
 SensorUtilities sensors;
 MotorUtilities rotors;
 ReferenceUtilities signal_generator;
-CtrlLatPID controller;
+CtrlRollPD controller;
 
 //=============================================================================
 // arduino setup function (runs once at start of simulation)
@@ -31,7 +31,7 @@ void setup()
   timing.init();  // initialize current time and sample rate
   sensors.init();  // initialize sensors
   controller.init();  // initialize controller
-  signal_generator.init(30*3.14/180, 0.05, 0.0);
+  signal_generator.init(30*3.14/180, 0.1, 0.0);
 
   // initialize buttons on breakout board and watchdog timers
   initialize_buttons();
@@ -44,9 +44,9 @@ void loop()
 {
   timing.update();  // update current time and sample rate
   sensors.update();  // update sensors
-  //float psi_ref = signal_generator.square_signal(timing.current);
-  float psi_ref = signal_generator.joystick_yaw();
-  controller.update(psi_ref, sensors, rotors, timing.Ts);  // update controller
+  float phi_ref = signal_generator.square_signal(timing.current);
+  //float phi_ref = signal_generator.joystick_pitch();
+  controller.update(phi_ref, sensors, rotors, timing.Ts);  // update controller
 
   // zero encoders if zero button pushed
   zeroButton.update();  
