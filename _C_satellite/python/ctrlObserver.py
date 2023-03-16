@@ -33,18 +33,10 @@ class ctrlObserver:
         self.C = np.array([[1.0, 0.0, 0.0, 0.0],
                            [0.0, 1.0, 0.0, 0.0]])
         # form augmented system
-        Cout = np.array([[0.0, 1.0, 0.0, 0.0]])
-        A1 = np.array([
-            [0.0, 0.0, 1.0, 0.0, 0.0],
-            [0.0, 0.0, 0.0, 1.0, 0.0],
-            [-P.k/P.Js, P.k/P.Js, -P.b/P.Js, P.b/P.Js, 0.0],
-            [P.k/P.Jp, -P.k/P.Jp, P.b/P.Jp, -P.b/P.Jp, 0.0],
-            [0.0, -1.0, 0.0, 0.0, 0.0]])
-        B1 = np.array([[0.0],
-                       [0.0],
-                       [1.0 / P.Js],
-                       [0.0],
-                       [0.0]])
+        Cr = np.array([[0.0, 1.0, 0.0, 0.0]])
+        A1 = np.vstack((np.hstack((self.A, np.zeros((4,1)))), 
+                        np.hstack((-Cr, np.zeros((1,1)))) ))
+        B1 = np.vstack( (self.B, 0.0) )
         # gain calculation
         des_char_poly = np.convolve(
                 np.convolve([1, 2 * zeta_phi * wn_phi, wn_phi**2],

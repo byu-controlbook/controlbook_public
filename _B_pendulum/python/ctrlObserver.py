@@ -116,7 +116,6 @@ class ctrlObserver:
         xhat_dot = self.A @ x_hat \
                    + self.B * self.F_d1 \
                    + self.L @ (y_m-self.C @ x_hat)
-
         return xhat_dot
 
 

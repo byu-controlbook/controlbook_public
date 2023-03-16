@@ -12,7 +12,7 @@ class ctrlObserver:
         tr = 0.4
         zeta = 0.707
         integrator_pole = 9
-        wn_obs = 10  # natural frequency for observer
+        tr_obs = tr/10  # natural frequency for observer
         zeta_obs = 0.707  # damping ratio for observer
         # State Space Equations
         # xdot = A*x + B*u
@@ -23,15 +23,11 @@ class ctrlObserver:
                            [3.0 / P.m / (P.ell**2)]])        
         self.C = np.array([[1.0, 0.0]])
         # form augmented system
-        A1 = np.array([[0.0, 1.0, 0.0],
-                       [0.0, -1.0 * P.b / P.m / (P.ell**2), 0.0],
-                       [-1.0, 0.0, 0.0]])
-        B1 = np.array([[0.0],
-                       [3.0 / P.m / (P.ell**2)],
-                       [0.0]])
+        A1 = np.vstack((np.hstack((self.A, np.zeros((2,1)))), 
+                        np.hstack((-self.C, np.zeros((1,1)))) ))
+        B1 = np.vstack( (self.B, 0.0) )
         # gain calculation
         wn = 2.2 / tr  # natural frequency
-        #wn = 0.5*np.pi/(tr*np.sqrt(1-zeta**2)) # natural frequency
         des_char_poly = np.convolve([1, 2*zeta*wn, wn**2],
                                     [1, integrator_pole])
         des_poles = np.roots(des_char_poly)
@@ -43,6 +39,7 @@ class ctrlObserver:
             self.K = K1[0][0:2]
             self.ki = K1[0][2]
         # observer design
+        wn_obs = 2.2 / tr_obs
         des_obsv_char_poly = [1, 2*zeta_obs*wn_obs, wn_obs**2]
         des_obsv_poles = np.roots(des_obsv_char_poly)
         # Compute the gains if the system is controllable
@@ -92,7 +89,7 @@ class ctrlObserver:
 
     def observer_f(self, x_hat, y_m):
         # compute feedback linearizing torque tau_fl
-        theta_hat = x_hat.item(0)
+        theta_hat = x_hat[0][0]
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta_hat)
         # xhatdot = A*(xhat-xe) + B*(u-ue) + L(y-C*xhat)
         xhat_dot = self.A @ x_hat\
