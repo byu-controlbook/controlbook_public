@@ -12,7 +12,7 @@ class ctrlObserver:
         tr = 0.4
         zeta = 0.707
         integrator_pole = 9
-        tr_obs = tr/10  # natural frequency for observer
+        tr_obs = tr/10  # rise time frequency for observer
         zeta_obs = 0.707  # damping ratio for observer
         # State Space Equations
         # xdot = A*x + B*u

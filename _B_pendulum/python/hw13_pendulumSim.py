@@ -12,7 +12,7 @@ from dataPlotterObserver import dataPlotterObserver
 pendulum = pendulumDynamics(alpha=0.0)
 controller = ctrlObserver()
 reference = signalGenerator(amplitude=0.5, frequency=0.05)
-disturbance = signalGenerator(amplitude=0.5)
+disturbance = signalGenerator(amplitude=1.0)
 noise_z = signalGenerator(amplitude=0.01)
 noise_th = signalGenerator(amplitude=0.01)
 
@@ -32,8 +32,8 @@ while t < P.t_end:  # main simulation loop
     while t < t_next_plot:
         r = reference.square(t)
         d = disturbance.step(t)
-        #n = np.array([[0.0], [0.0]])
-        n = np.array([[noise_z.random(t)], [noise_th.random(t)]])
+        n = np.array([[0.0], [0.0]])
+        #n = np.array([[noise_z.random(t)], [noise_th.random(t)]])
         u, xhat = controller.update(r, y + n)
         y = pendulum.update(u + d)  # propagate system
         t = t + P.Ts  # advance time by Ts
