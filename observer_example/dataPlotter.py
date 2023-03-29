@@ -22,11 +22,11 @@ class dataPlotter:
         self.handle.append(myPlot(self.ax[0], ylabel='y', title='Data'))
         self.handle.append(myPlot(self.ax[1], xlabel='t(s)', ylabel='u'))
 
-    def update(self, t, reference, states, ctrl):
+    def update(self, t, reference, output, ctrl):
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.ref_history.append(reference)  # reference base position
-        self.y_history.append(states[0,0])  # rod angle (converted to degrees)
+        self.y_history.append(output)  # rod angle (converted to degrees)
         self.u_history.append(ctrl)  # force on the base
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.y_history, self.ref_history])
