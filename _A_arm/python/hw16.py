@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 P10 = ctrlPID()
 
 # flag to define if using dB or absolute scale for M(omega)
-dB_flag = P15.dB_flag
+dB_flag = True # False
 
 # Assign plan from previous homework solution
 Plant = P15.Plant
