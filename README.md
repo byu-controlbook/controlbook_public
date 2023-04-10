@@ -48,7 +48,7 @@ This Gitlab account contains complete python, matlab, and simulink solutions to 
 # Hummingbird Lab
 The lab description and assignments are described in the hummingbird lab manual, which can be accessed below.  During Winter 2023, the manual will be under construction and will be updated frequently.  You should re-download the manual before doing each lab.
 
-[PDF Lab Manual](https://drive.google.com/file/d/1DzFGTip7jdT5Q33OeuZrK28yvU95lOPe/view?usp=sharing)
+[PDF Lab Manual](https://drive.google.com/file/d/1-W2Zm1npRpV0NH1-vQXf0qYudbe9F8Ed/view?usp=sharing)
 
 Template files for the hummingbird simulation are contained in the GitHub directory "_hummingbird_sim."
 
