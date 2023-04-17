@@ -17,16 +17,15 @@ C_pid = P16.C_pid
 #   Control Design
 ###################################################################
 C = C_pid \
-    * ls.lag(z=0.9, M=20.0)\
-    * ls.lpf(p=90.0) \
-    * ls.lead(w=6.1, M=1.5)
-
+    * ls.lead(w=10.0, M=3.0) \
+    * ls.lag(z=1.0, M=40.0) \
+    * ls.lpf(p=50.0) \
 
 ###########################################################
 # add a prefilter to eliminate the overshoot
 ###########################################################
-F = tf(1, 1) 
-
+F = tf(1, 1) \
+    * ls.lpf(p=3.0)
 
 ###########################################################
 # Extracting coefficients for controller and prefilter
@@ -35,6 +34,13 @@ C_num = np.asarray(C.num[0])
 C_den = np.asarray(C.den[0])
 F_num = np.asarray(F.num[0])
 F_den = np.asarray(F.den[0])
+
+# ###########################################################
+# #  Convert Controller to State Space Equations if following
+# #  method in 18.1.7
+# ###########################################################
+# C_ss = tf2ss(C)  # convert to state space
+# F_ss = tf2ss(F)  # convert to state space
 
 
 if __name__=="__main__":

@@ -9,7 +9,7 @@ from ctrlLoopshape import ctrlLoopshape
 
 # instantiate arm, controller, and reference classes
 arm = armDynamics(alpha=0.2)
-controller = ctrlLoopshape("digital_filter")
+controller = ctrlLoopshape()
 reference = signalGenerator(amplitude=30*np.pi/180.0, frequency=0.05)
 #disturbance = signalGenerator(amplitude=0.1, frequency=0.07)
 disturbance = signalGenerator(amplitude=0.1)

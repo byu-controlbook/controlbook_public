@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from control import tf, step_response, bode, tf2ss, margin, mag2db
 import numpy as np
 import hw16 as P16
-import loopshape_tools as ls
+import loopshape_tools as lt
 
 # flag to define if using dB or absolute scale for M(omega)
 dB_flag = P16.dB_flag
@@ -16,19 +16,31 @@ Plant = P_in
 #########################################
 #   Control Design
 #########################################
-C_in = tf([1], [1])
+C = tf([1], [1])
 
 # Proportional control: correct for negative sign in plant
-C_in = C_in \
-    * ls.proportional(kp=-1.) \
-    * ls.lead(w=30., M=10.) \
-    * ls.proportional(kp=100.0)
+K_neg = lt.get_control_proportional(-1)
+C = C*K_neg
 
-###########################################################
-# Extracting coefficients for controller and prefilter
-###########################################################
-Cin_num = np.asarray(C_in.num[0])
-Cin_den = np.asarray(C_in.den[0])
+#  phase lead: increase PM (stability)
+w_max = 40 #location of maximum frequency bump
+phi_max = 60*np.pi/180
+M = (1 + np.sin(phi_max))/(1 - np.sin(phi_max))  # lead ratio
+Lead = lt.get_control_lead(w_max, M)
+C = C*Lead
+
+# find gain to set crossover at w_max
+mag, phase, omega = bode(Plant*C*Lead, dB=False,
+                             omega=[w_max], plot=False)
+
+# Proportional control: correct for negative sign in plant
+K = lt.get_control_proportional(1/mag[0])
+C = C*K
+
+##############################################
+#  Convert Controller to State Space Equations
+##############################################
+C_ss = tf2ss(C)  # convert to state space
 
 if __name__=="__main__":
     # calculate bode plot and gain and phase margin
@@ -51,15 +63,17 @@ if __name__=="__main__":
     #   Define Design Specifications
     #########################################
     # ----------- noise specification --------
-    ls.spec_noise(gamma_n=0.1, omega_n=200., dB_flag=dB_flag)
+    omega_n = 200  # attenuate noise above this frequency
+    gamma_n = 0.1  # attenuate noise by this amount
+    lt.add_spec_noise(gamma_n, omega_n, dB_flag)
 
     ## plot the effect of adding the new compensator terms
-    mag, phase, omega = bode(Plant * C_in, dB=dB_flag,
+    mag, phase, omega = bode(Plant * C, dB=dB_flag,
                                 omega=np.logspace(-3, 5),
                                 plot=True, label="$C_{final}(s)P(s)$",
                                 color='orange')
 
-    gm, pm, Wcg, Wcp = margin(Plant * C_in)
+    gm, pm, Wcg, Wcp = margin(Plant * C)
     print("for final C*P:")
     if dB_flag == True:
         print(" pm: ", pm, " Wcp: ", Wcp,
@@ -77,11 +91,11 @@ if __name__=="__main__":
     # now check the closed-loop response
     ############################################
     # Open-loop transfer function
-    OPEN = Plant*C_in
+    OPEN = Plant*C
     # Closed loop transfer function from R to Y
-    CLOSED_R_to_Y = (Plant*C_in/(1.0+Plant*C_in))
+    CLOSED_R_to_Y = (Plant*C/(1.0+Plant*C))
     # Closed loop transfer function from R to U
-    CLOSED_R_to_U = (C_in/(1.0+Plant*C_in))
+    CLOSED_R_to_U = (C/(1.0+Plant*C))
 
     plt.figure()
     plt.subplot(311)

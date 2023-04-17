@@ -14,7 +14,7 @@ P_out = P16.P_out
 
 # construct plant as cascade of P_out and closed inner loop
 Plant = minreal(P_out* \
-            (L_in.P_in*L_in.C_in/(1+L_in.P_in*L_in.C_in)))
+            (L_in.P_in*L_in.C/(1+L_in.P_in*L_in.C)))
 
 #########################################
 #   Control Design
@@ -102,10 +102,10 @@ if __name__=="__main__":
     #   Define Design Specifications
     #########################################
     # ----------- general tracking specification --------
-    ls.spec_track_ref(gamma_r, omega_r, dB_flag)
+    lt.add_spec_ref_tracking(gamma_r, omega_r, dB_flag)
 
     # ----------- noise specification --------
-    ls.pec_noise(gamma_n, omega_n, dB_flag)
+    lt.add_spec_noise(gamma_n, omega_n, dB_flag)
 
     mag, phase, omega = bode(Plant * C, dB=dB_flag,
                              omega=np.logspace(-3, 5),
