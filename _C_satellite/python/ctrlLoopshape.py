@@ -1,31 +1,53 @@
 import numpy as np
 from control import c2d, tf
-import armParam as P
-import loopShaping as L
+import satelliteParam as P
+import loopShapingInner as L_in
+import loopShapingOuter as L_out
+from ctrlPID import ctrlPID
+P10 = ctrlPID()
 
 class ctrlLoopshape:
     def __init__(self, method="state_space"):
         if method == "state_space":
-            self.prefilter = transferFunction(L.F_num, L.F_den, P.Ts)
-            self.control = transferFunction(L.C_num, L.C_den, P.Ts)
+            self.control_out = transferFunction(L_out.C_num, L_out.C_den, P.Ts)
+            self.prefilter_out = transferFunction(L_out.F_num, L_out.F_den, P.Ts)
+            self.control_in = transferFunction(L_in.C_num, L_in.C_den, P.Ts)
         elif method == "digital_filter":
-            self.prefilter = digitalFilter(L.F.num, L.F.den, P.Ts)
-            self.control = digitalFilter(L.C.num, L.C.den, P.Ts)
-        self.method = method
+            self.control_out = digitalFilter(L_out.C_num, L_out.C_den, P.Ts)
+            self.prefilter_out = digitalFilter(L_out.F_num, L_out.F_den, P.Ts)
+            self.control_in = digitalFilter(L_in.C_num, L_in.C_den, P.Ts)
+        self.theta_dot = 0.0           # derivative of theta
+        self.theta_d1 = 0.             # theta delayed by 1 sample
+        self.kd_th = P10.kd_th
+        self.phi_dot = 0.0           # derivative of phi
+        self.phi_d1 = 0.             # phi delayed by 1 sample
+        self.kd_phi = P10.kd_phi
+        self.beta = P10.beta
 
-    def update(self, theta_r, y):
+    def update(self, phi_r, y):
         theta = y[0][0]
-        # prefilter the reference
-        theta_r_filtered = self.prefilter.update(theta_r)
-         # filtered error signal
-        error = theta_r_filtered - theta
-        # update controller
-        tau_tilde = self.control.update(error)
-        # compute feedback linearization torque tau_fl
-        tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
-        # compute total torque
-        tau = saturate(tau_fl + tau_tilde, P.tau_max)
+        phi = y[1][0]
+        self.theta_dot = self.beta*self.theta_dot \
+            + (1-self.beta)*((theta - self.theta_d1) / P.Ts)
+        self.theta_d1 = theta     
+        self.phi_dot = self.beta*self.phi_dot \
+            + (1-self.beta)*((phi - self.phi_d1) / P.Ts)
+        self.phi_d1 = phi          
+        # prefilter for outer loop
+        phi_r_filtered = self.prefilter_out.update(phi_r)
+        # error signal for outer loop
+        error_out = phi_r_filtered - phi
+        # outer loop control
+        theta_r = -self.kd_phi * self.phi_dot \
+            + self.control_out.update(error_out)
+        #error signal for inner loop
+        error_in = theta_r - theta
+        # inner loop control
+        tau_unsat = -self.kd_th * self.theta_dot \
+            + self.control_in.update(error_in)
+        tau = saturate(tau_unsat, P.tau_max)
         return tau
+
 
 def saturate(u, limit):
     if abs(u) > limit:

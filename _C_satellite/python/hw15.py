@@ -4,7 +4,7 @@ from control import tf, bode
 import matplotlib.pyplot as plt
 
 # flag to define if using dB or absolute scale for M(omega)
-dB_flag = False
+dB_flag = True
 
 # Compute inner and outer open-loop transfer functions
 P_in = tf([1],[P.Js+P.Jp,0,0])

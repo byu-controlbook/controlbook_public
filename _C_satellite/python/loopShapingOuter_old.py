@@ -2,10 +2,11 @@ import matplotlib.pyplot as plt
 from control import tf, margin, bode, tf2ss, step_response, mag2db
 import numpy as np
 import satelliteParam as P
+from ctrlPID import ctrlPID
 import hw16 as P16
 import loopShapingInner as L_in
-import loopshape_tools as ls
-from ctrlPID import ctrlPID
+import loopshape_tools as lt
+
 P10 = ctrlPID()
 
 # flag to define if using dB or absolute scale for M(omega)
@@ -26,43 +27,42 @@ Plant = P_out * (L_in.Plant * L_in.C /
 #########################################
 C = tf([1], [1])
 
-# #  -----integral control: change low freq. slope----
-# ki = 0.1
-# C_int = lt.get_control_integral(ki)
+#  -----integral control: change low freq. slope----
+ki = 0.1
+C_int = lt.get_control_integral(ki)
 
 
-# # -----lead control: change the phase margin ----
-# omega_max = 0.15
-# M = 120.0
-# C_lead = lt.get_control_lead(omega_max, M)
+# -----lead control: change the phase margin ----
+omega_max = 0.15
+M = 120.0
+C_lead = lt.get_control_lead(omega_max, M)
 
-# # -----lag control: increase magnitude near required freq. ----
-# z = 2.0
-# M = 60.0
-# C_lag = lt.get_control_lag(0.5, 60)
+# -----lag control: increase magnitude near required freq. ----
+z = 2.0
+M = 60.0
+C_lag = lt.get_control_lag(0.5, 60)
 
-# #  -----proportional control: change cross over frequency----
-# mag, phase, omega = bode(Plant*C_int*C_lead*C_lag,
-#                          omega=[omega_max],
-#                          Plot=False)
-# C_k = lt.get_control_proportional(1.0/mag[0])
+#  -----proportional control: change cross over frequency----
+mag, phase, omega = bode(Plant*C_int*C_lead*C_lag,
+                         omega=[omega_max],
+                         Plot=False)
+C_k = lt.get_control_proportional(1.0/mag[0])
 
-# #  -----low pass filter: decrease gain at high frequency (noise)----
-# # we will have to use two to get the desired noise attenuation
-# p = 1.5
-# C_lpf1 = lt.get_control_lpf(p)
-# p = 1.8
-# C_lpf2 = lt.get_control_lpf(p)
+#  -----low pass filter: decrease gain at high frequency (noise)----
+# we will have to use two to get the desired noise attenuation
+p = 1.5
+C_lpf1 = lt.get_control_lpf(p)
+p = 1.8
+C_lpf2 = lt.get_control_lpf(p)
 
-# # calculating final controller
-# C = C*C_int*C_lead*C_lag*C_k*C_lpf1*C_lpf2
+# calculating final controller
+C = C*C_int*C_lead*C_lag*C_k*C_lpf1*C_lpf2
 
 
 ############################################
 #  Prefilter Design
 ############################################
 # low pass filter
-F = tf([1],[1])
 p = 0.1
 F = lt.get_control_lpf(p)
 
