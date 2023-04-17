@@ -1,0 +1,76 @@
+import numpy as np
+import param as P
+import loopshape_example as L
+#from transferFunction import transferFunction
+
+class controller:
+    def __init__(self):
+#        self.prefilter = transferFunction(L.F_num, L.F_den, P.Ts)
+        self.control = transferFunction(L.C_num, L.C_den, P.Ts)
+
+    def update(self, r, y):
+         # prefilter the reference
+        r_filtered = r #self.prefilter.update(r)
+        # define error and update controller
+        error = r_filtered - y
+        u = self.control.update(error)
+        return u
+
+
+class transferFunction:
+    def __init__(self, num, den, Ts):
+        # expects num and den to be numpy arrays of
+        # shape (1,m+1) and (1,n+1)
+        m = num.shape[1]
+        n = den.shape[1]
+        # set initial conditions
+        self.state = np.zeros((n-1, 1))
+        self.Ts = Ts
+        # make the leading coef of den == 1
+        if den.item(0) != 1:
+            tmp = den.item(0)
+            num = num / tmp
+            den = den / tmp
+        self.num = num
+        self.den = den
+        # set up state space equations in control canonic form
+        self.A = np.zeros((n-1, n-1))
+        self.B = np.zeros((n-1, 1))
+        self.C = np.zeros((1, n-1))
+        for i in range(0, n-1):
+            self.A[0][i] = - den.item(i + 1)
+        for i in range(1, n-1):
+            self.A[i][i - 1] = 1.0
+        if n>1:
+            self.B[0][0] = 1.0
+        if m == n:
+            self.D = num.item(0)
+            for i in range(0, n-1):
+                self.C[0][i] = num.item(i+1) \
+                               - num.item(0)*den.item(i+1)
+        else:
+            self.D = 0.0
+            for i in range(n-m-1, n-1):
+                self.C[0][i] = num.item(i)
+
+    def update(self, u):
+        x = self.rk4(u)
+        y = self.h(u)
+        return y.item(0)
+
+    def f(self, state, u):
+        xdot = self.A @ state + self.B * u
+        return xdot
+
+    def h(self, u):
+        y = self.C @ self.state + self.D * u
+        return y
+
+    def rk4(self, u):
+        # Integrate ODE using Runge-Kutta 4 algorithm
+        F1 = self.f(self.state, u)
+        F2 = self.f(self.state + self.Ts / 2 * F1, u)
+        F3 = self.f(self.state + self.Ts / 2 * F2, u)
+        F4 = self.f(self.state + self.Ts * F3, u)
+        self.state += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
+        return self.state
