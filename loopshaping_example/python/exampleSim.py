@@ -2,13 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import param as P
 from dynamics import dynamics
-from controller import controller
+from ctrlLoop import ctrlLoop
 from signalGenerator import signalGenerator
 from dataPlotter import dataPlotter
 
 # instantiate arm, controller, and reference classes
 plant = dynamics()
-ctrl = controller()
+ctrl = ctrlLoop()
 reference = signalGenerator(amplitude=1.0, frequency=0.02)
 disturbance = signalGenerator(amplitude=1.0)
 noise = signalGenerator(amplitude=0.01)

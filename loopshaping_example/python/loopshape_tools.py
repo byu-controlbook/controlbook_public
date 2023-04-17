@@ -109,7 +109,7 @@ def spec_track_parabola(gamma_r, dB_flag=True):
         #          '.', color=[0, 0, 1], label = 'parabola tracking spec')
 
 
-def control_proportional(kp):
+def proportional(kp):
     '''
         Generate transfer function for single gain or proportional control. This 
         term can be used to change the crossover frequency. 
@@ -117,7 +117,7 @@ def control_proportional(kp):
     return tf([kp], [1])
 
 
-def control_integral(ki):
+def integral(ki):
     '''
         Generate transfer function for PI controller defined by gain "ki". 
         Can be used to change the slope of the mag. ratio at low frequencies. 
@@ -125,7 +125,7 @@ def control_integral(ki):
     return tf([1, ki], [1, 0])
 
 
-def control_lag(z, M):
+def lag(z, M):
     '''
         Makes a lag controller to add gain at low frequency such that: 
             phase lag (|p|<|z|): 
@@ -135,7 +135,7 @@ def control_lag(z, M):
     return tf([1, z], [1, z / M])
 
 
-def control_lpf(p):
+def lpf(p):
     '''
         generates a transfer function for a low-pass filter with a
         cutoff frequency of "p" 
@@ -143,7 +143,7 @@ def control_lpf(p):
     return tf(p, [1, p])
 
 
-def control_lead(omega_lead, M):
+def lead(omega_lead, M):
     '''
         Generates a lead controller transfer function defined by:
             M - the amount of gain at high frequencies (corresponds to PM boost)
@@ -152,7 +152,7 @@ def control_lead(omega_lead, M):
     return tf([M, M*omega_lead / np.sqrt(M)], [1, omega_lead * np.sqrt(M)])
 
 
-def control_notch(ws, M):
+def notch(ws, M):
     '''
         Generates a notch filter defined by frequency of interest (ws) and gain M. 
     '''

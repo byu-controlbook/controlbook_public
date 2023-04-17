@@ -12,11 +12,11 @@ Plant = tf([1.0], [1.0, 1.0])
 #########################################
 #   Control Design
 C = tf(1, 1) \
-         * ls.control_integral(ki=0.3) \
-         * ls.control_proportional(kp=3.0) \
-         * ls.control_lag(z=0.01, M=40.0) \
-         * ls.control_lpf(p=3.0) \
-        #* ls.control_lead(w_L=3.0, M=10.0)
+         * ls.integral(ki=0.3) \
+         * ls.proportional(kp=3.0) \
+         * ls.lag(z=0.01, M=40.0) \
+         * ls.lpf(p=3.0) \
+        #* ls.lead(w_L=3.0, M=10.0)
 
 ###########################################################
 # add a prefilter to eliminate the overshoot
