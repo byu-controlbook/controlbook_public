@@ -1,23 +1,23 @@
-import sys
 import satelliteParam as P
-import numpy as np
 from ctrlPID import ctrlPID
-import loopShapingInner as L_in
-import loopShapingOuter as L_out
-from digitalFilter import digitalFilter
+import loopshape_in as L_in
+import loopshape_out as L_out
+import numpy as np
+from discreteFilter import discreteFilter
 P10 = ctrlPID()
-
 
 class ctrlLoopshape:
     # state feedback control using dirty derivatives to estimate zdot and thetadot
-    def __init__(self, method="digital_filter"):
+    def __init__(self, method="state_space"):
         self.phi_dot = 0.0           # derivative of phi
         self.theta_dot = 0.0         # derivative of theta
         self.phi_d1 = 0.             # angle phi delayed by 1 sample
         self.theta_d1 = 0.0          # Angle theta delayed by 1 sample
         self.kd_phi = P10.kd_phi
         self.kd_th = P10.kd_th
+        self.beta = P10.beta
         self.method = method
+
         if method == "state_space":
             self.xout_C = np.zeros((L_out.C_ss.A.shape[0], 1))
             self.x_F = np.zeros((L_out.F_ss.A.shape[0], 1))
@@ -36,54 +36,56 @@ class ctrlLoopshape:
             self.Din_C = L_in.C_ss.D
             self.N = 10
         elif method == "digital_filter":
-            self.control_out = digitalFilter(L_out.C.num, L_out.C.den, P.Ts)
-            self.prefilter_out = digitalFilter(L_out.F.num, L_out.F.den, P.Ts)
-            self.control_in = digitalFilter(L_in.C.num, L_in.C.den, P.Ts)
-        self.beta = P10.beta           # dirty derivative gain
+            self.control_out = discreteFilter(L_out.C.num, L_out.C.den, P.Ts)
+            self.prefilter_out = discreteFilter(L_out.F.num, L_out.F.den, P.Ts)
+            self.control_in = discreteFilter(L_in.C.num, L_in.C.den, P.Ts)
 
     def update(self, y_r, y):
         # y_r is the referenced input
         # y is the current state
         phi_r = y_r
-        theta = y[0][0]
-        phi = y[1][0]
+        theta = y[0]
+        phi = y[1]
+
         # differentiate z and theta
         self.differentiatePhi(phi)
         self.differentiateTheta(theta)
+
         if self.method == "state_space":
             # solve differential equation defining prefilter F
             self.updatePrefilterState(phi_r)
             phi_r_filtered = self.C_F @ self.x_F + self.D_F * phi_r
             # error signal for outer loop
-            error_out = phi_r_filtered - phi
+            error_out = phi_r_filtered[0][0] - phi
             # Outer loop control C_out
             self.updateControlOutState(error_out)
-            theta_r = -self.kd_phi*self.phi_dot + self.Cout_C @ self.xout_C + self.Dout_C * error_out
+            theta_r = -self.kd_phi * self.phi_dot + self.Cout_C @ self.xout_C + self.Dout_C * error_out
             # error signal for inner loop
             error_in = theta_r - theta
             # Inner loop control C_in
             self.updateControlInState(error_in)
-            tau_unsat = -self.kd_th*self.theta_dot + self.Cin_C @ self.xin_C + self.Din_C @ error_in
-            tau = self.saturate(tau_unsat)
+            tau_unsat = -self.kd_th * self.theta_dot + self.Cin_C @ self.xin_C + self.Din_C * error_in
+            tau = saturate(tau_unsat[0][0], P.tau_max)
             return tau
+
         elif self.method == "digital_filter":
             # prefilter for outer loop
             phi_r_filtered = self.prefilter_out.update(phi_r)
             # error signal for outer loop
             error_out = phi_r_filtered - phi
             # Outer loop control (based on form in chapter 18)
-            theta_r = -self.kd_phi * self.phi_dot + \
-                      self.control_out.update(error_out)
+            theta_r = -self.kd_phi * self.phi_dot + self.control_out.update(error_out[0])
             # error signal for inner loop
             error_in = theta_r - theta
             # Inner loop control (based on form in chapter 18)
-            tau_unsat = -self.kd_th * self.theta_dot + \
-                        self.control_in.update(error_in)
-            tau = saturate(tau_unsat, P.tau_max)
+            tau_unsat = -self.kd_th * self.theta_dot + self.control_in.update(error_in[0])
+            tau = self.saturate(tau_unsat)
             return tau
+
         else:
             print('that method for control is not implemented')
             sys.exit()
+
 
     def differentiatePhi(self, phi):
         '''
@@ -102,19 +104,19 @@ class ctrlLoopshape:
     def updatePrefilterState(self, r):
         for i in range(0, self.N):
             self.x_F = self.x_F + (P.Ts/self.N)*(
-                self.A_F @ self.x_F + self.B_F*r
+                self.A_F*self.x_F + self.B_F*r
             )
 
     def updateControlOutState(self, error_out):
         for i in range(0, self.N):
             self.xout_C = self.xout_C + (P.Ts/self.N)*(
-                self.Aout_C @ self.xout_C + self.Bout_C*error_out
+                self.Aout_C*self.xout_C + self.Bout_C*error_out
             )
 
     def updateControlInState(self, error_in):
         for i in range(0, self.N):
             self.xin_C = self.xin_C + (P.Ts/self.N)*(
-                self.Ain_C @ self.xin_C + self.Bin_C * error_in
+                self.Ain_C * self.xin_C + self.Bin_C * error_in
             )
 
 

@@ -1,91 +1,108 @@
 import numpy as np
-import pendulumParam as P
-import loopShapingInner as L_in
-import loopShapingOuter as L_out
-from digitalFilter import digitalFilter
+from control import c2d, tf
+import armParam as P
+import loopShaping as L
 
 class ctrlLoopshape:
-    # state feedback control using dirty derivatives to estimate zdot and thetadot
     def __init__(self, method="state_space"):
-        self.method = method
         if method == "state_space":
-            self.xout_C = np.zeros((L_out.C_ss.A.shape[0], 1))
-            self.xout_F = np.zeros((L_out.F_ss.A.shape[0], 1))
-            self.xin_C  = np.zeros((L_in.C_ss.A.shape[0], 1))
-            self.Aout_F = L_out.F_ss.A
-            self.Bout_F = L_out.F_ss.B
-            self.Cout_F = L_out.F_ss.C
-            self.Dout_F = L_out.F_ss.D
-            self.Aout_C = L_out.C_ss.A
-            self.Bout_C = L_out.C_ss.B
-            self.Cout_C = L_out.C_ss.C
-            self.Dout_C = L_out.C_ss.D
-            self.Ain_C = L_in.C_ss.A
-            self.Bin_C = L_in.C_ss.B
-            self.Cin_C = L_in.C_ss.C
-            self.Din_C = L_in.C_ss.D
-            self.N = 10  #number of Euler integration steps for each sample
+            self.prefilter = transferFunction(L.F_num, L.F_den, P.Ts)
+            self.control = transferFunction(L.C_num, L.C_den, P.Ts)
         elif method == "digital_filter":
-            self.control_out = digitalFilter(L_out.C.num, L_out.C.den, P.Ts)
-            self.prefilter_out = digitalFilter(L_out.F.num, L_out.F.den, P.Ts)
-            self.control_in = digitalFilter(L_in.C.num, L_in.C.den, P.Ts)
+            self.prefilter = digitalFilter(L.F.num, L.F.den, P.Ts)
+            self.control = digitalFilter(L.C.num, L.C.den, P.Ts)
+        self.method = method
 
-    def update(self, y_r, y):
-        # y_r is the referenced input
-        # y is the current outputs
-        z_r = y_r
-        z = y[0][0]
-        theta = y[1][0]
-        if self.method == "state_space":
-            # solve differential equation defining prefilter F
-            self.updatePrefilterState(z_r)
-            z_r_filtered = self.Cout_F @ self.xout_F + self.Dout_F * z_r
-            # error signal for outer loop
-            error_out = z_r_filtered[0][0] - z
-            # Outer loop control C_out
-            self.updateControlOutState(error_out)
-            theta_r = self.Cout_C @ self.xout_C + self.Dout_C * error_out
-            # error signal for inner loop
-            error_in = theta_r[0][0] - theta
-            # Inner loop control C_in
-            self.updateControlInState(error_in)
-            F_unsat = self.Cin_C @ self.xin_C + self.Din_C * error_in
-            F = saturate(F_unsat[0][0], P.F_max)
-        elif self.method == "digital_filter":
-            # prefilter for outer loop
-            z_r_filtered = self.prefilter_out.update(z_r)
-            # error signal for outer loop
-            error_out = z_r_filtered - z
-            # outer loop control
-            theta_r = self.control_out.update(error_out)
-            #error signal for inner loop
-            error_in = theta_r - theta
-            # inner loop control
-            F_unsat = self.control_in.update(error_in)
-            F = saturate(F_unsat, P.F_max)
-        return F
-
-    def updatePrefilterState(self, z_r):
-        for i in range(0, self.N):
-            self.xout_F = self.xout_F + (P.Ts/self.N)*(
-                self.Aout_F @ self.xout_F + self.Bout_F * z_r
-            )
-
-    def updateControlOutState(self, error_out):
-        for i in range(0, self.N):
-            self.xout_C = self.xout_C + (P.Ts/self.N)*(
-                self.Aout_C @ self.xout_C + self.Bout_C * error_out
-            )
-
-    def updateControlInState(self, error_in):
-        for i in range(0, self.N):
-            self.xin_C = self.xin_C + (P.Ts/self.N)*(
-                self.Ain_C @ self.xin_C + self.Bin_C * error_in
-            )
-
+    def update(self, theta_r, y):
+        theta = y[0][0]
+        # prefilter the reference
+        theta_r_filtered = self.prefilter.update(theta_r)
+         # filtered error signal
+        error = theta_r_filtered - theta
+        # update controller
+        tau_tilde = self.control.update(error)
+        # compute feedback linearization torque tau_fl
+        tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
+        # compute total torque
+        tau = saturate(tau_fl + tau_tilde, P.tau_max)
+        return tau
 
 def saturate(u, limit):
     if abs(u) > limit:
         u = limit * np.sign(u)
     return u
 
+
+class transferFunction:
+    def __init__(self, num, den, Ts):
+        # expects num and den to be numpy arrays of
+        # shape (1,m+1) and (1,n+1)
+        m = num.shape[1]
+        n = den.shape[1]
+        # set initial conditions
+        self.state = np.zeros((n-1, 1))
+        self.Ts = Ts
+        # make the leading coef of den == 1
+        if den.item(0) != 1:
+            tmp = den.item(0)
+            num = num / tmp
+            den = den / tmp
+        self.num = num
+        self.den = den
+        # set up state space equations in control canonic form
+        self.A = np.zeros((n-1, n-1))
+        self.B = np.zeros((n-1, 1))
+        self.C = np.zeros((1, n-1))
+        for i in range(0, n-1):
+            self.A[0][i] = - den.item(i + 1)
+        for i in range(1, n-1):
+            self.A[i][i - 1] = 1.0
+        if n>1:
+            self.B[0][0] = 1.0
+        if m == n:
+            self.D = num.item(0)
+            for i in range(0, n-1):
+                self.C[0][i] = num.item(i+1) \
+                               - num.item(0)*den.item(i+1)
+        else:
+            self.D = 0.0
+            for i in range(n-m-1, n-1):
+                self.C[0][i] = num.item(i)
+
+    def update(self, u):
+        x = self.rk4(u)
+        y = self.C @ x + self.D * u
+        return y.item(0)
+
+    def f(self, state, u):
+        xdot = self.A @ state + self.B * u
+        return xdot
+
+    def rk4(self, u):
+        # Integrate ODE using Runge-Kutta 4 algorithm
+        F1 = self.f(self.state, u)
+        F2 = self.f(self.state + self.Ts / 2 * F1, u)
+        F3 = self.f(self.state + self.Ts / 2 * F2, u)
+        F4 = self.f(self.state + self.Ts * F3, u)
+        self.state += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
+        return self.state
+    
+
+class digitalFilter:
+    def __init__(self, num, den, Ts):
+        self.Ts = Ts
+        sys = tf(num, den)
+        sys_d = c2d(sys, Ts, method='tustin')
+        self.den_d = sys_d.den[0][0]
+        self.num_d = sys_d.num[0][0]
+        self.prev_filt_output = np.zeros(len(self.num_d)-1)
+        self.prev_filt_input = np.zeros(len(self.den_d))
+
+    def update(self, u):
+        # update vector with filter inputs (u)
+        self.prev_filt_input = np.hstack(([u], self.prev_filt_input[0:-1]))
+        # use filter coefficients to calculate new output (y)
+        y = self.num_d @ self.prev_filt_input - self.den_d[1:] @ self.prev_filt_output
+        # update vector with filter outputs
+        self.prev_filt_output = np.hstack(([y], self.prev_filt_output[0:-1]))
+        return y

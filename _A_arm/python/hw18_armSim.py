@@ -8,7 +8,7 @@ from armDynamics import armDynamics
 from ctrlLoopshape import ctrlLoopshape
 
 # instantiate arm, controller, and reference classes
-arm = armDynamics(alpha=0.2)
+arm = armDynamics(alpha=0.1)
 controller = ctrlLoopshape()
 reference = signalGenerator(amplitude=30*np.pi/180.0, frequency=0.05)
 #disturbance = signalGenerator(amplitude=0.1, frequency=0.07)

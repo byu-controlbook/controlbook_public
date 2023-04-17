@@ -25,7 +25,8 @@ C = C_pid \
 ###########################################################
 # add a prefilter to eliminate the overshoot
 ###########################################################
-F = tf(1, 1) 
+#F = tf(1, 1) * ls.notch(p1=1.0, p2=8.0, M=15.0)
+F = tf(1, 1) * ls.notch2(ws=3.0, M=10.0)
 
 
 ###########################################################
@@ -63,7 +64,11 @@ if __name__=="__main__":
     mag, phase, omega = bode(Plant * C_pid, dB=dB_flag, omega=[omega_n])
     ls.spec_noise(gamma_n=0.1*mag[0], omega_n=omega_n, dB_flag=dB_flag)
     #----------- general tracking specification --------
-    ls.spec_disturbance(gamma_d=0.1, omega_d=0.07, system=Plant*C_pid, dB_flag=dB_flag)
+    ls.spec_disturbance(gamma_d=0.1, omega_d=0.07, plant=Plant*C_pid, dB_flag=dB_flag)
+
+    #########################################
+    #   Plotting routines
+    #########################################
 
     ## plot the effect of adding the new compensator terms
     mag, phase, omega = bode(Plant * C, dB=dB_flag,
