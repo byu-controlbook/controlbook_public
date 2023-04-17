@@ -9,7 +9,7 @@ from ctrlLoopshape import ctrlLoopshape
 
 # instantiate pendulum, controller, and reference classes
 pendulum = pendulumDynamics(alpha = 0.2)
-controller = ctrlLoopshape(method="digital_filter")
+controller = ctrlLoopshape()
 reference = signalGenerator(amplitude=0.5, frequency=0.04)
 disturbance = signalGenerator(amplitude=0.5)
 noise_z = signalGenerator(amplitude=0.001)
@@ -26,20 +26,13 @@ while t < P.t_end:  # main simulation loop
     # Get referenced inputs from signal generators
     # Propagate dynamics in between plot samples
     t_next_plot = t + P.t_plot
-
     while t < t_next_plot:
         r = reference.square(t)
-
-        # the homework does not mention disturbance rejection for this
-        # problem
-        d = 0.0  #input disturbance
-        
-        # sensor noise 
+        d = 1.0  #input disturbance
         n = np.array([[noise_z.random(t)], [noise_th.random(t)]])
-        u = controller.update(r, y + n) # calc control
-        y = pendulum.update(u + d)  # propagate system
-        t = t + P.Ts  # advance time by Ts
-
+        u = controller.update(r, y + n) 
+        y = pendulum.update(u + d)  
+        t = t + P.Ts  
     # update animation and data plots
     animation.update(pendulum.state)
     dataPlot.update(t, r, pendulum.state, u)

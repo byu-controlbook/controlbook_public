@@ -1,31 +1,36 @@
 import numpy as np
 from control import c2d, tf
-import armParam as P
-import loopShaping as L
+import pendulumParam as P
+import loopShapingInner as L_in
+import loopShapingOuter as L_out
 
 class ctrlLoopshape:
     def __init__(self, method="state_space"):
         if method == "state_space":
-            self.prefilter = transferFunction(L.F_num, L.F_den, P.Ts)
-            self.control = transferFunction(L.C_num, L.C_den, P.Ts)
+            self.control_out = transferFunction(L_out.C_num, L_out.C_den, P.Ts)
+            self.prefilter_out = transferFunction(L_out.F_num, L_out.F_den, P.Ts)
+            self.control_in = transferFunction(L_in.C_num, L_in.C_den, P.Ts)
         elif method == "digital_filter":
-            self.prefilter = digitalFilter(L.F.num, L.F.den, P.Ts)
-            self.control = digitalFilter(L.C.num, L.C.den, P.Ts)
-        self.method = method
+            self.control_out = digitalFilter(L_out.C_num, L_out.C_den, P.Ts)
+            self.prefilter_out = digitalFilter(L_out.F_num, L_out.F_den, P.Ts)
+            self.control_in = digitalFilter(L_in.C_num, L_in.C_den, P.Ts)
 
-    def update(self, theta_r, y):
-        theta = y[0][0]
-        # prefilter the reference
-        theta_r_filtered = self.prefilter.update(theta_r)
-         # filtered error signal
-        error = theta_r_filtered - theta
-        # update controller
-        tau_tilde = self.control.update(error)
-        # compute feedback linearization torque tau_fl
-        tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
-        # compute total torque
-        tau = saturate(tau_fl + tau_tilde, P.tau_max)
-        return tau
+    def update(self, z_r, y):
+        z = y[0][0]
+        theta = y[1][0]
+        # prefilter for outer loop
+        z_r_filtered = self.prefilter_out.update(z_r)
+        # error signal for outer loop
+        error_out = z_r_filtered - z
+        # outer loop control
+        theta_r = self.control_out.update(error_out)
+        #error signal for inner loop
+        error_in = theta_r - theta
+        # inner loop control
+        F_unsat = self.control_in.update(error_in)
+        F = saturate(F_unsat, P.F_max)
+        return F
+
 
 def saturate(u, limit):
     if abs(u) > limit:

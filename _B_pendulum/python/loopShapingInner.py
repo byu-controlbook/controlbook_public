@@ -16,19 +16,16 @@ Plant = P_in
 #########################################
 #   Control Design
 #########################################
-C_in = tf([1], [1])
 
-# Proportional control: correct for negative sign in plant
-C_in = C_in \
-    * ls.proportional(kp=-1.) \
-    * ls.lead(w=30., M=10.) \
-    * ls.proportional(kp=100.0)
+C = tf([1], [1]) * ls.proportional(kp=-1.) # correct for negative sign in plant
+C = C * ls.proportional(kp=800.0) # set cross-over to 40
+C = C * ls.lead(w=40., M=15.) # increase phase margin
 
 ###########################################################
-# Extracting coefficients for controller and prefilter
+# Extracting coefficients for controller
 ###########################################################
-Cin_num = np.asarray(C_in.num[0])
-Cin_den = np.asarray(C_in.den[0])
+C_num = np.asarray(C.num[0])
+C_den = np.asarray(C.den[0])
 
 if __name__=="__main__":
     # calculate bode plot and gain and phase margin
@@ -53,13 +50,18 @@ if __name__=="__main__":
     # ----------- noise specification --------
     ls.spec_noise(gamma_n=0.1, omega_n=200., dB_flag=dB_flag)
 
+
+    #########################################
+    #  Create the plots
+    #########################################
+
     ## plot the effect of adding the new compensator terms
-    mag, phase, omega = bode(Plant * C_in, dB=dB_flag,
+    mag, phase, omega = bode(Plant * C, dB=dB_flag,
                                 omega=np.logspace(-3, 5),
                                 plot=True, label="$C_{final}(s)P(s)$",
                                 color='orange')
 
-    gm, pm, Wcg, Wcp = margin(Plant * C_in)
+    gm, pm, Wcg, Wcp = margin(Plant * C)
     print("for final C*P:")
     if dB_flag == True:
         print(" pm: ", pm, " Wcp: ", Wcp,
@@ -77,11 +79,11 @@ if __name__=="__main__":
     # now check the closed-loop response
     ############################################
     # Open-loop transfer function
-    OPEN = Plant*C_in
+    OPEN = Plant*C
     # Closed loop transfer function from R to Y
-    CLOSED_R_to_Y = (Plant*C_in/(1.0+Plant*C_in))
+    CLOSED_R_to_Y = (Plant*C/(1.0+Plant*C))
     # Closed loop transfer function from R to U
-    CLOSED_R_to_U = (C_in/(1.0+Plant*C_in))
+    CLOSED_R_to_U = (C/(1.0+Plant*C))
 
     plt.figure()
     plt.subplot(311)

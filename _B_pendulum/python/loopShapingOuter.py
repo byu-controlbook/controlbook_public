@@ -4,83 +4,38 @@ from control import tf, step_response, bode, tf2ss, \
     margin, mag2db, minreal
 import numpy as np
 import hw16 as P16
-import loopshape_tools as lt
+import loopshape_tools as ls
 import loopShapingInner as L_in
 
 # flag to define if using dB or absolute scale for M(omega)
 dB_flag = P16.dB_flag
-
 P_out = P16.P_out
 
 # construct plant as cascade of P_out and closed inner loop
-Plant = minreal(P_out* \
-            (L_in.P_in*L_in.C_in/(1+L_in.P_in*L_in.C_in)))
+Plant = minreal(P_out*(L_in.P_in*L_in.C/(1+L_in.P_in*L_in.C)))
 
 #########################################
 #   Control Design
 #########################################
 C = tf([1], [1])
-
-# define specifications:
-omega_r = 0.0032  # track signals below this frequency
-gamma_r = 0.00001  # tracking error below this value
-
-omega_n = 1000  # attenuate noise above this frequency
-gamma_n = 0.0001  # attenuate noise by this amount
-
-
-#  phase lead: increase PM (stability)
-# At desired crossover frequency, PM = -3
-# Add 70 deg of PM with lead
-
-#location of maximum frequency bump (desired crossover)
-w_max = 1.1
-M = 32   # lead ratio
-Lead = lt.get_control_lead(w_max, M)
-C = C*Lead
-
-# find gain to set crossover at w_max = 1.1 rad/s
-mag, phase, omega = bode(Plant*C, dB=False,
-                         omega=[w_max], Plot=False)
-K = lt.get_control_proportional(1.0/mag[0])
-C = K*C
-
-## boost low-frequency gain
-# Find gain increase needed at omega_r
-mag, phase, omega = bode(Plant*C, omega=[omega_r],
-                         Plot=False)
-gain_increase_needed = 1/gamma_r/mag[0]
-
-# minimum gain increase at low frequencies is 4.8 let lag ratio
-# be 8.
-M = 8
-p = omega_r # set pole at omega_r
-z = M*p # set zero at M*omega_r
-Lag = lt.get_control_lag(z, M)
-C = C*Lag
-
-
-# Noise attenuation constraint not quite satisfied can be
-# satisfied by reducing gain at 400 rad/s by a factor of 2 Use
-# a low-pass filter
-lpf = lt.get_control_lpf(100.0)
-C = lpf*C
+C = C * ls.proportional(0.1) \
+      * ls.lead(w=1.0,M=20.0) \
+      * ls.lag(z=0.04, M=10) \
+      * ls.lpf(p=50)
 
 ############################################
 #  Prefilter Design
 ############################################
-F = tf([1], [1])
+F = tf([1], [1])\
+    * ls.lpf(p=2.0)
 
-# low pass filter
-p = 2
-LPF = tf([p], [1, p])
-F = F*LPF
-
-##############################################
-#  Convert Controller to State Space Equations
-##############################################
-C_ss = tf2ss(C)
-F_ss = tf2ss(F)
+###########################################################
+# Extracting coefficients for controller and prefilter
+###########################################################
+C_num = np.asarray(C.num[0])
+C_den = np.asarray(C.den[0])
+F_num = np.asarray(F.num[0])
+F_den = np.asarray(F.den[0])
 
 if __name__=="__main__":
     # calculate bode plot and gain and phase margin
@@ -101,12 +56,12 @@ if __name__=="__main__":
     #########################################
     #   Define Design Specifications
     #########################################
-    # ----------- general tracking specification --------
-    ls.spec_track_ref(gamma_r, omega_r, dB_flag)
+    ls.spec_track_ref(gamma_r=0.00001, omega_r=0.0032, dB_flag=dB_flag)
+    ls.spec_noise(gamma_n=0.0001, omega_n=1000, dB_flag=dB_flag)
 
-    # ----------- noise specification --------
-    ls.pec_noise(gamma_n, omega_n, dB_flag)
-
+   #########################################
+    #  Create the plots
+    #########################################
     mag, phase, omega = bode(Plant * C, dB=dB_flag,
                              omega=np.logspace(-3, 5),
                              plot=True, label="$C_{final}(s)P(s)$",
@@ -126,8 +81,6 @@ if __name__=="__main__":
     fig.axes[0].set_title('Outer Open-loop Bode Plot')
     fig.axes[0].grid(True)
     fig.axes[1].grid(True)
-    plt.show()
-
 
     ############################################
     # now check the closed-loop response with prefilter
@@ -141,7 +94,7 @@ if __name__=="__main__":
     # Closed loop transfer function from R to U - with prefilter
     CLOSED_R_to_U_with_F = (F*C / (1.0 + Plant * C))
 
-    plt.figure()
+    plt.figure(2)
     plt.grid(True)
     plt.subplot(311)
     mag, phase, omega = bode(CLOSED_R_to_Y,
