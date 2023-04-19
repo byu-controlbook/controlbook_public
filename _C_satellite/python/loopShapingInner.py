@@ -11,16 +11,16 @@ P10 = ctrlPID()
 dB_flag = P16.dB_flag
 
 # Compute open-loop transfer functions as described in Chapter 18
-Plant = tf([P10.sigma, 1],
-           [P10.sigma*P.Js, P10.sigma*P.b+P.Js,
-            P10.sigma*P.k+P.b+P10.kd_th, P.k])
+# Plant = tf([P10.sigma, 1],
+#            [P10.sigma*P.Js, P10.sigma*P.b+P.Js,
+#             P10.sigma*P.k+P.b+P10.kd_th, P.k])
+Plant = tf([1.0], [(P.Js+P.Jp), 0.0, 0.0])
 
 #########################################
 #   Control Design
 #########################################
 C = tf([1], [1]) \
-    * ls.proportional(kp=60.0) \
-    * ls.lpf(p=4.0)
+    * ls.lead(w=0.41, M=15.0)\
 
 ###########################################################
 # Extracting coefficients for controller
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     #########################################
     #   Define Design Specifications
     #########################################
-    ls.spec_track_ref(gamma_r=0.01, omega_r=0.01, dB_flag=dB_flag)
+    ls.spec_track_ref(gamma_r=0.01, omega_r=0.001, dB_flag=dB_flag)
     ls.spec_noise(gamma_n=0.01, omega_n=20, dB_flag=dB_flag)
 
     ## plot the effect of adding the new compensator terms

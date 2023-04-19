@@ -83,7 +83,7 @@ if __name__=="__main__":
     fig.axes[1].grid(True)
 
     ############################################
-    # now check the closed-loop response with prefilter
+    # closed-loop response with prefilter
     ############################################
     # Closed loop transfer function from R to Y - no prefilter
     CLOSED_R_to_Y = (Plant * C / (1.0 + Plant * C))

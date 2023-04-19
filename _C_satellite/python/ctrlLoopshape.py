@@ -43,8 +43,7 @@ class ctrlLoopshape:
         #error signal for inner loop
         error_in = theta_r - theta
         # inner loop control
-        tau_unsat = -self.kd_th * self.theta_dot \
-            + self.control_in.update(error_in)
+        tau_unsat = self.control_in.update(error_in)
         tau = saturate(tau_unsat, P.tau_max)
         return tau
 
@@ -113,7 +112,7 @@ class transferFunction:
 class digitalFilter:
     def __init__(self, num, den, Ts):
         self.Ts = Ts
-        sys = tf(num, den)
+        sys = tf(num[0], den[0])
         sys_d = c2d(sys, Ts, method='tustin')
         self.den_d = sys_d.den[0][0]
         self.num_d = sys_d.num[0][0]
