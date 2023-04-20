@@ -30,7 +30,7 @@ def spec_disturbance(gamma_d, omega_d, plant, dB_flag=True):
     # plant is the transfer function
     fig = plt.gcf()
     w = logspace(log10(omega_d)-2, log10(omega_d));
-    mag, phase, omega = bode(plant, dB=False, omega=w, Plot=False)
+    mag, phase, omega = bode(plant, dB=False, omega=w, plot=False)
     if dB_flag == False:
         fig.axes[0].plot(w, mag/gamma_d,'g')
         # fig.axes[0].scatter(omega_d, 1. / gamma_d * mag, facecolors='none', 
