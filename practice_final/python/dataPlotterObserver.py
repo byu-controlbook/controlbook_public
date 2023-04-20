@@ -36,10 +36,10 @@ class dataPlotterObserver:
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.theta_history.append(x.item(0))
-        self.theta_dot_history.append(x.item(1))
-        self.theta_hat_history.append(x_hat.item(0))
-        self.theta_hat_dot_history.append(x_hat.item(1))
+        self.theta_history.append(180/np.pi*x.item(0))
+        self.theta_dot_history.append(180/np.pi*x.item(1))
+        self.theta_hat_history.append(180/np.pi*x_hat.item(0))
+        self.theta_hat_dot_history.append(180/np.pi*x_hat.item(1))
         self.d_history.append(d)
         self.d_hat_history.append(d_hat)
 
