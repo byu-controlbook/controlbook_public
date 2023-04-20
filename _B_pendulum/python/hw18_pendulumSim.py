@@ -8,7 +8,7 @@ from pendulumDynamics import pendulumDynamics
 from ctrlLoopshape import ctrlLoopshape
 
 # instantiate pendulum, controller, and reference classes
-pendulum = pendulumDynamics(alpha = 0.2)
+pendulum = pendulumDynamics(alpha = 0.1)
 controller = ctrlLoopshape()
 reference = signalGenerator(amplitude=0.5, frequency=0.04)
 disturbance = signalGenerator(amplitude=0.5)
