@@ -18,6 +18,7 @@ class dataPlotter:
         self.z_history = []  # position z
         self.href_history = []  # reference altitude h_r
         self.h_history = []  # altitude h
+        self.thetaref_history = []  # reference angle theta_r
         self.theta_history = []  # angle theta
         self.Force_history = []  # control force
         self.Torque_history = []  # control torque
@@ -29,18 +30,19 @@ class dataPlotter:
         self.handle.append(myPlot(self.ax[3], ylabel='force(N)'))
         self.handle.append(myPlot(self.ax[4], xlabel='t(s)', ylabel='torque(Nm)'))
 
-    def update(self, t, states, z_ref, h_ref, motor_thrusts):
-        '''
-            Add to the time and data histories, and update the plots.
-        '''
+    def update(self, t, states, path, motor_thrusts):
         force = motor_thrusts[0][0]+motor_thrusts[1][0]
         torque = P.d * (motor_thrusts[0][0] - motor_thrusts[1][0])
+        z_ref = path[0][0]
+        h_ref = path[1][0]
+        theta_ref = path[2][0]
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.zref_history.append(z_ref)  # reference position
         self.z_history.append(states.item(0))  # position
         self.href_history.append(h_ref)  # reference position
         self.h_history.append(states.item(1))  # position
+        self.thetaref_history.append(theta_ref)  # reference angle
         self.theta_history.append(180.0/np.pi*states.item(2))  # VTOL angle (converted to degrees)
         self.Force_history.append(force)  # force
         self.Torque_history.append(torque)  # torque
@@ -48,7 +50,7 @@ class dataPlotter:
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.z_history, self.zref_history])
         self.handle[1].update(self.time_history, [self.h_history, self.href_history])
-        self.handle[2].update(self.time_history, [self.theta_history])
+        self.handle[2].update(self.time_history, [self.theta_history, self.thetaref_history])
         self.handle[3].update(self.time_history, [self.Force_history])
         self.handle[4].update(self.time_history, [self.Torque_history])
 
