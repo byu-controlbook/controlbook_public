@@ -1,7 +1,9 @@
 import numpy as np
 import VTOLParam as P
-from scipy import signal
-import control as cnt
+import scipy 
+#from scipy import signal
+#import control as cnt
+
 
 
 class ctrlTrajectoryFollower:
@@ -45,10 +47,12 @@ class ctrlTrajectoryFollower:
             [1, integrator_h])
         des_poles = np.roots(des_char_poly)
         # Compute the gains if the system is controllable
-        if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 8:
+        if 0: #np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 8:
             print("The system is not controllable")
         else:
-            K1 = cnt.place(A1, B1, des_poles)
+            #K1 = cnt.place(A1, B1, des_poles)
+            res = scipy.signal.place_poles(A1, B1, des_poles)
+            K1 = res.gain_matrix
             self.K = K1[0:2, 0:6]
             self.KI = K1[0:2, 6:8]
         self.integrator = np.array([[0.], [0]])  
