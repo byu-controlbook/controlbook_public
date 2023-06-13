@@ -5,17 +5,16 @@ import scipy
 #import control as cnt
 
 
-
 class ctrlTrajectoryFollower:
     def __init__(self):
         # tuning parameters
-        wn_z    = 0.9905
+        wn_z    = 0.5 #0.9905
         zeta_z  = 0.707
-        wn_h    = 1.5
+        wn_h    = 1.0 #1.5
         zeta_h  = 0.707
-        wn_th   = 13.3803
+        wn_th   = 9. #13.3803
         zeta_th = 0.707
-        integrator_h = 0.3
+        integrator_h = 0.2
         integrator_z = 0.2
         # State Space Equations
         self.Fe = (P.mc + 2.0 * P.mr) * P.g  # equilibrium force 
