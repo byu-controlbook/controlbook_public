@@ -14,8 +14,8 @@ F_wind = 0.0  # wind disturbance force is zero in initial homeworks
 length = 10.0
 
 # Initial Conditions
-z0 = 0.0  # initial lateral position
-h0 = 0.0  # initial altitude
+z0 = -8.0  # initial lateral position
+h0 = 6.0  # initial altitude
 theta0 = 0  # initial roll angle
 zdot0 = 0  # initial lateral velocity
 hdot0 = 0  # initial climb rate
