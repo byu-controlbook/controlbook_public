@@ -13,7 +13,7 @@ class dataPlotter:
         self.num_cols = 1    # Number of subplot columns
         # Crete figure and axes handles
         self.fig, self.ax = plt.subplots(self.num_rows, self.num_cols, sharex=True)
-        move_figure(self.fig, 500, 500)
+        # move_figure(self.fig, 500, 500)
         # Instantiate lists to hold the time and data histories
         self.time_history = []  # time
         self.theta_ref_history = []  # reference angle
