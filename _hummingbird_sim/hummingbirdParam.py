@@ -30,6 +30,9 @@ J3y =
 J3z = 
 km = g * (m1 * ell1 + m2 * ell2) / ellT  # need to find this experimentally for hardware
 
+# mixing matrix
+unmixing = np.array([[1.0, 1.0], [d, -d]]) # converts fl and fr (LR) to force and torque (FT)
+mixing = np.linalg.inv(unmixing) # converts force and torque (FT) to fl and fr (LR) 
 
 # Simulation Parameters
 t_start = 0.0  # Start time of simulation
