@@ -80,6 +80,11 @@ If you are using pycharm, open Settings>Project:python>Python Interpreter.  Make
 
 ![Alt text](_images/pythonpackages.png?raw=true "Title")
 
+Alternatively, you may use this requirements file to download all the necessary dependencies: [requirements.txt](https://drive.google.com/file/d/1--3DUmJV08HGFZlCZeH6IYGUhyRb31Z3/view?usp=sharing)
+
+To install these dependencies, simply use the command:
+
+pip3 install -r requirements.txt
 
 # Jupyter Notebooks
 
