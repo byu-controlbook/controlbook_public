@@ -29,8 +29,8 @@
 //=============================================================================
 // encoders
 #define PIN_ENCODER_YAW_CS 8
-#define PIN_ENCODER_PITCH_CS 7
-#define PIN_ENCODER_ROLL_CS 6
+#define PIN_ENCODER_PITCH_CS 6
+#define PIN_ENCODER_ROLL_CS 7
 
 // motor ESCs
 #define PIN_MOTOR_LEFT_PWM 9    // timer1 PWM pin
