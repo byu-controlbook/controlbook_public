@@ -1,8 +1,0 @@
-module QtQuick.Controls.iOS.impl
-linktarget Qt6::qtquickcontrols2iosstyleimplplugin
-plugin qtquickcontrols2iosstyleimplplugin
-classname QtQuick_Controls_iOS_implPlugin
-typeinfo plugins.qmltypes
-prefer :/qt-project.org/imports/QtQuick/Controls/iOS/impl/
-CursorDelegate 6.0 CursorDelegate.qml
-
