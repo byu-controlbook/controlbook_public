@@ -75,6 +75,7 @@ simulink_old/
 
 # for any JetBrains IDE:
 .idea/
+.venv/
 
 # CMake
 cmake-build-*/
