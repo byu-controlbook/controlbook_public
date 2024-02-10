@@ -18,15 +18,16 @@ t = P.t_start  # time starts at t_start
 while t < P.t_end:  # main simulation loop
     # set variables
     phi = phi_ref.sin(t)
-    theta = 0#theta_ref.sin(t)
-    psi = 0#psi_ref.sin(t)
+    theta = 0  # theta_ref.sin(t)
+    psi = 0  # psi_ref.sin(t)
     # update animation
     state = np.array([[phi], [theta], [psi], [0.0], [0.0], [0.0]])
     ref = np.array([[0], [0], [0]])
-    force = 0
-    torque = 0
+    fl = 0
+    fr = 0
+    pwm = np.array([[fl], [fr]])
     animation.update(t, state)
-    dataPlot.update(t, state, ref, force, torque)
+    dataPlot.update(t, state, ref, pwm)
 
     t = t + P.t_plot  # advance time by t_plot
     plt.pause(0.05)
