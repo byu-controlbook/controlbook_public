@@ -60,7 +60,7 @@ class ctrlStateFeedbackIntegrator:
         self.integrator_psi = 0.0  
         self.error_psi_d1 = 0.0 
 
-    def update(self, r, y):
+    def update(self, r: np.ndarray, y: np.ndarray):
         theta_ref = r[0][0]
         psi_ref = r[1][0]
         phi = y[0][0]

@@ -29,7 +29,7 @@ class ctrlLonPID:
         self.integrator_theta = 0.
         self.error_theta_d1 = 0.  # pitch error delayed by 1
 
-    def update(self, r, y):
+    def update(self, r: np.ndarray, y: np.ndarray):
         theta_ref = r[0][0]
         theta = y[1][0]
         force_fl = 

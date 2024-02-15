@@ -50,7 +50,7 @@ class DataPlotter:
         self.handle.append(MyPlot(self.ax[0][2], ylabel='force(N)'))
         self.handle.append(MyPlot(self.ax[1][2], ylabel='torque(Nm)'))
 
-    def update(self, t, state, ref, pwm):
+    def update(self, t: float, state: np.ndarray, ref: np.ndarray, pwm: np.ndarray):
         '''
             Add to the time and data histories, and update the plots.
         '''
