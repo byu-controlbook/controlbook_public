@@ -36,7 +36,7 @@ class HummingbirdDynamics:
         self.J3z = P.J3z * (1. + alpha * (2. * np.random.rand() - 1.))
         self.km = P.km * (1. + alpha * (2. * np.random.rand() - 1.))
  
-    def update(self, u):
+    def update(self, u: np.ndarray):
         # This is the external method that takes the input u at time
         # t and returns the output y at time t.
         # saturate the input force
@@ -45,7 +45,7 @@ class HummingbirdDynamics:
         y = self.h()  # return the corresponding output
         return y
 
-    def f(self, state, pwm):
+    def f(self, state: np.ndarray, pwm: np.ndarray):
         # Return xdot = f(x,u)
         phidot = state[3][0]
         thetadot = state[4][0]
@@ -85,7 +85,7 @@ class HummingbirdDynamics:
         y = np.array([[phi], [theta], [psi]])
         return y
 
-    def rk4_step(self, u):
+    def rk4_step(self, u: np.ndarray):
         # Integrate ODE using Runge-Kutta RK4 algorithm
         F1 = self.f(self.state, u)
         F2 = self.f(self.state + P.Ts / 2 * F1, u)
@@ -93,7 +93,7 @@ class HummingbirdDynamics:
         F4 = self.f(self.state + P.Ts * F3, u)
         self.state += P.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
 
-    def _M(self, state):
+    def _M(self, state: np.ndarray):
         # FIXME Fill in this function
         phi = state[0][0]
         theta = state[1][0]
@@ -112,7 +112,7 @@ class HummingbirdDynamics:
                       [, , ]
                       ])
 
-    def _C(self, state):
+    def _C(self, state: np.ndarray):
         # FIXME Fill in this function
         #extact any necessary variables from the state
 
@@ -122,7 +122,7 @@ class HummingbirdDynamics:
                 [],
                 ])
         
-    def _partialP(self, state):
+    def _partialP(self, state: np.ndarray):
         # FIXME Fill in this function
         #extact any necessary variables from the state
 
@@ -132,7 +132,7 @@ class HummingbirdDynamics:
                         [],
                         ])
     
-    def _tau(self, state, force, torque):
+    def _tau(self, state: np.ndarray, force: float, torque: float):
         """
         Returns the tau matrix as defined in the hummingbird manual.
 
@@ -164,7 +164,7 @@ class HummingbirdDynamics:
         return
 
 
-def saturate(u, limit):
+def saturate(u: np.ndarray, limit: float):
     for i in range(0, u.shape[0]):
         if abs(u[i][0]) > limit:
             u[i][0] = limit * np.sign(u[i][0])

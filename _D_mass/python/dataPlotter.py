@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np
 
@@ -11,7 +11,8 @@ class dataPlotter:
         self.num_rows = 2    # Number of subplot rows
         self.num_cols = 1    # Number of subplot columns
         # Crete figure and axes handles
-        self.fig, self.ax = plt.subplots(self.num_rows, self.num_cols, sharex=True)
+        self.fig, self.ax = plt.subplots(
+            self.num_rows, self.num_cols, sharex=True)
         # Instantiate lists to hold the time and data histories
         self.time_history = []  # time
         self.z_ref_history = []  # reference position
@@ -19,20 +20,23 @@ class dataPlotter:
         self.force_history = []  # control force
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='z(m)', title='Mass Data'))
-        self.handle.append(myPlot(self.ax[1], xlabel='t(s)', ylabel='force(N)'))
+        self.handle.append(
+            myPlot(self.ax[0], ylabel='z(m)', title='Mass Data'))
+        self.handle.append(
+            myPlot(self.ax[1], xlabel='t(s)', ylabel='force(N)'))
 
-    def update(self, t, reference, states, ctrl):
+    def update(self, t: float, reference: float, states: np.ndarray, ctrl: float):
         '''
             Add to the time and data histories, and update the plots.
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.z_ref_history.append(reference)  # reference mass position
-        self.z_history.append(states[0,0])  # mass position
+        self.z_history.append(states[0, 0])  # mass position
         self.force_history.append(ctrl)  # force on the base
         # update the plots with associated histories
-        self.handle[0].update(self.time_history, [self.z_history, self.z_ref_history])
+        self.handle[0].update(self.time_history, [
+                              self.z_history, self.z_ref_history])
         self.handle[1].update(self.time_history, [self.force_history])
 
 
@@ -40,6 +44,7 @@ class myPlot:
     ''' 
         Create each individual subplot.
     '''
+
     def __init__(self, ax,
                  xlabel='',
                  ylabel='',
@@ -71,7 +76,7 @@ class myPlot:
         self.ax.set_title(title)
         self.ax.grid(True)
         # Keeps track of initialization
-        self.init = True   
+        self.init = True
 
     def update(self, time, data):
         ''' 
@@ -84,15 +89,17 @@ class myPlot:
                 # Instantiate line object and add it to the axes
                 self.line.append(Line2D(time,
                                         data[i],
-                                        color=self.colors[np.mod(i, len(self.colors) - 1)],
-                                        ls=self.line_styles[np.mod(i, len(self.line_styles) - 1)],
+                                        color=self.colors[np.mod(
+                                            i, len(self.colors) - 1)],
+                                        ls=self.line_styles[np.mod(
+                                            i, len(self.line_styles) - 1)],
                                         label=self.legend if self.legend != None else None))
                 self.ax.add_line(self.line[i])
             self.init = False
             # add legend if one is specified
             if self.legend != None:
                 plt.legend(handles=self.line)
-        else: # Add new data to the plot
+        else:  # Add new data to the plot
             # Updates the x and y data of each line.
             for i in range(len(self.line)):
                 self.line[i].set_xdata(time)
@@ -100,5 +107,3 @@ class myPlot:
         # Adjusts the axis to fit all of the data
         self.ax.relim()
         self.ax.autoscale()
-           
-

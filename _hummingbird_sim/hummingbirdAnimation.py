@@ -14,18 +14,21 @@ class HummingbirdAnimation:
         self.app = pg.QtWidgets.QApplication([])  # initialize QT
         self.window = gl.GLViewWidget()  # initialize the view object
         self.window.setWindowTitle('Hummingbird Viewer')
-        self.window.setGeometry(800, 200, 700, 700)  # args: upper_left_x, upper_right_y, width, height
-        grid = gl.GLGridItem() # make a grid to represent the ground
-        grid.scale(20, 20, 20) # set the size of the grid (distance between each line)
-        self.window.addItem(grid) # add grid to viewer
-        self.window.setCameraPosition(distance=15) # distance from center of plot to camera
+        # args: upper_left_x, upper_right_y, width, height
+        self.window.setGeometry(800, 200, 700, 700)
+        grid = gl.GLGridItem()  # make a grid to represent the ground
+        # set the size of the grid (distance between each line)
+        grid.scale(20, 20, 20)
+        self.window.addItem(grid)  # add grid to viewer
+        # distance from center of plot to camera
+        self.window.setCameraPosition(distance=15)
         self.window.setBackgroundColor('k')  # set background color to black
         self.window.show()  # display configured window
-        self.window.raise_() # bring window to the front
-        self.plot_initialized = False # has the mav been plotted yet?
+        self.window.raise_()  # bring window to the front
+        self.plot_initialized = False  # has the mav been plotted yet?
         self.vtol_plot = []
 
-    def update(self, t, state):
+    def update(self, t: float, state: np.ndarray):
         # initialize the drawing the first time update() is called
         if not self.plot_initialized:
             self.hummingbird_plot = DrawHummingbird(state, self.window)
@@ -169,9 +172,9 @@ class DrawHummingbird():
             cw_position)
         # body
         body_position = cw_position \
-                        + cw_rotation \
-                          @ np.array([[self.cw_length/2+self.body_length/2],
-                                      [0], [0]])
+            + cw_rotation \
+            @ np.array([[self.cw_length/2+self.body_length/2],
+                        [0], [0]])
         body_rotation = Euler2Rotation(phi, theta, psi)
         self.body = self.update_object(
             self.body,
@@ -182,10 +185,10 @@ class DrawHummingbird():
             body_position)
         # arm
         arm_position = body_position \
-                        + body_rotation \
-                          @ np.array([[self.body_length/2], [0], [0]])
+            + body_rotation \
+            @ np.array([[self.body_length/2], [0], [0]])
         arm_rotation = Euler2Rotation(phi, theta, psi) \
-                       @ Euler2Rotation(0, 0, np.pi/2)
+            @ Euler2Rotation(0, 0, np.pi/2)
         self.arm = self.update_object(
             self.arm,
             self.arm_points,
@@ -195,12 +198,12 @@ class DrawHummingbird():
             arm_position)
         # motors
         motor1_position = arm_position \
-                               + arm_rotation \
-                                 @ np.array([[self.arm_length/2-self.motor_width/2],
-                                             [0],
-                                             [-self.arm_height/2-self.motor_length/2]])
+            + arm_rotation \
+            @ np.array([[self.arm_length/2-self.motor_width/2],
+                        [0],
+                        [-self.arm_height/2-self.motor_length/2]])
         motor1_rotation = Euler2Rotation(phi, theta, psi) \
-                          @ Euler2Rotation(0, np.pi/2, 0)
+            @ Euler2Rotation(0, np.pi/2, 0)
         self.motor1 = self.update_object(
             self.motor1,
             self.motor_points,
@@ -209,12 +212,12 @@ class DrawHummingbird():
             motor1_rotation,
             motor1_position)
         motor2_position = arm_position \
-                               + arm_rotation \
-                                 @ np.array([[-self.arm_length/2+self.motor_width/2],
-                                             [0],
-                                             [-self.arm_height/2-self.motor_length/2]])
+            + arm_rotation \
+            @ np.array([[-self.arm_length/2+self.motor_width/2],
+                        [0],
+                        [-self.arm_height/2-self.motor_length/2]])
         motor2_rotation = Euler2Rotation(phi, theta, psi) \
-                          @ Euler2Rotation(0, np.pi/2, 0)
+            @ Euler2Rotation(0, np.pi/2, 0)
         self.motor2 = self.update_object(
             self.motor2,
             self.motor_points,
@@ -224,12 +227,12 @@ class DrawHummingbird():
             motor2_position)
         # rotors
         rotor1_position = arm_position \
-                               + arm_rotation \
-                                 @ np.array([[self.arm_length/2-self.motor_width/2],
-                                             [0],
-                                             [-self.arm_height/2-self.motor_length]])
+            + arm_rotation \
+            @ np.array([[self.arm_length/2-self.motor_width/2],
+                        [0],
+                        [-self.arm_height/2-self.motor_length]])
         rotor1_rotation = Euler2Rotation(phi, theta, psi) \
-                          @ Euler2Rotation(0, 0, 10*t)
+            @ Euler2Rotation(0, 0, 10*t)
         self.rotor1 = self.update_object(
             self.rotor1,
             self.rotor_points,
@@ -238,12 +241,12 @@ class DrawHummingbird():
             rotor1_rotation,
             rotor1_position)
         rotor2_position = arm_position \
-                               + arm_rotation \
-                                 @ np.array([[-self.arm_length/2+self.motor_width/2],
-                                             [0],
-                                             [-self.arm_height/2-self.motor_length]])
+            + arm_rotation \
+            @ np.array([[-self.arm_length/2+self.motor_width/2],
+                        [0],
+                        [-self.arm_height/2-self.motor_length]])
         rotor2_rotation = Euler2Rotation(phi, theta, psi) \
-                          @ Euler2Rotation(0, 0, -10*t)
+            @ Euler2Rotation(0, 0, -10*t)
         self.rotor2 = self.update_object(
             self.rotor2,
             self.rotor_points,
@@ -284,7 +287,8 @@ class DrawHummingbird():
 
     def translate_points(self, points, translation):
         "Translate points by the vector translation"
-        translated_points = points + np.dot(translation, np.ones([1, points.shape[1]]))
+        translated_points = points + \
+            np.dot(translation, np.ones([1, points.shape[1]]))
         return translated_points
 
     def points_to_mesh(self, points, index):
@@ -294,9 +298,11 @@ class DrawHummingbird():
           (a rectangle requires two triangular mesh faces)
         """
         points = points.T
-        mesh = np.array([[points[index[0,0]],points[index[0,1]],points[index[0,2]]]])
+        mesh = np.array(
+            [[points[index[0, 0]], points[index[0, 1]], points[index[0, 2]]]])
         for i in range(1, index.shape[0]):
-            tmp = np.array([[points[index[i,0]], points[index[i,1]], points[index[i,2]]]])
+            tmp = np.array(
+                [[points[index[i, 0]], points[index[i, 1]], points[index[i, 2]]]])
             mesh = np.concatenate((mesh, tmp), axis=0)
         return mesh
 
@@ -312,7 +318,7 @@ class DrawHummingbird():
             [-length / 2, width / 2, -height / 2],  # 5
             [-length / 2, width / 2, height / 2],  # 6
             [-length / 2, -width / 2, height / 2],  # 7
-            ]).T
+        ]).T
 
         # point index that defines the mesh
         index = np.array([
@@ -363,7 +369,8 @@ class DrawHummingbird():
         theta = 0
         while theta <= 2*np.pi:
             theta += 2 * np.pi / N
-            new_point = np.array([[radius*np.cos(theta), radius*np.sin(theta), 0]])
+            new_point = np.array(
+                [[radius*np.cos(theta), radius*np.sin(theta), 0]])
             points = np.concatenate((points, new_point), axis=0)
         mygrey4 = np.array([0.3, 0.3, 0.3, 1])
         index = np.array([[0, 1, 2]])
