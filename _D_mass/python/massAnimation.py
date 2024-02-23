@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-import numpy as np 
+import numpy as np
 import massParam as P
-# if you are having difficulty with the graphics, 
-# try using one of the following backends.  
+# if you are having difficulty with the graphics,
+# try using one of the following backends.
 # See https://matplotlib.org/stable/users/explain/backends.html
 # import matplotlib
 # matplotlib.use('qtagg')  # requires pyqt or pyside
@@ -20,22 +20,25 @@ class massAnimation:
     '''
         Create mass animation
     '''
+
     def __init__(self):
         self.flagInit = True                  # Used to indicate initialization
         self.fig, self.ax = plt.subplots()    # Initializes a figure and axes object
         self.handle = []                      # Initializes a list object that will
-                                              # be used to contain handles to the
-                                              # patches and line objects.
-        self.length=P.length
-        self.width=P.width
-        plt.axis([-P.length-P.length/5, 2*P.length, -P.length, 2*P.length]) # Change the x,y axis limits
-        plt.plot([-P.length-P.length/5,2*P.length],[0,0],'k--')    # Draw track
+        # be used to contain handles to the
+        # patches and line objects.
+        self.length = P.length
+        self.width = P.width
+        # Change the x,y axis limits
+        plt.axis([-P.length-P.length/5, 2*P.length, -P.length, 2*P.length])
+        plt.plot([-P.length-P.length/5, 2*P.length],
+                 [0, 0], 'k--')    # Draw track
         plt.plot([-P.length, -P.length], [0, 2*P.width], 'k')  # Draw wall
 
         # Draw mass is the main function that will call the functions:
-    def update(self, u):
+    def update(self, x: np.ndarray):
         # Process inputs to function
-        z = u[0][0]   # position of mass, m
+        z = x[0][0]   # position of mass, m
         self.drawWeight(z)
         self.drawSpring(z)
         # After each function has been called, initialization is over.
@@ -53,8 +56,8 @@ class massAnimation:
             # Create the Rectangle patch and append its handle
             # to the handle list
             self.handle.append(mpatches.Rectangle(xy,
-                P.width, P.width, fc = 'blue', ec = 'black'))
-            self.ax.add_patch(self.handle[0]) # Add the patch to the axes
+                                                  P.width, P.width, fc='blue', ec='black'))
+            self.ax.add_patch(self.handle[0])  # Add the patch to the axes
         else:
             self.handle[0].set_xy(xy)         # Update patch
 
