@@ -1,8 +1,9 @@
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np
 
 plt.ion()  # enable interactive drawing
+
 
 class dataPlotter:
     def __init__(self):
@@ -11,7 +12,8 @@ class dataPlotter:
         self.num_cols = 1    # Number of subplot columns
 
         # Crete figure and axes handles
-        self.fig, self.ax = plt.subplots(self.num_rows, self.num_cols, sharex=True)
+        self.fig, self.ax = plt.subplots(
+            self.num_rows, self.num_cols, sharex=True)
 
         # Instantiate lists to hold the time and data histories
         self.time_history = []  # time
@@ -25,29 +27,34 @@ class dataPlotter:
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='z(m)', title='VTOL System Data'))
+        self.handle.append(
+            myPlot(self.ax[0], ylabel='z(m)', title='VTOL System Data'))
         self.handle.append(myPlot(self.ax[1], ylabel='h(m)'))
         self.handle.append(myPlot(self.ax[2], ylabel='theta(deg)'))
         self.handle.append(myPlot(self.ax[3], ylabel='force(N)'))
-        self.handle.append(myPlot(self.ax[4], xlabel='t(s)', ylabel='torque(Nm)'))
+        self.handle.append(
+            myPlot(self.ax[4], xlabel='t(s)', ylabel='torque(Nm)'))
 
-    def update(self, t, states, z_ref, h_ref, force, torque):
+    def update(self, t: float, states: np.ndarray, z_ref: float, h_ref: float, force: float, torque: float):
         '''
             Add to the time and data histories, and update the plots.
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.zref_history.append(z_ref)  # reference position
-        self.z_history.append(states[0,0])  # position
+        self.z_history.append(states[0, 0])  # position
         self.href_history.append(h_ref)  # reference position
-        self.h_history.append(states[1,0])  # position
-        self.theta_history.append(180.0/np.pi*states[2,0])  # VTOL angle (converted to degrees)
+        self.h_history.append(states[1, 0])  # position
+        # VTOL angle (converted to degrees)
+        self.theta_history.append(180.0/np.pi*states[2, 0])
         self.Force_history.append(force)  # force
         self.Torque_history.append(torque)  # torque
 
         # update the plots with associated histories
-        self.handle[0].update(self.time_history, [self.z_history, self.zref_history])
-        self.handle[1].update(self.time_history, [self.h_history, self.href_history])
+        self.handle[0].update(self.time_history, [
+                              self.z_history, self.zref_history])
+        self.handle[1].update(self.time_history, [
+                              self.h_history, self.href_history])
         self.handle[2].update(self.time_history, [self.theta_history])
         self.handle[3].update(self.time_history, [self.Force_history])
         self.handle[4].update(self.time_history, [self.Torque_history])
@@ -57,6 +64,7 @@ class myPlot:
     ''' 
         Create each individual subplot.
     '''
+
     def __init__(self, ax,
                  xlabel='',
                  ylabel='',
@@ -91,7 +99,7 @@ class myPlot:
         self.ax.grid(True)
 
         # Keeps track of initialization
-        self.init = True   
+        self.init = True
 
     def update(self, time, data):
         ''' 
@@ -104,15 +112,17 @@ class myPlot:
                 # Instantiate line object and add it to the axes
                 self.line.append(Line2D(time,
                                         data[i],
-                                        color=self.colors[np.mod(i, len(self.colors) - 1)],
-                                        ls=self.line_styles[np.mod(i, len(self.line_styles) - 1)],
+                                        color=self.colors[np.mod(
+                                            i, len(self.colors) - 1)],
+                                        ls=self.line_styles[np.mod(
+                                            i, len(self.line_styles) - 1)],
                                         label=self.legend if self.legend != None else None))
                 self.ax.add_line(self.line[i])
             self.init = False
             # add legend if one is specified
             if self.legend != None:
                 plt.legend(handles=self.line)
-        else: # Add new data to the plot
+        else:  # Add new data to the plot
             # Updates the x and y data of each line.
             for i in range(len(self.line)):
                 self.line[i].set_xdata(time)
@@ -121,5 +131,3 @@ class myPlot:
         # Adjusts the axis to fit all of the data
         self.ax.relim()
         self.ax.autoscale()
-           
-

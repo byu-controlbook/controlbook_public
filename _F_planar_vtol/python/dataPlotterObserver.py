@@ -1,8 +1,9 @@
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np
 
 plt.ion()  # enable interactive drawing
+
 
 class dataPlotterObserver:
     def __init__(self):
@@ -11,7 +12,8 @@ class dataPlotterObserver:
         self.num_cols = 2    # Number of subplot columns
 
         # Crete figure and axes handles
-        self.fig, self.ax = plt.subplots(self.num_rows, self.num_cols, sharex=True)
+        self.fig, self.ax = plt.subplots(
+            self.num_rows, self.num_cols, sharex=True)
 
         # Instantiate lists to hold the time and data histories
         self.time_history = []  # time
@@ -20,7 +22,7 @@ class dataPlotterObserver:
         self.h_history = []  # altitude h
         self.h_hat_history = []  # estimate of h
         self.theta_history = []  # angle theta
-        self.theta_hat_history = [] # estimate of theta
+        self.theta_hat_history = []  # estimate of theta
         self.z_dot_history = []
         self.z_hat_dot_history = []
         self.h_dot_history = []
@@ -30,45 +32,54 @@ class dataPlotterObserver:
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0][0], ylabel='z (m)', title='VTOL States'))
+        self.handle.append(
+            myPlot(self.ax[0][0], ylabel='z (m)', title='VTOL States'))
         self.handle.append(myPlot(self.ax[1][0], ylabel='h (m)'))
         self.handle.append(myPlot(self.ax[2][0], ylabel='theta (deg)'))
         self.handle.append(myPlot(self.ax[0][1], ylabel='z_dot (m/s)'))
         self.handle.append(myPlot(self.ax[1][1], ylabel='h_dot (m/s)'))
-        self.handle.append(myPlot(self.ax[2][1], xlabel='t(s)', ylabel='theta_dot (deg/s)'))
+        self.handle.append(
+            myPlot(self.ax[2][1], xlabel='t(s)', ylabel='theta_dot (deg/s)'))
 
-    def update(self, t, x, xhat_lat, xhat_lon):
+    def update(self, t: float, x: np.ndarray, xhat_lat: np.ndarray, xhat_lon: np.ndarray):
         '''
             Add to the time and data histories, and update the plots.
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.z_history.append(x[0,0])
-        self.h_history.append(x[1,0])
-        self.theta_history.append(x[2,0])
-        self.z_dot_history.append(x[3,0])
-        self.h_dot_history.append(x[4,0])
-        self.theta_dot_history.append(x[5,0])
-        self.z_hat_history.append(xhat_lat[0,0])
-        self.h_hat_history.append(xhat_lon[0,0])
-        self.theta_hat_history.append(xhat_lat[1,0])
-        self.z_hat_dot_history.append(xhat_lat[2,0])
-        self.h_hat_dot_history.append(xhat_lon[1,0])
-        self.theta_hat_dot_history.append(xhat_lat[3,0])
+        self.z_history.append(x[0, 0])
+        self.h_history.append(x[1, 0])
+        self.theta_history.append(x[2, 0])
+        self.z_dot_history.append(x[3, 0])
+        self.h_dot_history.append(x[4, 0])
+        self.theta_dot_history.append(x[5, 0])
+        self.z_hat_history.append(xhat_lat[0, 0])
+        self.h_hat_history.append(xhat_lon[0, 0])
+        self.theta_hat_history.append(xhat_lat[1, 0])
+        self.z_hat_dot_history.append(xhat_lat[2, 0])
+        self.h_hat_dot_history.append(xhat_lon[1, 0])
+        self.theta_hat_dot_history.append(xhat_lat[3, 0])
 
         # update the plots with associated histories
-        self.handle[0].update(self.time_history, [self.z_history, self.z_hat_history])
-        self.handle[1].update(self.time_history, [self.h_history, self.h_hat_history])
-        self.handle[2].update(self.time_history, [self.theta_history, self.theta_hat_history])
-        self.handle[3].update(self.time_history, [self.z_dot_history, self.z_hat_dot_history])
-        self.handle[4].update(self.time_history, [self.h_dot_history, self.h_hat_dot_history])
-        self.handle[5].update(self.time_history, [self.theta_dot_history, self.theta_hat_dot_history])
+        self.handle[0].update(self.time_history, [
+                              self.z_history, self.z_hat_history])
+        self.handle[1].update(self.time_history, [
+                              self.h_history, self.h_hat_history])
+        self.handle[2].update(self.time_history, [
+                              self.theta_history, self.theta_hat_history])
+        self.handle[3].update(self.time_history, [
+                              self.z_dot_history, self.z_hat_dot_history])
+        self.handle[4].update(self.time_history, [
+                              self.h_dot_history, self.h_hat_dot_history])
+        self.handle[5].update(self.time_history, [
+                              self.theta_dot_history, self.theta_hat_dot_history])
 
 
 class myPlot:
     ''' 
         Create each individual subplot.
     '''
+
     def __init__(self, ax,
                  xlabel='',
                  ylabel='',
@@ -103,7 +114,7 @@ class myPlot:
         self.ax.grid(True)
 
         # Keeps track of initialization
-        self.init = True   
+        self.init = True
 
     def update(self, time, data):
         ''' 
@@ -116,15 +127,17 @@ class myPlot:
                 # Instantiate line object and add it to the axes
                 self.line.append(Line2D(time,
                                         data[i],
-                                        color=self.colors[np.mod(i, len(self.colors) - 1)],
-                                        ls=self.line_styles[np.mod(i, len(self.line_styles) - 1)],
+                                        color=self.colors[np.mod(
+                                            i, len(self.colors) - 1)],
+                                        ls=self.line_styles[np.mod(
+                                            i, len(self.line_styles) - 1)],
                                         label=self.legend if self.legend != None else None))
                 self.ax.add_line(self.line[i])
             self.init = False
             # add legend if one is specified
             if self.legend != None:
                 plt.legend(handles=self.line)
-        else: # Add new data to the plot
+        else:  # Add new data to the plot
             # Updates the x and y data of each line.
             for i in range(len(self.line)):
                 self.line[i].set_xdata(time)
@@ -133,5 +146,3 @@ class myPlot:
         # Adjusts the axis to fit all of the data
         self.ax.relim()
         self.ax.autoscale()
-           
-
