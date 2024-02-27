@@ -25,5 +25,5 @@ t_plot =  # the plotting and animation is updated at this rate
 # beta =   # dirty derivative gain
 
 # saturation limits
-# F_max =   # Max force, N
+F_max =   # Max force, N
 
