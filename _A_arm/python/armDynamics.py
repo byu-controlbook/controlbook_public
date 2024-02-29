@@ -54,7 +54,7 @@ class armDynamics:
         F2 = self.f(self.state + self.Ts / 2 * F1, u)
         F3 = self.f(self.state + self.Ts / 2 * F2, u)
         F4 = self.f(self.state + self.Ts * F3, u)
-        self.state += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
+        self.state = self.state + self.Ts / 6 * (F1 + 2*F2 + 2*F3 + F4)
 
     
 def saturate(u, limit):

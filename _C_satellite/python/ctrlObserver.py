@@ -101,7 +101,7 @@ class ctrlObserver:
         F2 = self.observer_f(self.x_hat + P.Ts / 2 * F1, y_m)
         F3 = self.observer_f(self.x_hat + P.Ts / 2 * F2, y_m)
         F4 = self.observer_f(self.x_hat + P.Ts * F3, y_m)
-        self.x_hat += P.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
+        self.x_hat = self.x_hat + P.Ts / 6 * (F1 + 2*F2 + 2*F3 + F4)
         return self.x_hat
 
     def observer_f(self, x_hat, y_m):

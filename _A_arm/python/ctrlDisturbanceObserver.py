@@ -104,7 +104,7 @@ class ctrlDisturbanceObserver :
         F2 = self.observer_f(self.obsv_state + P.Ts / 2 * F1, y_m)
         F3 = self.observer_f(self.obsv_state + P.Ts / 2 * F2, y_m)
         F4 = self.observer_f(self.obsv_state + P.Ts * F3, y_m)
-        self.obsv_state += P.Ts / 6 *  (F1 + 2 * F2 + 2 * F3 + F4)
+        self.obsv_state = self.obsv_state + P.Ts / 6 *  (F1 + 2*F2 + 2*F3 + F4)
         x_hat = self.obsv_state[0:2]
         d_hat = self.obsv_state[2][0]
         return x_hat, d_hat

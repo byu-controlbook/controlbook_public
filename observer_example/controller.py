@@ -163,7 +163,7 @@ class Controller:
         F2 = self.observer_f(self.observer_state + self.Ts / 2 * F1, y_m)
         F3 = self.observer_f(self.observer_state + self.Ts / 2 * F2, y_m)
         F4 = self.observer_f(self.observer_state + self.Ts * F3, y_m)
-        self.observer_state += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
+        self.observer_state = self.observer_state + self.Ts / 6 * (F1 + 2*F2 + 2*F3 + F4)
         x_hat = self.observer_state[0:2]
         if ((self.control_mode==3) or  (self.control_mode==4)):
             d_hat = self.observer_state[2][0]

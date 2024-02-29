@@ -74,7 +74,7 @@ class zeroCancelingFilter:
 
     def update(self, input):
         # integrate using RK1
-        self.state += P.Ts * (-self.b * self.state + self.a * input)
+        self.state = self.state + P.Ts * (-self.b * self.state + self.a * input)
         return self.state
 
 
