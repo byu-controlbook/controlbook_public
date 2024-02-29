@@ -41,7 +41,7 @@ while t < P.t_end:  # main simulation loop
         # update controller
         u, xhat, dhat = controller.update(r, y + n)  
         y = satellite.update(u + d)  # propagate system
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
 
     # update animation and data plots
     animation.update(satellite.state)

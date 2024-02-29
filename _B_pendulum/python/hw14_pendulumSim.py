@@ -36,7 +36,7 @@ while t < P.t_end:  # main simulation loop
         n = np.array([[noise_z.random(t)], [noise_th.random(t)]])
         u, xhat, dhat = controller.update(r, y + n)
         y = pendulum.update(u + d)  # propagate system
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
 
     # update animation and data plots
     animation.update(pendulum.state)

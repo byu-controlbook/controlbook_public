@@ -45,13 +45,13 @@ class HummingbirdDynamics:
         y = self.h()  # return the corresponding output
         return y
 
-    def f(self, state: np.ndarray, pwm: np.ndarray):
+    def f(self, state: np.ndarray, pwms: np.ndarray):
         # Return xdot = f(x,u)
         phidot = state[3][0]
         thetadot = state[4][0]
         psidot = state[5][0]
-        pwm_left = pwm[0][0]
-        pwm_right = pwm[1][0]
+        pwm_left = pwms[0][0]
+        pwm_right = pwms[1][0]
         # The equations of motion go here
         M = self._M(state)
         C = self._C(state)

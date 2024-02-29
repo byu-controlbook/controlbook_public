@@ -35,7 +35,7 @@ def quadraticCost(x, Q, R, controller, arm, reference, disturbance):
         cost += Q[0][0] * (arm.state[0][0]-r)**2 \
               + Q[1][1] * (arm.state[1][0])**2 \
               + R * u**2
-        t = t + P.Ts
+        t += P.Ts
     print(cost)
     return cost
 

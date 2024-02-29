@@ -21,7 +21,7 @@ while t < P.t_end:
     while t < t_next_plot:
         u = 
         y = rodMass.update(u)
-        t = t + P.Ts
+        t += P.Ts
     # update animation and data plots
     animation.update(rodMass.state)
     dataPlot.update(t, 0, rodMass.state, u)

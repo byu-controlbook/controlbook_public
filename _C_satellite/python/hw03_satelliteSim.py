@@ -23,7 +23,7 @@ while t < P.t_end:  # main simulation loop
         r = reference.square(t)
         u = torque.sin(t)
         y = satellite.update(u)  # Propagate the dynamics
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(satellite.state)
     dataPlot.update(t, r, satellite.state, u)

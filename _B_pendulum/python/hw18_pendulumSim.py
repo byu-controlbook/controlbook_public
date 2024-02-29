@@ -32,7 +32,7 @@ while t < P.t_end:  # main simulation loop
         n = np.array([[noise_z.random(t)], [noise_th.random(t)]])
         u = controller.update(r, y + n) 
         y = pendulum.update(u + d)  
-        t = t + P.Ts  
+        t += P.Ts  
     # update animation and data plots
     animation.update(pendulum.state)
     dataPlot.update(t, r, pendulum.state, u)

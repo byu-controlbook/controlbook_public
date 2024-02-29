@@ -30,7 +30,7 @@ while t < P.t_end:  # main simulation loop
         #u2 = torque2.sin(t)
         y = arm.update(u)  # Propagate the dynamics
         #y2 = second_arm.update(u2)
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(arm.state)
     #animation2.update(second_arm.state)

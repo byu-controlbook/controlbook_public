@@ -27,7 +27,7 @@ while t < P.t_end:
         n = 0.0  #noise.random(t)
         u = controller.update(r, y + n)
         y = rodMass.update(u + d)
-        t = t + P.Ts
+        t += P.Ts
     # update animation and data plots
     animation.update(rodMass.state)
     dataPlot.update(t, r, rodMass.state, u)

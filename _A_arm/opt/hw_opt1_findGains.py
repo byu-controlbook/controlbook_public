@@ -22,7 +22,7 @@ def quadratic_cost(x, Q, R);
         cost += Q[0][0] * (arm.state[0][0]-r)**2 \
               + Q[1][1] * (arm.state[1][0])**2 \
               + R * u**2
-        t = t + P.Ts
+        t += P.Ts
     return cost
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np
+import VTOLParam as P
 
 plt.ion()  # enable interactive drawing
 
@@ -35,18 +36,22 @@ class dataPlotter:
         self.handle.append(
             myPlot(self.ax[4], xlabel='t(s)', ylabel='torque(Nm)'))
 
-    def update(self, t: float, states: np.ndarray, z_ref: float, h_ref: float, force: float, torque: float):
+    def update(self, t: float, states: np.ndarray, motor_thrusts: np.ndarray, z_ref: float = 0., h_ref: float = 0.):
         '''
             Add to the time and data histories, and update the plots.
+            state order is assumed to be [z, h, theta, z_dot, h_dot, theta_dot]
+            motor_thrusts is assumed to be [f_left, f_right]
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.zref_history.append(z_ref)  # reference position
-        self.z_history.append(states[0, 0])  # position
+        self.z_history.append(states.item(0))  # position
         self.href_history.append(h_ref)  # reference position
-        self.h_history.append(states[1, 0])  # position
+        self.h_history.append(states.item(1))  # position
         # VTOL angle (converted to degrees)
-        self.theta_history.append(180.0/np.pi*states[2, 0])
+        self.theta_history.append(180.0/np.pi*states.item(2))
+        force = motor_thrusts[0][0]+motor_thrusts[1][0]
+        torque = P.d * (motor_thrusts[0][0] - motor_thrusts[1][0])
         self.Force_history.append(force)  # force
         self.Torque_history.append(torque)  # torque
 

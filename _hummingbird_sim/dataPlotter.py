@@ -1,4 +1,3 @@
-import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np
@@ -50,24 +49,27 @@ class DataPlotter:
         self.handle.append(MyPlot(self.ax[0][2], ylabel='force(N)'))
         self.handle.append(MyPlot(self.ax[1][2], ylabel='torque(Nm)'))
 
-    def update(self, t: float, state: np.ndarray, ref: np.ndarray, pwm: np.ndarray):
+    def update(self, t: float, state: np.ndarray, pwms: np.ndarray, refs: np.ndarray = np.zeros((3, 1))):
         '''
             Add to the time and data histories, and update the plots.
+            state order is assumed to be [phi, theta, psi, phi_dot, theta_dot, psi_dot]
+            pwms order is assumed to be [pwm_left, pwm_right]
+            refs order is assumed to be [phi_ref, theta_ref, psi_ref]
         '''
-        force = P.km * (pwm[0][0] + pwm[1][0])  # Froce from fl and fr
-        torque = P.km * P.d * (pwm[0][0] - pwm[1][0])  # torque from fl and fr
+        force = P.km * (pwms.item(0) + pwms.item(1))  # Force from fl and fr
+        torque = P.km * P.d * (pwms.item(0) - pwms.item(1))  # torque from fl and fr
 
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.phi_history.append(180.0/np.pi*state[0][0])  # roll
-        self.theta_history.append(180.0/np.pi*state[1][0])  # pitch
-        self.psi_history.append(180.0/np.pi*state[2][0])  # psi
-        self.phidot_history.append(180.0/np.pi*state[3][0])  # roll rate
-        self.thetadot_history.append(180.0/np.pi*state[4][0])  # pitch rate
-        self.psidot_history.append(180.0/np.pi*state[5][0])  # psi rate
-        self.phi_ref_history.append(180.0 / np.pi * ref[0][0])  # roll
-        self.theta_ref_history.append(180.0 / np.pi * ref[1][0])  # pitch
-        self.psi_ref_history.append(180.0 / np.pi * ref[2][0])  # psi
+        self.phi_history.append(180.0/np.pi*state.item(0))  # roll
+        self.theta_history.append(180.0/np.pi*state.item(1))  # pitch
+        self.psi_history.append(180.0/np.pi*state.item(2))  # psi
+        self.phidot_history.append(180.0/np.pi*state.item(3))  # roll rate
+        self.thetadot_history.append(180.0/np.pi*state.item(4))  # pitch rate
+        self.psidot_history.append(180.0/np.pi*state.item(5))  # psi rate
+        self.phi_ref_history.append(180.0 / np.pi * refs.item(0))  # roll
+        self.theta_ref_history.append(180.0 / np.pi * refs.item(1))  # pitch
+        self.psi_ref_history.append(180.0 / np.pi * refs.item(2))  # psi
         self.force_history.append(force)  # Force
         self.torque_history.append(torque)  # torque
         # update the plots with associated histories

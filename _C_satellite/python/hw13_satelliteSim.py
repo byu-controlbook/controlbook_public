@@ -37,7 +37,7 @@ while t < P.t_end:  # main simulation loop
         n = np.array([[noise_phi.random(t)],[noise_th.random(t)]])
         u, xhat = controller.update(r, y + n)  # update controller
         y = satellite.update(u + d)  # propagate system
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
 
     # update animation and data plots
     animation.update(satellite.state)

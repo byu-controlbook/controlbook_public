@@ -32,7 +32,7 @@ while t < P.t_end:  # main simulation loop
         n = 0.0  #noise.random(t)  # simulate sensor noise
         u = controller.update(r, y + n)  # update controller
         y = satellite.update(u + d)  # propagate system
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(satellite.state)
     dataPlot.update(t, r, satellite.state, u)

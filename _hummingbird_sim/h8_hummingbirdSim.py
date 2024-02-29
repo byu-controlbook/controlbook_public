@@ -27,11 +27,11 @@ while t < P.t_end:  # main simulation loop
         r = np.array([[theta_ref.square(t)], [psi_ref.square(t)]])
         pwm, y_ref = controller.update(r, y)
         y = hummingbird.update(pwm)  # Propagate the dynamics
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
 
     # update animation and data plots at rate t_plot
     animation.update(t, hummingbird.state)
-    dataPlot.update(t, hummingbird.state, y_ref, pwm)
+    dataPlot.update(t, hummingbird.state, pwm, y_ref)
 
     # the pause causes figure to be displayed during simulation
     plt.pause(0.0001)

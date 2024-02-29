@@ -26,7 +26,7 @@ while t < P.t_end:  # main simulation loop
         planner.update(t)
         u = controller.update(planner.path, VTOL.state)  # update controller
         y = VTOL.update(P.mixing @ u)  # propagate system
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
     # update animation and data plots
     dataPlot.update(t, VTOL.state, planner.path, u)
     animation.update(VTOL.state, 0.0)

@@ -28,7 +28,7 @@ while t < P.t_end:
         n = noise.random(t)  
         u, xhat, dhat = controller.update(r, y + n)  
         y = plant.update(u + d)  
-        t = t + P.Ts  
+        t += P.Ts  
     dataPlot.update(t, r, y, u)
     dataPlotObserver.update(t, plant.state, xhat, d, dhat)
     plt.pause(0.0001)  

@@ -38,7 +38,7 @@ while t < P.t_end:  # main simulation loop
         n = noise.random(t) # simulate sensor noise if desired
         u, xhat = controller.update(r, y + n)  # update controller
         y = arm.update(u + d)  # propagate system
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
 
     # update animation and data plots
     animation.update(arm.state)

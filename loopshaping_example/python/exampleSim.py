@@ -26,7 +26,7 @@ while t < P.t_end:
         n = noise.random(t)
         u = ctrl.update(r, y + n)
         y = plant.update(u + d)
-        t = t + P.Ts
+        t += P.Ts
     # update data plots
     dataPlot.update(t, r, plant.state, u)
     plt.pause(0.0001)

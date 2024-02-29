@@ -36,7 +36,7 @@ while t < P.t_end:  # main simulation loop
         x = pendulum.state  # use state instead of output
         u = controller.update(r, x)  # update controller
         y = pendulum.update(u + d)  # propagate system
-        t = t + P.Ts  # advance time by Ts
+        t += P.Ts  # advance time by Ts
 
     # update animation and data plots
     animation.update(pendulum.state)
