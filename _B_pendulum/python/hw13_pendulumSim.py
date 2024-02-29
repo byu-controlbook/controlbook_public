@@ -40,7 +40,7 @@ while t < P.t_end:  # main simulation loop
 
     # update animation and data plots
     animation.update(pendulum.state)
-    dataPlot.update(t, r, pendulum.state, u)
+    dataPlot.update(t, pendulum.state, u, r)
     dataPlotObserver.update(t, pendulum.state, xhat, d, 0.0)
     plt.pause(0.0001)
 

@@ -42,7 +42,7 @@ while t < P.t_end:  # main simulation loop
 
     # update animation and data plots
     animation.update(arm.state)
-    dataPlot.update(t, r, arm.state, u)
+    dataPlot.update(t, arm.state, u, r)
     dataPlotObserver.update(t, arm.state, xhat, d, 0.0)
 
     # the pause causes the figure to display during simulation

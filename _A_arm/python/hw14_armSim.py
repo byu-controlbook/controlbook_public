@@ -42,7 +42,7 @@ while t < P.t_end:  # main simulation loop
 
     # update animation and data plots
     animation.update(arm.state)
-    dataPlot.update(t, r, arm.state, u)
+    dataPlot.update(t, arm.state, u, r)
     dataPlotObserver.update(t, arm.state, xhat, d, dhat)
     plt.pause(0.0001)  
 

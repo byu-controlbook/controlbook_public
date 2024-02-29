@@ -41,7 +41,7 @@ while t < P.t_end:  # main simulation loop
 
     # update animation and data plots
     animation.update(satellite.state)
-    dataPlot.update(t, r, satellite.state, u)
+    dataPlot.update(t, satellite.state, u, r)
     dataPlotObserver.update(t, satellite.state, xhat, d, 0.0)
 
     # the pause causes the figure to display during simulation

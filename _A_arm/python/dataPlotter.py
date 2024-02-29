@@ -25,11 +25,11 @@ class dataPlotter:
         self.handle.append(myPlot(self.ax[1], xlabel='t(s)', ylabel='torqe(N-m)'))
 
 
-    def update(self, t, reference, states, ctrl):
+    def update(self, t: float, states: np.ndarray, ctrl: float, reference: float = 0.):
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.theta_ref_history.append(180.0/np.pi*reference)  # reference base position
-        self.theta_history.append(180.0/np.pi*states[0,0])  # rod angle (converted to degrees)
+        self.theta_history.append(180.0/np.pi*states.item(0))  # rod angle (converted to degrees)
         self.torque_history.append(ctrl)  # force on the base
         # update the plots with associated histories
         self.handle[0].update(self.time_history, [self.theta_history, self.theta_ref_history])

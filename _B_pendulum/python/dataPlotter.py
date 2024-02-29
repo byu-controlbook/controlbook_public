@@ -31,15 +31,15 @@ class dataPlotter:
         self.handle.append(myPlot(self.ax[1], ylabel='theta(deg)'))
         self.handle.append(myPlot(self.ax[2], xlabel='t(s)', ylabel='force(N)'))
 
-    def update(self, t, reference, states, ctrl):
+    def update(self, t: float, states: np.ndarray, ctrl: float, reference: float = 0.):
         '''
             Add to the time and data histories, and update the plots.
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
         self.zref_history.append(reference)  # reference base position
-        self.z_history.append(states[0,0])  # base position
-        self.theta_history.append(180.0/np.pi*states[1,0])  # rod angle (converted to degrees)
+        self.z_history.append(states.item(0))  # base position
+        self.theta_history.append(180.0/np.pi*states.item(0))  # rod angle (converted to degrees)
         self.Force_history.append(ctrl)  # force on the base
 
         # update the plots with associated histories

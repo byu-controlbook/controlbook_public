@@ -37,7 +37,7 @@ while t < P.t_end:  # main simulation loop
 
     # update animation and data plots
     animation.update(arm.state)
-    dataPlot.update(t, r, arm.state, u)
+    dataPlot.update(t, arm.state, u, r)
     plt.pause(0.0001)
 
 # Keeps the program from closing until the user presses a button.

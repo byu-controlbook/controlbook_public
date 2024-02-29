@@ -31,7 +31,7 @@ while t < P.t_end:  # main simulation loop
         t += P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(pendulum.state)
-    dataPlot.update(t, r, pendulum.state, u)
+    dataPlot.update(t, pendulum.state, u, r)
     plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
 
 # Keeps the program from closing until the user presses a button.
