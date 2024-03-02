@@ -22,7 +22,6 @@ t_plot =  # the plotting and animation is updated at this rate
 
 # dirty derivative parameters
 # sigma =  # cutoff freq for dirty derivative
-# beta =   # dirty derivative gain
 
 # saturation limits
 F_max =   # Max force, N
