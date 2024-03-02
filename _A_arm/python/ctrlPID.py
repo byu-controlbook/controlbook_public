@@ -22,8 +22,6 @@ class ctrlPID:
         print('kd: ', self.kd)       
         # dirty derivative gains
         self.sigma = 0.05  
-        self.beta = (2.0 * self.sigma - P.Ts) \
-            / (2.0 * self.sigma + P.Ts)  
         #----------------------------------------------------------
         # variables for integrator and differentiator
         self.theta_dot = 0.0  # estimated derivative of theta
@@ -45,8 +43,8 @@ class ctrlPID:
         self.integrator = self.integrator \
             + (P.Ts / 2) * (error + self.error_d1)
         # differentiate theta
-        self.theta_dot = self.beta * self.theta_dot \
-            + (1 - self.beta) * ((theta - self.theta_d1) / P.Ts)
+        self.theta_dot = (2.0*self.sigma - P.Ts) / (2.0*self.sigma + P.Ts) * self.theta_dot \
+            + (2.0 / (2.0*self.sigma + P.Ts)) * ((theta - self.theta_d1))
         # PID control
         tau_tilde = self.kp * error \
             + self.ki * self.integrator \

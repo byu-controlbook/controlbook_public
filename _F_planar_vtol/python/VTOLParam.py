@@ -33,7 +33,6 @@ F_max =   # Max Force, N
 
 # dirty derivative parameters
 # sigma =   # cutoff freq for dirty derivative
-# beta =  # dirty derivative gain
 
 # equilibrium force
 # Fe =

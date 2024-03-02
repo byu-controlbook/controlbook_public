@@ -80,8 +80,8 @@ class ctrlPID:
         self.integrator_z = self.integrator_z \
             + (P.Ts / 2) * (error_z + self.error_z_d1)
         # differentiate z
-        self.z_dot = self.beta * self.z_dot \
-            + (1 - self.beta) * ((z - self.z_d1) / P.Ts)
+        self.z_dot = (2.0*self.sigma - P.Ts) / (2.0*self.sigma + P.Ts) * self.z_dot \
+            + (2.0 / (2.0*self.sigma + P.Ts)) * ((z - self.z_d1))
         # PID control - unsaturated
         theta_r_unsat = self.kp_z * error_z \
                 + self.ki_z * self.integrator_z \
@@ -103,8 +103,8 @@ class ctrlPID:
         # Compute the error in theta
         error_th = theta_r - theta
         # differentiate theta
-        self.theta_dot = self.beta * self.theta_dot \
-            + (1 - self.beta) * ((theta - self.theta_d1) / P.Ts)
+        self.theta_dot = (2.0*self.sigma - P.Ts) / (2.0*self.sigma + P.Ts) * self.theta_dot \
+            + (2.0 / (2.0*self.sigma + P.Ts)) * ((theta - self.theta_d1))
          # PD control on theta
         F_unsat = self.kp_th * error_th \
             - self.kd_th * self.theta_dot
