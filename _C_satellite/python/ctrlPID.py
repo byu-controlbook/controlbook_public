@@ -61,10 +61,10 @@ class ctrlPID:
         #---------------------------------------------------
         self.integrator_phi = 0.
         self.error_phi_d1 = 0.
-        self.phi_dot = 0.
-        self.phi_d1 = 0.
-        self.theta_dot = 0.
-        self.theta_d1 = 0.
+        self.phi_dot = P.phidot0
+        self.phi_d1 = P.phi0
+        self.theta_dot = P.thetadot0
+        self.theta_d1 = P.theta0
 
     def update(self, phi_r, y):
         theta = y[0][0]

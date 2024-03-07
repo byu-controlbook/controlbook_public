@@ -24,8 +24,8 @@ class ctrlPID:
         self.sigma = 0.05  
         #----------------------------------------------------------
         # variables for integrator and differentiator
-        self.theta_dot = 0.0  # estimated derivative of theta
-        self.theta_d1 = 0.0  # theta delayed by one sample
+        self.theta_dot = P.thetadot0  # estimated derivative of theta
+        self.theta_d1 = P.theta0  # theta delayed by one sample
         self.error_dot = 0.0  # estimated derivative of error
         self.error_d1 = 0.0  # Error delayed by one sample
         self.integrator = 0.0  # integrator

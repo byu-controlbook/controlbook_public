@@ -63,10 +63,10 @@ class ctrlPID:
         #---------------------------------------------------
         self.integrator_z = 0.
         self.error_z_d1 = 0.
-        self.z_dot = 0.
-        self.z_d1 = 0.
-        self.theta_dot = 0.
-        self.theta_d1 = 0.
+        self.z_dot = P.zdot0
+        self.z_d1 = P.z0
+        self.theta_dot = P.thetadot0
+        self.theta_d1 = P.theta0
         
     def update(self, z_r, y):
         z = y[0][0]
