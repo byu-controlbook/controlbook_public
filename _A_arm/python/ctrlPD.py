@@ -6,7 +6,7 @@ class ctrlPD:
     def __init__(self):
         #  tuning parameters
         #tr = 0.8 # part (a)
-        tr = 0.4  # tuned for faster rise time before saturation.
+        tr = 0.37 # tuned for faster rise time before saturation.
         zeta = 0.707
         # desired natural frequency
         wn = 2.2 / tr
@@ -17,7 +17,7 @@ class ctrlPD:
         self.kd = (P.m * P.ell**2) \
                     / 3.0 * (alpha1 - 3.0 * P.b / (P.m * P.ell**2))
         print('kp: ', self.kp)
-        print('kd: ', self.kd)        
+        print('kd: ', self.kd)
 
     def update(self, theta_r, state):
         theta = state[0][0]

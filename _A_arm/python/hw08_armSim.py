@@ -10,7 +10,7 @@ from ctrlPD import ctrlPD
 # instantiate arm, controller, and reference classes
 arm = armDynamics()
 controller = ctrlPD()
-reference = signalGenerator(amplitude=30*np.pi/180.0, 
+reference = signalGenerator(amplitude=50*np.pi/180.0, 
                             frequency=0.05)
 disturbance = signalGenerator(amplitude=0.0)
 
@@ -28,11 +28,9 @@ while t < P.t_end:  # main simulation loop
     # updates control and dynamics at faster simulation rate
     while t < t_next_plot: 
         r = reference.square(t)
-        d = disturbance.step(t)  # input disturbance
-        n = 0.0  #noise.random(t)  # simulate sensor noise
         x = arm.state
         u = controller.update(r, x)  # update controller
-        y = arm.update(u + d)  # propagate system
+        y = arm.update(u)  # propagate system
         t += P.Ts  # advance time by Ts
 
     # update animation and data plots

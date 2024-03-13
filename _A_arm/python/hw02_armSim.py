@@ -19,7 +19,8 @@ while t < P.t_end:  # main simulation loop
     theta = theta_fakeValueGenerator.sin(t)
     tau = tau_fakeValueGenerator.sawtooth(t)
     # update animation
-    state = np.array([[theta], [0.0]])  #state is made of theta, and theta_dot
+    theta_dot = 0.0
+    state = np.array([[theta], [theta_dot]])  #state is made of theta, and theta_dot
     animation.update(state)
     dataPlot.update(t, state, tau)
     # advance time by t_plot
