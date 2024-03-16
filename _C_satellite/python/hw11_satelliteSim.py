@@ -11,7 +11,6 @@ from ctrlStateFeedback import ctrlStateFeedback
 satellite = satelliteDynamics()
 controller = ctrlStateFeedback()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0, frequency=0.04)
-disturbance = signalGenerator(amplitude=0.0)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
@@ -24,11 +23,9 @@ while t < P.t_end:  # main simulation loop
     t_next_plot = t + P.t_plot
     while t < t_next_plot:  # updates control and dynamics at faster simulation rate
         r = reference.square(t)  # reference input
-        d = disturbance.step(t)  # input disturbance
-        n = 0.0  #noise.random(t)  # simulate sensor noise
         x = satellite.state
         u = controller.update(r, x)  # update controller
-        y = satellite.update(u + d)  # propagate system
+        y = satellite.update(u)  # propagate system
         t += P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(satellite.state)

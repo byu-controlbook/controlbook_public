@@ -8,7 +8,7 @@ from satelliteDynamics import satelliteDynamics
 from ctrlStateFeedbackIntegrator import ctrlStateFeedbackIntegrator
 
 # instantiate satellite, controller, and reference classes
-satellite = satelliteDynamics()
+satellite = satelliteDynamics(alpha=0.2)
 controller = ctrlStateFeedbackIntegrator()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0,
                             frequency=0.01)
@@ -26,7 +26,6 @@ while t < P.t_end:  # main simulation loop
     while t < t_next_plot:  # updates control and dynamics at faster simulation rate
         r = reference.square(t)  # reference input
         d = disturbance.step(t)  # input disturbance
-        n = 0.0  #noise.random(t)  # simulate sensor noise
         x = satellite.state
         u = controller.update(r, x)  # update controller
         y = satellite.update(u + d)  # propagate system
@@ -34,7 +33,7 @@ while t < P.t_end:  # main simulation loop
     # update animation and data plots
     animation.update(satellite.state)
     dataPlot.update(t, satellite.state, u, r)
-    plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
+    # plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
 
 # Keeps the program from closing until the user presses a button.
 print('Press key to close')

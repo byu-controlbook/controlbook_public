@@ -14,8 +14,8 @@ controller = ctrlDisturbanceObserver()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0,
                             frequency=0.03)
 disturbance = signalGenerator(amplitude=1.0)
-noise_phi = signalGenerator(amplitude=0.01)
-noise_th = signalGenerator(amplitude=0.01)
+noise_phi = signalGenerator(amplitude=0.001)
+noise_th = signalGenerator(amplitude=0.001)
 
 # instantiate the simulation plots and animation
 dataPlotObserver = dataPlotterObserver()

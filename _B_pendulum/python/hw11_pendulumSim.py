@@ -11,7 +11,6 @@ from ctrlStateFeedback import ctrlStateFeedback
 pendulum = pendulumDynamics()
 controller = ctrlStateFeedback()
 reference = signalGenerator(amplitude=0.5, frequency=0.04)
-disturbance = signalGenerator(amplitude=1.1)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
@@ -27,11 +26,9 @@ while t < P.t_end:  # main simulation loop
     # updates control and dynamics at faster simulation rate
     while t < t_next_plot: 
         r = reference.square(t)  # reference input
-        d = disturbance.step(t)  # input disturbance
-        n = 0.0  #noise.random(t)  # simulate sensor noise
         x = pendulum.state
         u = controller.update(r, x)  # update controller
-        y = pendulum.update(u + d)  # propagate system
+        y = pendulum.update(u)  # propagate system
         t += P.Ts  # advance time by Ts
     # update animation and data plots
     animation.update(pendulum.state)

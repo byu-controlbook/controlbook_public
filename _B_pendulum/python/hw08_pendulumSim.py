@@ -11,7 +11,6 @@ from ctrlPD import ctrlPD
 pendulum = pendulumDynamics(alpha=0.1)
 controller = ctrlPD()
 reference = signalGenerator(amplitude=0.5, frequency=0.04)
-disturbance = signalGenerator(amplitude=0)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
@@ -31,11 +30,9 @@ while t < P.t_end:  # main simulation loop
 
     while t < t_next_plot:
         r = reference.square(t)  # reference input
-        d = disturbance.step(t)  # input disturbance
-        n = 0.0  #noise.random(t)  # simulate sensor noise
         x = pendulum.state  # use state instead of output
         u = controller.update(r, x)  # update controller
-        y = pendulum.update(u + d)  # propagate system
+        y = pendulum.update(u)  # propagate system
         t += P.Ts  # advance time by Ts
 
     # update animation and data plots

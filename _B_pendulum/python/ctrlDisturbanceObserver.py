@@ -114,7 +114,7 @@ class ctrlDisturbanceObserver:
         F_unsat = -self.K @ x_hat - self.ki * self.integrator_z - d_hat
         F = saturate(F_unsat, P.F_max)
         self.F_d1 = F
-        return F[0], x_hat, d_hat
+        return F.item(0), x_hat, d_hat
 
     def update_observer(self, y):
         # update the observer using RK4 integration

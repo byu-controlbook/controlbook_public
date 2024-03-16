@@ -15,7 +15,7 @@ class ctrlPID:
         zeta_th = 0.707  # Damping Coefficient: inner loop (theta)
         M = 10.0  # Time scale separation between inner & outer loop
         zeta_z = 0.707  # Damping Coefficient: outer loop (z)
-        self.ki_z = -0.01  # select integrator gain
+        self.ki_z = -0.05  # select integrator gain
         # saturation limits
         self.theta_max = 30.0 * np.pi / 180.0  # Max theta, rads
         #---------------------------------------------------

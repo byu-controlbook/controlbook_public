@@ -14,8 +14,6 @@ controller = ctrlObserver()
 reference = signalGenerator(amplitude=15.0*np.pi/180.0,
                             frequency=0.03)
 disturbance = signalGenerator(amplitude=1.0)
-noise_phi = signalGenerator(amplitude=0.01)
-noise_th = signalGenerator(amplitude=0.01)
 
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
@@ -34,8 +32,7 @@ while t < P.t_end:  # main simulation loop
         r = reference.square(t)  # reference input
         d = disturbance.step(t)  # input disturbance
         # simulate sensor noise -
-        n = np.array([[noise_phi.random(t)],[noise_th.random(t)]])
-        u, xhat = controller.update(r, y + n)  # update controller
+        u, xhat = controller.update(r, y)  # update controller
         y = satellite.update(u + d)  # propagate system
         t += P.Ts  # advance time by Ts
 
