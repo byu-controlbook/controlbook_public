@@ -6,7 +6,7 @@ from dataPlotter import dataPlotter
 from satelliteDynamics import satelliteDynamics
 
 # instantiate satellite, controller, and reference classes
-satellite = satelliteDynamics()
+satellite = satelliteDynamics(alpha=0.0)
 torque = signalGenerator(amplitude=0.1, frequency=0.1)
 
 # instantiate the simulation plots and animation

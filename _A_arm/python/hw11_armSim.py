@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use('tkAgg')
 import matplotlib.pyplot as plt
 import numpy as np
 import armParam as P

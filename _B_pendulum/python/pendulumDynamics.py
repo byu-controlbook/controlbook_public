@@ -41,6 +41,9 @@ class pendulumDynamics:
         thetadot = state[3][0]
         F = u
         # The equations of motion.
+        # print("here")
+        # print(u.item(0))
+        # exit()
         M = np.array([[self.m1 + self.m2,
                        self.m1 * (self.ell/2.0) * np.cos(theta)],
                        [self.m1 * (self.ell/2.0) * np.cos(theta),
@@ -50,6 +53,7 @@ class pendulumDynamics:
                        + F - self.b*zdot],
                        [self.m1 * self.g * (self.ell/2.0)
                         * np.sin(theta)]])
+        # print(M.shape,C.shape) 
         tmp = np.linalg.inv(M) @ C
         zddot = tmp[0][0]
         thetaddot = tmp[1][0]
