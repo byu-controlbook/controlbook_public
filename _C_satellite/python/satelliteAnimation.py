@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.widgets import Button
 import numpy as np 
 import satelliteParam as P
 # if you are having difficulty with the graphics, 
@@ -15,6 +16,8 @@ import satelliteParam as P
 # matplotlib.use('tkagg')  # requires TkInter
 # matplotlib.use('wxagg')  # requires wxPython
 
+def exit_program(event):
+    exit()
 
 class satelliteAnimation:
     def __init__(self):
@@ -29,6 +32,13 @@ class satelliteAnimation:
         plt.plot([-2.0*P.length, 2.0*P.length], [0, 0], 'b--')
         self.length = P.length
         self.width = P.width
+
+        # Create exit button
+        self.button_ax = plt.axes([0.8, 0.805, 0.1, 0.075])  # [left, bottom, width, height]
+        self.exit_button = Button(self.button_ax, label='Exit', color='r',)
+        self.exit_button.label.set_fontweight('bold')
+        self.exit_button.label.set_fontsize(18)
+        self.exit_button.on_clicked(exit_program)
 
     def update(self, u):
         # Process inputs to function

@@ -1,5 +1,6 @@
 from matplotlib import pyplot as plt
 from matplotlib import patches as mpatches
+from matplotlib.widgets import Button
 import numpy as np 
 import pendulumParam as P
 # if you are having difficulty with the graphics, 
@@ -15,6 +16,8 @@ import pendulumParam as P
 # matplotlib.use('tkagg')  # requires TkInter
 # matplotlib.use('wxagg')  # requires wxPython
 
+def exit_program(event):
+    exit()
 
 class pendulumAnimation:
     def __init__(self):
@@ -29,6 +32,13 @@ class pendulumAnimation:
         plt.plot([-2*P.ell, 2*P.ell], [0, 0], 'b--')
         # label axes
         plt.xlabel('z')
+
+        # Create exit button
+        self.button_ax = plt.axes([0.8, 0.805, 0.1, 0.075])  # [left, bottom, width, height]
+        self.exit_button = Button(self.button_ax, label='Exit', color='r',)
+        self.exit_button.label.set_fontweight('bold')
+        self.exit_button.label.set_fontsize(18)
+        self.exit_button.on_clicked(exit_program)
 
     def update(self, state):
         z = state[0][0]  # Horizontal position of cart, m
