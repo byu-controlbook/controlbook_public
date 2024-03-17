@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.widgets import Button
 import numpy as np
 import armParam as P
 # if you are having difficulty with the graphics, 
@@ -15,13 +16,16 @@ import armParam as P
 # matplotlib.use('tkagg')  # requires TkInter
 # matplotlib.use('wxagg')  # requires wxPython
 
+def exit_program(event):
+    exit()
 
 class armAnimation:
     def __init__(self):
         # Used to indicate initialization
         self.flagInit = True
         # Initializes a figure and axes object
-        self.fig, self.ax = plt.subplots()
+        self.fig, self.ax = plt.subplots()        
+        
         # Initializes a list object that will be used to
         # contain handles to the patches and line objects.
         self.handle = []
@@ -31,6 +35,13 @@ class armAnimation:
         plt.axis([-2.0*P.length, 2.0*P.length, -2.0*P.length, 2.0*P.length])
         # Draw a base line
         plt.plot([0, P.length], [0, 0],'k--')
+
+        # Create exit button
+        self.button_ax = plt.axes([0.8, 0.805, 0.1, 0.075])  # [left, bottom, width, height]
+        self.exit_button = Button(self.button_ax, label='Exit', color='r',)
+        self.exit_button.label.set_fontweight('bold')
+        self.exit_button.label.set_fontsize(18)
+        self.exit_button.on_clicked(exit_program)
 
     def update(self, x):
         # Process inputs to function
