@@ -15,7 +15,7 @@ class ctrlPID:
         zeta_th = 0.9  # damping ratio for inner loop
         M = 15.0  # Time scale separation between inner & outer loop
         zeta_phi = 0.9  # damping ratio for outer loop
-        self.ki_phi = 0.3  # integral gain for outer loop
+        self.ki_phi = 0.15  # integral gain for outer loop
         # saturation limits
         self.theta_max = 30.0*np.pi/180.0  
             # maximum commanded base angle
@@ -74,6 +74,9 @@ class ctrlPID:
         #---------------------------------------------------
         # Compute the error in z
         error_phi = phi_r - phi
+        # integrate error in phi
+        self.integrator_phi = self.integrator_phi \
+            + (P.Ts / 2) * (error_phi + self.error_phi_d1)        
         # Compute derivative of phi
         self.phi_dot = (2.0*self.sigma - P.Ts) / (2.0*self.sigma + P.Ts) * self.phi_dot \
             + (2.0 / (2.0*self.sigma + P.Ts)) * ((phi - self.phi_d1))
@@ -83,10 +86,10 @@ class ctrlPID:
                 - self.kd_phi * self.phi_dot
         # saturate theta_r
         theta_r = saturate(theta_r_unsat, self.theta_max)
-        # integrator anti - windup: if the derivative is small, integrate stead-state error
-        if np.abs(self.phi_dot) < 0.05:
+        # Integrator anti - windup
+        if self.ki_phi != 0.0:
             self.integrator_phi = self.integrator_phi \
-            + (P.Ts / 2) * (error_phi + self.error_phi_d1)
+                + P.Ts / self.ki_phi * (theta_r - theta_r_unsat)
         #---------------------------------------------------
         # Update Inner Loop (theta-control)
         #---------------------------------------------------

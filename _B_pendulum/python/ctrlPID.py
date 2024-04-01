@@ -76,12 +76,14 @@ class ctrlPID:
         #---------------------------------------------------
         # Compute the error in z
         error_z = z_r - z
-        # integrate error in z
-        self.integrator_z = self.integrator_z \
-            + (P.Ts / 2) * (error_z + self.error_z_d1)
         # differentiate z
         self.z_dot = (2.0*self.sigma - P.Ts) / (2.0*self.sigma + P.Ts) * self.z_dot \
             + (2.0 / (2.0*self.sigma + P.Ts)) * ((z - self.z_d1))
+        # if z_dot is small, integrate z
+        if np.abs(self.z_dot) < 0.07:
+            self.integrator_z = self.integrator_z \
+                + (P.Ts / 2) * (error_z + self.error_z_d1)
+        
         # PID control - unsaturated
         theta_r_unsat = self.kp_z * error_z \
                 + self.ki_z * self.integrator_z \
@@ -89,9 +91,9 @@ class ctrlPID:
         # saturate theta_r
         theta_r = saturate(theta_r_unsat, self.theta_max)
         # integrator anti - windup
-        if self.ki_z != 0.0:
-            self.integrator_z = self.integrator_z \
-                + P.Ts / self.ki_z * (theta_r - theta_r_unsat)
+        # if self.ki_z != 0.0:
+        #     self.integrator_z = self.integrator_z \
+        #         + P.Ts / self.ki_z * (theta_r - theta_r_unsat)
         #---------------------------------------------------
         # zero canceling filter applied to theta_r to cancel
         # left-half plane zero and DC-gain
