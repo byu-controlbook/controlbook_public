@@ -13,13 +13,13 @@ controller = ctrlPD()
 reference = signalGenerator(amplitude=30.0*np.pi/180.0, 
                             frequency=0.05)
 
-
 # instantiate the simulation plots and animation
 dataPlot = dataPlotter()
 animation = armAnimation()
 
 t = P.t_start  # time starts at t_start
 y = arm.h()  # output of system at start of simulation
+
 while t < P.t_end:  # main simulation loop
     # Get referenced inputs from signal generators
     # Propagate dynamics in between plot samples

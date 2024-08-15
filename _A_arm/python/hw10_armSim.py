@@ -21,7 +21,6 @@ t = P.t_start  # time starts at t_start
 y = arm.h()  # output of system at start of simulation
 
 while t < P.t_end:  # main simulation loop
-
     # Get referenced inputs from signal generators
     # Propagate dynamics in between plot samples
     t_next_plot = t + P.t_plot

@@ -16,18 +16,33 @@ C_pid = P16.C_pid
 ###################################################################
 #   Control Design
 ###################################################################
-C = C_pid \
-    * ls.lag(z=0.9, M=20.0)\
-    * ls.lpf(p=90.0) \
-    * ls.lead(w=6.1, M=1.5)
+C = C_pid
+
+# Because our PM starts out good enough, we will skip to adding a
+# low-pass filter and lag compensator to meet the low-frequency and
+# high-frequency requirements.
+C_lpf = ls.get_control_lpf(90.0)
+C_lag = ls.get_control_lag(z=2, M = 120.0) 
+C = C*C_lpf*C_lag
+
+# after checking the requirements, we need to add a lead compensator now,
+# along with a proportional gain and 2nd low-pass filter to meet the noise 
+# specification. 
+C_lead = ls.get_control_lead(omega_lead=6.35, M=10.0)
+C = C*C_lead
+
+mag, _, _ = bode(Plant*C, dB=dB_flag, omega=[6.35], plot=False)
+C_k = ls.get_control_proportional(1/mag[0])
+C_lpf2 = ls.get_control_lpf(100.0)
+
+# this is our final controller 
+C = C*C_k*C_lpf2
 
 
 ###########################################################
 # add a prefilter to eliminate the overshoot
 ###########################################################
-#F = tf(1, 1) * ls.notch(p1=5.0, p2=1.0, M=10.0)
-#F = tf(1, 1) * ls.notch2(ws=.0, M=10.0)
-F = tf(1, 1) * ls.lpf(p=1.0)
+F = ls.get_control_lpf(p=1.0)
 
 
 ###########################################################
@@ -61,14 +76,22 @@ if __name__=="__main__":
     #   Define Design Specifications
     #########################################
     #----------- noise specification --------
-    omega_n=1000
-    mag, phase, omega = bode(Plant * C_pid, dB=dB_flag, omega=[omega_n])
-    ls.spec_noise(gamma_n=0.1*mag[0], omega_n=omega_n, dB_flag=dB_flag)
+    omega_n = 1000
+    mag, phase, omega = bode(Plant*C_pid, db=dB_flag, plot=False, omega=[omega_n])
+    ls.add_spec_noise(gamma_n=mag[0]*0.1, omega_n=omega_n, dB_flag=dB_flag) 
+
     #----------- general tracking specification --------
-    ls.spec_disturbance(gamma_d=0.1, omega_d=0.07, plant=Plant*C_pid, dB_flag=dB_flag)
+    omega_d = 0.07
+    
+    # need both of these magnitudes to calculate current gamma_d, 
+    # then improve it by factor of 10
+    mag_PC, phase, omega = bode(Plant*C_pid, db=dB_flag, plot=False, omega=[omega_d])
+    mag_P, phase, omega = bode(Plant, db=dB_flag, plot=False, omega=[omega_d])
+    ls.add_spec_input_disturbance(gamma_d=mag_P/(mag_PC*10), omega_d=omega_d, system=Plant, dB_flag=dB_flag)
+
 
     #########################################
-    #   Plotting routines
+    #   Plotting routine
     #########################################
 
     ## plot the effect of adding the new compensator terms

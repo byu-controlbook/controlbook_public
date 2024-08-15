@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import satelliteParam as P
 from ctrlPID import ctrlPID
 import hw16 as P16
-import loopshape_tools as ls
+import loopshape_tools as lt
 P10 = ctrlPID()
 
 # flag to define if using dB or absolute scale for M(omega)
@@ -20,7 +20,7 @@ Plant = tf([1.0], [(P.Js+P.Jp), 0.0, 0.0])
 #   Control Design
 #########################################
 C = tf([1], [1]) \
-    * ls.lead(w=0.41, M=15.0)\
+    * lt.get_control_lead(omega_lead=0.41, M=15.0)\
 
 ###########################################################
 # Extracting coefficients for controller
@@ -34,8 +34,8 @@ if __name__ == '__main__':
     # calculate bode plot and gain and phase margin
     # for original PID * plant dynamics
     mag, phase, omega = bode(Plant, dB=dB_flag,
-                             omega=np.logspace(-4, 5),
-                             plot=True, label=r'$P_{\theta,in}(s)$')
+                            omega=np.logspace(-4, 5),
+                            plot=True, label="$P_{\theta,in}(s)$")
 
     gm, pm, Wcg, Wcp = margin(Plant)
     print("for original system:")
@@ -44,15 +44,13 @@ if __name__ == '__main__':
     #########################################
     #   Define Design Specifications
     #########################################
-    ls.spec_track_ref(gamma_r=0.01, omega_r=0.001, dB_flag=dB_flag)
-    ls.spec_noise(gamma_n=0.01, omega_n=20, dB_flag=dB_flag)
+    lt.add_spec_ref_tracking(gamma_r=0.01, omega_r=0.001, dB_flag=dB_flag)
+    lt.add_spec_noise(gamma_n=0.01, omega_n=20, dB_flag=dB_flag)
 
     ## plot the effect of adding the new compensator terms
     mag, phase, omega = bode(Plant * C, dB=dB_flag,
                              omega=np.logspace(-4, 5),
-                             plot=True,
-                             label=r"$C_{\theta,in}(s)$"+
-                                   r"$P_{\theta,in}(s)$",
+                             plot=True, label="$C_{\theta,in}(s) P_{\theta,in}(s)$",
                              margins=True)
 
     gm, pm, Wcg, Wcp = margin(Plant * C)

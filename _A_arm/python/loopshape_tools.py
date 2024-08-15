@@ -1,151 +1,153 @@
-# loopshape_tool.py
-# Tools for loopshaping
-# Modification history:
-#   4/17/2023 - RWB
 import matplotlib.pyplot as plt
-from numpy import log10, ones, size, divide, logspace, square, sqrt
+import numpy as np
 from control import bode, tf
 
 
-def spec_noise(gamma_n, omega_n, dB_flag=True):
-    # Plot noise specification
-    # attenuate noise by gamma_n for all noise signals
-    # with frequency content above omega_n
-    w = logspace(log10(omega_n), 2 + log10(omega_n))
+def add_spec_noise(gamma_n, omega_n, dB_flag = False):
+    '''
+        Add noise specification, defined by gamma_n for remaining magnitude 
+        of error, and omega_n for the frequency at which it needs to happen. 
+    '''
+    w = np.logspace(np.log10(omega_n), 2 + np.log10(omega_n))
     fig = plt.gcf()
     if dB_flag == False:
-        fig.axes[0].plot(w,gamma_n*ones(size(w)),'g')
-        # fig.axes[0].scatter(omega_n, gamma_n, facecolors='none', 
-        #                     edgecolors='red', label='noise spec')
+        fig.axes[0].scatter(omega_n, gamma_n, facecolors='none', 
+                            edgecolors='red', label='noise spec')
     else:
-        fig.axes[0].plot(w,20*log10(gamma_n)*ones(size(w)),'g')
-        # fig.axes[0].scatter(omega_n, 20.0* log10(gamma_n), facecolors='none', 
-        #                     edgecolors='red', label='noise spec')
+        fig.axes[0].scatter(omega_n, 20.0* np.log10(gamma_n), facecolors='none', 
+                            edgecolors='red', label='noise spec')
 
 
-def spec_disturbance(gamma_d, omega_d, plant, dB_flag=True):
-    # Plot input disturbance specification
-    # reject input disturbances by gamma_d for all disturbance signals
-    # with frequency content below omega_d
-    # plant is the transfer function
+def add_spec_input_disturbance(gamma_d, omega_d, system, dB_flag=False):
+    '''
+        Add disturbance input specification, defined by gamma_d, 
+        for remaining magnitude of error, and omega_d for the frequency 
+        at which it needs to happen. "system" is a transfer function
+        object that represents the plant before any control is added. 
+    '''    
     fig = plt.gcf()
-    w = logspace(log10(omega_d)-2, log10(omega_d));
-    mag, phase, omega = bode(plant, dB=False, omega=w, plot=False)
+    mag, phase, omega = bode(system, dB=dB_flag, omega=omega_d, Plot=False)
     if dB_flag == False:
-        fig.axes[0].plot(w, mag/gamma_d,'g')
-        # fig.axes[0].scatter(omega_d, 1. / gamma_d * mag, facecolors='none', 
-        #                     edgecolors='green', label='$d_{in}$ spec')
+        fig.axes[0].scatter(omega_d, 1. / gamma_d * mag, facecolors='none', 
+                            edgecolors='green', label='$d_{in}$ spec')
     else:
-        fig.axes[0].plot(w,20*log10(1/gamma_d)*ones(size(mag))+20*log10(mag),'g')
-        # fig.axes[0].scatter(omega_d, 20. * log10(1. / gamma_d * mag), facecolors='none', 
-        #                     edgecolors='green', label='$d_{in}$ spec')
+        fig.axes[0].scatter(omega_d, 20. * np.log10(1. / gamma_d * mag), facecolors='none', 
+                            edgecolors='green', label='$d_{in}$ spec')
 
-
-def spec_track_ref(gamma_r, omega_r, dB_flag=True):
-    # Plot reference tracking specification
-    # track references with error gamma_r for all references signals
-    # with frequency content below omega_r
-    w = logspace(log10(omega_r)-2, log10(omega_r))
+def add_spec_ref_tracking(gamma_r, omega_r, dB_flag = False):
+    '''
+        Add reference tracking specification, defined by gamma_r for amount 
+        of remaining magnitude of error, and omega_r for the frequency at 
+        which it needs to happen. 
+    '''
+    w = np.logspace(np.log10(omega_r)-2, np.log10(omega_r))
     fig = plt.gcf()
     if dB_flag == False:
-        fig.axes[0].plot(w, (1./gamma_r)*ones(size(w)), 'g')
-        # fig.axes[0].scatter(omega_r, 1. / gamma_r, facecolors='none', 
-        #                     edgecolors=[1, 0, 1], label='ref tracking spec')
+        fig.axes[0].scatter(omega_r, 1. / gamma_r, facecolors='none', 
+                            edgecolors=[1, 0, 1], label='ref tracking spec')
     else:
-        fig.axes[0].plot(w, 20*log10(1./gamma_r)*ones(size(w)), 'g')
-        # fig.axes[0].scatter(omega_r, 20. * log10(1. / gamma_r), facecolors='none', 
-        #                     edgecolors=[1, 0, 1], label='ref tracking spec')
+        fig.axes[0].scatter(omega_r, 20. * np.log10(1. / gamma_r), facecolors='none', 
+                            edgecolors=[1, 0, 1], label='ref tracking spec')
 
-
-def spec_track_step(gamma_r, dB_flag=True):
-    # Plot step tracking specification
-    # track step input with error gamma_r 
-    # PC must be above spec as omega -> 0
-    w = logspace(-5, 0)
+def add_spec_tracking_step(gamma_r, dB_flag = False):
+    '''
+        Add step tracking constant error requirement, specified by gamma_r, (the
+        amount of residual error), and a mag. ratio slope at low frequencies of 0.  
+    '''
+    w = np.logspace(-5, 0)
     fig = plt.gcf()
     if dB_flag == False:
-        fig.axes[0].plot(w, (1./gamma_r-1)*ones(size(w)), 'g')
-        # fig.axes[0].loglog(w, (1./ gamma_r - 1) * ones(size(w)),
-        #          '.', color=[0, 0, 1], label = 'step tracking spec')
+        fig.axes[0].loglog(w, (1./ gamma_r - 1) * ones(size(w)),
+                 '.', color=[0, 0, 1], label = 'step tracking spec')
     else:
-        fig.axes[0].plot(w, 20.*log10(1./gamma_r-1)*ones(size(w)), 'g')
-        # fig.axes[0].semilogx(w, 20.0 * log10(1 / gamma_r - 1) * ones(len(w)),
-        #          '.', color=[0, 0, 1], label = 'step tracking spec')
+        fig.axes[0].semilogx(w, 20.0 * np.log10(1 / gamma_r - 1) * np.ones(len(w)),
+                 '.', color=[0, 0, 1], label = 'step tracking spec')
 
-
-def spec_track_ramp(gamma_r, dB_flag=True):
-    # Plot ramp tracking specification
-    # track ramp input with error gamma_r 
-    # PC must be above spec as omega -> 0
-    w = logspace(-5, 0)
+def add_spec_tracking_ramp(gamma_r, dB_flag = False):
+    '''
+        Add ramp tracking constant error requirement, specified by gamma_r, (the
+        amount of residual error), and a mag. ratio slope at low frequencies of 1.  
+    '''
+    w = np.logspace(-5, 0)
     fig = plt.gcf()
     if dB_flag == False:
-        fig.axes[0].plot(w, divide(1./ gamma_r, w), 'g')
-        # fig.axes[0].loglog(w, divide(1./ gamma_r, w),
-        #          '.', color=[0, 0, 1], label = 'ramp tracking spec');
+        fig.axes[0].loglog(w, np.divide(1./ gamma_r, w),
+                 '.', color=[0, 0, 1], label = 'ramp tracking spec');
     else:
-        fig.axes[0].plot(w, 20.*log10(divide(1./ gamma_r, w)), 'g')
-        # fig.axes[0].semilogx(w, 20.0 * log10(divide(1./ gamma_r, w)),
-        #          '.', color=[0, 0, 1], label = 'ramp tracking spec')
+        fig.axes[0].semilogx(w, 20.0 * np.log10(np.divide(1./ gamma_r, w)),
+                 '.', color=[0, 0, 1], label = 'ramp tracking spec')
 
-
-def spec_track_parabola(gamma_r, dB_flag=True):
-    # Plot parabola tracking specification
-    # track parabola input with error gamma_r 
-    # PC must be above spec as omega -> 0
-    w = logspace(-5, 0)
+def add_spec_tracking_parabola(gamma_r, dB_flag = False):
+    '''
+        Add parabola tracking constant error requirement, specified by gamma_r, (the
+        amount of residual error), and a mag. ratio slope at low frequencies of 2.  
+    '''
+    w = np.logspace(-5, 0)
     fig = plt.gcf()
     if dB_flag == False:
-        fig.axes[0].plot(w, divide(1./ gamma_r, square(w)), 'g')
-        # fig.axes[0].loglog(w, divide(1./ gamma_r, square(w)),
-        #          '.', color=[0, 0, 1], label = 'parabola tracking spec');
+        fig.axes[0].loglog(w, np.divide(1./ gamma_r, np.square(w)),
+                 '.', color=[0, 0, 1], label = 'parabola tracking spec');
     else:
-        fig.axes[0].plot(w, 20.*log10(divide(1./ gamma_r, square(w))), 'g')
-        # fig.axes[0].semilogx(w, 20.0 * log10(divide(1./ gamma_r, square(w))),
-        #          '.', color=[0, 0, 1], label = 'parabola tracking spec')
+        fig.axes[0].semilogx(w, 20.0 * np.log10(np.divide(1./ gamma_r, np.square(w))),
+                 '.', color=[0, 0, 1], label = 'parabola tracking spec')
 
+def get_control_proportional(kp):
+    '''
+        Generate transfer function for single gain or proportional control. This 
+        term can be used to change the crossover frequency. 
+    '''
 
-def proportional(kp):
-    # proportional control: change cross over frequency
     return tf([kp], [1])
 
+def get_control_integral(ki):
+    '''
+        Generate transfer function for PI controller defined by gain "ki". 
+        Can be used to change the slope of the mag. ratio at low frequencies. 
+    '''
+    Integrator = tf([1, ki], [1, 0])
 
-def integral(ki):
-    # integral control: increase steady state tracking and dist rejection
-    # ki: frequency at which integral action ends
-    return tf([1, ki], [1, 0])
-
-
-def lag(z, M):
-    # phase lag: add gain at low frequency
-    # z: frequency at which gain ends
-    # M: separation between pole and zero
-    return tf([1, z], [1, z/M])
+    return Integrator
 
 
-def lpf(p):
-    # low pass filter: decrease gain at high frequency (noise)
-    # p: lpf cutoff frequency
-    return tf(p, [1, p])
+
+def get_control_lag(z, M):
+    '''
+        Makes a lag controller to add gain at low frequency such that: 
+            phase lag (|p|<|z|): 
+            M - low frequency gain
+            z - frequency where effect roughly ends
+    '''
+    Lag = tf([1, z], [1, z / M])
+
+    return Lag
+
+def get_control_lpf(p):
+    '''
+        generates a transfer function for a low-pass filter with a
+        cutoff frequency of "p" 
+    '''
+    LPF = tf(p, [1, p])
+
+    return LPF
+
+# phase lead (|p|>|z|): increase PM (stability)
+# low frequency gain = K*z/p
+# high frequency gain = K
+def get_control_lead(omega_lead, M):
+    '''
+        Generates a lead controller transfer function defined by:
+            M - the amount of gain at high frequencies (corresponds to PM boost)
+            omega_lead - frequency where max PM will be added
+    '''
+    Lead = tf([M, M*omega_lead / np.sqrt(M)], [1, omega_lead * np.sqrt(M)])
+
+    return Lead
 
 
-def lead(w, M):
-    # phase lead: increase PM (stability)
-    # w: location of maximum frequency bump
-    # M: separation between zero and pole
-    return tf([sqrt(M), w], [1.0, w*sqrt(M)])
-
-
-def notch(p1, p2, M):
-    # notch filter: used for prefilter
-    # p1 - frequency where notch starts
-    # p2 - frequency where notch ends
-    # M: depth of notch
-    return tf([1.0, (p1*M+p2/M), p1*p2], [1.0, (p1+p2), p1*p2])
-
-
-def notch2(ws, M):
+def get_control_notch(ws, M):
     '''
         Generates a notch filter defined by frequency of interest (ws) and gain M. 
     '''
-    return tf([1, 2*sqrt(M)*ws, M*ws**2], [1, (M+1)*ws, M*ws**2])
+    Notch = tf([1, 2 * np.sqrt(M) * ws, M * ws**2], [1, (M + 1) * ws, M * ws**2]);
+
+    return Notch

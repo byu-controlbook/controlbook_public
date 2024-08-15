@@ -9,7 +9,7 @@ from ctrlLoopshape import ctrlLoopshape
 
 # instantiate satellite, controller, and reference classes
 satellite = satelliteDynamics(alpha=0.2)
-controller = ctrlLoopshape()
+controller = ctrlLoopshape(method="digital_filter")
 reference = signalGenerator(amplitude=15.0*np.pi/180.0, frequency=0.02)
 disturbance = signalGenerator(amplitude=0.5)
 noise_phi = signalGenerator(amplitude=0.003, frequency=10*np.pi*2)

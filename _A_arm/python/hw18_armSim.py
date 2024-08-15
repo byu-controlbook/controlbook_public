@@ -9,10 +9,10 @@ from ctrlLoopshape import ctrlLoopshape
 
 # instantiate arm, controller, and reference classes
 arm = armDynamics(alpha=0.1)
-controller = ctrlLoopshape()
+controller = ctrlLoopshape(method="digital_filter")
 reference = signalGenerator(amplitude=30*np.pi/180.0, frequency=0.05)
 #disturbance = signalGenerator(amplitude=0.1, frequency=0.07)
-disturbance = signalGenerator(amplitude=0.1)
+disturbance = signalGenerator(amplitude=0.1, frequency=0.001)
 noise = signalGenerator(amplitude=0.01)
 
 # instantiate the simulation plots and animation

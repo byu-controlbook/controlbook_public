@@ -52,6 +52,7 @@ class HummingbirdDynamics:
         psidot = state[5][0]
         pwm_left = pwms[0][0]
         pwm_right = pwms[1][0]
+
         # The equations of motion go here
         M = self._M(state)
         C = self._C(state)
@@ -67,6 +68,7 @@ class HummingbirdDynamics:
         phiddot = qddot[0][0]
         thetaddot = qddot[1][0]
         psiddot = qddot[2][0]
+        
         # build xdot and return
         xdot = np.array([[phidot],
                          [thetadot],
@@ -101,6 +103,7 @@ class HummingbirdDynamics:
         phidot = state[3][0]
         thetadot = state[4][0]
         psidot = state[5][0]
+
         # Fill out M22, M23, and M33
         M22 = 
         M23 = 
@@ -149,7 +152,7 @@ class HummingbirdDynamics:
 
         """
         # FIXME Fill in this function
-        #extact any necessary variables from the state
+        #extract any necessary variables from the state
 
         # Return the tau matrix
         return np.array([[],
@@ -161,7 +164,7 @@ class HummingbirdDynamics:
         # This needs no variables from the state
         
         # Return the B matrix
-        return
+        return B
 
 
 def saturate(u: np.ndarray, limit: float):

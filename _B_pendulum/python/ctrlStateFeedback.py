@@ -12,6 +12,7 @@ class ctrlStateFeedback:
         tr_theta = 0.5    # rise time for angle
         zeta_z = 0.707  # damping ratio position
         zeta_th = 0.707  # damping ratio angle
+        
         # State Space Equations
         # xdot = A*x + B*u
         # y = C*x
@@ -24,12 +25,14 @@ class ctrlStateFeedback:
                 3*(P.m1+P.m2) * P.g/2/(.25 * P.m1 + P.m2)/P.ell,
                 3 * P.b / 2 / (.25 * P.m1 + P.m2) / P.ell, 0.0]
             ])
+        
         B = np.array([[0.0],
                       [0.0],
                       [1 / (.25 * P.m1 + P.m2)],
                       [-3.0 / 2 / (.25 * P.m1 + P.m2) / P.ell]])
         C = np.array([[1.0, 0.0, 0.0, 0.0],
                       [0.0, 1.0, 0.0, 0.0]])
+        
         # gain calculation
         wn_th = 2.2 / tr_theta  # natural frequency for angle
         wn_z = 2.2 / tr_z  # natural frequency for position
@@ -37,6 +40,7 @@ class ctrlStateFeedback:
             [1, 2 * zeta_z * wn_z, wn_z**2],
             [1, 2 * zeta_th * wn_th, wn_th**2])
         des_poles = np.roots(des_char_poly)
+
         # Compute the gains if the system is controllable
         if np.linalg.matrix_rank(cnt.ctrb(A, B)) != 4:
             print("The system is not controllable")

@@ -9,20 +9,25 @@ class ctrlLoopshape:
             self.prefilter = transferFunction(L.F_num, L.F_den, P.Ts)
             self.control = transferFunction(L.C_num, L.C_den, P.Ts)
         elif method == "digital_filter":
-            self.prefilter = digitalFilter(L.F.num, L.F.den, P.Ts)
-            self.control = digitalFilter(L.C.num, L.C.den, P.Ts)
+            self.prefilter = digitalFilter(L.F_num, L.F_den, P.Ts)
+            self.control = digitalFilter(L.C_num, L.C_den, P.Ts)
         self.method = method
 
     def update(self, theta_r, y):
         theta = y[0][0]
+
         # prefilter the reference
         theta_r_filtered = self.prefilter.update(theta_r)
+
          # filtered error signal
         error = theta_r_filtered - theta
+
         # update controller
         tau_tilde = self.control.update(error)
+
         # compute feedback linearization torque tau_fl
         tau_fl = P.m * P.g * (P.ell / 2.0) * np.cos(theta)
+
         # compute total torque
         tau = saturate(tau_fl + tau_tilde, P.tau_max)
         return tau
@@ -101,8 +106,10 @@ class digitalFilter:
     def update(self, u):
         # update vector with filter inputs (u)
         self.prev_filt_input = np.hstack(([u], self.prev_filt_input[0:-1]))
+
         # use filter coefficients to calculate new output (y)
         y = self.num_d @ self.prev_filt_input - self.den_d[1:] @ self.prev_filt_output
+        
         # update vector with filter outputs
         self.prev_filt_output = np.hstack(([y], self.prev_filt_output[0:-1]))
         return y

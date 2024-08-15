@@ -8,8 +8,8 @@ dB_flag = False
 
 # Compute plant transfer functions
 th_e = 0
-Plant = tf([3.0/P.m/P.ell**2],
-           [1, 3.0*P.b/P.m/P.ell**2, 0.0])
+Plant = tf([3.0/P.m/P.ell**2],   #numerator 
+           [1, 3.0*P.b/P.m/P.ell**2, 0.0])   # denominator 
 
 if __name__ == '__main__':
     # Bode plot for the plant
@@ -21,6 +21,9 @@ if __name__ == '__main__':
     # do the following (but the magnitudes are absolute, not dB)
     mag, phase, omega = bode(Plant, plot=False,
                              omega = [0.3, 10.0, 1000.0])
+    
+    print('magnitude\n:', mag)
+    print('omega\n:', omega)    
 
     print('Close window to end program')
     plt.show()
