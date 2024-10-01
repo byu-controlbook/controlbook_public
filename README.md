@@ -71,6 +71,7 @@ Install the following python packages:
 - control
 - pyqtgraph
 - pyqt6
+- pyopengl
 
 In linux or macos, you can install a python package using the command
 
