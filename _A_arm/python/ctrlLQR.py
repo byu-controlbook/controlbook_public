@@ -19,16 +19,16 @@ class LQR:
         # feedback gain matrix
         self.K,_,_ = cnt.lqr(A, B, Q, R)
 
-    def _get_equilibrium_input(self, x):
-        tau_eq = 0.5 * P.m * P.g * P.ell * np.cos(x[0,0])
-        return tau_eq
-
     def update(self, x_r, x):
         x_tilde = x - x_r
         u_tilde = -self.K @ x_tilde
         u = u_tilde + self._get_equilibrium_input(x)
         u = saturate(u, P.tau_max)
         return u[0,0]
+
+    def _get_equilibrium_input(self, x):
+        tau_eq = 0.5 * P.m * P.g * P.ell * np.cos(x[0,0])
+        return tau_eq
 
 
 def saturate(u, limit):
