@@ -13,14 +13,20 @@ class MPC:
         # MPC setup
         n,m = 4,1
         self.mpc = ampc.ImplicitMPC(n, m, T, p)
-        A,B,w = self._linearize_model()
+        A,B,w = self._get_model()
         self.mpc.setModelContinuous2Discrete(A, B, w, P.Ts)
         self.mpc.setStateWeights(Q_diag)
         u_lim = np.array([P.F_max])
         self.mpc.setInputLimits(-u_lim, u_lim)
         self.mpc.initializeSolver()
 
-    def _linearize_model(self):
+    def update(self, x_r, x):
+        self.mpc.setReferenceState(x_r)
+        self.mpc.solve(x)
+        u = self.mpc.getNextInput()
+        return u[0]
+
+    def _get_model(self):
         zd_den = .25*P.m1 + P.m2
         thd_den = 2 * zd_den * P.ell
         A = np.array([[0, 0, 1, 0],
@@ -35,9 +41,3 @@ class MPC:
         u_eq = np.zeros(1)
         w = - (A @ x_eq + B @ u_eq)
         return A, B, w
-
-    def update(self, x_r, x):
-        self.mpc.setReferenceState(x_r)
-        self.mpc.solve(x)
-        u = self.mpc.getNextInput()
-        return u[0]

@@ -22,6 +22,12 @@ class MPC:
         self.mpc.setInputLimits(-u_lim, u_lim)
         self.mpc.initializeSolver()
 
+    def update(self, x_r, x):
+        self.mpc.setReferenceState(x_r)
+        self.mpc.solve(x)
+        u = self.mpc.getNextInput()
+        return u[0]
+
     def _get_model(self):
         k_Js, k_Jp = P.k / P.Js, P.k / P.Jp
         b_Js, b_Jp = P.b / P.Js, P.b / P.Jp
@@ -37,9 +43,3 @@ class MPC:
         u_eq = np.zeros(1)
         w = - (A @ x_eq + B @ u_eq)
         return A, B, w
-
-    def update(self, x_r, x):
-        self.mpc.setReferenceState(x_r)
-        self.mpc.solve(x)
-        u = self.mpc.getNextInput()
-        return u[0]

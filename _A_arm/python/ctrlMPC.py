@@ -13,14 +13,22 @@ class MPC:
         # MPC setup
         n,m = 2,1
         self.mpc = ampc.ImplicitMPC(n, m, T, p)
-        A,B,w = self._linearize_model(np.zeros(n))
+        A,B,w = self._get_model(np.zeros(n))
         self.mpc.setModelContinuous2Discrete(A, B, w, P.Ts)
         self.mpc.setStateWeights(Q_diag)
         u_lim = np.array([P.tau_max])
         self.mpc.setInputLimits(-u_lim, u_lim)
         self.mpc.initializeSolver()
 
-    def _linearize_model(self, x_eq):
+    def update(self, x_r, x):
+        self.mpc.setReferenceState(x_r)
+        A,B,w = self._get_model(x)
+        self.mpc.setModelContinuous2Discrete(A, B, w, P.Ts)
+        self.mpc.solve(x)
+        u = self.mpc.getNextInput()
+        return u[0]
+
+    def _get_model(self, x_eq):
         den = P.m * P.ell**2
         A = np.array([[0, 1],
                       [0, -3*P.b / den]])
@@ -34,11 +42,3 @@ class MPC:
     def _get_equilibrium_input(self, x):
         tau_eq = 0.5 * P.m * P.g * P.ell * np.cos(x[0])
         return np.array([tau_eq])
-
-    def update(self, x_r, x):
-        self.mpc.setReferenceState(x_r)
-        A,B,w = self._linearize_model(x)
-        self.mpc.setModelContinuous2Discrete(A, B, w, P.Ts)
-        self.mpc.solve(x)
-        u = self.mpc.getNextInput()
-        return u[0]
