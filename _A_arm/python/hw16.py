@@ -34,5 +34,5 @@ if __name__ == "__main__":
     fig.suptitle("Bode Plot: Single Link Arm")
     axes[0].legend()
 
-    print("Close plot window to end program")
+    fig.tight_layout()
     plt.show()

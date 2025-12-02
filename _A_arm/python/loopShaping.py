@@ -1,17 +1,17 @@
 import matplotlib.pyplot as plt
-from control import tf, bode_plot, frequency_response, margin, step_response, mag2db, tf2ss, c2d
+import control as cnt
 import numpy as np
-import armParam as P
 import hw16 as P16
 import loopshape_tools as ls
 
 # flag to define if using dB or absolute scale for M(omega)
-dB_flag = P16.dB_flag
+dB_flag = False
 
 # assigning plant and controller from past HW
 # (to make sure we don't introduce additional errors)
 Plant = P16.Plant
 C_pid = P16.C_pid
+sys_orig_OL = C_pid * Plant
 
 ###################################################################
 #   Control Design
@@ -22,22 +22,23 @@ C = C_pid
 # low-pass filter and lag compensator to meet the low-frequency and
 # high-frequency requirements.
 C_lpf = ls.get_control_lpf(90.0)
-C_lag = ls.get_control_lag(z=5, M = 90.0) 
-C = C*C_lpf*C_lag
+C_lag = ls.get_control_lag(z=5, M=90.0)
+C = C * C_lpf * C_lag
 
 # after checking the requirements, we need to add a lead compensator now,
-# along with a proportional gain and 2nd low-pass filter to meet the noise 
-# specification. 
+# along with a proportional gain and 2nd low-pass filter to meet the noise
+# specification.
 C_lead = ls.get_control_lead(omega_lead=10, M=10.0)
-C = C*C_lead
+C = C * C_lead
 
-mag, _, _ = frequency_response(Plant*C, omega=[6.35])
-C_k = ls.get_control_proportional(1/mag[0])
+mag, _, _ = cnt.frequency_response(Plant * C, omega=[6.35])
+C_k = ls.get_control_proportional(1 / mag[0])
 C_lpf2 = ls.get_control_lpf(100.0)
 
-# this is our final controller 
-C = C*C_k*C_lpf2
+# this is our final controller
+C = C * C_k * C_lpf2
 
+sys_final_OL = C * Plant
 
 ###########################################################
 # add a prefilter to eliminate the overshoot
@@ -47,134 +48,123 @@ F = ls.get_control_lpf(p=2.0)
 
 ###########################################################
 # Extracting coefficients for controller and prefilter
+# (used in other files, not used in this file)
 ###########################################################
 C_num = np.asarray(C.num[0])
 C_den = np.asarray(C.den[0])
 F_num = np.asarray(F.num[0])
 F_den = np.asarray(F.den[0])
 
-def plot_bode(mag, phase, omega, label, fig):
-    plt.subplot(2, 1, 1)
-    plt.loglog(omega, mag, label = label)
-    plt.subplot(2, 1, 2) 
-    plt.semilogx(omega, phase, label = label)
-    fig.axes[0].legend()
-    fig.axes[0].grid('True')
-    fig.axes[1].grid('True')
 
-if __name__=="__main__":
-    # calculate bode plot and gain and phase margin
-    # for original PID * plant dynamics
-    mag, phase, omega = frequency_response(Plant * C_pid,
-                             omega=np.logspace(-3, 5), )
-    
-    fig = plt.figure()
-    plot_bode(mag, np.unwrap(phase), omega, '$C_{pid}P(s)$', fig)
+if __name__ == "__main__":
+    fig1 = plt.figure()
+    axes = fig1.subplots(2, sharex=True)
+    fig1.suptitle("Open-Loop Bode Plots: Single Link Arm")
 
-    gm, pm, Wcg, Wcp = margin(Plant * C_pid)
-    print("for original C_pid system:")
-    if dB_flag is True:
-        print(" pm: ", pm, " Wcp: ", Wcp,
-              "gm: ", mag2db(gm), " Wcg: ", Wcg)
-    elif dB_flag is False:
-        print(" pm: ", pm, " Wcp: ", Wcp,
-              "gm: ", gm, " Wcg: ", Wcg)
+    # plot bode responses
+    cnt.bode(
+        [sys_orig_OL, sys_final_OL],
+        dB=dB_flag,
+        ax=axes,
+        omega_limits=[10**-3, 10**5],
+        display_margins=False,
+        label=["$C_{pid}(s)P(s)$", "$C_{final}(s)P(s)$"],
+    )
+
+    # display gain and phase margins
+    ls.print_margins(sys_orig_OL, "Original (C_pid) Open-Loop", dB_flag)
+    ls.print_margins(sys_final_OL, "Final (C_final) Open-Loop", dB_flag)
 
     #########################################
     #   Define Design Specifications
     #########################################
-    #----------- noise specification --------
+    # ----------- noise specification --------
     omega_n = 1000
-    mag, phase, omega = frequency_response(Plant*C_pid, omega=[omega_n])
-    ls.add_spec_noise(gamma_n=mag[0]*0.1, omega_n=omega_n, dB_flag=dB_flag) 
+    improvement_factor = 10.0
 
-    #----------- general tracking specification --------
+    mag, _, _ = cnt.frequency_response(sys_orig_OL, omega=[omega_n])
+    gamma_n = mag[0] / improvement_factor
+
+    # plot noise specification area
+    omega_max = axes[0].get_xlim()[1]
+    x_pts = [omega_n, omega_max]
+    y_upper = [1.0] * 2
+    y_lower = [gamma_n] * 2
+    if dB_flag:
+        y_upper = cnt.mag2db(y_upper)
+        y_lower = cnt.mag2db(y_lower)
+    axes[0].fill_between(
+        x_pts, y_upper, y_lower, color="red", alpha=0.2, label="noise spec"
+    )
+
+    # ----------- general tracking specification --------
     omega_d = 0.07
-    
-    # need both of these magnitudes to calculate current gamma_d, 
-    # then improve it by factor of 10
-    mag_PC, phase, omega = frequency_response(Plant*C_pid, omega=[omega_d])
-    mag_P, phase, omega = frequency_response(Plant, omega=[omega_d])
-    ls.add_spec_input_disturbance(gamma_d=mag_P/(mag_PC*10), omega_d=omega_d, system=Plant, dB_flag=dB_flag)
+    improvement_factor = 10.0
 
-    #########################################
-    #   Plotting routine
-    #########################################
+    # plot disturbance specification line
+    mag, phase, omega = cnt.frequency_response(sys_orig_OL, omega=[omega_d])
 
-    ## plot the effect of adding the new compensator terms
-    mag, phase, omega = frequency_response(Plant * C, 
-                                           omega=np.logspace(-3, 5))
-                            
-    plot_bode(mag, np.unwrap(phase), omega, '$C_{final}(s)P(s)$', fig)
+    x_pts = [omega_d, omega_d]
+    y_pts = [mag[0], mag[0] * improvement_factor]
+    if dB_flag:
+        y_pts = cnt.mag2db(y_pts)
+    axes[0].plot(x_pts, y_pts, "g", label="$d_{in}$ spec")
 
-    gm, pm, Wcg, Wcp = margin(Plant * C)
-    print("for final C*P:")
-    if dB_flag is True:
-        print(" pm: ", pm, " Wcp: ", Wcp,
-              "gm: ", mag2db(gm), " Wcg: ", Wcg)
-    elif dB_flag is False:
-        print(" pm: ", pm, " Wcp: ", Wcp,
-              "gm: ", gm, " Wcg: ", Wcg)
-
-    fig.axes[0].legend()
-    fig.suptitle('Loop-shaping for Single-Link Case Study')
-    plt.show()
+    axes[0].legend()
 
     ############################################
     # now check the closed-loop response with prefilter
     ############################################
     # Closed loop transfer function from R to Y - no prefilter
-    CLOSED_R_to_Y = (Plant * C / (1.0 + Plant * C))
+    R_to_Y_CL = Plant * C / (1.0 + Plant * C)
     # Closed loop transfer function from R to Y - with prefilter
-    CLOSED_R_to_Y_with_F = (F * Plant * C / (1.0 + Plant * C))
+    R_to_Y_with_F_CL = F * Plant * C / (1.0 + Plant * C)
     # Closed loop transfer function from R to U - no prefilter
-    CLOSED_R_to_U = (C / (1.0 + Plant * C))
+    R_to_U_CL = C / (1.0 + Plant * C)
     # Closed loop transfer function from R to U - with prefilter
-    CLOSED_R_to_U_with_F = (F*C / (1.0 + Plant * C))
+    R_to_U_with_F_CL = F * C / (1.0 + Plant * C)
 
-    plt.figure()
-    plt.clf()
-    plt.grid(True)
-    plt.subplot(311)
-    mag, phase, omega = frequency_response(CLOSED_R_to_Y)
-    if dB_flag:
-        plt.semilogx(omega, mag2db(mag), color=[0, 0, 1],
-            label='closed-loop $\\frac{Y}{R}$ - no pre-filter')
-    else:
-        plt.loglog(omega, mag, color=[0, 0, 1],
-            label='closed-loop $\\frac{Y}{R}$ - no pre-filter')
-    mag, phase, omega = frequency_response(CLOSED_R_to_Y_with_F)
-    if dB_flag:
-        plt.semilogx(omega, mag2db(mag), color=[0, 1, 0],
-            label='closed-loop $\\frac{Y}{R}$ - with pre-filter')
-    else:
-        plt.loglog(omega, mag, color=[0, 1, 0],
-            label='closed-loop $\\frac{Y}{R}$ - with pre-filter')
-    plt.ylabel('Closed-Loop Bode Plot')
-    plt.grid(True)
-    plt.legend()
+    fig2 = plt.figure()
+    axes = fig2.subplots(2, sharex=True)
+    fig2.suptitle("Closed-Loop Bode Plots: Single Link Arm")
 
-    plt.subplot(312), plt.grid(True)
+    cnt.bode(
+        [R_to_Y_CL, R_to_Y_with_F_CL],
+        dB=dB_flag,
+        ax=axes,
+        # plot_phase=False,
+        label=[
+            r"Closed-Loop $\frac{Y}{R}$ - no pre-filter",
+            r"Closed-Loop $\frac{Y}{R}$ - with pre-filter",
+        ],
+    )
+    axes[0].legend()
+
+    # Step response plots
+    fig3 = plt.figure()
+    axes = fig3.subplots(2, sharex=True)
+    fig3.suptitle("Closed-Loop Step Responses: Single Link Arm")
+
+    ax = axes[0]
     T = np.linspace(0, 2, 100)
-    _, yout_no_F = step_response(CLOSED_R_to_Y, T)
-    _, yout_F = step_response(CLOSED_R_to_Y_with_F, T)
-    plt.plot(T, yout_no_F, color=[0,0,1],
-             label='response without prefilter')
-    plt.plot(T, yout_F, color=[0,1,0],
-             label='response with prefilter')
-    plt.legend()
-    plt.ylabel('Step Response')
+    _, yout_no_F = cnt.step_response(R_to_Y_CL, T)
+    _, yout_F = cnt.step_response(R_to_Y_with_F_CL, T)
+    ax.plot(T, yout_no_F, label="no prefilter")
+    ax.plot(T, yout_F, label="with prefilter")
+    ax.legend()
+    ax.grid(True)
+    ax.set_ylabel("Step Response")
 
+    ax = axes[1]
+    _, Uout = cnt.step_response(R_to_U_CL, T)
+    _, Uout_F = cnt.step_response(R_to_U_with_F_CL, T)
+    ax.plot(T, Uout, label="no prefilter")
+    ax.plot(T, Uout_F, label="with prefilter")
+    ax.set_ylabel("Control Effort")
+    ax.set_xlabel("Time (s)")
+    ax.grid(True)
 
-    plt.subplot(313)
-    plt.grid(True)
-    _, Uout = step_response(CLOSED_R_to_U, T)
-    _, Uout_F = step_response(CLOSED_R_to_U_with_F, T)
-    plt.plot(T, Uout, color=[0, 0, 1],
-             label='control effort without prefilter')
-    plt.plot(T, Uout_F, color=[0, 1, 0],
-             label='control effort with prefilter')
-    plt.ylabel('Control Effort')
-    plt.legend()
-
+    fig1.tight_layout()
+    fig2.tight_layout()
+    fig3.tight_layout()
     plt.show()

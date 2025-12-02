@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # Bode plot for the plant
     fig = plt.figure()
     axes = fig.subplots(2, sharex=True)
-    cnt.bode(Plant, dB=dB_flag, display_margins=False, ax=axes, label="P(s)")
+    cnt.bode(Plant, dB=dB_flag, ax=axes, label="P(s)")
     fig.suptitle("Bode Plot: Single Link Arm")
     axes[0].legend()
 
@@ -30,6 +30,5 @@ if __name__ == "__main__":
     print("magnitude:\n", mag)
     print("omega:\n", omega)
 
-    print("Close window to end program")
-
+    fig.tight_layout()
     plt.show()
