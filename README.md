@@ -10,7 +10,7 @@
 
 Hardcopy available on [Amazon](https://www.amazon.com/Introduction-Feedback-Control-Design-Studies/dp/1073396711/ref=sr_1_8?crid=36TN6HXOVZL2J&keywords=introduction+to+feedback+control&qid=1563317351&s=gateway&sprefix=introduction+to+feedba%2Caps%2C158&sr=8-8)
 
-[PDF Version of Book](https://drive.google.com/file/d/1DxioCcBOJl-DoIBkDm8J2_ThItXbGx6e/view?usp=sharing)
+[PDF Version of Book](https://drive.google.com/file/d/12h_sd9nXvxmTucqLiAzi5NRKe5phq4KA/view?usp=sharing)
     - A PDF version of the book is available at this link.
     - When typos are found, they will be fixed and the most recent version of the book will be posted here.
     - Please send typos and other suggestions to beard@byu.edu.
