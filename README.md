@@ -15,6 +15,9 @@ Hardcopy available on [Amazon](https://www.amazon.com/Introduction-Feedback-Cont
     - When typos are found, they will be fixed and the most recent version of the book will be posted here.
     - Please send typos and other suggestions to beard@byu.edu.
 
+[Interactive Textbook](https://byu-controlbook.github.io/controlbook_public/interactive/)
+    - An interactive HTML version of the textbook is available at this link.
+
 
 # LECTURE MATERIAL 
 (Under construction) The following lecture materials are included as a resource for instructors.  The slides closely follow the book.  We welcome suggestions on how these slides might be improved.
