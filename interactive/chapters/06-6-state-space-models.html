@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="6" id="state-space-models"><span class="header-section-number">6</span> State Space Models</h1>
+<h2 data-number="6.1" id="theory-4"><span class="header-section-number">6.1</span> Theory</h2>
+<p>The transfer function models discussed in the previous chapter are a
+frequency domain representation of the system because they describe how
+the system responds to sinusoidal inputs at specific frequencies. In
+contrast, differential equation models are time-domain representations
+of the systems that directly model the time-evolution of the system. The
+<em>state space</em> model<span id="idx-0042" class="book-index-anchor" aria-hidden="true"></span> is also a time-domain
+representation that is essentially a reformatting of the differential
+equations. In essence, the state space model represents the system by an
+input, an output, and a memory element, called the state. In this book,
+the input will always be denoted as <span
+class="math inline">\(u(t)\)</span>, the output as <span
+class="math inline">\(y(t)\)</span>, and the state as <span
+class="math inline">\(x(t)\)</span>. The state represents all of the
+memory elements in the system. For example, the state may represent a
+storage register, the altitude of an aircraft, the velocity of a car,
+the voltage across a capacitor, or the current through an inductor.</p>
+<p>The state space model is composed of two equations. The first
+equation is called the <em>state evolution equation</em><span id="idx-0043" class="book-index-anchor" aria-hidden="true"></span> and represents how the
+memory elements, or states, change as a function of the current state
+and the inputs to the system. The second equation is called the
+<em>output equation</em><span id="idx-0044" class="book-index-anchor" aria-hidden="true"></span> and describes how the
+current output of the system depends on the current state and the
+current input. The general state space equations for a continuous time
+system are written as <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= f(x,u) \label{eq:dm_state_evolution_nonlinear} \\
+y &amp;= h(x,u), \label{eq:dm_output_equation_nonlinear}
+\end{aligned}\]</span> where
+Equation <a href="#theory-4" data-reference-type="eqref"
+data-reference="eq:dm_state_evolution_nonlinear"><a href="#state-space-models">6.1</a></a>
+is the state evolution equation and
+Equation <a href="#design-study-a-single-link-robot-arm-4" data-reference-type="eqref"
+data-reference="eq:dm_output_equation_nonlinear"><a href="#state-space-models">6.2</a></a>
+is the output equation. Note that for continuous time systems the state
+evolution equation is a system of coupled first order nonlinear
+differential equations. The general state space equations for a discrete
+time system are written as <span class="math display">\[\begin{aligned}
+x[k+1] &amp;= f(x[k],u[k])
+\label{eq:dm_state_evolution_nonlinear_discrete} \\
+y[k] &amp;= h(x[k],u[k]),
+\label{eq:dm_output_equation_nonlinear_discrete}
+\end{aligned}\]</span> where again
+Equation <a href="#state-space-models"
+data-reference-type="eqref"
+data-reference="eq:dm_state_evolution_nonlinear_discrete"><a href="#state-space-models">6.3</a></a>
+is the state evolution equation, this time given by a system of coupled
+first order difference equations, and
+Equation <a href="#state-space-models"
+data-reference-type="eqref"
+data-reference="eq:dm_output_equation_nonlinear_discrete"><a href="#state-space-models">6.4</a></a>
+is the output equation.</p>
+<p>Any nonlinear <span class="math inline">\(n^{th}\)</span> order
+differential equation can be transformed into state space form. For
+example, consider the nonlinear differential equation <span
+class="math display">\[\dddot{y} + y^2\ddot{y} + \sin(y\dot{y}) + e^y =
+u,\]</span> where <span class="math inline">\(u\)</span> is the input
+and <span class="math inline">\(y\)</span> is the output. Define the
+state as <span class="math display">\[x=\begin{pmatrix}x_1 \\ x_2 \\ x_3
+\end{pmatrix}\stackrel{\triangle}{=}\begin{pmatrix} y \\ \dot{y} \\
+\ddot{y} \end{pmatrix}.\]</span> Then the state evolution equation can
+be derived as <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \\ \dot{x}_3
+\end{pmatrix} = \begin{pmatrix} \dot{y} \\ \ddot{y} \\ \dddot{y}
+\end{pmatrix}
+= \begin{pmatrix} \dot{y} \\ \ddot{y} \\ -y^2\ddot{y} - \sin(y\dot{y}) -
+e^y + u \end{pmatrix} \\
+&amp;= \begin{pmatrix} x_2 \\ x_3 \\ -x_1^2x_3 - \sin(x_1x_2) - e^{x_1}
++ u \end{pmatrix}
+\stackrel{\triangle}{=}f(x,u),
+\end{aligned}\]</span> and the output equation is <span
+class="math display">\[y = x_1 \stackrel{\triangle}{=}h(x,u).\]</span>
+As another example, consider the coupled differential equations <span
+class="math display">\[\begin{aligned}
+\ddot{y}_1 + \dot{y}_1y_2 + y_2 &amp;=u \\
+\ddot{y}_2 + \dot{y}_2\cos(y_1)+\dot{y_1} &amp;=0.
+\end{aligned}\]</span> Defining the output as <span
+class="math inline">\(y=(y_1, y_2)^{\top}\)</span> and the state as
+<span class="math display">\[x=\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4
+\end{pmatrix} \stackrel{\triangle}{=}\begin{pmatrix} y_1 \\ y_2 \\
+\dot{y}_1 \\ \dot{y}_2 \end{pmatrix},\]</span> the state evolution
+equation can be derived as <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \\ \dot{x}_3 \\
+\dot{x}_4 \end{pmatrix} = \begin{pmatrix} \dot{y}_1 \\ \dot{y}_2 \\
+\ddot{y}_1 \\ \ddot{y}_2 \end{pmatrix}
+= \begin{pmatrix} \dot{y}_1 \\ \dot{y}_2 \\ -\dot{y}_1y_2 - y_2 +u \\
+-\dot{y}_2\cos(y_1)-\dot{y_1} \end{pmatrix}
+\\
+&amp;= \begin{pmatrix} x_3 \\ x_4 \\ -x_3x_2 - x_2 +u \\
+-x_4\cos(x_1)-x_3 \end{pmatrix}
+\stackrel{\triangle}{=}f(x,u),
+\end{aligned}\]</span> and the output equation is given by <span
+class="math display">\[y = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+\stackrel{\triangle}{=}h(x,u).\]</span></p>
+<h3 data-number="6.1.1" id="jacobian-linearization-revisited"><span class="header-section-number">6.1.1</span> Jacobian Linearization
+Revisited</h3>
+<p>Jacobian linearization<span id="idx-0045" class="book-index-anchor" aria-hidden="true"></span> of the system is more
+straightforward when the equations are in state space form. Given the
+nonlinear state space equations <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= f(x,u) \label{eq:dm_state_evolution_nonlinear_2} \\
+y &amp;= h(x,u) \label{eq:dm_output_equation_nonlinear_2}
+\end{aligned}\]</span> an equilibrium point is defined as any <span
+class="math inline">\((x_e,u_e)\)</span> such that <span
+class="math inline">\(f(x_e,u_e)=0\)</span>. In other words, equilibrium
+points are combinations of states and inputs where the state stops
+evolving in time. To linearize about an equilibrium point,
+Equations <a href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_state_evolution_nonlinear_2"><a href="#state-space-models">6.5</a></a>
+and <a href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_output_equation_nonlinear_2"><a href="#state-space-models">6.6</a></a>
+can be expanded in a Taylor series about <span
+class="math inline">\((x_e,u_e)\)</span> as <span
+class="math display">\[\begin{aligned}
+f(x,u) &amp;\approx f(x_e,u_e) + \left.\frac{\partial f}{\partial
+x}\right|_e (x-x_e) + \left.\frac{\partial f}{\partial
+u}\right|_e(u-u_e) + H.O.T.
+\label{eq:dm_taylor_series_f}\\
+h(x,u) &amp;\approx h(x_e,u_e) + \left.\frac{\partial h}{\partial
+x}\right|_e (x-x_e) + \left.\frac{\partial h}{\partial
+u}\right|_e(u-u_e) + H.O.T.,
+\label{eq:dm_taylor_series_h}
+\end{aligned}\]</span> where the Jacobian matrices are defined as <span
+class="math display">\[\begin{aligned}
+\frac{\partial f}{\partial x}
+&amp;\stackrel{\triangle}{=}\begin{pmatrix} \frac{\partial f_1}{\partial
+x_1} &amp; \dots &amp; \frac{\partial f_1}{\partial x_n} \\
+\vdots &amp; &amp; \vdots \\
+\frac{\partial f_n}{\partial x_1} &amp; \dots &amp; \frac{\partial
+f_n}{\partial x_n} \end{pmatrix} \\
+\frac{\partial f}{\partial u}
+&amp;\stackrel{\triangle}{=}\begin{pmatrix} \frac{\partial f_1}{\partial
+u_1} &amp; \dots &amp; \frac{\partial f_1}{\partial u_m} \\
+\vdots &amp; &amp; \vdots \\
+\frac{\partial f_n}{\partial u_1} &amp; \dots &amp; \frac{\partial
+f_n}{\partial u_m} \end{pmatrix} \\
+\frac{\partial h}{\partial x}
+&amp;\stackrel{\triangle}{=}\begin{pmatrix} \frac{\partial h_1}{\partial
+x_1} &amp; \dots &amp; \frac{\partial h_1}{\partial x_n} \\
+\vdots &amp; &amp; \vdots \\
+\frac{\partial h_p}{\partial x_1} &amp; \dots &amp; \frac{\partial
+h_p}{\partial x_n} \end{pmatrix} \\
+\frac{\partial h}{\partial u}
+&amp;\stackrel{\triangle}{=}\begin{pmatrix} \frac{\partial h_1}{\partial
+u_1} &amp; \dots &amp; \frac{\partial h_1}{\partial u_m} \\
+\vdots &amp; &amp; \vdots \\
+\frac{\partial h_p}{\partial u_1} &amp; \dots &amp; \frac{\partial
+h_p}{\partial u_m} \end{pmatrix}.
+\end{aligned}\]</span> Therefore <span
+class="math inline">\(\frac{\partial f}{\partial x}\)</span> is an <span
+class="math inline">\(n\times n\)</span> matrix, <span
+class="math inline">\(\frac{\partial f}{\partial u}\)</span> is an <span
+class="math inline">\(n\times m\)</span> matrix, <span
+class="math inline">\(\frac{\partial h}{\partial x}\)</span> is a <span
+class="math inline">\(p\times n\)</span> matrix, and <span
+class="math inline">\(\frac{\partial h}{\partial u}\)</span> is a <span
+class="math inline">\(p\times m\)</span> matrix.</p>
+<p>Defining <span
+class="math inline">\(\tilde{x}\stackrel{\triangle}{=}x-x_e\)</span> and
+<span class="math inline">\(\tilde{u}=u-u_e\)</span> and letting <span
+class="math inline">\(A=\left.\frac{\partial f}{\partial
+x}\right|_e\)</span> and <span
+class="math inline">\(B=\left.\frac{\partial f}{\partial
+u}\right|_e\)</span>, and noting that <span
+class="math inline">\(\dot{\tilde{x}}=\dot{x}-\dot{x}_e=\dot{x}\)</span>,
+results in the linearized state evolution equation <span
+class="math display">\[\dot{\tilde{x}}=A\tilde{x} + B\tilde{u}.\]</span>
+At the equilibria, the output may not necessarily be zeros. If we define
+the equalibrium output to be <span
+class="math inline">\(y_e=h(x_e,u_e)\)</span> and the linearized output
+as <span class="math inline">\(\tilde{y}=y-y_e\)</span>, and define
+<span class="math inline">\(C\stackrel{\triangle}{=}\left.\frac{\partial
+h}{\partial x}\right|_e\)</span> and <span
+class="math inline">\(D\stackrel{\triangle}{=}\left.\frac{\partial
+h}{\partial u}\right|_e\)</span>, then using
+Equation <a href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_taylor_series_h"><a href="#state-space-models">6.8</a></a>
+in <a href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_output_equation_nonlinear_2"><a href="#state-space-models">6.6</a></a>
+gives <span class="math display">\[\begin{aligned}
+\tilde{y} &amp;= y-y_e \\
+&amp;\approx h(x_e,u_e)+C\tilde{x} + D\tilde{u} - h(x_e,u_e) \\
+&amp;= C\tilde{x} + D\tilde{u}.
+\end{aligned}\]</span> The linearized state space equations<span id="idx-0046" class="book-index-anchor" aria-hidden="true"></span> are therefore <span
+class="math display">\[\begin{aligned}
+\dot{\tilde{x}} &amp;= A\tilde{x} + B\tilde{u} \\
+\tilde{y} &amp;= C\tilde{x} + D\tilde{u}.
+\end{aligned}\]</span></p>
+<h3 data-number="6.1.2"
+id="converting-state-space-models-to-transfer-function-models"><span class="header-section-number">6.1.2</span> Converting State Space Models
+to Transfer Function Models</h3>
+<p>Linear state space models can be converted to transfer function
+models<span id="idx-0047" class="book-index-anchor" aria-hidden="true"></span> using the following
+technique. Suppose that the linear state space model is given by <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + Bu
+\label{eq:dm_linear_ss_evolution} \\
+y &amp;= Cx + Du.
+\label{eq:dm_linear_ss_output}
+\end{aligned}\]</span> Defining the Laplace transform<span id="idx-0048" class="book-index-anchor" aria-hidden="true"></span> of a vector to be the
+Laplace transform of each element, i.e., <span
+class="math display">\[\mathcal{L}\left\{\begin{pmatrix} x_1 \\ \vdots
+\\ x_n \end{pmatrix}\right\} = \begin{pmatrix}
+\mathcal{L}\left\{x_1\right\} \\ \vdots \\
+\mathcal{L}\left\{x_n\right\}\end{pmatrix},\]</span> and noting that the
+Laplace transform is a linear operator, which implies that <span
+class="math display">\[\mathcal{L}\{Ax\} = A\mathcal{L}\{x\},\]</span>
+taking the Laplace transform of
+Equations <a href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_linear_ss_evolution"><a href="#state-space-models">6.9</a></a>
+and <a href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_linear_ss_output"><a href="#state-space-models">6.10</a></a>,
+and setting the initial condition to zeros, gives <span
+class="math display">\[\begin{aligned}
+sX(s) &amp;= AX(s) + BU(s)
+\label{eq:dm_linear_ss_laplace_evolution_1} \\
+Y(s) &amp;= CX(s) + DU(s).
+\label{eq:dm_linear_ss_laplace_output_1}
+\end{aligned}\]</span>
+Solving <a href="#state-space-models"
+data-reference-type="eqref"
+data-reference="eq:dm_linear_ss_laplace_evolution_1"><a href="#state-space-models">6.11</a></a>
+for <span class="math inline">\(X(s)\)</span> gives <span
+class="math display">\[\begin{aligned}
+&amp; sX(s)-AX(s) = BU(s) \notag \\
+\implies &amp; (sI-A)X(s) = BU(s) \notag \\
+\implies &amp; X(s) = (sI-A)^{-1}BU(s),
+\label{eq:dm_linear_ss_laplace_evolution_2}
+\end{aligned}\]</span> where <span class="math inline">\(I\)</span> is
+the <span class="math inline">\(n\times n\)</span> identity matrix.
+Substituting <a href="#state-space-models"
+data-reference-type="eqref"
+data-reference="eq:dm_linear_ss_laplace_evolution_2"><a href="#state-space-models">6.13</a></a>
+into <a href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_linear_ss_laplace_output_1"><a href="#state-space-models">6.12</a></a>
+gives <span class="math display">\[\begin{aligned}
+&amp; Y(s) = C(sI-A)^{-1}BU(s) + DU(s) \\
+\implies &amp; Y(s) = \left[ C(sI-A)^{-1}B + D\right]U(s).
+\end{aligned}\]</span> The transfer function from <span
+class="math inline">\(u\)</span> to <span
+class="math inline">\(y\)</span> is therefore <span
+class="math display">\[\label{eq:dm_tf_from_ss}
+H(s) = C(sI-A)^{-1}B + D.\]</span> As an example, suppose that the state
+space equations are given by <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} 0 &amp; 1 \\ -4 &amp; -3 \end{pmatrix} x
++ \begin{pmatrix} 0 \\ 2 \end{pmatrix} u \\
+y &amp;= \begin{pmatrix} 1 &amp; 0 \end{pmatrix} x + (0)u,
+\end{aligned}\]</span> then the transfer function from <span
+class="math inline">\(u\)</span> to <span
+class="math inline">\(y\)</span> is given by <span
+class="math display">\[\begin{aligned}
+H(s) &amp;= C(sI-A)^{-1}B + D \\
+&amp;= \begin{pmatrix} 1 &amp; 0\end{pmatrix}\left(s\begin{pmatrix} 1
+&amp; 0 \\ 0 &amp; 1\end{pmatrix} - \begin{pmatrix} 0 &amp; 1 \\ -4
+&amp; -3 \end{pmatrix}\right)^{-1}\begin{pmatrix} 0 \\ 2\end{pmatrix} +
+0 \\
+&amp;= \begin{pmatrix} 1 &amp; 0\end{pmatrix}\begin{pmatrix} s &amp; -1
+\\ 4 &amp; s+3\end{pmatrix}^{-1}\begin{pmatrix} 0 \\ 2\end{pmatrix}\\
+&amp;= \begin{pmatrix} 1 &amp; 0\end{pmatrix}\frac{\begin{pmatrix} s+3
+&amp; 1 \\ -4 &amp; s\end{pmatrix}}{s^2+3s+4}\begin{pmatrix} 0 \\
+2\end{pmatrix}\\
+&amp;= \frac{\begin{pmatrix} s+3 &amp; 1
+\end{pmatrix}}{s^2+3s+4}\begin{pmatrix} 0 \\ 2\end{pmatrix}\\
+&amp;= \frac{2}{s^2+3s+4}.
+\end{aligned}\]</span></p>
+<p>The form of the transfer function in
+Equation <a href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_tf_from_ss"><a href="#state-space-models">6.14</a></a> allows us to
+derive a simple relationship between the poles of the transfer function
+<span class="math inline">\(H(s)\)</span> and the eigenvalues of <span
+class="math inline">\(A\)</span>. Recall (see
+Appendix <a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
+data-reference="chap:linear_algebra">31</a>) that for any square
+invertible matrix <span class="math inline">\(M\)</span>, we have that
+<span class="math display">\[M^{-1} =
+\frac{\text{adj}(M)}{\text{det}(M)},\]</span> where <span
+class="math inline">\(\text{adj}(M)\)</span> is the adjugate of <span
+class="math inline">\(M\)</span><span id="idx-0049" class="book-index-anchor" aria-hidden="true"></span> defined as the
+transpose of the cofactors of <span class="math inline">\(M\)</span>,
+and <span class="math inline">\(\text{det}(M)\)</span> is the
+determinant of <span class="math inline">\(M\)</span>. Therefore <span
+class="math display">\[\begin{aligned}
+H(s) &amp;= C(sI-A)^{-1}B+D \\
+&amp;=\frac{C\text{adj}(sI-A)B}{\text{det}(sI-A)}+D \\
+&amp;= \frac{C\text{adj}(sI-A)B+D\text{det}(sI-A)}{\text{det}(sI-A)}.
+\end{aligned}\]</span> This expression implies that the zeros of <span
+class="math inline">\(H(s)\)</span><span id="idx-0050" class="book-index-anchor" aria-hidden="true"></span> are given by the roots
+of the polynomial <span
+class="math display">\[C\text{adj}(sI-A)B+D\text{det}(sI-A) =
+0,\]</span> and that the poles<span id="idx-0051" class="book-index-anchor" aria-hidden="true"></span> of <span
+class="math inline">\(H(s)\)</span> are given by the roots of the
+polynomial <span class="math display">\[\label{eq:dm_poles_tf_eig}
+\text{det}(sI-A) = 0.\]</span> Recall from linear algebra (see
+Appendix <a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
+data-reference="chap:linear_algebra">31</a>) that
+Equation <a href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_poles_tf_eig"><a href="#state-space-models">6.15</a></a> also
+defines the eigenvalues of <span class="math inline">\(A\)</span>.
+Therefore, the poles of <span class="math inline">\(H(s)\)</span> are
+equivalent to the eigenvalues of <span
+class="math inline">\(A\)</span>.<span id="idx-0052" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>In Chapters <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a>
+and <a href="13-13-observers.html#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a> we will show two general
+techniques for converting SISO transfer function models into state space
+models.</p>
+<h2 data-number="6.2" id="design-study-a-single-link-robot-arm-4" class="section-design-study"><span class="header-section-number">6.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="6.2.1" id="-example-problem-319" class="section-example"><span class="header-section-number">6.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a></h3>
+<p>For the feedback linearized equations of motion for the single link
+robot arm given in
+Equation <a href="04-4-equilibria-and-linearization.html#notes-and-references-2"
+data-reference-type="eqref"
+data-reference="eq:arm_linearized_eom_feedback_linarization"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4.7</a></a>,
+define the states as <span
+class="math inline">\(x=(\theta,\dot{\theta})^{\top}\)</span>, the input
+as <span class="math inline">\(\tilde{u}=\tilde{\tau}\)</span>, and the
+measured output as <span class="math inline">\(y=\theta\)</span>. Find
+the linear state space equations in the form <span
+class="math display">\[\begin{aligned}
+    \dot{x} &amp;= Ax + B\tilde{u} \\
+    y &amp;= Cx + D\tilde{u}.
+\end{aligned}\]</span></p>
+<section id="design-study-a-ch6-state-space">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw6-state-space"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Work through the arm state-space model before viewing the
+solution</h3> <p>Use the feedback-linearized arm equation and the
+state definitions in the problem statement. For compact entry, use
+<span class="math inline">\(a = 3b/(m\ell^2)\)</span> and <span
+class="math inline">\(\beta = 3/(m\ell^2)\)</span>.</p>
+
+<section class="guided-step" data-dsa-step="state-derivatives">
+<h4>Step 1. Convert the second-order equation to state
+derivatives</h4> <p>With <span class="math
+inline">\(x_1 = \theta\)</span> and <span class="math
+inline">\(x_2 = \dot{\theta}\)</span>, enter the two state derivative
+equations in coefficient form.</p> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span><span class="math
+inline">\(\dot{x}_1\)</span> coefficient on <span class="math
+inline">\(x_2\)</span></span><input type="text"
+data-dsa-input="x1dot-x2" placeholder="coefficient"></label>
+<label><span><span class="math inline">\(\dot{x}_2\)</span>
+coefficient on <span class="math
+inline">\(x_2\)</span></span><input type="text"
+data-dsa-input="x2dot-x2" placeholder="coefficient"></label>
+<label><span><span class="math inline">\(\dot{x}_2\)</span>
+coefficient on <span class="math
+inline">\(\tilde{u}\)</span></span><input type="text"
+data-dsa-input="x2dot-u" placeholder="coefficient"></label>
+</div> <button type="button"
+data-dsa-check="state-derivatives">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="state-derivatives"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="state-derivatives" hidden><summary>Show solution
+for Step 1</summary><p><strong>Answer:</strong> <span
+class="math inline">\(\dot{x}_1 = x_2\)</span> and <span
+class="math inline">\(\dot{x}_2 = -a x_2 + \beta\tilde{u}\)</span>,
+where <span class="math inline">\(a = 3b/(m\ell^2)\)</span> and
+<span class="math
+inline">\(\beta = 3/(m\ell^2)\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="matrices"> <h4>Step
+2. Fill in the state-space matrices</h4> <p>Enter the entries of
+<span class="math inline">\(A\)</span>, <span class="math
+inline">\(B\)</span>, <span class="math inline">\(C\)</span>, and
+<span class="math inline">\(D\)</span>. Use <span class="math
+inline">\(a\)</span> and <span class="math
+inline">\(\beta\)</span> as defined above.</p> <div
+class="guided-input-grid guided-input-grid-augmented"> <span
+class="guided-math-label"><span class="math
+inline">\(A =\)</span></span> <div class="guided-matrix
+guided-matrix-2x2" aria-label="A matrix entries"> <label><input
+type="text" data-dsa-input="a11" placeholder="A11"></label>
+<label><input type="text" data-dsa-input="a12"
+placeholder="A12"></label> <label><input type="text"
+data-dsa-input="a21" placeholder="A21"></label> <label><input
+type="text" data-dsa-input="a22" placeholder="A22"></label>
+</div> <span class="guided-math-label"><span class="math
+inline">\(B =\)</span></span> <div class="guided-matrix
+guided-vector-column" aria-label="B vector entries">
+<label><input type="text" data-dsa-input="b1"
+placeholder="B1"></label> <label><input type="text"
+data-dsa-input="b2" placeholder="B2"></label> </div> <span
+class="guided-math-label"><span class="math
+inline">\(C =\)</span></span> <div class="guided-matrix
+guided-vector-row" aria-label="C row entries"> <label><input
+type="text" data-dsa-input="c1" placeholder="C1"></label>
+<label><input type="text" data-dsa-input="c2"
+placeholder="C2"></label> </div> <label
+class="guided-scalar-entry"><span class="math
+inline">\(D\)</span><input type="text" data-dsa-input="d"
+placeholder="entry"></label> </div> <button type="button"
+data-dsa-check="matrices">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="matrices"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="matrices" hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> <span class="math
+inline">\(A = \begin{bmatrix} 0 & 1 \\ 0 & -a \end{bmatrix}\)</span>,
+<span class="math
+inline">\(B = \begin{bmatrix} 0 \\ \beta \end{bmatrix}\)</span>,
+<span class="math
+inline">\(C = \begin{bmatrix} 1 & 0 \end{bmatrix}\)</span>, and <span
+class="math inline">\(D = 0\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="transfer-function">
+<h4>Step 3. Check the transfer function from the state-space
+model</h4> <p>The transfer function should match the result from
+Chapter 5. Enter the numerator and denominator coefficients of <span
+class="math inline">\(H(s)=C(sI-A)^{-1}B+D\)</span>.</p> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Numerator constant</span><input type="text"
+data-dsa-input="tf-num" placeholder="coefficient"></label>
+<label><span>Denominator <span class="math inline">\(s\)</span>
+coefficient</span><input type="text" data-dsa-input="tf-s"
+placeholder="coefficient"></label> <label><span>Denominator
+constant</span><input type="text" data-dsa-input="tf-constant"
+placeholder="coefficient"></label> </div> <button
+type="button" data-dsa-check="transfer-function">Check Step
+3</button> <p class="quiz-feedback"
+data-dsa-feedback="transfer-function" aria-live="polite"></p>
+<details class="quiz-answer" data-dsa-answer="transfer-function"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> <span class="math
+inline">\(H(s) = \beta/(s^2 + as)\)</span>, which is <span
+class="math
+inline">\((3/(m\ell^2))/(s^2 + (3b/(m\ell^2))s)\)</span>.</p></details>
+</section>
+
+<div class="advanced-button-row"> <button type="button"
+data-dsa-reveal-all>Show complete solution</button> </div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p>
+
+<section class="guided-design-study-solution"
+data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The linear state space equations can be derived in two different
+ways: (1) directly from the linearized equations of motion and (2) by
+linearizing the nonlinear equations of motion.</p>
+<p>Starting with the feedback linearized equation in Equation <a
+href="04-4-equilibria-and-linearization.html#notes-and-references-2"
+data-reference-type="eqref"
+data-reference="eq:arm_linearized_eom_feedback_linarization"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4.7</a></a>
+and solving for <span class="math inline">\(\ddot{\theta}\)</span> gives
+<span class="math display">\[\ddot{\theta} =
+\frac{3}{m\ell^2}\tilde{\tau} - \frac{3b}{m\ell^2}\dot{\theta}.\]</span>
+Therefore, <span class="math display">\[\begin{aligned}
+\dot{x} &amp;\stackrel{\triangle}{=}\begin{pmatrix} \dot{x}_1 \\
+\dot{x}_2 \end{pmatrix}
+= \begin{pmatrix}\dot{\theta} \\ \ddot{\theta}\end{pmatrix}
+= \begin{pmatrix} \dot{\theta} \\ \frac{3}{m\ell^2}\tilde{\tau} -
+\frac{3b}{m\ell^2}\dot{\theta}  \end{pmatrix}
+=\begin{pmatrix} x_2 \\ \frac{3}{m\ell^2}\tilde{u} -
+\frac{3b}{m\ell^2}x_2  \end{pmatrix} \\
+&amp;= \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; -\frac{3b}{m\ell^2}
+\end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + \begin{pmatrix}
+0 \\ \frac{3}{m\ell^2} \end{pmatrix} \tilde{u}.
+\end{aligned}\]</span> Assuming that the measured output of the system
+is <span class="math inline">\(y=\theta\)</span>, the linearized output
+is given by <span class="math display">\[y = \theta = x_1 =
+\begin{pmatrix} 1 &amp; 0\end{pmatrix}\begin{pmatrix}x_1 \\ x_2
+\end{pmatrix} + (0)\tilde{u}.\]</span> Therefore, the linearized state
+space equations are given by <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; -\frac{3b}{m\ell^2}
+\end{pmatrix} x + \begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix}
+\tilde{u}
+\notag \\
+y &amp;= \begin{pmatrix} 1 &amp; 0\end{pmatrix} x.
+\label{eq:dm_arm_linearized_ss}
+\end{aligned}\]</span></p>
+<p>Alternatively, the state space equations can be found directly from
+the nonlinear equations of motion given in Equation <a
+href="03-3-the-euler-lagrange-equations.html#theory-1" data-reference-type="eqref"
+data-reference="eq:sm_arm_nonlinear_eom"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3.1</a></a>,
+by forming the nonlinear state space model as <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;\stackrel{\triangle}{=}\begin{pmatrix} \dot{x}_1 \\
+\dot{x}_2 \end{pmatrix}
+= \begin{pmatrix}\dot{\theta} \\ \ddot{\theta}\end{pmatrix}
+= \begin{pmatrix} \dot{\theta} \\ \frac{3}{m\ell^2}\tau -
+\frac{3b}{m\ell^2}\dot{\theta} -
+\frac{3g}{2\ell}\cos\theta  \end{pmatrix} \stackrel{\triangle}{=}f(x,u).
+\end{aligned}\]</span> Evaluating the Jacobians at the equilibrium <span
+class="math inline">\((\theta_e, \dot{\theta}_e, \tau_e) = (0, 0,
+\frac{mg\ell}{2})\)</span> gives <span
+class="math display">\[\begin{aligned}
+A &amp;= \frac{\partial f}{\partial x}\Big|_e = \begin{pmatrix}
+\frac{\partial f_1}{\partial \theta} &amp; \frac{\partial f_1}{\partial
+\dot{\theta}} \\ \frac{\partial f_2}{\partial \theta} &amp;
+\frac{\partial f_2}{\partial \dot{\theta}} \end{pmatrix}\Big|_e
+= \begin{pmatrix} 0 &amp; 1 \\ \frac{3g}{2\ell}\sin\theta &amp;
+-\frac{3b}{m\ell^2} \end{pmatrix}\Big|_e \\
+&amp;= \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; -\frac{3b}{m\ell^2}
+\end{pmatrix} \\
+B &amp;= \frac{\partial f}{\partial u}\Big|_e = \begin{pmatrix}
+\frac{\partial f_1}{\partial \tau} \\ \frac{\partial f_2}{\partial
+\tau}  \end{pmatrix}\Big|_e
+= \begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix}\Big|_e \\
+&amp;= \begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix}.
+\end{aligned}\]</span> Similarly, the output is given by <span
+class="math inline">\(y=\theta = x_1
+\stackrel{\triangle}{=}h(x,u)\)</span>, which implies that <span
+class="math display">\[\begin{aligned}
+C &amp;= \frac{\partial h}{\partial x}\Big|_e = \begin{pmatrix}
+\frac{\partial h_1}{\partial \theta} &amp; \frac{\partial h_1}{\partial
+\dot{\theta}} \end{pmatrix}\Big|_e
+= \begin{pmatrix} 1 &amp; 0 \end{pmatrix}\Big|_e \\
+&amp;= \begin{pmatrix} 1 &amp; 0 \end{pmatrix} \\
+D &amp;= \frac{\partial h}{\partial u}\Big|_e = 0.
+\end{aligned}\]</span> The linearized state space equations are
+therefore given by <span class="math display">\[\begin{aligned}
+\dot{\tilde{x}} &amp;= \begin{pmatrix} 0 &amp; 1 \\
+\frac{3g\sin\theta_e}{2\ell} &amp; -\frac{3b}{m\ell^2} \end{pmatrix}
+\tilde{x} + \begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix}
+\tilde{u}
+\notag \\
+\tilde{y} &amp;= \begin{pmatrix} 1 &amp; 0\end{pmatrix} \tilde{x},
+\end{aligned}\]</span> which is similar to Equation <a
+href="#state-space-models" data-reference-type="eqref"
+data-reference="eq:dm_arm_linearized_ss"><a href="#state-space-models">6.16</a></a>
+but with linearized state and output.</p>
+<p>The transfer function can be found from the linearized state space
+equations using Equation <a href="#state-space-models"
+data-reference-type="eqref"
+data-reference="eq:dm_tf_from_ss"><a href="#state-space-models">6.14</a></a> as <span
+class="math display">\[\begin{aligned}
+H(s) &amp;= C(sI-A)^{-1}B+D \\
+    &amp;= \begin{pmatrix} 1 &amp; 0 \end{pmatrix}
+\left(s\begin{pmatrix}1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}
+-\begin{pmatrix} 0 &amp; 1 \\ 0 &amp; -\frac{3b}{m\ell^2}\end{pmatrix}
+\right)^{-1} \begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix} \\
+    &amp;= \begin{pmatrix} 1 &amp; 0 \end{pmatrix} \begin{pmatrix} s
+&amp; -1 \\ 0 &amp; s+\frac{3b}{m\ell^2}\end{pmatrix}^{-1}
+\begin{pmatrix} 0 \\ \frac{3}{m\ell^2} \end{pmatrix} \\
+    &amp;= \frac{\begin{pmatrix} 1 &amp; 0 \end{pmatrix} \begin{pmatrix}
+s+\frac{3b}{m\ell^2} &amp; 1 \\ 0 &amp; s \end{pmatrix} \begin{pmatrix}
+0 \\ \frac{3}{m\ell^2}\end{pmatrix}}{s^2 + \frac{3b}{m\ell^2}s} \\
+    &amp;= \frac{\begin{pmatrix} s+\frac{3b}{m\ell^2} &amp; 1
+\end{pmatrix} \begin{pmatrix} 0 \\ \frac{3}{m\ell^2}\end{pmatrix}}{s^2 +
+\frac{3b}{m\ell^2}s} \\
+    &amp;= \frac{\frac{3}{m\ell^2}}{s^2 + \frac{3b}{m\ell^2}s},
+\end{aligned}\]</span> which is identical to Equation <a
+href="05-5-transfer-function-models.html#design-study-a-single-link-robot-arm-3" data-reference-type="eqref"
+data-reference="eq:soln_a6_2"><a href="05-5-transfer-function-models.html#transfer-function-models">5.2</a></a>.</p></section> </article>
+</section>
+<h2 data-number="6.3" id="design-study-b-inverted-pendulum-3" class="section-design-study"><span class="header-section-number">6.3</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="6.3.1" id="-example-problem-329" class="section-example"><span class="header-section-number">6.3.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a></h3>
+<p>Defining the states as <span
+class="math inline">\(\tilde{x}=(\tilde{z},\tilde{\theta},\dot{\tilde{z}},\dot{\tilde{\theta}})^{\top}\)</span>,
+the input as <span class="math inline">\(\tilde{u}=\tilde{F}\)</span>,
+and the measured output as <span
+class="math inline">\(\tilde{y}=(\tilde{z},\tilde{\theta})^{\top}\)</span>,
+find the linear state space equations in the form <span
+class="math display">\[\begin{aligned}
+    \dot{\tilde{x}} &amp;= A\tilde{x} + B\tilde{u} \\
+    \tilde{y} &amp;= C\tilde{x} + D\tilde{u}.
+\end{aligned}\]</span></p>
+<section id="design-study-b-ch6-state-space">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw6"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Construct the pendulum state-space
+model before viewing the solution</h3> <p>Confirm the state, output,
+and key matrix structure for the four-state linear model.</p>
+<section class="guided-step" data-dsa-step="definitions">
+<h4>Step 1. State and output definitions</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>State variables</span><input type="text"
+data-dsa-input="state" data-dsa-accept="z,theta,zdot,thetadot\|z
+theta zdot thetadot\|cart position, pendulum angle, cart velocity,
+angular velocity" placeholder="variables"></label>
+<label><span>Measured outputs</span><input type="text"
+data-dsa-input="outputs" data-dsa-accept="z,theta\|theta,z\|cart
+position and pendulum angle" placeholder="variables"></label>
+</div> <button type="button" data-dsa-check="definitions">Check
+Step 1</button> <p class="quiz-feedback"
+data-dsa-feedback="definitions" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="definitions" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> The state is (z,
+theta, zdot, thetadot)\^T and the measured output is (z,
+theta)\^T.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="size"> <h4>Step 2.
+Matrix sizes</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>A size</span><input
+type="text" data-dsa-input="a" data-dsa-accept="4x4\|4 by 4"
+placeholder="size"></label> <label><span>B size</span><input
+type="text" data-dsa-input="b" data-dsa-accept="4x1\|4 by 1"
+placeholder="size"></label> <label><span>C size</span><input
+type="text" data-dsa-input="c" data-dsa-accept="2x4\|2 by 4"
+placeholder="size"></label> </div> <button type="button"
+data-dsa-check="size">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="size"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="size" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> A is 4
+by 4, B is 4 by 1, and C is 2 by 4.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="input"> <h4>Step 3.
+Input channel</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Input
+variable</span><input type="text" data-dsa-input="u"
+data-dsa-accept="F\|force\|cart force\|horizontal force"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="input">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="input"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="input" hidden><summary>Show
+solution for Step 3</summary><p><strong>Answer:</strong> The
+input is the horizontal force F applied to the cart.</p></details>
+</section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The linear state space equations can be derived in two different
+ways: (1) directly from the linearized equations of motion and (2) by
+linearizing the nonlinear equations of motion.</p>
+<p>Starting with the linear state space equation in Equation <a
+href="04-4-equilibria-and-linearization.html#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:pendulum_linearized_eom"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4.12</a></a>
+and solving for <span class="math inline">\((\ddot{\tilde{z}},
+\ddot{\tilde{\theta}})^\top\)</span> gives <span
+class="math display">\[\begin{aligned}
+\begin{pmatrix} \ddot{\tilde{z}} \\ \ddot{\tilde{\theta}} \end{pmatrix}
+&amp;= \frac{\begin{pmatrix} m_1\frac{\ell^2}{3} &amp; -m_1\frac{\ell}2
+\\ -m_1\frac{\ell}{2} &amp;
+(m_1+m_2)\end{pmatrix}}{m_1^2\frac{\ell^2}{3}+m_1m_2\frac{\ell^2}{3}-m_1^2\frac{\ell^2}{4}}\begin{pmatrix}
+-b\dot{\tilde{z}}+\tilde{F} \\ m_1g\frac{\ell}{2}\tilde{\theta}
+\end{pmatrix} \\
+&amp;= \begin{pmatrix} -\frac{b}{\frac{1}{4}m_1 + m_2}\dot{\tilde{z}} +
+\frac{1}{\frac{1}{4}m_1 + m_2}\tilde{F} - \frac{\frac{3}{4}
+m_1g}{\frac{1}{4}m_1 + m_2}\tilde{\theta} \\ \frac{3b}{2(\frac{1}{4}m_1
++ m_2)\ell}\dot{\tilde{z}} - \frac{3}{2( \frac{1}{4}m_1 +
+m_2)\ell}\tilde{F} + \frac{3 (m_1+m_2)g}{2 (\frac{1}{4}m_1 +
+m_2)\ell}\tilde{\theta} \end{pmatrix}.
+\end{aligned}\]</span> Therefore, defining <span
+class="math inline">\(\tilde{x}=(\tilde{x}_1, \tilde{x}_2, \tilde{x}_3,
+\tilde{x}_4)^\top\stackrel{\triangle}{=}(\tilde{z},\tilde{\theta},\dot{\tilde{z}},\dot{\tilde{\theta}})^\top\)</span>,
+and <span
+class="math inline">\(\tilde{u}\stackrel{\triangle}{=}\tilde{F}\)</span>
+gives <span class="math display">\[\begin{aligned}
+\dot{\tilde{x}} &amp;\stackrel{\triangle}{=}\begin{pmatrix}
+\dot{\tilde{x}}_1 \\ \dot{\tilde{x}}_2 \\ \dot{\tilde{x}}_3 \\
+\dot{\tilde{x}}_4\end{pmatrix} = \begin{pmatrix}\dot{\tilde{z}} \\
+\dot{\tilde{\theta}} \\ \ddot{\tilde{z}} \\
+\ddot{\tilde{\theta}}\end{pmatrix}
+= \begin{pmatrix} \tilde{x}_3 \\ \tilde{x}_4 \\  
+-\frac{b}{\frac{1}{4}m_1 + m_2}\tilde{x}_3 + \frac{1}{\frac{1}{4}m_1 +
+m_2}\tilde{u} - \frac{\frac{3}{4} m_1g}{\frac{1}{4}m_1 + m_2}\tilde{x}_2
+\\
+\frac{3b}{2(\frac{1}{4}m_1 + m_2)\ell}\tilde{x}_3 -
+\frac{3}{2(\frac{1}{4}m_1 + m_2)\ell}\tilde{u} + \frac{3 (m_1+m_2)g}{2
+(\frac{1}{4}m_1 + m_2)\ell} \tilde{x}_2 \end{pmatrix} \\
+&amp;= \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0
+&amp; 1 \\ 0 &amp; -\frac{\frac{3}{4} m_1g}{\frac{1}{4}m_1 + m_2} &amp;
+-\frac{b}{\frac{1}{4}m_1 + m_2} &amp; 0 \\ 0 &amp; \frac{3 (m_1+m_2)g}{2
+(\frac{1}{4}m_1 + m_2)\ell} &amp; \frac{3b}{2(\frac{1}{4}m_1 + m_2)\ell}
+&amp; 0 \end{pmatrix} \begin{pmatrix} \tilde{x}_1 \\ \tilde{x}_2 \\
+\tilde{x}_3 \\ \tilde{x}_4 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \\
+\frac{1}{\frac{1}{4}m_1 + m_2} \\  \frac{-3}{2(\frac{1}{4}m_1 +
+m_2)\ell} \end{pmatrix} \tilde{u}.
+\end{aligned}\]</span> Assuming that the measured output of the system
+is <span
+class="math inline">\(\tilde{y}=(\tilde{z},\tilde{\theta})^\top\)</span>,
+the linearized output is given by <span class="math display">\[\tilde{y}
+= \begin{pmatrix} \tilde{z} \\ \tilde{\theta}\end{pmatrix} =
+\begin{pmatrix}\tilde{x}_1 \\ \tilde{x}_2\end{pmatrix} = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp;
+0\end{pmatrix}\begin{pmatrix}\tilde{x}_1 \\ \tilde{x}_2 \\\tilde{x}_3 \\
+\tilde{x}_4 \end{pmatrix} + \begin{pmatrix} 0 \\ 0
+\end{pmatrix}\tilde{u}.\]</span> Therefore, the linearized state space
+equations are given by <span class="math display">\[\begin{aligned}
+\dot{\tilde{x}} &amp;= \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 \\ 0
+&amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; -\frac{\frac{3}{4}
+m_1g}{\frac{1}{4}m_1 + m_2} &amp; -\frac{b}{\frac{1}{4}m_1 + m_2} &amp;
+0 \\ 0 &amp; \frac{3 (m_1+m_2)g}{2 (\frac{1}{4}m_1 + m_2)\ell} &amp;
+\frac{3b}{2(\frac{1}{4}m_1 + m_2)\ell} &amp; 0 \end{pmatrix} \tilde{x} +
+\begin{pmatrix} 0 \\ 0 \\ \frac{1}{\frac{1}{4}m_1 + m_2}
+\\  \frac{-3}{2(\frac{1}{4}m_1 + m_2)\ell} \end{pmatrix} \tilde{u}
+\notag \\
+\tilde{y} &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1
+&amp; 0 &amp; 0\end{pmatrix} \tilde{x}.
+\label{eq:dm_pendulum_linearized_ss}
+\end{aligned}\]</span></p>
+<p>Alternatively, the linearized state space equations can be derived
+from the nonlinear equations of motion. Starting with Equation <a
+href="03-3-the-euler-lagrange-equations.html#design-study-a-single-link-robot-arm-1" data-reference-type="eqref"
+data-reference="eq:pendulum_sim_model"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3.2</a></a> and
+solving for <span class="math inline">\((\ddot{z},
+\ddot{\theta})^\top\)</span> gives <span
+class="math display">\[\begin{aligned}
+\begin{pmatrix} \ddot{z} \\ \ddot{\theta} \end{pmatrix}
+  &amp;= \frac{\begin{pmatrix} m_1\frac{\ell^2}{3} &amp;
+-m_1\frac{\ell}{2}\cos\theta \\ -m_1\frac{\ell}{2}\cos\theta &amp;
+(m_1+m_2)\end{pmatrix}}{m_1m_2\frac{\ell^2}{3} + m_1^2
+\ell^2(\frac{1}{3} -\frac{1}{4}\cos^2\theta)}\begin{pmatrix}
+m_1\frac{\ell}{2}\dot{\theta}^2\sin\theta-b\dot{z}+F \\
+m_1g\ell\sin\theta \end{pmatrix} \\
+  &amp;= \frac{\begin{pmatrix}
+m_1^2\frac{\ell^3}{6}\dot{\theta}^2\sin\theta -
+bm_1\frac{\ell^2}{3}\dot{z} + m_1\frac{\ell^2}{3}F -
+m_1^2\frac{\ell^2}{4}g\sin\theta\cos\theta \\
+  -m_1^2\frac{\ell^2}{4}\dot{\theta}^2\sin\theta\cos\theta +
+bm_1\frac{\ell}{2}\dot{z}\cos\theta - m_1\frac{\ell}{2}\cos\theta F +
+(m_1+m_2)m_1g\frac{\ell}{2}\sin\theta\end{pmatrix}}{m_1m_2\frac{\ell^2}{3}
++ m_1^2 \ell^2(\frac{1}{3} -\frac{1}{4}\cos^2\theta)}.
+\end{aligned}\]</span> Defining <span
+class="math inline">\(x\stackrel{\triangle}{=}(z, \theta, \dot{z},
+\dot{\theta})^\top\)</span>, <span
+class="math inline">\(u\stackrel{\triangle}{=}F\)</span>, and <span
+class="math inline">\(y\stackrel{\triangle}{=}(z, \theta)^\top\)</span>
+results in the nonlinear state space equations <span
+class="math display">\[\begin{aligned}
+\begin{pmatrix}\dot{x}_1 \\ \dot{x}_2 \\ \dot{x}_3 \\ \dot{x}_4
+\end{pmatrix} &amp;= \begin{pmatrix} x_3 \\ x_4 \\
+\frac{ m_1^2\frac{\ell^3}{6}x_4^2\sin x_2 - bm_1\frac{\ell^2}{3}x_3 +
+m_1\frac{\ell^2}{3}u - m_1^2\frac{\ell^2}{4}g\sin x_2 \cos
+x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3}
+-\frac{1}{4}\cos^2 x_2)} \\
+\frac{-m_1^2\frac{\ell^2}{4}x_4^2\sin x_2 \cos x_2 + bm_1\frac{\ell}{2}
+x_3 \cos x_2 - m_1\frac{\ell}{2}\cos x_2 u +
+(m_1+m_2)m_1g\frac{\ell}{2}\sin x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2
+\ell^2(\frac{1}{3} -\frac{1}{4}\cos^2x_2)}
+\end{pmatrix} \\
+&amp;\stackrel{\triangle}{=}f(x,u) \\
+y &amp;= \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+\stackrel{\triangle}{=}h(x,u).
+\end{aligned}\]</span> Taking the Jacobians about the equilibrium <span
+class="math inline">\(x_e=(z_e, 0, 0, 0)^\top\)</span> and <span
+class="math inline">\(u_e=0\)</span> gives <span
+class="math display">\[\begin{aligned}
+A&amp;\stackrel{\triangle}{=}\left.\frac{\partial f}{\partial
+x}\right|_e \\
+    &amp;= \left.\begin{pmatrix}
+        0 &amp; 0 &amp; 1 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 1 \\
+        0 &amp; \frac{\partial f_3}{\partial x_2} &amp;
+\frac{-bm_1\frac{\ell^2}{3}}{m_1m_2\frac{\ell^2}{4}+m_1\frac{\ell^2}{4}\sin^2
+x_2} &amp; \frac{2m_1^2\frac{\ell^3}{6} x_4\sin
+x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3}
+-\frac{1}{4}\cos^2x_2)} \\
+        0 &amp; \frac{\partial f_4}{\partial x_2} &amp;
+\frac{bm_1\frac{\ell}{2}\cos x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2
+\ell^2(\frac{1}{3} -\frac{1}{4}\cos^2x_2)} &amp;
+\frac{-2m_1^2\frac{\ell^2}{4} x_4 \sin x_2 \cos
+x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2 \ell^2(\frac{1}{3}
+-\frac{1}{4}\cos^2x_2)}  \end{pmatrix}\right|_e \\
+        &amp;= \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0
+&amp; 0 &amp; 1 \\ 0 &amp; -\frac{\frac{3}{4} m_1g}{\frac{1}{4}m_1 +
+m_2} &amp; -\frac{b}{\frac{1}{4}m_1 + m_2} &amp; 0 \\ 0 &amp; \frac{3
+(m_1+m_2)g}{2 (\frac{1}{4}m_1 + m_2)\ell} &amp;
+\frac{3b}{2(\frac{1}{4}m_1 + m_2)\ell} &amp; 0 \end{pmatrix} \\
+B&amp;\stackrel{\triangle}{=}\left.\frac{\partial f}{\partial
+u}\right|_e = \left.\begin{pmatrix} 0 \\ 0 \\
+\frac{m_1\frac{\ell^2}{3}}{m_1m_2\frac{\ell^2}{3} + m_1^2
+\ell^2(\frac{1}{3} -\frac{1}{4}\cos^2 x_2)} \\
+-\frac{m_1\frac{\ell}{2}\cos x_2}{m_1m_2\frac{\ell^2}{3} + m_1^2
+\ell^2(\frac{1}{3} -\frac{1}{4}\cos^2x_2)} \end{pmatrix}\right|_e
+= \begin{pmatrix} 0 \\ 0 \\ \frac{1}{\frac{1}{4}m_1 + m_2}
+\\  \frac{-3}{2(\frac{1}{4}m_1 + m_2)\ell} \end{pmatrix} \\
+C&amp;\stackrel{\triangle}{=}\left.\frac{\partial h}{\partial
+x}\right|_e = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1
+&amp; 0 &amp; 0 \end{pmatrix} \\
+D&amp;\stackrel{\triangle}{=}\left.\frac{\partial h}{\partial
+u}\right|_e = \begin{pmatrix} 0 \\ 0 \end{pmatrix},
+\end{aligned}\]</span> resulting in the linearized state space equations
+given in Equation <a href="#state-space-models"
+data-reference-type="eqref"
+data-reference="eq:dm_pendulum_linearized_ss"><a href="#state-space-models">6.17</a></a>.</p></section> </article>
+</section>
+<h2 data-number="6.4"
+id="design-study-c-satellite-attitude-control-4" class="section-design-study"><span class="header-section-number">6.4</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="6.4.1" id="-example-problem-339" class="section-example"><span class="header-section-number">6.4.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a></h3>
+<p>Suppose that a star tracker is used to measure <span
+class="math inline">\(\theta\)</span> and a strain gauge is used to
+approximate <span class="math inline">\(\phi-\theta\)</span>. Defining
+the states as <span
+class="math inline">\(x=(\theta,\phi,\dot{\theta},\dot{\phi})^{\top}\)</span>,
+the input as <span class="math inline">\(u=\tau\)</span>, and the
+measured output as <span
+class="math inline">\(y=(\theta,\phi-\theta)^{\top}\)</span>, find the
+linear state space equations in the form <span
+class="math display">\[\begin{aligned}
+    \dot{x} &amp;= Ax + Bu \\
+    y &amp;= Cx + Du.
+\end{aligned}\]</span></p>
+<section id="design-study-c-ch6-state-space">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw6" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Build the satellite state-space model before viewing the
+solution</h3> <p>The state vector is <span class="math
+inline">\(x=(\theta,\phi,\dot{\theta},\dot{\phi})^T\)</span>, the
+input is body torque <span class="math inline">\(\tau\)</span>, and
+the measured output is <span class="math
+inline">\(y=(\theta,\phi-\theta)^T\)</span>.</p>
+
+<section class="guided-step" data-dsa-step="states"> <h4>Step 1.
+Assign the states</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span><span class="math
+inline">\(x_1\)</span></span><input type="text"
+data-dsa-input="x1" data-dsa-accept="theta\|body angle\|satellite
+body angle" placeholder="variable"></label>
+<label><span><span class="math
+inline">\(x_2\)</span></span><input type="text"
+data-dsa-input="x2" data-dsa-accept="phi\|panel angle\|solar panel
+angle" placeholder="variable"></label> <label><span><span
+class="math inline">\(x_3\)</span></span><input type="text"
+data-dsa-input="x3" data-dsa-accept="thetadot\|theta dot\|body rate"
+placeholder="variable"></label> <label><span><span
+class="math inline">\(x_4\)</span></span><input type="text"
+data-dsa-input="x4" data-dsa-accept="phidot\|phi dot\|panel rate"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="states" data-dsa-hint="The first two states are
+angles; the last two are angular rates.">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="states"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="states"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> <span class="math
+inline">\(x_1=\theta\)</span>, <span class="math
+inline">\(x_2=\phi\)</span>, <span class="math
+inline">\(x_3=\dot{\theta}\)</span>, and <span class="math
+inline">\(x_4=\dot{\phi}\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="kinematics">
+<h4>Step 2. Fill the kinematic rows of <span class="math
+inline">\(A\)</span></h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span><span class="math
+inline">\(\dot{x}_1\)</span> equals</span><input type="text"
+data-dsa-input="x1dot" data-dsa-accept="x3\|thetadot\|theta dot"
+placeholder="state"></label> <label><span><span class="math
+inline">\(\dot{x}_2\)</span> equals</span><input type="text"
+data-dsa-input="x2dot" data-dsa-accept="x4\|phidot\|phi dot"
+placeholder="state"></label> </div> <button type="button"
+data-dsa-check="kinematics" data-dsa-hint="Angle derivatives are
+angular-rate states.">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="kinematics"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="kinematics"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> <span class="math
+inline">\(\dot{x}_1=x_3\)</span> and <span class="math
+inline">\(\dot{x}_2=x_4\)</span>, so the first two rows of <span
+class="math inline">\(A\)</span> place ones in columns 3 and
+4.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="input"> <h4>Step 3.
+Place the torque input</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Nonzero <span
+class="math inline">\(B\)</span> row</span><input type="text"
+data-dsa-input="row" data-dsa-accept="3\|third\|theta
+acceleration\|body acceleration" placeholder="row"></label>
+<label><span>Nonzero coefficient</span><input type="text"
+data-dsa-input="coefficient" data-dsa-accept="1/js\|1/j_s\|1/Js\|one
+over Js" placeholder="coefficient"></label> </div> <button
+type="button" data-dsa-check="input" data-dsa-hint="Torque directly
+affects body angular acceleration.">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="input"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="input" hidden><summary>Show
+solution for Step 3</summary><p><strong>Answer:</strong> <span
+class="math inline">\(B=(0,0,1/J_s,0)^T\)</span>. The torque directly
+enters the <span class="math inline">\(\ddot{\theta}\)</span>
+equation.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="output"> <h4>Step 4.
+Build the measured output</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>First
+output</span><input type="text" data-dsa-input="y1"
+data-dsa-accept="theta\|body angle\|satellite body angle"
+placeholder="variable"></label> <label><span>Second
+output</span><input type="text" data-dsa-input="y2"
+data-dsa-accept="phi-theta\|phiminustheta\|phi minus theta\|relative
+deflection\|panel deflection" placeholder="expression"></label>
+</div> <button type="button" data-dsa-check="output"
+data-dsa-hint="The strain gauge measures relative deflection, not
+absolute panel angle.">Check Step 4</button> <p
+class="quiz-feedback" data-dsa-feedback="output"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="output"
+hidden><summary>Show solution for Step
+4</summary><p><strong>Answer:</strong> <span class="math
+inline">\(y=(\theta,\phi-\theta)^T\)</span>, so <span class="math
+inline">\(C=\begin{pmatrix}1&0&0&0\\-1&1&0&0\end{pmatrix}\)</span> and
+<span class="math inline">\(D=0\)</span>.</p></details>
+</section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The equations of motion from HW <a href="01-1-introduction.html#design-study-satellite-attitude-control"
+data-reference-type="ref" data-reference="ds:satellite">3.3</a>.3 are
+given by <span class="math display">\[\begin{aligned}
+\ddot{\theta} &amp;= \frac{1}{J_s}\tau - \frac{b}{J_s}\dot{\theta} +
+\frac{b}{J_s}\dot{\phi} - \frac{k}{J_s}\theta + \frac{k}{J_s}\phi \\
+\ddot{\phi} &amp;=  \frac{b}{J_p}\dot{\theta} - \frac{b}{J_p}\dot{\phi}
++ \frac{k}{J_p}\theta - \frac{k}{J_p}\phi.
+\end{aligned}\]</span> Defining the state <span
+class="math inline">\(x\stackrel{\triangle}{=}(x_1, x_2, x_3,
+x_4)^{\top} = (\theta, \phi, \dot{\theta}, \dot{\phi})^{\top}\)</span>,
+the input <span
+class="math inline">\(u\stackrel{\triangle}{=}\tau\)</span>, and the
+output <span class="math inline">\(y\stackrel{\triangle}{=}(y_1,
+y_2)^{\top}=(\theta, \phi-\theta)^{\top}\)</span>, the state space
+equations are given by <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \\ \dot{x}_3 \\
+\dot{x}_4 \end{pmatrix} = \begin{pmatrix} \dot{\theta} \\ \dot{\phi} \\
+\ddot{\theta} \\ \ddot{\phi} \end{pmatrix} = \begin{pmatrix} x_3 \\ x_4
+\\ \frac{1}{J_s}u - \frac{b}{J_s}x_3 + \frac{b}{J_s}x_4 -
+\frac{k}{J_s}x_1 + \frac{k}{J_s}x_2 \\
+\frac{b}{J_p}x_3 - \frac{b}{J_p}x_4 + \frac{k}{J_p}x_1 -
+\frac{k}{J_p}x_2 \end{pmatrix} \\
+&amp;= \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0
+&amp; 1 \\ -\frac{k}{J_s} &amp; \frac{k}{J_s} &amp; -\frac{b}{J_s} &amp;
+\frac{b}{J_s} \\ \frac{k}{J_p} &amp; -\frac{k}{J_p} &amp; \frac{b}{J_p}
+&amp; -\frac{b}{J_p} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\
+x_4 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \\ \frac{1}{J_s} \\ 0
+\end{pmatrix} u.
+\end{aligned}\]</span> Similarly <span
+class="math display">\[\begin{aligned}
+y&amp;=\begin{pmatrix}\theta \\ \phi-\theta\end{pmatrix} =
+\begin{pmatrix}x_1 \\ x_2-x_1 \end{pmatrix} \\
+&amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0
+&amp; 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4
+\end{pmatrix} + \begin{pmatrix} 0 \\ 0 \end{pmatrix} u.
+\end{aligned}\]</span> Therefore, the state space model is <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + Bu \\
+y &amp;= Cx + Du,
+\end{aligned}\]</span> where <span
+class="math display">\[\begin{aligned}
+A &amp;= \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0
+&amp; 1 \\ -\frac{k}{J_s} &amp; \frac{k}{J_s} &amp; -\frac{b}{J_s} &amp;
+\frac{b}{J_s} \\ \frac{k}{J_p} &amp; -\frac{k}{J_p} &amp; \frac{b}{J_p}
+&amp; -\frac{b}{J_p} \end{pmatrix} \\
+B &amp;= \begin{pmatrix} 0 \\ 0 \\ \frac{1}{J_s} \\ 0 \end{pmatrix} \\
+C &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0
+&amp; 0 \end{pmatrix} \\
+D &amp;= \begin{pmatrix} 0 \\ 0 \end{pmatrix}.
+\end{aligned}\]</span></p></section> </article>
+</section>
+<h2 data-number="6.5" id="interactive-state-space-check"><span class="header-section-number">6.5</span> Interactive State Space
+Check</h2>
+<section id="design-ch6-state-space-check">
+<article class="advanced-activity" data-advanced-activity="state-space">
+<p class="advanced-kicker">
+Chapter 6 activity
+</p>
+<h3>
+Build and test a state-space model
+</h3>
+<p>
+Start with y” + a<sub>1</sub>y’ + a<sub>0</sub>y = b<sub>0</sub>u.
+Define x<sub>1</sub>=y and x<sub>2</sub>=y’, then compare the state
+equation with the separate output equation.
+</p>
+<div class="advanced-grid advanced-grid–visual"> <div
+class="advanced-controls advanced-controls–compact">
+<label><span class="advanced-control-label">a<sub>1</sub>: damping
+coefficient</span><span class="advanced-control-value"
+data-output="a1-value"></span><input type="range"
+data-input="a1" min="-2" max="8" step="0.1"
+value="3"></label>
+<label><span class="advanced-control-label">a<sub>0</sub>: stiffness
+coefficient</span><span class="advanced-control-value"
+data-output="a0-value"></span><input type="range"
+data-input="a0" min="-4" max="10" step="0.1"
+value="2"></label>
+<label><span class="advanced-control-label">b<sub>0</sub>: input
+gain</span><span class="advanced-control-value"
+data-output="b0-value"></span><input type="range"
+data-input="b0" min="-5" max="10" step="0.1"
+value="1"></label>
+<label><span class="advanced-control-label">x<sub>1</sub>(0):
+initial output</span><span class="advanced-control-value"
+data-output="x1-value"></span><input type="range"
+data-input="x1" min="-3" max="3" step="0.1"
+value="1"></label>
+<label><span class="advanced-control-label">x<sub>2</sub>(0):
+initial rate</span><span class="advanced-control-value"
+data-output="x2-value"></span><input type="range"
+data-input="x2" min="-3" max="3" step="0.1"
+value="0"></label> <label><span class="advanced-control-label">u:
+constant input</span><span class="advanced-control-value"
+data-output="u-value"></span><input type="range"
+data-input="u" min="-3" max="3" step="0.1"
+value="1"></label>
+<label><span class="advanced-control-label">C<sub>1</sub>: output
+weight on x<sub>1</sub></span><span class="advanced-control-value"
+data-output="c1-value"></span><input type="range"
+data-input="c1" min="-3" max="3" step="0.1"
+value="1"></label>
+<label><span class="advanced-control-label">C<sub>2</sub>: output
+weight on x<sub>2</sub></span><span class="advanced-control-value"
+data-output="c2-value"></span><input type="range"
+data-input="c2" min="-3" max="3" step="0.1"
+value="0"></label> <label><span class="advanced-control-label">D:
+direct feedthrough</span><span class="advanced-control-value"
+data-output="d-value"></span><input type="range"
+data-input="d" min="-2" max="2" step="0.1"
+value="0"></label>
+</div>
+<section class="advanced-readout">
+<p class="advanced-metric">
+<strong>State
+definitions</strong><span data-output="states"></span>
+</p>
+<p class="advanced-metric">
+<strong>State
+equation</strong><span data-output="stateeq"></span>
+</p>
+<p class="advanced-metric">
+<strong>A matrix</strong><span data-output="a"></span>
+</p>
+<p class="advanced-metric">
+<strong>B matrix</strong><span data-output="b"></span>
+</p>
+<p class="advanced-metric">
+<strong>Current
+derivative</strong><span data-output="xdot"></span>
+</p>
+<p class="advanced-metric">
+<strong>Output
+equation</strong><span data-output="outputeq"></span>
+</p>
+<p class="advanced-metric">
+<strong>Current
+output</strong><span data-output="y"></span>
+</p>
+</section>
+</div>
+<p class="advanced-callout">
+<strong>Key separation:</strong> A and B determine how the state moves.
+C and D determine what is measured as the output. Changing C or D
+changes y(t), but it does not change the state trajectory.
+</p>
+</article>
+</section>
+<h2 data-number="6.6" id="knowledge-check-5"><span class="header-section-number">6.6</span> Knowledge Check</h2>
+<section id="design-ch6-knowledge-check" class="quiz-list">
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The state contains the system memory
+needed to compute future evolution." data-feedback-b="B is not
+correct. The input is applied externally and is not the system memory."
+data-feedback-c="C is not correct. The output may expose only part of
+the state." data-feedback-d="D is not correct. A transfer function is
+an input-output representation, not the state itself."> <h4>Q1.
+State meaning</h4> <p class="quiz-prompt">What role does the state
+play in a state space model?</p> <div
+class="quiz-options"><label><input type="radio"
+name="design-ch6-q1" value="A"><span class="quiz-option-text">A) It stores the information needed
+to predict the future response</span></label><label><input type="radio"
+name="design-ch6-q1" value="B"><span class="quiz-option-text">B) It is only the commanded
+input</span></label><label><input type="radio" name="design-ch6-q1"
+value="C"><span class="quiz-option-text">C) It is always identical to the measured
+output</span></label><label><input type="radio" name="design-ch6-q1"
+value="D"><span class="quiz-option-text">D) It is the transfer-function numerator</span></label></div>
+<div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The output equation maps state and input
+to measured or reported outputs." data-feedback-b="B is not correct.
+The state evolution equation is xdot=Ax+Bu." data-feedback-c="C is not
+correct. Poles are related to A, but the output equation is not the pole
+equation." data-feedback-d="D is not correct. Initial conditions are
+not the output equation."> <h4>Q2. Output equation</h4> <p
+class="quiz-prompt">What does y = Cx + Du describe?</p> <div
+class="quiz-options"><label><input type="radio"
+name="design-ch6-q2" value="A"><span class="quiz-option-text">A) How states and inputs map to
+outputs</span></label><label><input type="radio" name="design-ch6-q2"
+value="B"><span class="quiz-option-text">B) How states evolve over time</span></label><label><input
+type="radio" name="design-ch6-q2" value="C"><span class="quiz-option-text">C) How poles are
+chosen</span></label><label><input type="radio" name="design-ch6-q2"
+value="D"><span class="quiz-option-text">D) How initial conditions are erased</span></label></div>
+<div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="3" data-tolerance="0.001">
+<h4>
+Q3. State count
+</h4>
+<p class="quiz-prompt">
+How many first-order state equations are typically needed for a
+third-order differential equation?
+</p>
+
+<label>Count:<input type="text" name="design-ch6-q3"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 3, because an nth-order differential equation
+becomes n first-order state equations.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="2" data-tolerance="0.001">
+<h4>
+Q4. State derivative
+</h4>
+<p class="quiz-prompt">
+For the state equation
+</p>
+<p class="quiz-equation">
+<span class="math-frac"><sup>dx<sub>2</sub></sup>⁄<sub>dt</sub></span>
+= -2x<sub>1</sub> - 3x<sub>2</sub> + 4u,
+</p>
+<p class="quiz-prompt">
+enter
+<span class="math-frac"><sup>dx<sub>2</sub></sup>⁄<sub>dt</sub></span>
+when x<sub>1</sub> = 1, x<sub>2</sub> = 0, and u = 1.
+</p>
+
+<label><span class="inline-equation"><span class="math-frac"><sup>dx<sub>2</sub></sup>⁄<sub>dt</sub></span>:</span><input
+type="text" name="design-ch6-q4" placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 2, because
+<span class="math-frac"><sup>dx<sub>2</sub></sup>⁄<sub>dt</sub></span>
+= -2(1) - 3(0) + 4(1) = 2.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short"
+data-answer-pattern="D matrix\|d\|direct feedthrough\|feedthrough">
+<h4>Q5. Direct input path</h4> <p class="quiz-prompt">In
+y=Cx+Du, what term names the direct path from input to output?</p>
+<div class="quiz-options"><label><span>Term:</span><input
+type="text" name="design-ch6-q5" placeholder="short answer"></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> The D matrix,
+often called the direct feedthrough term.</p></details></div>
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. One state is usually enough only for
+a first-order equation." data-feedback-b="B is not correct. Two states
+are usually enough for a second-order equation." data-feedback-c="C is
+correct. An nth-order differential equation is normally written as n
+first-order state equations." data-feedback-d="D is not correct.
+Doubling the order is not the standard state choice."> <h4>Q6. State
+dimension</h4> <p class="quiz-prompt">A third-order ordinary
+differential equation is normally represented with how many
+states?</p> <div class="quiz-options"> <label><input
+type="radio" name="design-ch6-exam-q1" value="A"><span class="quiz-option-text">A)
+One</span></label> <label><input type="radio"
+name="design-ch6-exam-q1" value="B"><span class="quiz-option-text">B) Two</span></label>
+<label><input type="radio" name="design-ch6-exam-q1"
+value="C"><span class="quiz-option-text">C) Three</span></label> <label><input type="radio"
+name="design-ch6-exam-q1" value="D"><span class="quiz-option-text">D) Six</span></label> </div>
+<div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. C selects or combines states into the
+measured output." data-feedback-b="B is not correct. A and B determine
+state evolution." data-feedback-c="C is not correct. Pole placement is
+not changed directly by relabeling C alone." data-feedback-d="D is not
+correct. C does not erase stored energy or state memory."> <h4>Q7.
+Output matrix</h4> <p class="quiz-prompt">If A and B are unchanged
+but C is changed, what changes most directly?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="design-ch6-exam-q2" value="A"><span class="quiz-option-text">A) Which combination of states
+is reported as output</span></label> <label><input type="radio"
+name="design-ch6-exam-q2" value="B"><span class="quiz-option-text">B) The state derivative
+equation</span></label> <label><input type="radio"
+name="design-ch6-exam-q2" value="C"><span class="quiz-option-text">C) The desired closed-loop
+poles</span></label> <label><input type="radio"
+name="design-ch6-exam-q2" value="D"><span class="quiz-option-text">D) The stored energy in the
+plant</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. A must be square for a state vector
+of fixed dimension." data-feedback-b="B is correct. For two states,
+one input, and one output, these are compatible dimensions."
+data-feedback-c="C is not correct. B should have one row per state."
+data-feedback-d="D is not correct. C should have one column per
+state."> <h4>Q8. Matrix dimensions</h4> <p
+class="quiz-prompt">For a model with two states, one input, and one
+output, which dimensions are consistent?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="design-ch6-exam-q3" value="A"><span class="quiz-option-text">A) A is 2 by 3, B is 2 by 1, C
+is 1 by 2</span></label> <label><input type="radio"
+name="design-ch6-exam-q3" value="B"><span class="quiz-option-text">B) A is 2 by 2, B is 2 by 1, C
+is 1 by 2</span></label> <label><input type="radio"
+name="design-ch6-exam-q3" value="C"><span class="quiz-option-text">C) A is 2 by 2, B is 1 by 2, C
+is 1 by 2</span></label> <label><input type="radio"
+name="design-ch6-exam-q3" value="D"><span class="quiz-option-text">D) A is 2 by 2, B is 2 by 1, C
+is 2 by 1</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. This omits the input and output
+matrices." data-feedback-b="B is not correct. This is not the standard
+state-space transfer function expression." data-feedback-c="C is not
+correct. Cx+Du is the time-domain output equation." data-feedback-d="D
+is correct. The transfer function is C(sI-A)\^(-1)B + D."> <h4>Q9.
+Transfer function from state space</h4> <p
+class="quiz-prompt">Which expression maps a state-space model to its
+transfer function?</p> <div class="quiz-options"> <label><input
+type="radio" name="design-ch6-exam-q4" value="A"><span class="quiz-option-text">A) sI -
+A</span></label> <label><input type="radio" name="design-ch6-exam-q4"
+value="B"><span class="quiz-option-text">B) A + BC</span></label> <label><input type="radio"
+name="design-ch6-exam-q4" value="C"><span class="quiz-option-text">C) Cx + Du</span></label>
+<label><input type="radio" name="design-ch6-exam-q4"
+value="D"><span class="quiz-option-text">D) C(sI - A)<sup>-1</sup>B + D</span></label> </div>
+<div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. A triangular matrix has eigenvalues on
+the diagonal, so one pole is positive." data-feedback-b="B is not
+correct. A positive eigenvalue means the open-loop state dynamics are
+unstable." data-feedback-c="C is not correct. The eigenvalues are
+directly visible here." data-feedback-d="D is not correct. Output
+matrix C does not change the open-loop eigenvalues of A."> <h4>Q10.
+Stability from A</h4> <p class="quiz-prompt">For A with rows (1,
+0) and (2, -3), what can you conclude about the open-loop state
+dynamics?</p> <div class="quiz-options"> <label><input
+type="radio" name="design-ch6-exam-q5" value="A"><span class="quiz-option-text">A) Unstable,
+because one eigenvalue is positive</span></label> <label><input
+type="radio" name="design-ch6-exam-q5" value="B"><span class="quiz-option-text">B) Stable,
+because one eigenvalue is negative</span></label> <label><input
+type="radio" name="design-ch6-exam-q5" value="C"><span class="quiz-option-text">C) Stability is
+impossible to determine from A</span></label> <label><input type="radio"
+name="design-ch6-exam-q5" value="D"><span class="quiz-option-text">D) Stable only if C = (1,
+0)</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="6.7" id="notes-and-references-4" class="section-notes"><span class="header-section-number">6.7</span> Notes and References</h2>
+<p>There are numerous resources that derive state space models from
+differential equations and transfer functions. For example [4–6,
+17].</p>
+<section id="part:PID" class="book-part" aria-labelledby="part-PID-title"><p class="part-kicker">Part III</p><p class="part-title" id="part-PID-title">PID Control Design</p></section>
+<p>In this part of the book we will introduce feedback control by
+studying the most commonly used industrial control law, the so-called
+proportional-integral-derivative control, or PID control<span id="idx-0053" class="book-index-anchor" aria-hidden="true"></span>. PID controllers are
+widely used because they are intuitive and easy to understand, they can
+be designed without any understanding of the underlying physics of the
+system, and a model of the system is not required, which is especially
+important in the chemical processing industry. However, the stability
+and performance of the closed-loop system can only be guaranteed when
+using PID control on second-order systems<span id="idx-0054" class="book-index-anchor" aria-hidden="true"></span>. In
+Part <a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based" data-reference-type="ref"
+data-reference="part:observer_based">IV</a> on
+observer-based control and
+Part <a href="14-14-disturbance-observers.html#part:loopshaping" data-reference-type="ref"
+data-reference="part:loopshaping">V</a> on loopshaping,
+we will extend the basic ideas covered in this Part to higher-order
+systems.</p>
+<p><strong>Fig.</strong> <a href="#fig:pid_proportional_control" data-reference-type="ref"
+data-reference="fig:pid_proportional_control">6.1</a> shows a basic
+proportional control strategy<span id="idx-0055" class="book-index-anchor" aria-hidden="true"></span>. The output <span
+class="math inline">\(y\)</span> of the physical system is subtracted
+from the commanded reference output <span
+class="math inline">\(r\)</span><span id="idx-0056" class="book-index-anchor" aria-hidden="true"></span> to produce the error
+<span class="math inline">\(e=r-y\)</span>. Proportional control
+determines the input to the system <span
+class="math inline">\(u\)</span> to be proportional to the error, i.e.,
+<span class="math inline">\(u=k_P e\)</span>. The constant gain <span
+class="math inline">\(k_P\)</span> is called the proportional
+gain<span id="idx-0057" class="book-index-anchor" aria-hidden="true"></span>.</p>
+<figure id="fig:pid_proportional_control">
+<img src="3_PID/figures/pid_proportional_control.png"
+style="width:50.0%"
+alt="Proportional Control. The feedback control is a gain k_p multiplied by the error." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 6.1. </span>Proportional Control. The feedback
+control is a gain <span
+class="math inline"><em>k</em><sub><em>p</em></sub></span> multiplied by
+the error.</figcaption>
+</figure>
+<p>Proportional control can be augmented with integral control<span id="idx-0058" class="book-index-anchor" aria-hidden="true"></span> to produce PI
+control<span id="idx-0059" class="book-index-anchor" aria-hidden="true"></span>, as shown in
+<strong>Fig.</strong> <a href="#fig:pid_PI_control" data-reference-type="ref"
+data-reference="fig:pid_PI_control">6.2</a>. The basic idea is to
+integrate the error so that the system responds to error accrued in the
+past. The constant gain <span class="math inline">\(k_I\)</span> is
+called the integral gain<span id="idx-0060" class="book-index-anchor" aria-hidden="true"></span>.</p>
+<figure id="fig:pid_PI_control">
+<img src="3_PID/figures/pid_PI_control.png"
+style="width:60.0%"
+alt="Proportional plus Integral (PI) Control. The feedback control is a linear combination of proportional and integral control." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 6.2. </span>Proportional plus Integral (PI) Control.
+The feedback control is a linear combination of proportional and
+integral control.</figcaption>
+</figure>
+<p>Alternatively, proportional control can be augmented with a
+derivative control<span id="idx-0061" class="book-index-anchor" aria-hidden="true"></span> as shown in
+<strong>Fig.</strong> <a href="#fig:pid_PD_control" data-reference-type="ref"
+data-reference="fig:pid_PD_control">6.3</a>. The idea is to respond to
+how fast the error is changing, or the derivative of the error. The
+constant gain <span class="math inline">\(k_D\)</span> is called the
+derivative gain<span id="idx-0062" class="book-index-anchor" aria-hidden="true"></span>.</p>
+<figure id="fig:pid_PD_control">
+<img src="3_PID/figures/pid_PD_control.png"
+style="width:60.0%"
+alt="Proportional plus Derivative (PD) Control. The feedback control is a linear combination of proportional and derivative control." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 6.3. </span>Proportional plus Derivative (PD)
+Control. The feedback control is a linear combination of proportional
+and derivative control.</figcaption>
+</figure>
+<p>When all three elements are used, as shown in
+<strong>Fig.</strong> <a href="#fig:pid_PID_control" data-reference-type="ref"
+data-reference="fig:pid_PID_control">6.4</a>, the resulting controller
+is called a PID control<span id="idx-0063" class="book-index-anchor" aria-hidden="true"></span>. In
+Part <a href="#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a> of this book, we will explore
+various aspects of PID control. Many of these concepts can be
+generalized to other control schemes in later chapters, and so our study
+of PID control will also help to motivate and understand more advanced
+concepts.</p>
+<figure id="fig:pid_PID_control">
+<img src="3_PID/figures/pid_PID_control.png"
+style="width:60.0%"
+alt="Proportional plus Integral plus Derivative (PID) Control. The feedback control is a linear combination of proportional and integral and derivative control." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 6.4. </span>Proportional plus Integral plus
+Derivative (PID) Control. The feedback control is a linear combination
+of proportional and integral and derivative control.</figcaption>
+</figure>
+<p>Intuition for PID control can be gained by considering the step
+response shown in
+<strong>Fig.</strong> <a href="#fig:pid_meaning" data-reference-type="ref"
+data-reference="fig:pid_meaning">6.5</a>. At the beginning of the
+response, there is a significant error between the current output <span
+class="math inline">\(y(t)\)</span> and the reference command <span
+class="math inline">\(r(t)\)</span>. The proportional control term will
+tend to push the system so as to reduce the gap between <span
+class="math inline">\(y(t)\)</span> and <span
+class="math inline">\(r(t)\)</span>. As <span
+class="math inline">\(y(t)\)</span> begins to change, a fast response
+may lead to significant overshoot due to the momentum in the system.
+Therefore, if it is moving too quickly, we may want to slow down the
+response, or if it is moving too slowly, we may want to speed up the
+response. Derivative control is used to affect these changes. After the
+response has settled into steady state, there may be significant steady
+state error<span id="idx-0064" class="book-index-anchor" aria-hidden="true"></span>, as shown in
+<strong>Fig.</strong> <a href="#fig:pid_meaning" data-reference-type="ref"
+data-reference="fig:pid_meaning">6.5</a>. Integral control adds up this
+steady error and will eventually act to reduce the steady state error. A
+good example is an aircraft in a constant crosswind. An integrator can
+be used to correct the response of the aircraft so that it crabs into
+the wind to maintain its desired flight path.</p>
+<figure id="fig:pid_meaning">
+<img src="3_PID/figures/pid_meaning.png" style="width:95.0%"
+alt="Intuitive interpretation of PID control. Proportional control acts on the current error, integral control acts on accrued past error, and derivative control acts on anticipated future error." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 6.5. </span>Intuitive interpretation of PID control.
+Proportional control acts on the current error, integral control acts on
+accrued past error, and derivative control acts on anticipated future
+error.</figcaption>
+</figure>
+<p>Part <a href="#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a> of the book is organized as
+follows. In
+Chapter <a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-pole-placement">10</a> we will show how PD
+control can be used to specify the desired closed-loop poles of a
+second-order system. In
+Chapter <a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a> we introduce the concepts
+of rise time, natural frequency, and damping ratio for second-order
+systems and show how these concepts relate to the location of the
+closed-loop poles. We also show how these quantities can be used to
+design PD controllers for second-order systems and cascades of
+second-order systems. In
+Chapter <a href="09-9-system-type-and-integrators.html#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a> we use the final value
+theorem to show the effect of integrators on the closed-loop system. We
+introduce the notion of <em>system type</em> in the context of reference
+tracking and disturbance rejection. Finally, in
+Chapter <a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a> we show how to
+write computer code to implement PID controllers.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

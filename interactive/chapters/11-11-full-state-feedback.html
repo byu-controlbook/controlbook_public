@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="11" id="full-state-feedback"><span class="header-section-number">11</span> Full State Feedback</h1>
+<h2 data-number="11.1" id="theory-9"><span class="header-section-number">11.1</span> Theory</h2>
+<p>In this chapter we will show how to use full state feedback to
+stabilize a linear time-invariant system represented in state space
+form. <span id="idx-0127" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0128" class="book-index-anchor" aria-hidden="true"></span> Recall from
+Section <a href="06-6-state-space-models.html#converting-state-space-models-to-transfer-function-models" data-reference-type="ref"
+data-reference="sec:ss_to_tf">9.1.2</a>, that for state space equations
+given by <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + Bu
+\label{eq:ss_state_equation}\\
+y &amp;= Cx + Du,
+\label{eq:ss_output_equation}
+\end{aligned}\]</span> the poles of the system are the eigenvalues of
+<span class="math inline">\(A\)</span>, or in other words, the roots of
+the open-loop characteristic equation <span
+class="math display">\[\Delta_{ol}(s) = \det(sI-A) = 0.\]</span>
+<span id="idx-0129" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0130" class="book-index-anchor" aria-hidden="true"></span> The matrix <span
+class="math inline">\(A\)</span> is called the state-interaction
+matrix<span id="idx-0131" class="book-index-anchor" aria-hidden="true"></span> because it specifies
+how the states interact with each other. The basic idea behind full
+state feedback is to use the feedback signal to change the interaction
+matrix so that the poles are in specified locations. A full state
+feedback controller is given by <span
+class="math display">\[\label{eq:ss_full_state_feedback}
+u = -Kx + \nu,\]</span> where <span
+class="math inline">\(K\in\mathbb{R}^{m\times n}\)</span> are the
+feedback gains, and <span class="math inline">\(\nu\)</span> will be a
+signal that is specified later.
+Using <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_full_state_feedback"><a href="#full-state-feedback">11.3</a></a>
+in Equation <a href="#theory-9" data-reference-type="eqref"
+data-reference="eq:ss_state_equation"><a href="#full-state-feedback">11.1</a></a> results
+in the closed-loop state space equations <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + B(-Kx+\nu) = (A-BK)x + B\nu
+\label{eq:ss_state_equation_cl}\\
+y &amp;= Cx,
+\label{eq:ss_output_equation_cl}
+\end{aligned}\]</span> where the interaction matrix is now <span
+class="math inline">\(A-BK\)</span>, and so the closed-loop
+poles<span id="idx-0132" class="book-index-anchor" aria-hidden="true"></span> will be given by the
+eigenvalues of <span class="math inline">\(A-BK\)</span>, or in other
+words, the roots of the closed-loop characteristic equation<span id="idx-0133" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\Delta_{cl}(s) = \det(sI-(A-BK))=0.\]</span> A
+natural question that will be addressed in the remainder of this
+section, is how to select <span class="math inline">\(K\)</span> so that
+the closed-loop characteristic equation is equal to a desired
+closed-loop characteristic <span
+class="math inline">\(\Delta_{cl}^d(s)\)</span>, where the designer
+selects the roots of <span
+class="math inline">\(\Delta_{cl}^d(s)=0\)</span> to achieve desired
+closed-loop performance.</p>
+<p>Section <a href="06-6-state-space-models.html#converting-state-space-models-to-transfer-function-models" data-reference-type="ref"
+data-reference="sec:ss_to_tf">9.1.2</a> showed that the state space
+model given by
+Equations <a href="#theory-9" data-reference-type="eqref"
+data-reference="eq:ss_state_equation"><a href="#full-state-feedback">11.1</a></a>–<a href="#summary-of-design-process---state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_output_equation"><a href="#full-state-feedback">11.2</a></a> is
+equivalent to the transfer function model<span id="idx-0134" class="book-index-anchor" aria-hidden="true"></span> given by <span
+class="math display">\[\label{eq:ss_transfer_function}
+Y(s) = C(sI-A)^{-1}B U(s).\]</span> While the mapping from state-space
+model to transfer function model is unique, the reverse is not true. In
+fact, there are an infinite number of state space models that correspond
+to a particular transfer function model. Accordingly, we say that a
+state space model is a <em>realization</em> of the transfer function
+model, if it produces the same input-output behavior when the initial
+conditions are zero. <span id="idx-0135" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>In particular, define the change of variables<span id="idx-0136" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\label{eq:ss_change_of_variables}
+z = P^{-1}x,\]</span> where <span class="math inline">\(P\)</span> is an
+invertible matrix. Then <span class="math display">\[\begin{aligned}
+\dot{z} &amp;= P^{-1}\dot{x} = P^{-1}(Ax+Bu) = P^{-1}APz + P^{-1}B u
+\label{eq:ss_state_equation_transformed}\\
+y&amp;= Cx = CPz
+\label{eq:ss_output_equation_transformed}
+\end{aligned}\]</span> is an alternative state space representation of
+system <a href="#theory-9" data-reference-type="eqref"
+data-reference="eq:ss_state_equation"><a href="#full-state-feedback">11.1</a></a>-<a href="#summary-of-design-process---state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_output_equation"><a href="#full-state-feedback">11.2</a></a>. To
+show that these two representations have the same input-output behavior,
+or in other words, the same transfer function, note from
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_transfer_function"><a href="#full-state-feedback">11.6</a></a>
+that the transfer function of
+system <a href="#knowledge-check-10" data-reference-type="eqref"
+data-reference="eq:ss_state_equation_transformed"><a href="#full-state-feedback">11.8</a></a>-<a href="#notes-and-references-10" data-reference-type="eqref"
+data-reference="eq:ss_output_equation_transformed"><a href="#full-state-feedback">11.9</a></a>
+is <span class="math display">\[\begin{aligned}
+Y(s) &amp;= \left( CP(sI-P^{-1}AP)^{-1}P^{-1}B \right) U(s) \\
+     &amp;=  \left( CP(sP^{-1}P-P^{-1}AP)^{-1}P^{-1}B\right) U(s) \\
+     &amp;=  \left( CP(P^{-1}(sI-A)P)^{-1}P^{-1}B \right) U(s) \\
+     &amp;=  \left( CPP^{-1}(sI-A)^{-1}PP^{-1}B \right) U(s) \\
+     &amp;=  \left( C(sI-A)^{-1}B \right) U(s),  
+\end{aligned}\]</span> which is identical to
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_transfer_function"><a href="#full-state-feedback">11.6</a></a>.
+Therefore
+Equations <a href="#theory-9" data-reference-type="eqref"
+data-reference="eq:ss_state_equation"><a href="#full-state-feedback">11.1</a></a>-<a href="#summary-of-design-process---state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_output_equation"><a href="#full-state-feedback">11.2</a></a> and
+Equations <a href="#knowledge-check-10" data-reference-type="eqref"
+data-reference="eq:ss_state_equation_transformed"><a href="#full-state-feedback">11.8</a></a>-<a href="#notes-and-references-10" data-reference-type="eqref"
+data-reference="eq:ss_output_equation_transformed"><a href="#full-state-feedback">11.9</a></a>
+are realizations of the same system.</p>
+<h3 data-number="11.1.1"
+id="state-space-realization-in-control-canonic-form"><span class="header-section-number">11.1.1</span> State Space Realization in
+Control Canonic Form</h3>
+<p>In this section, we will derive one specific state space realization
+for single-input single-output transfer functions, where the state
+feedback problem is particularly simple. The realization that we derive
+below is called the <em>control canonic form</em> of the system.<span id="idx-0137" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>Consider the general SISO monic transfer function model given by
+<span
+class="math display">\[\label{eq:ss_general_siso_transfer_function}
+Y(s) = \frac{b_ms^m + b_{m-1}s^{m-1} + \dots + b_1 s + b_0}{s^n +
+a_{n-1}s^{n-1} + \dots + a_1 s + a_0} U(s),\]</span> where <span
+class="math inline">\(m&lt;n\)</span>. The block diagram of the system
+is shown in
+<strong>Fig.</strong> <a href="#fig:ss_siso_transfer_function" data-reference-type="ref"
+data-reference="fig:ss_siso_transfer_function">11.1</a>.</p>
+<figure id="fig:ss_siso_transfer_function">
+<img
+src="4_observer_based/figures/ss_siso_transfer_function.png"
+style="width:70.0%"
+alt="General transfer function for a SISO system." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 11.1. </span>General transfer function for a SISO
+system.</figcaption>
+</figure>
+<p>The first step in deriving the control canonic state space equations
+is to artificially decompose the transfer function as shown in
+<strong>Fig.</strong> <a href="#fig:ss_siso_transfer_function_ccf" data-reference-type="ref"
+data-reference="fig:ss_siso_transfer_function_ccf">11.2</a>, where the
+numerator polynomial and the denominator polynomial appear in separate
+cascaded blocks, and where <span class="math inline">\(Z(s)\)</span> is
+an artificial intermediate variable.</p>
+<figure id="fig:ss_siso_transfer_function_ccf">
+<img
+src="4_observer_based/figures/ss_siso_transfer_function_ccf.png"
+style="width:95.0%"
+alt="General transfer function for a SISO system decomposed into state dynamics and output dynamics." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 11.2. </span>General transfer function for a SISO
+system decomposed into state dynamics and output dynamics.</figcaption>
+</figure>
+<p>In the <span class="math inline">\(s\)</span>-domain, the equations
+corresponding to
+<strong>Fig.</strong> <a href="#fig:ss_siso_transfer_function_ccf" data-reference-type="ref"
+data-reference="fig:ss_siso_transfer_function_ccf">11.2</a> can be
+written as <span class="math display">\[\begin{aligned}
+Z(s) &amp;= \frac{1}{s^n + a_{n-1}s^{n-1} + \dots + a_1 s + a_0} U(s) \\
+Y(s) &amp;= (b_ms^m + b_{m-1}s^{m-1} + \dots + b_1 s + b_0) Z(s).
+\end{aligned}\]</span> Taking the inverse Laplace transform of these
+equations gives <span class="math display">\[\begin{aligned}
+\frac{d^nz}{dt^n}  &amp;= u(t) - a_{n-1}\frac{d^{n-1}z}{dt^{n-1}} -
+\dots - a_1 \dot{z} - a_0 z(t)
+\label{eq:ss_control_canonic_form_1}\\
+y(t) &amp;= b_m\frac{d^mz}{dt^m} + b_{m-1}\frac{d^{m-1}z}{dt^{m-1}} +
+\dots + b_1 \dot{z} + b_0 z(t).
+\label{eq:ss_control_canonic_form_2}
+\end{aligned}\]</span></p>
+<p>The next step in the derivation of the state space equations is to
+draw the analog computer implementation<span id="idx-0138" class="book-index-anchor" aria-hidden="true"></span> of
+Equations <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_control_canonic_form_1"><a href="#full-state-feedback">11.11</a></a>
+and <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_control_canonic_form_2"><a href="#full-state-feedback">11.12</a></a>,
+which is shown in
+<strong>Fig.</strong> <a href="#fig:ss_control_canonic_form_block_diagram"
+data-reference-type="ref"
+data-reference="fig:ss_control_canonic_form_block_diagram">11.3</a>.</p>
+<figure id="fig:ss_control_canonic_form_block_diagram">
+<img
+src="4_observer_based/figures/ss_control_canonic_form_block_diagram.png"
+style="width:80.0%"
+alt="Block diagram showing the analog computer implementation of Equations 11.11 and 11.12." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 11.3. </span>Block diagram showing the analog computer
+implementation of Equations <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_control_canonic_form_1"><a href="#full-state-feedback">11.11</a></a>
+and <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_control_canonic_form_2"><a href="#full-state-feedback">11.12</a></a>.</figcaption>
+</figure>
+<p>Labeling the output of the integrators as the state variables <span
+class="math inline">\(x_1, \dots, x_n\)</span>, as shown in
+<strong>Fig.</strong> <a href="#fig:ss_control_canonic_form_block_diagram"
+data-reference-type="ref"
+data-reference="fig:ss_control_canonic_form_block_diagram">11.3</a>, we
+can write the state space equations as <span
+class="math display">\[\begin{aligned}
+\begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \\ \vdots  \\ \dot{x}_n
+\end{pmatrix}
+    &amp;= \begin{pmatrix}
+        -a_{n-1} &amp; -a_{n-2} &amp; \dots &amp; -a_1 &amp; -a_0 \\
+        1        &amp; 0        &amp; \dots &amp; 0    &amp; 0 \\
+        0        &amp; 1        &amp; \dots &amp; 0    &amp; 0 \\
+        \vdots   &amp;          &amp; \ddots &amp;     &amp; \vdots \\
+        0        &amp; 0        &amp; \dots &amp; 1   &amp; 0
+    \end{pmatrix}
+    \begin{pmatrix} x_1 \\ x_2 \\ \vdots  \\ x_n \end{pmatrix}
+    + \begin{pmatrix} 1 \\ 0 \\ \vdots \\  0 \end{pmatrix} u
+\label{eq:ss_state_equations_control_canonic_form} \\
+y &amp;= \begin{pmatrix} 0 &amp; \dots &amp; 0 &amp; b_m &amp; \dots
+&amp; b_1 &amp; b_0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\
+\vdots  \\ x_n \end{pmatrix}
++ 0\cdot u.
+\notag
+\end{aligned}\]</span> In the case when <span
+class="math inline">\(m=n\)</span> it is straightforward to show that
+the output equation becomes <span class="math display">\[y =
+\begin{pmatrix} b_{n-1} - b_n a_{n-1}, &amp; \dots &amp; b_1 - b_n a_1,
+&amp; b_0 - b_n a_0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\
+\vdots  \\ x_n \end{pmatrix}
++ b_n\cdot u.\]</span> We will define the control canonic
+realization<span id="idx-0139" class="book-index-anchor" aria-hidden="true"></span> as <span
+class="math display">\[\begin{aligned}
+\dot{x}_c &amp;= A_c x_c + B_c u \\
+y &amp;= C_c x_c + Du,
+\end{aligned}\]</span> where <span
+class="math display">\[\begin{aligned}
+A_c &amp;\stackrel{\triangle}{=}\begin{pmatrix}
+        -a_{n-1} &amp; -a_{n-2} &amp; \dots &amp; -a_1 &amp; -a_0 \\
+        1        &amp; 0        &amp; \dots &amp; 0    &amp; 0 \\
+        0        &amp; 1        &amp; \dots &amp; 0    &amp; 0 \\
+        \vdots   &amp;          &amp; \ddots &amp;     &amp; \vdots \\
+        0        &amp; 0        &amp; \dots &amp; 1   &amp; 0
+    \end{pmatrix}
+\label{eq:ss_companion_form}\\
+B_c &amp;\stackrel{\triangle}{=}\begin{pmatrix} 1 \\ 0 \\ \vdots \\  0
+\end{pmatrix}
+\label{eq:ss_control_canonic_form_Bc} \\
+C_c &amp;\stackrel{\triangle}{=}\begin{cases}
+        \begin{pmatrix} 0 &amp; \dots &amp; 0 &amp; b_m &amp; \dots
+&amp; b_1 &amp; b_0 \end{pmatrix} &amp;\quad m&lt;n \\
+        \begin{pmatrix} b_{n-1} - b_n a_{n-1}, &amp; \dots &amp; b_1 -
+b_n a_1, &amp; b_0 - b_n a_0 \end{pmatrix} &amp;\quad m=n
+\end{cases}
+\label{eq:ss_control_canonic_form_Cc} \\
+D &amp;\stackrel{\triangle}{=}\begin{cases}
+0 &amp;\quad m&lt;n \\
+b_n &amp;\quad m=n
+\end{cases}.
+\label{eq:ss_control_canonic_form_Dc}
+\end{aligned}\]</span> Note that the negative of the coefficients of the
+denominator of <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_general_siso_transfer_function"><a href="#full-state-feedback">11.10</a></a>
+constitute the first row of <span class="math inline">\(A_c\)</span>,
+and that the remainder of <span class="math inline">\(A_c\)</span> has
+ones on the lower off diagonal and zeros in all other elements. Matrices
+with this structure are said to be in <em>companion form</em>.<span id="idx-0140" class="book-index-anchor" aria-hidden="true"></span> The <span
+class="math inline">\(B_c\)</span> vector has a single one as its first
+element, with the remaining elements equal to zero. The coefficients of
+the numerator of
+Equation <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_general_siso_transfer_function"><a href="#full-state-feedback">11.10</a></a>
+are the last <span class="math inline">\(p\)</span>-elements of <span
+class="math inline">\(C_c\)</span>.</p>
+<p>As an example, suppose that the transfer function model of the system
+is given by <span class="math display">\[Y(s) = \frac{9s + 20}{s^3 +
+6s^2 - 11s + 8}U(s),\]</span> then the control canonic realization of
+the system is given by <span class="math display">\[\begin{aligned}
+\begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \\ \dot{x}_3 \end{pmatrix}
+    &amp;= \begin{pmatrix}
+        -6 &amp; 11 &amp; -8 \\
+        1  &amp; 0  &amp; 0 \\
+        0  &amp; 1  &amp; 0
+        \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix}
+        + \begin{pmatrix} 1 \\ 0 \\ 0\end{pmatrix} u
+        \label{eq:ss_state_feedback_example} \\
+y &amp;= \begin{pmatrix} 0 &amp; 9 &amp; 20 \end{pmatrix}
+\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix}.
+\notag
+\end{aligned}\]</span></p>
+<h3 data-number="11.1.2"
+id="full-state-feedback-using-control-canonic-form"><span class="header-section-number">11.1.2</span> Full State Feedback using
+Control Canonic Form</h3>
+<p>The design of a state feedback controller is particularly easy when
+the state space equations are in control canonic form. The key insight
+is that there is a direct relationship between matrices in companion
+form, as shown in
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_companion_form"><a href="#full-state-feedback">11.14</a></a> and
+their characteristic polynomial <span
+class="math display">\[\Delta_{ol}(s) = s^n + a_{n-1}s^{n-1} + \dots +
+a_1 s + a_0.\]</span> Suppose that we let <span
+class="math display">\[\label{eq:ss_state_feedback_control_canonic_form}
+u = -K_cx_c + \nu = -\begin{pmatrix} k_1 &amp; k_2 &amp; \dots &amp;
+k_{n-1} &amp; k_n\end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\
+x_{n-1} \\ x_n \end{pmatrix} + \nu.\]</span> Substituting into
+Equation <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_state_equations_control_canonic_form"><a href="#full-state-feedback">11.13</a></a>
+and rearranging gives <span class="math display">\[\begin{gathered}
+\begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \\ \vdots  \\ \dot{x}_n
+\end{pmatrix}
+    = \begin{pmatrix}
+        -(a_{n-1}+k_1) &amp; -(a_{n-2}+k_2) &amp; \dots &amp;
+-(a_1+k_{n-1}) &amp; -(a_0+k_n) \\
+        1        &amp; 0        &amp; \dots &amp; 0    &amp; 0 \\
+        0        &amp; 1        &amp; \dots &amp; 0    &amp; 0 \\
+        \vdots   &amp;          &amp; \ddots &amp;     &amp; \vdots \\
+        0        &amp; 0        &amp; \vdots &amp; 1   &amp; 0
+    \end{pmatrix}
+    \begin{pmatrix} x_1 \\ x_2 \\ \vdots  \\ x_n \end{pmatrix}
+%
+    + \begin{pmatrix} 1 \\ 0 \\ \vdots  \\ 0 \end{pmatrix} \nu.
+\end{gathered}\]</span> Since the state interaction matrix<span id="idx-0141" class="book-index-anchor" aria-hidden="true"></span> is still in companion
+form, the characteristic polynomial of the closed-loop system is given
+by <span class="math display">\[\Delta_{cl}(s) = s^n +
+(a_{n-1}+k_1)s^{n-1} + \dots + (a_1+k_{n-1}) s + (a_0+k_n).\]</span> If
+the desired characteristic polynomial is given by <span
+class="math display">\[\label{eq:ss_desired_closed_loop_char_polynomial}
+\Delta_{cl}^d(s) = s^n + \alpha_{n-1}s^{n-1} + \dots + \alpha_1 s +
+\alpha_0,\]</span> then we have that <span
+class="math display">\[\begin{aligned}
+a_{n-1} + k_1 &amp;= \alpha_{n-1} \\
+a_{n-2} + k_2 &amp;= \alpha_{n-2} \\
+\vdots &amp; \\
+a_{1} + k_{n-1} &amp;= \alpha_{1} \\
+a_0 + k_n &amp;= \alpha_0.
+\end{aligned}\]</span> Defining the row vectors <span
+class="math display">\[\begin{aligned}
+\mathbf{a}_A &amp;= (a_{n-1}, a_{n-2}, \dots, a_1, a_0) \\
+\boldsymbol{\alpha} &amp;= (\alpha_{n-1}, \alpha_{n-2}, \dots, \alpha_1,
+\alpha_0) \\
+K_c &amp;= (k_1, k_2, \dots, k_{n-1}, k_n),
+\end{aligned}\]</span> we have that the feedback gains satisfy <span
+class="math display">\[\label{eq:ss_full_state_feedback_ccf}
+K_c = \boldsymbol{\alpha}-\mathbf{a}_A,\]</span> where the subscript “c”
+is used to emphasize that the gains are in control canonic form.<span id="idx-0142" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>As an example, consider the state equations given in
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_state_feedback_example"><a href="#full-state-feedback">11.18</a></a>.
+The open-loop characteristic polynomial is given by <span
+class="math display">\[\Delta_{ol}(s) = s^3 + 6s^2 - 11 s + 8,\]</span>
+with roots at <span class="math inline">\(-7.5885\)</span>, and <span
+class="math inline">\(0.7942\pm j0.6507\)</span>. Suppose that the
+desired closed-loop characteristic polynomial is <span
+class="math display">\[\Delta_{cl}^d(s) = s^3 + 5s^2 + 12 s +
+8,\]</span> with roots at <span class="math inline">\(-1\)</span> and
+<span class="math inline">\(-2\pm j2\)</span>, then <span
+class="math inline">\(\mathbf{a}_A = (6, -11, 8)\)</span>, and <span
+class="math inline">\(\boldsymbol{\alpha} = (5, 12, 8)\)</span>. The
+feedback gains that place the poles at the desired locations are
+therefore given by <span class="math display">\[K_c =
+\boldsymbol{\alpha}-\mathbf{a}_A = (5, 12, 8)-(6, -11, 8) = (-1, 23,
+0).\]</span></p>
+<h3 data-number="11.1.3" id="full-state-feedback-general-case"><span class="header-section-number">11.1.3</span> Full State Feedback: General
+Case</h3>
+<p>The formula given in
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_full_state_feedback_ccf"><a href="#full-state-feedback">11.21</a></a>
+assumes that the state space equations are in control canonic form. It
+turns out that the closed-loop eigenvalues cannot always be arbitrarily
+assigned to desired locations. When they can, the system <span
+class="math inline">\(\dot{x}=Ax+Bu\)</span> is said to be
+<em>controllable</em>. In this section we will derive an expression for
+the state feedback gains, and we will simultaneously derive a simple
+test for determining when the system is controllable.</p>
+<p>Recall from
+Equations <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_change_of_variables"><a href="#full-state-feedback">11.7</a></a>–<a href="#notes-and-references-10" data-reference-type="eqref"
+data-reference="eq:ss_output_equation_transformed"><a href="#full-state-feedback">11.9</a></a>
+that state space equations can be transformed using the change of
+variables in
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_change_of_variables"><a href="#full-state-feedback">11.7</a></a>
+without modifying the input-output properties of the system. This
+implies that the change of variables does not change the characteristic
+polynomial. We can verify this fact explicitly as follows: <span
+class="math display">\[\begin{aligned}
+\det(sI-P^{-1}AP)
+    &amp;= \det(sP^{-1}P-P^{-1}AP) \\
+    &amp;= \det\left(P^{-1}(sI-A)P\right) \\
+    &amp;= \det(P^{-1})\det(sI-A)\det(P) \\
+    &amp;= \det(sI-A).  
+\end{aligned}\]</span></p>
+<p>Therefore, to derive full state feedback gains for the general state
+space equations <span
+class="math display">\[\label{eq:ss_full_state_feedback_derivation_1}
+\dot{x}=Ax+Bu,\]</span> the idea is to find a state transformation
+matrix <span class="math inline">\(P\)</span> so that the transformed
+system is in control canonic form, i.e., find <span
+class="math inline">\(P\)</span> so that <span
+class="math display">\[\label{eq:ss_full_state_feedback_derivation_2}
+x_c=P^{-1}x,\]</span> and<span id="idx-0143" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\label{eq:ss_full_state_feedback_derivation_3}
+\dot{x}_c = P^{-1}APx_c + P^{-1}B u = A_c x_c + B_c u,\]</span> where
+<span class="math inline">\(A_c\)</span> and <span
+class="math inline">\(B_c\)</span> have the form given by
+Equations <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_companion_form"><a href="#full-state-feedback">11.14</a></a>
+and <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_control_canonic_form_Bc"><a href="#full-state-feedback">11.15</a></a>,
+respectively. Therefore, we need to find <span
+class="math inline">\(P\)</span> so that <span
+class="math inline">\(P^{-1}B = B_c\)</span>, and <span
+class="math inline">\(P^{-1}AP=A_c\)</span>, which are satisfied if and
+only if <span class="math inline">\(B=PB_c\)</span> and <span
+class="math inline">\(AP=PA_c\)</span>. Let <span
+class="math inline">\(P=(\mathbf{p}_1, \mathbf{p}_2, \dots,
+\mathbf{p}_n)\)</span>, where <span
+class="math inline">\(\mathbf{p}_i\in\mathbf{R}^n\)</span> is the <span
+class="math inline">\(i^{th}\)</span> column of <span
+class="math inline">\(P\)</span>. The requirement that <span
+class="math inline">\(B=PB_c\)</span> implies that <span
+class="math display">\[B = \begin{pmatrix} \mathbf{p}_1 &amp;
+\mathbf{p}_2 &amp; \dots &amp; \mathbf{p}_n \end{pmatrix}
+\begin{pmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix} =
+\mathbf{p}_1.\]</span> Therefore, <span
+class="math inline">\(\mathbf{p}_1=B\)</span>. The requirement that
+<span class="math inline">\(PA_c=AP\)</span> implies that <span
+class="math display">\[\begin{gathered}
+\begin{pmatrix} \mathbf{p}_1 &amp; \mathbf{p}_2 &amp; \dots &amp;
+\mathbf{p}_n \end{pmatrix}\begin{pmatrix}
+        -a_{n-1} &amp; -a_{n-2} &amp; \dots &amp; -a_1 &amp; -a_0 \\
+        1        &amp; 0        &amp; \dots &amp; 0    &amp; 0 \\
+        0        &amp; 1        &amp; \dots &amp; 0    &amp; 0 \\
+        \vdots   &amp;          &amp; \ddots &amp;     &amp; \vdots \\
+        0        &amp; 0        &amp; \dots &amp; 0    &amp; 0 \\
+        0        &amp; 0        &amp; \vdots &amp; 1   &amp; 0
+    \end{pmatrix} \\ = A \begin{pmatrix} \mathbf{p}_1 &amp; \mathbf{p}_2
+&amp; \dots &amp; \mathbf{p}_n \end{pmatrix}.
+\end{gathered}\]</span> After multiplication, the first <span
+class="math inline">\(n-1\)</span> columns can be equated to get <span
+class="math display">\[\begin{aligned}
+-a_{n-1}\mathbf{p}_1 + \mathbf{p}_2 &amp;= A\mathbf{p}_1
+\label{eq:ss_P_derivation_1}\\
+-a_{n-2}\mathbf{p}_1 + \mathbf{p}_3 &amp;= A\mathbf{p}_2
+\label{eq:ss_P_derivation_2}\\
+\vdots  \\
+-a_1\mathbf{p}_1 + \mathbf{p}_{n}   &amp;= A\mathbf{p}_{n-1}.
+\label{eq:ss_P_derivation_n}
+\end{aligned}\]</span>
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_P_derivation_1"><a href="#full-state-feedback">11.25</a></a>, and
+the previous conclusion that <span
+class="math inline">\(\mathbf{p}_1=B\)</span>, implies that <span
+class="math display">\[\mathbf{p}_2 = a_{n-1}B + AB.\]</span> Using this
+results in
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_P_derivation_2"><a href="#full-state-feedback">11.26</a></a> gives
+<span class="math display">\[\mathbf{p}_3 = a_{n-2}B + a_{n-1} AB +
+A^2B.\]</span> We can continue to iteratively solve for each column of
+<span class="math inline">\(P\)</span> until the <span
+class="math inline">\((n-1)^{th}\)</span> column, which from
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_P_derivation_n"><a href="#full-state-feedback">11.28</a></a> is
+<span class="math display">\[\mathbf{p}_n = a_1B + a_2AB + \dots +
+a_{n-1}A^{n-2}B + A^{n-1}B.\]</span> Notice that each column in <span
+class="math inline">\(P\)</span> is a linear combination of the elements
+<span class="math inline">\(B\)</span>, <span
+class="math inline">\(AB\)</span>, <span
+class="math inline">\(A^2B\)</span>, <span
+class="math inline">\(\dots\)</span>, <span
+class="math inline">\(A^{n-1}B\)</span>. Accordingly, defining <span
+class="math display">\[\label{eq:ss_controllability_matrix}
+\mathcal{C}_{A,B} = \begin{pmatrix} B &amp; AB &amp; A^2B &amp; \dots
+&amp; A^{n-1}B\end{pmatrix},\]</span> gives<span id="idx-0144" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\begin{aligned}
+\mathbf{p}_1 &amp;= \mathcal{C}_{A,B}\begin{pmatrix} 1, &amp; 0, &amp;
+\dots &amp; 0, &amp; 0 \end{pmatrix}^\top, \\
+\mathbf{p}_2 &amp;= \mathcal{C}_{A,B}\begin{pmatrix} a_{n-1}, &amp; 1,
+&amp; \vdots &amp; 0, &amp; 0 \end{pmatrix}^\top, \\
+\vdots &amp;\qquad \vdots \\
+\mathbf{p}_n &amp;= \mathcal{C}_{A,B} \begin{pmatrix} a_1, &amp; a_2,
+&amp; \vdots &amp; a_{n-1}, &amp; 1 \end{pmatrix}^\top.
+\end{aligned}\]</span> Defining the matrix <span
+class="math display">\[\label{eq:ss_script_A}
+\mathcal{A}_A = \begin{pmatrix}
+    1 &amp; a_{n-1} &amp; a_{n-2} &amp; \dots &amp; a_2 &amp; a_1 \\
+    0 &amp; 1 &amp; a_{n-1} &amp; \vdots &amp; a_3 &amp; a_2 \\
+    0 &amp; 0 &amp; 1 &amp; \vdots &amp; a_4 &amp; a_3 \\
+    \vdots &amp; &amp; &amp; \ddots &amp; \vdots \\
+    0 &amp; 0 &amp; 0 &amp; \dots &amp; 1 &amp; a_{n-1} \\
+    0 &amp; 0 &amp; 0 &amp; \dots &amp; 0 &amp; 1
+    \end{pmatrix},\]</span> gives that the transformation matrix that
+converts the system into control canonic form is <span
+class="math display">\[P = \mathcal{C}_{A,B}\mathcal{A}_A.\]</span>
+Notice that since <span class="math inline">\(\mathcal{A}_A\)</span> is
+an upper triangular matrix with ones on the diagonal, that <span
+class="math inline">\(\det(\mathcal{A}_A)=1\)</span>, implying that
+<span class="math inline">\(\mathcal{A}_A^{-1}\)</span> always exists.
+It is clear that the matrix <span class="math inline">\(P\)</span> is
+invertible with <span
+class="math display">\[P^{-1}=\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1}\]</span>
+if and only if <span
+class="math inline">\(\mathcal{C}_{A,B}^{-1}\)</span> exists. The matrix
+<span class="math inline">\(\mathcal{C}_{A,B}\)</span> in
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_controllability_matrix"><a href="#full-state-feedback">11.29</a></a>
+is called the <em>controllability matrix</em>,<span id="idx-0145" class="book-index-anchor" aria-hidden="true"></span> and a single input
+system is said to be <em>controllable</em><span id="idx-0146" class="book-index-anchor" aria-hidden="true"></span> if <span
+class="math inline">\(\mathcal{C}\)</span> is invertible. Therefore,
+when the original
+system <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_full_state_feedback_derivation_1"><a href="#full-state-feedback">11.22</a></a>
+is controllable, there exists an invertible state transformation matrix
+<span class="math inline">\(P\)</span> so that the change of variables
+in Equation <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_full_state_feedback_derivation_2"><a href="#full-state-feedback">11.23</a></a>
+is well defined and that results in the transformed equations being in
+control canonic form via
+Equations <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_full_state_feedback_derivation_3"><a href="#full-state-feedback">11.24</a></a>.</p>
+<p>In control canonic form, the state feedback equation is <span
+class="math display">\[u = -K_cx_c + \nu =
+-(\boldsymbol{\alpha}-\mathbf{a}_A)x_c + \nu.\]</span> Using
+Equation <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_full_state_feedback_derivation_2"><a href="#full-state-feedback">11.23</a></a>
+the state feedback control can be expressed in the original states <span
+class="math inline">\(x\)</span> as <span
+class="math display">\[\begin{aligned}
+u &amp;= -(\boldsymbol{\alpha}-\mathbf{a}_A)P^{-1}x + \nu \notag \\
+  &amp;=
+-(\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1}x
++ \nu \notag \\
+  &amp;= - Kx + \nu, \label{eq:ss_full_state_feedback_derivation_4}
+\end{aligned}\]</span> where <span
+class="math display">\[\label{eq:ss_ackermanns_formula}
+K
+\stackrel{\triangle}{=}(\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1}.\]</span>
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_ackermanns_formula"><a href="#full-state-feedback">11.32</a></a>
+is called <em>Ackermann’s formula</em><span id="idx-0147" class="book-index-anchor" aria-hidden="true"></span> for the feedback
+gains. Since <span class="math inline">\(\mathcal{C}_{A,B}\)</span> is
+only square in the single-input case, Ackermann’s formula only holds for
+single input systems.</p>
+<p>Using the full state feedback control in
+Equation <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_full_state_feedback_derivation_4"><a href="#full-state-feedback">11.31</a></a>
+in the state
+equations <a href="#theory-9" data-reference-type="eqref"
+data-reference="eq:ss_state_equation"><a href="#full-state-feedback">11.1</a></a>-<a href="#summary-of-design-process---state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_output_equation"><a href="#full-state-feedback">11.2</a></a>
+results in the closed-loop system <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= (A-BK)x + B\nu \\
+y&amp;= Cx.
+\end{aligned}\]</span> The resulting transfer function from <span
+class="math inline">\(\nu\)</span> to <span
+class="math inline">\(y\)</span> is given by <span
+class="math display">\[\label{eq:ss_full_state_tf_1}
+Y(s) = \left(C(sI-(A-BK))^{-1}B\right)\nu(s).\]</span></p>
+<p>A block diagram of the resulting closed-loop system is shown in
+<strong>Fig.</strong> <a href="#fig:ss_full_state_feedback" data-reference-type="ref"
+data-reference="fig:ss_full_state_feedback">11.4</a> where the double
+line associated with <span class="math inline">\(x\)</span> is meant to
+imply that the state <span class="math inline">\(x\)</span> is not
+really available. The block diagram also shows the new input <span
+class="math inline">\(\nu\)</span>. Since the objective is for the
+output <span class="math inline">\(y\)</span> to track the reference
+input <span class="math inline">\(r\)</span>, we let <span
+class="math inline">\(\nu(t)=k_r r(t)\)</span>, as shown in
+<strong>Fig.</strong> <a href="#fig:ss_full_state_feedback" data-reference-type="ref"
+data-reference="fig:ss_full_state_feedback">11.4</a>. The feedforward
+gain <span class="math inline">\(k_r\)</span> is selected so that the
+DC-gain from <span class="math inline">\(r\)</span> to <span
+class="math inline">\(y\)</span> is equal to one.<span id="idx-0148" class="book-index-anchor" aria-hidden="true"></span></p>
+<figure id="fig:ss_full_state_feedback">
+<img
+src="4_observer_based/figures/ss_full_state_feedback.png"
+style="width:50.0%" alt="Full state feedback with reference input r." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 11.4. </span>Full state feedback with reference input
+<span class="math inline"><em>r</em></span>.</figcaption>
+</figure>
+<p>From
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_full_state_tf_1"><a href="#full-state-feedback">11.33</a></a>, the
+transfer function from <span class="math inline">\(R\)</span> to <span
+class="math inline">\(Y\)</span> is given by <span
+class="math display">\[\label{eq:ss_full_state_tf_2}
+Y(s) = \left(C(sI-(A-BK))^{-1}Bk_r\right) R(s),\]</span> and the DC-gain
+is <span
+class="math display">\[\label{eq:ss_dc_gain_full_state_feedback}
+k_{DC} = \lim_{s\to 0} \left[C(sI-(A-BK))^{-1}Bk_r\right] =
+-C(A-BK)^{-1}Bk_r.\]</span> Therefore, the DC-gain is equal to one if
+<span class="math display">\[k_r = -\frac{1}{C(A-BK)^{-1}B}.\]</span>
+The matrix <span class="math inline">\(A-BK\)</span> will be invertible
+when there are no eigenvalues at zero. Since <span
+class="math inline">\(K\)</span> is selected to place the eigenvalues in
+the open left half plane, the matrix will always be invertible, and
+<span class="math inline">\(k_r\)</span> exists. Note that in many
+applications, the output measured by the sensors is not the same as the
+desired reference output. In other words, the state space equations may
+be given by <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + Bu \\
+y_r &amp;= C_r x \\
+y_m &amp;= C_m x,
+\end{aligned}\]</span> where <span class="math inline">\(y_r\)</span> is
+the reference output<span id="idx-0149" class="book-index-anchor" aria-hidden="true"></span> and <span
+class="math inline">\(y_m\)</span> is the measured output.<span id="idx-0150" class="book-index-anchor" aria-hidden="true"></span> In this case, the
+reference gain <span class="math inline">\(k_r\)</span> is selected to
+make the DC-gain from <span class="math inline">\(r\)</span> to <span
+class="math inline">\(y_r\)</span> equal to one, or in other words <span
+class="math display">\[\label{eq:ss_kr}
+k_r = -\frac{1}{C_r(A-BK)^{-1}B}.\]</span>
+Chapter <a href="13-13-observers.html#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a> will describe observers that use
+the measured output <span class="math inline">\(y_m\)</span> to
+reconstruct the state <span class="math inline">\(x\)</span>.</p>
+<p>The feedforward gain computed in
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_kr"><a href="#full-state-feedback">11.36</a></a> is for single input systems.
+More generally, if the size of the reference output <span
+class="math inline">\(y_r\)</span> is equal to the size of the input
+vector <span class="math inline">\(u\in\mathbb{R}^m\)</span>, then <span
+class="math inline">\(C_r\in\mathbb{R}^{m\times n}\)</span> and <span
+class="math inline">\(B\in\mathbb{R}^{n\times m}\)</span>, which implies
+that the transfer matrix in
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_full_state_tf_2"><a href="#full-state-feedback">11.34</a></a> is
+square and has dimension <span class="math inline">\(m\times m\)</span>.
+Similarly, the resulting matrix gain <span
+class="math inline">\(K_r\in\mathbb{R}^{m\times m}\)</span> will also be
+square and from
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_dc_gain_full_state_feedback"><a href="#full-state-feedback">11.35</a></a>
+will be equal to <span class="math display">\[K_r =
+-\left[C_r(A-BK)^{-1}B\right]^{-1}.\]</span></p>
+<h3 data-number="11.1.4"
+id="state-feedback-for-linearized-systems"><span class="header-section-number">11.1.4</span> State Feedback for
+Linearized Systems</h3>
+<p>Suppose that the state space model is from a linearized
+system,<span id="idx-0151" class="book-index-anchor" aria-hidden="true"></span> i.e, suppose that
+<span class="math inline">\(x\in\mathbb{R}^n\)</span> is the state and
+that <span class="math inline">\(x_e\in\mathbb{R}^n\)</span> is the
+equilibrium state, and that <span
+class="math inline">\(\tilde{x}=x-x_e\)</span> is the state linearized
+around the equilibrium. Similarly, suppose that <span
+class="math inline">\(u\in\mathbb{R}^m\)</span> is the input, that <span
+class="math inline">\(u_e\in\mathbb{R}^m\)</span> is the input at
+equilibrium, and that <span
+class="math inline">\(\tilde{u}=u-u_e\)</span> is the input linearized
+around equilibrium, and that <span
+class="math inline">\(y_r\in\mathbf{R}^p\)</span> is the reference
+output, <span
+class="math inline">\(y_{re}=C_rx_e\in\mathbf{R}^p\)</span> is the
+reference output at equilibrium, and <span
+class="math inline">\(\tilde{y}_r=y_r-y_{re}\)</span> is the reference
+output linearized about equilibrium, then the linearized state space
+model is given by <span class="math display">\[\begin{aligned}
+\dot{\tilde{x}} &amp;= A\tilde{x} + B\tilde{u} \\
+\tilde{y}_r &amp;= C_r\tilde{x}.
+\end{aligned}\]</span> Now suppose that the state feedback design
+process is used to find the state feedback controller <span
+class="math display">\[\label{eq:ss_full_state_feedback_controller}
+\tilde{u} = -K\tilde{x} + k_r \tilde{r}\]</span> where <span
+class="math inline">\(\tilde{r}=r-y_{re}\)</span> is the reference input
+around the equilibrium output, and where the eigenvalues of <span
+class="math inline">\((A-BK)\)</span> are in the open left half plane,
+and the DC-gain from <span class="math inline">\(\tilde{r}\)</span> to
+<span class="math inline">\(\tilde{y}_r\)</span> is one. The controller
+input to the plant is therefore <span
+class="math display">\[\label{eq:u-state-feedback-linearized}
+u = u_e - K(x-x_e) + k_r(r-y_{re}).\]</span></p>
+<h2 data-number="11.2"
+id="summary-of-design-process---state-feedback"><span class="header-section-number">11.2</span> Summary of Design Process -
+State Feedback</h2>
+<p>The state feedback design process can be summarized as follows.</p>
+<p>Given the plant <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + Bu \\
+y_r &amp;= C_rx
+\end{aligned}\]</span> and the desired pole locations <span
+class="math inline">\(p_1, p_2, \dots, p_n\)</span>, find the gains
+<span class="math inline">\(K\)</span> and <span
+class="math inline">\(k_r\)</span> so that the feedback controller <span
+class="math display">\[u = -Kx + k_r r\]</span> places the poles at the
+desired location and results in a DC-gain equal to one.</p>
+<p>Step 1.<br />
+Check to see if the system is controllable by computing the
+controllability matrix <span class="math display">\[\mathcal{C}_{A,B} =
+[B, AB, \dots, A^{n-1}B]\]</span> and checking to see if <span
+class="math inline">\(\text{rank}(\mathcal{C})=n\)</span>.</p>
+<p>Step 2.<br />
+Find the open-loop characteristic polynomial <span
+class="math display">\[\Delta_{ol}(s)=\text{det}(sI-A) = s^n +
+a_{n-1}s^{n-1} + \cdots + a_1 s + a_0,\]</span> and construct the row
+vector <span class="math display">\[\mathbf{a}_A = (a_{n-1}, a_{n-2},
+\dots, a_1, a_0)\]</span> and the matrix <span
+class="math display">\[\mathcal{A}_A = \begin{pmatrix}
+1 &amp; a_{n-1} &amp; a_{n-2} &amp; \cdots &amp; a_2 &amp; a_1 \\
+0 &amp; 1       &amp; a_{n-1} &amp; \cdots &amp; a_3 &amp; a_2 \\
+\cdots &amp; &amp; \ddots &amp;  &amp;  &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 &amp; a_{n-1} \\
+0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}\]</span></p>
+<p>Step 3.<br />
+Select the desired closed-loop polynomial <span
+class="math display">\[\begin{aligned}
+\Delta_{cl}^d(s) &amp;= (s-p_1)(s-p_2)\cdots(s-p_n) \\
+    &amp;= s^n + \alpha_{n-1}s^{n-1} + \cdots + \alpha_1 s + \alpha_0,
+\end{aligned}\]</span> and construct the row vector <span
+class="math display">\[\boldsymbol{\alpha} = (\alpha_{n-1},
+\alpha_{n-2}, \dots, \alpha_1, \alpha_0).\]</span></p>
+<p>Step 4.<br />
+Compute the desired gains as <span
+class="math display">\[\begin{aligned}
+K &amp;=
+(\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1}
+\\
+k_r &amp;= \frac{-1}{C_r(A-BK)^{-1}B}.
+\end{aligned}\]</span></p>
+<p>Using Python, these steps can be implemented as follows:</p>
+<pre><code>import control as cnt
+import numpy as np
+
+CC = cnt.ctrb(A,B)
+
+# check for controllability
+if np.linalg.matrix_rank(CC) == np.size(A,1):
+    print(&#39;the system is controllable&#39;)
+else:
+    print(&#39;the system is not controllable&#39;)
+
+# place the poles at p1, p2, ..., pn
+K = cnt.place(A, B, [p1, p2, p3])
+
+# compute reference gain
+kr = -1/(C @ np.linalg.inv(A - B @ K) @ B)</code></pre>
+<h3 data-number="11.2.1" id="simple-example"><span class="header-section-number">11.2.1</span> Simple example</h3>
+<p>Given the system <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} 0 &amp; 1 \\ 2 &amp; 3 \end{pmatrix} x +
+\begin{pmatrix} 0 \\ 4 \end{pmatrix} u \\
+y_r &amp;= \begin{pmatrix} 5 &amp; 0 \end{pmatrix} x
+\end{aligned}\]</span> find the feedback gain <span
+class="math inline">\(K\)</span> to place the closed-loop poles at <span
+class="math inline">\(-1\pm j\)</span>, and the reference gain <span
+class="math inline">\(k_r\)</span> so that the DC-gain is one.</p>
+<p>Step 1.<br />
+The controllability matrix is given by <span
+class="math display">\[\mathcal{C}_{A,B} = [B, AB] = \begin{pmatrix} 0
+&amp; 4 \\ 4 &amp; 12 \end{pmatrix}.\]</span> The determinant is <span
+class="math inline">\(\det(\mathcal{C})=-16\neq 0\)</span>, therefore
+the system is controllable.</p>
+<p>Step 2.<br />
+The open-loop characteristic polynomial is <span
+class="math display">\[\Delta_{ol}(s)=\det(sI-A) = \det\begin{pmatrix} s
+&amp; -1 \\ -2 &amp; s-3 \end{pmatrix} = s^2 - 3s -2,\]</span> which
+implies that <span class="math display">\[\begin{aligned}
+\mathbf{a}_A &amp;= (-3, -2) \\
+\mathcal{A}_A &amp;= \begin{pmatrix}
+1 &amp; -3 \\ 0 &amp; 1
+\end{pmatrix}
+\end{aligned}\]</span></p>
+<p>Step 3.<br />
+The desired closed-loop polynomial is <span
+class="math display">\[\Delta_{cl}^d(s) =
+(s+1-j)(s+1+j)=s^2+2s+2,\]</span> which implies that <span
+class="math display">\[\boldsymbol{\alpha} = \begin{pmatrix}2, &amp;
+2\end{pmatrix}.\]</span></p>
+<p>Step 4.<br />
+The gains are therefore given as <span
+class="math display">\[\begin{aligned}
+K &amp;=
+(\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1}
+\\
+  &amp;= \left( (2, 2) - (-3, -2) \right)\begin{pmatrix}1 &amp; 3 \\ 0
+&amp; 1\end{pmatrix}\begin{pmatrix}-\frac{3}{4} &amp; \frac{1}{4} \\
+\frac{1}{4} &amp; 0 \end{pmatrix} \\
+  &amp;= \begin{pmatrix} 5 &amp; 4 \end{pmatrix} \begin{pmatrix} 0 &amp;
+\frac{1}{4} \\ \frac{1}{4} &amp; 0 \end{pmatrix} \\
+  &amp;= \begin{pmatrix} 1 &amp; \frac{5}{4} \end{pmatrix}
+\end{aligned}\]</span> <span class="math display">\[\begin{aligned}
+k_r &amp;= \frac{-1}{C_r(A-BK)^{-1}B} \\
+    &amp;= \frac{-1}{\begin{pmatrix} 5 &amp; 0
+\end{pmatrix}\left(\begin{pmatrix}0 &amp; 1 \\ 2 &amp;
+3\end{pmatrix}-\begin{pmatrix} 0 \\ 4 \end{pmatrix}\begin{pmatrix} 1
+&amp; \frac{5}{4}\end{pmatrix}\right)^{-1}\begin{pmatrix} 0 \\ 4
+\end{pmatrix}} \\
+    &amp;= \frac{-1}{\begin{pmatrix} 5 &amp; 0
+\end{pmatrix}\left(\begin{pmatrix}0 &amp; 1 \\ 2 &amp;
+3\end{pmatrix}-\begin{pmatrix} 0 &amp; 0 \\ 4 &amp; 5
+\end{pmatrix}\right)^{-1}\begin{pmatrix} 0 \\ 4 \end{pmatrix}} \\
+    &amp;= \frac{-1}{\begin{pmatrix} 5 &amp; 0
+\end{pmatrix}\begin{pmatrix}0 &amp; 1 \\ -2 &amp;
+-2\end{pmatrix}^{-1}\begin{pmatrix} 0 \\ 4 \end{pmatrix}} \\
+    &amp;= \frac{-1}{-10} = \frac{1}{10}.
+\end{aligned}\]</span></p>
+<section id="state-feedback-ch11-guided-design">
+<article class="guided-design-activity" data-guided-design="ch11-state-feedback">
+<p class="advanced-kicker">
+Chapter 11 guided activity
+</p>
+<h3>
+Work through a second state-feedback design
+</h3>
+<p>
+Use the same procedure as the simple example above. For the system
+below, compute each quantity in order and click <strong>Check</strong>
+before moving on. The solution for each step is revealed only after that
+step is checked.
+</p>
+<p class="quiz-equation">
+xdot = A x + B u with A = (0, 1; 1, 2), B = (0; 2), C<sub>r</sub> = (3,
+0), and desired closed-loop poles = -2 ± j.
+</p>
+<section class="guided-step" data-guided-step="controllability">
+<h4>
+Step 1. Controllability matrix
+</h4>
+<p>
+Compute the controllability matrix. Enter the four entries row by row
+and the determinant.
+</p>
+<div class="guided-input-grid guided-input-grid-matrix-rank">
+<span class="guided-math-label">C<sub>A,B</sub> =</span> <div
+class="guided-matrix guided-matrix-2x2" aria-label="Controllability
+matrix entries"> <label><input type="text"
+data-guided-input="c11" placeholder="C11"
+aria-label="C11"></label> <label><input type="text"
+data-guided-input="c12" placeholder="C12"
+aria-label="C12"></label> <label><input type="text"
+data-guided-input="c21" placeholder="C21"
+aria-label="C21"></label> <label><input type="text"
+data-guided-input="c22" placeholder="C22"
+aria-label="C22"></label>
+</div>
+<label
+class="guided-scalar-entry">det(C)<input
+type="text" data-guided-input="detc"
+placeholder="value"></label>
+</div>
+<button type="button" data-guided-check="controllability">
+Check Step 1
+</button>
+<p class="quiz-feedback" data-guided-feedback="controllability" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="controllability" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> B = (0, 2)<sup>T</sup> and AB = (2,
+4)<sup>T</sup>, so C<sub>A,B</sub> = (0, 2; 2, 4) and
+det(C<sub>A,B</sub>) = -4. The system is controllable.
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="open-loop">
+<h4>
+Step 2. Open-loop characteristic polynomial
+</h4>
+<p>
+Find the open-loop characteristic polynomial coefficients.
+</p>
+
+<span class="guided-math-label">a =</span> <div
+class="guided-matrix guided-vector guided-vector-row"
+aria-label="Open-loop coefficient vector entries"> <label><input
+type="text" data-guided-input="a1" placeholder="a1"
+aria-label="a1"></label> <label><input type="text"
+data-guided-input="a0" placeholder="a0"
+aria-label="a0"></label>
+
+</div>
+<button type="button" data-guided-check="open-loop">
+Check Step 2
+</button>
+<p class="quiz-feedback" data-guided-feedback="open-loop" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="open-loop" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> det(sI - A) = s<sup>2</sup> - 2s - 1, so a =
+(-2, -1).
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="desired">
+<h4>
+Step 3. Desired closed-loop polynomial
+</h4>
+<p>
+Find the desired closed-loop characteristic polynomial from the
+specified poles.
+</p>
+
+<span class="guided-math-label">α =</span> <div
+class="guided-matrix guided-vector guided-vector-row"
+aria-label="Desired coefficient vector entries"> <label><input
+type="text" data-guided-input="alpha1" placeholder="alpha1"
+aria-label="alpha1"></label> <label><input type="text"
+data-guided-input="alpha0" placeholder="alpha0"
+aria-label="alpha0"></label>
+
+</div>
+<button type="button" data-guided-check="desired">
+Check Step 3
+</button>
+<p class="quiz-feedback" data-guided-feedback="desired" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="desired" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> The desired polynomial is s<sup>2</sup> + 4s +
+5, so alpha = (4, 5).
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="gain">
+<h4>
+Step 4. State-feedback gain
+</h4>
+<p>
+Compute the state-feedback gain using the pole-placement method from
+this section. Enter the two entries of K.
+</p>
+
+<span class="guided-math-label">K =</span> <div
+class="guided-matrix guided-vector guided-vector-row"
+aria-label="State-feedback gain entries">
+<label><input type="text" data-guided-input="k1"
+placeholder="k1" aria-label="k1"></label> <label><input
+type="text" data-guided-input="k2" placeholder="k2"
+aria-label="k2"></label>
+
+</div>
+<button type="button" data-guided-check="gain">
+Check Step 4
+</button>
+<p class="quiz-feedback" data-guided-feedback="gain" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="gain" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> alpha - a = (6, 6), Acal<sup>-1</sup> = (1, 2;
+0, 1), and C<sub>A,B</sub><sup>-1</sup> = (-1, 0.5; 0.5, 0), giving K =
+(3, 3).
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="closed-loop">
+<h4>
+Step 5. Check A - BK
+</h4>
+<p>
+Use your K to form A - BK. Enter the four entries row by row.
+</p>
+
+<span class="guided-math-label">A - BK =</span> <div
+class="guided-matrix guided-matrix-2x2" aria-label="Closed-loop matrix
+entries"> <label><input type="text" data-guided-input="acl11"
+placeholder="11" aria-label="A-BK 11"></label> <label><input
+type="text" data-guided-input="acl12" placeholder="12" aria-label="A-BK
+12"></label> <label><input type="text" data-guided-input="acl21"
+placeholder="21" aria-label="A-BK 21"></label> <label><input
+type="text" data-guided-input="acl22" placeholder="22" aria-label="A-BK
+22"></label>
+
+</div>
+<button type="button" data-guided-check="closed-loop">
+Check Step 5
+</button>
+<p class="quiz-feedback" data-guided-feedback="closed-loop" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="closed-loop" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> BK = (0, 0; 6, 6), so A - BK = (0, 1; -5, -4).
+Its characteristic polynomial is s<sup>2</sup> + 4s + 5.
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="reference-gain">
+<h4>
+Step 6. Reference gain
+</h4>
+<p>
+Compute the reference gain for unit steady-state tracking.
+</p>
+<div class="guided-input-grid guided-input-grid-scalars"> <label
+class="guided-scalar-entry">k<sub>r</sub><input
+type="text" data-guided-input="kr" placeholder="value"></label>
+</div>
+<button type="button" data-guided-check="reference-gain">
+Check Step 6
+</button>
+<p class="quiz-feedback" data-guided-feedback="reference-gain" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="reference-gain" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> C<sub>r</sub>(A - BK)<sup>-1</sup>B = -6/5, so
+k<sub>r</sub> = 5/6.
+</p>
+</details>
+</section>
+</article>
+</section>
+<h2 data-number="11.3" id="design-study-a-single-link-robot-arm-9" class="section-design-study"><span class="header-section-number">11.3</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="11.3.1" id="-example-problem-3114" class="section-example"><span class="header-section-number">11.3.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a></h3>
+<p>The objective of this problem is to implement a state feedback
+controller using the full state. Start with the simulation files
+developed in
+Homework <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(a) Select the closed loop poles as the roots of the equation <span
+class="math inline">\(s^2 + 2\zeta\omega_n + \omega_n^2 = 0\)</span>
+where <span class="math inline">\(t_r = 0.4890\)</span>, and <span
+class="math inline">\(\zeta = 0.707\)</span>, which may be different
+than parameters found in
+Homework <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>.</p>
+<p>(b) Add the state space matrices <span class="math inline">\(A\)</span>,
+<span class="math inline">\(B\)</span>, <span
+class="math inline">\(C\)</span>, <span class="math inline">\(D\)</span>
+derived in
+Homework <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a> to your param file.</p>
+<p>(c) Verify that the state space system is controllable by checking that
+<span
+class="math inline">\(\text{rank}(\mathcal{C}_{A,B})=n\)</span>.</p>
+<p>(d) Find the feedback gain <span class="math inline">\(K\)</span> so that
+the eigenvalues of <span class="math inline">\((A-BK)\)</span> are equal
+to the desired closed loop poles. Find the reference gain <span
+class="math inline">\(k_r\)</span> so that the DC-gain from <span
+class="math inline">\(\theta_r\)</span> to <span
+class="math inline">\(\theta\)</span> is equal to one. Note that if you
+used the exact same pole values from
+Homework <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>, <span
+class="math inline">\(K=(k_p, k_d)\)</span> where <span
+class="math inline">\(k_p\)</span> and <span
+class="math inline">\(k_d\)</span> are the proportional and derivative
+gains found in that problem. Why?</p>
+<p>(e) Modify the control code to implement the state feedback controller.
+Assume that you have access to the entire state.</p>
+<section id="design-study-a-ch11-state-feedback">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw11-state-feedback"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Design full-state feedback before viewing the solution</h3>
+<p>Start from the Chapter 6 state-space model and check
+controllability before computing gains.</p>
+
+<section class="guided-step" data-dsa-step="controllability">
+<h4>Step 1. Controllability matrix</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Rank of <span class="math
+inline">\(\mathcal{C}\)</span></span><input type="text"
+data-dsa-input="rank" data-dsa-accept="2" placeholder="numeric value"></label> </div> <button type="button"
+data-dsa-check="controllability">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="controllability"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="controllability" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> The second-order arm
+model is controllable because <span class="math
+inline">\(\operatorname{rank}(\mathcal{C})=2\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="desired-polynomial">
+<h4>Step 2. Desired polynomial</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span><span class="math
+inline">\(s\)</span> coefficient</span><input type="text"
+data-dsa-input="scoef"
+data-dsa-accept="2\*zeta\*wn\|2\*zeta\*omega_n"
+placeholder="coefficient"></label> <label><span>Constant
+term</span><input type="text" data-dsa-input="constant"
+data-dsa-accept="wn\^2\|omega_n\^2"
+placeholder="coefficient"></label> </div> <button
+type="button" data-dsa-check="desired-polynomial">Check Step
+2</button> <p class="quiz-feedback"
+data-dsa-feedback="desired-polynomial" aria-live="polite"></p>
+<details class="quiz-answer" data-dsa-answer="desired-polynomial"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> Match <span class="math
+inline">\(s^2+2\zeta\omega_n s+\omega_n^2\)</span> to the closed-loop
+characteristic polynomial.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="reference-gain">
+<h4>Step 3. Reference gain purpose</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>What does <span class="math inline">\(k_r\)</span>
+enforce?</span><input type="text" data-dsa-input="purpose"
+data-dsa-accept="unit dc gain\|dc gain\|zero steady state
+error\|reference tracking" placeholder="short answer"></label>
+</div> <button type="button"
+data-dsa-check="reference-gain">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="reference-gain"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="reference-gain" hidden><summary>Show solution for
+Step 3</summary><p><strong>Answer:</strong> The reference gain
+scales the command so the closed-loop system tracks a constant reference
+with the desired DC gain.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes
+state-feedback controller code. Before opening it, outline how you would
+compute the state-feedback input from <span class="math
+inline">\(x\)</span>, <span class="math inline">\(K\)</span>, and
+<span class="math inline">\(k_r\)</span>.</p> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="Write pseudocode for one full-state feedback controller update."></textarea> <p class="advanced-caption">This prompt is
+ungraded. It is intended to connect the gain calculation to the
+implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>From HW <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a
+href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a>, the state space
+equations for the single link robot arm are given by <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} 0 &amp;   1.0000 \\ 0 &amp;  -0.667
+\end{pmatrix}x + \begin{pmatrix} 0 \\ 66.667 \end{pmatrix} u \\
+y &amp;= \begin{pmatrix}1 &amp; 0 \end{pmatrix}x.
+\end{aligned}\]</span></p>
+<dl>
+<dt>Step 1.</dt>
+<dd>
+<p>The controllability matrix is therefore <span
+class="math display">\[\mathcal{C}_{A,B} = [B, AB] = \begin{pmatrix}  0
+&amp; 66.6667 \\ 66.6667 &amp;  -44.44440 \end{pmatrix}.\]</span> The
+determinant is <span
+class="math inline">\(det(\mathcal{C}_{A,B})=-4444\neq 0\)</span>,
+therefore the system is controllable.</p>
+</dd>
+<dt>Step 2.</dt>
+<dd>
+<p>The open loop characteristic polynomial is <span
+class="math display">\[\Delta_{ol}(s)=\text{det}(sI-A) =
+\text{det}\begin{pmatrix} s &amp; -1 \\ 0 &amp; s+0.667 \end{pmatrix} =
+s^2 +0.667 s,\]</span> which implies that <span
+class="math display">\[\begin{aligned}
+\mathbf{a}_A &amp;= (0.667, 0) \\
+\mathcal{A}_A &amp;= \begin{pmatrix}
+1 &amp; 0.667 \\ 0 &amp; 1
+\end{pmatrix}
+\end{aligned}\]</span></p>
+</dd>
+<dt>Step 3.</dt>
+<dd>
+<p>The desired closed loop polynomial is <span
+class="math display">\[\Delta_{cl}^d(s) = s^2+2\zeta\omega_n s +
+\omega_n^2=s^2+6.3616s+20.2408\]</span> which implies that <span
+class="math display">\[\boldsymbol{\alpha} = (6.3616,
+20.2408).\]</span></p>
+</dd>
+<dt>Step 4.</dt>
+<dd>
+<p>The gains are therefore given as <span
+class="math display">\[\begin{aligned}
+K &amp;=
+(\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1}
+   = \begin{pmatrix} 0.3036  &amp;  0.0854 \end{pmatrix} \\
+k_r &amp;= \frac{-1}{C(A-BK)^{-1}B}
+     = 0.3036.
+\end{aligned}\]</span></p>
+</dd>
+</dl>
+<p>A Python class that implements state feedback control for the single
+link robot arm is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlStateFeedback.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> armParam <span class="im">as</span> P</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlStateFeedback:</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dirty derivatives to estimate thetadot</span></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">#  tuning parameters</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        tr <span class="op">=</span> <span class="fl">0.4890</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        zeta <span class="op">=</span> <span class="fl">0.707</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Space Equations</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xdot = A*x + B*u</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y = C*x</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.array([[<span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>, <span class="op">-</span><span class="fl">3.0</span> <span class="op">*</span> P.b <span class="op">/</span> P.m <span class="op">/</span> (P.ell<span class="op">**</span><span class="dv">2</span>)]])</span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> np.array([[<span class="fl">0.0</span>],</span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">3.0</span> <span class="op">/</span> P.m <span class="op">/</span> (P.ell<span class="op">**</span><span class="dv">2</span>)]])        </span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># gain calculation</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        wn <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr  <span class="co"># natural frequency</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        des_char_poly <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta <span class="op">*</span> wn, wn<span class="op">**</span><span class="dv">2</span>]</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        des_poles <span class="op">=</span> np.roots(des_char_poly)</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="co">#des_poles = [-1.0, -1.0]</span></span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is controllable</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(A, B)) <span class="op">!=</span> A.shape[<span class="dv">0</span>]:</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not controllable&quot;</span>)</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.K <span class="op">=</span> cnt.place(A, B, des_poles)</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.kr <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span> <span class="op">/</span> (C <span class="op">@</span> np.linalg.inv(A <span class="op">-</span> B <span class="op">@</span> <span class="va">self</span>.K) <span class="op">@</span> B)</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;K: &#39;</span>, <span class="va">self</span>.K)</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kr: &#39;</span>, <span class="va">self</span>.kr)</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(des_poles)</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, theta_r, x):</span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> x[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute feedback linearizing torque tau_fl</span></span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        tau_fl <span class="op">=</span> P.m <span class="op">*</span> P.g <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> np.cos(theta)</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the state feedback controller</span></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        tau_tilde <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.K <span class="op">@</span> x <span class="op">+</span> <span class="va">self</span>.kr <span class="op">*</span> theta_r</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute total torque</span></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> saturate(tau_fl <span class="op">+</span> tau_tilde[<span class="dv">0</span>, <span class="dv">0</span>], P.tau_max)</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tau</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="11.4" id="design-study-b-inverted-pendulum-7" class="section-design-study"><span class="header-section-number">11.4</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="11.4.1" id="-example-problem-3214" class="section-example"><span class="header-section-number">11.4.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a></h3>
+<p>The objective of this problem is to implement a state feedback
+controller using the full state. Start with the simulation files
+developed in Homework <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(a) Find the desired closed loop poles using the values for <span
+class="math inline">\(\zeta_z=\zeta_\theta=0.9\)</span>, and tune rise
+times based on the following <span class="math inline">\(t_z=5
+t_{\theta}\)</span>.</p>
+<p>(b) Add the state space matrices <span class="math inline">\(A\)</span>,
+<span class="math inline">\(B\)</span>, <span
+class="math inline">\(C\)</span>, <span class="math inline">\(D\)</span>
+derived in Homework <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a> to your param file.</p>
+<p>(c) Verify that the state space system is controllable by checking that:
+<span class="math inline">\(\text{rank}(\mathcal{C})=n\)</span>.</p>
+<p>(d) Find the feedback gain <span class="math inline">\(K\)</span> so that
+the eigenvalues of <span class="math inline">\((A-BK)\)</span> are equal
+to the desired closed loop poles. Find the reference gain <span
+class="math inline">\(k_r\)</span> so that the DC-gain from <span
+class="math inline">\(z_r\)</span> to <span
+class="math inline">\(z\)</span> is equal to one.</p>
+<p>(e) Implement the state feedback scheme and tune the closed loop poles to
+get a good response. You should be able to get a much faster response
+using state space methods.</p>
+<section id="design-study-b-ch11-state-feedback">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw11"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Design pendulum full-state feedback
+before viewing the solution</h3> <p>Check controllability, desired
+pole structure, and reference gain purpose.</p> <section
+class="guided-step" data-dsa-step="controllability"> <h4>Step 1.
+Controllability</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Rank
+condition</span><input type="text" data-dsa-input="rank"
+data-dsa-accept="4\|n\|full rank" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="controllability">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="controllability"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="controllability"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The four-state pendulum
+model must have controllability rank 4.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="poles"> <h4>Step 2.
+Desired pole timing</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Rise-time
+relationship</span><input type="text"
+data-dsa-input="relationship"
+data-dsa-accept="tz=5ttheta\|t_z=5t_theta\|z loop 5 times slower\|outer
+loop slower" placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="poles">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="poles"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="poles" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> The
+cart-position loop is designed slower, with t_z = 5
+t_theta.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="reference"> <h4>Step
+3. Reference gain</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Purpose of
+kr</span><input type="text" data-dsa-input="purpose"
+data-dsa-accept="unit dc gain\|dc gain\|reference tracking\|zero steady
+state error" placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="reference">Check Step 3</button>
+<p class="quiz-feedback" data-dsa-feedback="reference"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="reference"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The reference gain scales
+the command to give the desired DC gain from z_r to z.</p></details>
+</section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes
+implementation code. Before opening it, outline the algorithm in your
+own words.</p> <textarea class="guided-design-study-pseudocode"
+rows="5" placeholder="Write pseudocode for computing the full-state feedback input from x, K, and k_r."></textarea> <p
+class="advanced-caption">This prompt is ungraded. It is intended to
+connect the derivation to the implementation code in the complete
+solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>From HW <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="06-6-state-space-models.html#state-space-models"
+data-reference-type="ref"
+data-reference="chap:state_space_models">9</a>, the state space
+equations for the inverted pendulum are given by <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix}
+       0 &amp;        0 &amp;   1.0000 &amp;        0 \\
+       0 &amp;        0 &amp;        0 &amp;   1.0000 \\
+       0 &amp;  -1.7294 &amp;   -0.0471 &amp;        0 \\
+       0 &amp;  34.5882 &amp;   0.1412 &amp;        0 \\
+\end{pmatrix} x + \begin{pmatrix}
+     0 \\
+     0 \\
+0.9412 \\
+-2.8235 \\
+\end{pmatrix} u \notag \\
+y &amp;= \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0
+\end{pmatrix} x, \label{eq:hw_state_feedback_b1_1}
+\end{aligned}\]</span> where Equation <a
+href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:hw_state_feedback_b1_1"><a href="#full-state-feedback">11.39</a></a>
+represents the measured outputs. The reference output is the position
+<span class="math inline">\(z\)</span>, which implies that <span
+class="math display">\[y_r = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix} x.\]</span></p>
+<dl>
+<dt>Step 1.</dt>
+<dd>
+<p>The controllability matrix is therefore <span
+class="math display">\[\begin{aligned}
+\mathcal{C}_{A,B} &amp;= [B, AB, A^2B, A^3B] \\
+    &amp;= \begin{pmatrix}           
+    0 &amp;   0.9412 &amp;  -0.0443  &amp;  4.8851 \\
+    0  &amp; -2.8235 &amp;  0.1329 &amp; -97.6672 \\
+    0.9412  &amp; -0.0443 &amp;  4.8851 &amp;  -0.4597 \\
+   -2.8235  &amp; 0.1329 &amp; -97.6672 &amp; 5.2855 \end{pmatrix}.
+\end{aligned}\]</span> The determinant is <span
+class="math inline">\(det(\mathcal{C}_{A,B})=-6104.1 \neq 0\)</span>,
+implying that the system is controllable.</p>
+</dd>
+<dt>Step 2.</dt>
+<dd>
+<p>The open loop characteristic polynomial is <span
+class="math display">\[\Delta_{ol}(s)=\text{det}(sI-A) = s^4 + 0.0471
+s^3 - 34.59 s^2 - 1.384 s\]</span> which implies that <span
+class="math display">\[\begin{aligned}
+\mathbf{a}_A &amp;= (0.0471, -34.59, -1.384, 0) \\
+\mathcal{A}_A &amp;= \begin{pmatrix}
+1 &amp; 0.0471 &amp; -34.59 &amp; -1.384 \\ 0 &amp; 1 &amp; 0.0471 &amp;
+-34.59 \\ 0 &amp; 0 &amp; 1 &amp; 0.0471 \\ 0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\end{aligned}\]</span></p>
+</dd>
+<dt>Step 3.</dt>
+<dd>
+<p>If we let <span class="math inline">\(t_{r,\theta}=0.5\)</span>, the
+desired closed loop polynomial is <span
+class="math display">\[\begin{aligned}
+\Delta_{cl}^d(s) &amp;= (s^2+2\zeta_{\theta}\omega_{n_\theta} s +
+\omega_{n_\theta}^2)(s^2+2\zeta_{z}\omega_{n_z} s + \omega_{n_z}^2) \\
+&amp;=s^4 + 15.57 s^3 + 87.68 s^2 + 161.7 s + 107.9       
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\boldsymbol{\alpha} = (15.57, 87.68, 161.7,
+107.9).\]</span></p>
+</dd>
+<dt>Step 4.</dt>
+<dd>
+<p>The gains are therefore given as <span
+class="math display">\[\begin{aligned}
+%
+%
+K &amp;=
+(\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1}
+= \begin{pmatrix} -7.80, -79.56, -11.74, -18.82 \end{pmatrix}
+\end{aligned}\]</span> The feedforward reference gain <span
+class="math inline">\(k_r=-1/C_r(A-BK)^{-1}B\)</span> is computed using
+<span class="math inline">\(C_r=(1,0,0,0)\)</span>, which gives <span
+class="math display">\[\begin{aligned}
+k_r &amp;= \frac{-1}{C_r(A-BK)^{-1}B}
+  = -7.80.
+\end{aligned}\]</span></p>
+</dd>
+</dl>
+<p>A Python class that implements a state feedback controller for the
+inverted pendulum is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlStateFeedback.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlStateFeedback:</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Feedback Control Design</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tuning parameters</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        tr_theta <span class="op">=</span> <span class="fl">0.5</span>     <span class="co"># rise time for angle</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        tr_z <span class="op">=</span> tr_theta<span class="op">*</span><span class="dv">5</span>  <span class="co"># rise time for position</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        zeta_z <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio position</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio angle</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Space Equations</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xdot = A*x + B*u</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y = C*x</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.array([</span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="op">-</span><span class="dv">3</span> <span class="op">*</span> P.m1 <span class="op">*</span> P.g <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2),</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span>P.b <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2), <span class="fl">0.0</span>],</span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, </span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>                <span class="dv">3</span><span class="op">*</span>(P.m1<span class="op">+</span>P.m2) <span class="op">*</span> P.g<span class="op">/</span><span class="dv">2</span><span class="op">/</span>(<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2)<span class="op">/</span>P.ell,</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>                <span class="dv">3</span> <span class="op">*</span> P.b <span class="op">/</span> <span class="dv">2</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2) <span class="op">/</span> P.ell, <span class="fl">0.0</span>]</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>            ])</span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> np.array([[<span class="fl">0.0</span>],</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>],</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>                      [<span class="dv">1</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2)],</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>                      [<span class="op">-</span><span class="fl">3.0</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2) <span class="op">/</span> P.ell]])</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># gain calculation</span></span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_theta<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_th<span class="op">**</span><span class="dv">2</span>)) <span class="co"># natural frequency for angle</span></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        wn_z <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_z<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_z<span class="op">**</span><span class="dv">2</span>)) <span class="co"># natural frequency for position</span></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        des_char_poly <span class="op">=</span> np.convolve(</span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_z <span class="op">*</span> wn_z, wn_z<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th, wn_th<span class="op">**</span><span class="dv">2</span>])</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>        des_poles <span class="op">=</span> np.roots(des_char_poly)</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is controllable</span></span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(A, B)) <span class="op">!=</span> <span class="dv">4</span>:</span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not controllable&quot;</span>)</span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.K <span class="op">=</span> cnt.place(A, B, des_poles)</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>            Cr <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.kr <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span> <span class="op">/</span> (Cr <span class="op">@</span> np.linalg.inv(A<span class="op">-</span>B <span class="op">@</span> <span class="va">self</span>.K) <span class="op">@</span> B)</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print gains to terminal</span></span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;K: &#39;</span>, <span class="va">self</span>.K)</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kr: &#39;</span>, <span class="va">self</span>.kr)</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, z_r, x):</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the state feedback controller</span></span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        F_unsat <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.K <span class="op">@</span> x <span class="op">+</span> <span class="va">self</span>.kr <span class="op">*</span> z_r</span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        F <span class="op">=</span> saturate(F_unsat[<span class="dv">0</span>, <span class="dv">0</span>], P.F_max)</span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> F</span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="11.5"
+id="design-study-c-satellite-attitude-control-8" class="section-design-study"><span class="header-section-number">11.5</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="11.5.1" id="-example-problem-3314" class="section-example"><span class="header-section-number">11.5.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a></h3>
+<p>The objective of this problem is to implement a state feedback
+controller using the full state. Start with the simulation files
+developed in Homework <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(a) Using the values for <span
+class="math inline">\(\omega_{n_\phi}\)</span>, <span
+class="math inline">\(\zeta_\phi\)</span>, <span
+class="math inline">\(\omega_{n_{\theta}}\)</span>, and <span
+class="math inline">\(\zeta_{\theta}\)</span> selected in
+Homework <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>, find the desired closed
+loop poles.</p>
+<p>(b) Add the state space matrices <span class="math inline">\(A\)</span>,
+<span class="math inline">\(B\)</span>, <span
+class="math inline">\(C\)</span>, <span class="math inline">\(D\)</span>
+derived in Homework <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a> to your param file.</p>
+<p>(c) Verify that the state space system is controllable by checking that
+<span
+class="math inline">\(\text{rank}(\mathcal{C}_{A,B})=n\)</span>.</p>
+<p>(d) Find the feedback gain <span class="math inline">\(K\)</span> so that
+the eigenvalues of <span class="math inline">\((A-BK)\)</span> are equal
+to the desired closed loop poles. Find the reference gain <span
+class="math inline">\(k_r\)</span> so that the DC-gain from <span
+class="math inline">\(\phi_r\)</span> to <span
+class="math inline">\(\phi\)</span> is equal to one.</p>
+<p>(e) Implement the state feedback scheme and tune the closed loop poles to
+get a good response. You should be able to get a much faster response
+using state space methods.</p>
+<section id="design-study-c-ch11-state-feedback">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw11" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Plan satellite state feedback before viewing the solution</h3>
+<p>Use the four-state satellite model, verify controllability, place
+closed-loop poles, and compute reference gain for <span class="math
+inline">\(\phi\)</span> tracking.</p> <section
+class="guided-step" data-dsa-step="states"> <h4>Step 1. Model
+used for control</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>State
+count</span><input type="text" data-dsa-input="count"
+data-dsa-accept="4\|four" placeholder="number"></label>
+<label><span>Input</span><input type="text"
+data-dsa-input="input" data-dsa-accept="tau\|torque\|body torque"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="states" data-dsa-hint="The state is theta, phi,
+theta_dot, phi_dot.">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="states"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="states"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The design uses the
+four-state model with torque <span class="math
+inline">\(\tau\)</span> as input.</p></details> </section>
+<section class="guided-step" data-dsa-step="checks"> <h4>Step 2.
+Required algebra checks</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Rank
+condition</span><input type="text" data-dsa-input="rank"
+data-dsa-accept="rank(C)=n\|rank controllability equals
+n\|controllable\|rank n" placeholder="condition"></label>
+<label><span>Reference-gain target</span><input type="text"
+data-dsa-input="target" data-dsa-accept="dc gain one\|unity dc
+gain\|phi_r to phi equals one\|1" placeholder="target"></label>
+</div> <button type="button" data-dsa-check="checks"
+data-dsa-hint="State feedback needs controllability and a reference
+gain for unit DC tracking.">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="checks"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="checks"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> Verify <span
+class="math
+inline">\(\operatorname{rank}(\mathcal{C}_{A,B})=n\)</span>, then
+choose <span class="math inline">\(k_r\)</span> so the DC gain from
+<span class="math inline">\(\phi_r\)</span> to <span class="math
+inline">\(\phi\)</span> equals one.</p></details> </section>
+<section class="guided-step" data-dsa-step="comparison">
+<h4>Step 3. Compare with nested PID</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Expected benefit</span><input type="text"
+data-dsa-input="benefit" data-dsa-accept="faster
+response\|faster\|better transient" placeholder="short answer"></label> <label><span>Still monitor</span><input
+type="text" data-dsa-input="monitor"
+data-dsa-accept="phi-theta\|relative deflection\|panel
+deflection\|torque" placeholder="quantity"></label> </div>
+<button type="button" data-dsa-check="comparison"
+data-dsa-hint="State feedback can be faster, but flexible deflection
+and torque still matter.">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="comparison"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="comparison"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> State-space methods can
+give a faster response, but the design must still monitor torque and
+<span class="math inline">\(\phi-\theta\)</span>.</p></details>
+</section> <div class="advanced-button-row"><button
+type="button" data-dsa-reveal-all>Show complete solution
+anyway</button></div> <p class="quiz-feedback"
+data-dsa-complete-feedback aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>From HW <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="06-6-state-space-models.html#state-space-models"
+data-reference-type="ref"
+data-reference="chap:state_space_models">9</a>, the state space
+equations for the satellite are given by <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix}
+         0  &amp;       0 &amp;   1.0000 &amp;        0 \\
+         0  &amp;       0 &amp;        0 &amp;   1.0000 \\
+   -0.0300  &amp;  0.0300 &amp;  -0.0100 &amp;   0.0100 \\
+    0.1500  &amp; -0.1500 &amp;   0.0500 &amp;  -0.0500
+\end{pmatrix} x + \begin{pmatrix}
+     0 \\
+     0 \\
+0.2 \\
+     0 \\
+\end{pmatrix} u \notag \\
+y &amp;= \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+-1 &amp; 1 &amp; 0 &amp; 0
+\end{pmatrix} x\label{eq:hw_state_feedback_c1}
+\end{aligned}\]</span> where Equation <a href="#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:hw_state_feedback_c1"><a href="#full-state-feedback">11.40</a></a>
+represents the measured outputs. The reference output is the angle <span
+class="math inline">\(\phi\)</span>, which implies that <span
+class="math display">\[y_r = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; 0
+\end{pmatrix} x.\]</span></p>
+<dl>
+<dt>Step 1.</dt>
+<dd>
+<p>The controllability matrix is <span
+class="math display">\[\begin{aligned}
+\mathcal{C}_{A,B} &amp;= [B, AB, A^2B, A^3B] \\
+    &amp;= \begin{pmatrix}           
+        0  &amp;  0.2000  &amp; -0.0020  &amp; -0.0059 \\
+         0 &amp;        0 &amp;   0.0100 &amp;   0.0294 \\
+    0.2000 &amp;  -0.0020 &amp;  -0.0059 &amp;   0.0007 \\
+         0 &amp;   0.0100 &amp;   0.0294 &amp;  -0.0036 \end{pmatrix}.
+\end{aligned}\]</span> The determinant is <span
+class="math inline">\(det(\mathcal{C}_{A,B})=-36,000\neq 0\)</span>,
+therefore the system is controllable.</p>
+</dd>
+<dt>Step 2.</dt>
+<dd>
+<p>The open loop characteristic polynomial is <span
+class="math display">\[\Delta_{ol}(s)=\text{det}(sI-A) = s^4 + 0.0600
+s^3 + 0.18 s^2\]</span> which implies that <span
+class="math display">\[\begin{aligned}
+\mathbf{a}_A &amp;= (0.06, 0.18, 0, 0) \\
+\mathcal{A}_A &amp;= \begin{pmatrix}
+1 &amp; 0.06 &amp; 0.18 &amp; 0 \\ 0 &amp; 1 &amp; 0.06 &amp; 0.18 \\ 0
+&amp; 0 &amp; 1 &amp; 0.06 \\ 0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\end{aligned}\]</span></p>
+</dd>
+<dt>Step 3.</dt>
+<dd>
+<p>The desired closed loop polynomial is <span
+class="math display">\[\begin{aligned}
+\Delta_{cl}^d(s) &amp;= (s^2+2\zeta_{\theta}\omega_{n_\theta} s +
+\omega_{n_\theta}^2)(s^2+2\zeta_{\phi}\omega_{n_\phi} s +
+\omega_{n_\phi}^2) \\
+&amp;=s^4 + 4.32 s^3 + 7.11 s^2 + 4.68 s +
+1.17,                            
+\end{aligned}\]</span></p>
+<p>when <span class="math inline">\(t_{r,\theta} = 2.0\)</span>, <span
+class="math inline">\(\zeta_\theta = 0.9\)</span>, <span
+class="math inline">\(t_{r,\phi}=6.0\)</span>, <span
+class="math inline">\(\zeta_\phi = 0.9\)</span>, which implies that
+<span class="math display">\[\boldsymbol{\alpha} = (4.32, 7.11, 4.68,
+1.17).\]</span></p>
+</dd>
+<dt>Step 4.</dt>
+<dd>
+<p>The gains are therefore given by <span
+class="math display">\[\begin{aligned}
+K &amp;=
+(\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1}
+  = (24.73,  33.82,  21.32, 183.4])
+\end{aligned}\]</span> The feedforward reference gain <span
+class="math inline">\(k_r=-1/C_r(A-BK)^{-1}B\)</span> is computed using
+<span class="math inline">\(C_r=(0,1,0,0)\)</span>, which gives <span
+class="math display">\[\begin{aligned}
+k_r &amp;= \frac{-1}{C_r(A-BK)^{-1}B}
+    = 58.56.
+\end{aligned}\]</span></p>
+</dd>
+</dl>
+<p>A Python class that implements a state feedback controller for the
+satellite is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlStateFeedback.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> satelliteParam <span class="im">as</span> P</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlStateFeedback:</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Feedback Control Design</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tuning parameters</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        tr_th <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> <span class="fl">3.0</span>  <span class="co"># Time scale separation between loops</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        tr_phi <span class="op">=</span> M <span class="op">*</span> tr_th  <span class="co"># rise time for outer loop</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio for theta</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        zeta_phi <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio for phi</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Space Equations</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xdot = A*x + B*u</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y = C*x</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.array([[<span class="fl">0.0</span>, <span class="fl">0.0</span>,               <span class="fl">1.0</span>,      <span class="fl">0.0</span>],</span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>, <span class="fl">0.0</span>,               <span class="fl">0.0</span>,      <span class="fl">1.0</span>],</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>                      [<span class="op">-</span>P.k <span class="op">/</span> P.Js, P.k <span class="op">/</span> P.Js, <span class="op">-</span>P.b <span class="op">/</span> P.Js, P.b <span class="op">/</span> P.Js],</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>                      [P.k <span class="op">/</span> P.Jp, <span class="op">-</span>P.k <span class="op">/</span> P.Jp, P.b <span class="op">/</span> P.Jp, <span class="op">-</span>P.b <span class="op">/</span> P.Jp]])</span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> np.array([[<span class="fl">0.0</span>],</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>],</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">1.0</span> <span class="op">/</span> P.Js],</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>]])</span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># gain calculation</span></span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_th<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_th<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        wn_phi <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_phi<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_phi<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        des_char_poly <span class="op">=</span> np.convolve([<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th, wn_th<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>                                    [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_phi <span class="op">*</span> wn_phi, wn_phi<span class="op">**</span><span class="dv">2</span>])</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        des_poles <span class="op">=</span> np.roots(des_char_poly)</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is controllable</span></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(A, B)) <span class="op">!=</span> <span class="dv">4</span>:</span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not controllable&quot;</span>)</span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.K <span class="op">=</span> cnt.place(A, B, des_poles)</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>            Cr <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.kr <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span> <span class="op">/</span> (Cr <span class="op">@</span> np.linalg.inv(A <span class="op">-</span> B <span class="op">@</span> <span class="va">self</span>.K) <span class="op">@</span> B)</span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print gains to terminal</span></span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;K: &#39;</span>, <span class="va">self</span>.K)</span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kr: &#39;</span>, <span class="va">self</span>.kr)</span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, phi_r, x):</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the state feedback controller</span></span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        tau_unsat <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.K <span class="op">@</span> x <span class="op">+</span> <span class="va">self</span>.kr <span class="op">*</span> phi_r</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> saturate(tau_unsat[<span class="dv">0</span>, <span class="dv">0</span>], P.tau_max)</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tau</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="11.6" id="interactive-state-feedback-check"><span class="header-section-number">11.6</span> Interactive State-Feedback
+Check</h2>
+<section id="state-feedback-ch11-interactive-check">
+<article class="advanced-activity" data-advanced-activity="state-feedback">
+<p class="advanced-kicker">
+Chapter 11 activity
+</p>
+<h3>
+Pole placement and reference gain
+</h3>
+<p>
+For the companion-form example with open-loop characteristic polynomial
+<span class="inline-equation">s<sup>2</sup> + 3s + 2</span>, choose
+two desired real poles. The readout shows the desired polynomial, the
+state-feedback gain <span class="inline-equation">K</span>, and the
+feedforward gain <span class="inline-equation">k<sub>r</sub></span>
+needed for unit DC tracking.
+</p>
+
+<label>Desired pole magnitude
+p<sub>1</sub><input type="range" data-input="p1" min="1"
+max="8" step="0.5" value="2"></label> <label>Desired pole
+magnitude p<sub>2</sub><input type="range" data-input="p2"
+min="1" max="8" step="0.5" value="3"></label>
+
+<strong>Desired
+poles</strong><span data-output="poles"></span>
+
+<strong>Desired
+polynomial</strong><span data-output="poly"></span>
+
+<strong>Feedback gain
+K</strong><span data-output="gain"></span>
+
+<strong>Reference gain
+k<sub>r</sub></strong><span data-output="kr"></span>
+
+<p class="advanced-note">
+Pole placement sets the closed-loop dynamics through
+<span class="inline-equation">A - BK</span>. The reference gain sets
+the steady-state scale from command to output.
+</p>
+
+</article>
+</section>
+<h2 data-number="11.7" id="coding-lab-full-state-feedback"><span class="header-section-number">11.7</span> Coding Lab: Full-State
+Feedback</h2>
+<div class="knowledge-check coding-lab-copy">
+<p><strong>Objective:</strong> compute the controllability matrix,
+synthesize full-state feedback gains, compute the reference gain, and
+verify unit-step tracking.</p> <p><strong>Plant for the
+lab:</strong> use the second-order state-space system <span
+class="inline-equation"><span class="overdot">x</span> = Ax +
+Bu</span>, <span class="inline-equation">y = Cx</span>, with
+<span class="inline-equation">A = (0, 1; -2, -3)</span>, <span
+class="inline-equation">B = (0; 1)</span>, and <span
+class="inline-equation">C = (1, 0)</span>. Equivalently, <span
+class="inline-equation">y&Prime; + 3y&prime; + 2y = u</span> with
+states <span class="inline-equation">x<sub>1</sub> = y</span>
+and <span class="inline-equation">x<sub>2</sub> =
+y&prime;</span>.</p> <p><strong>Design target:</strong> place
+the closed-loop poles at <span class="inline-equation">-2</span>
+and <span class="inline-equation">-5</span> using <span
+class="inline-equation">u = -Kx + k<sub>r</sub>r</span>.</p>
+<p><strong>Evaluation criteria:</strong> the lab checks
+controllability rank, feedback gain dimensions and values, closed-loop
+pole locations, reference gain, and simulated tracking.</p> </div>
+<figure id="fig:state_ch11_state_feedback_lab" class="marimo-figure">
+<iframe src="../marimo/lab_11_state_feedback/index.html?v=20260604a"
+loading="lazy" title="Chapter 11 state-feedback coding lab"
+style="width:min(98vw,1100px);height:1900px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption>
+Figure 11.1 (Interactive). Full-state feedback coding lab with
+closed-loop pole and tracking checks.
+</figcaption>
+</figure>
+<h2 data-number="11.8" id="knowledge-check-10"><span class="header-section-number">11.8</span> Knowledge Check</h2>
+<section id="state-feedback-ch11-knowledge-check" class="quiz-list">
+<article class="quiz-card"
+data-quiz-type="mcq" data-answer="A" data-feedback-a="A is correct.
+Full-state feedback assumes every state is measured or estimated."
+data-feedback-b="B is not correct. Output error alone is the PID-style
+information, not full-state feedback." data-feedback-c="C is not
+correct. The reference does not contain the internal plant state."
+data-feedback-d="D is not correct. Feedback requires measurement or
+estimate information."> <h4>Q1. State information</h4> <p
+class="quiz-prompt">Full-state feedback assumes the controller has
+access to:</p> <div class="quiz-options"> <label><input
+type="radio" name="state-ch11-q1" value="A"><span class="quiz-option-text">A) All
+states</span></label> <label><input type="radio" name="state-ch11-q1"
+value="B"><span class="quiz-option-text">B) Only output error</span></label> <label><input
+type="radio" name="state-ch11-q1" value="C"><span class="quiz-option-text">C) Only the
+reference signal</span></label> <label><input type="radio"
+name="state-ch11-q1" value="D"><span class="quiz-option-text">D) No measurements</span></label>
+</div> <div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. For u = -Kx + k_r r, the state matrix
+becomes A-BK." data-feedback-b="B is not correct. The sign depends on
+the control law; the chapter uses u = -Kx + k_r r." data-feedback-c="C
+is not correct. C maps state to output; it is not the closed-loop
+dynamics matrix." data-feedback-d="D is not correct. K/A is not a
+state-space matrix operation."> <h4>Q2. Closed-loop matrix</h4>
+<p class="quiz-prompt">With u = -Kx + k<sub>r</sub>r, the
+closed-loop state matrix is:</p> <div class="quiz-options">
+<label><input type="radio" name="state-ch11-q2" value="A"><span class="quiz-option-text">A)
+A - BK</span></label> <label><input type="radio" name="state-ch11-q2"
+value="B"><span class="quiz-option-text">B) A + BK always</span></label> <label><input type="radio"
+name="state-ch11-q2" value="C"><span class="quiz-option-text">C) C - DK</span></label>
+<label><input type="radio" name="state-ch11-q2" value="D"><span class="quiz-option-text">D)
+K/A</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="2" data-tolerance="0.001">
+<h4>
+Q3. Controllability rank
+</h4>
+<p class="quiz-prompt">
+For A with rows (0, 1) and (-2, -3), and B with entries (0, 1), the
+controllability matrix has full rank. Enter its rank.
+</p>
+
+<label>Rank:<input type="text" name="state-ch11-q3"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 2. The two-state system is controllable when
+the controllability matrix has rank 2.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="10" data-tolerance="0.001">
+<h4>
+Q4. Reference gain from desired poles
+</h4>
+<p class="quiz-prompt">
+For desired poles at <span class="inline-equation">-2</span> and
+<span class="inline-equation">-5</span> in the companion-form
+example, enter <span class="inline-equation">k<sub>r</sub></span>
+for unit DC tracking.
+</p>
+
+<label>Reference gain
+<span class="inline-equation">k<sub>r</sub>:</span><input
+type="text" name="state-ch11-q4" placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 10. The desired polynomial constant term is
+<span class="inline-equation">2 × 5 = 10</span>.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answers="pole
+placement sets dynamics\|reference gain sets dc gain\|reference tracking
+needs kr\|pole placement sets dynamics and reference gain sets
+tracking">
+<h4>
+Q5. Pole placement versus tracking
+</h4>
+<p class="quiz-prompt">
+In one phrase, distinguish what pole placement does from what
+k<sub>r</sub> does.
+</p>
+
+<label>Answer:<input type="text" name="state-ch11-q5"
+placeholder="short phrase"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> Pole placement sets the closed-loop dynamics;
+k<sub>r</sub> sets the reference-to-output steady-state gain.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. B = \[0, 1\]\^T and AB = \[1, -3\]\^T,
+so the controllability matrix has columns B and AB."
+data-feedback-b="B is not correct. This option uses rows where columns
+are required." data-feedback-c="C is not correct. The second column
+should be AB = \[1, -3\]\^T." data-feedback-d="D is not correct. The
+identity matrix is not the controllability matrix for this A and B.">
+<h4>Q6. Controllability matrix</h4> <p class="quiz-prompt">For A
+with rows (0, 1) and (-2, -3), and B with entries (0, 1), which matrix
+is \[B AB\]?</p> <div class="quiz-options"> <label><input
+type="radio" name="state-ch11-exam-q1" value="A"><span class="quiz-option-text">A) rows (0, 1)
+and (1, -3)</span></label> <label><input type="radio"
+name="state-ch11-exam-q1" value="B"><span class="quiz-option-text">B) rows (0, 1) and (1,
+0)</span></label> <label><input type="radio" name="state-ch11-exam-q1"
+value="C"><span class="quiz-option-text">C) rows (0, 0) and (1, 1)</span></label> <label><input
+type="radio" name="state-ch11-exam-q1" value="D"><span class="quiz-option-text">D) rows (1, 0)
+and (0, 1)</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. Full rank controllability is about
+what inputs can do to the state, not direct measurement."
+data-feedback-b="B is not correct. Full rank controllability does not
+imply zero controller effort." data-feedback-c="C is correct. For a
+controllable SISO system, state feedback can assign the closed-loop
+poles." data-feedback-d="D is not correct. Controllability does not
+make the open-loop poles disappear."> <h4>Q7. Meaning of full
+controllability</h4> <p class="quiz-prompt">If a SISO system is
+controllable, what does that imply for state-feedback pole
+placement?</p> <div class="quiz-options"> <label><input
+type="radio" name="state-ch11-exam-q2" value="A"><span class="quiz-option-text">A) Every state
+is directly measured.</span></label> <label><input type="radio"
+name="state-ch11-exam-q2" value="B"><span class="quiz-option-text">B) The controller can use zero
+input for every maneuver.</span></label> <label><input type="radio"
+name="state-ch11-exam-q2" value="C"><span class="quiz-option-text">C) The closed-loop poles can
+be assigned with state feedback.</span></label> <label><input
+type="radio" name="state-ch11-exam-q2" value="D"><span class="quiz-option-text">D) The
+open-loop poles no longer matter for the model.</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. The sign is set by u = -Kx + k_r
+r." data-feedback-b="B is correct. Substituting u = -Kx + k_r r into
+xdot = Ax + Bu gives xdot = (A - BK)x + Bk_r r." data-feedback-c="C is
+not correct. C maps state to output; it is not subtracted from A for the
+controller dynamics." data-feedback-d="D is not correct. The reference
+gain affects the input term, not the closed-loop state matrix.">
+<h4>Q8. Closed-loop state matrix</h4> <p class="quiz-prompt">For
+xdot = Ax + Bu and u = -Kx + k<sub>r</sub>r, what is the closed-loop
+state matrix?</p> <div class="quiz-options"> <label><input
+type="radio" name="state-ch11-exam-q3" value="A"><span class="quiz-option-text">A) A +
+BK</span></label> <label><input type="radio" name="state-ch11-exam-q3"
+value="B"><span class="quiz-option-text">B) A - BK</span></label> <label><input type="radio"
+name="state-ch11-exam-q3" value="C"><span class="quiz-option-text">C) A - C</span></label>
+<label><input type="radio" name="state-ch11-exam-q3"
+value="D"><span class="quiz-option-text">D) A - Bk<sub>r</sub></span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. K sets the feedback dynamics; k_r is
+not the pole-placement gain vector." data-feedback-b="B is not
+correct. k_r does not estimate unmeasured states." data-feedback-c="C
+is not correct. k_r is not an anti-windup parameter."
+data-feedback-d="D is correct. k_r scales the reference input so the
+output has the desired steady-state reference gain."> <h4>Q9.
+Reference gain role</h4> <p class="quiz-prompt">What is the main
+role of k<sub>r</sub> in the state-feedback law?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="state-ch11-exam-q4" value="A"><span class="quiz-option-text">A) Place the closed-loop poles
+by itself.</span></label> <label><input type="radio"
+name="state-ch11-exam-q4" value="B"><span class="quiz-option-text">B) Estimate unmeasured
+states.</span></label> <label><input type="radio"
+name="state-ch11-exam-q4" value="C"><span class="quiz-option-text">C) Prevent actuator saturation
+in all cases.</span></label> <label><input type="radio"
+name="state-ch11-exam-q4" value="D"><span class="quiz-option-text">D) Scale the reference for the
+desired steady-state output.</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="11.9" id="notes-and-references-10" class="section-notes"><span class="header-section-number">11.9</span> Notes and References</h2>
+<p>Controllability is typically defined as follows. The state space
+system <span class="math display">\[\dot{x}=Ax+Bu\]</span> is said to be
+controllable from initial state <span
+class="math inline">\(x_0\)</span>, if there exists a control function
+<span class="math inline">\(u(t)\)</span> defined on some interval <span
+class="math inline">\(t\in[0,T]\)</span> that transitions the state to
+the origin. It can be shown that for linear time-invariant systems, the
+system is controllable if and only if the rank of the controllability
+matrix <span class="math inline">\(\mathcal{C}_{A,B}\)</span> is equal
+to the size of the state <span class="math inline">\(n\)</span>. For
+single input systems, this is equivalent to <span
+class="math inline">\(\mathcal{C}_{A,B}\)</span> being invertible.
+Controllability is an interesting and deep topic that extends nicely to
+nonlinear and multi-input systems. For further information see [5, 6,
+12].</p>
+<p>Ackermann’s formula given in
+Equation <a href="#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_ackermanns_formula"><a href="#full-state-feedback">11.32</a></a>
+is only valid for single input systems. In the multi-input case, the
+controllability matrix <span
+class="math inline">\(\mathcal{C}_{A,B}\)</span> is not square and
+therefore cannot be inverted. However, a more general formula can be
+derived if <span class="math inline">\(\mathcal{C}_{A,B}\)</span> has
+rank <span class="math inline">\(n\)</span>. The more general formula is
+implemented by the <code>place</code> command in both Matlab and Python.
+For additional information on the derivation of the feedback gain in the
+MIMO case see [6].</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

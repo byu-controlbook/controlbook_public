@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="P.4"
+id="numerical-solutions-to-differential-equations"><span class="header-section-number">P.4</span> Numerical Solutions to
+Differential Equations</h1>
+<p>This appendix provides a brief overview of techniques for numerically
+solving ordinary differential equations, when the initial value is
+specified. In particular, we are interested in solving the differential
+equation <span class="math display">\[\label{eq:rk_diff_eq}
+\dot{x} = \frac{dx}{dt}(t) = f(x(t), u(t)), \qquad x(t_0),\]</span> over
+the time interval <span class="math inline">\([t_0, t_f]\)</span>, where
+<span class="math inline">\(x(t)\in \mathbf{R}^n\)</span>, and <span
+class="math inline">\(u(t)\in\mathbf{R}^m\)</span> is assumed to be
+known, and where we assume that <span
+class="math inline">\(f(\cdot,\cdot)\)</span> is sufficiently smooth and
+that unique solutions to the differential equation exist for every <span
+class="math inline">\(x_0\)</span>.</p>
+<p>Integrating both sides of
+Equation <a href="#python-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
+data-reference="eq:rk_diff_eq"><a href="#numerical-solutions-to-differential-equations">P.4.1</a></a> from <span
+class="math inline">\(t_0\)</span> to <span
+class="math inline">\(t&lt;t_f\)</span> gives <span
+class="math display">\[\label{eq:rk_integral_solution}
+x(t) = x(t_0) + \int_{t_0}^t f(x(\tau), u(\tau))\,d\tau.\]</span> The
+difficulty with solving
+Equation <a href="#matlab-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
+data-reference="eq:rk_integral_solution"><a href="#numerical-solutions-to-differential-equations">P.4.2</a></a>
+is that <span class="math inline">\(x(t)\)</span> appears on both sides
+of the equation, and cannot therefore be solved explicitly for <span
+class="math inline">\(x(t)\)</span>. All numerical solution techniques
+attempt to approximate the solution to
+Equation <a href="#matlab-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
+data-reference="eq:rk_integral_solution"><a href="#numerical-solutions-to-differential-equations">P.4.2</a></a>.
+Most techniques break the solution into small time increments, usually
+equal to the sample rate of the computer, which we denote by <span
+class="math inline">\(T_s\)</span>. Accordingly we write
+Equation <a href="#matlab-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
+data-reference="eq:rk_integral_solution"><a href="#numerical-solutions-to-differential-equations">P.4.2</a></a>
+as <span class="math display">\[\begin{aligned}
+x(t) &amp;= x(t_0) + \int_{t_0}^{t-T_s} f(x(\tau), u(\tau))\,d\tau
+              + \int_{t-T_s}^t f(x(\tau), u(\tau))\,d\tau \notag \\
+     &amp;= x(t-T_s) + \int_{t-T_s}^t f(x(\tau), x(\tau))\,d\tau.
+     \label{eq:rk_integral_solution2}
+\end{aligned}\]</span></p>
+<p>The most simple form of numerical approximation for the integral in
+Equation <a href="#simulink-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
+data-reference="eq:rk_integral_solution2"><a href="#numerical-solutions-to-differential-equations">P.4.3</a></a>
+is to use the left endpoint method where <span
+class="math display">\[\int_{t-T_s}^t f(x(\tau), u(\tau))\,d\tau \approx
+T_s f(x(t-T_s), u(t-T_s)).\]</span> Using the notation <span
+class="math inline">\(x_k \stackrel{\triangle}{=}x(t_0+k T_s)\)</span>
+we get the numerical approximation to the differential equation in
+Equation <a href="#python-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
+data-reference="eq:rk_diff_eq"><a href="#numerical-solutions-to-differential-equations">P.4.1</a></a> as <span
+class="math display">\[\label{eq:rk_euler}
+x_k = x_{k-1} + T_s f(x_k, u_k), \quad x_0 = x(t_0).\]</span>
+Equation <a href="#notes-and-references-18" data-reference-type="eqref"
+data-reference="eq:rk_euler"><a href="#numerical-solutions-to-differential-equations">P.4.4</a></a> is called the Euler
+method, or a Runge-Kutta first order method (RK1).</p>
+<p>While the RK1 method is often effective for numerically solving ODEs,
+it typically requires a small sample size <span
+class="math inline">\(T_s\)</span>. The advantage of the RK1 method is
+that it only requires one evaluation of <span
+class="math inline">\(f(\cdot, \cdot)\)</span>.</p>
+<p>To improve the numerical accuracy of the solution, a second-order
+method can be derived by approximating the integral in
+Equation <a href="#simulink-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
+data-reference="eq:rk_integral_solution2"><a href="#numerical-solutions-to-differential-equations">P.4.3</a></a>
+using the trapezoidal rule shown in
+Figure <a href="10-10-digital-implementation-of-pid-controllers.html#fig:pid_digital_integrator" data-reference-type="ref"
+data-reference="fig:pid_digital_integrator">10.1</a>, where <span
+class="math display">\[\int_a^b f(\xi)d\xi \approx
+(b-a)\left(\frac{f(a)+f(b)}{2}\right).\]</span> Accordingly, <span
+class="math display">\[\int_{t-T_s}^t f(x(\tau), u(\tau))d\tau \approx
+\frac{T_s}{2}\left(f(x(t-T_s),u(t-T_s)) + f(x(t), u(t))\right).\]</span>
+Since <span class="math inline">\(x(t)\)</span> is unknown, we use the
+RK1 method to approximate it as <span class="math display">\[x(t)
+\approx x(t-T_s) + T_s f(x(t-T_s), u(t-T_s)).\]</span> In addition, we
+typically assume that <span class="math inline">\(u(t)\)</span> is
+constant over the interval <span class="math inline">\([t-T_s,
+T_s)\)</span> to get <span class="math display">\[\begin{gathered}
+\int_{t-T_s}^t f(x(\tau), u(\tau))d\tau \approx
+\frac{T_s}{2}\big(f(x(t-T_s),u(t-T_s))
+    \\ + f(x(t-T_s) + T_s f(x(t-T_s), u(t-T_s)), u(t-T_s))\big).
+\end{gathered}\]</span> Accordingly, the numerical integration routine
+can be written as <span class="math display">\[\begin{aligned}
+x_0 &amp;= x(t_0) \notag \\
+F_1 &amp;= f(x_{k-1}, u_{k-1}) \label{eq:rk_RK2}\\
+F_2 &amp; = f(x_{k-1} + T_sF_1, u_{k-1}) \notag \\
+x_k &amp;= x_{k-1} + \frac{T_s}{2} \left( F_1 + F_2 \right). \notag
+\end{aligned}\]</span>
+Equations <a href="#numerical-solutions-to-differential-equations" data-reference-type="eqref"
+data-reference="eq:rk_RK2"><a href="#numerical-solutions-to-differential-equations">P.4.5</a></a> is the Runge-Kutta
+second-order method or RK2. It requires two function calls to <span
+class="math inline">\(f(\cdot, \cdot)\)</span> for every time
+sample.</p>
+<p>The most common numerical method for solving ODEs is the Runge-Kutta
+fourth order method RK4. The RK4 method is derived using Simpson’s Rule
+<span class="math display">\[\int_a^b f(\xi)d\xi \approx
+\left(\frac{b-a}{6}\right)\left(f(a) + 4f\left(\frac{a+b}{2}\right) +
+f(b)\right),\]</span> which is found by approximating the area under the
+integral using a parabola. The standard strategy is to write the
+approximation as <span class="math display">\[\int_a^b f(\xi)\xi \approx
+\left(\frac{b-a}{6}\right)\left(f(a) + 2f\left(\frac{a+b}{2}\right) +
+2f\left(\frac{a+b}{2}\right) + f(b)\right),\]</span> and then to use
+<span class="math display">\[\begin{aligned}
+F_1 &amp;= f(a) \\
+F_2 &amp;= f( a + \frac{T_s}{2}F_1) \approx
+f\left(\frac{a+b}{2}\right)\\
+F_3 &amp;= f( a + \frac{T_s}{2}F_2) \approx f\left(\frac{a+b}{2}\right)
+\\
+F_4 &amp;= f( a + T_s F_3) \approx f(b),
+\end{aligned}\]</span> resulting in the RK4 numerical integration rule
+<span class="math display">\[\begin{aligned}
+x_0 &amp;= x(t_0) \notag \\
+F_1 &amp;= f(x_{k-1}, u_{k-1}) \notag \\
+F_2 &amp; = f(x_{k-1} + \frac{T_s}{2} F_1, u_{k-1}) \label{eq:rk_RK4} \\
+F_3 &amp; = f(x_{k-1} + \frac{T_s}{2} F_2, u_{k-1}) \notag \\
+F_4 &amp; = f(x_{k-1} + T_s F_3, u_{k-1}) \notag \\
+x_k &amp;= x_{k-1} + \frac{T_s}{6} \left( F_1 + 2F_2 + 2F_3 + F_4
+\right). \notag
+\end{aligned}\]</span></p>
+<p>It can be shown that the RK4 method matches the Taylor series
+approximation of the integral in
+Equation <a href="#simulink-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
+data-reference="eq:rk_integral_solution2"><a href="#numerical-solutions-to-differential-equations">P.4.3</a></a>
+up to the fourth order term. Higher order methods can be derived, but
+generally do not result in significantly better numerical approximations
+to the ODE. The step size <span class="math inline">\(T_s\)</span> must
+still be chosen to be sufficiently small to result in good solutions. It
+is also possible to develop adaptive step size solvers. For example, the
+ODE45 algorithm in Matlab solves the ODE using both an RK4 and an RK5
+algorithm. The two solutions are then compared and if they are
+sufficiently different, then the step size is reduced. If the two
+solutions are close, then the step size can be increased.</p>
+<h2 data-number="P.4.1"
+id="python-implementation-of-numerical-ode-solvers"><span class="header-section-number">P.4.1</span> Python Implementation of
+Numerical ODE Solvers</h2>
+<p>In the following code example, we show how to implement a system that
+is described by the second-order differential equation <span
+class="math display">\[\ddot{y} + a_1 \dot{y} + a_2 \sin y = b
+u,\]</span> where <span class="math inline">\(a_1\)</span>, <span
+class="math inline">\(a_2\)</span> and <span
+class="math inline">\(b\)</span> are constant coefficients and <span
+class="math inline">\(u\)</span> is the system input. The first step is
+to put the system into state space form. Selecting the states as <span
+class="math display">\[x =\begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+\stackrel{\triangle}{=}\begin{pmatrix} y \\ \dot{y}
+\end{pmatrix}\]</span> and differentiating gives the state space
+equations <span class="math display">\[\begin{aligned}
+\begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \end{pmatrix} &amp;=
+\begin{pmatrix} x_2 \\ -a_1 x_2 - a_2 \sin x_1 + b u \end{pmatrix} \\
+y &amp;= x_1,
+\end{aligned}\]</span> which is in the form <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= f(x,u) \\    
+y &amp;= h(x, u).
+\end{aligned}\]</span></p>
+<p>Python code that implements a class for this system is given below.
+The class has two external properties: the sample rate
+<code>self.Ts</code> and the state <code>self.state</code>. The constant
+coefficients are treated as internal properties known only to the system
+and are therefore labeled as <code>self.a1</code>, <code>self.a2</code>,
+and <code>self.b</code>. When the class is instantiated, the
+<code>__init__</code> function is called, which is where the states are
+initialized with their initial conditions, and the system coefficients
+<span class="math inline">\(a_1\)</span>, <span
+class="math inline">\(a_2\)</span>, and <span
+class="math inline">\(b\)</span> are initialized. The external method is
+<code>update</code>, and takes as its input the system input <span
+class="math inline">\(u\)</span>, and returns the system output <span
+class="math inline">\(y\)</span>. The <code>update</code> function first
+propagates the system dynamics <span class="math inline">\(\dot{x} =
+f(x,u)\)</span> using one of the Runge-Kutta methods. In the code below,
+the RK4 algorithm is used, but internal methods that implement the RK1,
+RK2, and RK4 methods are all shown for educational purposes. The RK
+methods each use the internal function <code>self.f</code>, which is
+where the system dynamics <span
+class="math inline">\(\dot{x}=f(x,u)\)</span> are specified. This
+function is system dependent. The <code>update</code> function then
+computes the output <span class="math inline">\(y=h(x)\)</span> by
+calling the internal function <code>self.h</code>, which is also system
+dependent.</p>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> systemDynamics:</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#  Model the system yddot + a1*ydot + a2*sin(y) = b*u</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, Ts<span class="op">=</span><span class="fl">0.01</span>):</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Ts <span class="op">=</span> Ts  <span class="co"># sample rate</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Specify the initial condition</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>        y0 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># y at time zero</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>        ydot0 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># ydot at time zero</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> np.array([</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>            [y0],</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>            [ydot0],</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>        ])  <span class="co"># state at time zero</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a1 <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a2 <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, u):</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This is the external method that takes the input u and</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># returns the output y.</span></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rk4_step(u)  <span class="co"># propagate the state by one time sample</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="va">self</span>.h()  <span class="co"># return the corresponding output</span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rk1_step(<span class="va">self</span>, u):</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Integrate ODE using Runge-Kutta RK1 algorithm</span></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state, u)</span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">+=</span> <span class="va">self</span>.Ts <span class="op">*</span> F1</span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rk2_step(<span class="va">self</span>, u):</span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Integrate ODE using Runge-Kutta RK2 algorithm</span></span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state, u)</span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a>        F2 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F1, u)</span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">+=</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> (F1 <span class="op">+</span> F2)</span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _rk4_step(<span class="va">self</span>, u):</span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Integrate ODE using Runge-Kutta RK4 algorithm</span></span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state, u)</span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a>        F2 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F1, u)</span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a>        F3 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F2, u)</span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a>        F4 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">*</span> F3, u)</span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">+=</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> (F1 <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> F2 <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> F3 <span class="op">+</span> F4)</span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> f(<span class="va">self</span>, state, u):</span>
+<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Return xdot = f(x,u)</span></span>
+<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a>        x1 <span class="op">=</span> state.item(<span class="dv">0</span>)</span>
+<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a>        x2 <span class="op">=</span> state.item(<span class="dv">1</span>)</span>
+<span id="cb44-48"><a href="#cb44-48" aria-hidden="true" tabindex="-1"></a>        xdot <span class="op">=</span> np.array([</span>
+<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a>            [x2],</span>
+<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a>            [<span class="op">-</span><span class="va">self</span>._a1 <span class="op">*</span> x2 <span class="op">-</span> <span class="va">self</span>._a2 <span class="op">*</span> np.sin(x1) <span class="op">+</span> <span class="va">self</span>._b <span class="op">*</span> u],</span>
+<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a>            ])</span>
+<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xdot</span>
+<span id="cb44-53"><a href="#cb44-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-54"><a href="#cb44-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> h(<span class="va">self</span>):</span>
+<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return the output equations y=h(x)</span></span>
+<span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a>        x1 <span class="op">=</span> <span class="va">self</span>.state.item(<span class="dv">0</span>)</span>
+<span id="cb44-57"><a href="#cb44-57" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> np.array([</span>
+<span id="cb44-58"><a href="#cb44-58" aria-hidden="true" tabindex="-1"></a>            [x1],</span>
+<span id="cb44-59"><a href="#cb44-59" aria-hidden="true" tabindex="-1"></a>            ])</span>
+<span id="cb44-60"><a href="#cb44-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span></code></pre></div>
+<p>The system is simulated using the following Python code. The system
+is instantiated on line 13. The while loop in lines 20–28 updates the
+internal system at the sample rate <code>T_s</code> rather than at the
+plot rate <code>T_plot</code>. The input is specified as a square wave
+on line 23. The system is propagated one step forward using the input
+<code>u</code> on line 24.</p>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> signalGenerator <span class="im">import</span> signalGenerator</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotData <span class="im">import</span> plotData</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> systemDynamics <span class="im">import</span> systemDynamics</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co"># simulation parameters</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>Ts <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># sample rate of simulation</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>T_plot <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># plot update rate</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>t_start <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># start time of simulation</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>t_end <span class="op">=</span> <span class="fl">20.0</span>  <span class="co"># end time of simulation</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate system and input classes</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>system <span class="op">=</span> systemDynamics(Ts)</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span> <span class="op">=</span> signalGenerator(amplitude<span class="op">=</span><span class="fl">0.5</span>, frequency<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate the simulation plots and animation</span></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>dataPlot <span class="op">=</span> plotData()</span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> t_start  <span class="co"># time starts at t0=0</span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> t <span class="op">&lt;</span> t_end:  <span class="co"># main simulation loop</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>    t_next_plot <span class="op">=</span> t <span class="op">+</span> T_plot</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> t <span class="op">&lt;</span> t_next_plot:</span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> <span class="bu">input</span>.square(t)</span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> system.update(u)</span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> t <span class="op">+</span> Ts  <span class="co"># advance time by Ts</span></span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># update animation and data plots</span></span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a>    dataPlot.update(t, system.state, u)</span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a>    plt.pause(<span class="fl">0.0001</span>)</span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Keeps the program from closing until the user presses a button.</span></span>
+<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Press key to close&#39;</span>)</span>
+<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a>plt.waitforbuttonpress()</span>
+<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code></pre></div>
+<h2 data-number="P.4.2"
+id="matlab-implementation-of-numerical-ode-solvers"><span class="header-section-number">P.4.2</span> Matlab Implementation of
+Numerical ODE Solvers</h2>
+<p>Matlab code that implements a class for the system defined in the
+previous section is given below. The class has five properties: the
+sample rate <code>self.Ts</code>, the state <code>self.state</code>, and
+the constant coefficients <code>self.a1</code>, <code>self.a2</code>,
+and <code>self.b</code>. When the class is instantiated, constructor
+<code>systemDynamics(Ts)</code> is called, which is where the states are
+initialized with their initial conditions, and the system coefficients
+<span class="math inline">\(a_1\)</span>, <span
+class="math inline">\(a_2\)</span>, and <span
+class="math inline">\(b\)</span> are initialized. The class method
+<code>update</code> takes as its input the system input <span
+class="math inline">\(u\)</span> and returns the system output <span
+class="math inline">\(y\)</span>. The <code>update</code> function first
+propagates the system dynamics <span class="math inline">\(\dot{x} =
+f(x,u)\)</span> using one of the Runge-Kutta methods. In the code below,
+the RK4 algorithm is used, but internal methods that implement the RK1,
+RK2, and RK4 methods are all shown for educational purposes. The RK
+methods each use the internal function <code>self.f</code>, which is
+where the system dynamics <span
+class="math inline">\(\dot{x}=f(x,u)\)</span> are specified. This
+function is system dependent. The <code>update</code> function then
+computes the output <span class="math inline">\(y=h(x)\)</span> by
+calling the internal function <code>self.h</code>, which is also system
+dependent.</p>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">classdef</span> <span class="va">systemDynamics</span> <span class="op">&lt;</span> <span class="va">handle</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">properties</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">Ts</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">state</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">a1</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">a2</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">b</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">methods</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">%---constructor-------------------------</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span> <span class="op">=</span> <span class="va">systemDynamics</span>(<span class="va">Ts</span>)</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">Ts</span> <span class="op">=</span> <span class="va">Ts</span><span class="op">;</span>  <span class="co">% sample rate</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>            <span class="va">y0</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span>  <span class="co">% initial y</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>            <span class="va">ydot0</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span>  <span class="co">% initial y_dot</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">state</span> <span class="op">=</span> [<span class="va">y0</span><span class="op">;</span> <span class="va">ydot0</span>]<span class="op">;</span>  <span class="co">% initial state</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">a1</span> <span class="op">=</span> <span class="fl">2</span><span class="op">;</span> <span class="co">% system parameters</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">a2</span> <span class="op">=</span> <span class="fl">2</span><span class="op">;</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">b</span> <span class="op">=</span> <span class="fl">4</span><span class="op">;</span></span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">%----------------------------</span></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">y</span> <span class="op">=</span> <span class="va">update</span>(<span class="va">self</span><span class="op">,</span> <span class="va">u</span>)</span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>            <span class="co">% external method that takes u as input</span></span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>            <span class="co">% and returns y</span></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">rk4_step</span>(<span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>            <span class="va">y</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">h</span>()<span class="op">;</span></span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span> <span class="op">=</span> <span class="va">rk1_step</span>(<span class="va">self</span><span class="op">,</span> <span class="va">u</span>)</span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>            <span class="co">% Integrate ODE using Runge-Kutta RK1 algorithm</span></span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>            <span class="va">F1</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">state</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">state</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span> <span class="op">*</span> <span class="va">F1</span><span class="op">;</span></span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span> <span class="op">=</span> <span class="va">rk2_step</span>(<span class="va">self</span><span class="op">,</span> <span class="va">u</span>)</span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a>            <span class="co">% Integrate ODE using Runge-Kutta RK2 algorithm</span></span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>            <span class="va">F1</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a>            <span class="va">F2</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">/</span><span class="fl">2</span><span class="op">*</span><span class="va">F1</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">state</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">state</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">/</span><span class="fl">2</span> <span class="op">*</span> (<span class="va">F1</span> <span class="op">+</span> <span class="va">F2</span>)<span class="op">;</span></span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span> <span class="op">=</span> <span class="va">rk4_step</span>(<span class="va">self</span><span class="op">,</span> <span class="va">u</span>)</span>
+<span id="cb46-39"><a href="#cb46-39" aria-hidden="true" tabindex="-1"></a>            <span class="co">% Integrate ODE using Runge-Kutta RK4 algorithm</span></span>
+<span id="cb46-40"><a href="#cb46-40" aria-hidden="true" tabindex="-1"></a>            <span class="va">F1</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb46-41"><a href="#cb46-41" aria-hidden="true" tabindex="-1"></a>            <span class="va">F2</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">/</span><span class="fl">2</span><span class="op">*</span><span class="va">F1</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb46-42"><a href="#cb46-42" aria-hidden="true" tabindex="-1"></a>            <span class="va">F3</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">/</span><span class="fl">2</span><span class="op">*</span><span class="va">F2</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a>            <span class="va">F4</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">*</span><span class="va">F3</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb46-44"><a href="#cb46-44" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">state</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">state</span><span class="op">...</span></span>
+<span id="cb46-45"><a href="#cb46-45" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">/</span><span class="fl">6</span> <span class="op">*</span> (<span class="va">F1</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="va">F2</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="va">F3</span> <span class="op">+</span> <span class="va">F4</span>)<span class="op">;</span></span>
+<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb46-47"><a href="#cb46-47" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">xdot</span> <span class="op">=</span> <span class="va">f</span>(<span class="va">self</span><span class="op">,</span> <span class="va">state</span><span class="op">,</span> <span class="va">u</span>)</span>
+<span id="cb46-48"><a href="#cb46-48" aria-hidden="true" tabindex="-1"></a>            <span class="co">% Return xdot = f(x,u), </span></span>
+<span id="cb46-49"><a href="#cb46-49" aria-hidden="true" tabindex="-1"></a>            <span class="va">x1</span> <span class="op">=</span> <span class="va">state</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb46-50"><a href="#cb46-50" aria-hidden="true" tabindex="-1"></a>            <span class="va">x2</span> <span class="op">=</span> <span class="va">state</span>(<span class="fl">2</span>)<span class="op">;</span></span>
+<span id="cb46-51"><a href="#cb46-51" aria-hidden="true" tabindex="-1"></a>            <span class="va">xdot</span> <span class="op">=</span> [<span class="va">x2</span><span class="op">;...</span></span>
+<span id="cb46-52"><a href="#cb46-52" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span><span class="va">self</span>.<span class="va">a1</span><span class="op">*</span><span class="va">x2</span> <span class="op">-</span> <span class="va">self</span>.<span class="va">a2</span><span class="op">*</span><span class="va">sin</span>(<span class="va">x2</span>) <span class="op">+</span> <span class="va">self</span>.<span class="va">b</span><span class="op">*</span><span class="va">u</span>]<span class="op">;</span></span>
+<span id="cb46-53"><a href="#cb46-53" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb46-54"><a href="#cb46-54" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">y</span> <span class="op">=</span> <span class="va">h</span>(<span class="va">self</span>)</span>
+<span id="cb46-55"><a href="#cb46-55" aria-hidden="true" tabindex="-1"></a>            <span class="co">% return y = h(x)</span></span>
+<span id="cb46-56"><a href="#cb46-56" aria-hidden="true" tabindex="-1"></a>            <span class="va">x1</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">state</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb46-57"><a href="#cb46-57" aria-hidden="true" tabindex="-1"></a>            <span class="va">y</span> <span class="op">=</span> <span class="va">x1</span><span class="op">;</span></span>
+<span id="cb46-58"><a href="#cb46-58" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb46-59"><a href="#cb46-59" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb46-60"><a href="#cb46-60" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<p>The system is simulated using the following Matlab code. The system
+is instantiated on line 7. The while loop in lines 13–23 updates the
+internal system at the sample rate <code>T_s</code> rather than at the
+plot rate <code>T_plot</code>. The input is specified as a square wave
+on line 17. The system is propagated one step forward using the input
+<code>u</code> on line 18.</p>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">% simulation parameters</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="va">Ts</span> <span class="op">=</span> <span class="fl">0.01</span><span class="op">;</span>  <span class="co">% sample rate</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="va">T_plot</span> <span class="op">=</span> <span class="fl">0.1</span><span class="op">;</span>  <span class="co">% plot update rate</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="va">t_start</span> <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span> <span class="co">% simulation start time</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="va">t_end</span> <span class="op">=</span> <span class="fl">10.0</span><span class="op">;</span> <span class="co">% simulation end timm</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co">% instantiate dynamics and plotter</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="va">system</span> <span class="op">=</span> <span class="va">systemDynamics</span>(<span class="va">Ts</span>)<span class="op">;</span>  </span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="va">input</span> <span class="op">=</span> <span class="va">signalGenerator</span>(<span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.2</span>)<span class="op">;</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="va">dataPlot</span> <span class="op">=</span> <span class="va">dataPlotter</span>()<span class="op">;</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co">% main simulation loop</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="va">t</span> <span class="op">=</span> <span class="va">t_start</span><span class="op">;</span>  </span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="kw">while</span> <span class="va">t</span> <span class="op">&lt;</span> <span class="va">t_end</span>  </span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">% Propagate dynamics in between plot samples</span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">t_next_plot</span> <span class="op">=</span> <span class="va">t</span> <span class="op">+</span> <span class="va">P</span>.<span class="va">t_plot</span><span class="op">;</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">while</span> <span class="va">t</span> <span class="op">&lt;</span> <span class="va">t_next_plot</span> </span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">u</span> <span class="op">=</span> <span class="va">input</span>.<span class="va">square</span>(<span class="va">t</span>)<span class="op">;</span>  <span class="co">% input is a square wave</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">y</span> <span class="op">=</span> <span class="va">system</span>.<span class="va">update</span>(<span class="va">u</span>)<span class="op">;</span>  <span class="co">% Propagate the dynamics</span></span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">t</span> <span class="op">=</span> <span class="va">t</span> <span class="op">+</span> <span class="va">P</span>.<span class="va">Ts</span><span class="op">;</span> <span class="co">% advance time by Ts</span></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">% update data plots</span></span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">dataPlot</span>.<span class="va">update</span>(<span class="va">t</span><span class="op">,</span> <span class="va">system</span>.<span class="va">state</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<h2 data-number="P.4.3"
+id="simulink-implementation-of-numerical-ode-solvers"><span class="header-section-number">P.4.3</span> Simulink Implementation of
+Numerical ODE Solvers</h2>
+<p>The Simulink engine implements a variety of different ODE solvers.
+The system dynamics are specified in an <code>s-function</code>. An
+<code>s-function</code> that implements the system described above is
+shown below.</p>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> [<span class="va">sys</span><span class="op">,</span><span class="va">x0</span><span class="op">,</span><span class="va">str</span><span class="op">,</span><span class="va">ts</span><span class="op">,</span><span class="va">simStateCompliance</span>]<span class="op">...</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">=</span> <span class="va">system_dynamics</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span><span class="op">,</span><span class="va">flag</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="kw">switch</span> <span class="va">flag</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">% Initialization</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="fl">0</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    [<span class="va">sys</span><span class="op">,</span><span class="va">x0</span><span class="op">,</span><span class="va">str</span><span class="op">,</span><span class="va">ts</span><span class="op">,</span><span class="va">simStateCompliance</span>]<span class="op">...</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">=</span><span class="va">mdlInitializeSizes</span>()<span class="op">;</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">% Derivatives</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="fl">1</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">sys</span><span class="op">=</span><span class="va">mdlDerivatives</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">% Update </span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="fl">2</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">sys</span><span class="op">=</span><span class="va">mdlUpdate</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">% Outputs </span></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="fl">3</span></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">sys</span><span class="op">=</span><span class="va">mdlOutputs</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">% GetTimeOfNextVarHit </span></span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="fl">4</span></span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">sys</span><span class="op">=</span><span class="va">mdlGetTimeOfNextVarHit</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">% Terminate %</span></span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="fl">9</span></span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">sys</span><span class="op">=</span><span class="va">mdlTerminate</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">% Unexpected flags %</span></span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">otherwise</span></span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>    <span class="va">DAStudio</span>.<span class="va">error</span>(<span class="op">...</span></span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>        <span class="ss">&#39;Simulink:blocks:unhandledFlag&#39;</span><span class="op">,...</span></span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">num2str</span>(<span class="va">flag</span>))<span class="op">;</span></span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a><span class="co">% mdlInitializeSizes</span></span>
+<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a><span class="co">% Return the sizes, initial conditions, and </span></span>
+<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a><span class="co">%  sample times for the S-function.</span></span>
+<span id="cb48-36"><a href="#cb48-36" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-37"><a href="#cb48-37" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-38"><a href="#cb48-38" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> [<span class="va">sys</span><span class="op">,</span><span class="va">x0</span><span class="op">,</span><span class="va">str</span><span class="op">,</span><span class="va">ts</span><span class="op">,</span><span class="va">simStateCompliance</span>]<span class="op">...</span></span>
+<span id="cb48-39"><a href="#cb48-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">=</span><span class="va">mdlInitializeSizes</span>()</span>
+<span id="cb48-40"><a href="#cb48-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-41"><a href="#cb48-41" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span> <span class="op">=</span> <span class="va">simsizes</span><span class="op">;</span></span>
+<span id="cb48-42"><a href="#cb48-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-43"><a href="#cb48-43" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumContStates</span>  <span class="op">=</span> <span class="fl">2</span><span class="op">;</span></span>
+<span id="cb48-44"><a href="#cb48-44" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumDiscStates</span>  <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb48-45"><a href="#cb48-45" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumOutputs</span>     <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb48-46"><a href="#cb48-46" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumInputs</span>      <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb48-47"><a href="#cb48-47" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">DirFeedthrough</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb48-48"><a href="#cb48-48" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumSampleTimes</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span>   </span>
+<span id="cb48-49"><a href="#cb48-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-50"><a href="#cb48-50" aria-hidden="true" tabindex="-1"></a><span class="va">sys</span> <span class="op">=</span> <span class="va">simsizes</span>(<span class="va">sizes</span>)<span class="op">;</span></span>
+<span id="cb48-51"><a href="#cb48-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-52"><a href="#cb48-52" aria-hidden="true" tabindex="-1"></a><span class="co">% initialize the initial conditions%</span></span>
+<span id="cb48-53"><a href="#cb48-53" aria-hidden="true" tabindex="-1"></a><span class="va">y0</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb48-54"><a href="#cb48-54" aria-hidden="true" tabindex="-1"></a><span class="va">ydot0</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb48-55"><a href="#cb48-55" aria-hidden="true" tabindex="-1"></a><span class="va">x0</span>  <span class="op">=</span> [<span class="va">y0</span><span class="op">;</span> <span class="va">ydot0</span>]<span class="op">;</span></span>
+<span id="cb48-56"><a href="#cb48-56" aria-hidden="true" tabindex="-1"></a><span class="co">% str is always an empty matrix</span></span>
+<span id="cb48-57"><a href="#cb48-57" aria-hidden="true" tabindex="-1"></a><span class="va">str</span> <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb48-58"><a href="#cb48-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-59"><a href="#cb48-59" aria-hidden="true" tabindex="-1"></a><span class="co">% initialize the array of sample times</span></span>
+<span id="cb48-60"><a href="#cb48-60" aria-hidden="true" tabindex="-1"></a><span class="va">ts</span>  <span class="op">=</span> [<span class="fl">0</span> <span class="fl">0</span>]<span class="op">;</span></span>
+<span id="cb48-61"><a href="#cb48-61" aria-hidden="true" tabindex="-1"></a><span class="va">simStateCompliance</span> <span class="op">=</span> <span class="ss">&#39;UnknownSimState&#39;</span><span class="op">;</span></span>
+<span id="cb48-62"><a href="#cb48-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-63"><a href="#cb48-63" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-64"><a href="#cb48-64" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-65"><a href="#cb48-65" aria-hidden="true" tabindex="-1"></a><span class="co">% mdlDerivatives</span></span>
+<span id="cb48-66"><a href="#cb48-66" aria-hidden="true" tabindex="-1"></a><span class="co">% Return the derivatives for the continuous </span></span>
+<span id="cb48-67"><a href="#cb48-67" aria-hidden="true" tabindex="-1"></a><span class="co">% states.</span></span>
+<span id="cb48-68"><a href="#cb48-68" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-69"><a href="#cb48-69" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-70"><a href="#cb48-70" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">sys</span><span class="op">=</span><span class="va">mdlDerivatives</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span><span class="op">,</span><span class="va">P</span>)</span>
+<span id="cb48-71"><a href="#cb48-71" aria-hidden="true" tabindex="-1"></a>  <span class="va">x1</span> <span class="op">=</span> <span class="va">x</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb48-72"><a href="#cb48-72" aria-hidden="true" tabindex="-1"></a>  <span class="va">x2</span> <span class="op">=</span> <span class="va">x</span>(<span class="fl">2</span>)<span class="op">;</span></span>
+<span id="cb48-73"><a href="#cb48-73" aria-hidden="true" tabindex="-1"></a>  <span class="va">xdot</span> <span class="op">=</span> [<span class="va">x2</span><span class="op">;...</span></span>
+<span id="cb48-74"><a href="#cb48-74" aria-hidden="true" tabindex="-1"></a>          <span class="op">-</span><span class="va">self</span>.<span class="va">a1</span><span class="op">*</span><span class="va">x2</span> <span class="op">-</span> <span class="va">self</span>.<span class="va">a2</span><span class="op">*</span><span class="va">sin</span>(<span class="va">x2</span>) <span class="op">+</span> <span class="va">self</span>.<span class="va">b</span><span class="op">*</span><span class="va">u</span>]<span class="op">;</span>  </span>
+<span id="cb48-75"><a href="#cb48-75" aria-hidden="true" tabindex="-1"></a><span class="va">sys</span> <span class="op">=</span> <span class="va">xdot</span><span class="op">;</span></span>
+<span id="cb48-76"><a href="#cb48-76" aria-hidden="true" tabindex="-1"></a><span class="co">% end mdlDerivatives</span></span>
+<span id="cb48-77"><a href="#cb48-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-78"><a href="#cb48-78" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-79"><a href="#cb48-79" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-80"><a href="#cb48-80" aria-hidden="true" tabindex="-1"></a><span class="co">% mdlUpdate</span></span>
+<span id="cb48-81"><a href="#cb48-81" aria-hidden="true" tabindex="-1"></a><span class="co">% Handle discrete state updates, sample time </span></span>
+<span id="cb48-82"><a href="#cb48-82" aria-hidden="true" tabindex="-1"></a><span class="co">% hits, and major time step requirements.</span></span>
+<span id="cb48-83"><a href="#cb48-83" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-84"><a href="#cb48-84" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-85"><a href="#cb48-85" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">sys</span><span class="op">=</span><span class="va">mdlUpdate</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)</span>
+<span id="cb48-86"><a href="#cb48-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-87"><a href="#cb48-87" aria-hidden="true" tabindex="-1"></a><span class="va">sys</span> <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb48-88"><a href="#cb48-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-89"><a href="#cb48-89" aria-hidden="true" tabindex="-1"></a><span class="co">% end mdlUpdate</span></span>
+<span id="cb48-90"><a href="#cb48-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-91"><a href="#cb48-91" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-92"><a href="#cb48-92" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-93"><a href="#cb48-93" aria-hidden="true" tabindex="-1"></a><span class="co">% mdlOutputs</span></span>
+<span id="cb48-94"><a href="#cb48-94" aria-hidden="true" tabindex="-1"></a><span class="co">% Return the block outputs.</span></span>
+<span id="cb48-95"><a href="#cb48-95" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-96"><a href="#cb48-96" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-97"><a href="#cb48-97" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">sys</span><span class="op">=</span><span class="va">mdlOutputs</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)</span>
+<span id="cb48-98"><a href="#cb48-98" aria-hidden="true" tabindex="-1"></a>    <span class="va">x1</span> <span class="op">=</span> <span class="va">x</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb48-99"><a href="#cb48-99" aria-hidden="true" tabindex="-1"></a>    <span class="va">y</span> <span class="op">=</span> <span class="va">x1</span><span class="op">;</span></span>
+<span id="cb48-100"><a href="#cb48-100" aria-hidden="true" tabindex="-1"></a><span class="va">sys</span> <span class="op">=</span> <span class="va">y</span><span class="op">;</span></span>
+<span id="cb48-101"><a href="#cb48-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-102"><a href="#cb48-102" aria-hidden="true" tabindex="-1"></a><span class="co">% end mdlOutputs</span></span>
+<span id="cb48-103"><a href="#cb48-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-104"><a href="#cb48-104" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-105"><a href="#cb48-105" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-106"><a href="#cb48-106" aria-hidden="true" tabindex="-1"></a><span class="co">% mdlGetTimeOfNextVarHit</span></span>
+<span id="cb48-107"><a href="#cb48-107" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-108"><a href="#cb48-108" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-109"><a href="#cb48-109" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">sys</span><span class="op">=</span><span class="va">mdlGetTimeOfNextVarHit</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)</span>
+<span id="cb48-110"><a href="#cb48-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-111"><a href="#cb48-111" aria-hidden="true" tabindex="-1"></a><span class="va">sampleTime</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span>    </span>
+<span id="cb48-112"><a href="#cb48-112" aria-hidden="true" tabindex="-1"></a><span class="va">sys</span> <span class="op">=</span> <span class="va">t</span> <span class="op">+</span> <span class="va">sampleTime</span><span class="op">;</span></span>
+<span id="cb48-113"><a href="#cb48-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-114"><a href="#cb48-114" aria-hidden="true" tabindex="-1"></a><span class="co">% end mdlGetTimeOfNextVarHit</span></span>
+<span id="cb48-115"><a href="#cb48-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-116"><a href="#cb48-116" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-117"><a href="#cb48-117" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-118"><a href="#cb48-118" aria-hidden="true" tabindex="-1"></a><span class="co">% mdlTerminate</span></span>
+<span id="cb48-119"><a href="#cb48-119" aria-hidden="true" tabindex="-1"></a><span class="co">% Perform any end of simulation tasks.</span></span>
+<span id="cb48-120"><a href="#cb48-120" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb48-121"><a href="#cb48-121" aria-hidden="true" tabindex="-1"></a><span class="co">%</span></span>
+<span id="cb48-122"><a href="#cb48-122" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">sys</span><span class="op">=</span><span class="va">mdlTerminate</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)</span>
+<span id="cb48-123"><a href="#cb48-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-124"><a href="#cb48-124" aria-hidden="true" tabindex="-1"></a><span class="va">sys</span> <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb48-125"><a href="#cb48-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-126"><a href="#cb48-126" aria-hidden="true" tabindex="-1"></a><span class="co">% end mdlTerminate</span></span></code></pre></div>
+<p>The state equations <span
+class="math inline">\(\dot{x}=f(x,u)\)</span> are implemented in the
+function<br />
+<code>mdlDerivatives</code> on lines 70–75, and the output equation
+<span class="math inline">\(y=h(x)\)</span> is implemented in the
+function <code>mdlOutputs</code> on lines 97–102. The system is
+initialized in <code>mdlInitializeSizes</code> on lines 38–61.</p>
+<p>The numerical ODE solver can be specified by using the menu<br />
+<code>Simulation &gt; Model Configuration Parameters</code>. Simulink
+has two types of solvers: fixed-step solvers and variable-step solvers.
+The dialog menu for fixed-step solvers is shown in
+Figure <a href="#fig:rk_fixed_step" data-reference-type="ref"
+data-reference="fig:rk_fixed_step">4.1</a>, where “ode4(Runge-Kutta)”
+corresponds to an RK4 method, “ode2(Heun)” corresponds to an RK2 method,
+and “ode1(Euler)” corresponds to an RK1 method. Simulink also has
+variable step size ODE solvers. The options for variable step size are
+shown in
+Figure <a href="#fig:rk_variable_step" data-reference-type="ref"
+data-reference="fig:rk_variable_step">4.2</a>. The “ode45
+(Dormand-Prince)” solver works by solving the ODE over the next time
+step using both an ode4 and an ode5 method, comparing the two, and then
+reducing the step size if the difference is too large, and increasing
+the step size if the difference is within a tolerance.</p>
+<figure id="fig:rk_fixed_step">
+<img src="./app_runge_kutta/figures/rk_fixed_step.png"
+style="width:80.0%"
+alt="Dialog window for Simulink fixed-step size solver." />
+<figcaption aria-hidden="true">Dialog window for Simulink fixed-step
+size solver.</figcaption>
+</figure>
+<figure id="fig:rk_variable_step">
+<img src="./app_runge_kutta/figures/rk_variable_step.png"
+style="width:80.0%"
+alt="Dialog window for Simulink variable-step size solver." />
+<figcaption aria-hidden="true">Dialog window for Simulink variable-step
+size solver.</figcaption>
+</figure>
+<h2 data-number="P.4.4" id="notes-and-references-18" class="section-notes"><span class="header-section-number">P.4.4</span> Notes and References</h2>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

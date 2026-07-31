@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 id="introduction" data-number="1"><span class="header-section-number">1</span> 
+Introduction
+</h1>
+<p><span id="chap:introduction" label="chap:introduction"></span></p>
+<h1>
+Introduction
+</h1>
+<h2>
+Overview
+</h2>
+<p>The objective of this book is to prepare the reader to design
+feedback control systems for dynamic systems and to lay the groundwork
+for further studies in the area. The design philosophy that we follow
+throughout the book is illustrated schematically in
+<strong>Fig.</strong> <a href="#fig:int_design_process" data-reference-type="ref"
+data-reference="fig:int_design_process">1.1</a>. The objective is to
+design a control system for the “Physical System” shown in
+<strong>Fig.</strong> <a href="#fig:int_design_process" data-reference-type="ref"
+data-reference="fig:int_design_process">1.1</a>. The physical system
+includes actuators like motors and propellers, and sensors like
+accelerometers, gyros, GPS, cameras, and pressure sensors. The first
+step in the design process is to model the physical system using
+nonlinear differential equations. While approximations and
+simplifications will be necessary at this step, the hope is to capture,
+in mathematics, all of the important characteristics of the physical
+system. While there are many different methods for developing the
+equations of motion of the physical systems, in this book we will
+introduce one specific method, the Euler-Lagrange method, that is
+applicable to a wide variety of mechanical systems. We will, for the
+most part, abstract the actuators to applied forces and torques on the
+system. Similarly, the sensors will be abstracted to general
+measurements of certain physical quantities like position and velocity.
+The resulting model is called the Simulation Model<span id="idx-0001" class="book-index-anchor" aria-hidden="true"></span> as shown in
+<strong>Fig.</strong> <a href="#fig:int_design_process" data-reference-type="ref"
+data-reference="fig:int_design_process">1.1</a>. In the design
+process<span id="idx-0002" class="book-index-anchor" aria-hidden="true"></span>, the simulation model
+is used for the high fidelity computer simulation of the physical
+system. Every control design will be tested thoroughly on the simulation
+model. However, the simulation model is only a mathematical
+approximation of the physical system, and simply because a design is
+effective on the simulation model, we should not assume that it will
+function properly on the physical system.
+Part <a href="#part:simulation_models" data-reference-type="ref"
+data-reference="part:simulation_models">I</a> of
+the book introduces the Euler-Lagrange method and demonstrates how to
+derive simulation models for mechanical systems using this method.</p>
+<figure id="fig:int_design_process">
+<img src="_introduction/figures/int_design_process.png"
+style="width:99.0%"
+alt="The design process. Using principles of physics, the physical system is modeled mathematically, resulting in the simulation model. The simulation model is simplified to create design models that are used for the control design. The control design is then tested and debugged in simulation and finally implemented on the physical system." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 1.1. </span>The design process. Using principles of
+physics, the physical system is modeled mathematically, resulting in the
+simulation model. The simulation model is simplified to create design
+models that are used for the control design. The control design is then
+tested and debugged in simulation and finally implemented on the
+physical system.</figcaption>
+</figure>
+<h2 data-number="1.1" id="interactive-control-workflow"><span class="header-section-number">1.1</span> Interactive Control
+Workflow</h2>
+<div class="chapter-one-panel ch1-workflow"
+id="intro-ch1-control-workflow"> <div class="ch1-workflow-copy">
+<p class="chapter-one-kicker">Click Figure 1.1</p> <p>The
+diagram below is the same design-process figure, but the major regions
+are clickable. Select a region to see how that part of the workflow will
+be developed later in the book.</p> </div> <div
+class="workflow-map" data-workflow-map> <div
+class="workflow-image-wrap"> <img
+src="./\_introduction/figures/int_design_process.png" alt="Control
+design process diagram with physical system, simulation model, design
+models, controller methods, testing, and implementation paths." />
+<button type="button" class="workflow-hotspot
+workflow-hotspot-physical is-active" data-workflow-title="Physical
+system" data-workflow-text="The real device includes actuators,
+sensors, limitations, and disturbances. The controller must eventually
+work here, not just in equations." data-workflow-chapters="Introduced
+here, then revisited in every design study.">Physical
+system</button> <button type="button" class="workflow-hotspot
+workflow-hotspot-simulation" data-workflow-title="Simulation model"
+data-workflow-text="A detailed mathematical model is used to test
+behavior before hardware trials. Chapters 2 and 3 build the mechanics
+needed for this step." data-workflow-chapters="Chapters 2-3: kinetic
+energy, potential energy, and Euler-Lagrange equations.">Simulation
+model</button> <button type="button" class="workflow-hotspot
+workflow-hotspot-transfer" data-workflow-title="Transfer-function
+design model" data-workflow-text="A simplified input-output model
+supports design methods based on poles, zeros, and frequency response.
+PID design and loop-shaping both use transfer-function design models."
+data-workflow-chapters="Chapters 4-5 introduce linearization and
+transfer functions. Chapters 7-10 use these models for PID design, and
+Chapters 15-18 use them for frequency response, stability margins, and
+loop-shaping.">Transfer-function design model</button> <button
+type="button" class="workflow-hotspot workflow-hotspot-state"
+data-workflow-title="State-space design model" data-workflow-text="A
+state-space model tracks internal system memory and supports
+state-feedback and observer-based control."
+data-workflow-chapters="Chapter 6 introduces state-space models;
+Chapters 11-14 use them for control.">State-space design
+model</button> <button type="button" class="workflow-hotspot
+workflow-hotspot-control" data-workflow-title="Control design
+methods" data-workflow-text="The book develops PID, loop-shaping, and
+observer-based control as different ways to compute actuator commands
+from model and measurement information."
+data-workflow-chapters="Chapters 7-18 introduce the controller families
+after the needed models are available.">Control design
+methods</button> <button type="button" class="workflow-hotspot
+workflow-hotspot-test" data-workflow-title="Test in simulation"
+data-workflow-text="Before hardware implementation, a controller should
+be tested against the simulation model to expose likely performance,
+robustness, and actuator-limit problems."
+data-workflow-chapters="Simulation-based validation appears throughout
+the design-study homework sequence.">Test in simulation</button>
+<button type="button" class="workflow-hotspot
+workflow-hotspot-implementation" data-workflow-title="Implementation"
+data-workflow-text="The controller becomes sampled code running with
+real sensor data, actuator limits, and timing constraints."
+data-workflow-chapters="Chapter 10 and the implementation appendices
+connect controller equations to code.">Implementation</button>
+</div> <aside class="workflow-info" aria-live="polite"> <h3
+data-workflow-output-title>Physical system</h3> <p
+data-workflow-output-text>The real device includes actuators, sensors,
+limitations, and disturbances. The controller must eventually work here,
+not just in equations.</p> <p class="workflow-chapters"
+data-workflow-output-chapters>Introduced here, then revisited in every
+design study.</p> </aside> </div> </div>
+<div class="chapter-one-panel ch1-feedback-figure"
+id="intro-ch1-feedback-visual" role="figure"
+aria-labelledby="intro-feedback-title"> <div
+class="ch1-feedback-controls"> <div> <p
+class="chapter-one-kicker">Disturbance experiment</p> <p
+class="ch1-feedback-title" id="intro-feedback-title">Open-loop and
+feedback response to a disturbance</p> <p>Choose when the
+disturbance appears and how large it is. The curves use a simple
+first-order plant model: open loop has no current output measurement,
+while feedback uses the measured output to drive the response back
+toward the desired value. The role of integral action in removing
+steady-state disturbance error is developed in Chapter 9, the PID
+system-type section.</p> </div> <label>Disturbance location
+<input type="range" min="220" max="650" value="550" step="10"
+data-ch1-disturbance-time /> </label> <label>Disturbance size
+<input type="range" min="0.2" max="1" value="0.75"
+step="0.05" data-ch1-disturbance-size /> </label> </div> <svg
+viewBox="0 0 920 330" role="img"
+aria-labelledby="intro-feedback-title intro-feedback-desc"> <desc
+id="intro-feedback-desc">A first-order plant comparison showing that
+open-loop operation remains shifted after a disturbance while feedback
+with integral action returns the output to the desired value.</desc>
+<rect x="24" y="28" width="872" height="274" rx="22"
+fill="rgb(255,253,248)" stroke="rgb(216,210,199)"/> <text x="64"
+y="76" font-size="25" font-weight="700"
+fill="rgb(16,33,42)">Disturbance response</text> <line x1="64"
+y1="120" x2="838" y2="120" stroke="rgb(201,213,216)"
+stroke-width="4"/> <line x1="64" y1="224" x2="838" y2="224"
+stroke="rgb(201,213,216)" stroke-width="4"/> <text x="64"
+y="108" font-size="18" fill="rgb(95,107,118)">Open loop: command
+does not use the measured output</text> <text x="64" y="212"
+font-size="18" fill="rgb(95,107,118)">Feedback: measured output
+helps reject the disturbance</text> <text x="64" y="292"
+font-size="14" fill="rgb(95,107,118)">model: dy/dt = -a y + u + d;
+integral action is explained in the PID system-type section</text>
+<path data-ch1-open-loop d="M 84 120 L 499 120 L 514 128 L 529 134 L
+544 139 L 559 144 L 574 148 L 589 152 L 604 155 L 619 158 L 634 160 L
+649 162 L 664 164 L 679 166 L 694 167 L 709 168 L 724 169 L 739 170 L
+754 171 L 769 172 L 784 172 L 799 173 L 814 173 L 829 174 L 838 174"
+fill="none" stroke="rgb(182,83,47)" stroke-width="7"
+stroke-linecap="round"/> <path data-ch1-feedback d="M 84 224 L 499
+224 L 514 229 L 529 232 L 544 233 L 559 234 L 574 235 L 589 235 L 604
+235 L 619 235 L 634 235 L 649 235 L 664 235 L 679 235 L 694 235 L 709
+235 L 724 235 L 739 235 L 754 235 L 769 235 L 784 235 L 799 235 L 814
+235 L 829 235 L 838 235" fill="none" stroke="rgb(14,109,119)"
+stroke-width="7" stroke-linecap="round"/> <line
+data-ch1-disturbance-line x1="360" y1="92" x2="360" y2="282"
+stroke="rgb(150,122,55)" stroke-width="3" stroke-dasharray="8
+8"/> <path data-ch1-disturbance-arrow d="M 348 87 L 360 62 L 372 87
+Z" fill="rgb(150,122,55)"/> <text data-ch1-disturbance-label
+x="576" y="103" font-size="16"
+fill="rgb(111,87,29)">disturbance at t = 0.55</text> <circle
+data-ch1-open-end cx="838" cy="165" r="10"
+fill="rgb(182,83,47)"/> <circle data-ch1-feedback-end cx="838"
+cy="235" r="10" fill="rgb(14,109,119)"/> <text
+data-ch1-open-label x="664" y="154" font-size="16"
+fill="rgb(138,63,35)">output remains shifted</text> <text
+data-ch1-feedback-label x="590" y="223" font-size="16"
+fill="rgb(11,89,97)">feedback returns to target</text> </svg> <p
+class="ch1-caption">First-order disturbance comparison for dy/dt = -a
+y + u + d. Open-loop operation cannot correct the offset caused by a
+constant disturbance. The feedback curve includes the kind of
+accumulated-error effect discussed later in Chapter 9, the PID
+system-type section, so the output returns to the desired value after
+the transient.</p> </div>
+<p>The simulation model is typically nonlinear and high order and is too
+mathematically complex to be useful for control design. Therefore, to
+facilitate design, the simulation model is simplified and usually
+linearized to create lower-order design models.<span id="idx-0003" class="book-index-anchor" aria-hidden="true"></span> For any physical
+system, there may be multiple design models that capture certain aspects
+of the system that are important for a particular design. In this book
+we will introduce the two most common design models used for control
+systems analysis and design: transfer-function models<span id="idx-0004" class="book-index-anchor" aria-hidden="true"></span> and state-space
+models<span id="idx-0005" class="book-index-anchor" aria-hidden="true"></span>. In both cases we will
+linearize the system about a particular operating condition. The
+advantage of transfer function models is that they capture the frequency
+dependence of the input-output relationship in dynamic systems. The
+advantage of state space models is that they are more intuitive and are
+better adapted to numerical implementation.
+Part <a href="03-3-the-euler-lagrange-equations.html#part:design_models" data-reference-type="ref"
+data-reference="part:design_models">II</a> of the book
+shows how to linearize the equations of motion and how to create
+transfer function and state space design models.</p>
+<p>The next three parts,
+Part <a href="06-6-state-space-models.html#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a>–<a href="14-14-disturbance-observers.html#part:loopshaping" data-reference-type="ref"
+data-reference="part:loopshaping">V</a>, introduce
+three different control design methods.
+Part <a href="06-6-state-space-models.html#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a> shows how to design
+Proportional-Integral-Derivative (PID) controllers for second-order
+systems. The PID method is the most common control technique used in
+industry. It can be understood from both a time-domain and
+frequency-domain perspective. The advantage of PID is its simplicity in
+design and implementation and the fact that it can be used to achieve
+high performance for a surprising variety of systems. However, the
+disadvantage of PID control<span id="idx-0006" class="book-index-anchor" aria-hidden="true"></span> is that stability and
+performance can typically only be guaranteed for second-order systems.
+Therefore, Part <a href="06-6-state-space-models.html#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a> is focused exclusively on
+second-order systems.</p>
+<p>In Part <a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based" data-reference-type="ref"
+data-reference="part:observer_based">IV</a> we
+introduce the observer-based control method.<span id="idx-0007" class="book-index-anchor" aria-hidden="true"></span> Observer based methods
+can be thought of as a natural extension of PID controllers to high
+order systems. However, observer based methods are much more general
+than PID and can be used to obtain higher performance. In addition, most
+observer based techniques extend to nonlinear and time-varying systems.
+The disadvantages of observer-based methods are that they require a
+higher level of mathematical sophistication to understand and use and
+they are primarily time-domain methods.</p>
+<p>The final design technique, which is covered in
+Part <a href="14-14-disturbance-observers.html#part:loopshaping" data-reference-type="ref"
+data-reference="part:loopshaping">V</a>, is the loop
+shaping control design method.<span id="idx-0008" class="book-index-anchor" aria-hidden="true"></span> The loop shaping
+method is a frequency domain technique that explicitly addresses
+robustness of the system. The loop shaping method is also a natural
+extension of PID control to higher order systems. One of the advantages
+of loop shaping techniques is that they can be used when only a
+frequency response model of the system is available.</p>
+<p>The book is organized around several design studies. For each new
+concept that is introduced, we will apply that concept to three specific
+design problems. The design problems are introduced in the following
+three sections and include a single link robot arm, a pendulum on a
+cart, and a simple satellite attitude control problem. The homework
+problems, which are provided in
+Part <a href="18-18-compensator-design.html#part:design_studies" data-reference-type="ref"
+data-reference="part:design_studies">VI</a>, will
+follow the same format with problems that are identical to those worked
+in the book, but they will be applied to different physical systems. Our
+hope is to illustrate the control design process with specific,
+easy-to-understand problems. We note, however, that the concepts
+introduced in this book are applicable to a much wider variety of
+problems than those illustrated in the book. We focus on mechanical
+systems, but a similar process (with the exception of the modeling
+section) can be followed for any system that can be modeled using
+ordinary differential equations. Examples include aerodynamic systems,
+electrical systems, chemical processes, large structures like buildings
+and bridges, biological feedback systems, economic systems, queuing
+systems, and many more.</p>
+<h2 data-number="1.2" id="design-study-preview"><span class="header-section-number">1.2</span> Design-Study Preview</h2>
+<div class="chapter-one-panel ch1-design-selector"
+id="intro-ch1-design-study-selector"> <p
+class="chapter-one-kicker">Choose a system and identify what control
+will need</p> <p>These cards are a preview. At this point, focus
+only on the physical system: what can be actuated, what can be measured,
+and what limitation could matter later.</p> <div
+class="design-study-grid"> <details> <summary>A. Single-link
+arm</summary> <dl> <dt>Likely actuator</dt><dd>Motor torque at
+the joint.</dd> <dt>Likely measurement</dt><dd>Arm angle and
+possibly angular velocity.</dd> <dt>Physical
+limitation</dt><dd>Motor torque limits and gravity loading.</dd>
+</dl> </details> <details> <summary>B. Pendulum on a
+cart</summary> <dl> <dt>Likely actuator</dt><dd>Horizontal
+force on the cart.</dd> <dt>Likely measurement</dt><dd>Cart
+position and pendulum angle.</dd> <dt>Physical
+limitation</dt><dd>Limited track length and unstable pendulum
+motion.</dd> </dl> </details> <details> <summary>C. Satellite
+attitude</summary> <dl> <dt>Likely actuator</dt><dd>Applied
+torque from thrusters or reaction wheels.</dd> <dt>Likely
+measurement</dt><dd>Attitude angle and angular rate.</dd>
+<dt>Physical limitation</dt><dd>Flexible modes, actuator limits,
+and fuel or energy use.</dd> </dl> </details> <details>
+<summary>D. Mass-spring-damper</summary> <dl> <dt>Likely
+actuator</dt><dd>Applied force on the mass.</dd> <dt>Likely
+measurement</dt><dd>Position and possibly velocity.</dd>
+<dt>Physical limitation</dt><dd>Oscillation, damping, and force
+limits.</dd> </dl> </details> <details> <summary>E. Block on
+beam</summary> <dl> <dt>Likely actuator</dt><dd>Beam angle or
+torque applied to the beam.</dd> <dt>Likely
+measurement</dt><dd>Block position and beam angle.</dd>
+<dt>Physical limitation</dt><dd>Beam angle limits and
+rolling/sliding assumptions.</dd> </dl> </details> <details>
+<summary>F. Planar VTOL</summary> <dl> <dt>Likely
+actuator</dt><dd>Left and right rotor thrusts.</dd> <dt>Likely
+measurement</dt><dd>Position, altitude, pitch angle, and
+rates.</dd> <dt>Physical limitation</dt><dd>Rotor saturation,
+coupling between pitch and lateral motion, and gravity.</dd> </dl>
+</details> </div> </div>
+<h2 data-number="1.3" id="design-studies"><span class="header-section-number">1.3</span> Design Studies</h2>
+<h3 data-number="1.3.1" id="design-study-single-link-robot-arm" class="section-design-study"><span class="header-section-number">1.3.1</span> Design Study: Single Link
+Robot Arm</h3>
+<p><img src="6_design_studies/figures/hw_arm_defn.png"
+style="width:49.0%" alt="image" /></p>
+<p>Figure <a href="#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="fig:int_arm_defn">1.2</a> shows a single
+link robot arm system. The robot arm has mass <span
+class="math inline">\(m\)</span> and length <span
+class="math inline">\(\ell\)</span>. The angle of the robot is given by
+<span class="math inline">\(\theta\)</span> as measured from horizontal
+to the ground. The angular speed of the arm is <span
+class="math inline">\(\dot{\theta}\)</span>. There is an applied torque
+<span class="math inline">\(\tau\)</span> at the joint. There is also a
+damping (or viscous friction) torque that opposes the rotation of the
+joint and which can be modeled as <span
+class="math inline">\(-b\dot{\theta}\)</span>.</p>
+<p>The actual physical parameters of the system are <span
+class="math inline">\(m=0.5\)</span> kg, <span
+class="math inline">\(\ell=0.3\)</span> m, <span
+class="math inline">\(g=9.8\)</span> m/s<span
+class="math inline">\(^2\)</span>, <span
+class="math inline">\(b=0.01\)</span> Nms. The torque is limited by
+<span class="math inline">\(\left|\tau\right|\leq 1\)</span> Nm.</p>
+<section id="design-study-a-intro-orientation">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="intro-orientation"
+data-dsa-show-solution-on-wrong> <p class="advanced-kicker">Design
+Study A orientation</p> <h3>Identify the robot-arm variables before
+starting the design sequence</h3> <p>This check is not a worked
+solution gate. It is a quick orientation to the coordinate, measured
+output, actuator, and physical limitation that appear throughout the
+single-link robot-arm design study.</p>
+
+<section class="guided-step" data-dsa-step="configuration">
+<h4>Step 1. Configuration variable</h4> <p>Enter the generalized
+coordinate that describes the arm angle.</p> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Arm angle</span><input type="text"
+data-dsa-input="angle" data-dsa-accept="theta\|arm angle\|link
+angle\|robot arm angle\|angle of the arm"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="configuration" data-dsa-hint="Hint: the arm angle is
+measured from horizontal and is named in the design-study
+description.">Check Step 1</button> <p class="quiz-feedback"
+data-dsa-feedback="configuration" aria-live="polite"></p>
+<details class="quiz-answer guided-step-solution"
+data-dsa-answer="configuration" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> The configuration
+variable is the arm angle <span class="math
+inline">\(\theta\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="state-output">
+<h4>Step 2. Full state versus measured output</h4> <p>For later
+state-space chapters, identify the two state variables and the measured
+output used for this design study.</p> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Full state
+variables</span><input type="text" data-dsa-input="state"
+data-dsa-accept="theta,thetadot\|theta,dottheta\|theta,theta_dot\|theta,\
+dottheta\|theta,\
+dot\
+theta\|theta thetadot\|theta dottheta\|theta theta dot\|arm angle and
+angular velocity\|arm angle, angular velocity"
+placeholder="variables"></label> <label><span>Measured
+output</span><input type="text" data-dsa-input="output"
+data-dsa-accept="theta\|arm angle\|link angle\|robot arm angle\|angle
+of the arm" placeholder="variable"></label> </div> <button
+type="button" data-dsa-check="state-output" data-dsa-hint="Hint:
+the full state includes angle and angular velocity, but the measured
+output is just the arm angle.">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="state-output"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="state-output"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The state is <span
+class="math inline">\(x=(\theta,\dot{\theta})^T\)</span>, and the
+measured output is <span class="math
+inline">\(y=\theta\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="actuation-limits">
+<h4>Step 3. Actuation and limitation</h4> <p>Identify the actuator
+input and one physical limitation that will matter during control
+design.</p> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Applied
+actuator</span><input type="text" data-dsa-input="actuator"
+data-dsa-accept="tau\|torque\|joint torque\|applied torque\|motor
+torque\|input torque" placeholder="short answer"></label>
+<label><span>Important limitation</span><input type="text"
+data-dsa-input="limitation" data-dsa-accept="torque limit\|limited
+torque\|torque saturation\|actuator saturation\|saturation\|limited
+actuator\|absolute torque limit\|tau limit\|friction\|damping\|viscous
+friction" placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="actuation-limits"
+data-dsa-hint="Hint: the actuator is the joint torque, and the
+description gives a bound on the torque magnitude.">Check Step
+3</button> <p class="quiz-feedback"
+data-dsa-feedback="actuation-limits" aria-live="polite"></p>
+<details class="quiz-answer guided-step-solution"
+data-dsa-answer="actuation-limits" hidden><summary>Show solution
+for Step 3</summary><p><strong>Answer:</strong> The actuator is
+the applied joint torque <span class="math inline">\(\tau\)</span>.
+A key limitation is the torque bound <span class="math
+inline">\(|\tau|\leq 1\)</span> Nm; damping or viscous friction also
+appears in the model.</p></details> </section>
+
+<p class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> </article>
+</section>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.2</a></strong> Kinetic
+energy.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.3</a></strong>
+Equations of motion.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.4</a></strong> Linearize
+equations of motion.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.5</a></strong> Transfer
+function model.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.6</a></strong> State space
+model.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.7</a></strong> Pole
+placement using PD.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.8</a></strong> Second-order
+design.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.9</a></strong> Integrators
+and system type.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.P.6</a></strong> Root
+locus.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.10</a></strong> Digital
+PID.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.11</a></strong> Full state
+feedback.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.12</a></strong>
+Full state with integrator.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.13</a></strong> Observer based
+control.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.14</a></strong>
+Disturbance observer.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.15</a></strong> Frequency
+response.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.16</a></strong> Loop gain.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.17</a></strong> Stability
+margins.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm">A.18</a></strong> Loopshaping
+design.</p>
+<p>Note: The notation identifies the design configuration and the
+chapter in which it is used: <strong>Example A.4</strong> refers to the
+application of approximations in Chapter 4 to linearize design
+configuration A. Similarly, <strong>Example A.P.6</strong> refers to the
+root locus assignment associated with Appendix A.P.6.</p>
+<h3 data-number="1.3.2" id="design-study-pendulum-on-a-cart" class="section-design-study"><span class="header-section-number">1.3.2</span> Design Study: Pendulum on a
+Cart</h3>
+<p><img src="6_design_studies/figures/hw_pendulum_defn.png"
+style="width:49.0%" alt="image" /></p>
+<p>Figure <a href="#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="fig:int_pendulum_defn">1.3</a> shows
+the pendulum on a cart system, also called an inverted pendulum. The
+position of the cart measured from the origin is <span
+class="math inline">\(z\)</span> and the linear speed of the cart is
+<span class="math inline">\(\dot{z}\)</span>. The angle of the pendulum
+from straight up is given by <span
+class="math inline">\(\theta\)</span>, and the angular velocity is <span
+class="math inline">\(\dot{\theta}\)</span>. The rod is of length <span
+class="math inline">\(\ell\)</span>, and has mass <span
+class="math inline">\(m_1\)</span>, and is approximated as being
+infinitely thin. The cart has mass <span
+class="math inline">\(m_2\)</span>. Gravity acts in the down direction.
+The only applied force is <span class="math inline">\(F\)</span>, which
+acts in the direction of <span class="math inline">\(z\)</span>. The
+cart slides on a frictionless surface, but air friction produces a
+damping force equal to <span
+class="math inline">\(-b\dot{z}\)</span>.</p>
+<p>The physical constants are <span
+class="math inline">\(m_1=0.25\)</span> kg, <span
+class="math inline">\(m_2=1.0\)</span> kg, <span
+class="math inline">\(\ell=1.0\)</span> m, <span
+class="math inline">\(g=9.8\)</span> m/s<span
+class="math inline">\(^2\)</span>, <span
+class="math inline">\(b=0.05\)</span> Ns. The force is limited by <span
+class="math inline">\(\left|F\right|\leq 5\)</span> N.</p>
+<section id="design-study-b-intro-orientation">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="intro-orientation"
+data-dsa-show-solution-on-wrong> <p class="advanced-kicker">Design
+Study B orientation</p> <h3>Identify the pendulum variables before
+starting the design sequence</h3> <p>This check is not a worked
+solution gate. It is a quick orientation to the variables, measurements,
+and limitations that appear throughout the pendulum-on-cart design
+study.</p>
+
+<section class="guided-step" data-dsa-step="configuration">
+<h4>Step 1. Configuration variables</h4> <p>Enter the two
+variables that fully describe the cart position and pendulum
+angle.</p> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Cart
+position</span><input type="text" data-dsa-input="cart-position"
+data-dsa-accept="z\|cart position\|cart location\|position of the
+cart\|horizontal position" placeholder="variable"></label>
+<label><span>Pendulum angle</span><input type="text"
+data-dsa-input="pendulum-angle" data-dsa-accept="theta\|pendulum
+angle\|angle of the pendulum\|angle from vertical\|rod angle"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="configuration" data-dsa-hint="Hint: use the variables
+named in the paragraph immediately above the activity. The cart position
+is the translational coordinate; the pendulum angle is measured from
+straight up.">Check Step 1</button> <p class="quiz-feedback"
+data-dsa-feedback="configuration" aria-live="polite"></p>
+<details class="quiz-answer guided-step-solution"
+data-dsa-answer="configuration" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> The configuration
+variables are <span class="inline-equation">z</span> for cart
+position and <span class="inline-equation">&theta;</span> for
+pendulum angle from vertical.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="state-output">
+<h4>Step 2. Full state versus measured output</h4> <p>For later
+state-space chapters, identify the four state variables and the two
+measured outputs described in the design study.</p> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Full state variables</span><input type="text"
+data-dsa-input="state"
+data-dsa-accept="z,theta,zdot,thetadot\|z,theta,z_dot,theta_dot\|z,theta,dotz,dottheta\|z,theta,\
+dotz,\
+dottheta\|z theta zdot thetadot\|z theta z dot theta dot\|cart position,
+pendulum angle, cart velocity, angular velocity\|cart position and
+pendulum angle and cart velocity and angular velocity"
+placeholder="variables"></label> <label><span>Measured
+outputs</span><input type="text" data-dsa-input="outputs"
+data-dsa-accept="z,theta\|theta,z\|z theta\|theta z\|cart position and
+pendulum angle\|pendulum angle and cart position\|cart position,
+pendulum angle\|pendulum angle, cart position"
+placeholder="variables"></label> </div> <button type="button"
+data-dsa-check="state-output" data-dsa-hint="Hint: the full state
+includes positions and velocities, but the measured output listed here
+includes only the two position-like variables.">Check Step
+2</button> <p class="quiz-feedback"
+data-dsa-feedback="state-output" aria-live="polite"></p>
+<details class="quiz-answer guided-step-solution"
+data-dsa-answer="state-output" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> The full state is
+<span class="inline-equation">(z, &theta;, <span
+class="overdot">z</span>, <span
+class="overdot">&theta;</span>)<sup>T</sup></span>, while the
+measured output used in later chapters is typically <span
+class="inline-equation">(z,
+&theta;)<sup>T</sup></span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="actuation-limits">
+<h4>Step 3. Actuation and limitation</h4> <p>Identify the single
+actuator and one physical limitation that will matter during control
+design.</p> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Applied
+actuator</span><input type="text" data-dsa-input="actuator"
+data-dsa-accept="F\|force\|cart force\|horizontal force\|applied
+force\|input force\|force on the cart\|horizontal force on the cart"
+placeholder="short answer"></label> <label><span>Important
+limitation</span><input type="text" data-dsa-input="limitation"
+data-dsa-accept="force limit\|limited force\|track length\|limited
+track length\|unstable pendulum\|saturation\|force saturation\|actuator
+saturation\|limited actuator\|cart travel\|limited cart travel\|limited
+cart motion\|track limit\|force saturation and track length\|limited
+force and track length" placeholder="short answer"></label>
+</div> <button type="button" data-dsa-check="actuation-limits"
+data-dsa-hint="Hint: the actuator is the horizontal input applied to
+the cart. A useful limitation is anything that prevents arbitrary cart
+force or motion.">Check Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="actuation-limits" aria-live="polite"></p>
+<details class="quiz-answer guided-step-solution"
+data-dsa-answer="actuation-limits" hidden><summary>Show solution
+for Step 3</summary><p><strong>Answer:</strong> The actuator is
+the horizontal force <span class="inline-equation">F</span> on the
+cart. Later designs must respect the force limit, limited cart travel,
+and the unstable upright pendulum motion.</p></details> </section>
+
+<p class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> </article>
+</section>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.2</a></strong> Kinetic
+energy.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.3</a></strong>
+Equations of Motion.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.4</a></strong>
+Linearize equations of motion.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.5</a></strong>
+Transfer function model.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.6</a></strong> State
+space model.</p>
+<p><strong><a
+href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.8</a></strong> Successive
+loop closure.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.9</a></strong>
+Integrators and system type.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.P.6</a></strong> Root
+locus.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.10</a></strong> Digital
+PID.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.11</a></strong> Full
+state feedback.</p>
+<p><strong><a
+href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.12</a></strong> Full
+state with integrator.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.13</a></strong> Observer
+based control.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.14</a></strong>
+Disturbance observer.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.15</a></strong> Frequency
+Response.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.16</a></strong> Loop
+gain.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.17</a></strong> Stability
+margins.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-b-pendulum-on-cart">B.18</a></strong>
+Loopshaping design.</p>
+<h3 data-number="1.3.3"
+id="design-study-satellite-attitude-control" class="section-design-study"><span class="header-section-number">1.3.3</span> Design Study: Satellite
+Attitude Control</h3>
+<figure id="fig:int_satellite_defn">
+<img src="6_design_studies/figures/hw_satellite_defn.png"
+style="width:50.0%" alt="Satellite with flexible solar panels." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 1.4. </span>Satellite with flexible solar
+panels.</figcaption>
+</figure>
+<p>Figure <a href="#fig:int_satellite_defn" data-reference-type="ref"
+data-reference="fig:int_satellite_defn">1.4</a> shows a simplified version
+of a satellite with flexible solar panels. We will model the flexible
+panels using a rigid sheet with moment of inertia <span
+class="math inline">\(J_p\)</span> connected to the main satellite body
+by a torsional compliant element with spring constant <span
+class="math inline">\(k\)</span> and damping constant <span
+class="math inline">\(b\)</span>. The moment of inertia of the satellite
+is <span class="math inline">\(J_s\)</span>. The angle of the satellite
+body from the inertial reference is <span
+class="math inline">\(\theta\)</span> and the angle of the panel from
+the inertial reference is denoted as <span
+class="math inline">\(\phi\)</span>. Thrusters are used to command an
+external torque of <span class="math inline">\(\tau\)</span> about the
+axis of the satellite body.</p>
+<p>The physical constants are <span
+class="math inline">\(J_s=5\)</span> kg m<span
+class="math inline">\(^2\)</span>, <span
+class="math inline">\(J_p=1\)</span> kg m<span
+class="math inline">\(^2\)</span>, <span
+class="math inline">\(k=0.1\)</span> N m, <span
+class="math inline">\(b=0.05\)</span> Nms. The torque is limited by
+<span class="math inline">\(\left|\tau\right|\leq 5\)</span> Nm.</p>
+<section id="design-study-c-orientation">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="intro-orientation"
+data-dsa-show-solution-on-wrong> <p class="advanced-kicker">Design
+Study C guided orientation</p> <h3>Identify the satellite variables
+before starting the worked examples</h3> <p>The satellite has a
+rigid body and flexible panel. Before using the study in later chapters,
+check that you can distinguish the body attitude, panel attitude,
+relative panel deflection, and torque input.</p> <section
+class="guided-step" data-dsa-step="coordinates"> <h4>Step 1.
+Identify the angular coordinates</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Body
+angle</span><input type="text" data-dsa-input="body"
+data-dsa-accept="theta\|body angle\|satellite body angle"
+placeholder="variable"></label> <label><span>Panel
+angle</span><input type="text" data-dsa-input="panel"
+data-dsa-accept="phi\|panel angle\|solar panel angle"
+placeholder="variable"></label> <label><span>Relative
+deflection</span><input type="text" data-dsa-input="deflection"
+data-dsa-accept="phi-theta\|phiminustheta\|phi minus theta\|panel
+deflection\|relative deflection" placeholder="expression"></label>
+</div> <button type="button" data-dsa-check="coordinates"
+data-dsa-hint="Use theta for the satellite body and phi for the
+panel.">Check Step 1</button> <p class="quiz-feedback"
+data-dsa-feedback="coordinates" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="coordinates" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> The body angle is
+<span class="math inline">\(\theta\)</span>, the panel angle is
+<span class="math inline">\(\phi\)</span>, and the flexible
+deflection is <span class="math
+inline">\(\phi-\theta\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="actuator"> <h4>Step
+2. Identify what the actuator directly changes</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Input type</span><input type="text"
+data-dsa-input="input" data-dsa-accept="tau\|torque\|body
+torque\|satellite torque" placeholder="short answer"></label>
+<label><span>Directly actuated coordinate</span><input
+type="text" data-dsa-input="coordinate"
+data-dsa-accept="theta\|body angle\|satellite body angle"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="actuator" data-dsa-hint="The thrusters command torque
+on the satellite body, not the panel.">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="actuator"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="actuator"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The input is body torque
+<span class="math inline">\(\tau\)</span>, applied directly to the
+satellite body coordinate <span class="math
+inline">\(\theta\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="no-flex"> <h4>Step
+3. Interpret no flexure</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>No-flexure
+condition</span><input type="text" data-dsa-input="condition"
+data-dsa-accept="theta=phi\|phi=theta\|theta equals phi\|phi equals
+theta" placeholder="condition"></label> </div> <button
+type="button" data-dsa-check="no-flex" data-dsa-hint="No flexure
+means the panel and body have the same inertial angle.">Check Step
+3</button> <p class="quiz-feedback" data-dsa-feedback="no-flex"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="no-flex"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> No panel flexure means
+<span class="math inline">\(\phi-\theta=0\)</span>, so <span
+class="math inline">\(\theta=\phi\)</span>.</p></details>
+</section> </article>
+</section>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.2</a></strong> Kinetic
+energy.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.3</a></strong>
+Equations of motion.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.4</a></strong>
+Equilibria.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.5</a></strong>
+Transfer function model.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.6</a></strong> State
+space model.</p>
+<p><strong><a
+href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.8</a></strong> Successive
+loop closure.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.9</a></strong>
+Integrators and system type.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.P.6</a></strong> Root
+locus.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.10</a></strong> Digital
+PID.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.11</a></strong> Full
+state feedback.</p>
+<p><strong><a
+href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.12</a></strong> Full
+state with integrator.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.13</a></strong> Observer
+based control.</p>
+<p><strong><a
+href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.14</a></strong> Disturbance
+observer.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.15</a></strong> Frequency
+Response.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.16</a></strong> Loop
+gain.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.17</a></strong> Stability
+margins.</p>
+<p><strong><a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-c-satellite-attitude-control">C.18</a></strong>
+Loopshaping design.</p>
+<h2 data-number="1.4" id="knowledge-check"><span class="header-section-number">1.4</span> Knowledge Check</h2>
+<p>
+Use these quick checks to test the Chapter 1 workflow vocabulary before
+moving on. The short-answer checks are intentionally limited to terms
+that can be graded reliably.
+</p>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. A design model is useful because it
+is deliberately simplified; it is not expected to be exact physical
+truth." data-feedback-b="B is correct. A design model is simplified so
+it can be used for controller design." data-feedback-c="C is not
+correct. Code-only implementation comes later, after a model and
+controller have been chosen." data-feedback-d="D is not correct. A
+measured data log can help validate a model, but it is not the
+simplified model used for controller design."> <h4>Q1. Design
+model</h4> <p class="quiz-prompt">Which item best describes the
+role of a design model?</p> <div class="quiz-options">
+<label><input type="radio" name="intro-ch1-q1" value="A"><span class="quiz-option-text">A)
+Exact physical truth</span></label> <label><input type="radio"
+name="intro-ch1-q1" value="B"><span class="quiz-option-text">B) A simplified model for controller
+design</span></label> <label><input type="radio" name="intro-ch1-q1"
+value="C"><span class="quiz-option-text">C) Code-only implementation</span></label> <label><input
+type="radio" name="intro-ch1-q1" value="D"><span class="quiz-option-text">D) A measured data
+log</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Feedback does not remove all
+modeling error; it helps react when real behavior differs from expected
+behavior." data-feedback-b="B is correct. Feedback uses measurements
+to react when actual behavior differs from desired behavior."
+data-feedback-c="C is not correct. Feedback requires sensors or
+measurements; it does not eliminate them." data-feedback-d="D is not
+correct. Feedback can help manage errors, but actuator limits still
+matter."> <h4>Q2. Value of feedback</h4> <p
+class="quiz-prompt">Why is feedback useful?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="intro-ch1-q2" value="A"><span class="quiz-option-text">A) It removes all modeling
+errors</span></label> <label><input type="radio" name="intro-ch1-q2"
+value="B"><span class="quiz-option-text">B) It reacts to measured output error</span></label>
+<label><input type="radio" name="intro-ch1-q2" value="C"><span class="quiz-option-text">C)
+It eliminates sensors</span></label> <label><input type="radio"
+name="intro-ch1-q2" value="D"><span class="quiz-option-text">D) It guarantees no actuator
+limits</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. A kinetic energy expression is part
+of modeling, not the final implementation." data-feedback-b="B is
+correct. Implementation is where the control idea becomes executable
+code running with real timing and signals." data-feedback-c="C is not
+correct. A block diagram describes structure, but it is not the running
+implementation." data-feedback-d="D is not correct. Linearization is
+part of creating a design model, not the running implementation.">
+<h4>Q3. Implementation</h4> <p class="quiz-prompt">Which item is
+usually closest to implementation?</p> <div class="quiz-options">
+<label><input type="radio" name="intro-ch1-q3" value="A"><span class="quiz-option-text">A) A
+kinetic energy expression</span></label> <label><input type="radio"
+name="intro-ch1-q3" value="B"><span class="quiz-option-text">B) Controller code running at a
+sample time</span></label> <label><input type="radio"
+name="intro-ch1-q3" value="C"><span class="quiz-option-text">C) A textbook block
+diagram</span></label> <label><input type="radio" name="intro-ch1-q3"
+value="D"><span class="quiz-option-text">D) A symbolic linearization</span></label> </div> <div
+class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Feedback needs output information so it
+can detect and respond to the effect of the disturbance."
+data-feedback-b="B is not correct. The original command alone cannot
+reveal how the output changed after the disturbance."
+data-feedback-c="C is not correct. A preselected actuator command is
+still open-loop if it does not use current output information."
+data-feedback-d="D is not correct. A design model helps predict
+behavior, but feedback needs current output information to react to the
+actual disturbance."> <h4>Q4. Disturbance response</h4> <p
+class="quiz-prompt">A disturbance pushes the output away from the
+desired behavior. What information does a feedback system need in order
+to react?</p> <div class="quiz-options"> <label><input
+type="radio" name="intro-ch1-q4" value="A"><span class="quiz-option-text">A) A measurement of
+the output</span></label> <label><input type="radio"
+name="intro-ch1-q4" value="B"><span class="quiz-option-text">B) Only the original command with no
+measurement</span></label> <label><input type="radio"
+name="intro-ch1-q4" value="C"><span class="quiz-option-text">C) A preselected actuator command
+with no measurement</span></label> <label><input type="radio"
+name="intro-ch1-q4" value="D"><span class="quiz-option-text">D) A copy of the design model with
+no current output information</span></label> </div> <div
+class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short"
+data-answers="feedback\|feed back\|feedback control"> <h4>Q5.
+Vocabulary</h4> <p class="quiz-prompt">What is the name for using
+measured output to react to error?</p> <div class="quiz-options">
+<label><span>Answer:</span><input type="text"
+name="intro-ch1-q5" placeholder="one or two words" /></label>
+</div> <div class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> Feedback. Feedback
+uses measured output information to respond to
+error.</p></details></div> </article>
+<article class="quiz-card" data-quiz-type="short"
+data-answers="design model\|design models"> <h4>Q6. Model
+vocabulary</h4> <p class="quiz-prompt">What kind of model is
+simplified for controller design?</p> <div class="quiz-options">
+<label><span>Answer:</span><input type="text"
+name="intro-ch1-q6" placeholder="two words" /></label> </div>
+<div class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> Design model. The
+simulation model is simplified into one or more design
+models.</p></details></div> </article>
+<article class="quiz-card chapter-one-panel ch1-reflection"
+id="intro-ch1-reflection" data-quiz-type="reflection"
+data-min-length="30"> <p class="ch1-feedback-title">Reflection
+Prompt</p> <p>In one or two sentences, explain why the book
+separates modeling, design, implementation, and validation.</p> <div
+class="quiz-options"> <label>Your response: <textarea
+name="intro-ch1-reflection" rows="4" placeholder="Type one or two sentences."></textarea> </label> </div> <div
+class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+guidance</summary><p><strong>Guidance:</strong> A strong answer
+should mention that each step serves a different purpose and that
+success in simulation does not guarantee success on the physical
+system.</p></details></div> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. The simulation model is usually more
+detailed and is used to predict behavior, not necessarily to synthesize
+the controller." data-feedback-b="B is correct. A design model is
+intentionally simplified so controller design is tractable."
+data-feedback-c="C is not correct. Implementation code executes the
+controller after the design model and controller are chosen."
+data-feedback-d="D is not correct. A data log may validate or identify
+a model, but it is not itself the simplified design model."> <h4>Q7.
+Model roles</h4> <p class="quiz-prompt">A team has a detailed
+nonlinear simulator and a simpler linear model used to choose feedback
+gains. Which artifact is the design model?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="intro-ch1-exam-q1" value="A"><span class="quiz-option-text">A) The detailed nonlinear
+simulator</span></label> <label><input type="radio"
+name="intro-ch1-exam-q1" value="B"><span class="quiz-option-text">B) The simpler linear model
+used for gain selection</span></label> <label><input type="radio"
+name="intro-ch1-exam-q1" value="C"><span class="quiz-option-text">C) The final controller source
+code</span></label> <label><input type="radio"
+name="intro-ch1-exam-q1" value="D"><span class="quiz-option-text">D) A plot of measured output
+data</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. The nominal model predicts expected
+behavior, but it does not reveal the current output after a
+disturbance." data-feedback-b="B is not correct. A precomputed input
+sequence is feedforward unless it is corrected using measurements."
+data-feedback-c="C is correct. Feedback requires measured behavior so
+the controller can react to error." data-feedback-d="D is not correct.
+The reference alone says what is desired, not what the plant actually
+did."> <h4>Q8. Feedback information</h4> <p
+class="quiz-prompt">A wind gust pushes an aircraft away from the
+commanded attitude. What information is essential for feedback to
+correct the error?</p> <div class="quiz-options"> <label><input
+type="radio" name="intro-ch1-exam-q2" value="A"><span class="quiz-option-text">A) Only the
+nominal aircraft model</span></label> <label><input type="radio"
+name="intro-ch1-exam-q2" value="B"><span class="quiz-option-text">B) Only a precomputed actuator
+command</span></label> <label><input type="radio"
+name="intro-ch1-exam-q2" value="C"><span class="quiz-option-text">C) A measurement or estimate of
+the current output</span></label> <label><input type="radio"
+name="intro-ch1-exam-q2" value="D"><span class="quiz-option-text">D) Only the reference
+command</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<section id="part:simulation_models" class="book-part" aria-labelledby="part-simulation_models-title"><p class="part-kicker">Part I</p><p class="part-title" id="part-simulation_models-title">Simulation Models</p></section>
+<p>To design efficient feedback control systems, we use mathematical
+models to understand the system, and then we design controllers that
+achieve the desired specifications. Developing suitable mathematical
+models is problem specific and can be very complicated requiring
+specialized knowledge. However, there are some well known techniques for
+certain classes of systems. This book only covers one general technique
+that is useful for a large class of rigid body mechanical systems. The
+technique is known as the Euler-Lagrange method and requires a
+mathematical description of the kinetic and potential energy of the
+system, given its (generalized) position and velocity. The theory behind
+Euler-Lagrange method is deep and well beyond the scope of this book.
+However, we will give a brief introduction that will enable the reader
+to apply Euler-Lagrange methods to a surprisingly large class of
+problems.</p>
+<p>As motivation for the Euler-Lagrange equations, consider a particle
+of mass <span class="math inline">\(m\)</span> in a gravity field, as
+shown in
+<strong>Fig.</strong> <a href="#fig:sm_particle" data-reference-type="ref"
+data-reference="fig:sm_particle">1.5</a>, where <span
+class="math inline">\(g\)</span> is the force of gravity at sea level,
+<span class="math inline">\(f_a\)</span> is an externally applied force,
+and the friction due to air resistance is modeled by a gain <span
+class="math inline">\(b\)</span> times the velocity <span
+class="math inline">\(\dot{y}\)</span>.</p>
+<figure id="fig:sm_particle">
+<img src="1_sim_models/figures/sm_particle_in_gravity.png"
+style="width:50.0%" alt="Point mass in a gravity field." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 1.5. </span>Point mass in a gravity
+field.</figcaption>
+</figure>
+<p>Since all of the forces are in the vertical direction, the motion of
+the vehicle can be completely described by the vertical position of
+particle <span class="math inline">\(y(t)\)</span>. From Newton’s law,
+the equations of motion are <span
+class="math display">\[\label{eq:sim_particle_1}
+m\ddot{y} = f_a-mg-b\dot{y},\]</span> where dots over the variable will
+be used throughout the book to denote differentiation with respect to
+time, i.e., <span
+class="math inline">\(\dot{y}\stackrel{\triangle}{=}\frac{dy}{dt}\)</span>
+and <span
+class="math inline">\(\ddot{y}\stackrel{\triangle}{=}\frac{d^2y}{dt^2}\)</span>.
+Rearranging <a href="#introduction" data-reference-type="eqref"
+data-reference="eq:sim_particle_1"><a href="#introduction">1.1</a></a> gives <span
+class="math display">\[\label{eq:sim_particle_2}
+m\ddot{y} + mg = f_a -b\dot{y}.\]</span> The kinetic energy<span id="idx-0009" class="book-index-anchor" aria-hidden="true"></span> for the particle is
+given by <span
+class="math inline">\(K(\dot{y})=\frac{1}{2}mv^2=\frac{1}{2}m\dot{y}^2\)</span>.
+The potential energy, <span id="idx-0010" class="book-index-anchor" aria-hidden="true"></span> which is induced by
+gravitational pull proportional to the distance from the center of the
+earth, is given by <span class="math inline">\(P(y)=P_0+mgy\)</span>,
+where <span class="math inline">\(P_0\)</span> is the potential energy
+of the particle when <span class="math inline">\(y=0\)</span>. Note that
+if the velocity <span class="math inline">\(\dot{y}\)</span> is thought
+of as independent of <span class="math inline">\(y\)</span>, then <span
+class="math display">\[\frac{\partial K(\dot{y})}{\partial \dot{y}} =
+m\dot{y}\]</span> and <span
+class="math display">\[\frac{d}{dt}\left(\frac{\partial
+K(\dot{y})}{\partial \dot{y}}\right) = m\ddot{y}.\]</span> Also note
+that <span class="math display">\[\frac{\partial P(y)}{\partial y} =
+mg.\]</span> Therefore,
+Equation <a href="#introduction" data-reference-type="eqref"
+data-reference="eq:sim_particle_2"><a href="#introduction">1.2</a></a> can be
+written as <span
+class="math display">\[\label{eq:sim_model_euler_lagrange_1}
+\frac{d}{dt}\left(\frac{\partial K(\dot{y})}{\partial \dot{y}}\right) +
+\frac{\partial P(y)}{\partial y} = f_a-b\dot{y}.\]</span>
+Equation <a href="#design-studies" data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange_1"><a href="#introduction">1.3</a></a>
+is a particular form of the so-called Euler-Lagrange equation. The
+generalization to a more complicated system takes the form <span
+class="math display">\[\label{eq:sim_model_euler_lagrange_2}
+\frac{d}{dt}\left(\frac{\partial K(y,\dot{y})}{\partial
+\dot{y}}-\frac{\partial P(y)}{\partial \dot{y}}\right) -
+\left(\frac{\partial K(y,\dot{y})}{\partial y} - \frac{\partial
+P(y)}{\partial y}\right) = f_a-b\dot{y},\]</span> which reduces to
+Equation <a href="#design-studies" data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange_1"><a href="#introduction">1.3</a></a>
+for our particular case since <span class="math inline">\(K\)</span> is
+only a function of <span class="math inline">\(\dot{y}\)</span>. To
+simplify the notation, we define the so-called <em>Lagrangian</em> as
+<span
+class="math display">\[L(y,\dot{y})\stackrel{\triangle}{=}K(y,\dot{y})-P(y),\]</span>
+and write
+Equation <a href="#introduction" data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange_2"><a href="#introduction">1.4</a></a>
+as <span class="math display">\[\label{eq:sim_model_euler_lagrange_3}
+\frac{d}{dt}\left(\frac{\partial L(y,\dot{y})}{\partial \dot{y}}\right)
+- \left(\frac{\partial L(y,\dot{y})}{\partial y}\right) =
+f_a-b\dot{y}.\]</span> The position of the system can be generalized to
+both positions and angles, and the velocity can be generalized to both
+linear and angular velocities. Throughout the book we will use the
+notation <span class="math inline">\(\mathbf{q} = (q_1, q_2, \dots,
+q_n)^\top\)</span> to denote the general configuration of the mechanical
+system that we are modeling. The vector <span
+class="math inline">\(\mathbf{q}\)</span> is called the generalized
+coordinates<span id="idx-0011" class="book-index-anchor" aria-hidden="true"></span>. The kinetic energy of
+the system is generally a function of both the generalized coordinates
+<span class="math inline">\(\mathbf{q}\)</span> and the generalized
+velocity<span id="idx-0012" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(\dot{\mathbf{q}}\)</span>. Therefore, we denote
+the kinetic energy as <span
+class="math inline">\(K(\mathbf{q},\dot{\mathbf{q}})\)</span>. On the
+other hand, in this book we will only consider potential fields that are
+conservative, and that only depend on the configuration variable <span
+class="math inline">\(\mathbf{q}\)</span>. Under these assumptions, the
+general form of the Euler-Lagrange equations is given by <span
+class="math display">\[\begin{aligned}
+\frac{d}{dt}\left(\frac{\partial
+L(\mathbf{q},\dot{\mathbf{q}})}{\partial \dot{q}_1}\right) -
+\frac{\partial L(\mathbf{q},\dot{\mathbf{q}})}{\partial q_1} &amp;=
+\tau_1-b_{11} \dot{q}_1 - \cdots - b_{1n}\dot{q}_n \notag \\
+\frac{d}{dt}\left(\frac{\partial
+L(\mathbf{q},\dot{\mathbf{q}})}{\partial \dot{q}_2}\right) -
+\frac{\partial L(\mathbf{q},\dot{\mathbf{q}})}{\partial q_2} &amp;=
+\tau_2-b_{21} \dot{q}_1 - \cdots - b_{2n}\dot{q}_n
+\label{eq:sim_model_euler_lagrange} \\
+\vdots \\
+\frac{d}{dt}\left(\frac{\partial
+L(\mathbf{q},\dot{\mathbf{q}})}{\partial \dot{q}_n}\right) -
+\frac{\partial L(\mathbf{q},\dot{\mathbf{q}})}{\partial q_n} &amp;=
+\tau_n-b_{n1} \dot{q}_1 - \cdots - b_{nn}\dot{q}_n, \notag
+\end{aligned}\]</span> where <span class="math inline">\(\tau_i\)</span>
+are the generalized forces and torques that are applied to the system.
+Or in vector form we can write <span
+class="math display">\[\label{eq:sim_model_euler_lagrange-vector}
+\frac{d}{dt}\left(\frac{\partial
+L(\mathbf{q},\dot{\mathbf{q}})}{\partial \dot{\mathbf{q}}}\right) -
+\frac{\partial L(\mathbf{q},\dot{\mathbf{q}})}{\partial \mathbf{q}} =
+\boldsymbol{\tau} -B \dot{\mathbf{q}},\]</span> where <span
+class="math inline">\(B\)</span> is a matrix with positive elements and
+<span
+class="math inline">\(\boldsymbol{\tau}=(\tau_1,\dots,\tau_n)^\top\)</span>
+are the generalized forces<span id="idx-0013" class="book-index-anchor" aria-hidden="true"></span>. The Euler-Lagrange
+equation <span id="idx-0014" class="book-index-anchor" aria-hidden="true"></span> will be discussed in
+more detail in
+Chapter <a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations" data-reference-type="ref"
+data-reference="chap:euler-lagrange">6</a>. However, before showing how
+to use Equation <a href="#introduction"
+data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange-vector"><a href="#introduction">1.8</a></a>
+to derive the equations of motion for practical systems, we need to show
+how to compute the kinetic and potential energy for general (holonomic)
+rigid body systems.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

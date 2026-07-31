@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="3" id="the-euler-lagrange-equations"><span class="header-section-number">3</span> The Euler-Lagrange Equations</h1>
+<h2 data-number="3.1" id="theory-1"><span class="header-section-number">3.1</span> Theory</h2>
+<p>In this chapter we show how to define the potential energy for simple
+mechanical systems and how to define the generalized forces. The
+Euler-Lagrange equations<span id="idx-0019" class="book-index-anchor" aria-hidden="true"></span> given in
+Equation <a href="01-1-introduction.html#introduction"
+data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange-vector"><a href="01-1-introduction.html#introduction">1.8</a></a>
+can then be used to derive the equations of motion for the system.</p>
+<h3 data-number="3.1.1" id="potential-energy"><span class="header-section-number">3.1.1</span> Potential Energy</h3>
+<p>In this book we will be concerned with two sources of potential
+energy<span id="idx-0020" class="book-index-anchor" aria-hidden="true"></span>: potential energy due
+to gravity and potential energy due to springs.</p>
+<figure id="fig:sm_gravity_potential">
+<img src="1_sim_models/figures/sm_gravity_potential.png"
+style="width:40.0%"
+alt="The potential energy of a unit mass m in gravity is given by P=mgy." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 3.1. </span>The potential energy of a unit mass <span
+class="math inline"><em>m</em></span> in gravity is given by <span
+class="math inline"><em>P</em> = <em>m</em><em>g</em><em>y</em></span>.</figcaption>
+</figure>
+<p>Consider a point mass<span id="idx-0021" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(m\)</span> in a gravity field that is at position
+<span class="math inline">\(y\)</span> as shown in
+<strong>Fig.</strong> <a href="#fig:sm_gravity_potential" data-reference-type="ref"
+data-reference="fig:sm_gravity_potential">3.1</a>. The potential energy
+is given by <span class="math display">\[P = mgy + P_0,\]</span> where
+<span class="math inline">\(P_0\)</span> is the potential energy when
+<span class="math inline">\(y=0\)</span>. Typically we desire an
+expression for potential energy that is zero when the configuration
+variables are zero.</p>
+<p>The second source of potential energy is from translational and
+rotational springs<span id="idx-0022" class="book-index-anchor" aria-hidden="true"></span>.</p>
+<figure id="fig:sm_spring_potential">
+<img src="1_sim_models/figures/sm_spring_potential.png"
+style="width:40.0%"
+alt="A spring stretched by distance z stores potential energy." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 3.2. </span>A spring stretched by distance <span
+class="math inline"><em>z</em></span> stores potential
+energy.</figcaption>
+</figure>
+<p>The spring shown in
+<strong>Fig.</strong> <a href="#fig:sm_spring_potential" data-reference-type="ref"
+data-reference="fig:sm_spring_potential">3.2</a> is stretched from rest
+by a distance of <span class="math inline">\(z\)</span>. The potential
+energy of a linear stretched/compressed spring is given by <span
+class="math display">\[P = \frac{1}{2}k z^2,\]</span> where <span
+class="math inline">\(k\)</span> is the spring constant. Similarly, for
+a rotational spring, the potential energy is given by <span
+class="math inline">\(P=\frac{1}{2}k \theta^2\)</span>, where <span
+class="math inline">\(\theta\)</span> is the rotational angle and <span
+class="math inline">\(\theta=0\)</span> is the angle at which the
+rotational spring is at rest.</p>
+<h3 data-number="3.1.2"
+id="generalized-coordinates-and-generalized-forces"><span class="header-section-number">3.1.2</span> Generalized Coordinates and
+Generalized Forces</h3>
+<p>The <em>generalized coordinates</em><span id="idx-0023" class="book-index-anchor" aria-hidden="true"></span> are the minimum set of
+configuration variables. For example, for the mass-spring-damper system
+shown in
+<strong>Fig.</strong> <a href="02-2-kinetic-energy-of-mechanical-systems.html#fig:sm_mass_spring_system" data-reference-type="ref"
+data-reference="fig:sm_mass_spring_system">2.6</a>, the generalized
+coordinates are <span class="math inline">\(\mathbf{q}=(z_1,
+z_2)^\top\)</span>. For the single link robot arm shown in
+<strong>Fig.</strong> <a href="02-2-kinetic-energy-of-mechanical-systems.html#fig:hw_arm_kinetic_energy" data-reference-type="ref"
+data-reference="fig:hw_arm_kinetic_energy">2.8</a>, the generalized
+coordinate is <span class="math inline">\(\mathbf{q}=\theta\)</span>.
+For the spinning dumbbell system shown in
+<strong>Fig.</strong> <a href="02-2-kinetic-energy-of-mechanical-systems.html#fig:sm_spinning_dumbbell" data-reference-type="ref"
+data-reference="fig:sm_spinning_dumbbell">2.7</a>, and the pendulum on a
+cart system shown in
+<strong>Fig.</strong> <a href="02-2-kinetic-energy-of-mechanical-systems.html#fig:hw_pendulum_kinetic_energy" data-reference-type="ref"
+data-reference="fig:hw_pendulum_kinetic_energy">2.9</a>, the generalized
+coordinates are <span class="math inline">\(\mathbf{q}=(z,
+\theta)^\top\)</span>. Finally, for the satellite system shown in
+<strong>Fig.</strong> <a href="01-1-introduction.html#fig:int_satellite_defn" data-reference-type="ref"
+data-reference="fig:int_satellite_defn">1.4</a>, the generalized
+coordinates are <span
+class="math inline">\(\mathbf{q}=(\theta,\phi)^\top\)</span>.</p>
+<p>The <em>generalized forces</em><span id="idx-0024" class="book-index-anchor" aria-hidden="true"></span> are the
+nonconservative forces and torques acting along each generalized
+coordinate. In other words, they are the applied forces and torques on
+the system. For example, for the mass-spring-damper system shown in
+<strong>Fig.</strong> <a href="02-2-kinetic-energy-of-mechanical-systems.html#fig:sm_mass_spring_system" data-reference-type="ref"
+data-reference="fig:sm_mass_spring_system">2.6</a>, the generalized
+force acting along <span class="math inline">\(z_1\)</span> is zero and
+the generalized force acting along <span
+class="math inline">\(z_2\)</span> is the applied force <span
+class="math inline">\(F\)</span>. Therefore the generalized force is
+<span class="math inline">\(\boldsymbol{\tau} = (0,
+F)^\top\)</span>.</p>
+<h3 data-number="3.1.3" id="damping-forces-and-torques"><span class="header-section-number">3.1.3</span> Damping Forces and
+Torques</h3>
+<p>Friction and applied dampers also exert forces on the system. Damping
+forces<span id="idx-0025" class="book-index-anchor" aria-hidden="true"></span> are externally applied
+forces that are proportional to the velocity or angular velocity of the
+system. For example, in the mass-spring-damper system shown in
+<strong>Fig.</strong> <a href="02-2-kinetic-energy-of-mechanical-systems.html#fig:sm_mass_spring_system" data-reference-type="ref"
+data-reference="fig:sm_mass_spring_system">2.6</a>, the damping force
+acting along <span class="math inline">\(z_1\)</span> is due to the
+first damper and the damper between the two masses and is given by <span
+class="math inline">\(-b_1\dot{z}_1-b_2(\dot{z}_1-\dot{z}_2)\)</span>.
+The damping acting along <span class="math inline">\(z_2\)</span> is
+given by <span class="math inline">\(-b_2(\dot{z}_2-\dot{z}_1)\)</span>.
+Therefore the damping force on the system is given by <span
+class="math display">\[-B\dot{\mathbf{q}}
+    = -\begin{pmatrix} b_1+b_2 &amp; -b_2 \\ -b_2 &amp; b_2
+\end{pmatrix} \begin{pmatrix} \dot{z}_1 \\ \dot{z}_2 \end{pmatrix}
+    = \begin{pmatrix} -b_1\dot{z}_1-b_2(\dot{z}_1-\dot{z}_2) \\
+-b_2(\dot{z}_2-\dot{z}_1) \end{pmatrix}.\]</span></p>
+<h3 data-number="3.1.4" id="euler-lagrange-equations"><span class="header-section-number">3.1.4</span> Euler-Lagrange Equations</h3>
+<p>The equations of motion are given by the Euler-Lagrange
+equations<span id="idx-0026" class="book-index-anchor" aria-hidden="true"></span>. Let the
+Lagrangian<span id="idx-0027" class="book-index-anchor" aria-hidden="true"></span> be given by <span
+class="math display">\[L(\mathbf{q},\dot{\mathbf{q}}) =
+K(\mathbf{q},\dot{\mathbf{q}}) - P(\mathbf{q}),\]</span> where <span
+class="math inline">\(K(\mathbf{q},\dot{\mathbf{q}})\)</span> is the
+kinetic energy of the system and is, in general, a function of the
+generalized coordinates and the generalized velocities, and <span
+class="math inline">\(P(\mathbf{q})\)</span> is the potential energy
+which is, in general, a function of the generalized coordinates. As
+shown in Equation <a href="01-1-introduction.html#introduction"
+data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange-vector"><a href="01-1-introduction.html#introduction">1.8</a></a>
+the Euler-Lagrange equations are given in vector form as <span
+class="math display">\[\frac{d}{dt}\left(\frac{\partial
+L(\mathbf{q},\dot{\mathbf{q}})}{\partial \dot{\mathbf{q}}}\right) -
+\frac{\partial L(\mathbf{q},\dot{\mathbf{q}})}{\partial \mathbf{q}} =
+\boldsymbol{\tau}-B \dot{\mathbf{q}}.\]</span></p>
+<h2 data-number="3.2" id="design-study-a-single-link-robot-arm-1" class="section-design-study"><span class="header-section-number">3.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="3.2.1" id="-example-problem-316" class="section-example"><span class="header-section-number">3.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example
+Problem <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#the-euler-lagrange-equations" data-reference-type="ref"
+data-reference="chap:euler-lagrange">6</a></h3>
+<p>Find the potential energy for the system.</p>
+<p>Define the generalized coordinates.</p>
+<p>Find the generalized forces and damping forces.</p>
+<p>Derive the equations of motion using the Euler-Lagrange
+equations.</p>
+<p>Referring to Appendices <a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1</a>, <a
+href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2</a>, and <a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3</a>, write
+a class or s-function that implements the equations of motion. Simulate
+the system using a variable torque input. The output should connect to
+the animation function developed in homework <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A.2</a>.</p>
+<section id="design-study-a-ch3-euler-lagrange">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw3-euler-lagrange"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Build the arm equation of motion before viewing the
+solution</h3> <p>Use the kinetic energy from Chapter 2 and gravity
+potential energy for the center of mass.</p> <div
+class="guided-design-study-setup-figure" role="figure"
+aria-label="Single link robot arm potential-energy geometry"> <img
+src="6_design_studies/figures/hw_arm_potential_energy.png"
+alt="Single link robot arm geometry for potential energy."> <p
+class="advanced-caption">Use this geometry to relate the
+center-of-mass height to <span class="math inline">\(\theta\)</span>
+before applying Euler-Lagrange.</p> </div>
+
+<section class="guided-step" data-dsa-step="potential">
+<h4>Step 1. Potential energy</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span><span class="math
+inline">\(P-P_0\)</span></span><input type="text"
+data-dsa-input="p"
+data-dsa-accept="m\*g\*l/2\*sin(theta)\|m\*g\*ell/2\*sin(theta)\|mgl/2\*sin(theta)"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="potential">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="potential"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="potential" hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> <span class="math
+inline">\(P=P_0+mg\ell\sin\theta/2\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="coordinates">
+<h4>Step 2. Generalized coordinate and force</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span><span class="math
+inline">\(q\)</span></span><input type="text"
+data-dsa-input="q" data-dsa-accept="theta"
+placeholder="variable"></label> <label><span>Applied
+generalized force</span><input type="text" data-dsa-input="force"
+data-dsa-accept="tau" placeholder="variable"></label>
+<label><span>Damping torque</span><input type="text"
+data-dsa-input="damping"
+data-dsa-accept="-b\*thetadot\|-bthetadot\|-b\*theta_dot"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="coordinates">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="coordinates"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="coordinates" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> <span class="math
+inline">\(q=\theta\)</span>, the applied torque is <span class="math
+inline">\(\tau\)</span>, and damping contributes <span class="math
+inline">\(-b\dot{\theta}\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="equation"> <h4>Step
+3. Equation of motion</h4> <p>Enter the multiplier on <span
+class="math inline">\(\ddot{\theta}\)</span> in the final
+equation.</p> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Inertia
+coefficient</span><input type="text" data-dsa-input="inertia"
+data-dsa-accept="m\*l\^2/3\|m\*ell\^2/3\|ml\^2/3\|mell\^2/3"
+placeholder="coefficient"></label> </div> <button
+type="button" data-dsa-check="equation">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="equation"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="equation" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> <span class="math
+inline">\((m\ell^2/3)\ddot{\theta}+b\dot{\theta}+mg\ell\cos\theta/2=\tau\)</span>.</p></details>
+</section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes a dynamics
+class and a simulation script. Before opening it, outline each component
+separately.</p> <textarea class="guided-design-study-pseudocode"
+rows="5" placeholder="armDynamics class: write pseudocode for storing parameters, evaluating the equation of motion, integrating the state, and applying saturation."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="hw03_armSim script: write pseudocode for creating dynamics and animation objects, applying torque, updating the state, and plotting results."></textarea> <p class="advanced-caption">These prompts
+are ungraded. They are intended to connect the Euler-Lagrange equation
+to the implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<figure id="fig:sm_arm_potential_energy">
+<img src="6_design_studies/figures/hw_arm_potential_energy.png"
+style="width:40.0%"
+alt="Energy calculation for the single link robot arm" />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 3.3. </span>Energy calculation for the single link
+robot arm</figcaption>
+</figure>
+<p>Let <span class="math inline">\(P_0\)</span> be the potential when
+<span class="math inline">\(\theta=0\)</span>. The height of the center
+of mass is <span class="math inline">\(\ell/2 \sin\theta\)</span>, which
+is zero when <span class="math inline">\(\theta=0\)</span>. Accordingly,
+the potential energy is given by <span class="math display">\[P = P_0 +
+mg \frac{\ell}{2} \sin\theta.\]</span> The generalized coordinate is
+<span class="math display">\[q_1= \theta.\]</span> The generalized force
+is <span class="math display">\[\tau_1=\tau,\]</span> and the
+generalized damping is <span class="math display">\[-B\dot{\mathbf{q}} =
+- b\dot{\theta}.\]</span> From Homework <a href="01-1-introduction.html#design-study-single-link-robot-arm"
+data-reference-type="ref" data-reference="ds:single_link_arm">3.1</a>.<a
+href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems" data-reference-type="ref"
+data-reference="chap:kinetic-energy"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2</a></a> we found
+that the kinetic energy is given by <span
+class="math display">\[K=\frac{1}{2}\left(\frac{m\ell^2}{3}\right)\dot{\theta}^2.\]</span>
+Therefore the Lagrangian is <span class="math display">\[L = K - P =
+\frac{1}{2}\left(\frac{m\ell^2}{3}\right)\dot{\theta}^2 - P_0 -
+mg\frac{\ell}{2} \sin\theta.\]</span> For this case, the Euler-Lagrange
+equation is given by <span
+class="math display">\[\frac{d}{dt}\left(\frac{\partial L}{\partial
+\dot{\theta}}\right) - \frac{\partial L}{\partial \theta} = \tau_1 -
+b\dot{\theta}\]</span> where <span
+class="math display">\[\begin{aligned}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\theta}}\right) &amp;=
+\frac{d}{dt}\left(\frac{m\ell^2}{3}\dot{\theta}\right) =
+\frac{m\ell^2}{3}\ddot{\theta} \\
+\frac{\partial L}{\partial \theta} &amp;= -mg\frac{\ell}{2}\cos\theta.
+\end{aligned}\]</span> Therefore, the Euler-Lagrange equation becomes
+<span class="math display">\[\label{eq:sm_arm_nonlinear_eom}
+\frac{m\ell^2}{3}\ddot{\theta} + mg\frac{\ell}{2}\cos\theta = \tau -
+b\dot{\theta}.\]</span></p>
+<p>A Python class that implements the dynamics of the single link robot
+arm is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="armDynamics.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> armParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> armDynamics:</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, alpha<span class="op">=</span><span class="fl">0.0</span>):</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initial state conditions</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> np.array([</span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>            [P.theta0],      <span class="co"># initial angle</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>            [P.thetadot0]    <span class="co"># initial angular rate</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        ])  </span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mass of the arm, kg</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.m <span class="op">=</span> P.m <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Length of the arm, m</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ell <span class="op">=</span> P.ell <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Damping coefficient, Ns</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b <span class="op">=</span> P.b <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))  </span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the gravity constant is well known, so we don&#39;t change it.</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.g <span class="op">=</span> P.g</span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># sample rate at which the dynamics are propagated</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Ts <span class="op">=</span> P.Ts  </span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.torque_limit <span class="op">=</span> P.tau_max</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, u):</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This is the external method that takes the input u at time</span></span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># t and returns the output y at time t.</span></span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturate the input torque</span></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> saturate(u, <span class="va">self</span>.torque_limit)</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rk4_step(u)  <span class="co"># propagate the state by one time sample</span></span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="va">self</span>.h()  <span class="co"># return the corresponding output</span></span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> f(<span class="va">self</span>, state, tau):</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Return xdot = f(x,u), the system state update equations</span></span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># re-label states for readability</span></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> state[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        thetadot <span class="op">=</span> state[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        thetaddot <span class="op">=</span> (<span class="fl">3.0</span> <span class="op">/</span> <span class="va">self</span>.m <span class="op">/</span> <span class="va">self</span>.ell<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> <span class="op">\</span></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>                    (tau <span class="op">-</span> <span class="va">self</span>.b<span class="op">*</span>thetadot <span class="op">\</span></span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>                     <span class="op">-</span> <span class="va">self</span>.m <span class="op">*</span> <span class="va">self</span>.g <span class="op">*</span> <span class="va">self</span>.ell <span class="op">/</span> <span class="fl">2.0</span><span class="op">*</span>np.cos(theta))</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        xdot <span class="op">=</span> np.array([[thetadot], [thetaddot]])</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xdot</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> h(<span class="va">self</span>):</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return the output equations</span></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># could also use input u if needed</span></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> <span class="va">self</span>.state[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> np.array([[theta]])</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rk4_step(<span class="va">self</span>, u):</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Integrate ODE using Runge-Kutta RK4 algorithm</span></span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state, u)</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>        F2 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F1, u)</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        F3 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F2, u)</span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>        F4 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">*</span> F3, u)</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> <span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> (F1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F2 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F3 <span class="op">+</span> F4)</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Code that simulates the dynamics is given below.</p>
+<div class="sourceCode" id="cb2" data-language="Python"
+data-caption="hw03\_armSim.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="18-18-compensator-design.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="18-18-compensator-design.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> armParam <span class="im">as</span> P</span>
+<span id="cb2-3"><a href="18-18-compensator-design.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> signalGenerator <span class="im">import</span> signalGenerator</span>
+<span id="cb2-4"><a href="18-18-compensator-design.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> armAnimation <span class="im">import</span> armAnimation</span>
+<span id="cb2-5"><a href="18-18-compensator-design.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataPlotter <span class="im">import</span> dataPlotter</span>
+<span id="cb2-6"><a href="18-18-compensator-design.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> armDynamics <span class="im">import</span> armDynamics</span>
+<span id="cb2-7"><a href="18-18-compensator-design.html#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="18-18-compensator-design.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate arm, controller, and reference classes</span></span>
+<span id="cb2-9"><a href="18-18-compensator-design.html#cb2-9" aria-hidden="true" tabindex="-1"></a>arm <span class="op">=</span> armDynamics()</span>
+<span id="cb2-10"><a href="18-18-compensator-design.html#cb2-10" aria-hidden="true" tabindex="-1"></a>torque <span class="op">=</span> signalGenerator(amplitude<span class="op">=</span><span class="fl">0.2</span>, frequency<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb2-11"><a href="18-18-compensator-design.html#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="18-18-compensator-design.html#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate the simulation plots and animation</span></span>
+<span id="cb2-13"><a href="18-18-compensator-design.html#cb2-13" aria-hidden="true" tabindex="-1"></a>dataPlot <span class="op">=</span> dataPlotter()</span>
+<span id="cb2-14"><a href="18-18-compensator-design.html#cb2-14" aria-hidden="true" tabindex="-1"></a>animation <span class="op">=</span> armAnimation()</span>
+<span id="cb2-15"><a href="18-18-compensator-design.html#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="18-18-compensator-design.html#cb2-16" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> P.t_start  <span class="co"># time starts at t_start</span></span>
+<span id="cb2-17"><a href="18-18-compensator-design.html#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> t <span class="op">&lt;</span> P.t_end:  <span class="co"># main simulation loop</span></span>
+<span id="cb2-18"><a href="18-18-compensator-design.html#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propagate dynamics in between plot samples</span></span>
+<span id="cb2-19"><a href="18-18-compensator-design.html#cb2-19" aria-hidden="true" tabindex="-1"></a>    t_next_plot <span class="op">=</span> t <span class="op">+</span> P.t_plot</span>
+<span id="cb2-20"><a href="18-18-compensator-design.html#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># updates control and dynamics at faster simulation rate</span></span>
+<span id="cb2-21"><a href="18-18-compensator-design.html#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> t <span class="op">&lt;</span> t_next_plot:  </span>
+<span id="cb2-22"><a href="18-18-compensator-design.html#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get referenced inputs from signal generators</span></span>
+<span id="cb2-23"><a href="18-18-compensator-design.html#cb2-23" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> torque.square(t)        </span>
+<span id="cb2-24"><a href="18-18-compensator-design.html#cb2-24" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> arm.update(u)  <span class="co"># Propagate the dynamics</span></span>
+<span id="cb2-25"><a href="18-18-compensator-design.html#cb2-25" aria-hidden="true" tabindex="-1"></a>        t <span class="op">+=</span> P.Ts  <span class="co"># advance time by Ts</span></span>
+<span id="cb2-26"><a href="18-18-compensator-design.html#cb2-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-27"><a href="18-18-compensator-design.html#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># update animation and data plots</span></span>
+<span id="cb2-28"><a href="18-18-compensator-design.html#cb2-28" aria-hidden="true" tabindex="-1"></a>    animation.update(arm.state)</span>
+<span id="cb2-29"><a href="18-18-compensator-design.html#cb2-29" aria-hidden="true" tabindex="-1"></a>    dataPlot.update(t, arm.state, u)</span>
+<span id="cb2-30"><a href="18-18-compensator-design.html#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="18-18-compensator-design.html#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the pause causes the figure to be displayed during the simulation</span></span>
+<span id="cb2-32"><a href="18-18-compensator-design.html#cb2-32" aria-hidden="true" tabindex="-1"></a>    plt.pause(<span class="fl">0.0001</span>)  </span>
+<span id="cb2-33"><a href="18-18-compensator-design.html#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="18-18-compensator-design.html#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Keeps the program from closing until the user presses a button.</span></span>
+<span id="cb2-35"><a href="18-18-compensator-design.html#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Press key to close&#39;</span>)</span>
+<span id="cb2-36"><a href="18-18-compensator-design.html#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.waitforbuttonpress()</span>
+<span id="cb2-37"><a href="18-18-compensator-design.html#cb2-37" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="3.3" id="design-study-b-inverted-pendulum" class="section-design-study"><span class="header-section-number">3.3</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="3.3.1" id="-example-problem-326" class="section-example"><span class="header-section-number">3.3.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example
+Problem <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#the-euler-lagrange-equations" data-reference-type="ref"
+data-reference="chap:euler-lagrange">6</a></h3>
+<p>Find the potential energy for the system.</p>
+<p>Define the generalized coordinates.</p>
+<p>Find the generalized forces and damping forces.</p>
+<p>Derive the equations of motion using the Euler-Lagrange
+equations.</p>
+<p>Referring to Appendices <a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1</a>, <a
+href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2</a>, and <a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3</a>, write
+a class for s-function that implements the equations of motion. Simulate
+the system using a variable force on the cart as an input. The output
+should connect to the animation function developed in homework <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B.2</a>.</p>
+<section id="design-study-b-ch3-euler-lagrange">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw3"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Assemble the pendulum equations of
+motion before viewing the solution</h3> <p>Use energy, generalized
+coordinates, and generalized forces to form the coupled nonlinear
+equations.</p> <div class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Pendulum on a cart definition figure."> <img
+src="6_design_studies/figures/hw_pendulum_defn.png" alt="Pendulum on
+a cart definition figure."> <p class="advanced-caption">Use this
+setup to connect gravity, force, cart motion, and pendulum angle before
+applying Euler-Lagrange.</p> </div>
+
+<section class="guided-step" data-dsa-step="potential">
+<h4>Step 1. Potential energy</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Potential energy
+term</span><input type="text" data-dsa-input="p"
+data-dsa-accept="m1\*g\*l/2\*(cos(theta)-1)\|m_1\*g\*ell/2\*(cos(theta)-1)\|m1
+g l over 2 cos theta minus 1" placeholder="expression"></label>
+</div> <button type="button" data-dsa-check="potential">Check
+Step 1</button> <p class="quiz-feedback"
+data-dsa-feedback="potential" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="potential"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The rod center of mass
+height gives P = P0 + m1 g ell/2 (cos(theta)-1).</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="coordinates">
+<h4>Step 2. Generalized coordinates</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Coordinates</span><input type="text"
+data-dsa-input="q" data-dsa-accept="z,theta\|theta,z\|z theta\|cart
+position and pendulum angle" placeholder="variables"></label>
+<label><span>Generalized force vector</span><input type="text"
+data-dsa-input="force" data-dsa-accept="F,0\|force,0\|horizontal
+force and zero torque" placeholder="short answer"></label>
+</div> <button type="button" data-dsa-check="coordinates">Check
+Step 2</button> <p class="quiz-feedback"
+data-dsa-feedback="coordinates" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="coordinates" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> The generalized
+coordinates are z and theta, with generalized force (F,
+0)\^T.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="model"> <h4>Step 3.
+Coupled dynamics structure</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Mass matrix
+size</span><input type="text" data-dsa-input="size"
+data-dsa-accept="2x2\|2 by 2\|two by two" placeholder="short answer"></label> <label><span>Damping direction</span><input
+type="text" data-dsa-input="damping" data-dsa-accept="z\|cart\|cart
+position\|horizontal" placeholder="short answer"></label> </div>
+<button type="button" data-dsa-check="model">Check Step
+3</button> <p class="quiz-feedback" data-dsa-feedback="model"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="model" hidden><summary>Show
+solution for Step 3</summary><p><strong>Answer:</strong> The
+result is a 2 by 2 coupled mass-matrix equation; damping acts in the z
+direction.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes a dynamics
+class and a simulation script. Before opening it, outline each component
+separately.</p> <textarea class="guided-design-study-pseudocode"
+rows="5" placeholder="pendulumDynamics class: write pseudocode for storing parameters, evaluating nonlinear accelerations, integrating the state, and applying saturation."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="hw03_pendulumSim script: write pseudocode for creating dynamics and animation objects, applying force, updating the state, and plotting results."></textarea> <p class="advanced-caption">These
+prompts are ungraded. They are intended to connect the derivation to the
+implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<figure id="fig:sm_pendulum_defn">
+<img src="6_design_studies/figures/hw_pendulum_defn.png"
+style="width:50.0%" alt="Pendulum on a cart." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 3.4. </span>Pendulum on a cart.</figcaption>
+</figure>
+<p>Let <span class="math inline">\(P_0\)</span> be the potential energy
+when <span class="math inline">\(\theta=0\)</span> and <span
+class="math inline">\(z=0\)</span>. Then the potential energy of the
+pendulum system is given by <span class="math display">\[P = P_0 + m_1 g
+\frac{\ell}{2} (\cos\theta-1),\]</span> where <span
+class="math inline">\(\frac{\ell}{2}\cos\theta\)</span> is the height of
+the center of mass of the rod. Note that the potential energy decreases
+as <span class="math inline">\(\theta\)</span> increases.</p>
+<p>The generalized coordinates for the system are the horizontal
+position <span class="math inline">\(z\)</span> and the angle <span
+class="math inline">\(\theta\)</span>. Therefore, let <span
+class="math inline">\(\mathbf{q} = (z, \theta)^\top\)</span>.</p>
+<p>The external force acting in the direction of <span
+class="math inline">\(z\)</span> is <span class="math inline">\(\tau_1 =
+F\)</span>, and the external torque acting in the direction of <span
+class="math inline">\(\theta\)</span> is <span
+class="math inline">\(\tau_2=0\)</span>. Therefore, the generalized
+forces are <span class="math inline">\(\boldsymbol{\tau}=(F,
+0)^\top\)</span>. A damping term acts in the direction of <span
+class="math inline">\(z\)</span>, which implies that <span
+class="math inline">\(-B\dot{\mathbf{q}} = (-b\dot{z},
+0)^\top\)</span>.</p>
+<p>Using Equation <a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems"
+data-reference-type="eqref"
+data-reference="eq:pendulum_kinetic_energy"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2.4</a></a>,
+the kinetic energy can be written in terms of the generalized
+coordinates as <span class="math display">\[\begin{aligned}
+K(\mathbf{q},\dot{\mathbf{q}}) &amp;= \frac{1}{2}(m_1+m_2)\dot{z}^2 +
+\frac{1}{2}m_1\frac{\ell^2}{3}\dot{\theta}^2 +
+m_1\frac{\ell}{2}\dot{z}\dot{\theta}\cos\theta \\
+&amp;= \frac{1}{2}(m_1+m_2)\dot{q}_1^2 +
+\frac{1}{2}m_1\frac{\ell^2}{3}\dot{q}_2^2 +
+m_1\frac{\ell}{2}\dot{q}_1\dot{q}_2\cos q_2,
+\end{aligned}\]</span> and the potential energy can be written as <span
+class="math display">\[\begin{aligned}
+P(\mathbf{q}) &amp;= P_0 + m_1 g \frac{\ell}{2}(\cos\theta-1)\\
+&amp;= P_0 + m_1 g \frac{\ell}{2}(\cos q_2-1).
+\end{aligned}\]</span> The Lagrangian is therefore given by <span
+class="math display">\[L(\mathbf{q},\dot{\mathbf{q}}) =
+\frac{1}{2}(m_1+m_2)\dot{q}_1^2 +
+\frac{1}{2}m_1\frac{\ell^2}{3}\dot{q}_2^2 +
+m_1\frac{\ell}{2}\dot{q}_1\dot{q}_2\cos q_2- P_0 - m_1 g
+\frac{\ell}{2}(\cos q_2-1).\]</span> Therefore <span
+class="math display">\[\begin{aligned}
+\frac{\partial L}{\partial\dot{\mathbf{q}}} &amp;= \begin{pmatrix}
+(m_1+m_2)\dot{z} + m_1\frac{\ell}{2}\dot{\theta}\cos\theta \\
+m_1\frac{\ell^2}{3}\dot{\theta} + m_1\frac{\ell}{2}\dot{z}\cos\theta
+\end{pmatrix} \\
+\frac{\partial L}{\partial\mathbf{q}} &amp;= \begin{pmatrix}
+0 \\ -m_1\frac{\ell}{2}\dot{z}\dot{\theta}\sin\theta + m_1 g
+\frac{\ell}{2} \sin\theta
+\end{pmatrix}.
+\end{aligned}\]</span> Differentiating <span
+class="math inline">\(\frac{\partial L}{\partial
+\dot{\mathbf{q}}}\)</span> with respect to time gives <span
+class="math display">\[\frac{d}{dt}\left(\frac{\partial L}{\partial
+\dot{\mathbf{q}}}\right) = \begin{pmatrix}
+(m_1+m_2)\ddot{z} + m_1 \frac{\ell}{2} \ddot{\theta}\cos\theta - m_1
+\frac{\ell}{2} \dot{\theta}^2\sin\theta \\
+m_1 \frac{\ell^2}{3} \ddot{\theta} + m_1 \frac{\ell}{2}
+\ddot{z}\cos\theta - m_1 \frac{\ell}{2} \dot{z}\dot{\theta}\sin\theta
+\end{pmatrix}.\]</span> Therefore the Euler-Lagrange equation <span
+class="math display">\[\frac{d}{dt}\left(\frac{\partial
+L}{\partial\dot{\mathbf{q}}} \right) - \frac{\partial L}{\partial
+\mathbf{q}} =  \boldsymbol{\tau}-B\dot{\mathbf{q}}\]</span> gives <span
+class="math display">\[\begin{aligned}
+(m_1+m_2)\ddot{z} + m_1 \frac{\ell}{2} \ddot{\theta}\cos\theta - m_1
+\frac{\ell}{2} \dot{\theta}^2\sin\theta &amp;= F - b\dot{z} \\
+m_1 \frac{\ell^2}{3} \ddot{\theta} + m_1 \frac{\ell}{2}
+\ddot{z}\cos\theta - m_1 \frac{\ell}{2} \dot{z}\dot{\theta}\sin\theta +
+m_1\frac{\ell}{2}\dot{z}\dot{\theta}\sin\theta - m_1 g \frac{\ell}{2}
+\sin\theta &amp;= 0.
+\end{aligned}\]</span> Simplifying and moving all second-order
+derivatives to the left-hand side, and all other terms to the right-hand
+side gives <span class="math display">\[\begin{pmatrix}
+(m_1+m_2)\ddot{z} + m_1 \frac{\ell}{2} \ddot{\theta}\cos\theta  \\
+m_1 \frac{\ell^2}{3} \ddot{\theta} + m_1 \frac{\ell}{2}
+\ddot{z}\cos\theta   
+\end{pmatrix}
+= \begin{pmatrix}  m_1 \frac{\ell}{2} \dot{\theta}^2\sin\theta + F
+-b\dot{z} \\ m_1 g \frac{\ell}{2} \sin\theta \end{pmatrix}.\]</span>
+Using matrix notation, this equation can be rearranged to isolate the
+second-order derivatives on the left-hand side as <span
+class="math display">\[\label{eq:pendulum_sim_model}
+\begin{pmatrix}
+(m_1+m_2) &amp; m_1 \frac{\ell}{2} \cos\theta \\
+m_1 \frac{\ell}{2} \cos\theta &amp; m_1 \frac{\ell^2}{3}
+\end{pmatrix} \begin{pmatrix}\ddot{z} \\ \ddot{\theta} \end{pmatrix}
+= \begin{pmatrix}  m_1 \frac{\ell}{2} \dot{\theta}^2\sin\theta + F
+-b\dot{z} \\ m_1 g \frac{\ell}{2} \sin\theta \end{pmatrix}.\]</span>
+Equation <a href="#design-study-a-single-link-robot-arm-1" data-reference-type="eqref"
+data-reference="eq:pendulum_sim_model"><a href="#the-euler-lagrange-equations">3.2</a></a>
+represents the simulation model for the pendulum on a cart system.</p>
+<p>A Python class that implements the dynamics of the pendulum is shown
+below</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="pendulumDynamics.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> pendulumDynamics:</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, alpha<span class="op">=</span><span class="fl">0.0</span>):</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initial state conditions</span></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> np.array([</span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>            [P.z0],  <span class="co"># z initial position</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>            [P.theta0],  <span class="co"># Theta initial orientation</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>            [P.zdot0],  <span class="co"># zdot initial velocity</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>            [P.thetadot0],  <span class="co"># Thetadot initial velocity</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># simulation time step</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Ts <span class="op">=</span> P.Ts</span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mass of the pendulum, kg</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.m1 <span class="op">=</span> P.m1 <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mass of the cart, kg</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.m2 <span class="op">=</span> P.m2 <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Length of the rod, m</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ell <span class="op">=</span> P.ell <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Damping coefficient, Ns</span></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b <span class="op">=</span> P.b <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># gravity constant is well known, don&#39;t change.</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.g <span class="op">=</span> P.g</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.force_limit <span class="op">=</span> P.F_max</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, u):</span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This is the external method that takes the input u at time</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># t and returns the output y at time t.</span></span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturate the input force</span></span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> saturate(u, <span class="va">self</span>.force_limit)</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rk4_step(u)  <span class="co"># propagate the state by one time sample</span></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="va">self</span>.h()  <span class="co"># return the corresponding output</span></span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> f(<span class="va">self</span>, state, u):</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Return xdot = f(x,u)</span></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> state[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> state[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        zdot <span class="op">=</span> state[<span class="dv">2</span>, <span class="dv">0</span>]</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        thetadot <span class="op">=</span> state[<span class="dv">3</span>, <span class="dv">0</span>]</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>        F <span class="op">=</span> u</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The equations of motion.</span></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print(&quot;here&quot;)</span></span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print(u.item(0))</span></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># exit()</span></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> np.array([[<span class="va">self</span>.m1 <span class="op">+</span> <span class="va">self</span>.m2,</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>                       <span class="va">self</span>.m1 <span class="op">*</span> (<span class="va">self</span>.ell<span class="op">/</span><span class="fl">2.0</span>) <span class="op">*</span> np.cos(theta)],</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>                       [<span class="va">self</span>.m1 <span class="op">*</span> (<span class="va">self</span>.ell<span class="op">/</span><span class="fl">2.0</span>) <span class="op">*</span> np.cos(theta),</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>                        <span class="va">self</span>.m1 <span class="op">*</span> (<span class="va">self</span>.ell<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="fl">3.0</span>)]])</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> np.array([[<span class="va">self</span>.m1 <span class="op">*</span> (<span class="va">self</span>.ell<span class="op">/</span><span class="fl">2.0</span>)</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>                       <span class="op">*</span> thetadot<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> np.sin(theta)</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>                       <span class="op">+</span> F <span class="op">-</span> <span class="va">self</span>.b<span class="op">*</span>zdot],</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>                       [<span class="va">self</span>.m1 <span class="op">*</span> <span class="va">self</span>.g <span class="op">*</span> (<span class="va">self</span>.ell<span class="op">/</span><span class="fl">2.0</span>)</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>                        <span class="op">*</span> np.sin(theta)]])</span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print(M.shape,C.shape) </span></span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> np.linalg.inv(M) <span class="op">@</span> C</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        zddot <span class="op">=</span> tmp[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        thetaddot <span class="op">=</span> tmp[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="co"># build xdot and return</span></span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>        xdot <span class="op">=</span> np.array([[zdot], [thetadot], [zddot], [thetaddot]])</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xdot</span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> h(<span class="va">self</span>):</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return y = h(x)</span></span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> <span class="va">self</span>.state[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> <span class="va">self</span>.state[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> np.array([[z],[theta]])</span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rk4_step(<span class="va">self</span>, u):</span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Integrate ODE using Runge-Kutta RK4 algorithm</span></span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state, u)</span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        F2 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F1, u)</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a>        F3 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F2, u)</span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>        F4 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">*</span> F3, u)</span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> <span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> (F1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F2 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F3 <span class="op">+</span> F4)</span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit<span class="op">*</span>np.sign(u)</span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>The Python code that simulates the dynamics is given below.</p>
+<div class="sourceCode" id="cb2" data-language="Python"
+data-caption="hw03\_pendulumSim.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="18-18-compensator-design.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="18-18-compensator-design.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb2-3"><a href="18-18-compensator-design.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> signalGenerator <span class="im">import</span> signalGenerator</span>
+<span id="cb2-4"><a href="18-18-compensator-design.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pendulumAnimation <span class="im">import</span> pendulumAnimation</span>
+<span id="cb2-5"><a href="18-18-compensator-design.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataPlotter <span class="im">import</span> dataPlotter</span>
+<span id="cb2-6"><a href="18-18-compensator-design.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pendulumDynamics <span class="im">import</span> pendulumDynamics</span>
+<span id="cb2-7"><a href="18-18-compensator-design.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb2-8"><a href="18-18-compensator-design.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The following could also work if you want to generate your E-L </span></span>
+<span id="cb2-9"><a href="18-18-compensator-design.html#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># equations using SymPy. But then you would need to be careful</span></span>
+<span id="cb2-10"><a href="18-18-compensator-design.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># about the file path to the generated eom file. </span></span>
+<span id="cb2-11"><a href="18-18-compensator-design.html#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#from pendulumDynamicsSympy import pendulumDynamics</span></span>
+<span id="cb2-12"><a href="18-18-compensator-design.html#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="18-18-compensator-design.html#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate pendulum, controller, and reference classes</span></span>
+<span id="cb2-14"><a href="18-18-compensator-design.html#cb2-14" aria-hidden="true" tabindex="-1"></a>pendulum <span class="op">=</span> pendulumDynamics(alpha<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb2-15"><a href="18-18-compensator-design.html#cb2-15" aria-hidden="true" tabindex="-1"></a>force <span class="op">=</span> signalGenerator(amplitude<span class="op">=</span><span class="dv">1</span>, frequency<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-16"><a href="18-18-compensator-design.html#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="18-18-compensator-design.html#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate the simulation plots and animation</span></span>
+<span id="cb2-18"><a href="18-18-compensator-design.html#cb2-18" aria-hidden="true" tabindex="-1"></a>dataPlot <span class="op">=</span> dataPlotter()</span>
+<span id="cb2-19"><a href="18-18-compensator-design.html#cb2-19" aria-hidden="true" tabindex="-1"></a>animation <span class="op">=</span> pendulumAnimation()</span>
+<span id="cb2-20"><a href="18-18-compensator-design.html#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="18-18-compensator-design.html#cb2-21" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> P.t_start  <span class="co"># time starts at t_start</span></span>
+<span id="cb2-22"><a href="18-18-compensator-design.html#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> t <span class="op">&lt;</span> P.t_end:  <span class="co"># main simulation loop</span></span>
+<span id="cb2-23"><a href="18-18-compensator-design.html#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propagate dynamics at rate Ts</span></span>
+<span id="cb2-24"><a href="18-18-compensator-design.html#cb2-24" aria-hidden="true" tabindex="-1"></a>    t_next_plot <span class="op">=</span> t <span class="op">+</span> P.t_plot</span>
+<span id="cb2-25"><a href="18-18-compensator-design.html#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> t <span class="op">&lt;</span> t_next_plot:</span>
+<span id="cb2-26"><a href="18-18-compensator-design.html#cb2-26" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> force.sin(t)</span>
+<span id="cb2-27"><a href="18-18-compensator-design.html#cb2-27" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> pendulum.update(u)  <span class="co"># Propagate the dynamics</span></span>
+<span id="cb2-28"><a href="18-18-compensator-design.html#cb2-28" aria-hidden="true" tabindex="-1"></a>        t <span class="op">+=</span> P.Ts  <span class="co"># advance time by Ts</span></span>
+<span id="cb2-29"><a href="18-18-compensator-design.html#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># update animation and data plots at rate t_plot</span></span>
+<span id="cb2-30"><a href="18-18-compensator-design.html#cb2-30" aria-hidden="true" tabindex="-1"></a>    animation.update(pendulum.state)</span>
+<span id="cb2-31"><a href="18-18-compensator-design.html#cb2-31" aria-hidden="true" tabindex="-1"></a>    dataPlot.update(t, pendulum.state, u)</span>
+<span id="cb2-32"><a href="18-18-compensator-design.html#cb2-32" aria-hidden="true" tabindex="-1"></a>    plt.pause(<span class="fl">0.01</span>)  <span class="co"># allows time for animation to draw</span></span>
+<span id="cb2-33"><a href="18-18-compensator-design.html#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="18-18-compensator-design.html#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Keeps the program from closing until the user presses a button.</span></span>
+<span id="cb2-35"><a href="18-18-compensator-design.html#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Press key to close&#39;</span>)</span>
+<span id="cb2-36"><a href="18-18-compensator-design.html#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.waitforbuttonpress()</span>
+<span id="cb2-37"><a href="18-18-compensator-design.html#cb2-37" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="3.4"
+id="design-study-c-satellite-attitude-control-1" class="section-design-study"><span class="header-section-number">3.4</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="3.4.1" id="-example-problem-336" class="section-example"><span class="header-section-number">3.4.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example
+Problem <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#the-euler-lagrange-equations" data-reference-type="ref"
+data-reference="chap:euler-lagrange">6</a></h3>
+<p>Find the potential energy for the system.</p>
+<p>Define the generalized coordinates.</p>
+<p>Find the generalized forces and damping forces.</p>
+<p>Derive the equations of motion using the Euler-Lagrange
+equations.</p>
+<p>Referring to Appendices <a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1</a>, <a
+href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2</a>, and <a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3</a>, write
+a class or s-function that implements the equations of motion. Simulate
+the system using a variable torque on the body as an input. The output
+should connect to the animation function developed in homework <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C.2</a>.</p>
+<section id="design-study-c-ch3-euler-lagrange">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw3" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Assemble the satellite equations of motion before viewing the
+solution</h3> <p>Use the torsional spring, relative damping, body
+torque, and two angular coordinates to form the coupled satellite-panel
+equations.</p> <div class="guided-design-study-setup-figure"
+role="figure" aria-label="Satellite Euler-Lagrange setup."> <img
+src="6_design_studies/figures/hw_satellite_defn.png" alt="Satellite
+with flexible solar panels."> <p class="advanced-caption">The
+spring and damper act on relative motion between the body and panel,
+while the actuator torque is applied only to the body.</p> </div>
+
+<section class="guided-step" data-dsa-step="energy"> <h4>Step 1.
+Potential energy</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Spring
+deflection</span><input type="text" data-dsa-input="deflection"
+data-dsa-accept="phi-theta\|phiminustheta\|phi minus
+theta\|theta-phi\|theta minus phi"
+placeholder="expression"></label> <label><span>Energy
+coefficient</span><input type="text" data-dsa-input="coefficient"
+data-dsa-accept="1/2\*k\|k/2\|0.5k\|0.5\*k"
+placeholder="coefficient"></label> </div> <button
+type="button" data-dsa-check="energy" data-dsa-hint="The torsional
+spring stores energy in the relative angle.">Check Step 1</button>
+<p class="quiz-feedback" data-dsa-feedback="energy"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="energy"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> <span class="math
+inline">\(P=\frac{1}{2}k(\phi-\theta)^2\)</span>. The squared term
+means <span class="math inline">\(\theta-\phi\)</span> gives the
+same stored energy.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="coordinates">
+<h4>Step 2. Generalized coordinates and input</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Coordinates</span><input type="text"
+data-dsa-input="q"
+data-dsa-accept="theta,phi\|phitheta\|thetaphi\|theta phi\|body angle
+and panel angle" placeholder="variables"></label>
+<label><span>Generalized force vector</span><input type="text"
+data-dsa-input="force" data-dsa-accept="tau,0\|tau0\|body torque and
+zero\|torque and zero" placeholder="short answer"></label>
+</div> <button type="button" data-dsa-check="coordinates"
+data-dsa-hint="Only the satellite body coordinate is directly
+actuated.">Check Step 2</button> <p class="quiz-feedback"
+data-dsa-feedback="coordinates" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="coordinates" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> <span class="math
+inline">\(q=(\theta,\phi)^T\)</span>, and the generalized force is
+<span class="math inline">\((\tau,0)^T\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="damping"> <h4>Step
+3. Relative damping</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Body damping
+uses</span><input type="text" data-dsa-input="body"
+data-dsa-accept="thetadot-phidot\|theta dot minus phi dot\|body rate
+minus panel rate" placeholder="rate difference"></label>
+<label><span>Panel damping uses</span><input type="text"
+data-dsa-input="panel" data-dsa-accept="phidot-thetadot\|phi dot
+minus theta dot\|panel rate minus body rate" placeholder="rate difference"></label> </div> <button type="button"
+data-dsa-check="damping" data-dsa-hint="Damping resists relative
+angular velocity.">Check Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="damping" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="damping"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The body equation
+contains <span class="math
+inline">\(-b(\dot{\theta}-\dot{\phi})\)</span>, and the panel equation
+contains <span class="math
+inline">\(-b(\dot{\phi}-\dot{\theta})\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="model"> <h4>Step 4.
+Coupled equation structure</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Mass matrix
+size</span><input type="text" data-dsa-input="size"
+data-dsa-accept="2x2\|2 by 2\|two by two" placeholder="short answer"></label> <label><span>Direct torque
+equation</span><input type="text" data-dsa-input="torque"
+data-dsa-accept="theta\|body\|body angle\|satellite body"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="model" data-dsa-hint="There are two second-order
+equations, but torque enters only the body equation.">Check Step
+4</button> <p class="quiz-feedback" data-dsa-feedback="model"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="model" hidden><summary>Show
+solution for Step 4</summary><p><strong>Answer:</strong> The
+equations form a 2 by 2 second-order model. Torque appears directly in
+the <span class="math inline">\(\theta\)</span> equation; the panel
+moves through spring and damping coupling.</p></details>
+</section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes dynamics
+code. Before opening it, outline how the code should compute <span
+class="math inline">\(\ddot{\theta}\)</span> and <span class="math
+inline">\(\ddot{\phi}\)</span> from state and torque.</p> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="Write pseudocode for reading theta, phi, rates, torque, and returning state derivatives."></textarea> <p class="advanced-caption">This
+prompt is ungraded. It connects the Euler-Lagrange equations to the
+implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<figure id="fig:sm_satellite_defn">
+<img src="6_design_studies/figures/hw_satellite_defn.png"
+style="width:50.0%" alt="Satellite with flexible solar panels." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 3.5. </span>Satellite with flexible solar
+panels.</figcaption>
+</figure>
+<p>The generalized coordinates for the satellite attitude control
+problem are the angles <span class="math inline">\(\theta\)</span> and
+<span class="math inline">\(\phi\)</span>. Therefore, we define the
+generalized coordinates as <span
+class="math inline">\(\mathbf{q}=(\theta, \phi)^\top\)</span>. We will
+assume the ability to apply torque on the main body (<span
+class="math inline">\(\theta\)</span>) of the satellite, but not on the
+solar panel. Therefore, the generalized force is <span
+class="math inline">\(\boldsymbol{\tau} = (\tau, 0)^\top\)</span>. We
+will model the dissipation (friction) forces as proportional to the
+relative motion between the main body and the solar panel. Therefore,
+the damping term is given by <span
+class="math display">\[-B\dot{\mathbf{q}} =
+\begin{pmatrix}-b(\dot{\theta}-\dot{\phi}) \\
+-b(\dot{\phi}-\dot{\theta}) \end{pmatrix} = -\begin{pmatrix} b &amp; -b
+\\ -b &amp; b \end{pmatrix}\begin{pmatrix}\dot{\theta} \\
+\dot{\phi}\end{pmatrix}.\]</span></p>
+<p>Using Equation <a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems"
+data-reference-type="eqref"
+data-reference="eq:satellite_kinetic_energy"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2.5</a></a>,
+the kinetic energy can be written in terms of the generalized
+coordinates as <span class="math display">\[\begin{aligned}
+K(\mathbf{q},\dot{\mathbf{q}}) &amp;= \frac{1}{2} J_s \dot{\theta}^2 +
+\frac{1}{2} J_p \dot{\phi}^2 \\
+&amp;= \frac{1}{2} J_s \dot{q}_1^2 + \frac{1}{2} J_p \dot{q}_2^2.
+\end{aligned}\]</span> The potential energy of the system is due to the
+spring force between the base and the solar panel, and is given by <span
+class="math display">\[\begin{aligned}
+P(\mathbf{q}) &amp;= \frac{1}{2} k (\phi-\theta)^2 \\
+&amp;= \frac{1}{2} k (q_2-q_1)^2,
+\end{aligned}\]</span> where <span class="math inline">\(k\)</span> is
+the spring constant. The Lagrangian is therefore given by <span
+class="math display">\[L(\mathbf{q},\dot{\mathbf{q}}) = \frac{1}{2} J_s
+\dot{q}_1^2 + \frac{1}{2} J_p \dot{q}_2^2 - \frac{1}{2} k
+(q_2-q_1)^2.\]</span> Therefore <span
+class="math display">\[\begin{aligned}
+\frac{\partial L}{\partial\dot{\mathbf{q}}} &amp;= \begin{pmatrix}
+J_s\dot{\theta} \\
+J_p\dot{\phi}
+\end{pmatrix} \\
+\frac{\partial L}{\partial\mathbf{q}} &amp;= \begin{pmatrix}
+k(\phi-\theta) \\
+-k(\phi-\theta)
+\end{pmatrix}.
+\end{aligned}\]</span> Differentiating <span
+class="math inline">\(\frac{\partial L}{\partial
+\dot{\mathbf{q}}}\)</span> with respect to time gives <span
+class="math display">\[\frac{d}{dt}\left(\frac{\partial L}{\partial
+\dot{\mathbf{q}}}\right) = \begin{pmatrix}
+J_s\ddot{\theta} \\
+J_p\ddot{\phi}
+\end{pmatrix}.\]</span> Therefore the Euler-Lagrange equation <span
+class="math display">\[\frac{d}{dt}\left(\frac{\partial
+L}{\partial\dot{\mathbf{q}}} \right) - \frac{\partial L}{\partial
+\mathbf{q}} =  \boldsymbol{\tau} -B\dot{\mathbf{q}}\]</span> gives <span
+class="math display">\[\begin{pmatrix}
+J_s\ddot{\theta} - k(\phi-\theta) \\
+J_p\ddot{\phi} + k(\phi-\theta)
+\end{pmatrix}
+=  \begin{pmatrix} \tau \\ 0 \end{pmatrix} + \begin{pmatrix}
+-b(\dot{\theta}-\dot{\phi}) \\ -b(\dot{\phi}-\dot{\theta})
+\end{pmatrix}.\]</span> Simplifying and moving all second-order
+derivatives to the left-hand side, and all other terms to the right-hand
+side gives <span class="math display">\[\begin{pmatrix}
+J_s\ddot{\theta} \\
+J_p\ddot{\phi}
+\end{pmatrix}
+= \begin{pmatrix}  \tau -b(\dot{\theta}-\dot{\phi})-k(\theta-\phi) \\
+-b(\dot{\phi}-\dot{\theta}) - k(\phi-\theta) \end{pmatrix}.\]</span>
+Using matrix notation, this equation can be rearranged to isolate the
+second-order derivatives on the left-hand side as <span
+class="math display">\[\label{eq:satellite_sim_model}
+\begin{pmatrix}
+J_s &amp; 0 \\
+0 &amp; J_p
+\end{pmatrix} \begin{pmatrix}\ddot{\theta} \\ \ddot{\phi} \end{pmatrix}
+= \begin{pmatrix} \tau-b(\dot{\theta}-\dot{\phi})-k(\theta-\phi) \\
+-b(\dot{\phi}-\dot{\theta}) - k(\phi-\theta) \end{pmatrix}.\]</span>
+Equation <a href="#the-euler-lagrange-equations" data-reference-type="eqref"
+data-reference="eq:satellite_sim_model"><a href="#the-euler-lagrange-equations">3.3</a></a>
+represents the simulation model for the simplified satellite system.</p>
+<p>A Python class that implements the dynamics of the satellite is shown
+below</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="satelliteDynamics.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> satelliteParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> satelliteDynamics:</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, alpha<span class="op">=</span><span class="fl">0.0</span>):</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initial state conditions</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> np.array([</span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>            [P.theta0],  <span class="co"># initial base angle</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>            [P.phi0],  <span class="co"># initial panel angle</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>            [P.thetadot0],  <span class="co"># initial angular velocity of base</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>            [P.phidot0],  <span class="co"># initial angular velocity of panel</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># simulation time step</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Ts <span class="op">=</span> P.Ts</span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># inertia of base</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Js <span class="op">=</span> P.Js <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># inertia of panel</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Jp <span class="op">=</span> P.Jp <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># spring coefficient</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.k <span class="op">=</span> P.k <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Damping coefficient, Ns</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b <span class="op">=</span> P.b <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))    </span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.torque_limit <span class="op">=</span> P.tau_max</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, u):</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This is the external method that takes the input u at time</span></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># t and returns the output y at time t.</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturate the input torque</span></span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> saturate(u, <span class="va">self</span>.torque_limit)</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rk4_step(u)  <span class="co"># propagate the state by one time sample</span></span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="va">self</span>.h()  <span class="co"># return the corresponding output</span></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> f(<span class="va">self</span>, state, u):</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Return xdot = f(x,u)</span></span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> state[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        phi <span class="op">=</span> state[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        thetadot <span class="op">=</span> state[<span class="dv">2</span>, <span class="dv">0</span>]</span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        phidot <span class="op">=</span> state[<span class="dv">3</span>, <span class="dv">0</span>]</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> u</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The equations of motion.</span></span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> np.array([[<span class="va">self</span>.Js, <span class="dv">0</span>],</span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>                      [<span class="dv">0</span>, <span class="va">self</span>.Jp]])</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> np.array([[tau <span class="op">-</span> <span class="va">self</span>.b<span class="op">*</span>(thetadot<span class="op">-</span>phidot)<span class="op">-</span><span class="va">self</span>.k<span class="op">*</span>(theta<span class="op">-</span>phi)],</span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>                      [<span class="op">-</span><span class="va">self</span>.b<span class="op">*</span>(phidot<span class="op">-</span>thetadot)<span class="op">-</span><span class="va">self</span>.k<span class="op">*</span>(phi<span class="op">-</span>theta)]])</span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> np.linalg.inv(M) <span class="op">@</span> C</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        thetaddot <span class="op">=</span> tmp[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>        phiddot <span class="op">=</span> tmp[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># build xdot and return</span></span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>        xdot <span class="op">=</span> np.array([[thetadot], [phidot], [thetaddot], [phiddot]])</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xdot</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> h(<span class="va">self</span>):</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return y = h(x)</span></span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> <span class="va">self</span>.state[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        phi <span class="op">=</span> <span class="va">self</span>.state[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> np.array([[theta], [phi]])</span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rk4_step(<span class="va">self</span>, u):</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Integrate ODE using Runge-Kutta RK4 algorithm</span></span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state, u)</span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>        F2 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F1, u)</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        F3 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F2, u)</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        F4 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">*</span> F3, u)</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> <span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> (F1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F2 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F3 <span class="op">+</span> F4)</span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit<span class="op">*</span>np.sign(u)</span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Code that simulates the dynamics is given below.</p>
+<div class="sourceCode" id="cb2" data-language="Python"
+data-caption="hw03\_satelliteSim.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="18-18-compensator-design.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="18-18-compensator-design.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> satelliteParam <span class="im">as</span> P</span>
+<span id="cb2-3"><a href="18-18-compensator-design.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> signalGenerator <span class="im">import</span> signalGenerator</span>
+<span id="cb2-4"><a href="18-18-compensator-design.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> satelliteAnimation <span class="im">import</span> satelliteAnimation</span>
+<span id="cb2-5"><a href="18-18-compensator-design.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataPlotter <span class="im">import</span> dataPlotter</span>
+<span id="cb2-6"><a href="18-18-compensator-design.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> satelliteDynamics <span class="im">import</span> satelliteDynamics</span>
+<span id="cb2-7"><a href="18-18-compensator-design.html#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="18-18-compensator-design.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate satellite, controller, and reference classes</span></span>
+<span id="cb2-9"><a href="18-18-compensator-design.html#cb2-9" aria-hidden="true" tabindex="-1"></a>satellite <span class="op">=</span> satelliteDynamics(alpha<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb2-10"><a href="18-18-compensator-design.html#cb2-10" aria-hidden="true" tabindex="-1"></a>torque <span class="op">=</span> signalGenerator(amplitude<span class="op">=</span><span class="fl">0.1</span>, frequency<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb2-11"><a href="18-18-compensator-design.html#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="18-18-compensator-design.html#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate the simulation plots and animation</span></span>
+<span id="cb2-13"><a href="18-18-compensator-design.html#cb2-13" aria-hidden="true" tabindex="-1"></a>dataPlot <span class="op">=</span> dataPlotter()</span>
+<span id="cb2-14"><a href="18-18-compensator-design.html#cb2-14" aria-hidden="true" tabindex="-1"></a>animation <span class="op">=</span> satelliteAnimation()</span>
+<span id="cb2-15"><a href="18-18-compensator-design.html#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="18-18-compensator-design.html#cb2-16" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> P.t_start  <span class="co"># time starts at t_start</span></span>
+<span id="cb2-17"><a href="18-18-compensator-design.html#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> t <span class="op">&lt;</span> P.t_end:  <span class="co"># main simulation loop</span></span>
+<span id="cb2-18"><a href="18-18-compensator-design.html#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propagate dynamics in between plot samples</span></span>
+<span id="cb2-19"><a href="18-18-compensator-design.html#cb2-19" aria-hidden="true" tabindex="-1"></a>    t_next_plot <span class="op">=</span> t <span class="op">+</span> P.t_plot</span>
+<span id="cb2-20"><a href="18-18-compensator-design.html#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="18-18-compensator-design.html#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># updates control and dynamics at faster simulation rate</span></span>
+<span id="cb2-22"><a href="18-18-compensator-design.html#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> t <span class="op">&lt;</span> t_next_plot:  </span>
+<span id="cb2-23"><a href="18-18-compensator-design.html#cb2-23" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> torque.sin(t)</span>
+<span id="cb2-24"><a href="18-18-compensator-design.html#cb2-24" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> satellite.update(u)  <span class="co"># Propagate the dynamics</span></span>
+<span id="cb2-25"><a href="18-18-compensator-design.html#cb2-25" aria-hidden="true" tabindex="-1"></a>        t <span class="op">+=</span> P.Ts  <span class="co"># advance time by Ts</span></span>
+<span id="cb2-26"><a href="18-18-compensator-design.html#cb2-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-27"><a href="18-18-compensator-design.html#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># update animation and data plots</span></span>
+<span id="cb2-28"><a href="18-18-compensator-design.html#cb2-28" aria-hidden="true" tabindex="-1"></a>    animation.update(satellite.state)</span>
+<span id="cb2-29"><a href="18-18-compensator-design.html#cb2-29" aria-hidden="true" tabindex="-1"></a>    dataPlot.update(t, satellite.state, u)</span>
+<span id="cb2-30"><a href="18-18-compensator-design.html#cb2-30" aria-hidden="true" tabindex="-1"></a>    plt.pause(<span class="fl">0.0001</span>)  </span>
+<span id="cb2-31"><a href="18-18-compensator-design.html#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="18-18-compensator-design.html#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Keeps the program from closing until the user presses a button.</span></span>
+<span id="cb2-33"><a href="18-18-compensator-design.html#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Press key to close&#39;</span>)</span>
+<span id="cb2-34"><a href="18-18-compensator-design.html#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.waitforbuttonpress()</span>
+<span id="cb2-35"><a href="18-18-compensator-design.html#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="3.5" id="interactive-euler-lagrange-check"><span class="header-section-number">3.5</span> Interactive Euler-Lagrange
+Check</h2>
+<section id="sim-ch3-lagrange-check">
+<article class="advanced-activity" data-advanced-activity="lagrange">
+<p class="advanced-kicker">
+Chapter 3 activity
+</p>
+<h3>
+From energy to Lagrangian terms
+</h3>
+<p>
+Use a one-coordinate mass-spring example to connect kinetic energy,
+potential energy, the Lagrangian L = K - P, and the spring force term.
+</p>
+<div class="advanced-grid advanced-grid–visual"> <div
+class="advanced-controls advanced-controls–compact"> <label>Mass,
+m<input type="range"
+data-input="mass" min="0.5" max="4" step="0.1"
+value="1"></label> <label>Spring constant, k<input
+type="range" data-input="k" min="0.5" max="10" step="0.5"
+value="4"></label> <label>Displacement, q<input type="range"
+data-input="x" min="-2" max="2" step="0.1"
+value="0.5"></label> <label>Velocity, q̇<input type="range"
+data-input="velocity" min="0" max="4" step="0.1"
+value="1.2"></label>
+</div>
+<figure class="advanced-visual">
+<svg viewBox="0 0 330 170" role="img" aria-label="Mass attached to a
+wall by a spring with generalized coordinate q"> <rect x="18"
+y="28" width="14" height="104" fill="rgb(23,45,51)"></rect>
+<path d="M32 82 L48 82 L55 62 L69 102 L83 62 L97 102 L111 62 L125 102
+L139 62 L153 102 L160 82 L184 82" fill="none" stroke="rgb(14,109,119)"
+stroke-width="4" stroke-linejoin="round"></path>
+<rect x="184" y="52"
+width="70" height="60" rx="8" fill="rgb(213,107,53)"
+stroke="rgb(154,77,37)" stroke-width="3"></rect> <line
+x1="184" y1="132" x2="254" y2="132" stroke="rgb(23,45,51)"
+stroke-width="3"></line> <line x1="70" y1="145" x2="220"
+y2="145" stroke="rgb(82,96,71)" stroke-width="2"></line> <path
+d="M220 145 L208 139 L208 151 Z" fill="rgb(82,96,71)"></path>
+<text x="132" y="161" fill="rgb(82,96,71)"
+font-size="15">q</text> <line x1="258" y1="82" x2="306"
+y2="82" stroke="rgb(23,45,51)" stroke-width="3"></line> <path
+d="M306 82 L294 75 L294 89 Z" fill="rgb(23,45,51)"></path> <g
+aria-label="q dot velocity label"> <text x="274" y="74"
+fill="rgb(23,45,51)" font-size="16"
+font-style="italic">q</text> <text x="278" y="63"
+fill="rgb(23,45,51)" font-size="15">.</text> </g> <text
+x="85" y="52" fill="rgb(14,109,119)" font-size="15">k</text>
+<text x="207" y="86" fill="rgb(255,255,255)"
+font-size="15">m</text> </svg>
+<figcaption><span class="fig-number">Figure 1.2. </span>
+A one-coordinate mass-spring system with generalized coordinate q and
+generalized velocity <span class="overdot">q</span>.
+</figcaption>
+</figure>
+</div>
+<section class="advanced-solution">
+<h4>
+Live equations
+</h4>
+<p class="advanced-equation">
+P(q) = ½ k q<sup>2</sup> =
+½(<span data-output="k-value"></span>)(<span data-output="q-value"></span>)<sup>2</sup>
+= <span data-output="spring"></span> J
+</p>
+<p class="advanced-equation">
+K(<span class="overdot">q</span>) = ½ m
+<span class="overdot">q</span><sup>2</sup> =
+½(<span data-output="mass-value"></span>)(<span data-output="qdot-value"></span>)<sup>2</sup>
+= <span data-output="kinetic"></span> J
+</p>
+<p class="advanced-equation">
+L(q,<span class="overdot">q</span>) = K - P =
+<span data-output="lagrangian"></span> J
+</p>
+<p class="advanced-equation">
+<span class="math-frac"><sup>dP</sup>⁄<sub>dq</sub></span> = k q =
+<span data-output="partial"></span> N
+</p>
+</section>
+</article>
+</section>
+<h2 data-number="3.6" id="knowledge-check-2"><span class="header-section-number">3.6</span> Knowledge Check</h2>
+<section id="sim-ch3-knowledge-check" class="quiz-list">
+<article
+class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. K + P is total mechanical energy,
+not the Lagrangian." data-feedback-b="B is correct. The Lagrangian is
+kinetic energy minus potential energy." data-feedback-c="C is not
+correct. The sign is reversed." data-feedback-d="D is not correct.
+Generalized force is not the Lagrangian definition."> <h4>Q1.
+Lagrangian definition</h4> <p class="quiz-prompt">The Lagrangian
+is:</p> <div class="quiz-options"><label><input type="radio"
+name="sim-ch3-q1" value="A"><span class="quiz-option-text">A) K + P</span></label><label><input
+type="radio" name="sim-ch3-q1" value="B"><span class="quiz-option-text">B) K -
+P</span></label><label><input type="radio" name="sim-ch3-q1"
+value="C"><span class="quiz-option-text">C) P - K</span></label><label><input type="radio"
+name="sim-ch3-q1" value="D"><span class="quiz-option-text">D) Generalized force minus
+damping</span></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Generalized coordinates should be
+minimal, not every measured signal." data-feedback-b="B is correct.
+Generalized coordinates give a minimal configuration description."
+data-feedback-c="C is not correct. Actuator inputs are generalized
+forces, not coordinates." data-feedback-d="D is not correct.
+Velocities are derivatives of coordinates."> <h4>Q2. Generalized
+coordinates</h4> <p class="quiz-prompt">Generalized coordinates
+should be:</p> <div class="quiz-options"><label><input
+type="radio" name="sim-ch3-q2" value="A"><span class="quiz-option-text">A) Every measurable
+signal</span></label><label><input type="radio" name="sim-ch3-q2"
+value="B"><span class="quiz-option-text">B) A minimal configuration
+description</span></label><label><input type="radio" name="sim-ch3-q2"
+value="C"><span class="quiz-option-text">C) Only actuator inputs</span></label><label><input
+type="radio" name="sim-ch3-q2" value="D"><span class="quiz-option-text">D) Only
+velocities</span></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="8" data-tolerance="0.001">
+<h4>
+Q3. Spring potential
+</h4>
+<p class="quiz-prompt">
+For k = 4 and displacement q = 2, enter the potential energy P.
+</p>
+
+<label>P:<input type="text" name="sim-ch3-q3" placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 8 because P = ½kq<sup>2</sup> =
+½(4)(2<sup>2</sup>) = 8.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="6" data-tolerance="0.001">
+<h4>
+Q4. Potential derivative
+</h4>
+<p class="quiz-prompt">
+For P = ½kq<sup>2</sup>, with k = 3 and q = 2, enter
+<span class="math-frac"><sup>dP</sup>⁄<sub>dq</sub></span>.
+</p>
+
+<label><span class="math-frac"><sup>dP</sup>⁄<sub>dq</sub>:</span><input
+type="text" name="sim-ch3-q4" placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 6 because
+<span class="math-frac"><sup>dP</sup>⁄<sub>dq</sub></span> = kq =
+(3)(2).
+</p>
+</details>
+
+</article>
+<article class="quiz-card ch3-q5-actions-below" data-quiz-type="mcq"
+data-answer="C" data-feedback-a="A is not correct. That omits the
+torsional spring contribution." data-feedback-b="B is not correct.
+Kinetic energy terms do not belong in potential energy."
+data-feedback-c="C is correct. Potential energy is the sum of
+translational and torsional spring terms." data-feedback-d="D is not
+correct. The signs are not reversed for stored spring energy.">
+<h4>
+Q5. Toy system: warehouse cart and flywheel
+</h4>
+<p class="quiz-prompt">
+Consider the warehouse cart and flywheel system from
+<a href="02-2-kinetic-energy-of-mechanical-systems.html#sim-ch2-cart-flywheel-toy-system">Chapter 2 Q5</a>. The cart
+translates horizontally, and the flywheel rotates relative to the cart.
+For this Chapter 3 version, assume the cart is attached to a linear
+spring with displacement z from its relaxed position, and the flywheel
+is attached to a torsional spring with angle θ from its relaxed angle.
+Which potential energy expression is correct?
+</p>
+
+<label><input type="radio"
+name="sim-ch3-q5" value="A"><span class="quiz-option-text">A) P =
+½kz<sup>2</sup></span></label><br><label><input
+type="radio" name="sim-ch3-q5" value="B"><span class="quiz-option-text">B) P = ½mv<sup>2</sup> +
+½Iω<sup>2</sup></span></label><br><label><input
+type="radio" name="sim-ch3-q5" value="C"><span class="quiz-option-text">C) P = ½kz<sup>2</sup> +
+½k<sub>θ</sub>θ<sup>2</sup></span></label><br><label><input
+type="radio" name="sim-ch3-q5" value="D"><span class="quiz-option-text">D) P =
+-½kz<sup>2</sup> - ½k<sub>θ</sub>θ<sup>2</sup></span></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. The spring and torsional stiffnesses
+are parameters, not coordinates." data-feedback-b="B is correct. The
+puck position and rotor angle define the configuration."
+data-feedback-c="C is not correct. Velocities are derivatives of
+generalized coordinates." data-feedback-d="D is not correct. The mass
+and inertia are parameters."> <h4>Q6. Toy system: puck and
+rotor</h4> <p class="quiz-prompt">Consider the puck-and-rotor
+system from <a href="02-2-kinetic-energy-of-mechanical-systems.html#sim-ch2-puck-rotor-toy-system">Chapter 2
+Q6</a>. The puck slides along a horizontal surface, and the rotor
+spins on top of the puck. To describe the configuration, use x for the
+puck's horizontal position and &theta; for the rotor's angular position.
+Which set is the best choice of generalized coordinates?</p> <div
+class="quiz-options"><label><input type="radio"
+name="sim-ch3-q6" value="A"><span class="quiz-option-text">A) q = (k,
+k<sub>&theta;</sub>)</span></label><label><input type="radio"
+name="sim-ch3-q6" value="B"><span class="quiz-option-text">B) q = (x,
+&theta;)</span></label><label><input type="radio" name="sim-ch3-q6"
+value="C"><span class="quiz-option-text">C) q = (<span class="overdot">x</span>,
+&omega;)</span></label><label><input type="radio" name="sim-ch3-q6"
+value="D"><span class="quiz-option-text">D) q = (m, I)</span></label></div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The Lagrangian is kinetic energy minus
+potential energy." data-feedback-b="B is not correct. It adds
+potential energy instead of subtracting it." data-feedback-c="C is not
+correct. It reverses the sign of the Lagrangian." data-feedback-d="D
+is not correct. It drops the rotational terms."> <h4>Q7. Toy system:
+Lagrangian form</h4> <p class="quiz-prompt">For either toy system
+with translation and rotation, which Lagrangian form is correct?</p>
+<div class="quiz-options"><label><input type="radio"
+name="sim-ch3-q7" value="A"><span class="quiz-option-text">A) L = (&frac12;mv<sup>2</sup> +
+&frac12;I&omega;<sup>2</sup>) - (&frac12;kx<sup>2</sup> +
+&frac12;k<sub>&theta;</sub>&theta;<sup>2</sup>)</span></label><label><input
+type="radio" name="sim-ch3-q7" value="B"><span class="quiz-option-text">B) L =
+(&frac12;mv<sup>2</sup> + &frac12;I&omega;<sup>2</sup>) +
+(&frac12;kx<sup>2</sup> +
+&frac12;k<sub>&theta;</sub>&theta;<sup>2</sup>)</span></label><label><input
+type="radio" name="sim-ch3-q7" value="C"><span class="quiz-option-text">C) L =
+(&frac12;kx<sup>2</sup> +
+&frac12;k<sub>&theta;</sub>&theta;<sup>2</sup>) -
+(&frac12;mv<sup>2</sup> +
+&frac12;I&omega;<sup>2</sup>)</span></label><label><input
+type="radio" name="sim-ch3-q7" value="D"><span class="quiz-option-text">D) L =
+&frac12;mv<sup>2</sup> -
+&frac12;kx<sup>2</sup></span></label></div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. Velocity is the derivative of a
+coordinate, not the configuration coordinate itself."
+data-feedback-b="B is not correct. Inputs and stiffnesses are
+parameters, not generalized coordinates." data-feedback-c="C is
+correct. The slider position and link angle independently describe the
+configuration." data-feedback-d="D is not correct. Listing every
+measurable signal is not a minimal coordinate choice."> <h4>Q8.
+Coordinate choice</h4> <p class="quiz-prompt">A slider moves
+horizontally while a rigid link rotates relative to the slider. Which
+generalized coordinates are most appropriate?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="sim-ch3-exam-q1" value="A"><span class="quiz-option-text">A) Slider velocity and link
+angular velocity</span></label> <label><input type="radio"
+name="sim-ch3-exam-q1" value="B"><span class="quiz-option-text">B) Applied force and link
+stiffness</span></label> <label><input type="radio"
+name="sim-ch3-exam-q1" value="C"><span class="quiz-option-text">C) Slider position and link
+angle</span></label> <label><input type="radio" name="sim-ch3-exam-q1"
+value="D"><span class="quiz-option-text">D) Every sensor signal in the experiment</span></label>
+</div> <div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. The spring energy must use the
+square of the spring deflection." data-feedback-b="B is correct. The
+expression includes gravitational potential plus squared spring
+energy." data-feedback-c="C is not correct. Kinetic energy terms do
+not belong in potential energy." data-feedback-d="D is not correct.
+Reversing both stored-energy signs is not the usual potential-energy
+convention."> <h4>Q9. Potential energy structure</h4> <p
+class="quiz-prompt">A point mass has height y and stretches a spring
+by x from its relaxed length. Which potential-energy structure is
+correct?</p> <div class="quiz-options"> <label><input
+type="radio" name="sim-ch3-exam-q2" value="A"><span class="quiz-option-text">A) P = mgy +
+&frac12;kx</span></label> <label><input type="radio"
+name="sim-ch3-exam-q2" value="B"><span class="quiz-option-text">B) P = mgy +
+&frac12;kx<sup>2</sup></span></label> <label><input type="radio"
+name="sim-ch3-exam-q2" value="C"><span class="quiz-option-text">C) P =
+&frac12;mv<sup>2</sup> + &frac12;kx<sup>2</sup></span></label>
+<label><input type="radio" name="sim-ch3-exam-q2" value="D"><span class="quiz-option-text">D) P = -mgy - &frac12;kx<sup>2</sup> for every coordinate
+convention</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. A torque applied directly about theta
+enters the theta generalized-force component." data-feedback-b="B is
+not correct. That puts the torque in the wrong generalized coordinate."
+data-feedback-c="C is not correct. The sign should match the positive
+theta direction as stated." data-feedback-d="D is not correct.
+Multiplying by an unrelated length is not appropriate for a torque
+already applied about theta."> <h4>Q10. Generalized force</h4> <p
+class="quiz-prompt">For q = (&theta;, x), a positive torque &tau; is
+applied directly in the positive &theta; direction and no direct force
+is applied in x. What generalized-force vector is consistent with this
+description?</p> <div class="quiz-options"> <label><input
+type="radio" name="sim-ch3-exam-q3" value="A"><span class="quiz-option-text">A) (&tau;,
+0)</span></label> <label><input type="radio" name="sim-ch3-exam-q3"
+value="B"><span class="quiz-option-text">B) (0, &tau;)</span></label> <label><input type="radio"
+name="sim-ch3-exam-q3" value="C"><span class="quiz-option-text">C) (-&tau;, 0)</span></label>
+<label><input type="radio" name="sim-ch3-exam-q3" value="D"><span class="quiz-option-text">D) (&tau;L, 0)</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. Spring potential usually appears
+through partial L / partial q." data-feedback-b="B is not correct.
+Gravitational potential depends on position and contributes through
+partial L / partial q." data-feedback-c="C is not correct. A constant
+input is a generalized force, not the inertial derivative term."
+data-feedback-d="D is correct. Differentiating partial L / partial qdot
+produces the acceleration/inertial term."> <h4>Q11. Euler-Lagrange
+term</h4> <p class="quiz-prompt">Which term most directly comes
+from d/dt(partial L / partial qdot) in a one-coordinate mass-spring
+model?</p> <div class="quiz-options"> <label><input
+type="radio" name="sim-ch3-exam-q4" value="A"><span class="quiz-option-text">A) kq from spring
+potential</span></label> <label><input type="radio"
+name="sim-ch3-exam-q4" value="B"><span class="quiz-option-text">B) mg from gravitational
+potential</span></label> <label><input type="radio"
+name="sim-ch3-exam-q4" value="C"><span class="quiz-option-text">C) A constant actuator
+input</span></label> <label><input type="radio" name="sim-ch3-exam-q4"
+value="D"><span class="quiz-option-text">D) m q double dot from kinetic energy</span></label> </div>
+<div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Coupling terms are often real
+physical effects, not numerical mistakes." data-feedback-b="B is
+correct. If kinetic energy depends on the coordinates as well as
+velocities, the equations can include coupled velocity terms."
+data-feedback-c="C is not correct. Sensor noise is an implementation
+issue, not the source of analytic coupling terms." data-feedback-d="D
+is not correct. A transfer-function zero is a design-model feature, not
+the reason velocity products appear in the nonlinear equations.">
+<h4>Q12. Coupled motion</h4> <p class="quiz-prompt">Why can
+products such as xdot times thetadot appear in Euler-Lagrange equations
+for a multi-coordinate mechanical system?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="sim-ch3-exam-q5" value="A"><span class="quiz-option-text">A) They always indicate a
+numerical error</span></label> <label><input type="radio"
+name="sim-ch3-exam-q5" value="B"><span class="quiz-option-text">B) The kinetic energy can depend
+on coordinate-dependent geometry</span></label> <label><input
+type="radio" name="sim-ch3-exam-q5" value="C"><span class="quiz-option-text">C) Sensor noise
+creates them in the equations</span></label> <label><input type="radio"
+name="sim-ch3-exam-q5" value="D"><span class="quiz-option-text">D) They come from
+transfer-function zeros</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="3.7" id="notes-and-references-1" class="section-notes"><span class="header-section-number">3.7</span> Notes and References</h2>
+<p>Derivation of the Lagrange-Euler equations can be found in many
+sources including [1, 2]. A simple derivation using only calculus can be
+found in [3].</p>
+<section id="part:design_models" class="book-part" aria-labelledby="part-design_models-title"><p class="part-kicker">Part II</p><p class="part-title" id="part-design_models-title">Design Models</p></section>
+<p>The equations of motion that we derived in the previous section are
+often too complicated to facilitate effective engineering design.
+Accordingly, the standard approach is to simplify the models into
+so-called <em>design models</em><span id="idx-0028" class="book-index-anchor" aria-hidden="true"></span> that capture the
+essential features of the system. The design techniques studied in this
+class will require that the design models are linear and time-invariant.
+In addition, the PID method described in
+Part <a href="06-6-state-space-models.html#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a> will require that the design
+models are second-order systems.</p>
+<p>Our approach to developing linear time-invariant design models will
+be to linearize the simulation models developed in
+Part <a href="01-1-introduction.html#part:simulation_models" data-reference-type="ref"
+data-reference="part:simulation_models">I</a> and
+then to convert the linearized models into two standard forms,
+namely</p>
+<ul>
+<li><p>Transfer function models and</p></li>
+<li><p>State space models.</p></li>
+</ul>
+<p>Both forms will have advantages and disadvantages that will be
+explained throughout the remaining parts of the book. In
+Chapter <a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization" data-reference-type="ref"
+data-reference="chap:linearization">7</a> we will define the important
+concept of equilibrium and show how the equations of motion can be
+linearized about the equilibrium.
+Chapter <a href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a> will show how to
+transform the linearized equations of motion into transfer function
+models, and
+Chapter <a href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a> will show how to put the
+equations of motion in state space form.</p>
+<p>The remaining parts of the book will use the design models to develop
+feedback controllers for the system of interest. In
+Part <a href="06-6-state-space-models.html#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a> we will describe the<br />
+Proportional-Integral-Derivative (PID) controllers based on second-order
+transfer function models.
+Part <a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based" data-reference-type="ref"
+data-reference="part:observer_based">IV</a> derives
+observer based controllers using state space models. Finally,
+Part <a href="14-14-disturbance-observers.html#part:loopshaping" data-reference-type="ref"
+data-reference="part:loopshaping">V</a> describes
+loopshaping design strategies using general transfer function
+models.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

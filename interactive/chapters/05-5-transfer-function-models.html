@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="5" id="transfer-function-models"><span class="header-section-number">5</span> Transfer Function Models</h1>
+<h2 data-number="5.1" id="theory-3"><span class="header-section-number">5.1</span> Theory</h2>
+<p>The (one-sided) Laplace transform<span id="idx-0037" class="book-index-anchor" aria-hidden="true"></span> of a time domain
+signal <span class="math inline">\(y(t)\)</span> is defined as <span
+class="math display">\[\mathcal{L}\{y(t)\} \stackrel{\triangle}{=}Y(s) =
+\int_0^\infty y(t) e^{-st}\,dt.\]</span> In essence, the Laplace
+transform indicates the content of the complex signal <span
+class="math inline">\(e^{-st}\)</span> that is contained in <span
+class="math inline">\(y(t)\)</span>. The Laplace transform of the time
+derivative of <span class="math inline">\(y(t)\)</span> is given by
+<span class="math display">\[\mathcal{L}\{\dot{y}\} = \int_0^\infty
+\dot{y} e^{-st}\,dt.\]</span> Using integration by parts <span
+class="math inline">\(\int udv = uv-\int vdu\)</span>, where <span
+class="math inline">\(u=e^{-st}\)</span> and <span
+class="math inline">\(dv = \dot{y}dt\)</span>, and assuming that <span
+class="math inline">\(\lim_{t\to\infty}y(t)e^{-st}=0\)</span>, or that
+<span class="math inline">\(s\)</span> is in the region of convergence
+of the Laplace transform, we get <span
+class="math display">\[\begin{aligned}
+\mathcal{L}\{\dot{y}\} &amp;= \int_0^\infty \dot{y} e^{-st}\,dt \\
+&amp;= y(t)e^{-st}\Big|_0^\infty - \int_0^\infty
+y(t)\left(-se^{-st}dt\right) \\
+&amp;= \lim_{t\to\infty}y(t)e^{-st} - y(0) + s\int_0^\infty
+y(t)e^{-st}\,dt \\
+&amp;= sY(s) - y(0).
+\end{aligned}\]</span> Similarly, the Laplace transform of the second
+derivative of <span class="math inline">\(y(t)\)</span> is given by
+<span class="math display">\[\begin{aligned}
+\mathcal{L}\{\ddot{y}\} &amp;= s\mathcal{L}\{\dot{y}\} - \dot{y}(0) \\
+&amp;= s\left(sY(s)-y(0)\right) - \dot{y}(0) \\
+&amp;= s^2 Y(s) - sy(0) - \dot{y}(0).
+\end{aligned}\]</span></p>
+<p>The transfer function<span id="idx-0038" class="book-index-anchor" aria-hidden="true"></span> is typically defined
+as the relationship between the input and the output of the system. In
+that setting the transfer function is found when all initial conditions
+are set to zero. This is important to remember in the context of
+modeling. We will see that state space models explicitly account for
+initial conditions, but that transfer functions do not.</p>
+<p>Given the <span class="math inline">\(n^{th}\)</span> order
+differential equation <span class="math display">\[\begin{gathered}
+y^{(n)} + a_{n-1}y^{(n-1)} + \cdots+ a_1 \dot{y} + a_0 y \\ = b_mu^{(m)}
++ b_{m-1}u^{(m-1)}+\cdots+b_1\dot{u} + b_0 u,
+\end{gathered}\]</span> the transfer function from <span
+class="math inline">\(u\)</span> to <span
+class="math inline">\(y\)</span> is found by taking the Laplace
+transform of both sides of the equation and setting all initial
+conditions to zero to obtain <span
+class="math display">\[\begin{gathered}
+s^nY(s) + a_{n-1}s^{n-1}Y(s) + \cdots+ a_1 sY(s) + a_0 Y(s) \\ =
+b_ms^{m}U(s) + b_{m-1}s^{m-1}U(s)+\cdots+b_1sU(s) + b_0U(s).
+\end{gathered}\]</span> Factoring <span
+class="math inline">\(Y(s)\)</span> and <span
+class="math inline">\(U(s)\)</span> we get <span
+class="math display">\[\begin{gathered}
+\left(s^n + a_{n-1}s^{n-1} + \cdots+ a_1 s + a_0\right) Y(s) \\ =
+\left(b_ms^{m}+b_{m-1}s^{m-1}+\cdots+b_1s+b_0\right)U(s).
+\end{gathered}\]</span> Solving for <span
+class="math inline">\(Y(s)\)</span> gives <span
+class="math display">\[Y(s) = \left(\frac{b_ms^{m} +
+b_{m-1}s^{m-1}+\cdots+b_1s + b_0}{s^n + a_{n-1}s^{n-1} + \cdots+ a_1 s +
+a_0}\right)U(s),\]</span> where <span class="math display">\[H(s)=
+\frac{b_ms^{m} + b_{m-1}s^{m-1}+\cdots+b_1s + b_0}{s^n + a_{n-1}s^{n-1}
++ \cdots+ a_1 s + a_0}\]</span> is the transfer function from <span
+class="math inline">\(u\)</span> to <span
+class="math inline">\(y\)</span>.</p>
+<p>Given the transfer function <span
+class="math inline">\(H(s)\)</span>, the <em>poles</em><span id="idx-0039" class="book-index-anchor" aria-hidden="true"></span> of the transfer
+function are the roots of the denominator polynomial <span
+class="math display">\[s^n + a_{n-1}s^{n-1} + \cdots+ a_1 s + a_0 =
+0.\]</span> Similarly, the <em>zeros</em><span id="idx-0040" class="book-index-anchor" aria-hidden="true"></span> of the transfer
+function are the roots of the numerator polynomial <span
+class="math display">\[b_ms^{m} + b_{m-1}s^{m-1}+\cdots+b_1s + b_0 =
+0.\]</span></p>
+<p>As a concrete example, consider the differential equation given by
+<span class="math display">\[y^{(3)} + 2\ddot{y} + 3\dot{y} + 4y =
+5\dot{u} + 6u.\]</span> Taking the Laplace transform of both sides,
+setting the initial conditions to zero, and factoring <span
+class="math inline">\(Y(s)\)</span> and <span
+class="math inline">\(U(s)\)</span> gives <span
+class="math display">\[(s^3 + 2s^2 + 3s + 4)Y(s) = (5s+6)U(s).\]</span>
+Solving for <span class="math inline">\(Y(s)\)</span> gives <span
+class="math display">\[Y(s) = \frac{5s+6}{s^3+2s^2+3s+4} U(s).\]</span>
+The transfer function from <span class="math inline">\(u\)</span> to
+<span class="math inline">\(y\)</span> is therefore <span
+class="math display">\[H(s) = \frac{5s+6}{s^3+2s^2+3s+4}.\]</span> The
+poles of the transfer function are the roots of <span
+class="math inline">\(s^3+2s^2+3s+4=0\)</span> or <span
+class="math inline">\(p_1=-1.6506\)</span>, <span
+class="math inline">\(p_2=-0.1747+j1.5469\)</span>, and <span
+class="math inline">\(p_3=-0.1747-j1.5469\)</span>. The zeros of the
+transfer function are the roots of <span
+class="math inline">\(5s+6=0\)</span> or <span class="math inline">\(z_1
+= -6/5\)</span>.</p>
+<h2 data-number="5.2" id="design-study-a-single-link-robot-arm-3" class="section-design-study"><span class="header-section-number">5.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="5.2.1" id="-example-problem-318" class="section-example"><span class="header-section-number">5.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a></h3>
+<p>For the single link robot arm, find the transfer function of the
+system from the torque <span class="math inline">\(\tau\)</span> to the
+angle <span class="math inline">\(\theta\)</span>.</p>
+<section id="design-study-a-ch5-transfer-function">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw5-transfer-function"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Derive the arm transfer function before viewing the
+solution</h3> <p>Start from the feedback-linearized arm equation and
+solve for <span class="math
+inline">\(\Theta(s)/\tilde{\tau}(s)\)</span>.</p> <div
+class="guided-design-study-setup-figure" role="figure"
+aria-label="Single link robot arm transfer-function block diagram">
+<img src="6_design_studies/figures/hw_arm_block_diagram.png"
+alt="Block diagram of the single link robot arm transfer function.">
+<p class="advanced-caption">The completed transfer function should
+fit this input-output block diagram from <span class="math
+inline">\(\tilde{\tau}\)</span> to <span class="math
+inline">\(\theta\)</span>.</p> </div>
+
+<section class="guided-step" data-dsa-step="ode"> <h4>Step 1.
+Starting differential equation</h4> <p>Enter the coefficient on
+<span class="math inline">\(\ddot{\theta}\)</span>.</p> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Inertia coefficient</span><input type="text"
+data-dsa-input="inertia"
+data-dsa-accept="m\*l\^2/3\|m\*ell\^2/3\|ml\^2/3\|mell\^2/3"
+placeholder="coefficient"></label> </div> <button
+type="button" data-dsa-check="ode">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="ode"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="ode" hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The feedback-linearized
+model is <span class="math
+inline">\((m\ell^2/3)\ddot{\theta}+b\dot{\theta}=\tilde{\tau}\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="tf"> <h4>Step 2.
+Transfer-function coefficients</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Numerator
+constant</span><input type="text" data-dsa-input="num"
+data-dsa-accept="3/(m\*l\^2)\|3/(m\*ell\^2)\|3/(ml\^2)\|3/(mell\^2)"
+placeholder="coefficient"></label> <label><span>Denominator
+<span class="math inline">\(s\)</span> coefficient</span><input
+type="text" data-dsa-input="scoef"
+data-dsa-accept="3\*b/(m\*l\^2)\|3\*b/(m\*ell\^2)\|3b/(ml\^2)\|3b/(mell\^2)"
+placeholder="coefficient"></label> <label><span>Denominator
+constant</span><input type="text" data-dsa-input="constant"
+data-dsa-accept="0" placeholder="coefficient"></label> </div>
+<button type="button" data-dsa-check="tf">Check Step 2</button>
+<p class="quiz-feedback" data-dsa-feedback="tf"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="tf" hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> <span class="math
+inline">\(H(s)=\frac{3/(m\ell^2)}{s^2+(3b/(m\ell^2))s}\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="poles"> <h4>Step 3.
+Pole locations</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Integrator
+pole</span><input type="text" data-dsa-input="p0"
+data-dsa-accept="0" placeholder="value"></label>
+<label><span>Damping pole</span><input type="text"
+data-dsa-input="p1"
+data-dsa-accept="-3\*b/(m\*l\^2)\|-3\*b/(m\*ell\^2)\|-3b/(ml\^2)\|-3b/(mell\^2)"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="poles">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="poles"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="poles" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The poles are at <span
+class="math inline">\(s=0\)</span> and <span class="math
+inline">\(s=-3b/(m\ell^2)\)</span>.</p></details> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>As shown in Section <a href="02-2-kinetic-energy-of-mechanical-systems.html#design-study-a-single-link-robot-arm"
+data-reference-type="ref" data-reference="hw:arm_linearization">7.2</a>,
+the feedback linearized model for the single link robot arm is given by
+Equation <a href="04-4-equilibria-and-linearization.html#notes-and-references-2"
+data-reference-type="eqref"
+data-reference="eq:arm_linearized_eom_feedback_linarization"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4.7</a></a>
+as <span class="math display">\[\label{eq:soln_a6_1}
+\frac{m\ell^2}{3}\ddot{\theta} = \tilde{\tau} - b\dot{\theta}.\]</span>
+Taking the Laplace transform of Equation <a href="#theory-3"
+data-reference-type="eqref"
+data-reference="eq:soln_a6_1"><a href="#transfer-function-models">5.1</a></a> and setting all initial
+conditions to zero we get <span
+class="math display">\[\frac{m\ell^2}{3}s^2\Theta(s) + b s\Theta(s) =
+\tilde{\tau}(s).\]</span> Solving for <span
+class="math inline">\(\Theta(s)\)</span> gives <span
+class="math display">\[\Theta(s) = \left(\frac{1}{\frac{m\ell^2}{3}s^2 +
+bs}\right)\tilde{\tau}(s).\]</span> The canonical form for transfer
+functions is for the leading coefficient in the denominator polynomial
+to be unity. This is called monic form. Putting the transfer function in
+monic form results in <span class="math display">\[\label{eq:soln_a6_2}
+\Theta(s) = \left(\frac{\frac{3}{m\ell^2}}{s^2 +
+\frac{3b}{m\ell^2}s}\right)\tilde{\tau}(s),\]</span> where the
+expression in the parenthesis is the transfer function from <span
+class="math inline">\(\tilde{\tau}\)</span> to <span
+class="math inline">\(\theta\)</span>, where <span
+class="math inline">\(\tilde{\tau}\)</span> indicates that we are
+working with the feedback linearized control in Equation <a
+href="04-4-equilibria-and-linearization.html#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:arm_feedback_linarization_control"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4.6</a></a>.
+The block diagram associated with Equation <a href="#design-study-a-single-link-robot-arm-3"
+data-reference-type="eqref"
+data-reference="eq:soln_a6_2"><a href="#transfer-function-models">5.2</a></a> is shown in
+<strong>Fig.</strong> <a href="#fig:dm_arm_block_diagram"
+data-reference-type="ref"
+data-reference="fig:dm_arm_block_diagram">5.1</a>.</p>
+<figure id="fig:dm_arm_block_diagram">
+<img src="6_design_studies/figures/hw_arm_block_diagram.png"
+style="width:50.0%"
+alt="A block diagram of the single link robot arm." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 5.1. </span>A block diagram of the single link robot
+arm.</figcaption>
+</figure></section> </article>
+</section>
+<h2 data-number="5.3" id="simo-systems-and-cascade-approximations"><span class="header-section-number">5.3</span> SIMO Systems and Cascade
+Approximations</h2>
+<p>There are many systems that have multiple inputs and/or multiple
+outputs. In this case, a transfer function<span id="idx-0041" class="book-index-anchor" aria-hidden="true"></span> exists from each input
+to each output. For example, suppose that the system is given by the
+coupled differential equations <span
+class="math display">\[\begin{aligned}
+\ddot{y}_1 + a_{11}\dot{y}_1 + \ddot{y}_2 + a_{12}\dot{y}_2 &amp;=
+b_{11}u_1 + b_{12}u_2 + b_{13}\dot{u}_2 \\
+\ddot{y}_2 + a_{22}y_2 &amp;= b_{21}u_2.
+\end{aligned}\]</span> Taking the Laplace transform and arranging in
+matrix notation gives <span
+class="math display">\[\left(\begin{array}{c|c}
+s^2+a_{11}s &amp; s^2+a_{12}s \\ \hline 0 &amp;
+s^2+a_{22}\end{array}\right)
+\begin{pmatrix}Y_1(s) \\  Y_2(s)\end{pmatrix} \\ =
+\left(\begin{array}{c|c} b_{11} &amp; (b_{13}s+b_{12}) \\ \hline0 &amp;
+b_{21}\end{array}\right)
+\begin{pmatrix} U_1(s) \\ U_2(s)\end{pmatrix}.\]</span> To find the
+relevant transfer functions, we need to isolate the outputs on the
+left-hand side by inverting the matrix on the left. Using the inverse
+formula for a <span class="math inline">\(2\times 2\)</span> matrix
+derived in
+Appendix <a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
+data-reference="chap:linear_algebra">31</a> <span
+class="math display">\[\begin{pmatrix} a &amp; b \\ c &amp; d
+\end{pmatrix}^{-1} = \frac{\begin{pmatrix} d &amp; -b \\ -c &amp;
+a\end{pmatrix}}{ad-bc}\]</span> we get <span
+class="math display">\[\begin{aligned}
+\begin{pmatrix}Y_1 \\ Y_2\end{pmatrix}
+&amp;= \left(\begin{array}{c|c} s^2+a_{11}s &amp; s^2+a_{12}s \\ \hline
+0 &amp; s^2+a_{22}\end{array}\right)^{-1}
+\left(\begin{array}{c|c} b_{11} &amp; b_{13}s+b_{12} \\ \hline 0 &amp;
+b_{21}\end{array}\right)
+\begin{pmatrix} U_1 \\ U_2\end{pmatrix} \\
+&amp;= \frac{\left(\begin{array}{c|c} s^2+a_{22} &amp; -s^2-a_{12}s \\
+\hline 0 &amp; s^2+a_{11}s\end{array}\right)}{(s^2+a_{11}s)(s^2+a_{22})}
+\left(\begin{array}{c|c} b_{11} &amp; b_{13}s+b_{12} \\ \hline 0 &amp;
+b_{21}\end{array}\right)
+\begin{pmatrix} U_1 \\ U_2\end{pmatrix} \\
+&amp;= \frac{\left(\begin{array}{c|c} b_{11}(s^2+a_{22}) &amp;
+(s^2+a_{22})(b_{13}s+b_{12})-b_{21}(s^2+a_{12}s) \\ \hline 0 &amp;
+b_{21}(s^2+a_{11}s)\end{array}\right)}{(s^2+a_{11}s)(s^2+a_{22})}
+\begin{pmatrix} U_1 \\ U_2\end{pmatrix} \\
+&amp;= \left(\begin{array}{c|c} \frac{b_{11}}{s^2+a_{11}s} &amp;
+\frac{b_{13}s^3+(b_{12}-b_{21})s^2+(b_{13}a_{22}-b_{21}a_{12})s+a_{22}b_{12}}{(s^2+a_{11}s)(s^2+a_{22})}
+\\ \hline 0 &amp; \frac{b_{21}}{s^2+a_{22}}\end{array}\right)
+\begin{pmatrix} U_1 \\ U_2\end{pmatrix}.
+\end{aligned}\]</span> Therefore, the transfer function from <span
+class="math inline">\(u_1\)</span> to <span
+class="math inline">\(y_1\)</span> is <span
+class="math inline">\(\frac{b_{11}}{s^2+a_{11}s}\)</span>, the transfer
+function from <span class="math inline">\(u_2\)</span> to <span
+class="math inline">\(y_1\)</span> is <span
+class="math inline">\(\frac{b_{13}s^3+(b_{12}-b_{21})s^2+(b_{13}a_{22}-b_{21}a_{12})s+a_{22}b_{12}}{(s^2+a_{11}s)(s^2+a_{22})}\)</span>,
+the transfer function from <span class="math inline">\(u_1\)</span> to
+<span class="math inline">\(y_2\)</span> is <span
+class="math inline">\(0\)</span>, and the transfer function from <span
+class="math inline">\(u_2\)</span> to <span
+class="math inline">\(y_2\)</span> is <span
+class="math inline">\(\frac{b_{21}}{s^2+a_{22}}\)</span>.</p>
+<p>For many of the case studies that we will look at in this book, there
+is a single input, but we are also interested in controlling two or more
+measurements or outputs. State-space control techniques are able to
+create control laws to control multiple outputs in a single design step,
+as we will see in later chapters. However, we also want to be able to
+create single-input, multiple-output controllers using more classical
+transfer-function based approaches. Doing so will require more intuition
+about the systems we are controlling, as well as a clear understanding
+of our control objectives so that we can make appropriate design
+decisions and simplifying assumptions.</p>
+<p>The majority of our design studies (specifically studies B, C, E, and
+F) have coupled, higher-order dynamics (greater than order two) with
+multiple outputs. Instead of coming up with a single feedback loop to
+control the multiple outputs of interest, we will form a cascade of two
+lower-order transfer functions and design two independent control loops.
+Forming the cascade of lower-order transfer functions requires insights
+into the dynamic behavior of the system, because it may require
+simplifying assumptions about the dynamic coupling between the two
+subsystems. Instead of a two-way coupling, the cascade may make the
+dynamic coupling one-way. To reduce the complexity of the system, we may
+make simplifying assumptions about the dynamics of one of the
+subsystems. It is essential for these simplifications to be justifiable
+given the parameters of the system and our control objectives. For
+example, in design study C, we form a cascade of two transfer functions:
+the first is from the torque input to the satellite angular position and
+the second is from the satellite angular position to the solar panel
+angular position. Because the satellite is more massive than the solar
+panels, we will make a valid assumption that while the satellite
+significantly influences the dynamic behavior of the solar panels, the
+solar panels do not significantly influence the dynamic behavior of the
+satellite. As we will see, this will simplify the design of the control
+system significantly and result in a viable control design that provides
+good performance.</p>
+<p>In forming cascades of transfer functions, other factors may
+influence the form of the cascade. Our control priorities may play a
+significant role. For example, in design study B, the balancing of the
+inverted pendulum is the highest priority and therefore, we will use the
+force input to control the angle of the pendulum. Of importance, but
+lower priority, is controlling the cart. These considerations will lead
+us to form the cascade using the transfer functions from force to
+pendulum angle and from pendulum angle to cart position. In other
+situations, the causality of the dynamic behavior is more transparent.
+In the block-beam system, the force on the beam causes the beam angle to
+change and the change in beam angle causes the block to slide. We will
+form the transfer function cascade for the block-beam system
+accordingly. In the planar VTOL aircraft system, torque from the
+differential thrust causes the aircraft to pitch, while thrust combined
+with non-zero pitch causes the aircraft to translate. It is natural,
+therefore, to think of torque causing pitch, and pitch causing
+translational motion. We will thus form a cascade of two transfer
+functions: from torque to pitch angle and from pitch angle to horizontal
+position.</p>
+<p>In forming a cascade of two (or more) transfer functions to represent
+the dynamics of a single system, it is critically important that we
+consider the physics of the system and our control objectives as we make
+simplifying assumptions. Important questions to consider include:</p>
+<ul>
+<li><p>What is the control input to the system?</p></li>
+<li><p>What outputs of the system are to be controlled?</p></li>
+<li><p>What outputs can be measured?</p></li>
+<li><p>What physically justifiable simplifications can be made about the
+dynamic coupling between subsystems?</p></li>
+<li><p>What physically justifiable simplifying assumptions can be made
+about the dynamics of the system?</p></li>
+</ul>
+<p>Asking and answering these questions is fundamental to the design of
+successful control systems. The more insight you have into the physical
+behavior of the system you are controlling, the better your control
+system designs will be.</p>
+<h2 data-number="5.4" id="design-study-b-inverted-pendulum-2" class="section-design-study"><span class="header-section-number">5.4</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="5.4.1" id="-example-problem-328" class="section-example"><span class="header-section-number">5.4.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a></h3>
+<p>For the inverted pendulum:</p>
+<p>(a) Start with the linearized equations and use the Laplace transform to
+convert the equations of motion to the s-domain.</p>
+<p>(b) Find the transfer functions from the input <span
+class="math inline">\(\tilde{F}(s)\)</span> to the outputs <span
+class="math inline">\(\tilde{Z}(s)\)</span> and <span
+class="math inline">\(\tilde{\Theta}(s)\)</span>. Assume that the
+damping constant is negligible. How does this simplify the transfer
+functions? Is this a reasonable assumption?</p>
+<p>(c) From the simplified <span
+class="math inline">\(\tilde{Z}(s)/\tilde{F}(s)\)</span> and <span
+class="math inline">\(\tilde{\Theta}(s)/\tilde{F}(s)\)</span> transfer
+functions, compute the <span
+class="math inline">\(\tilde{Z}(s)/\tilde{\Theta}(s)\)</span> transfer
+function. Draw a block diagram of the system as a series of two transfer
+functions from <span class="math inline">\(\tilde{F}(s)\)</span> to
+<span class="math inline">\(\tilde{\Theta}(s)\)</span> and from <span
+class="math inline">\(\tilde{\Theta}(s)\)</span> to <span
+class="math inline">\(\tilde{Z}(s)\)</span>.</p>
+<p>(d) Describe how this transfer-function cascade makes sense physically. How
+does force influence the pendulum angle? How does the pendulum angle
+influence the cart position?</p>
+<section id="design-study-b-ch5-transfer-function">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw5"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Build the pendulum transfer-function
+cascade before viewing the solution</h3> <p>Start from the
+linearized equations and identify the force-to-angle and
+angle-to-position relationship.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Cascade block diagram for the inverted pendulum."> <img
+src="6_design_studies/figures/hw_pendulum_block_diagram.png"
+alt="Cascade block diagram for the inverted pendulum."> <p
+class="advanced-caption">Use the cascade structure to separate the
+fast force-to-angle subsystem from the angle-to-position
+subsystem.</p> </div>
+
+<section class="guided-step" data-dsa-step="damping">
+<h4>Step 1. Simplifying assumption</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Damping assumption</span><input type="text"
+data-dsa-input="b" data-dsa-accept="0\|b=0\|negligible\|b
+approximately 0" placeholder="short answer"></label> </div>
+<button type="button" data-dsa-check="damping">Check Step
+1</button> <p class="quiz-feedback" data-dsa-feedback="damping"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="damping"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The transfer functions
+are simplified by assuming b is negligible.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="inner"> <h4>Step 2.
+Force-to-angle subsystem</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Plant
+behavior</span><input type="text" data-dsa-input="behavior"
+data-dsa-accept="unstable\|right half plane pole\|rhp pole"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="inner">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="inner"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="inner" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> The
+upright pendulum force-to-angle dynamics include an unstable
+right-half-plane pole.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="cascade"> <h4>Step
+3. Angle-to-position subsystem</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Free integrator
+count</span><input type="text" data-dsa-input="integrators"
+data-dsa-accept="2\|two" placeholder="number"></label>
+<label><span>Cascade output</span><input type="text"
+data-dsa-input="output" data-dsa-accept="z\|cart position"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="cascade">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="cascade"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="cascade"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The angle-to-position
+transfer function has two free integrators and produces cart position
+z.</p></details> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>From HW <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.4, the linearized equations of
+motion are given by <span class="math display">\[\begin{pmatrix}
+(m_1+m_2) &amp; m_1 \frac{\ell}{2} \\
+m_1 \frac{\ell}{2} &amp; m_1 \frac{\ell^2}{3}
+\end{pmatrix}\begin{pmatrix}
+\ddot{\tilde{z}} \\ \ddot{\tilde{\theta}} \end{pmatrix}  =
+\begin{pmatrix} -b\dot{\tilde{z}} + \tilde{F}
+      \\
+    m_1 g \frac{\ell}{2} \tilde{\theta} \end{pmatrix}.\]</span> The
+second equation in this matrix formulation can be simplified by dividing
+both sides of the second equation by <span class="math inline">\(m_1
+\frac{\ell}{2}\)</span> to give <span
+class="math display">\[\begin{pmatrix} (m_1+m_2) &amp; m_1
+\frac{\ell}{2} \\
+1 &amp;  \frac{2 \ell}{3} \end{pmatrix}\begin{pmatrix}
+\ddot{\tilde{z}} \\ \ddot{\tilde{\theta}} \end{pmatrix}  =
+\begin{pmatrix} -b\dot{\tilde{z}} + \tilde{F}
+      \\
+    g \tilde{\theta} \end{pmatrix}.\]</span> We can write these
+equations with states and state derivatives on the left and inputs on
+the right as <span class="math display">\[\begin{aligned}
+(m_1+ m_2) \ddot{\tilde{z}} + m_1\frac{\ell}{2} \ddot{\tilde{\theta}} +
+b\dot{\tilde{z}} &amp;= \tilde{F} \\
+\ddot{\tilde{z}} + \frac{2\ell}{3} \ddot{\tilde{\theta}} -
+g{\tilde{\theta}} &amp;= 0 .
+\end{aligned}\]</span> Taking the Laplace transform gives <span
+class="math display">\[\begin{aligned}
+\left[ (m_1+m_2) s^2 + b s \right] \tilde{Z}(s) + m_1\frac{\ell}{2} s^2
+\tilde{\Theta}(s) &amp;= \tilde{F}(s) \\
+s^2 \tilde{Z}(s) + \left(\frac{2 \ell}{3} s^2 - g
+\right)\tilde{\Theta}(s) &amp;= 0 .
+\end{aligned}\]</span> These equations can be expressed in matrix form
+as <span class="math display">\[\begin{pmatrix} (m_1+m_2)s^2 + bs &amp;
+m_1 \frac{\ell}{2}s^2 \\
+s^2 &amp; \frac{2 \ell}{3}s^2-g \end{pmatrix}\begin{pmatrix}
+\tilde{Z}(s) \\ \tilde{\Theta}(s) \end{pmatrix}  =
+\begin{pmatrix} \tilde{F}(s) \\
+    0 \end{pmatrix}.\]</span> Inverting the matrix on the left hand side
+and solving for the transfer functions gives <span
+class="math display">\[\begin{aligned}
+\tilde{Z}(s) &amp;= \left(\frac{ \frac{2 \ell}{3} s^2 - g}{(m_1
+\frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^4 +b\frac{2\ell}{3} s^3
+-(m_1+m_2)gs^2-bgs}\right) \tilde{F}(s) \\
+\tilde{\Theta}(s) &amp;= \left(\frac{-s^2}{(m_1 \frac{\ell}{6}+ m_2
+\frac{2 \ell}{3}) s^4 +b\frac{2\ell}{3} s^3 -(m_1+m_2)gs^2-bgs}\right)
+\tilde{F}(s).
+\end{aligned}\]</span></p>
+<p>If we make the assumption that <span class="math inline">\(b \approx
+0\)</span>, then these transfer functions will simplify further and be
+even easier to work with from a control design perspective. This is a
+reasonable and conservative assumption because the damping force <span
+class="math inline">\(b\dot{z}\)</span> is small relative to the other
+forces acting on the system. Furthermore, by underestimating the damping
+in the system, our control design will be conservative because it
+assumes there is no damping provided by the physics of the system and
+thus all the damping in the system must come from the feedback control.
+Assuming <span class="math inline">\(b=0\)</span>, we get <span
+class="math display">\[\begin{aligned}
+\tilde{Z}(s) &amp;= \left(\frac{\frac{2 \ell}{3} s^2 - g}{s^2\left[(m_1
+\frac{\ell}{6}+ m_2 \frac{2 \ell}{3}) s^2  -(m_1+m_2)g \right]}\right)
+\tilde{F}(s) \\
+\tilde{\Theta}(s) &amp;= \left(\frac{-1}{(m_1 \frac{\ell}{6}+ m_2
+\frac{2 \ell}{3}) s^2  -(m_1+m_2)g}\right) \tilde{F}(s).
+\end{aligned}\]</span></p>
+<p>From a controls perspective, we will be interested in how the
+pendulum angle <span class="math inline">\(\theta\)</span> influences
+the cart position <span class="math inline">\(z\)</span>, and so we want
+to find the transfer function from <span
+class="math inline">\(\tilde{\Theta}(s)\)</span> to <span
+class="math inline">\(\tilde{Z}(s)\)</span>. This can be easily
+calculated by recognizing that <span class="math display">\[\tilde{Z}(s)
+=
+\frac{\tilde{Z}(s)}{\tilde{F}(s)}\frac{\tilde{F}(s)}{\tilde{\Theta}(s)}
+\tilde{\Theta}(s).\]</span> Accordingly, <span
+class="math display">\[\tilde{Z}(s) = \left(\frac{-\frac{2 \ell}{3} s^2
++ g}{s^2} \right) \tilde{\Theta}(s).\]</span> The block diagram for the
+approximate system is shown in Figure <a href="#fig:dm_soln_b6"
+data-reference-type="ref" data-reference="fig:dm_soln_b6">5.2</a>.</p>
+<figure id="fig:dm_soln_b6">
+<img src="6_design_studies/figures/hw_pendulum_block_diagram.png"
+style="width:90.0%"
+alt="The inverted pendulum dynamics are approximated by a cascade of fast and slow subsystems. The fast subsystem is the transfer function from the force to the angle, and the slow subsystem is the transfer function from the angle to the position." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 5.2. </span>The inverted pendulum dynamics are
+approximated by a cascade of fast and slow subsystems. The fast
+subsystem is the transfer function from the force to the angle, and the
+slow subsystem is the transfer function from the angle to the
+position.</figcaption>
+</figure>
+<p>This transfer function cascade makes sense physically. With the
+pendulum balanced vertically, a positive force on the cart would cause
+the pendulum to fall in the negative direction as indicated by the minus
+sign in the numerator. The pendulum falls in an unstable motion due to
+the right-half-plane pole in the transfer function. The angle of the rod
+influences the position of the cart as shown in the second transfer
+function. If the pendulum were balanced vertically with no input force
+applied and a small disturbance caused the pendulum to fall in the
+positive direction, the cart would shoot off in the negative direction.
+Again, this can be seen from the negative sign in the numerator of the
+transfer function and the right-half-plane pole in the denominator. Keep
+in mind that these equations are linearized about the vertical position
+of the pendulum. When the pendulum is hanging down, the equations are
+different. How are they different?</p></section> </article>
+</section>
+<p>The PID and loopshaping techniques that we will discuss in
+Parts <a href="06-6-state-space-models.html#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a>
+and <a href="14-14-disturbance-observers.html#part:loopshaping" data-reference-type="ref"
+data-reference="part:loopshaping">V</a> will use the
+approximate transfer function models of the plant derived above. The
+state space methods discussed in
+Part <a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based" data-reference-type="ref"
+data-reference="part:observer_based">IV</a> will use
+a state space model, which does not depend on neglecting the coupling
+between subsystems and does not depend on a separation into fast and
+slow subsystems.</p>
+<h2 data-number="5.5"
+id="design-study-c-satellite-attitude-control-3" class="section-design-study"><span class="header-section-number">5.5</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="5.5.1" id="-example-problem-338" class="section-example"><span class="header-section-number">5.5.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a></h3>
+<p>For the satellite attitude control problem:</p>
+<p>(a) Start with the linearized equations for the satellite attitude problem
+and use the Laplace transform to convert the equations of motion to the
+s-domain.</p>
+<p>(b) Find the full transfer matrix from the input <span
+class="math inline">\(\tau(s)\)</span> to the outputs <span
+class="math inline">\(\Phi(s)\)</span> and <span
+class="math inline">\(\Theta(s)\)</span>.</p>
+<p>(c) From the transfer matrix, find the second-order transfer function from
+<span class="math inline">\(\Theta(s)\)</span> to <span
+class="math inline">\(\Phi(s)\)</span>.</p>
+<p>(d) Under the assumption that the panel moment of inertia <span
+class="math inline">\(J_p\)</span> is significantly smaller than the
+spacecraft moment of inertia <span class="math inline">\(J_s\)</span>
+(specifically, <span class="math inline">\((J_s+J_p)/J_s \approx
+1\)</span>), find the second-order approximation for the transfer
+function from <span class="math inline">\(\tau(s)\)</span> to <span
+class="math inline">\(\Theta(s)\)</span>.</p>
+<p>(e) From your results on parts (c) and (d), form the approximate transfer
+function cascade for the satellite/panel system and justify why it makes
+sense physically.</p>
+<section id="design-study-c-ch5-transfer-function">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw5" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Build the satellite transfer-function cascade before viewing the
+solution</h3> <p>The transfer-function model separates the
+body-angle dynamics from the panel-angle dynamics using a physically
+motivated cascade approximation.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Satellite transfer-function cascade."> <img
+src="6_design_studies/figures/hw_satellite_block_diagram.png"
+alt="Satellite cascade block diagram."> <p
+class="advanced-caption">The approximation lets the body angle drive
+the panel dynamics while neglecting the panel's back-effect on the
+massive satellite body.</p> </div>
+
+<section class="guided-step" data-dsa-step="sdomain">
+<h4>Step 1. Identify the s-domain outputs</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Body-angle transform</span><input type="text"
+data-dsa-input="body" data-dsa-accept="theta\|Theta\|body
+angle\|satellite body angle" placeholder="variable"></label>
+<label><span>Panel-angle transform</span><input type="text"
+data-dsa-input="panel" data-dsa-accept="phi\|Phi\|panel angle\|solar
+panel angle" placeholder="variable"></label> </div> <button
+type="button" data-dsa-check="sdomain" data-dsa-hint="The transfer
+matrix maps torque to body and panel angles.">Check Step 1</button>
+<p class="quiz-feedback" data-dsa-feedback="sdomain"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="sdomain"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The transfer matrix maps
+<span class="math inline">\(\tau(s)\)</span> to <span class="math
+inline">\(\Theta(s)\)</span> and <span class="math
+inline">\(\Phi(s)\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="outer"> <h4>Step 2.
+Body angle to panel angle</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Transfer-function
+ratio</span><input type="text" data-dsa-input="ratio"
+data-dsa-accept="phi/theta\|Phi/Theta\|panel over body\|panel angle
+over body angle" placeholder="ratio"></label>
+<label><span>Model order</span><input type="text"
+data-dsa-input="order" data-dsa-accept="2\|second\|second order"
+placeholder="order"></label> </div> <button type="button"
+data-dsa-check="outer" data-dsa-hint="Divide the panel output
+transfer function by the body output transfer function.">Check Step
+2</button> <p class="quiz-feedback" data-dsa-feedback="outer"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="outer" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> The
+panel subsystem is <span class="math
+inline">\(P_{out}(s)=\Phi(s)/\Theta(s)\)</span>, a second-order
+flexible-mode transfer function.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="inner"> <h4>Step 3.
+Torque to body angle approximation</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Approximate inertia</span><input type="text"
+data-dsa-input="inertia"
+data-dsa-accept="js+jp\|j_s+j_p\|Js+Jp\|total inertia"
+placeholder="expression"></label> <label><span>Free integrator
+count</span><input type="text" data-dsa-input="integrators"
+data-dsa-accept="2\|two" placeholder="number"></label> </div>
+<button type="button" data-dsa-check="inner" data-dsa-hint="The
+simplified body plant acts like a rigid body with total
+inertia.">Check Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="inner" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="inner"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> <span class="math
+inline">\(P_{in}(s)=\Theta(s)/\tau(s)\approx 1/((J_s+J_p)s^2)\)</span>,
+so the approximate body plant has two free
+integrators.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="assumption">
+<h4>Step 4. Interpret the approximation</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Neglected direction</span><input type="text"
+data-dsa-input="direction" data-dsa-accept="panel to body\|panel back
+effect\|panel affects body\|phi to theta" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="assumption" data-dsa-hint="The massive body drives
+the panel; the panel's back-effect on the body is neglected.">Check
+Step 4</button> <p class="quiz-feedback"
+data-dsa-feedback="assumption" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="assumption" hidden><summary>Show solution for Step
+4</summary><p><strong>Answer:</strong> The cascade assumes the
+satellite body significantly influences the panel, while the panel does
+not significantly influence the satellite body.</p></details>
+</section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>From HW <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.3, the linearized equations of
+motion are given by <span
+class="math display">\[\begin{pmatrix}\ddot{\theta} \\ \ddot{\phi}
+\end{pmatrix}
+= \begin{pmatrix}
+-\frac{b}{J_s}(\dot{\theta}-\dot{\phi})-\frac{k}{J_s}(\theta-\phi)+\frac{1}{J_s}\tau
+\\ -\frac{b}{J_p}(\dot{\phi}-\dot{\theta}) -\frac{k}{J_p}(\phi-\theta)
+\end{pmatrix}\]</span> or in other words, the coupled differential
+equations <span class="math display">\[\begin{aligned}
+\ddot{\theta} + \frac{b}{J_s}\dot{\theta} + \frac{k}{J_s}\theta  &amp;=
+\frac{b}{J_s}\dot{\phi}+\frac{k}{J_s}\phi+\frac{1}{J_s}\tau \\
+\ddot{\phi} + \frac{b}{J_p}\dot{\phi} +\frac{k}{J_p}\phi &amp;=
+\frac{b}{J_p}\dot{\theta} + \frac{k}{J_p}\theta.
+\end{aligned}\]</span> Taking the Laplace transform with initial
+conditions set to zero and rearranging gives <span
+class="math display">\[\begin{aligned}
+(s^2+\frac{b}{J_s}s+\frac{k}{J_s})\Theta(s)  &amp;=
+(\frac{b}{J_s}s+\frac{k}{J_s})\Phi(s)+\frac{1}{J_s}\tau(s)
+\label{eq:soln_c6_1}\\
+(s^2+\frac{b}{J_p}s+\frac{k}{J_p})\Phi(s) &amp;=
+(\frac{b}{J_p}s+\frac{k}{J_p})\Theta(s).
+\label{eq:soln_c6_2}
+\end{aligned}\]</span></p>
+<p>To find the transfer matrix from <span
+class="math inline">\(\tau\)</span> to <span
+class="math inline">\((\Theta, \Phi)^\top\)</span>, write Equation <a
+href="#transfer-function-models" data-reference-type="eqref"
+data-reference="eq:soln_c6_1"><a href="#transfer-function-models">5.3</a></a> and <a
+href="#design-study-b-inverted-pendulum-2" data-reference-type="eqref"
+data-reference="eq:soln_c6_2"><a href="#transfer-function-models">5.4</a></a> in matrix form as <span
+class="math display">\[\left(\begin{array}{c|c}
+s^2+\frac{b}{J_s}s+\frac{k}{J_s} &amp; -\frac{b}{J_s}s-\frac{k}{J_s}
+\\\hline
+-\frac{b}{J_p}s-\frac{k}{J_p} &amp; s^2+\frac{b}{J_p}s+\frac{k}{J_p}
+\end{array}\right)
+\begin{pmatrix}\Theta(s) \\ \Phi(s) \end{pmatrix}
+= \begin{pmatrix} \frac{1}{J_s} \\ 0 \end{pmatrix} \tau(s),\]</span> and
+invert the matrix on the left hand side to obtain <span
+class="math display">\[\begin{pmatrix}\Theta(s) \\ \Phi(s) \end{pmatrix}
+= \begin{pmatrix}
+\frac{\frac{1}{J_s}s^2+\frac{b}{J_sJ_p}s+\frac{k}{J_sJ_p}}{s^2\left(
+s^2+\frac{b(J_s+J_p)}{J_sJ_p}s+\frac{k(J_s+J_p)}{J_sJ_p} \right)}
+\\
+\frac{\frac{b}{J_sJ_p}s+\frac{k}{J_sJ_p}}{s^2\left(
+s^2+\frac{b(J_s+J_p)}{J_sJ_p}s+\frac{k(J_s+J_p)}{J_sJ_p} \right)}
+\end{pmatrix} \tau(s).\]</span></p>
+<p>By dividing the bottom transfer function of the transfer matrix <span
+class="math inline">\(\Phi(s)/\tau(s)\)</span> by the top transfer
+function of the transfer matrix <span
+class="math inline">\(\Theta(s)/\tau(s)\)</span>, we can find the
+transfer function from the satellite angular position to the panel
+angular position <span class="math display">\[\frac{\Phi(s)}{\Theta(s)}
+= \frac{\frac{b}{J_p}s+\frac{k}{J_p}}{s^2+\frac{b}{J_p}s+\frac{k}{J_p}}.
+\label{eq:soln_c6_4}\]</span></p>
+<p>From the transfer matrix, the transfer function from <span
+class="math inline">\(\tau(s)\)</span> to <span
+class="math inline">\(\Theta(s)\)</span> is given by <span
+class="math display">\[\frac{\Theta(s)}{\tau(s)} =
+\frac{\frac{1}{J_s}s^2+\frac{b}{J_sJ_p}s+\frac{k}{J_sJ_p}}{s^2\left(
+s^2+\frac{b(J_s+J_p)}{J_sJ_p}s+\frac{k(J_s+J_p)}{J_sJ_p}
+\right)}\]</span> Under the assumption that the moment of inertia of the
+panel is significantly smaller than the inertia of the satellite (which
+is true for this problem), we can infer that <span
+class="math inline">\((J_s+J_p)/J_s \approx 1\)</span>. Taking this into
+account, we can simplify <span
+class="math inline">\(\Theta(s)/\tau(s)\)</span> as <span
+class="math display">\[\begin{aligned}
+    \frac{\Theta(s)}{\tau(s)} &amp;=
+\frac{\frac{1}{J_s}\left(s^2+\frac{b}{J_p}s+\frac{k}{J_p}\right)}{s^2
+\left( \frac{J_s+J_p}{J_s} \right)\left( \frac{J_s}{J_s+J_p}
+s^2+\frac{b}{J_p}s+\frac{k}{J_p} \right)} \\
+                              &amp;\approx \frac{1}{(J_s+J_p)s^2} .
+\end{aligned}\]</span></p>
+<p>The block diagram for the approximate system is shown in Figure <a
+href="#fig:dm_soln_c6" data-reference-type="ref"
+data-reference="fig:dm_soln_c6">5.3</a></p>
+<figure id="fig:dm_soln_c6">
+<img src="6_design_studies/figures/hw_satellite_block_diagram.png"
+style="width:80.0%"
+alt="The satellite attitude dynamics are approximated by a cascade of the satellite and panel subsystems." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 5.3. </span>The satellite attitude dynamics are
+approximated by a cascade of the satellite and panel
+subsystems.</figcaption>
+</figure>
+<p>The cascade approximation has the exact transfer function for the
+panel subsystem, but it has an approximate transfer function for the
+satellite subsystem. The approximation implies that the dynamics of the
+satellite affects the dynamics of the panel, but the dynamics of the
+panel do not affect the dynamics of the satellite. Notice that the
+transfer function for the satellite has the dynamics of a rigid body
+with a moment of inertia of <span
+class="math inline">\(J_s+J_p\)</span>. As long as the moment of inertia
+of the satellite is significantly greater than the moment of inertia of
+the panel, this assumption is reasonable and approximates the fully
+coupled dynamics of the system with acceptable accuracy.</p></section> </article>
+</section>
+<h2 data-number="5.6" id="interactive-transfer-function-check"><span class="header-section-number">5.6</span> Interactive Transfer Function
+Check</h2>
+<section id="design-ch5-transfer-function-check">
+<article class="advanced-activity" data-advanced-activity="transfer-function">
+<p class="advanced-kicker">
+Chapter 5 activity
+</p>
+<h3>
+Read a second-order transfer function
+</h3>
+<p>
+Adjust the coefficients in
+H(s)=b<sub>0</sub>/(s<sup>2</sup>+a<sub>1</sub>s+a<sub>0</sub>) and
+watch how the denominator determines poles while
+b<sub>0</sub>/a<sub>0</sub> sets the DC gain when a<sub>0</sub> is
+nonzero.
+</p>
+
+<label><span class="inline-equation">a<sub>1</sub></span><input
+type="range" data-input="a1" min="-2" max="8" step="0.1"
+value="3"></label><label><span class="inline-equation">a<sub>0</sub></span><input
+type="range" data-input="a0" min="0.1" max="10" step="0.1"
+value="2"></label><label><span class="inline-equation">b<sub>0</sub></span><input
+type="range" data-input="b0" min="-5" max="10" step="0.1"
+value="4"></label>
+
+<div class="advanced-readout
+advanced-readout-lines"><div
+class="advanced-metric"><strong>Transfer function</strong><span
+data-output="tf"></span></div><div
+class="advanced-metric"><strong>Poles</strong><span
+data-output="poles"></span></div><div
+class="advanced-metric"><strong>DC gain</strong><span
+data-output="dc"></span></div><div
+class="advanced-metric"><strong>System order</strong><span
+data-output="order"></span></div></div>
+
+<p class="advanced-callout">
+Transfer functions describe zero-initial-condition input-output
+behavior. Poles come from the denominator roots; zeros come from
+numerator roots.
+</p>
+</article>
+</section>
+<h2 data-number="5.7" id="knowledge-check-4"><span class="header-section-number">5.7</span> Knowledge Check</h2>
+<section id="design-ch5-knowledge-check" class="quiz-list">
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Initial conditions are not arbitrary
+in the transfer-function derivation." data-feedback-b="B is correct. A
+transfer function assumes zero initial conditions." data-feedback-c="C
+is not correct. Transfer functions can include damping."
+data-feedback-d="D is not correct. Transfer functions can represent
+systems with stored energy, but initial stored energy is set to zero for
+the input-output map."> <h4>Q1. Initial conditions</h4> <p
+class="quiz-prompt">What initial-condition assumption is used when
+forming a transfer function?</p> <div
+class="quiz-options"><label><input type="radio"
+name="design-ch5-q1" value="A"><span class="quiz-option-text">A) Initial conditions may be any
+unknown values</span></label><label><input type="radio"
+name="design-ch5-q1" value="B"><span class="quiz-option-text">B) Initial conditions are
+zero</span></label><label><input type="radio" name="design-ch5-q1"
+value="C"><span class="quiz-option-text">C) Damping is zero</span></label><label><input
+type="radio" name="design-ch5-q1" value="D"><span class="quiz-option-text">D) Stored energy is
+maximized</span></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Numerator roots are zeros."
+data-feedback-b="B is correct. Poles are the roots of the denominator
+polynomial." data-feedback-c="C is not correct. The input transform is
+not the pole polynomial." data-feedback-d="D is not correct. Initial
+conditions are set to zero in the transfer function."> <h4>Q2.
+Poles</h4> <p class="quiz-prompt">Where do the poles of a transfer
+function come from?</p> <div class="quiz-options"><label><input
+type="radio" name="design-ch5-q2" value="A"><span class="quiz-option-text">A) Roots of the
+numerator</span></label><label><input type="radio"
+name="design-ch5-q2" value="B"><span class="quiz-option-text">B) Roots of the
+denominator</span></label><label><input type="radio"
+name="design-ch5-q2" value="C"><span class="quiz-option-text">C) Roots of the input
+transform</span></label><label><input type="radio"
+name="design-ch5-q2" value="D"><span class="quiz-option-text">D) Roots of the initial
+conditions</span></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="2" data-tolerance="0.001">
+<h4>
+Q3. DC gain
+</h4>
+<p class="quiz-prompt">
+For H(s)=6/(s<sup>2</sup>+4s+3), enter the DC gain H(0).
+</p>
+
+<label>H(0):<input type="text" name="design-ch5-q3"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 2, because H(0)=6/3.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="-4" data-tolerance="0.001">
+<h4>
+Q4. First-order pole
+</h4>
+<p class="quiz-prompt">
+For the denominator s+4, enter the pole location.
+</p>
+
+<label>Pole:<input type="text" name="design-ch5-q4"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> -4, because s+4=0 gives s=-4.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answers="zeros\|zero">
+<h4>
+Q5. Numerator roots
+</h4>
+<p class="quiz-prompt">
+What are the roots of a transfer function numerator called?
+</p>
+
+<label>Term:<input type="text" name="design-ch5-q5" placeholder="short answer"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> They are zeros.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The transfer function is the
+zero-initial-condition input-output map." data-feedback-b="B is not
+correct. Transfer functions can represent damped or undamped systems;
+damping is not the assumption." data-feedback-c="C is not correct. The
+input does not have to be a unit step." data-feedback-d="D is not
+correct. State variables are not required to be measured to form a
+transfer function."> <h4>Q6. Transfer-function assumption</h4> <p
+class="quiz-prompt">Which assumption is used when deriving a transfer
+function from a differential equation?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="design-ch5-exam-q1" value="A"><span class="quiz-option-text">A) Initial conditions are
+zero</span></label> <label><input type="radio"
+name="design-ch5-exam-q1" value="B"><span class="quiz-option-text">B) Damping must be
+zero</span></label> <label><input type="radio"
+name="design-ch5-exam-q1" value="C"><span class="quiz-option-text">C) The input must be a unit
+step</span></label> <label><input type="radio"
+name="design-ch5-exam-q1" value="D"><span class="quiz-option-text">D) Every state must be
+measured</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. The denominator roots are the poles,
+but this option gives the zero as a pole." data-feedback-b="B is
+correct. The zero is at -4 and the poles are at -1 and -3."
+data-feedback-c="C is not correct. Poles and zeros are reversed."
+data-feedback-d="D is not correct. Coefficients are not the pole and
+zero locations."> <h4>Q7. Pole-zero identification</h4> <p
+class="quiz-prompt">For G(s)=(s+4)/((s+1)(s+3)), which statement is
+correct?</p> <div class="quiz-options"> <label><input
+type="radio" name="design-ch5-exam-q2" value="A"><span class="quiz-option-text">A) Pole at -4;
+zeros at -1 and -3</span></label> <label><input type="radio"
+name="design-ch5-exam-q2" value="B"><span class="quiz-option-text">B) Zero at -4; poles at -1 and
+-3</span></label> <label><input type="radio" name="design-ch5-exam-q2"
+value="C"><span class="quiz-option-text">C) Zeros at -1 and -3; no poles</span></label> <label><input
+type="radio" name="design-ch5-exam-q2" value="D"><span class="quiz-option-text">D) Pole at 4;
+zero at 3</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. This uses the numerator constant
+alone and ignores the denominator at s=0." data-feedback-b="B is not
+correct. This is the denominator constant alone." data-feedback-c="C
+is correct. For a stable transfer function, the unit-step final value is
+G(0)=2/8=0.25." data-feedback-d="D is not correct. A stable finite DC
+gain does not give an infinite step final value."> <h4>Q8. DC
+gain</h4> <p class="quiz-prompt">For stable
+G(s)=(s+2)/(s<sup>2</sup>+6s+8), what final value should a unit step
+input approach?</p> <div class="quiz-options"> <label><input
+type="radio" name="design-ch5-exam-q3" value="A"><span class="quiz-option-text">A) 2</span></label>
+<label><input type="radio" name="design-ch5-exam-q3"
+value="B"><span class="quiz-option-text">B) 8</span></label> <label><input type="radio"
+name="design-ch5-exam-q3" value="C"><span class="quiz-option-text">C) 0.25</span></label>
+<label><input type="radio" name="design-ch5-exam-q3"
+value="D"><span class="quiz-option-text">D) Infinite</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. Ignoring all poles generally
+destroys the dynamics." data-feedback-b="B is not correct. Zeros can
+still exist in cascaded or approximate models." data-feedback-c="C is
+not correct. Initial conditions are not the reason to use a cascade
+approximation." data-feedback-d="D is correct. Cascade approximations
+are useful when dynamics can be represented by simpler connected
+factors."> <h4>Q9. Cascade approximation</h4> <p
+class="quiz-prompt">When is a cascade approximation most
+useful?</p> <div class="quiz-options"> <label><input
+type="radio" name="design-ch5-exam-q4" value="A"><span class="quiz-option-text">A) When all
+poles should be ignored</span></label> <label><input type="radio"
+name="design-ch5-exam-q4" value="B"><span class="quiz-option-text">B) When zeros are
+impossible</span></label> <label><input type="radio"
+name="design-ch5-exam-q4" value="C"><span class="quiz-option-text">C) When initial conditions
+dominate the response</span></label> <label><input type="radio"
+name="design-ch5-exam-q4" value="D"><span class="quiz-option-text">D) When the dynamics can be
+represented as connected lower-order blocks</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="5.8" id="notes-and-references-3" class="section-notes"><span class="header-section-number">5.8</span> Notes and References</h2>
+<p>The Laplace transform can be found in introductory textbooks on
+signals and systems like [16] and in introductory textbooks on
+differential equations. The transfer function of a linear time-invariant
+system is also covered in introductory textbooks on signals and systems,
+and in most introductory textbooks on control like [4].</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

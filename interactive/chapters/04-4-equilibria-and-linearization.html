@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="4" id="equilibria-and-linearization"><span class="header-section-number">4</span> Equilibria and Linearization</h1>
+<h2 data-number="4.1" id="theory-2"><span class="header-section-number">4.1</span> Theory</h2>
+<p>In this chapter we will describe two methods for linearizing the
+system, namely Jacobian linearization<span id="idx-0029" class="book-index-anchor" aria-hidden="true"></span> and feedback
+linearization<span id="idx-0030" class="book-index-anchor" aria-hidden="true"></span>. Jacobian
+linearization is based on the idea of approximating the nonlinear terms
+in the equations of motion by the first two terms in their Taylor series
+expansion. Feedback linearization is based on the idea of using the
+input signal to artificially remove the nonlinear terms.</p>
+<h3 data-number="4.1.1" id="jacobian-linearization"><span class="header-section-number">4.1.1</span> Jacobian Linearization</h3>
+<p>If the function <span
+class="math inline">\(g:\mathbb{R}\to\mathbb{R}\)</span> is a nonlinear
+function that can be differentiated an infinite number of times, then
+its Taylor series<span id="idx-0031" class="book-index-anchor" aria-hidden="true"></span> expansion about the
+point <span class="math inline">\(w_0\)</span> is given by <span
+class="math display">\[g(w) = g(w_0) + \left.\frac{\partial g}{\partial
+w}\right|_{w_0} (w-w_0) + \frac{1}{2!}\left.\frac{\partial^2 g}{\partial
+w^2}\right|_{w_0}(w-w_0)^2 + \cdots.\]</span> A pictorial representation
+of Taylor series expansion is shown in
+<strong>Fig.</strong> <a href="#fig:dm_taylor_series_expansion" data-reference-type="ref"
+data-reference="fig:dm_taylor_series_expansion">4.1</a>,
+where it can be seen that in a small neighborhood around <span
+class="math inline">\(w=w_0\)</span>, the function <span
+class="math inline">\(g(w)\)</span> is well approximated by the first
+two terms in the Taylor series expansion, namely <span
+class="math display">\[g(w)\approx g(w_0) + \left.\frac{\partial
+g}{\partial w}\right|_{w_0} (w-w_0).\]</span></p>
+<figure id="fig:dm_taylor_series_expansion" class="advanced-activity
+ch4-taylor-explorer" data-ch4-taylor-explorer> <p
+class="advanced-kicker">Interactive Figure 4.1</p> <h3>Taylor
+series expansion about &omega;<sub>0</sub></h3> <p>Choose a
+nonlinear function, move the expansion point, and change the Taylor
+polynomial degree. Degree 1 is the linearized model used in Jacobian
+linearization.</p> <div class="advanced-grid
+advanced-grid--visual"> <div class="advanced-controls
+advanced-controls--compact ch4-taylor-controls"> <label>Function
+<select data-ch4-taylor-function> <option value="damped">Figure
+4.1 style: damped nonlinear curve</option> <option
+value="sin">g(ω) = sin(ω)</option> <option
+value="inverseSquare">g(ω) = 1/ω²</option> <option
+value="exp">g(ω) = exp(ω)</option> <option value="log">g(ω) =
+ln(ω)</option> <option value="reciprocal">g(ω) = 1/(1 +
+ω)</option> </select> </label> <label>Linearization point,
+&omega;<sub>0</sub> <input type="range" min="0" max="8"
+step="0.05" value="3.8" data-ch4-taylor-w0> <span
+class="advanced-control-value">&omega;<sub>0</sub> = <span
+data-ch4-taylor-w0-value></span></span> </label> <label>Taylor
+polynomial degree <input type="range" min="0" max="5" step="1"
+value="1" data-ch4-taylor-degree> <span
+class="advanced-control-value">degree = <span
+data-ch4-taylor-degree-value></span></span> </label> </div>
+<figure class="advanced-visual"> <canvas data-ch4-taylor-canvas
+width="760" height="440" role="img" aria-label="Taylor polynomial
+approximation of a selected nonlinear function"></canvas>
+<figcaption><span class="fig-number">Figure 4.1. </span>The blue curve is the nonlinear function. The orange curve
+is the selected Taylor polynomial about &omega;<sub>0</sub>. The
+dashed black line shows the first-order term used for
+linearization.</figcaption> </figure> </div> <section
+class="advanced-solution"> <h4>Taylor representation</h4> <p
+class="advanced-equation"><strong>Status:</strong> <span
+data-ch4-taylor-status></span></p> <p
+class="advanced-equation"><strong>Symbolic:</strong> <span
+data-ch4-taylor-symbolic></span></p> <p
+class="advanced-equation"><strong>Numerical:</strong> <span
+data-ch4-taylor-numeric></span></p> <p
+class="advanced-equation"><strong>Point value:</strong> <span
+data-ch4-taylor-point></span></p> </section> </figure>
+<p>If <span class="math inline">\(g\)</span> is a scalar function of
+several variables, then the Taylor series about <span
+class="math inline">\(w_1=w_{10}, w_2=w_{20}, \cdots,
+w_m=w_{m0}\)</span> is given by <span
+class="math display">\[\begin{gathered}
+g(w_1,w_2,\dots,w_m) = g(w_{10}, w_{20}, \dots, w_{m0})  +
+\left.\frac{\partial g}{\partial
+w_1}\right|_{w_{10},w_{20},\dots,w_{m0}} (w_1-w_{10}) \\ +
+\left.\frac{\partial g}{\partial
+w_2}\right|_{w_{10},w_{20},\dots,w_{m0}} (w_2-w_{20})  + \cdots +
+\left.\frac{\partial g}{\partial
+w_m}\right|_{w_{10},w_{20},\dots,w_{m0}} (w_m-w_{m0}) + \cdots.
+\end{gathered}\]</span> For example, given the function <span
+class="math inline">\(g(v,w)=v\cos w\)</span>, the constant and linear
+terms in the Taylor series, expanded around <span
+class="math inline">\(v_0\)</span> and <span
+class="math inline">\(w_0\)</span> are <span
+class="math display">\[\begin{aligned}
+g(v,w) &amp;\approx g(v_0, w_0)
+    + \left.\frac{\partial g}{\partial
+v}\right|_{v_{0},w_{0}}(v-v_{0})  
+    + \left.\frac{\partial g}{\partial
+w}\right|_{v_{0},w_{0}}(w-w_{0})  \\
+    &amp;= v_0\cos w_0 + \left.\left(\cos w
+\right)\right|_{v_0,w_0}(v-v_0)
+%
+        + \left.\left(-v\sin w\right)\right|_{v_0,w_0}(w-w_0) \\
+    &amp;= v_0\cos w_0 + (\cos w_0)(v-v_0)
+        - (v_0\sin w_0)(w-w_0).
+\end{aligned}\]</span></p>
+<p>Since approximating a nonlinear function by the first two terms in
+its Taylor series is only a good approximation in a small neighborhood
+of <span class="math inline">\(w_0\)</span>, it is important to select
+<span class="math inline">\(w_0\)</span> judiciously. In particular, we
+will be interested in linearizing about equilibrium points of
+differential equations.</p>
+<p>Given the differential equation <span class="math inline">\(\dot{x} =
+f(x,u)\)</span>, the pair <span class="math inline">\((x_e,u_e)\)</span>
+is an <em>equilibrium point</em><span id="idx-0032" class="book-index-anchor" aria-hidden="true"></span> if <span
+class="math display">\[f(x_e,u_e)=0.\]</span> In other words, an
+equilibrium point is a state-input pair where there is not any motion in
+the system.</p>
+<p>For example, suppose that the nonlinear differential equation of a
+second-order system is given by <span
+class="math display">\[\label{eq:dm_example_system}
+\ddot{y} + a\dot{y} + by + g(y,\dot{y}) = u,\]</span> where <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> are constants and <span
+class="math inline">\(g(y,\dot{y})\)</span> is a known nonlinear
+function of <span class="math inline">\(y\)</span> and <span
+class="math inline">\(\dot{y}\)</span>, and <span
+class="math inline">\(u\)</span> is the input signal. Defining <span
+class="math inline">\(x=(y,\dot{y})^\top\)</span>, we get <span
+class="math display">\[\dot{x} = \begin{pmatrix} \dot{y} \\ \ddot{y}
+\end{pmatrix}
+= \begin{pmatrix} \dot{y} \\ u - a\dot{y} - by - g(y,\dot{y})
+\end{pmatrix} \stackrel{\triangle}{=}f(x,u).\]</span> The equilibrium is
+when <span class="math inline">\(f(x_e,u_e)=0\)</span> or in other
+words, when <span class="math display">\[y_e = \text{~anything~}, \qquad
+\dot{y}_e=0, \qquad u_e=by_e+g(y_e,0).\]</span> Equivalently, at
+equilibrium there is no motion in the system, which implies that <span
+class="math inline">\(\ddot{y}_e=\dot{y}_e=0\)</span>, which from
+Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
+data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> implies
+that <span class="math inline">\(u_e = by_e+g(y_e,0)\)</span>.</p>
+<p>Jacobian linearization<span id="idx-0033" class="book-index-anchor" aria-hidden="true"></span> then proceeds by
+replacing each term in the nonlinear differential equations describing
+the system by the first two terms in the Taylor series expansion about
+the equilibrium point.</p>
+<p>For example, since the first term in
+Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
+data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> is
+already linear, it can be expanded exactly as <span
+class="math display">\[\ddot{y} = \ddot{y}_e + \frac{\partial
+\ddot{y}}{\partial \ddot{y}}\Big|_e (\ddot{y}-\ddot{y}_e) =
+\ddot{\tilde{y}},\]</span> where we have defined the linearized quantity
+<span
+class="math inline">\(\tilde{y}\stackrel{\triangle}{=}y-y_e\)</span>,
+and we have used the fact that <span
+class="math inline">\(\ddot{y}_e=0\)</span>. Similarly, the remaining
+terms in
+Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
+data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> are
+linearized as <span class="math display">\[\begin{aligned}
+a\dot{y} &amp;= a\dot{y}_e + a\frac{\partial \dot{y}}{\partial
+\dot{y}}\Big|_e (\dot{y}-\dot{y}_e) = a\dot{\tilde{y}} \\
+by &amp;= by_e + b\frac{\partial y}{\partial y}\Big|_e (y-y_e) = by_e +
+b\tilde{y} \\
+g(y,\dot{y}) &amp;\approx g(y_e,\dot{y}_e) + \frac{\partial g}{\partial
+y}\Big|_e(y-y_e) + \frac{\partial g}{\partial
+\dot{y}}\Big|_e(\dot{y}-\dot{y}_e) \\
+    &amp;= g(y_e,0) + \frac{\partial g}{\partial y}\Big|_e\tilde{y} +
+\frac{\partial g}{\partial \dot{y}}\Big|_e\dot{\tilde{y}} \\
+u &amp;= u_e + \frac{\partial u}{\partial u}\Big|_e (u-u_e) = u_e +
+\tilde{u}.
+\end{aligned}\]</span> Substituting these expressions into
+Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
+data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> the
+resulting linearized equations of motion are <span
+class="math display">\[[\ddot{\tilde{y}}] + [a\dot{\tilde{y}}] + [by_e +
+b\tilde{y}] + \left[g(y_e,0) + \frac{\partial g}{\partial
+y}\Big|_e\tilde{y} + \frac{\partial g}{\partial
+\dot{y}}\Big|_e\dot{\tilde{y}}\right] = [u_e + \tilde{u}]\]</span> Using
+the equilibrium <span class="math inline">\(u_e=by_e+g(y_e,0)\)</span>
+gives <span class="math display">\[\ddot{\tilde{y}} +
+\left(a+\frac{\partial g}{\partial \dot{y}}\Big|_e\right)\dot{\tilde{y}}
++ \left(b+\frac{\partial g}{\partial y}\Big|_e\right)\tilde{y}  =
+\tilde{u}.\]</span> A block diagram that shows the design model for
+Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
+data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> using
+Jacobian linearization is shown in
+<strong>Fig.</strong> <a href="#fig:dm_jacobian_linearization" data-reference-type="ref"
+data-reference="fig:dm_jacobian_linearization">4.2</a>.</p>
+<figure id="fig:dm_jacobian_linearization">
+<img
+src="2_design_models/figures/dm_jacobian_linearization.png"
+style="width:70.0%" alt="Linear model using Jacobian linearization." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 4.2. </span>Linear model using Jacobian
+linearization.</figcaption>
+</figure>
+<h3 data-number="4.1.2" id="feedback-linearization"><span class="header-section-number">4.1.2</span> Feedback Linearization</h3>
+<p>It is often the case that the nonlinearities in the system can be
+directly canceled by a judicious choice for the input variable. Consider
+again the nonlinear equations of motion in
+Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
+data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a>. If
+<span class="math inline">\(u\)</span> is selected as <span
+class="math display">\[u = g(y,\dot{y}) + \tilde{u}\]</span> then the
+resulting equation of motion is <span class="math display">\[\ddot{y} +
+a\dot{y} + by = \tilde{u},\]</span> which is linear. This technique is
+called <em>feedback linearization</em><span id="idx-0034" class="book-index-anchor" aria-hidden="true"></span> because the feedback
+signal <span class="math inline">\(u\)</span> has been used to linearize
+the system by directly canceling the nonlinearities. The advantage of
+this method is that the equations of motion are still globally defined
+and are not restricted to a small neighborhood of an equilibrium point.
+The disadvantage is that <span
+class="math inline">\(g(y,\dot{y})\)</span> may not be precisely known,
+and therefore may not be completely canceled by <span
+class="math inline">\(u\)</span>. A block diagram that shows the design
+model for
+Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
+data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> using
+feedback linearization is shown in
+<strong>Fig.</strong> <a href="#fig:dm_feedback_linearization" data-reference-type="ref"
+data-reference="fig:dm_feedback_linearization">4.3</a>.</p>
+<figure id="fig:dm_feedback_linearization">
+<img
+src="2_design_models/figures/dm_feedback_linearization.png"
+style="width:70.0%" alt="Linear model using feedback linearization." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 4.3. </span>Linear model using feedback
+linearization.</figcaption>
+</figure>
+<h2 data-number="4.2" id="design-study-a-single-link-robot-arm-2" class="section-design-study"><span class="header-section-number">4.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="4.2.1" id="-example-problem-317" class="section-example"><span class="header-section-number">4.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#equilibria-and-linearization" data-reference-type="ref"
+data-reference="chap:linearization">7</a></h3>
+<p>For the single link robot arm:</p>
+<p>(a) Find the equilibria of the system.</p>
+<p>(b) Linearize the system about the equilibria using Jacobian
+linearization.</p>
+<p>(c) Linearize the system using feedback linearization.</p>
+<section id="design-study-a-ch4-linearization">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw4-linearization"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Linearize the arm model before viewing the solution</h3>
+<p>Use the nonlinear arm equation from Chapter 3 and compare Jacobian
+linearization with feedback linearization.</p>
+
+<section class="guided-step" data-dsa-step="equilibrium">
+<h4>Step 1. Equilibrium conditions</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span><span class="math
+inline">\(\dot{\theta}_e\)</span></span><input type="text"
+data-dsa-input="thetadot" data-dsa-accept="0"
+placeholder="value"></label> <label><span><span class="math
+inline">\(\tau_e\)</span></span><input type="text"
+data-dsa-input="taue"
+data-dsa-accept="m\*g\*l/2\*cos(thetae)\|m\*g\*ell/2\*cos(thetae)\|mgl/2\*cos(thetae)"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="equilibrium">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="equilibrium"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="equilibrium" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> <span class="math
+inline">\(\dot{\theta}_e=0\)</span> and <span class="math
+inline">\(\tau_e=mg\ell\cos\theta_e/2\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="jacobian"> <h4>Step
+2. Linearized gravity term</h4> <p>Enter the coefficient multiplying
+<span class="math inline">\(\tilde{\theta}\)</span> after
+linearizing the gravity torque.</p> <div class="guided-input-grid
+guided-input-grid-scalars">
+<label><span>Coefficient</span><input type="text"
+data-dsa-input="grav"
+data-dsa-accept="-m\*g\*l/2\*sin(thetae)\|-m\*g\*ell/2\*sin(thetae)\|-mgl/2\*sin(thetae)"
+placeholder="coefficient"></label> </div> <button
+type="button" data-dsa-check="jacobian">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="jacobian"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="jacobian" hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The tangent term is
+<span class="math
+inline">\(-(mg\ell/2)\sin(\theta_e)\tilde{\theta}\)</span>.</p></details>
+</section>
+
+<section class="guided-step"
+data-dsa-step="feedback-linearization"> <h4>Step 3.
+Feedback-linearizing torque</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Gravity cancellation
+term</span><input type="text" data-dsa-input="cancel"
+data-dsa-accept="m\*g\*l/2\*cos(theta)\|m\*g\*ell/2\*cos(theta)\|mgl/2\*cos(theta)"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="feedback-linearization">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="feedback-linearization"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="feedback-linearization" hidden><summary>Show
+solution for Step 3</summary><p><strong>Answer:</strong> Use
+<span class="math
+inline">\(\tau=mg\ell\cos\theta/2+\tilde{\tau}\)</span> so the gravity
+term is canceled by the actual angle, not just by the equilibrium
+angle.</p></details> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The differential equation describing the single link robot arm
+derived in HW <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.3 is <span
+class="math display">\[\label{eq:dm_diff_eq_robot_arm_1}
+\frac{m\ell^2}{3}\ddot{\theta} + \frac{mg\ell}{2}\cos\theta = \tau -
+b\dot{\theta}.\]</span> Defining <span class="math inline">\(x=(\theta,
+\dot{\theta})\)</span>, and <span class="math inline">\(u=\tau\)</span>
+we get <span class="math display">\[\begin{aligned}
+\dot{x} = \begin{pmatrix} \dot{\theta} \\ \ddot{\theta}\end{pmatrix}
+= \begin{pmatrix} \dot{\theta} \\ \frac{3}{m\ell^2}\tau -
+\frac{3b}{m\ell^2}\dot{\theta} - \frac{3g}{2\ell}\cos\theta
+\end{pmatrix} \stackrel{\triangle}{=}f(x,u).
+\end{aligned}\]</span> The equilibrium is when <span
+class="math inline">\(f(x_e,u_e)=0\)</span>, or in other words, when
+<span class="math display">\[\label{dm:arm_equilibrium}
+\theta_e = \text{~anything~}, \qquad \dot{\theta}_e =0, \qquad \tau_e =
+\frac{mg\ell}{2}\cos\theta_e.\]</span> Equivalently, at equilibrium
+there is no motion in the system, which implies that <span
+class="math inline">\(\ddot{\theta}_e = \dot{\theta}_e=0\)</span>, which
+from Equation <a href="#equilibria-and-linearization"
+data-reference-type="eqref"
+data-reference="eq:dm_diff_eq_robot_arm_1"><a href="#equilibria-and-linearization">4.3</a></a>
+implies that <span class="math inline">\(\tau_e =
+\frac{mg\ell}{2}\cos\theta_e\)</span>.</p>
+<p>Therefore, any pair <span class="math inline">\((\theta_e,
+\tau_e)\)</span> satisfying Equation <a href="#equilibria-and-linearization"
+data-reference-type="eqref"
+data-reference="dm:arm_equilibrium">[dm:arm_equilibrium]</a> is an
+equilibrium. Jacobian linearization then proceeds by replacing each term
+in the nonlinear differential equations describing the system by the
+first two terms in the Taylor’s series expansion about the equilibrium
+point. Using some of the relationships from Equation <a
+href="#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="dm:arm_equilibrium">[dm:arm_equilibrium]</a>, (such as
+<span class="math inline">\(\dot{\theta}_e = 0\)</span>), then by
+defining <span
+class="math inline">\(\tilde{\theta}\stackrel{\triangle}{=}\theta-\theta_e\)</span>,
+<span
+class="math inline">\(\dot{\tilde{\theta}}\stackrel{\triangle}{=}\dot{\theta}-\dot{\theta}_e=\dot{\theta}\)</span>,
+<span
+class="math inline">\(\ddot{\tilde{\theta}}=\ddot{\theta}-\ddot{\theta}_e=\ddot{\theta}\)</span>,
+and <span class="math inline">\(\tilde{\tau}=\tau-\tau_e\)</span>, each
+term in Equation <a href="#equilibria-and-linearization"
+data-reference-type="eqref"
+data-reference="eq:dm_diff_eq_robot_arm_1"><a href="#equilibria-and-linearization">4.3</a></a>
+can be expanded about the equilibrium as follows: <span
+class="math display">\[\begin{aligned}
+\frac{m\ell^2}{3}\ddot{\theta} &amp;= \frac{m\ell^2}{3}\ddot{\theta}_e +
+\frac{m\ell^2}{3}\left.\frac{\partial \ddot{\theta}}{\partial
+\ddot{\theta}}\right|_e (\ddot{\theta}-\ddot{\theta}_e) =
+\frac{m\ell^2}{3} \ddot{\tilde{\theta}}, \\
+\frac{mg\ell}{2}\cos\theta &amp;\approx \frac{mg\ell}{2} \cos\theta_e +
+\frac{mg\ell}{2}\frac{\partial}{\partial \theta}
+(\cos\theta)\Big|_{\theta_e}
+(\theta-\theta_e) \\
+&amp;= \frac{mg\ell}{2}\cos\theta_e - \frac{mg\ell}{2}\sin\theta_e
+\tilde{\theta} \\
+\tau &amp;= \tau_e + \frac{\partial \tau}{\partial \tau}\Big|_e
+(\tau-\tau_e)
+     = \tau_e + \tilde{\tau} \\
+b\dot{\theta} &amp;= b\dot{\theta}_e + b\frac{\partial
+\dot{\theta}}{\partial \dot{\theta}}\Big|_e
+(\dot{\theta}-\dot{\theta}_e) = b\dot{\tilde{\theta}}.  
+\end{aligned}\]</span> Substituting into Equation <a
+href="#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:dm_diff_eq_robot_arm_1"><a href="#equilibria-and-linearization">4.3</a></a>
+gives <span
+class="math display">\[\frac{m\ell^2}{3}\left[\ddot{\theta}_e +
+\ddot{\tilde{\theta}}\right] + \frac{mg\ell}{2}\left[\cos\theta_e -
+\sin\theta_e\tilde{\theta}\right] = \left[\tau_e+\tilde{\tau}\right] -
+b\left[\dot{\theta}_e +\dot{\tilde{\theta}}\right].\]</span> Simplifying
+this expression using Equation <a href="#equilibria-and-linearization"
+data-reference-type="eqref"
+data-reference="dm:arm_equilibrium">[dm:arm_equilibrium]</a> gives <span
+class="math display">\[\label{eq:arm_linearized_eom_jacobian}
+\frac{m\ell^2}{3}\ddot{\tilde{\theta}} -
+\frac{mg\ell}{2}(\sin\theta_e)\tilde{\theta} = \tilde{\tau} -
+b\dot{\tilde{\theta}},\]</span> which are the linearized equations of
+motion using Jacobian linearization.</p>
+<p>Feedback linearization proceeds by using the feedback linearizing
+control <span
+class="math display">\[\label{eq:arm_feedback_linarization_control}
+\tau = \frac{mg\ell}{2}\cos\theta + \tilde{\tau}\]</span> in Equation <a
+href="#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:dm_diff_eq_robot_arm_1"><a href="#equilibria-and-linearization">4.3</a></a>
+to obtain the feedback linearized equations of motion <span
+class="math display">\[\label{eq:arm_linearized_eom_feedback_linarization}
+\frac{m\ell^2}{3}\ddot{\theta} = \tilde{\tau} - b\dot{\theta},\]</span>
+where we emphasize that the equations of motion are valid for any <span
+class="math inline">\(\theta\)</span> and <span
+class="math inline">\(\dot{\theta}\)</span> and not just in a small
+region about an equilibrium. It is interesting to compare Equation <a
+href="#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:arm_feedback_linarization_control"><a href="#equilibria-and-linearization">4.6</a></a>
+to the control signal using Jacobian linearization which is <span
+class="math display">\[\label{eq:arm_jacobian_linarization_control}
+\tau = \tau_e+\tilde{\tau} = \frac{mg\ell}{2}\cos\theta_e +
+\tilde{\tau}.\]</span> The control signal in <a
+href="#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:arm_jacobian_linarization_control"><a href="#equilibria-and-linearization">4.8</a></a>
+uses the equilibrium angle <span class="math inline">\(\theta_e\)</span>
+whereas the control signal in <a
+href="#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:arm_feedback_linarization_control"><a href="#equilibria-and-linearization">4.6</a></a>
+uses the actual angle <span class="math inline">\(\theta\)</span>. For
+the single link robot arm we will use the design model obtained using
+feedback linearization.</p></section> </article>
+</section>
+<h2 data-number="4.3" id="design-study-b-inverted-pendulum-1" class="section-design-study"><span class="header-section-number">4.3</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="4.3.1" id="-example-problem-327" class="section-example"><span class="header-section-number">4.3.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#equilibria-and-linearization" data-reference-type="ref"
+data-reference="chap:linearization">7</a></h3>
+<p>For the inverted pendulum,</p>
+<p>(a) Find the equilibria of the system.</p>
+<p>(b) Linearize the system about the equilibria using Jacobian
+linearization.</p>
+<p>Note that for the inverted pendulum, since the nonlinearities are not
+all contained in the same channel as the control force <span
+class="math inline">\(F\)</span>, the system cannot be feedback
+linearized.</p>
+<section id="design-study-b-ch4-linearization">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw4"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Find equilibria and linearization
+facts before viewing the solution</h3> <p>Check the equilibrium
+conditions and the key upright-linearization structure.</p> <section
+class="guided-step" data-dsa-step="equilibria"> <h4>Step 1.
+Equilibrium conditions</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Equilibrium
+force</span><input type="text" data-dsa-input="force"
+data-dsa-accept="0\|F=0\|zero" placeholder="value"></label>
+<label><span>Allowed angles</span><input type="text"
+data-dsa-input="angle" data-dsa-accept="k\*pi\|kpi\|0,pi,2pi\|integer
+multiples of pi" placeholder="short answer"></label> </div>
+<button type="button" data-dsa-check="equilibria">Check Step
+1</button> <p class="quiz-feedback"
+data-dsa-feedback="equilibria" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="equilibria" hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> At equilibrium F_e = 0
+and theta_e = k pi; z_e can be any cart position.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="upright"> <h4>Step
+2. Upright linearization</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Upright
+angle</span><input type="text" data-dsa-input="theta"
+data-dsa-accept="0\|theta=0\|even multiple of pi" placeholder="short answer"></label> <label><span>Small-angle sine
+approximation</span><input type="text" data-dsa-input="sin"
+data-dsa-accept="theta\|tilde theta\|theta tilde"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="upright">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="upright"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="upright"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> For the upright
+equilibrium, sin(theta) linearizes to the perturbation
+angle.</p></details> </section>
+
+<section class="guided-step"
+data-dsa-step="feedback-linearization"> <h4>Step 3. Feedback
+linearization</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Possible
+here?</span><input type="text" data-dsa-input="possible"
+data-dsa-accept="no\|not possible\|cannot feedback linearize"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="feedback-linearization">Check Step
+3</button> <p class="quiz-feedback"
+data-dsa-feedback="feedback-linearization"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="feedback-linearization"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The nonlinearities are
+not all in the same channel as the cart force, so feedback linearization
+is not available in this form.</p></details> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The differential equations describing the inverted pendulum derived
+in HW <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.3 are <span
+class="math display">\[\begin{aligned}
+(m_1+m_2)\ddot{z} + m_1 \frac{\ell}{2} \ddot{\theta} \cos\theta  &amp;=
+     m_1 \frac{\ell}{2} \dot{\theta}^2\sin\theta -b\dot{z} + F
+     \label{eq:dm_pendulum_nonlinear_eq} \\
+m_1 \frac{\ell}{2} \ddot{z} \cos\theta +  m_1 \frac{\ell^2}{3}
+\ddot{\theta} &amp;=
+    m_1 g \frac{\ell}{2} \sin\theta. \notag
+\end{aligned}\]</span> The equilibria values <span
+class="math inline">\((z_e,\theta_e,F_e)\)</span> are found by setting
+<span
+class="math inline">\(\dot{z}=\ddot{z}=\dot{\theta}=\ddot{\theta}=0\)</span>
+in Equation <a href="#equilibria-and-linearization"
+data-reference-type="eqref"
+data-reference="eq:dm_pendulum_nonlinear_eq"><a href="#equilibria-and-linearization">4.9</a></a>
+to obtain <span class="math display">\[\begin{aligned}
+F_e &amp;= 0 \label{eq:dm_pendulum_equilibria_1} \\
+m_1g\frac{\ell}{2}\sin\theta_e &amp;=
+0.\label{eq:dm_pendulum_equilibria_2}
+\end{aligned}\]</span> Therefore, any triple <span
+class="math inline">\((z_e, \theta_e, F_e)\)</span> satisfying
+Equations <a href="#equilibria-and-linearization"
+data-reference-type="eqref"
+data-reference="eq:dm_pendulum_equilibria_1"><a href="#equilibria-and-linearization">4.10</a></a>
+and <a href="#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:dm_pendulum_equilibria_2"><a href="#equilibria-and-linearization">4.11</a></a>
+is an equilibria, or in other words <span
+class="math inline">\(z_e\)</span> can be any value, <span
+class="math inline">\(F_e=0\)</span> and <span
+class="math inline">\(\theta_e = k\pi\)</span>, where <span
+class="math inline">\(k\)</span> is an integer.</p>
+<p>To linearize around <span class="math inline">\((z_e, \theta_e,
+F_e)\)</span> where <span class="math inline">\(k\)</span> is an even
+integer, note that <span class="math display">\[\begin{aligned}
+\ddot{\theta}\cos\theta &amp;\approx
+    \ddot{\theta}_e\cos\theta_e
+        +
+\frac{\partial}{\partial\theta}(\ddot{\theta}\cos\theta)\Big|_{(\ddot{\theta}_e,\theta_e)}(\theta-\theta_e)
+%
+        +
+\frac{\partial}{\partial\ddot{\theta}}(\ddot{\theta}\cos\theta)\Big|_{(\ddot{\theta}_e,\theta_e)}(\ddot{\theta}-\ddot{\theta}_e)
+\\
+        &amp;= \ddot{\theta}_e\cos\theta_e
+        - (\ddot{\theta}_e\sin\theta_e)\tilde{\theta}
+        + (\cos\theta_e)\ddot{\tilde{\theta}} \\
+        &amp;= \ddot{\tilde{\theta}} \\
+%
+\dot{\theta}^2\sin\theta &amp;\approx \dot{\theta}_e^2\sin\theta_e +
+\frac{\partial}{\partial\theta}(\dot{\theta}^2\sin\theta)\Big|_{(\theta_e,\dot{\theta}_e)}(\theta-\theta_e)
+%
+    +
+\frac{\partial}{\partial\dot{\theta}}(\dot{\theta^2}\sin\theta)\Big|_{(\theta_e,\dot{\theta}_e)}(\dot{\theta}-\dot{\theta}_e)
+\\
+&amp;= \dot{\theta}_e^2\sin\theta_e +
+\dot{\theta}_e^2\cos\theta_e\tilde{\theta} +
+2\dot{\theta}_e\sin\theta_e\dot{\tilde{\theta}} \\
+&amp;= 0, \\
+%
+\ddot{z}\cos\theta &amp;\approx
+    \ddot{z}_e\cos\theta_e
+        +
+\frac{\partial}{\partial\theta}(\ddot{z}\cos\theta)\Big|_{(\ddot{z}_e,\theta_e)}(\theta-\theta_e)
+%
+        +
+\frac{\partial}{\partial\ddot{z}}(\ddot{z}\cos\theta)\Big|_{(\ddot{z}_e,\theta_e)}(\ddot{z}-\ddot{z}_e)
+\\
+        &amp;= \ddot{z}_e\cos\theta_e
+        - (\ddot{z}_e\sin\theta_e)\tilde{\theta}
+        + (\cos\theta_e)\ddot{\tilde{z}} \\
+        &amp;= \ddot{\tilde{z}} \\
+%
+\sin\theta &amp;\approx \sin\theta_e + \frac{\partial}{\partial \theta}
+(\sin\theta)\Big|_{\theta_e}
+(\theta-\theta_e) \\
+    &amp;= \sin\theta_e + (\cos\theta_e) \tilde{\theta} \\
+    &amp;= \tilde{\theta},
+\end{aligned}\]</span> where we have defined <span
+class="math inline">\(\tilde{\theta}\stackrel{\triangle}{=}\theta-\theta_e\)</span>
+and <span
+class="math inline">\(\tilde{z}\stackrel{\triangle}{=}z-z_e\)</span>.
+Also defining <span
+class="math inline">\(\tilde{F}\stackrel{\triangle}{=}F-F_e\)</span>,
+and noting that <span class="math display">\[\begin{aligned}
+\theta &amp;= \theta_e + \tilde{\theta} = \tilde{\theta} \\
+\dot{\theta} &amp;= \dot{\theta}_e + \dot{\tilde{\theta}} =
+\dot{\tilde{\theta}} \\
+z &amp;= z_e + \tilde{z} \\
+\dot{z} &amp;= \dot{z}_e + \dot{\tilde{z}} = \dot{\tilde{z}} \\
+\ddot{z} &amp;= \ddot{z}_e + \ddot{\tilde{z}} = \ddot{\tilde{z}} \\
+F &amp;= F_e + \tilde{F} = \tilde{F},
+\end{aligned}\]</span> we can write Equation <a
+href="#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:dm_pendulum_nonlinear_eq"><a href="#equilibria-and-linearization">4.9</a></a>
+in its linearized form as <span class="math display">\[\begin{aligned}
+(m_1+m_2)[\ddot{z}_e+\ddot{\tilde{z}}] + m_1 \frac{\ell}{2}
+[\ddot{\tilde{\theta}}]  &amp;=
+     m_1 \frac{\ell}{2} [ 0 ] -b[\dot{z}_e+\dot{\tilde{z}}] +
+[F_e+\tilde{F}]
+      \\
+m_1 \frac{\ell}{2} [ \ddot{\tilde{z}}] +  m_1 \frac{\ell^2}{3}
+[\ddot{\theta}_e+\ddot{\tilde{\theta}}] &amp;=
+    m_1 g \frac{\ell}{2} [\tilde{\theta}],
+\end{aligned}\]</span> which simplifies to <span
+class="math display">\[\label{eq:pendulum_linearized_eom}
+\begin{pmatrix} (m_1+m_2) &amp; m_1 \frac{\ell}{2} \\
+m_1 \frac{\ell}{2} &amp; m_1 \frac{\ell^2}{3}
+\end{pmatrix}\begin{pmatrix}
+\ddot{\tilde{z}} \\ \ddot{\tilde{\theta}} \end{pmatrix}  =
+\begin{pmatrix} -b\dot{\tilde{z}} + \tilde{F}
+      \\
+    m_1 g \frac{\ell}{2} \tilde{\theta} \end{pmatrix},\]</span> which
+are the linearized equations of motion.</p></section> </article>
+</section>
+<h2 data-number="4.4"
+id="design-study-c-satellite-attitude-control-2" class="section-design-study"><span class="header-section-number">4.4</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="4.4.1" id="-example-problem-337" class="section-example"><span class="header-section-number">4.4.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#equilibria-and-linearization" data-reference-type="ref"
+data-reference="chap:linearization">7</a></h3>
+<p>For the satellite system:</p>
+<p>(a) Find the equilibria of the system.</p>
+<section id="design-study-c-ch4-equilibria">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw4" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Find the satellite equilibria before viewing the solution</h3>
+<p>At equilibrium the body and panel are not accelerating, the
+relative spring deflection is zero, and the actuator torque is
+zero.</p>
+
+<section class="guided-step" data-dsa-step="derivatives">
+<h4>Step 1. Stop the motion</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Angular
+rates</span><input type="text" data-dsa-input="rates"
+data-dsa-accept="0\|zero" placeholder="value"></label>
+<label><span>Angular accelerations</span><input type="text"
+data-dsa-input="accelerations" data-dsa-accept="0\|zero"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="derivatives" data-dsa-hint="Equilibrium requires
+constant angles.">Check Step 1</button> <p class="quiz-feedback"
+data-dsa-feedback="derivatives" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="derivatives" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> <span class="math
+inline">\(\dot{\theta}_e=\dot{\phi}_e=0\)</span> and <span
+class="math
+inline">\(\ddot{\theta}_e=\ddot{\phi}_e=0\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="condition"> <h4>Step
+2. Remove spring torque</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Angle
+relationship</span><input type="text" data-dsa-input="angle"
+data-dsa-accept="theta=phi\|phi=theta\|theta equals phi\|phi equals
+theta" placeholder="condition"></label>
+<label><span>Equilibrium torque</span><input type="text"
+data-dsa-input="torque" data-dsa-accept="0\|zero\|tau=0"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="condition" data-dsa-hint="If theta and phi differ,
+the torsional spring applies torque.">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="condition"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="condition"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> <span class="math
+inline">\(\theta_e=\phi_e\)</span>, both can be any constant angle,
+and <span class="math inline">\(\tau_e=0\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="linear"> <h4>Step 3.
+Decide whether a local approximation is needed</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Are the equations already linear?</span><input
+type="text" data-dsa-input="linear"
+data-dsa-accept="yes\|linear\|already linear" placeholder="yes or no"></label> </div> <button type="button"
+data-dsa-check="linear" data-dsa-hint="The satellite equations use
+linear spring and damping terms in theta and phi.">Check Step
+3</button> <p class="quiz-feedback" data-dsa-feedback="linear"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="linear"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The equations are already
+linear in these variables, but the equilibrium condition is still
+important for later control design.</p></details> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The differential equations describing the motion of the satellite
+system derived in HW <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.3 are</p>
+<p><span class="math display">\[\begin{aligned}
+\label{eq:dm_diff_eq_mass}
+J_s\ddot{\theta} + b(\dot{\theta}-\dot{\phi}) + k(\theta-\phi)  &amp;=
+\tau \\
+J_p\ddot{\phi} + b(\dot{\phi}-\dot{\theta}) + k(\phi-\theta) &amp;= 0 .
+\end{aligned}\]</span></p>
+<p>Defining <span class="math inline">\(x=(\theta, \phi, \dot{\theta},
+\dot{\phi})\)</span>, and <span class="math inline">\(u=\tau\)</span> we
+get <span class="math display">\[\begin{aligned}
+\dot{x} = \begin{pmatrix} \dot{\theta} \\ \dot{\phi} \\ \ddot{\theta} \\
+\ddot{\phi}\end{pmatrix}
+= \begin{pmatrix} \dot{\theta} \\ \dot{\phi} \\
+-\frac{b}{J_s}(\dot{\theta}-\dot{\phi})
+-\frac{k}{J_s}(\theta-\phi)+\frac{1}{J_s}\tau \\ -
+\frac{b}{J_p}(\dot{\phi}-\dot{\theta})-\frac{k}{J_p}(\phi-\theta)
+\end{pmatrix} \stackrel{\triangle}{=}f(x,u).
+\end{aligned}\]</span> The equilibrium is when <span
+class="math inline">\(f(x_e,u_e)=0\)</span>, or in other words when
+<span class="math display">\[\label{dm:satellite_equilibrium}
+\theta_e = \phi_e = \text{~anything~}, \qquad \dot{\theta}_e =
+\dot{\phi}_e =0, \qquad \tau_e = 0.\]</span></p>
+<p>The equations of motion for this system are linear and do not require
+linearization. With that said, the information about the system
+equilibria can be helpful for designing the control system. In this
+case, understanding that the commanded angular position of the satellite
+and the panel should be the same to keep the system in equilibrium will
+influence our control design.</p></section> </article>
+</section>
+<h2 data-number="4.5" id="interactive-linearization-check"><span class="header-section-number">4.5</span> Interactive Linearization
+Check</h2>
+<section id="design-ch4-linearization-check">
+<article class="advanced-activity" data-advanced-activity="linearization">
+<p class="advanced-kicker">
+Chapter 4 activity
+</p>
+<h3>
+Local linear model of a nonlinear equation
+</h3>
+<p>
+Use f(x,u)=x<sup>2</sup>+u to compare the nonlinear surface, the
+selected operating point, the tangent-plane linearization, and the
+approximation error.
+</p>
+<div class="advanced-grid advanced-grid–visual">
+
+<label>Linearization point, x<input type="range" data-input="x0"
+min="-3" max="3" step="0.1" value="1"></label> <label>Input,
+u<input type="range" data-input="u0" min="-9"
+max="3" step="0.1" value="-1"></label> <label>Nearby state,
+x<input type="range" data-input="x" min="-3" max="3"
+step="0.1" value="1.2"></label> <label>Nearby input, u<input
+type="range" data-input="u" min="-9" max="3" step="0.1"
+value="-0.8"></label>
+
+<div id="fig-4-taylor-linearization-surface" class="advanced-visual"
+role="figure" aria-label="Interactive Figure 4.I2. Nonlinear surface and
+tangent plane"> <canvas data-plot="linearization" width="760"
+height="460" role="img" aria-label="Nonlinear surface f of x and u with
+tangent-plane linearization">
+</canvas>
+<p class="advanced-caption">
+Interactive Figure 4.I2. The blue mesh is the nonlinear surface f(x,u).
+The orange mesh is the tangent plane at (x<sub>0</sub>, u<sub>0</sub>).
+</p>
+
+<div id="fig-4-taylor-linearization-error" class="advanced-visual"
+role="figure" aria-label="Interactive Figure 4.I3. Linearization
+approximation error heat map"> <canvas data-plot="linearization-error"
+width="760" height="260" role="img" aria-label="Approximation error
+between nonlinear surface and tangent plane">
+</canvas>
+<p class="advanced-caption">
+Interactive Figure 4.I3. Heat map of approximation error
+f(x,u)-f<sub>lin</sub>(x,u). Darker cells indicate larger local
+linearization error.
+</p>
+</div>
+</div>
+</div>
+<section class="advanced-solution">
+<h4>
+Live linearization values
+</h4>
+<p class="advanced-equation">
+Operating point: <span class="math inline">\(x_0\)</span> =
+<span data-output="x0-value"></span>, <span class="math
+inline">\(u_0\)</span> =
+<span data-output="u0-value"></span>; nearby point: <span
+class="math inline">\(x\)</span> =
+<span data-output="x-value"></span>, <span class="math
+inline">\(u\)</span> = <span data-output="u-value"></span>
+</p>
+<p class="advanced-equation">
+<span class="math inline">\(f(x_0,u_0)=x_0^2+u_0\)</span> =
+<span data-output="equilibrium"></span>
+</p>
+<p class="advanced-equation">
+<span class="math
+inline">\(A=\frac{\partial f}{\partial x}=2x_0\)</span> =
+<span data-output="a"></span>; <span class="math
+inline">\(B=\frac{\partial f}{\partial u}\)</span> =
+<span data-output="b"></span>
+</p>
+<p class="advanced-equation">
+<span class="math inline">\(f_{\mathrm{lin}}(x,u)\)</span> at the nearby
+point = <span data-output="tangent"></span>; true <span
+class="math inline">\(f(x,u)\)</span> =
+<span data-output="actual"></span>; error =
+<span data-output="error"></span>
+</p>
+<p class="advanced-equation">
+Notice that the error is small near <span class="math
+inline">\(x_0\)</span> and grows as the nearby point moves away from the
+linearization point.
+</p>
+</section>
+<p class="advanced-callout">
+A linearized perturbation model is most meaningful when the operating
+point is an equilibrium and the perturbation stays near that point.
+</p>
+</article>
+</section>
+<h2 data-number="4.6" id="knowledge-check-3"><span class="header-section-number">4.6</span> Knowledge Check</h2>
+<section id="design-ch4-knowledge-check" class="quiz-list">
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Jacobian linearization is local, not
+globally exact for nonlinear systems." data-feedback-b="B is correct.
+The approximation is intended for motion near the chosen operating
+point." data-feedback-c="C is not correct. Damping is not required
+before computing a Jacobian." data-feedback-d="D is not correct.
+Linearization does not remove the need to identify inputs and
+states."> <h4>Q1. Valid region</h4> <p
+class="quiz-prompt">When is a Jacobian linearization usually the best
+approximation?</p> <div class="quiz-options"><label><input
+type="radio" name="design-ch4-q1" value="A"><span class="quiz-option-text">A) For all possible
+states and inputs</span></label><label><input type="radio"
+name="design-ch4-q1" value="B"><span class="quiz-option-text">B) Near the selected operating
+point</span></label><label><input type="radio" name="design-ch4-q1"
+value="C"><span class="quiz-option-text">C) Only after damping is removed</span></label><label><input
+type="radio" name="design-ch4-q1" value="D"><span class="quiz-option-text">D) Only when no
+input exists</span></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. At equilibrium the state derivative is
+zero, so f(x_e,u_e)=0." data-feedback-b="B is not correct. A zero
+input is not required for equilibrium." data-feedback-c="C is not
+correct. The state can be nonzero at equilibrium." data-feedback-d="D
+is not correct. The output equation alone does not define
+equilibrium."> <h4>Q2. Equilibrium condition</h4> <p
+class="quiz-prompt">For xdot=f(x,u), what condition defines an
+equilibrium point?</p> <div class="quiz-options"><label><input
+type="radio" name="design-ch4-q2" value="A"><span class="quiz-option-text">A)
+f(x<sub>e</sub>,u<sub>e</sub>)=0</span></label><label><input
+type="radio" name="design-ch4-q2" value="B"><span class="quiz-option-text">B)
+u<sub>e</sub>=0</span></label><label><input type="radio"
+name="design-ch4-q2" value="C"><span class="quiz-option-text">C)
+x<sub>e</sub>=0</span></label><label><input type="radio"
+name="design-ch4-q2" value="D"><span class="quiz-option-text">D) y=0 for every
+state</span></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="4" data-tolerance="0.001">
+<h4>
+Q3. Jacobian entry
+</h4>
+<p class="quiz-prompt">
+For f(x,u)=x<sup>2</sup>+u, enter A =
+<span class="math-frac"><sup>∂f</sup>⁄<sub>∂x</sub></span> evaluated
+at x<sub>e</sub>=2.
+</p>
+
+<label>A:<input type="text" name="design-ch4-q3" placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 4, because
+<span class="math-frac"><sup>∂f</sup>⁄<sub>∂x</sub></span> = 2x and
+2(2)=4.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="-9" data-tolerance="0.001">
+<h4>
+Q4. Equilibrium input
+</h4>
+<p class="quiz-prompt">
+For f(x,u)=x<sup>2</sup>+u and x<sub>e</sub>=3, enter the input
+u<sub>e</sub> that makes f(x<sub>e</sub>,u<sub>e</sub>) = 0.
+</p>
+
+<label>uₑ:<input type="text" name="design-ch4-q4" placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> -9, because 3<sup>2</sup>+u<sub>e</sub>=0.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short"
+data-answer-pattern="deviations from equilibrium\|deviation from
+equilibrium\|delta variables\|perturbation variables">
+<h4>
+Q5. Perturbation variables
+</h4>
+<p class="quiz-prompt">
+In words, what do variables like x-x<sub>e</sub> represent in a
+linearized model?
+</p>
+
+<label>Response:<input type="text" name="design-ch4-q5"
+placeholder="short phrase"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> They are deviations, or perturbations, from the
+equilibrium value.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Substituting gives f = 4 + 0, not
+zero." data-feedback-b="B is correct. f(2,-4)=2\^2-4=0, so the state
+derivative is zero." data-feedback-c="C is not correct. Substituting
+gives f = 1 + 1, not zero." data-feedback-d="D is not correct.
+Equilibrium does not require both state and input to be zero.">
+<h4>Q6. Equilibrium pair</h4> <p class="quiz-prompt">For the
+scalar model xdot = f(x,u) = x<sup>2</sup> + u, which pair is an
+equilibrium?</p> <div class="quiz-options"> <label><input
+type="radio" name="design-ch4-exam-q1" value="A"><span class="quiz-option-text">A)
+x<sub>e</sub> = 2, u<sub>e</sub> = 0</span></label> <label><input
+type="radio" name="design-ch4-exam-q1" value="B"><span class="quiz-option-text">B)
+x<sub>e</sub> = 2, u<sub>e</sub> = -4</span></label> <label><input
+type="radio" name="design-ch4-exam-q1" value="C"><span class="quiz-option-text">C)
+x<sub>e</sub> = 1, u<sub>e</sub> = 1</span></label> <label><input
+type="radio" name="design-ch4-exam-q1" value="D"><span class="quiz-option-text">D)
+x<sub>e</sub> = 0, u<sub>e</sub> = 0 always</span></label> </div>
+<div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. This is the unevaluated derivative
+but the question asks at the operating point." data-feedback-b="B is
+not correct. This is the derivative with respect to the input u."
+data-feedback-c="C is correct. partial f2 / partial x2 = 2x2, and at x2
+= -1 the value is -2." data-feedback-d="D is not correct. The sign is
+wrong at x2 = -1."> <h4>Q7. Jacobian entry</h4> <p
+class="quiz-prompt">For
+f<sub>2</sub>(x,u)=x<sub>2</sub><sup>2</sup>+u, what is
+A<sub>22</sub> = partial f<sub>2</sub>/partial x<sub>2</sub>
+at x<sub>2e</sub> = -1?</p> <div class="quiz-options">
+<label><input type="radio" name="design-ch4-exam-q2"
+value="A"><span class="quiz-option-text">A) 2x<sub>2</sub></span></label> <label><input
+type="radio" name="design-ch4-exam-q2" value="B"><span class="quiz-option-text">B) 1</span></label>
+<label><input type="radio" name="design-ch4-exam-q2"
+value="C"><span class="quiz-option-text">C) -2</span></label> <label><input type="radio"
+name="design-ch4-exam-q2" value="D"><span class="quiz-option-text">D) 2</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Perturbation variables represent
+differences from the equilibrium values." data-feedback-b="B is not
+correct. The absolute nonlinear state is x, not x minus xe."
+data-feedback-c="C is not correct. The measured output is usually y =
+h(x,u)." data-feedback-d="D is not correct. The reference command is
+not the perturbation state."> <h4>Q8. Perturbation variable</h4>
+<p class="quiz-prompt">In a linearized model, what does x -
+x<sub>e</sub> represent?</p> <div class="quiz-options">
+<label><input type="radio" name="design-ch4-exam-q3"
+value="A"><span class="quiz-option-text">A) A deviation from the equilibrium state</span></label>
+<label><input type="radio" name="design-ch4-exam-q3"
+value="B"><span class="quiz-option-text">B) The absolute nonlinear state</span></label> <label><input
+type="radio" name="design-ch4-exam-q3" value="C"><span class="quiz-option-text">C) The measured
+output only</span></label> <label><input type="radio"
+name="design-ch4-exam-q3" value="D"><span class="quiz-option-text">D) The reference
+command</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. A local linear model is not
+guaranteed to be accurate for arbitrarily large motions."
+data-feedback-b="B is not correct. Linearization is not limited to
+systems with zero input." data-feedback-c="C is not correct. Damping
+is not a prerequisite for Jacobian linearization." data-feedback-d="D
+is correct. A Jacobian linearization is a local approximation near the
+operating point."> <h4>Q9. Local approximation</h4> <p
+class="quiz-prompt">Which statement about a Jacobian linearization is
+most accurate?</p> <div class="quiz-options"> <label><input
+type="radio" name="design-ch4-exam-q4" value="A"><span class="quiz-option-text">A) It is
+equally accurate for all possible states</span></label> <label><input
+type="radio" name="design-ch4-exam-q4" value="B"><span class="quiz-option-text">B) It can only
+be used when u = 0</span></label> <label><input type="radio"
+name="design-ch4-exam-q4" value="C"><span class="quiz-option-text">C) It requires damping to be
+present</span></label> <label><input type="radio"
+name="design-ch4-exam-q4" value="D"><span class="quiz-option-text">D) It is most accurate near
+the operating point</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="4.7" id="notes-and-references-2" class="section-notes"><span class="header-section-number">4.7</span> Notes and References</h2>
+<p>Jacobian linearization is a standard technique that is well
+documented in most introductory textbooks on control. For example,
+see [4–7]. Feedback linearization<span id="idx-0035" class="book-index-anchor" aria-hidden="true"></span> is a much deeper topic
+than can be covered in an introductory textbook on control. A discussion
+that is similar to ours, that assumes that the nonlinearity is in the
+input channel, is contained in [5]. Feedback linearization is a fairly
+standard technique for fully actuated mechanical systems modeled by
+Euler-Lagrange equations, where the model of the system can be reduced
+to <span class="math display">\[M(q)\ddot{q} + c(q,\dot{q})\dot{q}+g(q)
+= \tau,\]</span> where <span
+class="math inline">\(q\in\mathbb{R}^m\)</span> is the generalized
+coordinate and <span class="math inline">\(\tau\in\mathbb{R}^m\)</span>
+is the generalized force, and where <span
+class="math inline">\(M(q)\)</span> is an invertible matrix. In that
+case we can write <span class="math display">\[\ddot{q} =
+M^{-1}(q)\left(\tau - c(q,\dot{q})\dot{q} - g(q)\right).\]</span>
+Selecting <span class="math inline">\(\tau\)</span> as <span
+class="math display">\[\label{eq:feedback_linearization_general}
+\tau = c(q,\dot{q})\dot{q} + g(q) + M(q)\nu,\]</span> results in the
+linear system <span class="math display">\[\ddot{q} = \nu,\]</span>
+where the new control variable <span class="math inline">\(\nu\)</span>
+can be designed to stabilize the system. The control law in
+Equation <a href="#equilibria-and-linearization" data-reference-type="eqref"
+data-reference="eq:feedback_linearization_general"><a href="#equilibria-and-linearization">4.16</a></a>
+is the feedback linearizing control. This is a standard technique for
+robot manipulators and is often called the method of <em>computed
+torque</em><span id="idx-0036" class="book-index-anchor" aria-hidden="true"></span> [8–10].</p>
+<p>When the nonlinearity is not in the input channel, the system can
+still often be feedback linearized through a suitable change of
+variables. A good introduction to the topic is contained in [11]. More
+advanced coverage of the topic can be found in [12–15].</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

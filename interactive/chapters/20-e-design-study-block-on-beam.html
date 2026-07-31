@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="E" id="design-study-block-on-beam" class="section-design-study"><span class="header-section-number">E</span> Design Study: Block on Beam</h1>
+<p><img src="6_design_studies/figures/hw_blockbeam_defn.png"
+style="width:59.0%" alt="image" /></p>
+<p>Figure <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="fig:blockbeam_defn">20.1</a> shows the
+<span id="idx-0268" class="book-index-anchor" aria-hidden="true"></span> system. The position
+of the block measured from the pivot point is <span
+class="math inline">\(z\)</span> and the speed of the block along the
+direction of the beam is <span class="math inline">\(\dot{z}\)</span>.
+The angle of the beam from level is <span
+class="math inline">\(\theta\)</span> and the angular speed of the beam
+is <span class="math inline">\(\dot{\theta}\)</span>. Gravity acts in
+the down direction. The mass of the block is <span
+class="math inline">\(m_1\)</span> and the mass of the beam is <span
+class="math inline">\(m_2\)</span>. The length of the beam is <span
+class="math inline">\(\ell\)</span>. An external vertical force is
+applied at the end of the beam as shown in
+<strong>Fig.</strong> <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="fig:blockbeam_defn">20.1</a>.</p>
+<p>Use the following physical parameters: <span
+class="math inline">\(m_1=0.35\)</span> kg, <span
+class="math inline">\(m_2=2\)</span> kg, <span
+class="math inline">\(\ell=0.5\)</span> m, <span
+class="math inline">\(g=9.8\)</span> m/s<span
+class="math inline">\(^2\)</span>.</p>
+<p><strong><a href="#hw:blockbeam_kinetic">E.2</a></strong> Kinetic
+energy.</p>
+<p><strong><a href="#hw:blockbeam_equations_of_motion">E.3</a></strong>
+Equations of Motion.</p>
+<p><strong><a href="#hw:blockbeam_linearization">E.4</a></strong>
+Linearize equations of motion.</p>
+<p><strong><a href="#hw:blockbeam_transfer_function">E.5</a></strong>
+Transfer function model.</p>
+<p><strong><a href="#hw:blockbeam_state_space">E.6</a></strong> State
+space model.</p>
+<p><strong><a
+href="#hw:blockbeam_successive_loop_closure">E.8</a></strong> Successive
+loop closure.</p>
+<p><strong><a href="#hw:blockbeam_system_type">E.9</a></strong>
+Integrators and system type.</p>
+<p><strong><a href="#hw:blockbeam_root_locus_PID">E.P.6</a></strong>
+Root locus PID.</p>
+<p><strong><a href="#hw:blockbeam_digital_PID">E.10</a></strong> Digital
+PID.</p>
+<p><strong><a href="#hw:blockbeam_state_feedback">E.11</a></strong> Full
+state feedback.</p>
+<p><strong><a
+href="#hw:blockbeam_integrator_state_feedback">E.12</a></strong> Full
+state with integrator.</p>
+<p><strong><a href="#hw:blockbeam_observer">E.13</a></strong> Observer
+based control.</p>
+<p><strong><a
+href="#hw:blockbeam_disturbance_observer">E.14</a></strong> Disturbance
+observer.</p>
+<p><strong><a href="#hw:blockbeam_bode">E.15</a></strong> Frequency
+Response.</p>
+<p><strong><a href="#hw:blockbeam_loopgain">E.16</a></strong> Loop
+gain.</p>
+<p><strong><a href="#hw:blockbeam_margins">E.17</a></strong> Stability
+margins.</p>
+<p><strong><a href="#hw:blockbeam_loopshaping">E.18</a></strong>
+Loopshaping design.</p>
+<p><span id="hw:blockbeam_kinetic" label="hw:blockbeam_kinetic"></span></p>
+<h2 data-number="E.1" id="-homework-23chapkinetic-energy"><span class="header-section-number">E.1</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems" data-reference-type="ref"
+data-reference="chap:kinetic-energy"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2</a></a></h2>
+<p>(a) Using the configuration variables <span class="math inline">\(z\)</span>
+and <span class="math inline">\(\theta\)</span>, write an expression for
+the kinetic energy of the system. Assume that the block is a point mass
+with mass concentrated near the surface of the beam (i.e. it is not a
+tall block).</p>
+<p>(b) Create an animation of the block on beam system. The inputs should be
+<span class="math inline">\(z\)</span> and <span
+class="math inline">\(\theta\)</span>. Turn in a screen capture of the
+animation.</p>
+<p><span id="hw:blockbeam_equations_of_motion"
+label="hw:blockbeam_equations_of_motion"></span></p>
+<h2 data-number="E.2" id="-homework-236"><span class="header-section-number">E.2</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations" data-reference-type="ref"
+data-reference="chap:euler-lagrange">6</a></h2>
+<p>(a) Find the potential energy for the system.</p>
+<p>(b) Define the generalized coordinates.</p>
+<p>(c) Find the generalized forces and damping forces.</p>
+<p>(d) Derive the equations of motion using the Euler-Lagrange equations.</p>
+<p>(e) Referring to Appendices <a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python" data-reference-type="ref"
+data-reference="chap:python">25</a>,
+<a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab" data-reference-type="ref"
+data-reference="chap:matlab">26</a>,
+and <a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink" data-reference-type="ref"
+data-reference="chap:simulink">27</a>, write a class or s-function that
+implements the equations of motion. Simulate the system using a variable
+force input. The output should connect to the animation function
+developed in homework <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems" data-reference-type="ref"
+data-reference="chap:kinetic-energy"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2</a></a>. Do not
+be surprised if the system does not behave well (i.e. the block seems to
+go off to infinity in one direction).</p>
+<p><span id="hw:blockbeam_linearization"
+label="hw:blockbeam_linearization"></span></p>
+<h2 data-number="E.3" id="-homework-237"><span class="header-section-number">E.3</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization" data-reference-type="ref"
+data-reference="chap:linearization">7</a></h2>
+<p>For the block-beam system:</p>
+<p>(a) Find the equilibria of the system.</p>
+<p>(b) Linearize the system about the equilibria using Jacobian
+linearization.</p>
+<p>(c) If possible, linearize the system using feedback linearization.</p>
+<p><span id="hw:blockbeam_transfer_function"
+label="hw:blockbeam_transfer_function"></span></p>
+<h2 data-number="E.4" id="-homework-238"><span class="header-section-number">E.4</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a></h2>
+<p>For the block on beam system:</p>
+<p>(a) Start with the linearized equations and use the Laplace transform to
+convert the equations of motion to the s-domain.</p>
+<p>(b) Find the transfer functions from the input <span
+class="math inline">\(\tilde{F}(s)\)</span> to the outputs <span
+class="math inline">\(\tilde{Z}(s)\)</span> and <span
+class="math inline">\(\tilde{\Theta}(s)\)</span>. Find the transfer
+function from the input <span
+class="math inline">\(\tilde{\Theta}(s)\)</span> to the output <span
+class="math inline">\(\tilde{Z}(s)\)</span>.</p>
+<p>(c) Assume that deviations in the gravity torque away from the equilibrium
+torque due to motions of the block along the beam are small compared to
+the torque required to hold up the beam. This will allow you to ignore
+the <span class="math inline">\(m_1 g \tilde{z}\)</span> term in the
+second equation of motion. How does this simplify your transfer
+functions?</p>
+<p>(d) Draw a block diagram of your simplified system transfer functions in a
+cascade from the input <span class="math inline">\(\tilde{F}(s)\)</span>
+to the intermediate state <span
+class="math inline">\(\tilde{\Theta}(s)\)</span> and then to the output
+<span class="math inline">\(\tilde{Z}(s)\)</span> .</p>
+<p><span id="hw:blockbeam_state_space"
+label="hw:blockbeam_state_space"></span></p>
+<h2 data-number="E.5" id="-homework-239"><span class="header-section-number">E.5</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a></h2>
+<p>Defining the states as <span
+class="math inline">\(\tilde{x}=(\tilde{z},\tilde{\theta},\dot{\tilde{z}},\dot{\tilde{\theta}})^{\top}\)</span>,
+the input as <span class="math inline">\(\tilde{u}=\tilde{F}\)</span>,
+and the measured output as <span
+class="math inline">\(\tilde{y}=(\tilde{z},\tilde{\theta})^{\top}\)</span>,
+find the linear state space equations in the form <span
+class="math display">\[\begin{aligned}
+    \dot{\tilde{x}} &amp;= A\tilde{x} + B\tilde{u} \\
+    \tilde{y} &amp;= C\tilde{x} + D\tilde{u}.
+\end{aligned}\]</span> <span id="hw:blockbeam_successive_loop_closure"
+label="hw:blockbeam_successive_loop_closure"></span></p>
+<h2 data-number="E.6" id="-homework-2311"><span class="header-section-number">E.6</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a></h2>
+<p>For the block and beam problem, do the following:</p>
+<p>(a) Using the principle of successive loop closure, draw a block diagram
+that uses PD control for both inner loop control and outer loop control.
+For design purposes, let the equilibrium position for the block be <span
+class="math inline">\(z_e=\frac{\ell}{2}\)</span>. The input to the
+outer loop controller is the desired block position <span
+class="math inline">\(z_r\)</span> and the output of the controller is
+the desired beam angle <span
+class="math inline">\(\tilde{\theta}_r\)</span>. The input to the inner
+loop controller is the desired beam angle <span
+class="math inline">\(\tilde{\theta}_r\)</span> and the output is the
+force <span class="math inline">\(\tilde{F}\)</span> on the end of the
+beam.</p>
+<p>(b) Focusing on the inner loop, find the PD gains <span
+class="math inline">\(k_{P_\theta}\)</span> and <span
+class="math inline">\(k_{D_\theta}\)</span> so that the rise time of the
+inner loop is <span
+class="math inline">\(t_{r_\theta}=0.25\)</span> second, and the damping
+ratio is <span class="math inline">\(\zeta_{\theta}=0.707\)</span>.</p>
+<p>(c) Find the DC gain <span class="math inline">\(k_{DC_\theta}\)</span> of
+the inner loop.</p>
+<p>(d) Replacing the inner loop by its DC-gain, find the PD gains <span
+class="math inline">\(k_{P_z}\)</span> and <span
+class="math inline">\(k_{D_z}\)</span> so that the rise time of the
+outer loop is <span class="math inline">\(t_{r_z}=10
+t_{r_\theta}\)</span> and the damping ratio is <span
+class="math inline">\(\zeta_z=0.707\)</span>.</p>
+<p>(e) Implement the successive loop closure design for the block and beam in
+simulation where the commanded block position is given by a square wave
+with magnitude <span class="math inline">\(0.25\pm 0.15\)</span> meters
+and frequency <span class="math inline">\(0.05\)</span> Hz. Use the
+actual position in the block as a feedback linearizing term for the
+equilibrium force.</p>
+<p>(f) Suppose that the size of the input force on the beam is limited to <span
+class="math inline">\(F_{\max}=15\)</span> N. Modify the simulation to
+include a saturation block on the force <span
+class="math inline">\(F\)</span>. Using the rise time of the outer loop,
+tune the PD control law to get the fastest possible response without
+input saturation when a step of size <span
+class="math inline">\(0.25\)</span> meter is placed on <span
+class="math inline">\(\tilde{z}^r\)</span>.</p>
+<p><span id="hw:blockbeam_system_type"
+label="hw:blockbeam_system_type"></span></p>
+<h2 data-number="E.7" id="-homework-2312"><span class="header-section-number">E.7</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="09-9-system-type-and-integrators.html#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a></h2>
+<p>(a) When the inner loop controller for the block-beam system is PD control,
+what is the system type of the inner loop? Characterize the steady state
+error when <span class="math inline">\(\tilde{\theta}^d\)</span> is a
+step, a ramp, and a parabola. What is the system type with respect to an
+input disturbance?</p>
+<p>(b) When the outer loop controller for the block-beam is PD control, what is
+the system type of the outer loop? Characterize the steady state error
+when <span class="math inline">\(z^d\)</span> is a step, a ramp, and a
+parabola. How does this change if you add an integrator? What is the
+system type with respect to an input disturbance for both PD and PID
+control?</p>
+<p><span id="hw:blockbeam_root_locus_PID"
+label="hw:blockbeam_root_locus_PID"></span></p>
+<h2 data-number="E.8" id="-homework-2330"><span class="header-section-number">E.8</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="28-p-6-root-locus.html#----root-locus" data-reference-type="ref"
+data-reference="chap:PID-root-locus">30</a></h2>
+<p>Adding an integrator to obtain PID control for the outer loop of the
+block-beam system, put the characteristic equation in Evans’ form and
+use the Matlab <code>rlocus</code> command to plot the root locus versus
+the integrator gain <span class="math inline">\(k_I\)</span>. Note that
+since the integrator gain will be negative, the transfer function in
+Evans’ form must be negated since the Matlab <code>rlocus</code> command
+only plots the return for <span class="math inline">\(k_I&gt;0\)</span>.
+Select a value for <span class="math inline">\(k_I\)</span> that does
+not significantly change the other locations of the closed loop
+poles.</p>
+<p><span id="hw:blockbeam_digital_PID"
+label="hw:blockbeam_digital_PID"></span></p>
+<h2 data-number="E.9" id="-homework-2313"><span class="header-section-number">E.9</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a></h2>
+<p>The objective of this problem is to implement the PID controller
+using only measured outputs of the system.</p>
+<p>(a) Modify the system dynamics file so that the parameters <span
+class="math inline">\(m_1\)</span>, <span
+class="math inline">\(m_2\)</span>, and <span
+class="math inline">\(\ell\)</span> vary by up to 20% of their nominal
+value each time they are run (uncertainty parameter = 0.2). Also add a
+disturbance step input of magnitude <span class="math inline">\(0.5
+N\)</span>.</p>
+<p>(b) Change the simulation files so that the input to the controller is the
+output and not the state. Implement the nested PID loops in
+Problems E.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a> in a separate class. Use
+the dirty derivative gain of <span
+class="math inline">\(\sigma=0.05\)</span>. Tune the integrators so that
+there is no steady state error. The controller should only assume
+knowledge of the position <span class="math inline">\(z\)</span>, the
+angle <span class="math inline">\(\theta\)</span>, and the reference
+position <span class="math inline">\(z_r\)</span>.</p>
+<p>(c) Note that the integrator gain will need to be negative which will cause
+problems for the anti-windup scheme that we have been implementing.
+Remove the old anti-windup scheme and implement a new scheme where the
+integrator only winds up when <span
+class="math inline">\(|\dot{z}|\)</span> is small. You may also need to
+re-tune the rise time for the inner loop (due to the parameter
+uncertainty and disturbance input). Some combinations of uncertain
+parameters are very hard to recover from, so run your simulation
+multiple times before changing your gains significantly.</p>
+<p><span id="hw:blockbeam_state_feedback"
+label="hw:blockbeam_state_feedback"></span></p>
+<h2 data-number="E.10" id="-homework-2314"><span class="header-section-number">E.10</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a></h2>
+<p>The objective of this problem is to implement a state feedback
+controller for the block and beam problem. Start with the simulation
+files developed in
+Homework <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(a) Using the values for <span class="math inline">\(\omega_{n_z}\)</span>
+and <span class="math inline">\(\zeta_z\)</span> from
+Homework <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>, choose the desired
+locations of the four closed-loop poles so that their natural frequency
+is greater than <span class="math inline">\(\omega_{n_z}\)</span> and
+damping ratio is greater than <span
+class="math inline">\(\zeta_z\)</span>.</p>
+<p>(b) Add the state space matrices <span class="math inline">\(A\)</span>,
+<span class="math inline">\(B\)</span>, <span
+class="math inline">\(C\)</span>, <span class="math inline">\(D\)</span>
+derived in Homework <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a> to your param file.</p>
+<p>(c) Verify that the state space system is controllable by checking that
+<span
+class="math inline">\(\text{rank}(\mathcal{C}_{A,B})=n\)</span>.</p>
+<p>(d) Find the feedback gain <span class="math inline">\(K\)</span> such that
+the eigenvalues of <span class="math inline">\((A-BK)\)</span> are equal
+to the desired closed loop poles. Find the reference gain <span
+class="math inline">\(k_r\)</span> so that the DC-gain from <span
+class="math inline">\(z_r\)</span> to <span
+class="math inline">\(z\)</span> is equal to one.</p>
+<p>(e) Implement the state feedback scheme in simulation and tune the
+closed-loop poles to vary the response of the system. Notice the effect
+of pole locations on the speed of response and the control effort
+required.</p>
+<p><span id="hw:blockbeam_integrator_state_feedback"
+label="hw:blockbeam_integrator_state_feedback"></span></p>
+<h2 data-number="E.11" id="-homework-2315"><span class="header-section-number">E.11</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a></h2>
+<p>(a) Modify the state feedback solution developed in
+Homework <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> to add an integrator with
+anti-windup to the feedback loop for <span
+class="math inline">\(z\)</span>.</p>
+<p>(b) Add a constant input disturbance of 1 Newtons to the input of the plant
+and allow the plant parameters to vary up to 20%.</p>
+<p>(c) Tune the integrator pole (and other gains if necessary) to get good
+tracking performance.</p>
+<p><span id="hw:blockbeam_observer" label="hw:blockbeam_observer"></span></p>
+<h2 data-number="E.12" id="-homework-2316"><span class="header-section-number">E.12</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="13-13-observers.html#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a></h2>
+<p>The objective of this problem is to design an observer that estimates
+the state of the system and to use the estimated state in the controller
+designed in Homework <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>.</p>
+<p>(a) For the sake of understanding the function of the observer, for this
+problem we will use exact parameters, without an input disturbance.
+Modify the block beam dynamics so that the parameters known to the
+controller are the actual plant parameters (uncertainty parameter <span
+class="math inline">\(\alpha=0\)</span>).</p>
+<p>(b) Verify that the state space system is observable by checking that <span
+class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>.</p>
+<p>(c) In the control block, add an observer to estimate the state <span
+class="math inline">\(\hat{x}\)</span>, and use the estimate of the
+state in your feedback controller. Tune the poles of the controller and
+observer to obtain good performance.</p>
+<p>(d) Modify the simulation files so that the controller outputs both <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(\hat{x}\)</span>. Add a plotting routine to plot
+both the state and the estimated state of the system on the same
+graph.</p>
+<p>(e) As motivation for the next chapter, add an input disturbance to the
+system of <span class="math inline">\(0.5\)</span> and observe that
+there is steady state error in the response even though there is an
+integrator. This is caused by a steady state error in the observation
+error. In the next chapter we will show how to remove the steady state
+error in the observation error.</p>
+<p><span id="hw:blockbeam_disturbance_observer"
+label="hw:blockbeam_disturbance_observer"></span></p>
+<h2 data-number="E.13" id="-homework-2317"><span class="header-section-number">E.13</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="14-14-disturbance-observers.html#disturbance-observers" data-reference-type="ref"
+data-reference="chap:disturbance_observers">17</a></h2>
+<p>(a) Modify your solution from
+HW <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="13-13-observers.html#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a> so that the uncertainty parameter
+is <span class="math inline">\(\alpha=0.2\)</span>, representing 20%
+inaccuracy in the knowledge of the system parameters, and so that the
+input disturbance is <span class="math inline">\(0.5\)</span>. Also, add
+noise to the output channels <span class="math inline">\(z_m\)</span>
+and <span class="math inline">\(\theta_m\)</span> with standard
+deviation of <span class="math inline">\(0.001\)</span>.</p>
+<p>(b) Add a disturbance observer to the controller, and verify that the steady
+state error in the estimator has been removed. Tune the system to get
+good response.</p>
+<p><span id="hw:blockbeam_bode" label="hw:blockbeam_bode"></span></p>
+<h2 data-number="E.14" id="-homework-2318"><span class="header-section-number">E.14</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems" data-reference-type="ref"
+data-reference="chap:bode_plots">18</a></h2>
+<p>(a) Draw by hand the Bode plot of the inner loop transfer function from
+force <span class="math inline">\(\tilde{F}\)</span> to angle <span
+class="math inline">\(\tilde{\theta}\)</span> for the block-beam system.
+Use the <code>bode</code> command from Matlab or Python and compare your
+results.</p>
+<p>(b) Draw by hand the Bode plot of the outer loop transfer function from
+angle <span class="math inline">\(\tilde{\theta}\)</span> to position
+<span class="math inline">\(\tilde{z}(t)\)</span> for the block-beam
+system. Use the <code>bode</code> command and compare your results.</p>
+<p><span id="hw:blockbeam_loopgain" label="hw:blockbeam_loopgain"></span></p>
+<h2 data-number="E.15" id="-homework-2319"><span class="header-section-number">E.15</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications" data-reference-type="ref"
+data-reference="chap:tracking_disturbance_noise">19</a></h2>
+<p>For the inner loop of the block-beam system, use the Matlab or Python
+<code>bode</code> command to create a graph that simultaneously displays
+the Bode plots for (1) the plant, and (2) the plant under PD control,
+using the control gains calculated in
+Homework <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>. Use the dirty derivative
+when implementing the derivative portion of the PD control.</p>
+<p>(a) To what percent error can the closed loop system under PD control track
+the desired input if all of the frequency content of <span
+class="math inline">\(\theta_r(t)\)</span> is below <span
+class="math inline">\(\omega_r = 1.0\)</span> radians per second?</p>
+<p>(b) If the frequency content of the input disturbance is all contained below
+<span class="math inline">\(\omega_{d_{in}}=0.8\)</span> radians per
+second, what percentage of the input disturbance shows up in the
+output?</p>
+<p>(c) If all of the frequency content of the noise <span
+class="math inline">\(n(t)\)</span> is greater than <span
+class="math inline">\(\omega_{no} = 300\)</span> radians per second,
+what percentage of the noise shows up in the output signal <span
+class="math inline">\(\theta\)</span>?</p>
+<p>For the outer loop of the block-beam, use the Matlab or Python
+<code>bode</code> command to create a graph that simultaneously displays
+the Bode plots for (1) the plant, and (2) the plant under PID control
+using the control gains calculated in
+Homework <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>. Use the dirty
+derivative when implementing the derivative portion of the PID
+control.</p>
+<p>(d) If the frequency content of an output disturbance is contained below
+<span class="math inline">\(\omega_{d_{out}}=0.1\)</span> radian/sec,
+what percentage of the output disturbance will be contained in the
+output under PID control?</p>
+<p>(e) If the reference signal is <span class="math inline">\(y_r(t) =
+2\sin(0.6 t)\)</span> what is the output error under PID control?</p>
+<p><span id="hw:blockbeam_margins" label="hw:blockbeam_margins"></span></p>
+<h2 data-number="E.16" id="-homework-2320"><span class="header-section-number">E.16</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins" data-reference-type="ref"
+data-reference="chap:margins">20</a></h2>
+<p>For this problem, use the gains found in
+HW <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<ul>
+<li><p>For the inner loop of the block-beam system, use the
+<code>bode</code> and <code>margin</code> commands (from Matlab or
+Python) to find the phase and gain margin for the inner loop system
+under PD control. On the same graph, plot the open loop Bode plot and
+the closed loop Bode plot. What is the bandwidth of the closed loop
+system, and how does this relate to the crossover frequency?</p></li>
+<li><p>For the outer loop of the block-beam system, use the
+<code>bode</code> and <code>margin</code> commands to find the phase and
+gain margin for the outer loop system under PID control. Plot the open
+and closed loop Bode plots for the outer loop on the same plot as the
+open and closed loop for the inner loop. What is the bandwidth of the
+closed loop system, and how does this relate to the crossover
+frequency?</p></li>
+<li><p>What is the bandwidth separation between the inner (fast) loop,
+and the outer (slow) loop? For this design, is successive loop closure
+justified?</p></li>
+</ul>
+<p><span id="hw:blockbeam_loopshaping"
+label="hw:blockbeam_loopshaping"></span></p>
+<h2 data-number="E.17" id="-homework-2321"><span class="header-section-number">E.17</span> <a href="#design-study-block-on-beam"><img
+src="6_design_studies/figures/hw_blockbeam_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="18-18-compensator-design.html#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">21</a></h2>
+<p>For this homework assignment we will use the loopshaping design
+technique to design a successive loop closure controller for the block
+and beam problem.</p>
+<ul>
+<li><p>First consider the inner loop, where <span
+class="math inline">\(P_{in}(s)\)</span> is the transfer function of the
+inner loop derived in
+HW <a href="#design-study-block-on-beam" data-reference-type="ref"
+data-reference="hw:blockbeam">23</a>.<a href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a>. Design the inner
+control system <span class="math inline">\(C_{in}(s)\)</span> to
+stabilize the system with a phase margin close to 60 degrees, and to
+ensure that reference inputs with frequency below <span
+class="math inline">\(\omega_r=1\)</span> radians/sec have tracking
+error <span class="math inline">\(\gamma_r=0.0032\)</span>, and to
+ensure that noise above <span
+class="math inline">\(\omega_n=1000\)</span> radians/second is rejected
+by <span class="math inline">\(\gamma_n=0.0032\)</span>.</p></li>
+<li><p>Now consider the design of the controller for the outer loop
+system. The ‘plant’ for the design of the outer loop controller is <span
+class="math display">\[P =
+P_{out}\frac{P_{in}C_{in}}{1+P_{in}C_{in}}.\]</span> Design the outer
+loop controller <span class="math inline">\(C_{out}\)</span> so that the
+system is stable with phase margin close to <span
+class="math inline">\(PM=60\)</span> degrees, and so that constant input
+disturbances are rejected, reference signals with frequency below <span
+class="math inline">\(\omega_r=0.1\)</span> radians/sec are tracked with
+error <span class="math inline">\(\gamma_r=0.01\)</span>, and noise with
+frequency content above <span
+class="math inline">\(\omega_n=100\)</span> radians/sec are rejected
+with <span class="math inline">\(\gamma_n=0.001\)</span>. Add a
+prefilter <span class="math inline">\(F(s)\)</span> to reduce peaking in
+the closed loop transfer function.</p></li>
+<li><p>Implement the developed control strategy in simulation using the
+state space equivalents of <span class="math inline">\(C(s)\)</span> and
+<span class="math inline">\(F(s)\)</span>.</p></li>
+</ul>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

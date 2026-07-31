@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="15" id="frequency-response-of-lti-systems"><span class="header-section-number">15</span> Frequency Response of LTI
+Systems</h1>
+<h2 data-number="15.1" id="theory-13"><span class="header-section-number">15.1</span> Theory</h2>
+<h3 data-number="15.1.1" id="manipulating-complex-numbers"><span class="header-section-number">15.1.1</span> Manipulating Complex
+Numbers</h3>
+<p>Any complex number<span id="idx-0192" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(z\)</span> can be represented in rectangular
+coordinates<span id="idx-0193" class="book-index-anchor" aria-hidden="true"></span> as <span
+class="math display">\[z = \Re\{z\} + j \Im\{z\},\]</span> where <span
+class="math inline">\(\Re\{z\}\)</span> is the real part of <span
+class="math inline">\(z\)</span>, and <span
+class="math inline">\(\Im\{z\}\)</span> is the imaginary part of <span
+class="math inline">\(z\)</span>. Similarly, <span
+class="math inline">\(z\)</span> can be represented in polar
+form<span id="idx-0194" class="book-index-anchor" aria-hidden="true"></span> as <span
+class="math display">\[\label{eq:loop_polar_form}
+z = \left|z\right|e^{j\angle z},\]</span> where <span
+class="math inline">\(\left|z\right|\)</span> denotes the magnitude of
+<span class="math inline">\(z\)</span><span id="idx-0195" class="book-index-anchor" aria-hidden="true"></span> and <span
+class="math inline">\(\angle z\)</span> denotes the angle or phase of
+<span class="math inline">\(z\)</span><span id="idx-0196" class="book-index-anchor" aria-hidden="true"></span>. The relationship
+between the real and imaginary parts, and the magnitude and phase of
+<span class="math inline">\(z\)</span>, are depicted in
+<strong>Fig.</strong> <a href="#fig:ls_complex_number" data-reference-type="ref"
+data-reference="fig:ls_complex_number">15.1</a>.</p>
+<figure id="fig:ls_complex_number">
+<img src="5_loopshaping/figures/ls_complex_number.png"
+style="width:40.0%"
+alt="Relationship between the real and imaginary parts of z, and the magnitude and phase of z." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.1. </span>Relationship between the real and
+imaginary parts of <span class="math inline"><em>z</em></span>, and the
+magnitude and phase of <span
+class="math inline"><em>z</em></span>.</figcaption>
+</figure>
+<p>From the geometry shown in
+<strong>Fig.</strong> <a href="#fig:ls_complex_number" data-reference-type="ref"
+data-reference="fig:ls_complex_number">15.1</a> we can see that <span
+class="math display">\[\begin{aligned}
+\left|z\right| &amp;= \sqrt{\Re\{z\}^2 + \Im\{z\}^2} \\
+\angle z &amp;= \tan^{-1}\frac{\Im\{z\}}{\Re\{z\}}.
+\end{aligned}\]</span> Similarly, from Euler’s relationship<span id="idx-0197" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[e^{j\theta} = \cos\theta + j\sin\theta,\]</span>
+we have from
+Equation <a href="#theory-13" data-reference-type="eqref"
+data-reference="eq:loop_polar_form"><a href="#frequency-response-of-lti-systems">15.1</a></a> that <span
+class="math display">\[z = \left|z\right|e^{j\angle z} =
+\left|z\right|\cos\angle z + j \left|z\right|\sin\angle z\]</span> which
+implies that <span class="math display">\[\begin{aligned}
+\Re\{z\} &amp;= \left|z\right|\cos\angle z \\
+\Im\{z\} &amp;= \left|z\right|\sin\angle z.
+\end{aligned}\]</span></p>
+<p>The conjugate of <span class="math inline">\(z\)</span>, denoted
+<span class="math inline">\(\bar{z}\)</span>, is given by<span id="idx-0198" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\bar{z} = \Re\{z\}-j\Im\{z\} =
+\left|z\right|e^{-j\angle z}.\]</span> Note that <span
+class="math inline">\(z\bar{z} = \left|z\right|^2\)</span>.</p>
+<p>Suppose that <span class="math inline">\(z_1 =
+\left|z_1\right|e^{j\angle z_1}\)</span> and <span
+class="math inline">\(z_2=\left|z_2\right|e^{j\angle z_2}\)</span> are
+two complex numbers, then <span class="math display">\[\begin{aligned}
+z_1z_2 &amp;= \left|z_1\right|e^{j\angle z_1}\left|z_2\right|e^{j\angle
+z_2} \\
+       &amp;= \left|z_1\right|\left|z_2\right|e^{j\angle z_1}e^{j\angle
+z_2} \\
+       &amp;= \left|z_1\right|\left|z_2\right|e^{j(\angle z_1 + \angle
+z_2)},
+\end{aligned}\]</span> therefore when multiplying complex numbers, their
+magnitudes multiply, but their phases add. Similarly, we have <span
+class="math display">\[\frac{z_1}{z_2} =
+\frac{\left|z_1\right|e^{j\angle z_1}}{\left|z_2\right|e^{j\angle z_2}}
+       = \frac{\left|z_1\right|}{\left|z_2\right|}\frac{e^{j\angle
+z_1}}{e^{j\angle z_2}}
+       = \frac{\left|z_1\right|}{\left|z_2\right|}e^{j(\angle z_1 -
+\angle z_2)},\]</span> therefore when dividing complex numbers, their
+magnitudes divide, but their phases subtract.</p>
+<p>A transfer function<span id="idx-0199" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(H(s)\)</span> is a complex number for any specific
+value of <span class="math inline">\(s\)</span>. Therefore <span
+class="math inline">\(H(s)\)</span> can be expressed in both rectangular
+and polar forms as <span class="math display">\[H(s) = \Re\{H(s)\} +
+j\Im\{H(s)\} = \left|H(s)\right|e^{j\angle H(s)}.\]</span> For example,
+if <span class="math inline">\(H(s) = \frac{1}{s+1}\)</span>, then when
+<span class="math inline">\(s=2+j3\)</span> <span
+class="math display">\[\begin{aligned}
+H(2+j3) &amp;= \frac{1}{2+j3+1}= \frac{1}{3+j3} =
+\frac{1}{3+j3}\frac{3-j3}{3-j3} \\&amp;= \frac{1}{6} - j\frac{1}{6} =
+\sqrt{\frac{1}{18}}e^{-j\frac{\pi}{4}}.
+\end{aligned}\]</span> If <span class="math inline">\(H(s)\)</span> has
+multiple poles and zeros, then the magnitude and phase of <span
+class="math inline">\(H(s)\)</span> can be represented in terms of the
+magnitude and phase of the poles and zeros. For example, suppose that
+<span id="idx-0200" class="book-index-anchor" aria-hidden="true"></span><span id="idx-0201" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[H(s) =
+\frac{K(s+z_1)(s+z_2)\dots(s+z_m)}{(s+p_1)(s+p_2)\dots(s+p_n)}.\]</span>
+Since <span class="math inline">\((s+a)\)</span> is a complex number for
+any <span class="math inline">\(s\)</span>, it can be written in polar
+form as <span
+class="math inline">\(s+a=\left|s+a\right|e^{j\angle(s+a)}\)</span>,
+therefore <span class="math display">\[\begin{aligned}
+H(s) &amp;=
+\frac{K(s+z_1)(s+z_2)\dots(s+z_m)}{(s+p_1)(s+p_2)\dots(s+p_n)} \\
+     &amp;= \frac{\left|K\right|e^{j\angle K}
+\left|s+z_1\right|e^{j\angle(s+z_1)}\left|s+z_2\right|e^{j\angle(s+z_2)}\dots\left|s+z_m\right|e^{j\angle(s+z_m)}}
+        {\left|s+p_1\right|e^{j\angle(s+p_1)}\left|s+p_2\right|e^{j\angle(s+p_2)}\dots\left|s+p_n\right|e^{j\angle(s+p_n)}}
+\\
+     &amp;=
+\frac{\left|K\right|\left|s+z_1\right|\left|s+z_2\right|\dots\left|s+z_m\right|}{\left|s+p_1\right|\left|s+p_2\right|\dots\left|s+p_n\right|}
+        \frac{e^{j\angle K} e^{j\angle(s+z_1)}e^{j\angle(s+z_2)}\dots
+e^{j\angle(s+z_m)}}{e^{j\angle(s+p_1)}e^{j\angle(s+p_2)}\dots
+e^{j\angle(s+p_n)}} \\
+     &amp;=
+\frac{\left|K\right|\left|s+z_1\right|\left|s+z_2\right|\dots\left|s+z_m\right|}{\left|s+p_1\right|\left|s+p_2\right|\dots\left|s+p_n\right|}
+        e^{j\left(\angle K + \sum_{i=1}^m \angle (s+z_i) - \sum_{i=1}^n
+\angle (s+p_i)\right)}.    
+\end{aligned}\]</span> Therefore <span
+class="math display">\[\begin{aligned}
+\left|H(s)\right| &amp;=
+\frac{\left|K\right|\left|s+z_1\right|\left|s+z_2\right|\dots\left|s+z_m\right|}{\left|s+p_1\right|\left|s+p_2\right|\dots\left|s+p_n\right|}
+\label{eq:loop_mag_H_1}\\
+\angle H(s) &amp;= \angle K + \sum_{i=1}^m \angle (s+z_i) - \sum_{i=1}^n
+\angle (s+p_i). \label{eq:loop_phase_H_1}
+\end{aligned}\]</span></p>
+<h3 data-number="15.1.2" id="frequency-response-of-lti-systems-1"><span class="header-section-number">15.1.2</span> Frequency Response of LTI
+Systems</h3>
+<p>In systems theory, the magnitude and phase representations of the
+transfer function <span class="math inline">\(H(s)\)</span> are used
+because they have important physical meaning.<span id="idx-0202" class="book-index-anchor" aria-hidden="true"></span><span id="idx-0203" class="book-index-anchor" aria-hidden="true"></span> In particular, suppose
+that <span class="math inline">\(H(s)\)</span> represents a physical
+system with input <span class="math inline">\(u(t)\)</span> and output
+<span class="math inline">\(y(t)\)</span> as shown in
+<strong>Fig.</strong> <a href="#fig:ls_transfer_function" data-reference-type="ref"
+data-reference="fig:ls_transfer_function">15.2</a>.</p>
+<figure id="fig:ls_transfer_function">
+<img src="5_loopshaping/figures/ls_transfer_function.png"
+style="width:30.0%"
+alt="LTI system represented by the transfer function H(s) with input u(t) and output y(t)." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.2. </span>LTI system represented by the transfer
+function <span class="math inline"><em>H</em>(<em>s</em>)</span> with
+input <span class="math inline"><em>u</em>(<em>t</em>)</span> and output
+<span class="math inline"><em>y</em>(<em>t</em>)</span>.</figcaption>
+</figure>
+<p>If the input to the system is given by a sinusoid of magnitude <span
+class="math inline">\(A\)</span> and frequency <span
+class="math inline">\(\omega_0\)</span>, i.e., <span
+class="math display">\[u(t) = A\sin(\omega_0t),\]</span> then the output
+is given by <span class="math display">\[\label{eq:loop_output_of_lti}
+y(t) = A\left|H(j\omega_0)\right|\sin(\omega_0 t + \angle
+H(j\omega_0)).\]</span> Therefore, the transfer function <span
+class="math inline">\(H(s)\)</span> is an elegant and compact
+representation of the frequency response of the system, in that the
+magnitude of <span class="math inline">\(H(j\omega_0)\)</span> describes
+the gain of the system for input signals with frequency <span
+class="math inline">\(\omega_0\)</span>, and the phase of <span
+class="math inline">\(H(j\omega_0)\)</span> describes the phase shift
+imposed by the system on input signals with frequency <span
+class="math inline">\(\omega_0\)</span>.<span id="idx-0204" class="book-index-anchor" aria-hidden="true"></span> For example,
+<strong>Fig.</strong> <a href="#fig:ls_sin_in_out" data-reference-type="ref"
+data-reference="fig:ls_sin_in_out">15.3</a> shows the input-output
+response of an LTI system with transfer function <span
+class="math inline">\(H(s)=\frac{1}{s+1}\)</span>. The input signal,
+which is shown in grey, is <span
+class="math inline">\(u(t)=\sin(\omega_0 t)\)</span> where <span
+class="math inline">\(\omega_0\)</span> changes in each subplot. The
+output signal is shown in blue and is given by
+Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
+data-reference="eq:loop_output_of_lti"><a href="#frequency-response-of-lti-systems">15.4</a></a>. Note
+that in subplot (a) the time scale is different than the other subplots.
+When <span class="math inline">\(\omega_0=0.1\)</span>, <span
+class="math inline">\(H(j\omega_0)\approx 0.995e^{j5^\circ}\)</span>.
+Accordingly, in subplot (a), the output is only slightly attenuated,
+with very little phase shift. In contrast, when <span
+class="math inline">\(\omega_0=5\)</span>, <span
+class="math inline">\(H(j\omega_0)\approx 0.2 e^{j80^\circ}\)</span>,
+and in subplot (f) we see that the output is approximately 20% of the
+input with a phase shift approaching <span
+class="math inline">\(90\)</span> degrees.</p>
+<figure id="fig:ls_sin_in_out">
+<img src="5_loopshaping/figures/ls_sin_in_out.png"
+style="width:95.0%"
+alt="Frequency response to LTI system with transfer function H(s)=1/(s+1)." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.3. </span>Frequency response to LTI system with
+transfer function <span
+class="math inline"><em>H</em>(<em>s</em>) = 1/(<em>s</em> + 1)</span>.</figcaption>
+</figure>
+<article class="advanced-activity" data-advanced-activity="ch15-sine-response">
+<p class="advanced-kicker">
+Chapter 15 interactive figure
+</p>
+<h3>
+Sinusoidal input and steady-state output
+</h3>
+<p>
+For <span class="inline-equation">H(s)=1/(s+1)</span>, move the
+input frequency. The output amplitude and phase shift are computed from
+<span class="inline-equation">H(jω)</span>, then plotted against the
+input signal.
+</p>
+<div class="advanced-grid ch15-sine-layout"> <div
+class="advanced-controls ch15-sine-controls"> <label>Input frequency
+<span class="inline-equation">ω</span> <input
+type="range" data-input="omega" min="0.1" max="8" step="0.1"
+value="1">
+<span class="advanced-control-value"><span class="inline-equation">ω</span>
+= <span data-output="sine-omega"></span> rad/s</span>
+</label>
+</div>
+<div class="advanced-visual ch15-sine-figure" role="figure"
+aria-label="Interactive sinusoidal response"> <canvas
+data-plot="ch15-sine-response" width="900" height="360"
+aria-label="Sinusoidal input and output response"></canvas> <p
+class="advanced-caption">Interactive Figure 15.I1. Move the input
+frequency to see how H(jw) changes the output amplitude and phase.</p>
+</div>
+<div class="advanced-readout ch15-sine-readout"> <div
+class="advanced-metric"><strong><span
+class="inline-equation">|H(j&omega;)|</span></strong><span
+data-output="sine-mag"></span></div> <div
+class="advanced-metric"><strong>Phase shift</strong><span
+data-output="sine-phase"></span></div> <div
+class="advanced-metric"><strong>Interpretation</strong><span
+data-output="sine-note"></span></div> </div>
+</div>
+</article>
+<p>Therefore, the response of an LTI system to inputs at different
+frequencies can be visualized by plotting the magnitude and phase of
+<span class="math inline">\(H(j\omega)\)</span> as a function of <span
+class="math inline">\(\omega\)</span>. The frequency response of <span
+class="math inline">\(H(s)=1/(s+1)\)</span> is plotted in two different
+ways in
+<strong>Fig.</strong> <a href="#fig:ls_freq_response" data-reference-type="ref"
+data-reference="fig:ls_freq_response">15.4</a>. In subfigure (a) a
+linear scale is used for both <span
+class="math inline">\(\left|H(j\omega)\right|\)</span> and <span
+class="math inline">\(\angle H(j\omega)\)</span>, as well as the
+frequency scale <span class="math inline">\(\omega\)</span>. In
+subfigure (b), the scale for magnitude is in dB: <span
+class="math inline">\(20\log\left|H(j\omega)\right|\)</span> whereas the
+scale for <span class="math inline">\(\angle H(j\omega)\)</span> is
+linear, however, in both cases a log scale for <span
+class="math inline">\(\omega\)</span> is used on the <span
+class="math inline">\(x\)</span>-axis. The plot in subfigure (b) is
+called a Bode plot. It should be clear from
+<strong>Fig.</strong> <a href="#fig:ls_freq_response" data-reference-type="ref"
+data-reference="fig:ls_freq_response">15.4</a> that the Bode plot
+provides much more useful information than a linear plot since it more
+effectively reveals the behavior of the system at lower frequencies. For
+this reason, Bode plots are the most common method to display the
+frequency response of the system. <span id="idx-0205" class="book-index-anchor" aria-hidden="true"></span></p>
+<figure id="fig:ls_freq_response">
+<img src="5_loopshaping/figures/ls_freq_response.png"
+style="width:95.0%"
+alt="Frequency response of H(s)=1/(s+1) on a linear scale (a), and a logarithmic scale (b)." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.4. </span>Frequency response of <span
+class="math inline"><em>H</em>(<em>s</em>) = 1/(<em>s</em> + 1)</span>
+on a linear scale (a), and a logarithmic scale (b).</figcaption>
+</figure>
+<article class="advanced-activity" data-advanced-activity="ch15-frequency-scale">
+<p class="advanced-kicker">
+Chapter 15 interactive figure
+</p>
+<h3>
+Linear scale versus Bode scale
+</h3>
+<p>
+For <span class="inline-equation">H(s)=1/(s+1)</span>, move the
+frequency marker. The left plot uses linear magnitude and linear
+frequency; the right plot shows the same response as a Bode plot with dB
+magnitude and log frequency.
+</p>
+<div class="advanced-grid ch15-scale-layout"> <div
+class="advanced-controls ch15-scale-controls">
+<label><span class="ch15-scale-frequency-label"><span class="inline-equation">ω
+=
+10<sup><span data-output="scale-exp"></span></sup></span>
+rad/sec = <span data-output="scale-omega"></span>
+rad/sec</span> <input
+type="range" data-input="omega-exp" min="-2" max="1.3"
+step="0.02" value="0"> </label>
+</div>
+<div
+class="advanced-visual ch15-scale-figure" role="figure"
+aria-label="Interactive frequency response scale comparison">
+<canvas data-plot="ch15-frequency-scale" width="1080"
+height="560" aria-label="Linear and Bode frequency response
+comparison"></canvas> <p class="advanced-caption">Interactive
+Figure 15.I2. Compare the same frequency response on a linear plot and
+on a Bode plot. The shaded area on the linear plot shows how
+low-frequency behavior is compressed when many decades are shown on a
+linear axis.</p> </div>
+<div class="advanced-readout
+ch15-scale-readout"> <div
+class="advanced-metric"><strong>Selected frequency</strong><span
+data-output="scale-location"></span></div> <div
+class="advanced-metric"><strong><span
+class="inline-equation">|H(j&omega;)|</span></strong><span
+data-output="scale-mag"></span></div> <div
+class="advanced-metric"><strong><span
+class="inline-equation">20log<sub>10</sub>|H(j&omega;)|</span></strong><span
+data-output="scale-db"></span></div> <div
+class="advanced-metric"><strong><span
+class="inline-equation">&angle;H(j&omega;)</span></strong><span
+data-output="scale-phase"></span></div> <div
+class="advanced-metric"><strong>Interpretation</strong><span
+data-output="scale-note"></span></div> </div>
+<div
+class="advanced-callout ch15-db-reference"> <strong>dB conversion
+reference:</strong> <span>0 dB &rarr; <span
+class="inline-equation">|H|</span> = 1</span>
+<span>-3 dB &rarr; <span
+class="inline-equation">|H|</span> &asymp; 0.707</span>
+<span>-20 dB &rarr; <span
+class="inline-equation">|H|</span> = 0.1</span>
+<span>-40 dB &rarr; <span
+class="inline-equation">|H|</span> = 0.01</span>
+</div>
+<article class="quiz-card ch15-scale-question"
+data-quiz-type="mcq" data-answer="B" data-feedback-a="A is not
+correct. Bode plots also keep magnitude and phase tied to physical
+frequency." data-feedback-b="B is correct. Logarithmic frequency
+spacing makes behavior across many decades visible, especially below and
+near the corner frequency." data-feedback-c="C is not correct. Phase
+remains important on Bode plots." data-feedback-d="D is not correct.
+The Bode plot shows the same response using more useful axes.">
+<h4>Check your interpretation</h4> <p class="quiz-prompt">Why is
+the Bode plot more useful here?</p> <div class="quiz-options">
+<label><input type="radio" name="loop-ch15-scale-q1"
+value="A"><span class="quiz-option-text">A) It removes the frequency dependence.</span></label>
+<label><input type="radio" name="loop-ch15-scale-q1"
+value="B"><span class="quiz-option-text">B) It makes behavior over many decades of frequency
+visible.</span></label> <label><input type="radio"
+name="loop-ch15-scale-q1" value="C"><span class="quiz-option-text">C) It ignores phase
+information.</span></label> <label><input type="radio"
+name="loop-ch15-scale-q1" value="D"><span class="quiz-option-text">D) It changes the transfer
+function.</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</div>
+</article>
+<p>As a note, since the magnitude of <span
+class="math inline">\(H(j\omega)\)</span> is displayed on the Bode plot
+as <span class="math inline">\(20\log\left|H(j\omega)\right|\)</span> in
+units of dB, note that <span
+class="math inline">\(20\log\left|H(j\omega)\right|=0\)</span> dB
+implies that <span
+class="math inline">\(\left|H(j\omega)\right|=1\)</span>. Similarly
+<span class="math inline">\(20\log\left|H(j\omega)\right|=20\)</span> dB
+implies that <span
+class="math inline">\(\left|H(j\omega)\right|=10\)</span> and <span
+class="math inline">\(20\log\left|H(j\omega)\right|=40\)</span> dB
+implies that <span
+class="math inline">\(\left|H(j\omega)\right|=100\)</span>. Going in the
+other direction, <span
+class="math inline">\(20\log\left|H(j\omega)\right|=-20\)</span> dB
+implies that <span
+class="math inline">\(\left|H(j\omega)\right|=0.1\)</span>, and <span
+class="math inline">\(20\log\left|H(j\omega)\right|=-40\)</span> dB
+implies that <span
+class="math inline">\(\left|H(j\omega)\right|=0.01\)</span>. In general,
+<span
+class="math display">\[20\log\left|H(j\omega)\right|=20n\text{~dB~}
+\implies \left|H(j\omega)\right|=10^n.\]</span></p>
+<h3 data-number="15.1.3"
+id="straight-line-approximations-for-bode-plots"><span class="header-section-number">15.1.3</span> Straight-line Approximations
+for Bode Plots</h3>
+<p>While the Bode plot for a system can be easily generated using the
+Matlab or Python <code>bode</code> command, it is still useful to
+understand how to approximately draw a Bode plot by hand. The reason for
+this is that in the loop-shaping design methodology, we add elements to
+the control transfer function <span class="math inline">\(C(s)\)</span>
+to "shape" the Bode plot of the loop gain <span
+class="math inline">\(P(s)C(s)\)</span> where <span
+class="math inline">\(P(s)\)</span> is the transfer function of the
+plant. Learning to approximately draw the Bode plot by hand will provide
+helpful insights into this process. Therefore, in this section we
+provide a brief tutorial on how to approximate the Bode plot for a
+transfer function <span class="math inline">\(H(s)\)</span>. <span id="idx-0206" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>We start by putting the transfer function into <em>Bode canonical
+form</em> by factoring out the poles and zeros as follows:<span id="idx-0207" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\begin{aligned}
+H(s) &amp;=
+\frac{K(s+z_1)(s+z_2)\dots(s+z_m)}{(s+p_1)(s+p_2)\dots(s+p_n)} \\
+     &amp;= \frac{Kz_1z_2\dots z_m}{p_1p_2\dots
+p_n}\frac{(1+s/z_1)(1+s/z_2)\dots(1+s/z_m)}{(1+s/p_1)(1+s/p_2)\dots(1+s/p_n)}.
+\end{aligned}\]</span> Therefore, following
+Equations <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
+data-reference="eq:loop_mag_H_1"><a href="#frequency-response-of-lti-systems">15.2</a></a> and
+<a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
+data-reference="eq:loop_phase_H_1"><a href="#frequency-response-of-lti-systems">15.3</a></a> we have <span
+class="math display">\[\begin{aligned}
+\left|H(j\omega)\right| &amp;= \left|\frac{Kz_1z_2\dots z_m}{p_1p_2\dots
+p_m}\right|
+              \frac{\left|1+j\omega/z_1\right|\left|1+j\omega/z_2\right|\dots\left|1+j\omega/z_m\right|}{\left|1+j\omega/p_1\right|\left|1+j\omega/p_2\right|\dots\left|1+j\omega/p_n)\right|}
+\label{eq:loop_mag_H_2}\\
+\angle H(j\omega) &amp;= \angle \left(\frac{Kz_1z_2\dots
+z_m}{p_1p_2\dots p_m}\right) + \sum_{i=1}^m \angle (1+j\omega/z_i) -
+\sum_{i=1}^n \angle (1+j\omega/p_i). \label{eq:loop_phase_H_2}
+\end{aligned}\]</span> Since <span
+class="math inline">\(20\log\left|AB\right|=20\log\left|A\right|+20\log\left|B\right|\)</span>,
+Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
+data-reference="eq:loop_mag_H_2"><a href="#frequency-response-of-lti-systems">15.5</a></a> gives <span
+class="math display">\[\begin{gathered}
+\label{eq:loop_mag_H_3}
+20\log\left|H(j\omega)\right| = 20\log \left|\frac{Kz_1z_2\dots
+z_m}{p_1p_2\dots p_m}\right| \\
+    + \sum_{i=1}^m 20\log\left|1+j\omega/z_i\right| - \sum_{i=1}^n
+20\log\left|1+j\omega/p_i\right|.
+\end{gathered}\]</span></p>
+<p>Drawing the Bode plot for a general transfer function with real poles
+and zeros, can be decomposed into drawing the Bode plot for each pole
+and zero, and then graphically adding them to get the general Bode plot.
+Note first that <span class="math display">\[20\log
+\left|\frac{Kz_1z_2\dots z_m}{p_1p_2\dots p_m}\right|\]</span> is not a
+function of <span class="math inline">\(\omega\)</span> and is therefore
+a constant line on the Bode plot. Also note that <span
+class="math display">\[\angle \left(\frac{Kz_1z_2\dots z_m}{p_1p_2\dots
+p_m}\right)\]</span> is also a constant and is either <span
+class="math inline">\(0\)</span> degrees if <span
+class="math inline">\(\left(\frac{Kz_1z_2\dots z_m}{p_1p_2\dots
+p_m}\right)&gt;0\)</span>, or <span
+class="math inline">\(180\)</span> degrees if <span
+class="math inline">\(\left(\frac{Kz_1z_2\dots z_m}{p_1p_2\dots
+p_m}\right)&lt;0\)</span>.</p>
+<p>We start by drawing the Bode plot when <span
+class="math inline">\(H(s) = s+z\)</span> has a single zero at <span
+class="math inline">\(s=-z\)</span> and <span
+class="math inline">\(z&gt;0\)</span>. The first step is to put the
+transfer function in Bode canonical form as <span
+class="math display">\[H(j\omega) = z(1+j\frac{\omega}{z}).\]</span>
+Therefore, from
+Equation <a href="#knowledge-check-14" data-reference-type="eqref"
+data-reference="eq:loop_mag_H_3"><a href="#frequency-response-of-lti-systems">15.7</a></a> we have <span
+class="math display">\[\begin{aligned}
+20\log\left|H(j\omega)\right| &amp;= 20\log\left|z\right| +
+20\log\left|1+j\frac{\omega}{z}\right| \\&amp;= 20\log\left|z\right| +
+20\log\sqrt{1+(\omega/z)^2}.
+\end{aligned}\]</span> When <span class="math inline">\(\omega/z\ll
+1\)</span> we have that <span
+class="math inline">\(\sqrt{1+(\omega/z)^2}\approx 1\)</span>, implying
+that <span class="math display">\[20\log\left|H(j\omega)\right| \approx
+20\log\left|z\right|.\]</span> Note that since this term is not a
+function of <span class="math inline">\(\omega\)</span>, it is a
+constant value on the Bode plot. On the other hand, when <span
+class="math inline">\(\omega/z \gg 1\)</span> we have that <span
+class="math inline">\(\sqrt{1+(\omega/z)^2}\approx
+\left|\omega/z\right|\)</span>, giving <span
+class="math display">\[20\log\left|H(j\omega)\right| \approx
+20\log\left|z\right| + 20\log\left|\omega/z\right|.\]</span> Note that
+the second term is a straight line on a Bode plot that intersects the
+<span class="math inline">\(0\)</span> dB axis at <span
+class="math inline">\(\omega=z\)</span> and increases <span
+class="math inline">\(20\)</span> dB for every factor of 10 increase in
+<span class="math inline">\(\omega\)</span>. Therefore, on the Bode
+plot, the slope of the second term is <span
+class="math inline">\(+20\)</span> dB/decade. A straight-line
+approximation is shown in
+<strong>Fig.</strong> <a href="#fig:ls_zero_straight_line" data-reference-type="ref"
+data-reference="fig:ls_zero_straight_line">15.5</a>, along with the Bode
+plot produced by Matlab.</p>
+<figure id="fig:ls_zero_straight_line">
+<img src="5_loopshaping/figures/ls_zero_straight_line.png"
+style="width:80.0%"
+alt="Straight-line approximation for a single zero." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.5. </span>Straight-line approximation for a single
+zero.</figcaption>
+</figure>
+<p>Note that the largest mismatch between the straight-line
+approximation and the actual Bode plot is at <span
+class="math inline">\(\omega=z\)</span>. In that case we have <span
+class="math display">\[20\log\left|H(jz)\right| \approx
+20\log\left|z\right| + 20\log\sqrt{2}=20\log\left|z\right| +
+3~dB.\]</span> Therefore, at the corner frequency <span
+class="math inline">\(z\)</span> the Bode plot is <span
+class="math inline">\(3\)</span> dB above the low frequency
+response.</p>
+<p>To approximate the phase plot, note that <span
+class="math display">\[\label{eq:loop_phase_zero}
+\angle H(j\omega) = \angle z(1+j\omega/z)
+=\tan^{-1}\frac{\omega}{z}.\]</span> When <span
+class="math inline">\(\omega=z\)</span> we have that <span
+class="math inline">\(\tan^{-1} 1 = 45\)</span> degrees. When <span
+class="math inline">\(\omega\ll z\)</span>, we have that <span
+class="math inline">\(\tan^{-1}(\omega/z)\approx 0\)</span> degrees, and
+when <span class="math inline">\(\omega\gg z\)</span>, we have that
+<span class="math inline">\(\tan^{-1}(\omega/z)\approx
+90\)</span> degrees. The phase plot as calculated by Matlab is shown in
+<strong>Fig.</strong> <a href="#fig:ls_zero_straight_line" data-reference-type="ref"
+data-reference="fig:ls_zero_straight_line">15.5</a>. An adequate
+straight-line approximation is obtained by setting the phase to zero
+when <span class="math inline">\(\omega&lt;z/10\)</span>, i.e., one
+decade less than <span class="math inline">\(z\)</span>, and setting the
+phase to <span class="math inline">\(90\)</span> degrees when <span
+class="math inline">\(\omega&gt;10z\)</span>, i.e., one decade greater
+than <span class="math inline">\(z\)</span>, and drawing a straight line
+between those points so that the phase at <span
+class="math inline">\(z\)</span> is <span
+class="math inline">\(45\)</span> degrees. The straight-line
+approximation for the phase is also shown in black
+in <strong>Fig.</strong> <a href="#fig:ls_zero_straight_line" data-reference-type="ref"
+data-reference="fig:ls_zero_straight_line">15.5</a>.</p>
+<p>The straight-line approximation for phase as described above assumes
+that <span class="math inline">\(z&gt;0\)</span>, i.e, that the zero is
+in the left half of the complex plane. For right half plane zeros when
+<span class="math inline">\(z&lt;0\)</span>, the phase as calculated in
+Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
+data-reference="eq:loop_phase_H_2"><a href="#frequency-response-of-lti-systems">15.6</a></a> is <span
+class="math display">\[\angle H(j\omega) = \angle z + \angle
+(1+j\omega/z) = 180^\circ -
+\tan^{-1}\frac{\omega}{\left|z\right|}.\]</span> Therefore, the phase
+starts at <span class="math inline">\(180\)</span> degrees and decreases
+by <span class="math inline">\(90\)</span> degrees as <span
+class="math inline">\(\omega\)</span> gets large rather than increases.
+<strong>Fig.</strong> <a href="#fig:ls_zero_rhp_straight_line" data-reference-type="ref"
+data-reference="fig:ls_zero_rhp_straight_line">15.6</a> shows the Bode
+plot and its straight-line approximation when the zero is in the right
+half plane. When a system has a zero in the right half plane, it is
+called non-minimum phase because of the <span
+class="math inline">\(180\)</span> degree phase increase at low
+frequencies.</p>
+<figure id="fig:ls_zero_rhp_straight_line">
+<img
+src="5_loopshaping/figures/ls_zero_rhp_straight_line.png"
+style="width:80.0%"
+alt="Straight-line approximation for a zero in the right half of the complex plane." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.6. </span>Straight-line approximation for a zero in
+the right half of the complex plane.</figcaption>
+</figure>
+<p>Now consider drawing the Bode plot for a single pole, i.e., <span
+class="math inline">\(H(s) = \frac{p}{s+p}\)</span>, which has a single
+pole at <span class="math inline">\(s=-p\)</span> which is in the right
+half plane when <span class="math inline">\(p&gt;0\)</span>. In Bode
+canonical form <span class="math inline">\(H(s)\)</span> becomes <span
+class="math display">\[H(j\omega) =
+\frac{1}{1+j\frac{\omega}{p}}.\]</span> Therefore, from
+Equation <a href="#knowledge-check-14" data-reference-type="eqref"
+data-reference="eq:loop_mag_H_3"><a href="#frequency-response-of-lti-systems">15.7</a></a> we have <span
+class="math display">\[\begin{aligned}
+20\log\left|H(j\omega)\right| &amp;= 20\log\left|1\right| -
+20\log\left|1+j\frac{\omega}{p}\right| \\&amp;= -
+20\log\sqrt{1+(\omega/p)^2}.
+\end{aligned}\]</span> When <span class="math inline">\(\omega/p\ll
+1\)</span>, we have that <span
+class="math inline">\(\sqrt{1+(\omega/p)^2}\approx 1\)</span>, implying
+that <span class="math display">\[20\log\left|H(j\omega)\right| \approx
+0.\]</span> Note that since this term is not a function of <span
+class="math inline">\(\omega\)</span>, it is a constant value at <span
+class="math inline">\(0\)</span> dB on the Bode plot. On the other hand,
+when <span class="math inline">\(\omega/p \gg 1\)</span>, we have that
+<span class="math inline">\(\sqrt{1+(\omega/p)^2}\approx
+\left|\omega/p\right|\)</span>, giving <span
+class="math display">\[20\log\left|H(j\omega)\right| \approx
+-20\log\left|\omega/p\right|.\]</span> Note that the second term is a
+straight line on a Bode plot that intersects the <span
+class="math inline">\(0\)</span> dB axis when <span
+class="math inline">\(\omega=p\)</span> and decreases at <span
+class="math inline">\(-20\)</span> dB for every factor of 10 increase in
+<span class="math inline">\(\omega\)</span>. Therefore, on the Bode
+plot, the slope of the second term is <span
+class="math inline">\(-20\)</span> dB/decade. A straight-line
+approximation is shown in
+<strong>Fig.</strong> <a href="#fig:ls_pole_straight_line" data-reference-type="ref"
+data-reference="fig:ls_pole_straight_line">15.7</a>, along with the Bode
+plot produced by Matlab.</p>
+<figure id="fig:ls_pole_straight_line">
+<img src="5_loopshaping/figures/ls_pole_straight_line.png"
+style="width:80.0%"
+alt="Straight-line approximation for a single pole." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.7. </span>Straight-line approximation for a single
+pole.</figcaption>
+</figure>
+<p>Note that the largest mismatch between the straight-line
+approximation and the actual Bode is at <span
+class="math inline">\(\omega=p\)</span>. In that case, we have <span
+class="math display">\[20\log\left|H(jp)\right| \approx
+-20\log\sqrt{2}=-3~dB.\]</span> Therefore, at the corner frequency <span
+class="math inline">\(p\)</span> the Bode plot is <span
+class="math inline">\(3\)</span> dB below the low frequency
+response.</p>
+<p>To approximate the phase plot, note that <span
+class="math display">\[\label{eq:loop_phase_pole}
+\angle H(j\omega) = -\angle (1+j\frac{\omega}{p}) =
+-\tan^{-1}\frac{\omega}{p}.\]</span> When <span
+class="math inline">\(\omega=p\)</span> we have that <span
+class="math inline">\(-\tan^{-1} 1 = -45\)</span> degrees. When <span
+class="math inline">\(\omega\ll p\)</span>, we have that <span
+class="math inline">\(-\tan^{-1}(\omega/p)\approx 0\)</span> degrees,
+and when <span class="math inline">\(\omega\gg p\)</span>, <span
+class="math inline">\(-\tan^{-1}(\omega/p)\approx -90\)</span> degrees.
+The phase plot as calculated by Matlab is shown in
+<strong>Fig.</strong> <a href="#fig:ls_pole_straight_line" data-reference-type="ref"
+data-reference="fig:ls_pole_straight_line">15.7</a>. An adequate
+straight-line approximation is obtained by setting the phase to zero
+when <span class="math inline">\(\omega&lt;p/10\)</span>, i.e., one
+decade less than <span class="math inline">\(p\)</span>, and setting the
+phase to <span class="math inline">\(-90\)</span> degrees when <span
+class="math inline">\(\omega&gt;10p\)</span>, i.e., one decade greater
+than <span class="math inline">\(p\)</span>, and drawing a straight line
+between those points so that the phase at <span
+class="math inline">\(p\)</span> is <span
+class="math inline">\(-45\)</span> degrees. The straight-line
+approximation for the phase is also shown in
+<strong>Fig.</strong> <a href="#fig:ls_pole_straight_line" data-reference-type="ref"
+data-reference="fig:ls_pole_straight_line">15.7</a>.</p>
+<p>The straight-line approximation for phase as described above assumes
+that <span class="math inline">\(p&gt;0\)</span>, i.e, that the pole is
+in the left half of the complex plane. For right half plane poles when
+<span class="math inline">\(p&lt;0\)</span>, the phase as calculated in
+Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
+data-reference="eq:loop_phase_H_2"><a href="#frequency-response-of-lti-systems">15.6</a></a> is <span
+class="math display">\[\angle H(j\omega) =  -\angle (1+j\omega/p) =
+\tan^{-1}\frac{\omega}{\left|p\right|}.\]</span> Therefore, the phase
+starts at <span class="math inline">\(0\)</span> degrees and increases
+by <span class="math inline">\(90\)</span> degrees as <span
+class="math inline">\(\omega\)</span> gets large.
+<strong>Fig.</strong> <a href="#fig:ls_pole_rhp_straight_line" data-reference-type="ref"
+data-reference="fig:ls_pole_rhp_straight_line">15.8</a> shows the Bode
+plot and its straight-line approximation when the pole is in the right
+half plane. Note that stability and instability are not directly evident
+from the shapes of the magnitude and phase plots.</p>
+<figure id="fig:ls_pole_rhp_straight_line">
+<img
+src="5_loopshaping/figures/ls_pole_rhp_straight_line.png"
+style="width:80.0%"
+alt="Straight-line approximation for a pole in the right half of the complex plane." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.8. </span>Straight-line approximation for a pole in
+the right half of the complex plane.</figcaption>
+</figure>
+<article class="advanced-activity" data-advanced-activity="ch15-pole-zero-builder">
+<p class="advanced-kicker">
+Chapter 15 interactive figure
+</p>
+<h3>
+Single pole/zero Bode builder
+</h3>
+<p>
+Choose one first-order factor and move the corner frequency. The plot
+compares the exact Bode response with the straight-line approximation
+used for hand sketches.
+</p>
+<div class="advanced-grid ch15-pz-layout"> <div
+class="advanced-controls ch15-pz-controls"> <label>First-order factor
+<select data-select="element"><option value="zero-lhp"
+selected>Left-half-plane zero</option><option
+value="zero-rhp">Right-half-plane zero</option><option
+value="pole-lhp">Left-half-plane pole</option><option
+value="pole-rhp">Right-half-plane pole</option></select>
+<span class="advanced-control-value"
+data-output="pz-factor"></span> </label>
+<label><span class="ch15-pz-corner-label"><span class="inline-equation">ω<sub>c</sub></span>
+= <span data-output="pz-corner-frequency"></span>
+rad/sec</span> <input
+type="range" data-input="corner" min="0.2" max="8" step="0.1"
+value="1"> </label>
+</div>
+<div class="advanced-visual
+ch15-pz-figure" role="figure" aria-label="Interactive pole and zero
+Bode builder"> <canvas data-plot="ch15-pole-zero-builder"
+width="760" height="460" aria-label="Pole and zero Bode plot
+builder"></canvas> <p class="advanced-caption">Interactive
+Figure 15.I3. Compare exact first-order magnitude and phase with their
+straight-line approximations.</p> </div>
+<div
+class="advanced-readout ch15-pz-readout"> <div
+class="advanced-metric"><strong>Magnitude slope</strong><span
+data-output="pz-slope"></span></div> <div
+class="advanced-metric"><strong>Phase change</strong><span
+data-output="pz-phase-change"></span></div> <div
+class="advanced-metric"><strong>Corner value</strong><span
+data-output="pz-corner"></span></div> <div
+class="advanced-metric"><strong>Guide frequencies</strong><span
+data-output="pz-guides"></span></div> </div>
+</div>
+</article>
+<p>Suppose now that the poles are complex. Let <span
+class="math display">\[H(s)=\frac{\omega_n^2}{s^2+2\zeta\omega_ns+\omega_n^2}.\]</span>
+In Bode canonical form we have <span
+class="math display">\[\begin{aligned}
+H(j\omega) &amp;=
+\frac{1}{\omega_n^2}\frac{\omega_n^2}{\frac{(j\omega)^2}{\omega_n^2} +
+2\zeta\omega_n\left(\frac{j\omega}{\omega_n^2}\right) + 1}\\
+           &amp;=
+\frac{1}{\left(1-\left(\frac{\omega}{\omega_n}\right)^2\right) + j
+2\zeta\left(\frac{\omega}{\omega_n}\right)} \\
+           &amp;=
+\frac{1}{\sqrt{\left(1-\frac{\omega^2}{\omega_n^2}\right)^2 +
+4\zeta^2\frac{\omega^2}{\omega_n^2}}}
+              e^{-j\tan^{-1}\left(\frac{2\zeta\frac{\omega}{\omega_n}}{1-\frac{\omega^2}{\omega_n^2}}\right)}.
+\end{aligned}\]</span> Therefore <span
+class="math display">\[\begin{aligned}
+\left|H(j\omega)\right| &amp;=
+\frac{1}{\sqrt{\left(1-\frac{\omega^2}{\omega_n^2}\right)^2 +
+4\zeta^2\frac{\omega^2}{\omega_n^2}}} \\
+\angle H(j\omega) &amp;=
+-\tan^{-1}\left(\frac{2\zeta\frac{\omega}{\omega_n}}{1-\frac{\omega^2}{\omega_n^2}}\right).
+\end{aligned}\]</span> When <span class="math inline">\(\omega \ll
+\omega_n\)</span> we have that <span
+class="math inline">\(20\log_{10}\left|H(j\omega)\right|\approx
+20\log_{10}\left|1\right| = 0\)</span> dB. Also, <span
+class="math inline">\(\angle H(j\omega)\approx
+-\tan^{-1}\frac{0}{1}=0\)</span> degrees. Alternatively, when <span
+class="math inline">\(\omega \gg \omega_n\)</span> we have <span
+class="math display">\[\begin{aligned}
+20\log_{10}\left|H(j\omega)\right| &amp;\approx -20\log
+\sqrt{\left(\frac{\omega^2}{\omega_n^2}\right)^2 +
+4\zeta^2\frac{\omega^2}{\omega_n^2}} \\
+                            &amp;\approx -20\log
+\sqrt{\left(\frac{\omega^2}{\omega_n^2}\right)^2} \\
+                            &amp;\approx -20\log
+\left|\frac{\omega}{\omega_n}\right|^2 \\
+                            &amp;= -40\log
+\left|\frac{\omega}{\omega_n}\right|,
+\end{aligned}\]</span> which is a straight line that crosses the <span
+class="math inline">\(0\)</span> dB axis at <span
+class="math inline">\(\omega_n\)</span> with a slope of <span
+class="math inline">\(-40\)</span> dB/decade. When <span
+class="math inline">\(\omega=\omega_n\)</span> we have <span
+class="math inline">\(20\log_{10}\left|H(j\omega)\right| =
+-20\log_{10}\sqrt{4\zeta^2} = -20\log_{10}\left|2\zeta\right|\)</span>.
+When <span
+class="math inline">\(\zeta=0.707=\frac{\sqrt{2}}{2}\)</span>, then
+<span
+class="math inline">\(20\log_{10}\left|H(j\omega)\right|=-20\log_{10}1/\sqrt{2}
+=-3\)</span> dB. For the angle plot, when <span
+class="math inline">\(\omega \ll \omega_n\)</span> we have <span
+class="math inline">\(\angle H(j\omega)\approx \tan^{-1}\frac{0}{1} =
+0\)</span> degrees. When <span class="math inline">\(\omega \gg
+\omega_n\)</span> we have <span class="math inline">\(\angle H(j\omega)
+\approx \tan^{-1}\left(2\zeta \frac{\omega_n}{\omega}\right)\approx
+-180\)</span> degrees, and when <span
+class="math inline">\(\omega=\omega_n\)</span> we have <span
+class="math inline">\(\angle H(j\omega)\approx -
+\tan^{-1}\frac{2\zeta}{0}=-90\)</span> degrees.</p>
+<p>The Bode plot for different values of <span
+class="math inline">\(\zeta\)</span> are shown in
+<strong>Fig.</strong> <a href="#fig:ls_2nd_order_bode" data-reference-type="ref"
+data-reference="fig:ls_2nd_order_bode">15.9</a></p>
+<figure id="fig:ls_2nd_order_bode">
+<img src="5_loopshaping/figures/ls_2nd_order_bode.png"
+style="width:70.0%"
+alt="The Bode plot for a second-order system for various values of \zeta." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.9. </span>The Bode plot for a second-order system
+for various values of <span
+class="math inline"><em>ζ</em></span>.</figcaption>
+</figure>
+<article class="advanced-activity" data-advanced-activity="ch15-second-order-bode">
+<p class="advanced-kicker">
+Chapter 15 interactive figure
+</p>
+<h3>
+Second-Order System Bode response
+</h3>
+<p>
+Move the damping ratio and natural frequency for
+<span class="inline-equation">H(s) = ω<sub>n</sub><sup>2</sup> /
+(s<sup>2</sup> + 2ζω<sub>n</sub>s + ω<sub>n</sub><sup>2</sup>)</span>.
+Low damping creates resonant peaking near
+<span class="inline-equation">ω<sub>n</sub></span>.
+</p>
+<div class="advanced-grid ch15-second-order-layout"> <div
+class="advanced-controls ch15-second-order-controls"> <label>Damping
+ratio
+<span class="advanced-control-value"><span class="inline-equation">ζ</span>
+= <span data-output="so-zeta"></span></span>
+<input type="range"
+data-input="zeta" min="0.1" max="1.4" step="0.05"
+value="0.7"> </label> <label>Natural frequency
+<span class="advanced-control-value"><span class="inline-equation">ω<sub>n</sub></span>
+= <span data-output="so-wn"></span> rad/sec</span>
+<input type="range"
+data-input="wn" min="0.5" max="8" step="0.1" value="1">
+</label>
+</div>
+<div class="advanced-visual
+ch15-second-order-figure" role="figure" aria-label="Interactive
+second-order Bode response"> <canvas
+data-plot="ch15-second-order-bode" width="1080" height="560"
+aria-label="Second-order system Bode response"></canvas> <p
+class="advanced-caption">Interactive Figure 15.I4. Move <span
+class="inline-equation">&zeta;</span> and <span
+class="inline-equation">&omega;<sub>n</sub></span> to see
+resonant peaking, phase transition, and -40 dB/dec high-frequency
+rolloff.</p> </div>
+<div class="advanced-readout
+ch15-second-order-readout"> <div
+class="advanced-metric"><strong>Peak magnitude</strong><span
+data-output="so-peak"></span></div> <div
+class="advanced-metric"><strong>Phase at <span
+class="inline-equation">&omega;<sub>n</sub></span></strong><span
+data-output="so-phase-wn"></span></div> <div
+class="advanced-metric"><strong>High-frequency
+slope</strong><span data-output="so-slope"></span></div>
+</div>
+</div>
+</article>
+<h3 data-number="15.1.4" id="example"><span class="header-section-number">15.1.4</span> Example</h3>
+<p>Find the straight-line approximation for the Bode plot of the
+transfer function <span
+class="math display">\[\label{eq:loop_bode_example_1_tf}
+H(s) = \frac{20}{s(s+10)}.\]</span> In Bode canonical form we have <span
+class="math display">\[H(j\omega) =
+\frac{20}{10}\frac{1}{j\omega(1+j\frac{\omega}{10})}.\]</span> Therefore
+<span class="math display">\[\begin{gathered}
+\label{eq:loop_bode_example1}
+20\log_{10}\left|H(j\omega)\right|= \\ 20\log_{10} 2 -
+20\log_{10}\left|\omega\right| -
+20\log_{10}\sqrt{1+\left(\frac{\omega}{10}\right)^2}.
+\end{gathered}\]</span> Note that the term due to the pole at zero,
+namely <span
+class="math inline">\(-20\log_{10}\left|\omega\right|\)</span> is a
+straight line that intercepts the <span
+class="math inline">\(0\)</span> dB line at <span
+class="math inline">\(\omega=1\)</span>, and has a slope of <span
+class="math inline">\(-20\)</span> dB per decade. Therefore, the Bode
+plot for magnitude will be the graphical addition of three terms:</p>
+<ol>
+<li><p>A constant term at <span class="math inline">\(20\log_{10} 2 =
+2\)</span> dB,</p></li>
+<li><p>A straight line with slope of <span
+class="math inline">\(-20\)</span> dB/decade, passing through the <span
+class="math inline">\(0\)</span> dB line at <span
+class="math inline">\(\omega=1\)</span>, and</p></li>
+<li><p>A first order low-pass filter with a cut-off frequency at <span
+class="math inline">\(\omega=10\)</span>.</p></li>
+</ol>
+<p>Similarly, the phase is given by <span
+class="math display">\[\begin{aligned}
+\angle H(j\omega) &amp;= \angle 2 - \angle j\omega - \angle
+(1+j\frac{\omega}{10}) \\
+                  &amp;=  0       - \tan^{-1}\frac{\omega}{0} -
+\tan^{-1}\frac{\omega}{10} \\
+                  &amp;=         - 90^\circ -
+\tan^{-1}\frac{\omega}{10}.
+\end{aligned}\]</span> The straight-line approximation as well as the
+Bode plot generated by Matlab are shown in
+<strong>Fig.</strong> <a href="#fig:ls_bode_example_1" data-reference-type="ref"
+data-reference="fig:ls_bode_example_1">15.10</a>.</p>
+<figure id="fig:ls_bode_example_1">
+<img src="5_loopshaping/figures/ls_bode_example_1.png"
+style="width:95.0%"
+alt="Bode plot for the transfer function given in Equation 15.10." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.10. </span>Bode plot for the transfer function given
+in Equation <a href="#frequency-response-of-lti-systems"
+data-reference-type="eqref"
+data-reference="eq:loop_bode_example_1_tf"><a href="#frequency-response-of-lti-systems">15.10</a></a>.</figcaption>
+</figure>
+<article class="advanced-activity" data-advanced-activity="ch15-example-1-builder">
+<p class="advanced-kicker">
+Chapter 15 interactive figure
+</p>
+<h3>
+Build Example 15.1.4 term by term
+</h3>
+<p>
+Turn on each factor in H(s) = 20/(s(s+10)) to see how the straight-line
+magnitude and phase approximations are built by graphical addition. The
+exact full response stays visible as a reference.
+</p>
+<div class="advanced-grid ch15-example1-layout"> <div
+class="advanced-controls ch15-example1-controls"> <label
+class="advanced-checkbox
+ch15-example1-term"><input type="checkbox" data-input="ex1-gain"
+checked> Gain: 20/10 = 2</label> <label class="advanced-checkbox
+ch15-example1-term"><input type="checkbox" data-input="ex1-pole"
+checked> Pole: 1/(1+s/10)</label> <label class="advanced-checkbox
+ch15-example1-term"><input type="checkbox"
+data-input="ex1-integrator" checked> Integrator: 1/s</label>
+<label class="ch15-example1-frequency">Frequency probe
+<span class="advanced-control-value"><span class="inline-equation">ω</span>
+= 10^<span data-output="ex1-omega-exp"></span> =
+<span data-output="ex1-omega"></span> rad/sec</span>
+<input
+type="range" data-input="ex1-omega" min="-2" max="3"
+step="0.05" value="1"> </label> <label
+class="ch15-example1-prediction">Predict final slope after ω = 10
+<select data-select="ex1-slope-predict"> <option
+value="">Choose a slope</option> <option value="-20">-20
+dB/dec</option> <option value="-40">-40 dB/dec</option> <option
+value="0">0 dB/dec</option> </select> </label> <label
+class="ch15-example1-prediction">Predict final high-frequency phase
+<select data-select="ex1-phase-predict"> <option value="">Choose a
+phase</option> <option value="-90">-90 deg</option> <option
+value="-180">-180 deg</option> <option value="0">0 deg</option>
+</select> </label> <div class="advanced-button-row
+ch15-example1-check-panel"> <button type="button"
+class="quiz-check" data-action="ex1-check-predictions">Check
+predictions</button>
+<p class="quiz-feedback" data-output="ex1-prediction" aria-live="polite">
+</p>
+</div>
+</div>
+<div class="advanced-visual ch15-example1-figure"
+role="figure" aria-label="Interactive Bode construction for Example
+15.1.4" hidden> <canvas data-plot="ch15-example-1-builder"
+width="1080" height="560" aria-label="Example 15.1.4 Bode
+construction"></canvas> <p class="advanced-caption">Interactive
+Figure 15.I5. The gray curves show active individual terms, the black
+dashed curve shows their cumulative straight-line approximation, and the
+colored curve shows the exact full response.</p> </div>
+<div
+class="advanced-readout ch15-example1-readout" hidden> <div
+class="advanced-metric"><strong>Active terms</strong><span
+data-output="ex1-active-terms"></span></div> <div
+class="advanced-metric"><strong>Current lesson</strong><span
+data-output="ex1-lesson"></span></div> <div
+class="advanced-metric"><strong>Probe magnitude</strong><span
+data-output="ex1-probe-mag"></span></div> <div
+class="advanced-metric"><strong>Probe phase</strong><span
+data-output="ex1-probe-phase"></span></div> </div>
+</div>
+</article>
+<h3 data-number="15.1.5" id="example-1"><span class="header-section-number">15.1.5</span> Example</h3>
+<p>Find the straight-line approximation for the Bode plot of the
+transfer function <span
+class="math display">\[\label{eq:loop_bode_example_2_tf}
+H(s) = \frac{8000(s+1)(s+10)}{(s+2)(s+20)(s+200)}.\]</span> In Bode
+canonical form we have <span class="math display">\[\begin{aligned}
+H(j\omega) &amp;= \frac{8000\cdot 10}{2\cdot 20\cdot
+200}\frac{(1+j\omega)(1+j\frac{\omega}{10})}
+{(1+j\frac{\omega}{2})(1+j\frac{\omega}{20})(1+j\frac{\omega}{200})} \\
+&amp;= 10\frac{(1+j\omega)(1+j\frac{\omega}{10})}
+{(1+j\frac{\omega}{2})(1+j\frac{\omega}{20})(1+j\frac{\omega}{200})}.
+\end{aligned}\]</span> Therefore <span
+class="math display">\[\begin{gathered}
+20\log_{10}\left|H(j\omega)\right|=
+    20\log_{10} 10 +
+    20\log_{10}\left|1+j\omega\right| + \\
+    20\log_{10}\left|1+j\frac{\omega}{10}\right|
+    -20\log_{10}\left|1+j\frac{\omega}{2}\right| \\
+    -20\log_{10}\left|1+j\frac{\omega}{20}\right|
+    -20\log_{10}\left|1+j\frac{\omega}{200}\right|.
+\end{gathered}\]</span> Therefore, the Bode plot for magnitude will be
+the graphical addition of a constant gain, two zeros, and three poles.
+Similarly, the phase is given by <span
+class="math display">\[\begin{gathered}
+\angle H(j\omega) =
+    \angle 10
+    + \angle (1+j\omega)
+    + \angle (1+j\frac{\omega}{10}) \\
+    - \angle (1+j\frac{\omega}{2})
+    - \angle (1+j\frac{\omega}{20})
+    - \angle (1+j\frac{\omega}{200}).
+\end{gathered}\]</span> The straight-line approximation as well as the
+Bode plot generated by Matlab are shown in
+<strong>Fig.</strong> <a href="#fig:ls_bode_example_2" data-reference-type="ref"
+data-reference="fig:ls_bode_example_2">15.11</a>.</p>
+<figure id="fig:ls_bode_example_2">
+<img src="5_loopshaping/figures/ls_bode_example_2.png"
+style="width:70.0%"
+alt="Bode plot for the transfer function given in Equation 15.12." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.11. </span>Bode plot for the transfer function given
+in Equation <a href="#frequency-response-of-lti-systems"
+data-reference-type="eqref"
+data-reference="eq:loop_bode_example_2_tf"><a href="#frequency-response-of-lti-systems">15.12</a></a>.</figcaption>
+</figure>
+<article class="advanced-activity" data-advanced-activity="ch15-bode-example-builder">
+<p class="advanced-kicker">
+Chapter 15 interactive figure
+</p>
+<h3>
+Build worked examples term by term
+</h3>
+<p>
+Use this review figure to build each worked example the same way as
+Example 15.1.4: choose the factors, predict the final high-frequency
+behavior, then compare the individual straight-line terms, their
+cumulative approximation, and the exact full response.
+</p>
+<div class="advanced-grid ch15-example-builder-layout"> <div
+class="advanced-controls ch15-example-builder-controls"> <label
+class="ch15-example-builder-select">Worked example<select
+data-select="example"><option value="example1" selected>Example 1:
+20/(s(s+10))</option><option value="example2">Example 2: zeros and
+poles</option></select></label> <div class="ch15-example-term-grid"
+aria-label="Terms included"> <label class="advanced-checkbox
+ch15-example-term"><input type="checkbox"
+data-input="example-term-0" checked>
+<span data-output="example-term-label-0"></span></label>
+<label class="advanced-checkbox
+ch15-example-term"><input type="checkbox"
+data-input="example-term-1" checked>
+<span data-output="example-term-label-1"></span></label>
+<label class="advanced-checkbox
+ch15-example-term"><input type="checkbox"
+data-input="example-term-2" checked>
+<span data-output="example-term-label-2"></span></label>
+<label class="advanced-checkbox
+ch15-example-term"><input type="checkbox"
+data-input="example-term-3" checked>
+<span data-output="example-term-label-3"></span></label>
+<label class="advanced-checkbox
+ch15-example-term"><input type="checkbox"
+data-input="example-term-4" checked>
+<span data-output="example-term-label-4"></span></label>
+<label class="advanced-checkbox
+ch15-example-term"><input type="checkbox"
+data-input="example-term-5" checked>
+<span data-output="example-term-label-5"></span></label>
+</div>
+<label class="ch15-example-builder-frequency">Frequency probe
+<span class="advanced-control-value"><span class="inline-equation">ω</span>
+= 10^<span data-output="example-omega-exp"></span> =
+<span data-output="example-omega"></span> rad/sec</span>
+<input
+type="range" data-input="example-omega" min="-2" max="3"
+step="0.05" value="1"> </label> <label
+class="ch15-example-builder-prediction">Predict final high-frequency
+slope <select data-select="example-slope-predict"> <option
+value="">Choose a slope</option> <option value="20">+20
+dB/dec</option> <option value="0">0 dB/dec</option> <option
+value="-20">-20 dB/dec</option> <option value="-40">-40
+dB/dec</option> </select> </label> <label
+class="ch15-example-builder-prediction">Predict final high-frequency
+phase <select data-select="example-phase-predict"> <option
+value="">Choose a phase</option> <option value="0">0 deg</option>
+<option value="-90">-90 deg</option> <option
+value="-180">-180 deg</option> </select> </label> <div
+class="advanced-button-row ch15-example-builder-check-panel">
+<button type="button" class="quiz-check"
+data-action="example-check-predictions">Check predictions</button>
+<p class="quiz-feedback" data-output="example-prediction" aria-live="polite">
+</p>
+</div>
+</div>
+<div
+class="advanced-visual ch15-example-builder-figure" role="figure"
+aria-label="Interactive worked Bode example builder" hidden> <canvas
+data-plot="ch15-bode-example-builder" width="1080" height="560"
+aria-label="Worked Bode example builder"></canvas> <p
+class="advanced-caption">Interactive Figure 15.I6. The gray curves
+show active individual terms, the black dashed curve shows their
+cumulative straight-line approximation, and the colored curve shows the
+exact full response.</p> </div>
+<div class="advanced-readout
+ch15-example-builder-readout" hidden> <div
+class="advanced-metric"><strong>Active terms</strong><span
+data-output="example-terms"></span></div> <div
+class="advanced-metric"><strong>Current lesson</strong><span
+data-output="example-lesson"></span></div> <div
+class="advanced-metric"><strong>Probe magnitude</strong><span
+data-output="example-probe-mag"></span></div> <div
+class="advanced-metric"><strong>Probe phase</strong><span
+data-output="example-probe-phase"></span></div> </div>
+</div>
+</article>
+<h2 data-number="15.2"
+id="design-study-a-single-link-robot-arm-13" class="section-design-study"><span class="header-section-number">15.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="15.2.1" id="-example-problem-3118" class="section-example"><span class="header-section-number">15.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#frequency-response-of-lti-systems" data-reference-type="ref"
+data-reference="chap:bode_plots">18</a></h3>
+<p>Draw by hand the Bode plot of the single link robot arm from torque
+<span class="math inline">\(\tilde{\tau}\)</span> to angle <span
+class="math inline">\(\tilde{\theta}\)</span> given that the equilibrium
+angle is <span class="math inline">\(\theta_e=0\)</span>. Use the
+<code>bode</code> command (from Matlab or Python) and compare your
+results.</p>
+<section id="design-study-a-ch15-bode">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw15-bode"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Build the arm Bode plot before viewing the solution</h3>
+<p>Decompose the arm transfer function into gain, integrator, and
+first-order pole terms.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Bode plot for the single link robot arm transfer
+function"> <img src="6_design_studies/figures/hw_arm_bode.png"
+alt="Bode plot for the single link robot arm transfer function."> <p
+class="advanced-caption">Use the plotted response to connect the
+gain, integrator, and pole terms to the magnitude slope and phase
+trend.</p> </div>
+
+<section class="guided-step" data-dsa-step="blocks"> <h4>Step 1.
+Bode building blocks</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Free integrator
+count</span><input type="text" data-dsa-input="integrators"
+data-dsa-accept="1" placeholder="numeric value"></label>
+<label><span>Finite pole count</span><input type="text"
+data-dsa-input="poles" data-dsa-accept="1" placeholder="numeric value"></label> </div> <button type="button"
+data-dsa-check="blocks">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="blocks"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="blocks" hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The arm plant has one
+integrator and one real pole from the damping term.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="slopes"> <h4>Step 2.
+Asymptotic slopes</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Low-frequency
+slope</span><input type="text" data-dsa-input="low"
+data-dsa-accept="-20\|-20db/dec\|-20 dB/dec"
+placeholder="slope"></label> <label><span>High-frequency
+slope</span><input type="text" data-dsa-input="high"
+data-dsa-accept="-40\|-40db/dec\|-40 dB/dec"
+placeholder="slope"></label> </div> <button type="button"
+data-dsa-check="slopes">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="slopes"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="slopes" hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The integrator gives
+<span class="math inline">\(-20\)</span> dB/decade, and the real
+pole adds another <span class="math inline">\(-20\)</span> dB/decade
+after its break frequency.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="phase"> <h4>Step 3.
+Phase trend</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Integrator phase
+contribution</span><input type="text" data-dsa-input="phase"
+data-dsa-accept="-90\|-90deg\|-90 degrees"
+placeholder="phase"></label> </div> <button type="button"
+data-dsa-check="phase">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="phase"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="phase" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The integrator
+contributes <span class="math inline">\(-90^\circ\)</span>; the
+additional pole drives the phase toward <span class="math
+inline">\(-180^\circ\)</span>.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes Bode-plot
+generation code. Before opening it, outline how you would define the
+transfer function, compute the frequency response, and plot magnitude
+and phase.</p> <textarea class="guided-design-study-pseudocode"
+rows="5" placeholder="Write pseudocode for generating and comparing the Bode plot."></textarea> <p class="advanced-caption">This
+prompt is ungraded. It is intended to connect the Bode construction to
+the implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>From HW <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a
+href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a>, the transfer
+function for the single link robot arm is <span
+class="math display">\[\label{eq:hw_arm_bode_tf}
+P(s) = \frac{3/m\ell^2}{s(s+3b/m\ell^2)} =
+\frac{44.44}{s(s+0.4444)}.\]</span> In Bode canonical form we have <span
+class="math display">\[P(j\omega) =
+\frac{100}{(j\omega)(1+j\frac{\omega}{0.4444})}\]</span></p>
+<p>Therefore <span class="math display">\[\begin{gathered}
+\label{eq:loop_bode_example2}
+20\log_{10}\left|P(j\omega)\right|=
+    20\log_{10} 100 \\
+    -20\log_{10}\left|j\omega\right|
+    -20\log_{10}\left|1+j\frac{\omega}{0.4444}\right|.
+\end{gathered}\]</span> Therefore, the Bode plot for magnitude will be
+the graphical addition of a constant gain, an integrator, and a pole.
+Similarly, the phase is given by <span class="math display">\[\angle
+P(j\omega) =
+    \angle 100
+    - \angle (j\omega)
+    - \angle (1+j\frac{\omega}{0.4444}).\]</span></p>
+<figure id="fig:hw_arm_bode">
+<img src="6_design_studies/figures/hw_arm_bode.png" style="width:95.0%"
+alt="Bode plot for the transfer function given in Equation 15.14." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.12. </span>Bode plot for the transfer function given
+in Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
+data-reference="eq:hw_arm_bode_tf"><a href="#frequency-response-of-lti-systems">15.14</a></a>.</figcaption>
+</figure>
+<p>Python commands to generate the Bode plots are:</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="hw15.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Single link arm Parameter File</span></span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> armParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># flag to define if using dB or absolute scale for M(omega)</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>dB_flag <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute plant transfer functions</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>th_e <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>Plant <span class="op">=</span> cnt.tf(</span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">3.0</span> <span class="op">/</span> P.m <span class="op">/</span> P.ell<span class="op">**</span><span class="dv">2</span>],  <span class="co"># numerator</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="fl">3.0</span> <span class="op">*</span> P.b <span class="op">/</span> P.m <span class="op">/</span> P.ell<span class="op">**</span><span class="dv">2</span>, <span class="fl">0.0</span>],  <span class="co"># denominator</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bode plot for the plant</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure()</span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>    axes <span class="op">=</span> fig.subplots(<span class="dv">2</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>    cnt.bode(Plant, dB<span class="op">=</span>dB_flag, ax<span class="op">=</span>axes, label<span class="op">=</span><span class="st">&quot;P(s)&quot;</span>)</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">&quot;Bode Plot: Single Link Arm&quot;</span>)</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].legend()</span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if you want specific values at specific frequencies, you can</span></span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># do the following (but the magnitudes are absolute, not dB)</span></span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>    mag, phase, omega <span class="op">=</span> cnt.frequency_response(Plant, omega<span class="op">=</span>[<span class="fl">0.3</span>, <span class="fl">10.0</span>, <span class="fl">1000.0</span>])</span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>    np.set_printoptions(precision<span class="op">=</span><span class="dv">4</span>, suppress<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;magnitude:</span><span class="ch">\n</span><span class="st">&quot;</span>, mag)</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;omega:</span><span class="ch">\n</span><span class="st">&quot;</span>, omega)</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>    fig.tight_layout()</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div></section> </article>
+</section>
+<h2 data-number="15.3" id="design-study-b-inverted-pendulum-11" class="section-design-study"><span class="header-section-number">15.3</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="15.3.1" id="-example-problem-3218" class="section-example"><span class="header-section-number">15.3.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#frequency-response-of-lti-systems" data-reference-type="ref"
+data-reference="chap:bode_plots">18</a></h3>
+<p>(a) Draw by hand the Bode plot of the inner loop transfer function from
+force <span class="math inline">\(F\)</span> to angle <span
+class="math inline">\(\theta\)</span> for the inverted pendulum. Use the
+<code>bode</code> command (from Matlab or Python) and compare your
+results.</p>
+<p>(b) Draw by hand the Bode plot of the outer loop transfer function from
+angle <span class="math inline">\(\theta\)</span> to position <span
+class="math inline">\(z\)</span> for the inverted pendulum. Use the
+<code>bode</code> (from Matlab or Python) command and compare your
+results.</p>
+<section id="design-study-b-ch15-bode">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw15"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Decompose the pendulum Bode plots
+before viewing the solution</h3> <p>Classify the inner and outer
+loop transfer-function factors.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Inner-loop pendulum Bode plot."> <img
+src="6_design_studies/figures/hw_pendulum_bode_in_v02.png"
+alt="Inner-loop pendulum Bode plot."> <p
+class="advanced-caption">The inner loop includes both a
+left-half-plane pole and a right-half-plane pole.</p> </div>
+
+<section class="guided-step" data-dsa-step="inner"> <h4>Step 1.
+Inner-loop factors</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>RHP
+feature</span><input type="text" data-dsa-input="rhp"
+data-dsa-accept="right half plane pole\|rhp pole\|unstable pole"
+placeholder="short answer"></label> <label><span>LHP
+feature</span><input type="text" data-dsa-input="lhp"
+data-dsa-accept="left half plane pole\|lhp pole\|stable pole"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="inner">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="inner"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="inner" hidden><summary>Show
+solution for Step 1</summary><p><strong>Answer:</strong> The
+inner plant has one LHP pole and one RHP pole.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="outer"> <h4>Step 2.
+Outer-loop factors</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Free integrator
+count</span><input type="text" data-dsa-input="integrators"
+data-dsa-accept="2\|two" placeholder="number"></label>
+<label><span>Zero types</span><input type="text"
+data-dsa-input="zeros" data-dsa-accept="left and right half
+plane\|lhp and rhp\|one lhp and one rhp" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="outer">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="outer"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="outer" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> The
+outer plant has two integrators and one LHP/RHP zero
+pair.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="plot"> <h4>Step 3.
+Comparison method</h4> <div class="guided-input-grid
+guided-input-grid-scalars">
+<label><span>Command/tool</span><input type="text"
+data-dsa-input="tool" data-dsa-accept="bode\|python bode\|matlab
+bode" placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="plot">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="plot"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="plot" hidden><summary>Show
+solution for Step 3</summary><p><strong>Answer:</strong> The
+hand sketch is compared against a computed Bode plot.</p></details>
+</section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution computes separate
+inner-loop and outer-loop Bode plots. Before opening it, outline each
+component separately.</p> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="Inner-loop Bode code: write pseudocode for defining F-to-theta transfer function, choosing frequencies, and plotting magnitude and phase."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="Outer-loop Bode code: write pseudocode for defining theta-to-z transfer function, choosing frequencies, and plotting magnitude and phase."></textarea> <p
+class="advanced-caption">These prompts are ungraded. They are
+intended to connect the derivation to the implementation code in the
+complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>From HW <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a
+href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a>, the transfer
+function for the inner loop of the inverted pendulum is <span
+class="math display">\[\label{eq:hw_pendulum_bode_in_tf}
+%
+%
+P_{in}(s) = \frac{\frac{-1}{(m_1 \frac{\ell}{6}+ m_2 \frac{2
+\ell}{3})}}{s^2-\frac{(m_1+m_2)g}{(m_1 \frac{\ell}{6}+ m_2 \frac{2
+\ell}{3})}} =
+\frac{-1.42}{s^2 - 17.29} = \frac{-1.42}{(s+4.16)(s-4.16)}.  %\]</span>
+In Bode canonical form we have <span
+class="math display">\[P_{in}(j\omega) =
+\frac{0.0659}{(1+j\frac{\omega}{4.16})(1-j\frac{\omega}{4.16})}\]</span>
+Therefore <span class="math display">\[\begin{gathered}
+\label{eq:loop_bode_pendulum_in}
+20\log_{10}\left|P_{in}(j\omega)\right|=
+    20\log_{10} 0.0659 \\
+    -20\log_{10}\left|1+j\frac{\omega}{4.16}\right|
+    -20\log_{10}\left|1-j\frac{\omega}{4.16}\right|.
+\end{gathered}\]</span> Therefore, the Bode plot for magnitude will be
+the graphical addition of a constant gain, a right half plane pole, and
+a left half plane pole. Similarly, the phase is given by <span
+class="math display">\[\angle P_{in}(j\omega) =
+    \angle 0.0816
+    - \angle (1+j\frac{\omega}{4.16})
+    - \angle (1-j\frac{\omega}{4.16}).\]</span> The Bode plot generated
+by Python is shown in <strong>Fig.</strong> <a
+href="#fig:hw_pendulum_bode_in" data-reference-type="ref"
+data-reference="fig:hw_pendulum_bode_in">15.13</a>.</p>
+<figure id="fig:hw_pendulum_bode_in">
+<img src="6_design_studies/figures/hw_pendulum_bode_in_v02.png"
+style="width:95.0%"
+alt="Bode plot for the transfer function given in Equation 15.17." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.13. </span>Bode plot for the transfer function given
+in Equation <a href="#frequency-response-of-lti-systems"
+data-reference-type="eqref"
+data-reference="eq:loop_bode_pendulum_in"><a href="#frequency-response-of-lti-systems">15.17</a></a>.</figcaption>
+</figure>
+<p><span class="math display">\[\tilde{Z}(s) = \left(\frac{-\frac{2
+\ell}{3} s^2 + g}{s^2} \right) \tilde{\Theta}(s).\]</span></p>
+<p>From HW <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a
+href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a>, the transfer
+function for the outer loop of the inverted pendulum is <span
+class="math display">\[\label{eq:soln_b20out_tf}
+P_{out}(s) = -\frac{\frac{2 \ell}{3} s^2 - g}{s^2} =
+-\frac{\frac{2}{3}\ell (s^2 - \frac{g}{\ell}\frac{3}{2})}{s^2} =
+-\frac{\frac{2}{3}(s-3.83)(s+3.83)}{s^2}.\]</span> In Bode canonical
+form we have <span class="math display">\[P_{out}(j\omega) =
+\frac{0.174(j\omega/3.83+1)(-j\omega/3.83+1)}{(j\omega)^2}.\]</span>
+Therefore <span class="math display">\[\begin{gathered}
+\label{eq:loop_bode_pendulum_out}
+20\log_{10}\left|P_{out}(j\omega)\right|= \\
+    20\log_{10} 0.174
++     20\log_{10}\left|1+j\frac{\omega}{3.83}\right| \\
+    +   20\log_{10}\left|1+j\frac{\omega}{-3.83}\right|
+    -20\log_{10}\left|\omega\right|^2.
+\end{gathered}\]</span> Similarly, the phase is given by <span
+class="math display">\[\angle P_{out}(j\omega) =
+    \angle 0.174
+    + \angle (1+j\frac{\omega}{3.83})
+    + \angle (1-j\frac{\omega}{3.83})
+    - \angle (j\omega)
+    - \angle (j\omega).\]</span></p>
+<p>The Bode plot generated by Python is shown in
+<strong>Fig.</strong> <a href="#fig:hw_pendulum_bode_out"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_bode_out">15.14</a>.</p>
+<figure id="fig:hw_pendulum_bode_out">
+<img
+src="6_design_studies/figures/hw_pendulum_bode_out_v2_no_straight_lines.png"
+style="width:95.0%"
+alt="Bode plot for the transfer function given in Equation 15.19." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.14. </span>Bode plot for the transfer function given
+in Equation <a href="#frequency-response-of-lti-systems"
+data-reference-type="eqref"
+data-reference="eq:loop_bode_pendulum_out"><a href="#frequency-response-of-lti-systems">15.19</a></a>.</figcaption>
+</figure>
+<p>Python code to generate Bode plots for the previous two figures is as
+follows:</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="hw15.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverted Pendulum Parameter File</span></span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> control <span class="im">import</span> tf, bode</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># flag to define if using dB or absolute scale for M(omega)</span></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>dB_flag <span class="op">=</span> <span class="va">False</span> </span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute inner and outer open-loop transfer functions</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> (P.m1<span class="op">*</span>P.ell<span class="op">/</span><span class="fl">6.0</span><span class="op">+</span>P.m2<span class="op">*</span><span class="dv">2</span><span class="op">*</span>P.ell<span class="op">/</span><span class="fl">3.0</span>)</span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>P_in <span class="op">=</span> tf([<span class="op">-</span><span class="dv">1</span><span class="op">/</span>temp],</span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>          [<span class="dv">1</span>, <span class="dv">0</span>, <span class="op">-</span>(P.m1<span class="op">+</span>P.m2)<span class="op">*</span>P.g<span class="op">/</span>temp])</span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>P_out <span class="op">=</span> tf([<span class="op">-</span><span class="dv">2</span><span class="op">*</span>P.ell<span class="op">/</span><span class="fl">3.0</span>, <span class="dv">0</span>, P.g], [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span><span class="op">==</span><span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the open loop bode plots for the inner loop</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>    fig1 <span class="op">=</span> plt.figure()</span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>    bode(P_in, dB<span class="op">=</span>dB_flag)</span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>    fig1.axes[<span class="dv">0</span>].set_title(<span class="st">&#39;\(P_</span><span class="sc">{in}</span><span class="st">(s)\)&#39;</span>)</span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>    fig2 <span class="op">=</span> plt.figure()</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>    bode(P_out, dB<span class="op">=</span>dB_flag)</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>    fig2.axes[<span class="dv">0</span>].set_title(<span class="st">&#39;\(P_</span><span class="sc">{out}</span><span class="st">(s)\)&#39;</span>)</span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;Close window to end program&#39;</span>)</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div></section> </article>
+</section>
+<h2 data-number="15.4"
+id="design-study-c-satellite-attitude-control-12" class="section-design-study"><span class="header-section-number">15.4</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="15.4.1" id="-example-problem-3318" class="section-example"><span class="header-section-number">15.4.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#frequency-response-of-lti-systems" data-reference-type="ref"
+data-reference="chap:bode_plots">18</a></h3>
+<p>(a) Draw by hand the Bode plot of the inner loop transfer function from
+torque <span class="math inline">\(\tau\)</span> to angle <span
+class="math inline">\(\theta\)</span> for the satellite attitude
+problem. Use the <code>bode</code> command (from Matlab or Python) and
+compare your results.</p>
+<p>(b) Draw by hand the Bode plot of the outer loop transfer function from body
+angle <span class="math inline">\(\theta\)</span> to panel angle <span
+class="math inline">\(\phi\)</span> for the satellite attitude problem.
+Use the <code>bode</code> command (from Python or Matlab) and compare
+your results.</p>
+<section id="design-study-c-ch15-bode">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw15" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Build satellite Bode plots before viewing the solution</h3>
+<p>The inner loop behaves like two integrators; the outer loop
+contains a lightly damped flexible mode.</p> <section
+class="guided-step" data-dsa-step="inner"> <h4>Step 1. Inner
+plant structure</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Inner
+plant</span><input type="text" data-dsa-input="plant"
+data-dsa-accept="1/(6s\^2)\|1 over 6 s squared\|two integrators"
+placeholder="expression"></label> <label><span>Magnitude
+slope</span><input type="text" data-dsa-input="slope"
+data-dsa-accept="-40\|-40 db/dec\|-40 db per decade"
+placeholder="slope"></label> <label><span>Phase</span><input
+type="text" data-dsa-input="phase" data-dsa-accept="-180\|-180
+degrees\|-180 deg" placeholder="phase"></label> </div> <button
+type="button" data-dsa-check="inner" data-dsa-hint="Two free
+integrators each contribute -20 dB/dec and -90 degrees.">Check Step
+1</button> <p class="quiz-feedback" data-dsa-feedback="inner"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="inner" hidden><summary>Show
+solution for Step 1</summary><p><strong>Answer:</strong>
+\(P_{in}(s)=1/(6s^2)\), with slope \(-40\) dB/dec and phase
+\(-180^\circ\).</p></details> </section> <section
+class="guided-step" data-dsa-step="outer"> <h4>Step 2. Outer
+plant structure</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Outer-loop
+feature</span><input type="text" data-dsa-input="feature"
+data-dsa-accept="flexible mode\|resonance\|lightly damped
+poles\|complex poles" placeholder="short answer"></label>
+<label><span>Numerator element</span><input type="text"
+data-dsa-input="zero" data-dsa-accept="zero\|lhp zero\|left half
+plane zero" placeholder="element"></label> </div> <button
+type="button" data-dsa-check="outer" data-dsa-hint="The panel
+dynamics include a zero and a resonant second-order
+denominator.">Check Step 2</button> <p class="quiz-feedback"
+data-dsa-feedback="outer" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="outer"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> \(P_{out}(s)\) has a
+numerator zero and a lightly damped flexible-mode pole
+pair.</p></details> </section> <section class="guided-step"
+data-dsa-step="risk"> <h4>Step 3. Physical interpretation</h4>
+<div class="guided-input-grid guided-input-grid-scalars">
+<label><span>Aggressive control can excite</span><input
+type="text" data-dsa-input="risk" data-dsa-accept="flexible
+mode\|panel oscillation\|resonance\|phi-theta" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="risk" data-dsa-hint="Look for resonant peaking in the
+panel dynamics.">Check Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="risk" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="risk"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> Aggressive designs can
+excite the flexible panel mode, visible as oscillation in
+\(\phi-\theta\).</p></details> </section> <div
+class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution anyway</button></div>
+<p class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>From HW <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a
+href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a>, the transfer
+function for the inner loop of the satellite attitude problem is <span
+class="math display">\[\label{eq:hw_bode_satellite_in_tf}
+%
+%
+P_{in}(s) = \frac{1}{(J_s + J_p)s^2} =
+\frac{1}{6s^2}.\]</span> In Bode canonical form we have <span
+class="math display">\[%
+P_{in}(j\omega) = \frac{1}{6}\frac{1}{(j\omega)(j\omega)}.\]</span>
+Therefore, <span class="math display">\[\label{eq:hw_bode_satellite_in}
+%
+%
+%
+20\log_{10}\left|P_{in}(j\omega)\right|=
+    20\log_{10}
+1/6-20\log_{10}\left|\omega\right|-20\log_{10}\left|\omega\right|\]</span>
+Therefore, the Bode plot for magnitude will be the graphical addition of
+a constant gain and two straight lines passing through the 0 dB line at
+<span class="math inline">\(\omega = 1\)</span> with a slope of -20
+dB/decade. Similarly, the phase is given by <span
+class="math display">\[%
+%
+%
+\angle P_{in}(j\omega) =
+\angle 1/6
+- \angle j\omega - \angle j\omega.\]</span> The Bode plot generated by
+Matlab is shown in <strong>Fig.</strong> <a
+href="#fig:hw_satellite_bode_in" data-reference-type="ref"
+data-reference="fig:hw_satellite_bode_in">15.15</a>. As can be seen from
+the figure, the straight-line approximation corresponds directly with
+the Bode plot in this case.</p>
+<figure id="fig:hw_satellite_bode_in">
+<img src="6_design_studies/figures/hw_satellite_bode_in.png"
+style="width:80.0%"
+alt="Bode plot for the transfer function given in Equation 15.21." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.15. </span>Bode plot for the transfer function given
+in Equation <a href="#frequency-response-of-lti-systems"
+data-reference-type="eqref"
+data-reference="eq:hw_bode_satellite_in"><a href="#frequency-response-of-lti-systems">15.21</a></a>.</figcaption>
+</figure>
+<p>From HW <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a
+href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a>, the transfer
+function for the outer loop of the satellite is <span
+class="math display">\[\label{eq:hw_bode_satellite_out_tf}
+P_{out}(s) =
+\frac{\frac{b}{J_p}s+\frac{k}{J_p}}{s^2+\frac{b}{J_p}s+\frac{k}{J_p}} =
+\frac{0.05s + 0.15}{s^2+0.05s+0.15}.\]</span> In Bode canonical form we
+have <span class="math display">\[P_{out}(j\omega) =
+\frac{1+j\frac{\omega}{3}}{1+j\frac{\omega}{3} +
+\left(j\frac{\omega}{0.3873}\right)^2}\]</span> Therefore <span
+class="math display">\[\begin{gathered}
+\label{eq:hw_bode_satellite_out}
+20\log_{10}\left|P_{out}(j\omega)\right|=
+    20\log_{10} \left|1+j\omega/3\right| \\
+    -20\log_{10}\left|1+j\omega/3 +
+\left(j\frac{\omega}{0.3873}\right)^2\right|
+\end{gathered}\]</span> Therefore, the Bode plot for magnitude will be
+the graphical addition of a zero, and a complex pole. Similarly, the
+phase is given by <span class="math display">\[\angle P_{out}(j\omega) =
+    \angle \left(1+j\omega/3\right)
+    - \angle \left(1+j\omega/3 +
+\left(j\frac{\omega}{0.3873}\right)^2\right).\]</span> The straight-line
+approximation as well as the Bode plot generated by Matlab are shown in
+<strong>Fig.</strong> <a href="#fig:hw_satellite_bode_out"
+data-reference-type="ref"
+data-reference="fig:hw_satellite_bode_out">15.16</a>.</p>
+<figure id="fig:hw_satellite_bode_out">
+<img src="6_design_studies/figures/hw_satellite_bode_out.png"
+style="width:95.0%"
+alt="Bode plot for the transfer function given in Equation 15.23." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 15.16. </span>Bode plot for the transfer function given
+in Equation <a href="#frequency-response-of-lti-systems"
+data-reference-type="eqref"
+data-reference="eq:hw_bode_satellite_out"><a href="#frequency-response-of-lti-systems">15.23</a></a>.</figcaption>
+</figure>
+<p>The Python code to generate similar Bode plots is</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="hw15.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverted Pendulum Parameter File</span></span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> satelliteParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> control <span class="im">import</span> tf, bode</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># flag to define if using dB or absolute scale for M(omega)</span></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>dB_flag <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute inner and outer open-loop transfer functions</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>P_in <span class="op">=</span> tf([<span class="dv">1</span>],[P.Js<span class="op">+</span>P.Jp,<span class="dv">0</span>,<span class="dv">0</span>])</span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>P_out <span class="op">=</span> tf([P.b<span class="op">/</span>P.Jp, P.k<span class="op">/</span>P.Jp], [<span class="dv">1</span>, P.b<span class="op">/</span>P.Jp, P.k<span class="op">/</span>P.Jp])</span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the open loop bode plots for the inner loop</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>    fig1 <span class="op">=</span> plt.figure()</span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>    bode(P_in, dB<span class="op">=</span>dB_flag)</span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>    fig1.axes[<span class="dv">0</span>].set_title(<span class="st">&#39;\(P_</span><span class="sc">{in}</span><span class="st">(s)\)&#39;</span>)</span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>    fig2 <span class="op">=</span> plt.figure()</span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>    bode(P_out, dB<span class="op">=</span>dB_flag)</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>    fig2.axes[<span class="dv">0</span>].set_title(<span class="st">&#39;\(P_</span><span class="sc">{out}</span><span class="st">(s)\)&#39;</span>)</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;Close window to end program&#39;</span>)</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div></section> </article>
+</section>
+<h2 data-number="15.5" id="interactive-frequency-response-check"><span class="header-section-number">15.5</span> Interactive Frequency-Response
+Check</h2>
+<section id="loop-ch15-frequency-response-check">
+<article class="advanced-activity" data-advanced-activity="complex-response">
+<p class="advanced-kicker">
+Chapter 15 activity
+</p>
+<h3>
+Complex response readout
+</h3>
+<p>
+Move the real and imaginary parts of
+<span class="inline-equation">H(jω)</span>. The readout connects
+rectangular form, magnitude, phase, and dB magnitude, which are the same
+quantities used to build Bode plots.
+</p>
+<div class="advanced-grid ch15-complex-layout"> <div
+class="advanced-controls ch15-complex-controls"> <label>Real
+part<input type="range"
+data-input="real" min="-3" max="3" step="0.1"
+value="1"></label> <label>Imaginary part<input type="range"
+data-input="imag" min="-3" max="3" step="0.1"
+value="1"></label>
+</div>
+<figure class="advanced-visual
+advanced-visual--auto ch15-complex-figure"> <svg viewBox="0 0 420
+210" role="img" aria-label="Complex number vector"> <g
+data-auto-visual></g> </svg> <figcaption><span class="fig-number">Figure 1.5. </span>The sliders move the
+complex frequency-response vector and change its magnitude and
+phase.</figcaption> </figure>
+<div class="advanced-readout
+ch15-complex-readout"> <div
+class="advanced-metric"><strong>Rectangular form</strong><span
+data-output="rect"></span></div> <div
+class="advanced-metric"><strong>Magnitude</strong><span
+data-output="mag"></span></div> <div
+class="advanced-metric"><strong>Phase</strong><span
+data-output="phase"></span></div> <div
+class="advanced-metric"><strong>Magnitude in dB</strong><span
+data-output="db"></span></div> </div>
+</div>
+<p class="advanced-callout">
+Coding-lab preparation: evaluating a frequency response means
+substituting s = jw, then computing magnitude, phase, and dB values over
+a frequency grid.
+</p>
+</article>
+</section>
+<h2 data-number="15.6"
+id="coding-lab-frequency-response-evaluation"><span class="header-section-number">15.6</span> Coding Lab: Frequency Response
+Evaluation</h2>
+<div class="knowledge-check coding-lab-copy">
+<p><strong>Objective:</strong> evaluate a transfer function on the
+imaginary axis and compute Bode magnitude and phase.</p>
+<p><strong>Evaluation criteria:</strong> the lab checks complex
+substitution at s = jw, vectorized array output, magnitude in dB, and
+phase in degrees.</p> </div>
+<figure id="fig:loop_ch15_frequency_response_lab" class="marimo-figure">
+<iframe src="../marimo/lab_15_frequency_response/index.html?v=20260604a"
+loading="lazy" title="Chapter 15 frequency-response coding lab"
+style="width:min(98vw,1100px);height:1500px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption>
+Figure 15.1 (Interactive). Frequency-response coding lab comparing
+student and reference Bode calculations.
+</figcaption>
+</figure>
+<h2 data-number="15.7" id="knowledge-check-14"><span class="header-section-number">15.7</span> Knowledge Check</h2>
+<section id="loop-ch15-knowledge-check" class="quiz-list">
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Frequency response is the transfer
+function evaluated on the imaginary axis." data-feedback-b="B is not
+correct. s = 0 gives DC gain only." data-feedback-c="C is not correct.
+s = 1 is not the sinusoidal steady-state substitution."
+data-feedback-d="D is not correct. Frequency response is not found by
+evaluating final time."> <h4>Q1. Frequency-response
+substitution</h4> <p class="quiz-prompt">Frequency response is
+found by evaluating a transfer function at:</p> <div
+class="quiz-options"> <label><input type="radio"
+name="loop-ch15-q1" value="A"><span class="quiz-option-text">A) s = jw</span></label> <label><input
+type="radio" name="loop-ch15-q1" value="B"><span class="quiz-option-text">B) s = 0
+only</span></label> <label><input type="radio" name="loop-ch15-q1"
+value="C"><span class="quiz-option-text">C) s = 1 only</span></label> <label><input type="radio"
+name="loop-ch15-q1" value="D"><span class="quiz-option-text">D) Final time only</span></label>
+</div> <div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. A first-order pole contributes -20
+dB/decade after its break frequency." data-feedback-b="B is not
+correct. A zero typically contributes +20 dB/decade."
+data-feedback-c="C is not correct unless no pole/zero/integrator
+affects that frequency range." data-feedback-d="D is not correct.
+Degrees describe phase, not magnitude slope."> <h4>Q2. Pole
+slope</h4> <p class="quiz-prompt">A pole typically changes the
+high-frequency magnitude slope by:</p> <div class="quiz-options">
+<label><input type="radio" name="loop-ch15-q2" value="A"><span class="quiz-option-text">A)
+-20 dB/decade</span></label> <label><input type="radio"
+name="loop-ch15-q2" value="B"><span class="quiz-option-text">B) +20 dB/decade</span></label>
+<label><input type="radio" name="loop-ch15-q2" value="C"><span class="quiz-option-text">C) 0
+dB/decade</span></label> <label><input type="radio"
+name="loop-ch15-q2" value="D"><span class="quiz-option-text">D) +90 degrees/decade</span></label>
+</div> <div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="5" data-tolerance="0.001">
+<h4>
+Q3. Complex magnitude
+</h4>
+<p class="quiz-prompt">
+Enter the magnitude of the complex number 3 + j4.
+</p>
+
+<label>Magnitude:<input type="text" name="loop-ch15-q3"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 5 because sqrt(3^2 + 4^2) = 5.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="-20" data-tolerance="0.1">
+<h4>
+Q4. dB conversion
+</h4>
+<p class="quiz-prompt">
+Enter 20 log10(0.1) in dB.
+</p>
+
+<label>dB:<input type="text" name="loop-ch15-q4" placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> -20 dB because log10(0.1) = -1.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. This ignores the magnitude and phase
+of G(j1)." data-feedback-b="B is not correct. The amplitude is scaled
+by |G(j1)|, not by the DC gain." data-feedback-c="C is correct.
+|3/(4 + j)| = 3/sqrt(17), so a 2-unit sinusoid becomes about 1.46 with
+phase -atan(1/4)." data-feedback-d="D is not correct. The phase lag is
+not -90 degrees for this first-order value at omega = 1."> <h4>Q5.
+Sinusoidal steady-state output</h4> <p class="quiz-prompt">For
+stable G(s) = 3/(s + 4) and input u(t) = 2 sin(t), which steady-state
+output is closest?</p> <div class="quiz-options"> <label><input
+type="radio" name="loop-ch15-exam-q1" value="A"><span class="quiz-option-text">A)
+y<sub>ss</sub>(t) = 2 sin(t)</span></label> <label><input
+type="radio" name="loop-ch15-exam-q1" value="B"><span class="quiz-option-text">B)
+y<sub>ss</sub>(t) = 1.50 sin(t)</span></label> <label><input
+type="radio" name="loop-ch15-exam-q1" value="C"><span class="quiz-option-text">C)
+y<sub>ss</sub>(t) = 1.46 sin(t - 14.0 degrees)</span></label>
+<label><input type="radio" name="loop-ch15-exam-q1" value="D"><span class="quiz-option-text">D) y<sub>ss</sub>(t) = 0.73 sin(t - 90 degrees)</span></label> </div>
+<div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Frequency response is obtained by
+substituting s = j omega." data-feedback-b="B is not correct. s = 0
+gives only DC gain." data-feedback-c="C is not correct. s = omega
+omits the imaginary-axis substitution." data-feedback-d="D is not
+correct. The time variable t is not substituted into the transfer
+function."> <h4>Q6. Complex substitution</h4> <p
+class="quiz-prompt">What substitution converts a transfer function
+G(s) into its frequency response?</p> <div class="quiz-options">
+<label><input type="radio" name="loop-ch15-exam-q2" value="A"><span class="quiz-option-text">A) s = j&omega;</span></label> <label><input type="radio"
+name="loop-ch15-exam-q2" value="B"><span class="quiz-option-text">B) s = 0</span></label>
+<label><input type="radio" name="loop-ch15-exam-q2" value="C"><span class="quiz-option-text">C) s = &omega;</span></label> <label><input type="radio"
+name="loop-ch15-exam-q2" value="D"><span class="quiz-option-text">D) s = t</span></label> </div>
+<div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. A pole contributes -20 dB/decade,
+but the zero cancels the net high-frequency slope contribution."
+data-feedback-b="B is not correct. A zero contributes +20 dB/decade,
+but the pole cancels the net high-frequency slope contribution."
+data-feedback-c="C is not correct. That would require two more poles
+than zeros." data-feedback-d="D is correct. One active pole and one
+active zero give equal and opposite slope contributions, so the net
+slope change is 0 dB/decade."> <h4>Q7. Net Bode slope</h4> <p
+class="quiz-prompt">At frequencies well above both break frequencies,
+what net magnitude-slope change comes from one pole and one zero?</p>
+<div class="quiz-options"> <label><input type="radio"
+name="loop-ch15-exam-q3" value="A"><span class="quiz-option-text">A) -20 dB/decade</span></label>
+<label><input type="radio" name="loop-ch15-exam-q3" value="B"><span class="quiz-option-text">B) +20 dB/decade</span></label> <label><input type="radio"
+name="loop-ch15-exam-q3" value="C"><span class="quiz-option-text">C) -40 dB/decade</span></label>
+<label><input type="radio" name="loop-ch15-exam-q3" value="D"><span class="quiz-option-text">D) 0 dB/decade</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. A magnitude ratio of 0.5 is
+attenuation, so the dB value is negative." data-feedback-b="B is
+correct. 20 log10(0.5) is approximately -6 dB." data-feedback-c="C is
+not correct. -20 dB corresponds to a magnitude ratio of 0.1."
+data-feedback-d="D is not correct. 0 dB corresponds to a magnitude
+ratio of 1."> <h4>Q8. dB conversion</h4> <p
+class="quiz-prompt">Which dB value is closest to a magnitude ratio of
+0.5?</p> <div class="quiz-options"> <label><input
+type="radio" name="loop-ch15-exam-q4" value="A"><span class="quiz-option-text">A) +6
+dB</span></label> <label><input type="radio" name="loop-ch15-exam-q4"
+value="B"><span class="quiz-option-text">B) -6 dB</span></label> <label><input type="radio"
+name="loop-ch15-exam-q4" value="C"><span class="quiz-option-text">C) -20 dB</span></label>
+<label><input type="radio" name="loop-ch15-exam-q4" value="D"><span class="quiz-option-text">D) 0 dB</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. A lead network is used to add phase over
+a band near its center frequency, with a corresponding magnitude
+increase at high frequency." data-feedback-b="B is not correct. Phase
+lead is not intended to reduce phase margin." data-feedback-c="C is
+not correct. A lead network does not primarily add low-frequency
+integral action." data-feedback-d="D is not correct. The phase boost
+is frequency dependent."> <h4>Q9. Phase-lead interpretation</h4>
+<p class="quiz-prompt">Which statement best describes the effect of
+increasing the lead parameter M in a phase-lead block?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="loop-ch15-exam-q5" value="A"><span class="quiz-option-text">A) It increases the available
+phase boost near the lead center frequency and raises high-frequency
+gain.</span></label> <label><input type="radio"
+name="loop-ch15-exam-q5" value="B"><span class="quiz-option-text">B) It removes phase margin at
+the gain crossover by design.</span></label> <label><input type="radio"
+name="loop-ch15-exam-q5" value="C"><span class="quiz-option-text">C) It adds a free integrator at
+low frequency.</span></label> <label><input type="radio"
+name="loop-ch15-exam-q5" value="D"><span class="quiz-option-text">D) It changes only the DC gain
+and leaves phase unchanged.</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="15.8" id="notes-and-references-14" class="section-notes"><span class="header-section-number">15.8</span> Notes and References</h2>
+<p>A good introduction to frequency response for linear time-invariant
+system is [16]. A good overview of the Bode plot and straight-line
+approximations to the Bode plot is contained in [4] and many other
+introductory textbooks on feedback control.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

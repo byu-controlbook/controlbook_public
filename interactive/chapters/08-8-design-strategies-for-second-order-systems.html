@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="8"
+id="design-strategies-for-second-order-systems"><span class="header-section-number">8</span> Design Strategies for
+Second-Order Systems</h1>
+<h2 data-number="8.1" id="theory-6"><span class="header-section-number">8.1</span> Theory</h2>
+<p>In the previous section we saw that for second-order systems, PD
+control could be used to exactly specify the pole location of the
+closed-loop system. This chapter examines the design problem of how to
+select the pole locations<span id="idx-0072" class="book-index-anchor" aria-hidden="true"></span> to achieve desired
+behavior. In
+Section <a href="#first-order-response" data-reference-type="ref"
+data-reference="sec:first-order-response">11.1.1</a> we derive the
+relationship between a single pole location and the step
+response<span id="idx-0073" class="book-index-anchor" aria-hidden="true"></span> of the system. In
+Section <a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="sec:second-order-response">11.1.2</a> we show that the
+time domain response for a second-order system can be understood in
+terms of natural frequency<span id="idx-0074" class="book-index-anchor" aria-hidden="true"></span> and damping
+ratio<span id="idx-0075" class="book-index-anchor" aria-hidden="true"></span>. Finally in
+Section <a href="#effect-of-a-zero-on-the-step-response" data-reference-type="ref"
+data-reference="sec:effect-of-zeros">11.1.3</a> we show the effect that
+a zero has on the step response of a second-order system.</p>
+<h3 data-number="8.1.1" id="first-order-response"><span class="header-section-number">8.1.1</span> First Order Response</h3>
+<p>Consider a first order system given by<span id="idx-0076" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[Y(s) = \frac{p}{s+p} U(s),\]</span> where <span
+class="math inline">\(p&gt;0\)</span>. The pole location of the first
+order system is at <span class="math inline">\(-p\)</span>. If <span
+class="math inline">\(U(s)=\frac{A}{s}\)</span> is a step of magnitude
+<span class="math inline">\(A\)</span>, then <span
+class="math display">\[Y(s) = \frac{Ap}{s(s+p)}.\]</span> As shown in
+Appendix <a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations" data-reference-type="ref"
+data-reference="chap:differential_equations">29</a>, the inverse Laplace
+transform<span id="idx-0077" class="book-index-anchor" aria-hidden="true"></span> is given by <span
+class="math display">\[\label{eq:PID_first_order_response}
+y(t) = \begin{cases} A(1-e^{-pt}), &amp; t\geq 0 \\ 0, &amp;
+\text{otherwise} \end{cases}.\]</span> The response is shown in
+<strong>Fig.</strong> <a href="#fig:pid_first_order_response" data-reference-type="ref"
+data-reference="fig:pid_first_order_response">8.1</a>,
+which shows the response to steps of size <span
+class="math inline">\(A=1\)</span>, <span
+class="math inline">\(A=2\)</span>, and <span
+class="math inline">\(A=3\)</span>, respectively. <span id="idx-0078" class="book-index-anchor" aria-hidden="true"></span></p>
+<section id="fig:pid_first_order_response" class="advanced-activity" data-advanced-activity="first-order-step">
+<p class="advanced-kicker">
+Interactive Figure 8.I1
+</p>
+<h3>
+First-order step response
+</h3>
+<p>
+Adjust the pole location p and the step magnitudes A to see how
+y(t)=A(1-e<sup>-pt</sup>) changes. The 90 percent rise time is
+independent of A, but the initial slope is A p.
+</p>
+<div class="advanced-grid ch8-first-order-layout"> <div
+class="advanced-controls advanced-controls–compact
+ch8-first-order-controls"> <label>Pole parameter,
+p<input type="range" data-input="p" min="0.2"
+max="5" step="0.1" value="1"></label> <label>Step magnitude,
+A<input type="range" data-input="a1" min="0.5" max="4"
+step="0.1" value="1"></label>
+</div>
+<div
+id="fig-8-first-order-step-response" class="advanced-visual"
+role="figure" aria-label="Interactive Figure 8.I1. First-order step
+response"> <canvas data-plot="first-order-step" width="1040"
+height="460" role="img" aria-label="Interactive first-order step
+response plot"></canvas> <p class="advanced-caption">Interactive
+Figure 8.I1. Step response of a first-order system with pole parameter p
+and step magnitude A. The step magnitude changes the final value and
+initial slope, while the normalized 90 percent rise time is set by
+p.</p> </div>
+</div>
+<section class="advanced-solution">
+<h4>
+Live response values
+</h4>
+<table class="ch8-first-order-readout-table">
+<thead>
+<tr>
+<th>
+Pole
+</th>
+<th>
+Rise time
+</th>
+<th>
+Initial slope
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-output="p-display">
+</td>
+<td data-output="rise-time-display">
+</td>
+<td data-output="slope-display">
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<p>If we define the rise time<span id="idx-0079" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(t_r\)</span> of the system to be the time after
+the step when the response reaches 90% of its final value, then we note
+from
+<strong>Fig.</strong> <a href="#fig:pid_first_order_response" data-reference-type="ref"
+data-reference="fig:pid_first_order_response">8.1</a>
+that the rise time is independent of the step size <span
+class="math inline">\(A\)</span>. Also, by differentiating
+Equation <a href="#theory-6" data-reference-type="eqref"
+data-reference="eq:PID_first_order_response"><a href="#design-strategies-for-second-order-systems">8.1</a></a>
+at time <span class="math inline">\(t=0\)</span>, it is straightforward
+to show that the slope of the response at <span
+class="math inline">\(t=0\)</span> is equal to <span
+class="math inline">\(Ap\)</span>. This is also shown graphically in
+<strong>Fig.</strong> <a href="#fig:pid_first_order_response" data-reference-type="ref"
+data-reference="fig:pid_first_order_response">8.1</a>.</p>
+<p>When <span class="math inline">\(A=1\)</span>, the step response for
+different pole locations is shown in
+<strong>Fig.</strong> <a href="#fig:pid_first_order_response_2" data-reference-type="ref"
+data-reference="fig:pid_first_order_response_2">8.2</a>.
+Pole locations corresponding to <span
+class="math inline">\(p=1\)</span>, <span
+class="math inline">\(p=2\)</span>, and <span
+class="math inline">\(p=4\)</span> are shown. Note that as the pole
+location moves further into the left half of the complex plane, the rise
+time decreases.</p>
+<figure id="fig:pid_first_order_response_2" class="marimo-figure">
+<iframe src="../marimo/fig_8_2_step_response/index.html" loading="lazy"
+title="Interactive step response with adjustable p"
+style="width:min(98vw,980px);height:640px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption><span class="fig-number">Figure 8.2. </span>
+Interactive step response of a first-order system. Use the slider to
+vary pole location <span class="math inline">(p)</span>; larger <span
+class="math inline">(p)</span> values move the pole further left and
+produce a faster rise time.
+</figcaption>
+</figure>
+<p>An important concept for the steady state response of a system is the
+<em>DC-gain</em>, <span id="idx-0080" class="book-index-anchor" aria-hidden="true"></span> which is defined as
+follows.</p>
+<p><em>The DC-gain of a transfer function <span
+class="math inline">\(H(s)\)</span> is <span
+class="math display">\[\left.H(s)\right|_{\text{DC-gain}} = \lim_{s\to
+0} H(s).\]</span></em></p>
+<p>An important fact is that if the poles of <span
+class="math inline">\(H(s)\)</span> are in the open left half plane,
+then the response of <span class="math inline">\(H(s)\)</span> to a step
+of size <span class="math inline">\(A\)</span> approaches <span
+class="math inline">\(A\left.H(s)\right|_{\text{DC-gain}}\)</span> as
+<span class="math inline">\(t\to\infty\)</span>. This is true for first
+order systems, as well as general <span
+class="math inline">\(H(s)\)</span>. For example, the DC-gain of the
+first order system <span class="math inline">\(H(s) =
+\frac{q}{s+p}\)</span> is <span
+class="math inline">\(\frac{q}{p}\)</span>, as long as <span
+class="math inline">\(p&gt;0\)</span>.</p>
+<h3 data-number="8.1.2" id="second-order-response"><span class="header-section-number">8.1.2</span> Second-Order Response</h3>
+<p>Suppose that the closed-loop system has a second-order transfer
+function with two real poles and no zeros: <span
+class="math display">\[Y(s) = \frac{K}{(s+p_1)(s+p_2)}R(s).\]</span> To
+find the output of the system when the input is a step of magnitude
+<span class="math inline">\(A\)</span>, we find the inverse Laplace
+transform of <span class="math display">\[Y(s) =
+\frac{K}{(s+p_1)(s+p_2)}\frac{A}{s}.\]</span> Using partial fraction
+expansion we get <span class="math display">\[Y(s)
+=  \frac{\frac{KA}{p_1p_2}}{s} +
+\frac{\frac{KA}{(-p_1)(p_2-p_1)}}{s+p_1} +
+\frac{\frac{KA}{(-p_2)(p_1-p_2)}}{s+p_2}.\]</span> Taking the inverse
+Laplace transform <span id="idx-0081" class="book-index-anchor" aria-hidden="true"></span> gives <span
+class="math display">\[y(t) = \begin{cases}
+        \frac{KA}{p_1p_2} + \frac{KA}{(-p_1)(p_2-p_1)}e^{-p_1t} +
+\frac{KA}{(-p_2)(p_1-p_2)} e^{-p_2t}, &amp; t\geq 0 \\
+        0, &amp; \text{otherwise}
+        \end{cases}.\]</span> Note that as <span
+class="math inline">\(t\to\infty\)</span> that <span
+class="math inline">\(y(t)\to \frac{KA}{p_1p_2}\)</span> which is equal
+to the step size <span class="math inline">\(A\)</span> times the
+DC-gain of the system.</p>
+<p>Now suppose that the closed-loop system has two complex poles and no
+zeros. We will write a generic second-order system with poles in the
+left half plane using the notation <span class="math display">\[H(s) =
+\frac{K\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2},\]</span> where
+<span class="math inline">\(K\)</span> is the DC-gain of the system
+(typically <span class="math inline">\(K=1\)</span>), <span
+class="math inline">\(\omega_n&gt;0\)</span> is called the natural
+frequency,<span id="idx-0082" class="book-index-anchor" aria-hidden="true"></span> and <span
+class="math inline">\(\zeta&gt;0\)</span> is called the damping
+ratio.<span id="idx-0083" class="book-index-anchor" aria-hidden="true"></span> The poles are given by
+the roots of the characteristic polynomial <span
+class="math display">\[\Delta(s) = s^2 + 2\zeta\omega_n s +
+\omega_n^2=0,\]</span> in other words, the poles are <span
+class="math display">\[\begin{aligned}
+p_{1,2} &amp;= -\zeta\omega_n \pm \sqrt{(\zeta\omega_n)^2-\omega_n^2} \\
+  &amp;= -\zeta\omega_n \pm \omega_n\sqrt{\zeta^2-1}.
+\end{aligned}\]</span> If <span
+class="math inline">\(0&lt;\zeta&lt;1\)</span>, then the roots are
+complex and given by <span
+class="math display">\[\label{eq:complex_poles}
+p_{1,2} = -\zeta\omega_n \pm j\omega_n\sqrt{1-\zeta^2}.\]</span> Using
+the Python code</p>
+<pre><code>import control as cnt
+import matplotlib.pyplot as plt
+
+#start by varying the natural frequency
+plt.figure(1), plt.clf()
+zeta = 0.707
+
+for wn in [0.5, 1.0, 2.0, 5.0]:
+    G = cnt.tf(wn**2, [1, 2*zeta*wn, wn**2])
+    t,y = cnt.step_response(G)
+    plt.plot(t, y)
+
+plt.plot([0, 20.0] , [1, 1], &#39;k--&#39;)
+plt.xlabel(&#39;Time (seconds)&#39;)
+plt.ylabel(&#39;Amplitude&#39;)
+plt.title(&#39;Step Response&#39;)
+plt.legend((&#39;wn=0.5&#39;, &#39;wn=1.0&#39;, &#39;wn=2.0&#39;, &#39;wn=5.0&#39;))
+
+#now we&#39;ll see the effect of varying zeta
+plt.figure(2), plt.clf()
+wn = 1.0
+
+for zeta in [0.2, 0.4, 0.707, 1.0, 2.0]:
+    G = cnt.tf(wn**2, [1, 2*zeta*wn, wn**2])
+    t,y = cnt.step_response(G)
+    plt.plot(t, y)
+    
+plt.plot([0, 35.0] , [1, 1], &#39;k--&#39;)
+plt.xlabel(&#39;Time (seconds)&#39;)
+plt.ylabel(&#39;Amplitude&#39;)
+plt.title(&#39;Step Response&#39;)
+plt.legend((&#39;zeta=0.2&#39;, &#39;zeta=0.4&#39;, &#39;zeta=0.707&#39;,
+            &#39;zeta=1.0&#39;, &#39;zeta=2.0&#39;))
+
+plt.show() # necessary to make plots appear</code></pre>
+<p>we obtain second order response<span id="idx-0084" class="book-index-anchor" aria-hidden="true"></span> plots similar to the
+ones shown in
+Figures <a href="#fig:pid_second_order_response_1" data-reference-type="ref"
+data-reference="fig:pid_second_order_response_1">8.3</a>
+and <a href="#fig:pid_second_order_response_2" data-reference-type="ref"
+data-reference="fig:pid_second_order_response_2">8.4</a>.
+Note from
+<strong>Fig.</strong> <a href="#fig:pid_second_order_response_1" data-reference-type="ref"
+data-reference="fig:pid_second_order_response_1">8.3</a>
+that as the natural frequency increases, the rise time
+decreases.<span id="idx-0085" class="book-index-anchor" aria-hidden="true"></span> We should note that a
+similar phenomenon to
+<strong>Fig.</strong> <a href="#fig:pid_first_order_response" data-reference-type="ref"
+data-reference="fig:pid_first_order_response">8.1</a>
+also occurs, where the rise time is independent of the size of the step.
+Note from
+<strong>Fig.</strong> <a href="#fig:pid_second_order_response_2" data-reference-type="ref"
+data-reference="fig:pid_second_order_response_2">8.4</a>
+that the damping ratio affects the amount of ringing in the system. For
+a small damping ratio, e.g., <span
+class="math inline">\(\zeta=0.2\)</span> there is a large overshoot and
+significant ringing in the system. At the other extreme, when <span
+class="math inline">\(\zeta\)</span> is larger than one, the poles are
+real and the response is highly damped. The sweet spot is when <span
+class="math inline">\(\zeta=0.707\)</span> where the rise time is small,
+but the overshoot is minimal.</p>
+<figure id="fig:pid_second_order_response_1" class="marimo-figure">
+<iframe src="../marimo/fig_8_3_second_order_wn/index.html" loading="lazy"
+title="Interactive second-order response with adjustable natural
+frequency" style="width:min(98vw,980px);height:640px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption><span class="fig-number">Figure 8.3. </span>
+Interactive second-order step response with fixed damping ratio ζ =
+0.707. Use the slider to vary natural frequency ω_n; increasing ω_n
+decreases rise time.
+</figcaption>
+</figure>
+<figure id="fig:pid_second_order_response_2" class="marimo-figure">
+<iframe src="../marimo/fig_8_4_second_order_zeta/index.html"
+loading="lazy" title="Interactive second-order response with adjustable
+damping ratio" style="width:min(98vw,980px);height:640px;border:1px
+solid #d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption><span class="fig-number">Figure 8.4. </span>
+Interactive second-order step response with fixed natural frequency ω_n
+= 1. Use the slider to vary damping ratio ζ; lower ζ increases overshoot
+and ringing.
+</figcaption>
+</figure>
+<p>Note from
+Equation <a href="#design-study-a-single-link-robot-arm-6" data-reference-type="eqref"
+data-reference="eq:complex_poles"><a href="#design-strategies-for-second-order-systems">8.2</a></a> that when <span
+class="math inline">\(\zeta = 0.707 = \frac{1}{\sqrt{2}}\)</span>, the
+poles are at <span class="math display">\[p_{1,2} =
+-\frac{\omega_n}{\sqrt{2}} \pm j\frac{\omega_n}{\sqrt{2}}.\]</span> In
+the complex plane, the pole locations are shown in
+<strong>Fig.</strong> <a href="#fig:pid_complex_poles" data-reference-type="ref"
+data-reference="fig:pid_complex_poles">8.5</a>, where <span
+class="math inline">\(\omega_n\)</span> is the distance from the origin
+to the poles. When <span
+class="math inline">\(\zeta=\frac{1}{\sqrt{2}}\)</span> the angle <span
+class="math inline">\(\theta\)</span> equals <span
+class="math inline">\(45\)</span> degrees.</p>
+<figure id="fig:pid_complex_poles">
+<img src="3_PID/figures/pid_complex_poles.png"
+style="width:50.0%"
+alt="Complex conjugate poles in the left half plane." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.5. </span>Complex conjugate poles in the left half
+plane.</figcaption>
+</figure>
+<p>In rectangular coordinates, the poles are given by <span
+class="math display">\[\label{eq:complex_rectangular}
+p_{1,2} = -\sigma \pm j\omega_d,\]</span> as shown in
+<strong>Fig.</strong> <a href="#fig:pid_complex_poles" data-reference-type="ref"
+data-reference="fig:pid_complex_poles">8.5</a>.
+Equations <a href="#design-study-a-single-link-robot-arm-6" data-reference-type="eqref"
+data-reference="eq:complex_poles"><a href="#design-strategies-for-second-order-systems">8.2</a></a>
+and <a href="#design-strategies-for-second-order-systems" data-reference-type="eqref"
+data-reference="eq:complex_rectangular"><a href="#design-strategies-for-second-order-systems">8.3</a></a>
+give <span class="math display">\[\begin{aligned}
+\sigma &amp;= \zeta \omega_n \\
+\omega_d &amp;= \omega_n\sqrt{1-\zeta^2}.
+\end{aligned}\]</span> From
+<strong>Fig.</strong> <a href="#fig:pid_complex_poles" data-reference-type="ref"
+data-reference="fig:pid_complex_poles">8.5</a> it is also clear that
+<span class="math display">\[\sin\theta = \frac{\sigma}{\omega_n} =
+\zeta.\]</span> Therefore <span class="math display">\[\theta =
+\sin^{-1} \zeta.\]</span></p>
+<p>Since the pole locations are at <span
+class="math inline">\(-\zeta\omega_n \pm
+\omega_n\sqrt{\zeta^2-1}\)</span>, the poles are both real if <span
+class="math inline">\(\zeta\geq 1\)</span>. When <span
+class="math inline">\(\zeta=1\)</span> the poles are both located at
+<span class="math inline">\(-\omega_n\)</span>. When <span
+class="math inline">\(0&lt;\zeta&lt;1\)</span> the poles are imaginary
+and occur in complex conjugate pairs. As shown in
+<strong>Fig.</strong> <a href="#fig:pid_damping_ratio" data-reference-type="ref"
+data-reference="fig:pid_damping_ratio">8.6</a>, we say that the system
+is <em>overdamped</em><span id="idx-0086" class="book-index-anchor" aria-hidden="true"></span> when <span
+class="math inline">\(\zeta&gt;1\)</span>, we say that the system is
+<em>critically damped</em><span id="idx-0087" class="book-index-anchor" aria-hidden="true"></span> when <span
+class="math inline">\(\zeta=1\)</span>, and we say that the system is
+<em>underdamped</em><span id="idx-0088" class="book-index-anchor" aria-hidden="true"></span> when <span
+class="math inline">\(0&lt;\zeta&lt;1\)</span>.</p>
+<figure id="fig:pid_damping_ratio">
+<img src="3_PID/figures/pid_damping_ratio.png"
+style="width:90.0%"
+alt="Second-order response as a function of the damping ratio \zeta." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.6. </span>Second-order response as a function of
+the damping ratio <span
+class="math inline"><em>ζ</em></span>.</figcaption>
+</figure>
+<figure id="fig:pid_damping_ratio_interactive" class="marimo-figure">
+<iframe src="../marimo/fig_8_6_damping_ratio/index.html" loading="lazy"
+title="Interactive damping-ratio response"
+style="width:min(98vw,980px);height:640px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption>
+Figure 8.6 (Interactive). Adjust damping ratio zeta to see under-damped,
+critically-damped, and over-damped regimes.
+</figcaption>
+</figure>
+<p>The response of <span class="math inline">\(H(s)\)</span> to a step
+of size <span class="math inline">\(A\)</span> is the inverse Laplace
+transform of <span class="math display">\[Y(s) =
+\frac{A\omega_n^2}{s(s^2+2\zeta\omega_n s + \omega_n^2)},\]</span>
+which, as shown in
+Appendix <a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations" data-reference-type="ref"
+data-reference="chap:differential_equations">29</a>, when the poles are
+complex results in <span
+class="math display">\[\label{eq:y_time_response}
+y(t) = A\left[ 1-\frac{1}{\sqrt{1-\zeta^2}}e^{-\sigma
+t}\cos\left(\omega_d t -
+\tan^{-1}\left(\frac{\sigma}{\omega_d}\right)\right)\right].\]</span> A
+plot of this signal is shown in
+<strong>Fig.</strong> <a href="#fig:pid_second_order_response_3" data-reference-type="ref"
+data-reference="fig:pid_second_order_response_3">8.7</a>.</p>
+<figure id="fig:pid_second_order_response_3">
+<img src="3_PID/figures/pid_second_order_response_3.png"
+style="width:80.0%"
+alt="Second-order response. The steady-state value is A. The response envelope decays exponentially, and the oscillation frequency and phase shift are set by the complex pole locations." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.7. </span>Second-order response. The steady-state
+value is <span class="math inline"><em>A</em></span>. The response
+envelope decays exponentially, and the oscillation frequency and phase
+shift are set by the complex pole locations.</figcaption>
+</figure>
+<p>The rise time<span id="idx-0089" class="book-index-anchor" aria-hidden="true"></span> is defined to be the
+time that it takes the output to transition from 10% to 90% of its final
+value <span class="math inline">\(A\)</span>. A suitable approximation
+is that the rise time is one half of the peak time, which is the time
+when <span class="math inline">\(y(t)\)</span> reaches its first peak.
+To find the peak time <span class="math inline">\(t_p\)</span>,
+differentiate <span class="math inline">\(y(t)\)</span> in
+Equation <a href="#design-strategies-for-second-order-systems" data-reference-type="eqref"
+data-reference="eq:y_time_response"><a href="#design-strategies-for-second-order-systems">8.4</a></a> and then
+solve for the first instance when the derivative is zero. The result is
+<span class="math display">\[t_p = \frac{\pi}{\omega_d} =
+\frac{\pi}{\omega_n\sqrt{1-\zeta^2}}.\]</span> Therefore, the rise time
+is approximately <span class="math display">\[t_r \approx \frac{1}{2}t_p
+= \frac{1}{2}\frac{\pi}{\omega_n\sqrt{1-\zeta^2}}.\]</span> When <span
+class="math inline">\(\zeta=0.707\)</span> we get <span
+class="math display">\[\label{eq:rise_time}
+t_r \approx \frac{2.2}{\omega_n}.\]</span></p>
+<p>Specifications for second-order systems are usually given either in
+terms of the rise time <span class="math inline">\(t_r\)</span> and the
+damping ratio <span class="math inline">\(\zeta\)</span>, or in terms of
+the natural frequency <span class="math inline">\(\omega_n\)</span> and
+the damping ratio <span class="math inline">\(\zeta\)</span>.</p>
+<h3 data-number="8.1.3" id="effect-of-a-zero-on-the-step-response"><span class="header-section-number">8.1.3</span> Effect of a Zero on the Step
+Response</h3>
+<p>In the previous section, we looked at the step response when there
+were two complex poles and no zeros. In this section we will briefly
+discuss the effect of zeros<span id="idx-0090" class="book-index-anchor" aria-hidden="true"></span> on the step response
+of the system.<span id="idx-0091" class="book-index-anchor" aria-hidden="true"></span> This is a topic that
+we could treat at a much deeper level.</p>
+<p>A transfer function is called <em>rational</em><span id="idx-0092" class="book-index-anchor" aria-hidden="true"></span> if it is the ratio of
+two polynomials in <span class="math inline">\(s\)</span>. For example,
+<span class="math display">\[H(s) = \frac{s+1}{s^3+3s^2+s+4}\]</span> is
+a rational transfer function, whereas <span class="math display">\[H(s)
+= \frac{(s+1)e^{-s}}{s^3+3s^2+s+4}\]</span> is not. A rational transfer
+function can be written as <span class="math display">\[H(s) =
+\frac{N(s)}{D(s)},\]</span> where <span
+class="math inline">\(N(s)\)</span> is the numerator polynomial and
+<span class="math inline">\(D(s)\)</span> is the denominator polynomial.
+The <em>zeros</em> of the transfer function are roots of the equation
+<span class="math inline">\(N(s)=0\)</span>, and the poles of the system
+are the roots of the equation <span
+class="math inline">\(D(s)=0\)</span>.</p>
+<p>One way to understand the effect of zeros is to consider the effect
+that zeros have on the partial fraction expansion<span id="idx-0093" class="book-index-anchor" aria-hidden="true"></span> of a transfer
+function. For a review of partial fraction expansion, see
+Appendix <a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations" data-reference-type="ref"
+data-reference="chap:differential_equations">29</a>. First consider a
+two pole system with characteristic equation given by <span
+class="math inline">\(\Delta(s) = (s+2)(s+3)\)</span>. The transfer
+function with DC-gain equal to one and without zeros is given by <span
+class="math display">\[H(s) = \frac{6}{(s+2)(s+3)}.\]</span> The
+response to a unit step is given by <span
+class="math display">\[\begin{aligned}
+y(t) &amp;= \mathcal{L}^{-1}\left\{\frac{6}{s(s+2)(s+3)}\right\} \notag
+\\
+     &amp;= \mathcal{L}^{-1}\left\{ \frac{1}{s} + \frac{-3}{s+2} +
+\frac{2}{s+3}\right\} \notag \\
+     &amp;= 1 - 3e^{-2t} + 2e^{-3t}, \quad t\geq 0.
+\label{eq:response_no_zero}
+\end{aligned}\]</span> Now consider the step response when a zero has
+been added at <span class="math inline">\(z=-2.1\)</span> and the gain
+adjusted so that the DC-gain is still one, i.e., when <span
+class="math display">\[H(s) =
+\frac{\frac{6}{2.1}(s+2.1)}{(s+2)(s+3)}.\]</span> The response to a unit
+step is given by <span class="math display">\[\begin{aligned}
+y(t) &amp;=
+\mathcal{L}^{-1}\left\{\frac{\frac{6}{2.1}(s+2.1)}{s(s+2)(s+3)}\right\}
+\\
+     &amp;= \mathcal{L}^{-1}\left\{ \frac{1}{s} + \frac{-0.1429}{s+2} +
+\frac{-0.8571}{s+3}\right\}\\
+     &amp;= 1 - 0.1429e^{-2t} - 0.8571e^{-3t}, \quad t\geq 0.
+\end{aligned}\]</span> Note that <span
+class="math inline">\(y(t)\)</span> still settles to one, but the
+response of the pole at <span class="math inline">\(-2\)</span> has
+almost been removed. If however, the zero is far away from the poles,
+then the effect is much less. Suppose that the zero is at <span
+class="math inline">\(z=-60\)</span> and the gain is adjusted so that
+the DC-gain is still one, i.e., <span class="math display">\[H(s) =
+\frac{\frac{6}{60}(s+60)}{(s+2)(s+3)}.\]</span> The response to a unit
+step is given by <span class="math display">\[\begin{aligned}
+y(t) &amp;=
+\mathcal{L}^{-1}\left\{\frac{\frac{6}{60}(s+60)}{s(s+2)(s+3)}\right\} \\
+     &amp;= \mathcal{L}^{-1}\left\{ \frac{1}{s} + \frac{-2.9}{s+2} +
+\frac{1.9}{s+3}\right\}\\
+     &amp;= 1 - 2.9e^{-2t} + 1.9e^{-3t}, \quad t\geq 0.
+\end{aligned}\]</span> In this case, the response is similar to
+Equation <a href="#knowledge-check-7" data-reference-type="eqref"
+data-reference="eq:response_no_zero"><a href="#design-strategies-for-second-order-systems">8.6</a></a>.</p>
+<p>Another way to understand the effect of zeros on the system is to
+recall that an <span class="math inline">\(s\)</span> in the numerator
+is essentially a differentiator. Therefore <span
+class="math display">\[\begin{aligned}
+H(s) &amp;= \frac{\omega_n^2(\tau s+1)}{s^2 + 2\zeta\omega_n s +
+\omega_n^2} \\
+     &amp;= \tau\frac{\omega_n^2 s}{s^2 + 2\zeta\omega_n s + \omega_n^2}
++ \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}.
+\end{aligned}\]</span> Therefore the step response is given by <span
+class="math display">\[\begin{aligned}
+y(t) &amp;= \mathcal{L}^{-1}\left\{\tau\frac{\omega_n^2s}{s(s^2 +
+2\zeta\omega_n s + \omega_n^2)} + \frac{\omega_n^2}{s(s^2 +
+2\zeta\omega_n s + \omega_n^2)}\right\} \\
+&amp;= \tau\frac{d}{dt}\mathcal{L}^{-1}\left\{\frac{\omega_n^2}{s(s^2 +
+2\zeta\omega_n s + \omega_n^2)}\right\}
+%
+    + \mathcal{L}^{-1}\left\{\frac{\omega_n^2}{s(s^2 + 2\zeta\omega_n s
++ \omega_n^2)}\right\}.
+\end{aligned}\]</span> Therefore, the effect of the zero is to add <span
+class="math inline">\(\tau\)</span> times the derivative of the step
+response to what the step response would have been without the zero.
+<strong>Fig.</strong> <a href="#fig:pid_response_to_zero" data-reference-type="ref"
+data-reference="fig:pid_response_to_zero">8.8</a>
+shows the step response for different values of <span
+class="math inline">\(\tau\)</span>, where it can be seen that adding a
+zero has a strong effect on the rise time and the damping in the
+response. Note also that when <span
+class="math inline">\(\tau&lt;0\)</span>, i.e., when zeros are in the
+right-half plane, that the system response first goes negative, before
+going positive. Right half plane zeros are often called <em>nonminimum
+phase zeros</em> <span id="idx-0094" class="book-index-anchor" aria-hidden="true"></span> and the associated
+response is often called nonminimum phase response. Physical systems
+that have right-half plane zeros include the inverted pendulum and
+aircraft altitude control. For the inverted pendulum, in order to move
+the cart to the right from a stopped position the cart must first move
+left, so that the rod leans right, before cart can move to its desired
+position. Similarly, aircraft pitch up to climb altitude. However, when
+the aircraft pitches up it loses speed which causes it to lose lift,
+which causes the altitude to drop. When the altitude drops it gains
+speed and produces the lift necessary to increase altitude.</p>
+<figure id="fig:pid_response_to_zero" class="marimo-figure">
+<iframe src="../marimo/fig_8_8_response_to_zero/index.html" loading="lazy"
+title="Interactive response to a zero"
+style="width:min(98vw,980px);height:640px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption><span class="fig-number">Figure 8.8. </span>
+Interactive step response of a second-order system with a single zero.
+Vary tau to see the effect of left-half-plane and right-half-plane zero
+behavior.
+</figcaption>
+</figure>
+<h3 data-number="8.1.4" id="successive-loop-closure"><span class="header-section-number">8.1.4</span> Successive Loop Closure</h3>
+<p>The natural frequency <span class="math inline">\(\omega_n\)</span>
+and the damping ratio <span class="math inline">\(\zeta\)</span> are
+only defined for second-order systems, and therefore, the PD design
+technique based on <span class="math inline">\(\omega_n\)</span> and
+<span class="math inline">\(\zeta\)</span> are only valid for
+second-order systems. However, these concepts can be extended to
+higher-order systems through a technique called successive loop
+closure<span id="idx-0095" class="book-index-anchor" aria-hidden="true"></span>, or inner-loop,
+outer-loop design. When we derived the Laplace transform in
+Chapter <a href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a>, we saw that for
+many systems, the transfer functions can be arranged in cascade form as
+shown in
+<strong>Fig.</strong> <a href="#fig:pid_loop-SLC-OL" data-reference-type="ref"
+data-reference="fig:pid_loop-SLC-OL">8.9</a> where the input to the
+system is <span class="math inline">\(u_1\)</span> and the output is
+<span class="math inline">\(y_2\)</span>, but where <span
+class="math inline">\(y_1\)</span> and <span
+class="math inline">\(u_2\)</span> are intermediary values that
+represent the natural physical coupling between internal variables. Many
+physical systems can be represented by a cascade of systems.</p>
+<figure id="fig:pid_loop-SLC-OL">
+<img src="3_PID/figures/pid_loop-SLC-OL.png"
+style="width:40.0%"
+alt="Open-loop transfer function modeled as a cascade of two transfer functions." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.9. </span>Open-loop transfer function modeled as a
+cascade of two transfer functions.</figcaption>
+</figure>
+<p>When the system is represented as a cascade, the control strategy can
+be designed using <em>successive loop closure</em>. The basic idea is to
+close feedback loops in succession around the open-loop plant dynamics
+rather than designing a single control system. To illustrate this
+approach, consider the open-loop system shown in
+<strong>Fig.</strong> <a href="#fig:pid_loop-SLC-OL" data-reference-type="ref"
+data-reference="fig:pid_loop-SLC-OL">8.9</a>. The open-loop dynamics
+are given by the product of two transfer functions in series: <span
+class="math inline">\(P(s)=P_1(s)P_2(s)\)</span>. We assume that each of
+the transfer functions has an output (<span
+class="math inline">\(y_1\)</span>, <span
+class="math inline">\(y_2\)</span>) that can be measured and used for
+feedback. Typically, each of the transfer functions, <span
+class="math inline">\(P_1(s)\)</span> and <span
+class="math inline">\(P_2(s)\)</span>, is of relatively low order –
+usually first or second-order. In this case, we are interested in
+controlling the output <span class="math inline">\(y_2\)</span>. Instead
+of closing a single feedback loop around <span
+class="math inline">\(y_2\)</span>, we will close feedback loops around
+<span class="math inline">\(y_1\)</span> and <span
+class="math inline">\(y_2\)</span> in succession as shown in
+<strong>Fig.</strong> <a href="#fig:pid_loop-SLC-12" data-reference-type="ref"
+data-reference="fig:pid_loop-SLC-12">8.10</a>.</p>
+<figure id="fig:pid_loop-SLC-12">
+<img src="3_PID/figures/pid_loop-SLC-12.png"
+style="width:80.0%" alt="Successive loop closure design." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.10. </span>Successive loop closure
+design.</figcaption>
+</figure>
+<p>We will design the compensators <span
+class="math inline">\(C_1(s)\)</span> and <span
+class="math inline">\(C_2(s)\)</span> in succession. A necessary
+condition in the design process is that the inner loop must be much
+faster than each successive loop. As a rule of thumb, if the rise time
+of the inner loop is <span class="math inline">\(t_{r_1}\)</span>, the
+rise time of the next loop should be 5 to 10 times longer, i.e., <span
+class="math inline">\(t_{r_2}&gt; W_1 t_{r_1}\)</span>, where <span
+class="math inline">\(W_1\)</span> is a design parameter, usually on the
+order of <span class="math inline">\(5-10\)</span>. In
+part <a href="14-14-disturbance-observers.html#part:loopshaping" data-reference-type="ref"
+data-reference="part:loopshaping">V</a> of this book,
+we will talk about the frequency response of the system. At that time,
+we will provide a deeper explanation that can be understood in terms of
+the bandwidth of each successive loop.</p>
+<p>Examining the inner loop shown in
+<strong>Fig.</strong> <a href="#fig:pid_loop-SLC-12" data-reference-type="ref"
+data-reference="fig:pid_loop-SLC-12">8.10</a>, the goal is to design a
+closed-loop system from <span class="math inline">\(r_1\)</span> to
+<span class="math inline">\(y_1\)</span> having a rise time of <span
+class="math inline">\(t_{r_1}\)</span>. If the rise time of the inner
+loop is significantly faster than the rise time of the outer loop, and
+if the DC-gain<span id="idx-0096" class="book-index-anchor" aria-hidden="true"></span> of the inner loop is
+<span class="math inline">\(k_{DC_1}\)</span>, then relative to the
+outer loop the inner loop can be effectively modeled as the DC-gain.
+This is depicted schematically in
+<strong>Fig.</strong> <a href="#fig:pid_loop-SLC-2" data-reference-type="ref"
+data-reference="fig:pid_loop-SLC-2">8.11</a>. With the inner-loop
+transfer function modeled as its DC-gain, design of the outer loop is
+simplified because it only includes the plant transfer function <span
+class="math inline">\(P_2(s)\)</span> and the compensator <span
+class="math inline">\(C_2(s)\)</span> and the DC-gain <span
+class="math inline">\(k_{DC_1}\)</span>.</p>
+<figure id="fig:pid_loop-SLC-2">
+<img src="3_PID/figures/pid_loop-SLC-2.png"
+style="width:80.0%"
+alt="Successive loop closure design with inner loop modeled as a unity gain." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.11. </span>Successive loop closure design with inner
+loop modeled as a unity gain.</figcaption>
+</figure>
+<p>Because each of the plant models <span
+class="math inline">\(P_1(s)\)</span> and <span
+class="math inline">\(P_2(s)\)</span> are first or second-order,
+conventional PID compensators can be employed. The loopshaping
+techniques discussed in
+Part <a href="14-14-disturbance-observers.html#part:loopshaping" data-reference-type="ref"
+data-reference="part:loopshaping">V</a> can also be
+used for successive loop closure of higher-order systems.</p>
+<h3 data-number="8.1.5"
+id="input-saturation-and-limits-of-performance"><span class="header-section-number">8.1.5</span> Input Saturation and Limits
+of Performance</h3>
+<p>A natural question is to ask if the rise time can be made arbitrarily
+small. Unfortunately, saturation limits on the actuators place a lower
+bound on the achievable rise time. All physical systems have saturation
+limits on their actuators. For example, in the robot arm problem, the
+torque that can be applied to the arm is limited by the motor that is
+used to apply that torque. Force and torque will always be limited by
+physical constraints like current limits. Similarly, for an airplane,
+the rudder command is limited by how far the rudder can physically move,
+which is typically on the order of <span class="math inline">\(\pm
+40\)</span> degrees. A natural way to model input constraints is to add
+a saturation block preceding the physical plant.
+<strong>Fig.</strong> <a href="#fig:pid_loop-sat-example" data-reference-type="ref"
+data-reference="fig:pid_loop-sat-example">8.12</a> shows a saturation
+block in conjunction with a PD control scheme.</p>
+<figure id="fig:pid_loop-sat-example">
+<img src="3_PID/figures/pid_loop_sat_example.png"
+style="width:80.0%"
+alt="Control system with input saturation. The input saturation places a lower bound on the achievable rise time." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.12. </span>Control system with input saturation. The
+input saturation places a lower bound on the achievable rise
+time.</figcaption>
+</figure>
+<p>Mathematically, the saturation block is given by <span
+class="math display">\[u_{sat} =   \begin{cases}
+                u_{\max}, &amp; \text{~if~} u\geq u_{\max} \\
+                u, &amp; \text{~if~} -u_{\max} \leq u \leq u_{\max} \\
+                -u_{\max}, &amp; \text{~otherwise}
+            \end{cases},\]</span> where the input to the block is <span
+class="math inline">\(u\)</span>, the output is <span
+class="math inline">\(u_{sat}\)</span>, and the saturation limit is
+<span class="math inline">\(u_{\max}\)</span>. Note that the saturation
+block is non-linear. Therefore, one design strategy is to select the
+feedback gains so that the system remains linear by keeping the input
+out of saturation.</p>
+<p>To see how this might be done, consider the second-order system shown
+in
+<strong>Fig.</strong> <a href="#fig:pid_loop-sat-example" data-reference-type="ref"
+data-reference="fig:pid_loop-sat-example">8.12</a> with proportional
+feedback on the output error and derivative feedback on the output. When
+the input is not saturated, the closed-loop transfer function is <span
+class="math display">\[Y(s) = \left(\frac{b_0 k_p}{s^2 + (a_1 + b_0
+k_D)s + (a_0 + b_0 k_p)}\right) R(s).
+   \label{eq:loop-sat-cl-tf}\]</span> We can see that the closed-loop
+poles of the system are defined by the selection of the control gains
+<span class="math inline">\(k_p\)</span> and <span
+class="math inline">\(k_D\)</span>. Note also that the actuator effort
+<span class="math inline">\(u\)</span> can be expressed as <span
+class="math inline">\(u=k_p e - k_D\dot{y}\)</span>. When <span
+class="math inline">\(\dot{y}\)</span> is zero or small, the size of the
+actuator effort <span class="math inline">\(u\)</span> is primarily
+governed by the size of the control error <span
+class="math inline">\(e\)</span> and the control gain <span
+class="math inline">\(k_p\)</span>. If the system is stable, the largest
+control effort in response to a step input will occur immediately after
+the step when <span class="math inline">\(\dot{y}=0\)</span>. If the
+system is to be kept just out of saturation, then immediately after the
+step we have <span class="math inline">\(\left|u\right|=u_\text{max} =
+k_p e_\text{max}\)</span>. Rearranging this expression, we find that the
+proportional control gain can be determined from the maximum anticipated
+output error and the saturation limits of the actuator as <span
+class="math display">\[k_p = \pm \frac{u_\text{max}}{e_\text{max}},
+    \label{eq:loop-sat-kp}\]</span> where <span
+class="math inline">\(u_{\max}\)</span> is the maximum control effort
+the system can provide, <span class="math inline">\(e_{\max}\)</span> is
+the step error that results from a step input of nominal size, and the
+sign of <span class="math inline">\(k_p\)</span> is determined by the
+physics of the system.</p>
+<p>Suppose that the desired closed-loop characteristic polynomial is
+given by <span class="math display">\[\Delta_{cl}^d(s) = s^2 +
+2\zeta\omega_n s + \omega_n^2,\]</span> then by comparing with the
+actual closed-loop characteristic polynomial <span
+class="math display">\[\Delta_{cl}(s) = s^2 + (a_1 + b_0 k_D)s + (a_0 +
+b_0 k_p)\]</span> we have that <span
+class="math display">\[\begin{aligned}
+    \omega_n &amp;= \sqrt{a_0 + b_0 k_p}
+     \leq \sqrt{a_0 + b_0 \frac{u_\text{max}}{e_\text{max}}},
+\end{aligned}\]</span> which is an upper limit on the natural frequency
+of the closed-loop system, ensuring that saturation of the actuator is
+avoided. The corresponding rise time constraint is <span
+class="math display">\[t_r \geq \frac{2.2}{\omega_n} =
+\frac{2.2}{\sqrt{a_0 + b_0 \frac{u_\text{max}}{e_\text{max}}}},\]</span>
+which is the smallest possible rise time for an error step of <span
+class="math inline">\(e_{\text{max}}\)</span>.</p>
+<p>If the input has an equilibrium value, then the saturation constraint
+used in the above calculation must be modified to account for the
+equilibrium. For example, suppose that <span
+class="math inline">\(u=u_e+\tilde{u}\)</span> where <span
+class="math inline">\(u_e\)</span> is the equilibrium value and <span
+class="math inline">\(\tilde{u}\)</span> is the output of the PID
+controller. Also suppose that the input saturation constraint is given
+by <span class="math inline">\(u_{\min}\leq u\leq u_{\max}\)</span>. The
+objective is to find a value for <span
+class="math inline">\(\tilde{u}_{\max}\)</span> where <span
+class="math inline">\(\left|\tilde{u}\right|\leq
+\tilde{u}_{\max}\)</span> guarantees that <span
+class="math inline">\(u_{\min}\leq u\leq u_{\max}\)</span>. We have that
+<span class="math display">\[\begin{aligned}
+&amp; u_{\min}\leq u \leq u_{\max} \\
+\implies &amp; u_{\min} \leq u_e + \tilde{u} \leq u_{\max} \\
+\implies &amp; u_{\min}-u_e \leq \tilde{u} \leq u_{\max}-u_e.
+\end{aligned}\]</span> The desired value for <span
+class="math inline">\(\tilde{u}_{\max}\)</span> is therefore the minimum
+(in absolute value) of the right and left hand sides of this expression.
+The situation is shown in
+<strong>Fig.</strong> <a href="#fig:pid_input_saturation" data-reference-type="ref"
+data-reference="fig:pid_input_saturation">8.13</a>, where it is clear
+that the value for <span class="math inline">\(\tilde{u}_{\max}\)</span>
+can be written as <span class="math display">\[\tilde{u}_{\max} =
+\begin{cases}
+\left|u_{\max}-u_e\right|, &amp; \text{~if~} u_e \geq
+\frac{u_{\max}+u_{\min}}{2} \\
+\left|u_e - u_{\min}\right|, &amp; \text{~if~} u_e \leq
+\frac{u_{\max}+u_{\min}}{2}.
+\end{cases}\]</span></p>
+<figure id="fig:pid_input_saturation">
+<img src="3_PID/figures/pid_input_saturation.png"
+style="width:50.0%"
+alt="The saturation constraint for \tilde{u} depends on the value of the equilibrium input u_e." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.13. </span>The saturation constraint for <span
+class="math inline"><em>ũ</em></span> depends on the value of the
+equilibrium input <span
+class="math inline"><em>u</em><sub><em>e</em></sub></span>.</figcaption>
+</figure>
+<p>The takeaway from this discussion is that the rise time is limited by
+the input saturation constraint and cannot be made arbitrarily small. In
+practice, the control parameters are tuned so that the closed-loop
+system has the fastest possible rise time without driving the plant
+input into saturation.</p>
+<h2 data-number="8.2" id="design-study-a-single-link-robot-arm-6" class="section-design-study"><span class="header-section-number">8.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="8.2.1" id="-example-problem-3111" class="section-example"><span class="header-section-number">8.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a></h3>
+<p>For the single link robot arm, do the following:</p>
+<p>(a) Suppose that the design requirements are that the rise time is <span
+class="math inline">\(t_r \approx 0.8\)</span> seconds, with a damping
+ratio of <span class="math inline">\(\zeta=0.707\)</span>. Find the
+desired closed loop characteristic polynomial <span
+class="math inline">\(\Delta_{cl}^d(s)\)</span> and the associated pole
+locations. Find the proportional and derivative gains <span
+class="math inline">\(k_P\)</span> and <span
+class="math inline">\(k_D\)</span> to achieve these specifications, and
+modify the simulation from
+HW <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.8 to verify that the step
+response satisfies the requirements.</p>
+<p>(b) Suppose that the input torque for the robot arm is limited to <span
+class="math inline">\(\left|\tau\right|\leq\tau_{\max}=1\)</span> Nm.
+Modify the simulation to include a saturation on the torque <span
+class="math inline">\(\tau\)</span>. Using the rise time <span
+class="math inline">\(t_r\)</span> and damping ratio <span
+class="math inline">\(\zeta\)</span> as tuning parameters, tune the PD
+control law so that the input just saturates when a step of size <span
+class="math inline">\(50\)</span> degrees is placed on <span
+class="math inline">\(\tilde{r}_{\theta}\)</span>.</p>
+<section id="design-study-a-ch8-pd-design-specs">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw8-pd-design-specs"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Use rise time and damping ratio before viewing the solution</h3>
+<p>Translate the time-domain design specifications into a desired
+second-order polynomial.</p>
+
+<section class="guided-step" data-dsa-step="natural-frequency">
+<h4>Step 1. Natural frequency rule</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span><span class="math
+inline">\(\omega_n\)</span></span><input type="text"
+data-dsa-input="wn" data-dsa-accept="2.2/tr\|2.2/t_r"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="natural-frequency">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="natural-frequency"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="natural-frequency" hidden><summary>Show solution
+for Step 1</summary><p><strong>Answer:</strong> Use <span
+class="math
+inline">\(\omega_n\approx 2.2/t_r\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="desired-polynomial">
+<h4>Step 2. Desired polynomial coefficients</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span><span class="math inline">\(s\)</span>
+coefficient</span><input type="text" data-dsa-input="scoef"
+data-dsa-accept="2\*zeta\*wn\|2\*zeta\*omega_n"
+placeholder="coefficient"></label> <label><span>Constant
+term</span><input type="text" data-dsa-input="constant"
+data-dsa-accept="wn\^2\|omega_n\^2"
+placeholder="coefficient"></label> </div> <button
+type="button" data-dsa-check="desired-polynomial">Check Step
+2</button> <p class="quiz-feedback"
+data-dsa-feedback="desired-polynomial" aria-live="polite"></p>
+<details class="quiz-answer" data-dsa-answer="desired-polynomial"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The standard form is
+<span class="math
+inline">\(s^2+2\zeta\omega_n s+\omega_n^2\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="simulation">
+<h4>Step 3. Saturation check</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Why simulate after
+coefficient matching?</span><input type="text"
+data-dsa-input="reason" data-dsa-accept="saturation\|torque
+saturation\|actuator saturation" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="simulation">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="simulation"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="simulation" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The gains can satisfy the
+linear pole placement equations but still demand torque beyond the
+actuator limit.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes a PD
+controller class and a simulation script. Before opening it, outline
+each component separately.</p> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="ctrlPD class: write pseudocode for computing the commanded torque and applying actuator saturation."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="hw08_armSim script: write pseudocode for running the closed-loop simulation, checking saturation, updating dynamics, and plotting the response."></textarea> <p
+class="advanced-caption">These prompts are ungraded. They are
+intended to connect the design specifications to the implementation code
+in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>A rise time of <span class="math inline">\(t_r\approx 0.8\)</span>
+seconds, implies that the natural frequency is <span
+class="math display">\[\omega_n = 2.2/0.8 = 2.75.\]</span> Therefore,
+the desired characteristic polynomial is <span
+class="math display">\[\label{eq:hwa10_1}
+\Delta_{cl}^d = s^2 + 2\zeta\omega_n s + \omega_n^2 = s^2 + 3.889 s +
+7.5625.\]</span> From HW <a href="01-1-introduction.html#design-study-single-link-robot-arm"
+data-reference-type="ref" data-reference="ds:single_link_arm">3.1</a>.7
+the actual closed loop characteristic polynomial is <span
+class="math display">\[\label{eq:hwa10_2}
+\Delta_{cl}(s) = s^2 + (0.667 + 66.67k_D)s + 66.67k_P.\]</span> Equating
+Equations <a href="#design-strategies-for-second-order-systems" data-reference-type="eqref"
+data-reference="eq:hwa10_1"><a href="#design-strategies-for-second-order-systems">8.9</a></a> and <a href="#design-strategies-for-second-order-systems"
+data-reference-type="eqref" data-reference="eq:hwa10_2"><a href="#design-strategies-for-second-order-systems">8.10</a></a>
+and solving for the gains gives <span
+class="math display">\[\begin{aligned}
+k_P &amp;=  0.1134 \\
+k_D &amp;= 0.0483.
+\end{aligned}\]</span></p>
+<p>A Python class that implements a PD controller for the single link
+robot arm is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlPD.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> armParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlPD:</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#  tuning parameters</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">#tr = 0.8 # part (a)</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        tr <span class="op">=</span> <span class="fl">0.37</span> <span class="co"># tuned for faster rise time before saturation.</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        zeta <span class="op">=</span> <span class="fl">0.707</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># desired natural frequency</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        wn <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr</span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        alpha1 <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> zeta <span class="op">*</span> wn</span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        alpha0 <span class="op">=</span> wn<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute PD gains</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp <span class="op">=</span> alpha0<span class="op">*</span>(P.m <span class="op">*</span> P.ell<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="fl">3.0</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd <span class="op">=</span> (P.m <span class="op">*</span> P.ell<span class="op">**</span><span class="dv">2</span>) <span class="op">\</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>                    <span class="op">/</span> <span class="fl">3.0</span> <span class="op">*</span> (alpha1 <span class="op">-</span> <span class="fl">3.0</span> <span class="op">*</span> P.b <span class="op">/</span> (P.m <span class="op">*</span> P.ell<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp: &#39;</span>, <span class="va">self</span>.kp)</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd: &#39;</span>, <span class="va">self</span>.kd)</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, theta_r, state):</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> state[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>        thetadot <span class="op">=</span> state[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute feedback linearizing torque tau_fl</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        tau_fl <span class="op">=</span> P.m <span class="op">*</span> P.g <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> np.cos(theta)</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute the linearized torque using PD</span></span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        tau_tilde <span class="op">=</span> <span class="va">self</span>.kp <span class="op">*</span> (theta_r <span class="op">-</span> theta) <span class="op">\</span></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>                    <span class="op">-</span> <span class="va">self</span>.kd <span class="op">*</span> thetadot</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute total torque</span></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> tau_fl <span class="op">+</span> tau_tilde</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> saturate(tau, P.tau_max)</span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tau</span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<p>Code that computes the control gains is given below.</p>
+<div class="sourceCode" id="cb2" data-language="Python"
+data-caption="hw08\_armSim.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="18-18-compensator-design.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="18-18-compensator-design.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="18-18-compensator-design.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> armParam <span class="im">as</span> P</span>
+<span id="cb2-4"><a href="18-18-compensator-design.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> signalGenerator <span class="im">import</span> signalGenerator</span>
+<span id="cb2-5"><a href="18-18-compensator-design.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> armAnimation <span class="im">import</span> armAnimation</span>
+<span id="cb2-6"><a href="18-18-compensator-design.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataPlotter <span class="im">import</span> dataPlotter</span>
+<span id="cb2-7"><a href="18-18-compensator-design.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> armDynamics <span class="im">import</span> armDynamics</span>
+<span id="cb2-8"><a href="18-18-compensator-design.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ctrlPD <span class="im">import</span> ctrlPD</span>
+<span id="cb2-9"><a href="18-18-compensator-design.html#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="18-18-compensator-design.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate arm, controller, and reference classes</span></span>
+<span id="cb2-11"><a href="18-18-compensator-design.html#cb2-11" aria-hidden="true" tabindex="-1"></a>arm <span class="op">=</span> armDynamics()</span>
+<span id="cb2-12"><a href="18-18-compensator-design.html#cb2-12" aria-hidden="true" tabindex="-1"></a>controller <span class="op">=</span> ctrlPD()</span>
+<span id="cb2-13"><a href="18-18-compensator-design.html#cb2-13" aria-hidden="true" tabindex="-1"></a>reference <span class="op">=</span> signalGenerator(amplitude<span class="op">=</span><span class="dv">50</span><span class="op">*</span>np.pi<span class="op">/</span><span class="fl">180.0</span>, </span>
+<span id="cb2-14"><a href="18-18-compensator-design.html#cb2-14" aria-hidden="true" tabindex="-1"></a>                            frequency<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb2-15"><a href="18-18-compensator-design.html#cb2-15" aria-hidden="true" tabindex="-1"></a>disturbance <span class="op">=</span> signalGenerator(amplitude<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb2-16"><a href="18-18-compensator-design.html#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="18-18-compensator-design.html#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate the simulation plots and animation</span></span>
+<span id="cb2-18"><a href="18-18-compensator-design.html#cb2-18" aria-hidden="true" tabindex="-1"></a>dataPlot <span class="op">=</span> dataPlotter()</span>
+<span id="cb2-19"><a href="18-18-compensator-design.html#cb2-19" aria-hidden="true" tabindex="-1"></a>animation <span class="op">=</span> armAnimation()</span>
+<span id="cb2-20"><a href="18-18-compensator-design.html#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="18-18-compensator-design.html#cb2-21" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> P.t_start  <span class="co"># time starts at t_start</span></span>
+<span id="cb2-22"><a href="18-18-compensator-design.html#cb2-22" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> arm.h()  <span class="co"># output of system at start of simulation</span></span>
+<span id="cb2-23"><a href="18-18-compensator-design.html#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="18-18-compensator-design.html#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> t <span class="op">&lt;</span> P.t_end:  <span class="co"># main simulation loop</span></span>
+<span id="cb2-25"><a href="18-18-compensator-design.html#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get referenced inputs from signal generators</span></span>
+<span id="cb2-26"><a href="18-18-compensator-design.html#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propagate dynamics in between plot samples</span></span>
+<span id="cb2-27"><a href="18-18-compensator-design.html#cb2-27" aria-hidden="true" tabindex="-1"></a>    t_next_plot <span class="op">=</span> t <span class="op">+</span> P.t_plot</span>
+<span id="cb2-28"><a href="18-18-compensator-design.html#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="18-18-compensator-design.html#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># updates control and dynamics at faster simulation rate</span></span>
+<span id="cb2-30"><a href="18-18-compensator-design.html#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> t <span class="op">&lt;</span> t_next_plot: </span>
+<span id="cb2-31"><a href="18-18-compensator-design.html#cb2-31" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> reference.square(t)</span>
+<span id="cb2-32"><a href="18-18-compensator-design.html#cb2-32" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> arm.state</span>
+<span id="cb2-33"><a href="18-18-compensator-design.html#cb2-33" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> controller.update(r, x)  <span class="co"># update controller</span></span>
+<span id="cb2-34"><a href="18-18-compensator-design.html#cb2-34" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> arm.update(u)  <span class="co"># propagate system</span></span>
+<span id="cb2-35"><a href="18-18-compensator-design.html#cb2-35" aria-hidden="true" tabindex="-1"></a>        t <span class="op">+=</span> P.Ts  <span class="co"># advance time by Ts</span></span>
+<span id="cb2-36"><a href="18-18-compensator-design.html#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="18-18-compensator-design.html#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># update animation and data plots</span></span>
+<span id="cb2-38"><a href="18-18-compensator-design.html#cb2-38" aria-hidden="true" tabindex="-1"></a>    animation.update(arm.state)</span>
+<span id="cb2-39"><a href="18-18-compensator-design.html#cb2-39" aria-hidden="true" tabindex="-1"></a>    dataPlot.update(t, arm.state, u, r)</span>
+<span id="cb2-40"><a href="18-18-compensator-design.html#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="18-18-compensator-design.html#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the pause causes the figure to be displayed for simulation</span></span>
+<span id="cb2-42"><a href="18-18-compensator-design.html#cb2-42" aria-hidden="true" tabindex="-1"></a>    plt.pause(<span class="fl">0.0001</span>)  </span>
+<span id="cb2-43"><a href="18-18-compensator-design.html#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="18-18-compensator-design.html#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Keeps the program from closing until the user presses a button.</span></span>
+<span id="cb2-45"><a href="18-18-compensator-design.html#cb2-45" aria-hidden="true" tabindex="-1"></a>dataPlot.write_data_file()</span>
+<span id="cb2-46"><a href="18-18-compensator-design.html#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Press key to close&#39;</span>)</span>
+<span id="cb2-47"><a href="18-18-compensator-design.html#cb2-47" aria-hidden="true" tabindex="-1"></a>plt.waitforbuttonpress()</span>
+<span id="cb2-48"><a href="18-18-compensator-design.html#cb2-48" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="8.3" id="design-study-b-inverted-pendulum-4" class="section-design-study"><span class="header-section-number">8.3</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="8.3.1" id="-example-problem-3211" class="section-example"><span class="header-section-number">8.3.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a></h3>
+<p>For the inverted pendulum, do the following:</p>
+<p>(a) Using the principle of successive loop closure, draw a block diagram
+that uses PD control for both inner loop control and outer loop control.
+The input to the outer loop controller is the desired cart position
+<span class="math inline">\(r_z\)</span> and the output of the
+controller is the desired pendulum angle <span
+class="math inline">\(r_{\theta}\)</span>. The input to the inner loop
+controller is the desired pendulum angle <span
+class="math inline">\(r_{\theta}\)</span> and the output is the force
+<span class="math inline">\(F\)</span> on the cart.</p>
+<p>(b) Focusing on the inner loop, find the PD gains <span
+class="math inline">\(k_{P_\theta}\)</span> and <span
+class="math inline">\(k_{D_\theta}\)</span> so that the rise time of the
+inner loop is <span
+class="math inline">\(t_{r_\theta}=0.5\)</span> seconds, and the damping
+ratio is <span class="math inline">\(\zeta_{\theta}=0.707\)</span>.</p>
+<p>(c) Find the DC gain <span class="math inline">\(k_{DC_\theta}\)</span> of
+the inner loop.</p>
+<p>(d) Replace the inner loop by its DC-gain and consider the outer loop. Add a
+low-pass filter that cancels the left half-plane zero, and then design a
+PD control strategy to stabilize the position of the cart.</p>
+<p>(e) Implement the control design to control on the inverted pendulum. Modify
+the simulation to include saturation on the force <span
+class="math inline">\(F\)</span> to limit the size of the input force on
+the cart to <span class="math inline">\(F_{\max}=5\)</span> N. Give the
+pendulum angle an initial condition of 10 deg and simulate the response
+of the system for 10 seconds to verify that the cart is able to balance
+the pendulum. You may also tune rise times or damping to improve
+performance.</p>
+<section id="design-study-b-ch8-successive-loop">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw8"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Organize the successive-loop
+pendulum controller before viewing the solution</h3> <p>Separate the
+inner angle loop from the outer cart-position loop.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Inner-loop PD control diagram for the pendulum."> <img
+ style="width:62%;max-width:70ch;display:block;margin:0.15rem auto 0.7rem;"src="6_design_studies/figures/hw_pendulum_PD_inner.png"
+alt="Inner-loop PD control diagram for the pendulum."> <p
+class="advanced-caption">The inner loop stabilizes pendulum angle
+before the outer loop commands cart position.</p> </div>
+
+<section class="guided-step" data-dsa-step="signals">
+<h4>Step 1. Loop signal order</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Signal
+order</span><input type="text" data-dsa-input="order"
+data-dsa-accept="rz,rtheta,F,theta,z\|r_z r_theta F theta z\|position
+reference angle reference force angle position" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="signals">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="signals"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="signals"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The outer position
+command produces an angle command, which the inner loop converts to
+force.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="inner"> <h4>Step 2.
+Inner-loop design target</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Inner controlled
+variable</span><input type="text" data-dsa-input="var"
+data-dsa-accept="theta\|pendulum angle"
+placeholder="variable"></label> <label><span>Rise
+time</span><input type="text" data-dsa-input="tr"
+data-dsa-accept="0.5\|0.5 seconds\|0.5 s"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="inner">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="inner"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="inner" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> The
+inner loop controls theta with a 0.5 second rise-time
+target.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="outer"> <h4>Step 3.
+Outer-loop design feature</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Added
+block</span><input type="text" data-dsa-input="block"
+data-dsa-accept="low pass\|low-pass\|low pass filter\|low-pass filter"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="outer">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="outer"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="outer" hidden><summary>Show
+solution for Step 3</summary><p><strong>Answer:</strong> A
+low-pass filter is added in the outer loop to cancel the left-half-plane
+zero.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes a nested PD
+controller class and a zero-canceling filter class. Before opening it,
+outline each component separately.</p> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="ctrlPD class: write pseudocode for the outer-loop position command, inner-loop angle control, and force saturation."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="zeroCancelingFilter class: write pseudocode for filtering the reference command to cancel the stable zero in the outer loop."></textarea> <p class="advanced-caption">These prompts are
+ungraded. They are intended to connect the derivation to the
+implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The block diagram for the inner loop is shown in
+<strong>Fig.</strong> <a href="#fig:hw_pendulum_PD_inner"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_PD_inner">8.14</a>.</p>
+<figure id="fig:hw_pendulum_PD_inner">
+<img  style="width:62%;max-width:70ch;display:block;margin:0.15rem auto 0.7rem;"src="6_design_studies/figures/hw_pendulum_PD_inner.png"
+style="width:80.0%"
+alt="Block diagram for inner loop of inverted pendulum control" />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.14. </span>Block diagram for inner loop of inverted
+pendulum control</figcaption>
+</figure>
+<p>The closed loop transfer function from <span
+class="math inline">\(\tilde{R}_{\Theta}\)</span> to <span
+class="math inline">\(\tilde{\Theta}\)</span> is given by <span
+class="math display">\[\tilde{\Theta}(s) =
+\frac{-\frac{k_{P_\theta}}{m_1 \frac{\ell}{6} +m_2\frac{2\ell}{3}}}{s^2
+- \frac{k_{D_\theta}}{m_1 \frac{\ell}{6}
++m_2\frac{2\ell}{3}}s-\left(\frac{(m_1+m_2)g}{m_1 \frac{\ell}{6}
++m_2\frac{2\ell}{3}}+\frac{k_{P_\theta}}{m_1 \frac{\ell}{6}
++m_2\frac{2\ell}{3}}\right)}  \tilde{R}_{\Theta}(s).\]</span> Therefore
+the closed loop characteristic equation is <span
+class="math display">\[\Delta_{cl}(s) =s^2 - \frac{k_{D_\theta}}{m_1
+\frac{\ell}{6} +m_2\frac{2\ell}{3}}s-\left(\frac{(m_1+m_2)g}{m_1
+\frac{\ell}{6} +m_2\frac{2\ell}{3}}+\frac{k_{P_\theta}}{m_1
+\frac{\ell}{6} +m_2\frac{2\ell}{3}}\right)\]</span> The desired closed
+loop characteristic equation is <span
+class="math display">\[\Delta_{cl}^d(s) = s^2 +
+2\zeta_{\theta}\omega_{n_\theta} s + \omega_{n_\theta}^2,\]</span> where
+<span class="math display">\[\begin{aligned}
+\omega_{n_\theta} &amp;= \frac{2.2}{t_{r_\theta}} = 4.4 \\
+\zeta_{\theta} &amp;= 0.707.
+\end{aligned}\]</span> Therefore <span
+class="math display">\[\begin{aligned}
+k_{P_\theta} &amp;= -(m_1+m_2)g - \left(m_1 \frac{\ell}{6}
++m_2\frac{2\ell}{3}\right)\omega_{n_\theta}^2 = -26.0 \\
+k_{D_\theta} &amp;= -2\zeta_{\theta}\omega_{n_\theta}\left (m_1
+\frac{\ell}{6} +m_2\frac{2\ell}{3}\right) = -4.41.
+\end{aligned}\]</span> The DC gain of the inner loop is given by <span
+class="math display">\[k_{DC_{\theta}} =
+\frac{k_{P_\theta}}{(m_1+m_2)g+k_{P_\theta}} = 1.89.\]</span></p>
+<p>Replacing the inner loop by its DC gain, the block diagram for the
+outer loop is shown in <strong>Fig.</strong> <a
+href="#fig:hw_pendulum_PD_outer" data-reference-type="ref"
+data-reference="fig:hw_pendulum_PD_outer">8.15</a>.</p>
+<figure id="fig:hw_pendulum_PD_outer">
+<img  style="width:62%;max-width:70ch;display:block;margin:0.15rem auto 0.7rem;"src="6_design_studies/figures/hw_pendulum_PD_outer.png"
+style="width:80.0%"
+alt="Block diagram for outer loop of inverted pendulum control." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.15. </span>Block diagram for outer loop of inverted
+pendulum control.</figcaption>
+</figure>
+<p>The closed loop transfer function from <span
+class="math inline">\(\tilde{R}_z\)</span> to <span
+class="math inline">\(\tilde{Z}\)</span> is given by <span
+class="math display">\[\tilde{Z}(s) =
+\frac{\frac{k_{P_z}}{k_{D_z}}(s^2-\frac{3g}{2\ell})}{s^3 + s^2 (\frac{
+k_{P_z}}{k_{D_z}}-\frac{3}{2 k_{DC_\theta} k_{D_z} \ell} ) - s \frac{3
+g}{2 \ell} - \frac{3 k_{P_z} g}{2 k_{D_z} \ell}} \tilde{R}_z.\]</span>
+Note that the DC gain for the outer loop is equal to one. The
+closed-loop characteristic equation is <span
+class="math display">\[\Delta_{cl}(s) = s^3 + s^2 (\frac{
+k_{P_z}}{k_{D_z}}-\frac{3}{2 k_{DC_\theta} k_{D_z} \ell}) - s \frac{3
+g}{2 \ell} - \frac{3 k_{P_z} g}{2 k_{D_z} \ell}.\]</span> Since the
+desired characteristic equation is <span
+class="math display">\[\label{eq:delta_cl_d_pendulum_outer}
+\Delta_{cl}^d(s) = s^2 + 2\zeta_z\omega_{n_z}s +
+\omega_{n_z}^2,\]</span> it is not possible to pick PD gain values that
+will create a match between the actual characteristic equation and the
+desired characteristic equation.</p>
+<p>To resolve this problem, note that the transfer function of the outer
+loop can be written as <span class="math display">\[H(s) =
+\frac{-\frac{2\ell}{3}s^2 + g}{s^2}
+     = \frac{-\frac{2\ell}{3}(s +
+\sqrt{\frac{3g}{2\ell}})(s-\sqrt{\frac{3g}{2l}})}{s^2},\]</span> where
+we see that the system has two zeros, one in the right-half plane and
+one in the left-half plane. The strategy for making the numerator
+polynomial have degree one is to add a low-pass filter after the PD
+controller that attempts to cancel the left-half plane zero, as shown in
+Figure <a href="#fig:hw_pendulum_PD_outer_w_lpf"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_PD_outer_w_lpf">8.16</a>. An important
+part of this filter is also including an additional gain to cancel the
+effect of <span class="math inline">\(K_{DC_\theta}\)</span> which is
+not one.</p>
+<figure id="fig:hw_pendulum_PD_outer_w_lpf">
+<img src="6_design_studies/figures/hw_pendulum_PD_outer_w_lpf_v02.png"
+style="width:95.0%"
+alt="Block diagram for outer loop of inverted pendulum control, with low-pass filter to cancel the LHP zero." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.16. </span>Block diagram for outer loop of inverted
+pendulum control, with low-pass filter to cancel the LHP
+zero.</figcaption>
+</figure>
+<p>After accounting for the cancellations introduced by the low-pass
+filter, the equivalent closed-loop systems is shown in Figure <a
+href="#fig:hw_pendulum_PD_outer_eq" data-reference-type="ref"
+data-reference="fig:hw_pendulum_PD_outer_eq">8.17</a>.</p>
+<figure id="fig:hw_pendulum_PD_outer_eq">
+<img src="6_design_studies/figures/hw_pendulum_PD_outer_eq.png"
+style="width:60.0%"
+alt="Block diagram for the equivalent outer loop of inverted pendulum control with low-pass filter." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.17. </span>Block diagram for the equivalent outer
+loop of inverted pendulum control with low-pass filter.</figcaption>
+</figure>
+<p>In this case, the closed-loop characteristic equation from <span
+class="math inline">\(\tilde{R}_z\)</span> to <span
+class="math inline">\(\tilde{Z}\)</span> is given by <span
+class="math display">\[\tilde{Z}(s) = \left(
+        \frac{\left(\frac{k_{P_z}}{1+k_{D_z}}\right)
+(s-\sqrt{\frac{3g}{2\ell}})}
+             {s^2 + \left(\frac{k_{P_z} -
+k_{D_z}\sqrt{\frac{3g}{2\ell}}}{1+k_{D_z}}\right)s -
+\frac{k_{P_z}\sqrt{\frac{3g}{2\ell}}}{1+k_{D_z}}}
+       \right) \tilde{R}_z.\]</span> Setting the closed-loop
+characteristic equation equal to the desired closed-loop characteristic
+equation in Equation <a href="#design-strategies-for-second-order-systems"
+data-reference-type="eqref"
+data-reference="eq:delta_cl_d_pendulum_outer"><a href="#design-strategies-for-second-order-systems">8.11</a></a>
+gives <span class="math display">\[\begin{aligned}
+- \sqrt{\frac{3g}{2\ell}} \frac{k_{P_z}}{1+k_{D_z}} &amp;=
+\omega_{n_z}^2  \\
+\frac{k_{P_z}}{1+k_{D_z}} -
+\sqrt{\frac{3g}{2\ell}}\frac{k_{D_z}}{1+k_{D_z}} &amp;= 2\zeta_z
+\omega_{n_z},
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\begin{aligned}
+\frac{k_{P_z}}{1+k_{D_z}} &amp;= - \sqrt{\frac{2\ell}{3g}}
+\omega_{n_z}^2 \stackrel{\triangle}{=}a \\
+\frac{k_{D_z}}{1+k_{D_z}} &amp;= \sqrt{\frac{2\ell}{3g}}
+\left[\frac{k_{P_z}}{1+k_{D_z}} - 2\zeta_z \omega_{n_z} \right] \\
+                          &amp;= \sqrt{\frac{2\ell}{3g}} \left[-
+\sqrt{\frac{2\ell}{3g}} \omega_{n_z}^2 - 2\zeta_z \omega_{n_z}
+\right]  \stackrel{\triangle}{=}b.
+\end{aligned}\]</span> Solving for the gains in terms of <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> gives <span
+class="math display">\[\begin{aligned}
+k_{D_z} &amp;= \frac{b}{1-b} \\
+k_{P_z} &amp;= \frac{a}{1-b}.
+\end{aligned}\]</span></p>
+<p>A Python class that implements a PD controller for the inverted
+pendulum is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlPD.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlPD:</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">####################################################</span></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#       PD Control: Time Design Strategy</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">####################################################</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tuning parameters</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tr_th = 0.5         # Ries time for part a) - inner loop</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        tr_th <span class="op">=</span> <span class="fl">0.15</span>          <span class="co"># Rise time for inner loop (theta)</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.707</span>       <span class="co"># inner loop Damping Coefficient</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturation limits</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.F_max <span class="op">=</span> <span class="dv">5</span>                    <span class="co"># Max Force, N</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        error_max <span class="op">=</span> <span class="dv">1</span>                 <span class="co"># Max step size,m</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        theta_max <span class="op">=</span> <span class="fl">30.0</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="fl">180.0</span>  <span class="co"># Max theta, rads</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">#                    Inner Loop</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># parameters of the open loop transfer function</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        b0_th <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (P.m1 <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">6.0</span>) <span class="op">\</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> P.m2 <span class="op">*</span> (<span class="fl">2.0</span> <span class="op">*</span> P.ell <span class="op">/</span> <span class="fl">3.0</span>))</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        a0_th <span class="op">=</span> (P.m1 <span class="op">+</span> P.m2) <span class="op">*</span> P.g <span class="op">/</span> (P.m1 <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">6.0</span>) <span class="op">\</span></span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> P.m2 <span class="op">*</span> (<span class="fl">2.0</span> <span class="op">*</span> P.ell <span class="op">/</span> <span class="fl">3.0</span>))</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># coefficients for desired inner loop</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr_th     <span class="co"># Natural frequency</span></span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute gains</span></span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp_th <span class="op">=</span> <span class="op">-</span>(wn_th<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> a0_th) <span class="op">/</span> b0_th</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd_th <span class="op">=</span> <span class="op">-</span>(<span class="fl">2.0</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th) <span class="op">/</span> b0_th</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        DC_gain <span class="op">=</span> b0_th <span class="op">*</span> <span class="va">self</span>.kp_th <span class="op">/</span> (b0_th <span class="op">*</span> <span class="va">self</span>.kp_th <span class="op">+</span> a0_th)</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">#                    Outer Loop</span></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># coefficients for desired outer loop</span></span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> <span class="fl">15.0</span>           <span class="co"># Time scale separation </span></span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        zeta_z <span class="op">=</span> <span class="fl">0.707</span>     <span class="co"># outer loop Damping Coefficient</span></span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>        tr_z <span class="op">=</span> M <span class="op">*</span> tr_th   <span class="co"># desired rise time, s</span></span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>        wn_z <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr_z  <span class="co"># desired natural frequency</span></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute gains</span></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> wn_z<span class="op">**</span><span class="dv">2</span><span class="op">*</span>np.sqrt(<span class="fl">2.0</span><span class="op">*</span>P.ell<span class="op">/</span><span class="fl">3.0</span><span class="op">/</span>P.g)<span class="op">-</span><span class="fl">2.0</span><span class="op">*</span>zeta_z<span class="op">*</span>wn_z</span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd_z <span class="op">=</span> a <span class="op">/</span> (a <span class="op">+</span> np.sqrt(<span class="fl">3.0</span><span class="op">*</span>P.g<span class="op">/</span><span class="fl">2.0</span><span class="op">/</span>P.ell))</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp_z <span class="op">=</span> <span class="op">-</span>wn_z<span class="op">**</span><span class="dv">2</span><span class="op">*</span>np.sqrt(<span class="fl">2.0</span><span class="op">*</span>P.ell<span class="op">/</span><span class="fl">3.0</span><span class="op">/</span>P.g)<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span><span class="va">self</span>.kd_z)</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print control gains to terminal        </span></span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;DC_gain&#39;</span>, DC_gain)</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp_th: &#39;</span>, <span class="va">self</span>.kp_th)</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd_th: &#39;</span>, <span class="va">self</span>.kd_th)</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp_z: &#39;</span>, <span class="va">self</span>.kp_z)</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd_z: &#39;</span>, <span class="va">self</span>.kd_z)</span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="co">#                    zero canceling filter</span></span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">filter</span> <span class="op">=</span> zeroCancelingFilter(DC_gain)</span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, z_r, state):</span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> state[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> state[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        zdot <span class="op">=</span> state[<span class="dv">2</span>, <span class="dv">0</span>]</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        thetadot <span class="op">=</span> state[<span class="dv">3</span>, <span class="dv">0</span>]</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the reference angle for theta comes from the</span></span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>        <span class="co"># outer loop PD control</span></span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> <span class="va">self</span>.kp_z <span class="op">*</span> (z_r <span class="op">-</span> z) <span class="op">-</span> <span class="va">self</span>.kd_z <span class="op">*</span> zdot</span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># low pass filter the outer loop to cancel</span></span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># left-half plane zero and DC-gain</span></span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        theta_r <span class="op">=</span> <span class="va">self</span>.<span class="bu">filter</span>.update(tmp)</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the force applied to the cart comes from the</span></span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="co"># inner loop PD control</span></span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a>        F <span class="op">=</span> <span class="va">self</span>.kp_th <span class="op">*</span> (theta_r <span class="op">-</span> theta) <span class="op">-</span> <span class="va">self</span>.kd_th <span class="op">*</span> thetadot</span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        F_sat <span class="op">=</span> saturate(F, <span class="va">self</span>.F_max)</span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> F_sat</span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="18-18-compensator-design.html#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> zeroCancelingFilter:</span>
+<span id="cb1-90"><a href="18-18-compensator-design.html#cb1-90" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, DC_gain):</span>
+<span id="cb1-91"><a href="18-18-compensator-design.html#cb1-91" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a <span class="op">=</span> <span class="op">-</span><span class="fl">3.0</span> <span class="op">/</span> (<span class="fl">2.0</span> <span class="op">*</span> P.ell <span class="op">*</span> DC_gain)</span>
+<span id="cb1-92"><a href="18-18-compensator-design.html#cb1-92" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b <span class="op">=</span> np.sqrt(<span class="fl">3.0</span> <span class="op">*</span> P.g <span class="op">/</span> (<span class="fl">2.0</span> <span class="op">*</span> P.ell))</span>
+<span id="cb1-93"><a href="18-18-compensator-design.html#cb1-93" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-94"><a href="18-18-compensator-design.html#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="18-18-compensator-design.html#cb1-95" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, <span class="bu">input</span>):</span>
+<span id="cb1-96"><a href="18-18-compensator-design.html#cb1-96" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate using RK1</span></span>
+<span id="cb1-97"><a href="18-18-compensator-design.html#cb1-97" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> <span class="va">self</span>.state <span class="op">+</span> P.Ts <span class="op">*</span> (<span class="op">-</span><span class="va">self</span>.b <span class="op">*</span> <span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.a <span class="op">*</span> <span class="bu">input</span>)</span>
+<span id="cb1-98"><a href="18-18-compensator-design.html#cb1-98" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.state</span>
+<span id="cb1-99"><a href="18-18-compensator-design.html#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="18-18-compensator-design.html#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="18-18-compensator-design.html#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="18-18-compensator-design.html#cb1-102" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="8.4"
+id="design-study-c-satellite-attitude-control-5" class="section-design-study"><span class="header-section-number">8.4</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="8.4.1" id="-example-problem-3311" class="section-example"><span class="header-section-number">8.4.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a></h3>
+<p>(a) For the simple satellite system, using the principle of successive loop
+closure, draw a block diagram that uses PD control for the inner and the
+outer loop control. The input to the outer loop controller is the
+desired angle of the solar panel <span
+class="math inline">\(r_{\phi}\)</span> and the output is the desired
+angle of the satellite <span class="math inline">\(r_{\theta}\)</span>.
+The input to the inner loop controller is <span
+class="math inline">\(r_{\theta}\)</span> and the output is the torque
+on the satellite <span class="math inline">\(\tau\)</span>.</p>
+<p>(b) Focusing on the inner loop, find the PD gains <span
+class="math inline">\(k_{P_\theta}\)</span> and <span
+class="math inline">\(k_{D_\theta}\)</span> so that the rise time of the
+inner loop is <span
+class="math inline">\(t_{r_\theta}=1\)</span> second, and the damping
+ratio is <span class="math inline">\(\zeta_{\theta}=0.9\)</span>.</p>
+<p>(c) Find the DC gain <span class="math inline">\(k_{DC_\theta}\)</span> of
+the inner loop.</p>
+<p>(d) Replacing the inner loop by its DC-gain, find the PD gains <span
+class="math inline">\(k_{P_\phi}\)</span> and <span
+class="math inline">\(k_{D_\phi}\)</span> so that the rise time of the
+outer loop is <span class="math inline">\(t_{r_\phi}= 10
+t_{r_\theta}\)</span> with damping ratio <span
+class="math inline">\(\zeta_{\phi}=0.9\)</span>.</p>
+<p>(e) Implement the successive loop closure design for the satellite system in
+simulation where the commanded solar panel angle is given by a square
+wave with magnitude <span class="math inline">\(15\)</span> degrees and
+frequency <span class="math inline">\(0.015\)</span> Hz.</p>
+<p>(f) Suppose that the size of the input torque on the satellite is limited to
+<span class="math inline">\(\tau_{\max}=5\)</span> Nm. Modify the
+simulation to include saturation on the torque <span
+class="math inline">\(\tau\)</span>. Use rise time as a tuning parameter
+and tune the PD control law to get the fastest possible response without
+input saturation when a step of size <span
+class="math inline">\(30\)</span> degrees is placed on <span
+class="math inline">\(r_\phi\)</span>.</p>
+<section id="design-study-c-ch8-successive-loop-closure">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw8" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Plan the satellite successive-loop controller before viewing the
+solution</h3> <p>Use the body loop as the fast inner loop and the
+flexible-panel loop as the slower outer loop.</p> <section
+class="guided-step" data-dsa-step="architecture"> <h4>Step 1.
+Signal architecture</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Inner controlled
+variable</span><input type="text" data-dsa-input="inner"
+data-dsa-accept="theta\|body angle\|satellite body angle"
+placeholder="variable"></label> <label><span>Outer controlled
+variable</span><input type="text" data-dsa-input="outer"
+data-dsa-accept="phi\|panel angle\|solar panel angle"
+placeholder="variable"></label> <label><span>Actuator
+input</span><input type="text" data-dsa-input="input"
+data-dsa-accept="tau\|torque\|body torque"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="architecture" data-dsa-hint="The inner loop commands
+body angle with torque; the outer loop commands panel angle through
+body-angle commands.">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="architecture"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="architecture"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The inner loop controls
+<span class="math inline">\(\theta\)</span> using <span
+class="math inline">\(\tau\)</span>; the outer loop controls <span
+class="math inline">\(\phi\)</span> by commanding <span class="math
+inline">\(r_\theta\)</span>.</p></details> </section> <section
+class="guided-step" data-dsa-step="inner-gains"> <h4>Step 2.
+Inner-loop design target</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Inner rise
+time</span><input type="text" data-dsa-input="tr"
+data-dsa-accept="1\|1s\|1 second\|1 seconds"
+placeholder="value"></label> <label><span>Damping
+ratio</span><input type="text" data-dsa-input="zeta"
+data-dsa-accept="0.9\|.9" placeholder="value"></label>
+<label><span>Inner DC gain</span><input type="text"
+data-dsa-input="dc" data-dsa-accept="1\|one\|unity"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="inner-gains" data-dsa-hint="The worked solution
+designs the inner loop for 1 second rise time and zeta = 0.9.">Check
+Step 2</button> <p class="quiz-feedback"
+data-dsa-feedback="inner-gains" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="inner-gains" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> The inner-loop
+target is <span class="math inline">\(t_{r_\theta}=1\)</span> s and
+<span class="math inline">\(\zeta_\theta=0.9\)</span>, giving <span
+class="math inline">\(k_{DC_\theta}=1\)</span> in the approximation
+used here.</p></details> </section> <section
+class="guided-step" data-dsa-step="outer"> <h4>Step 3. Outer-loop
+separation</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Outer rise-time
+relationship</span><input type="text" data-dsa-input="separation"
+data-dsa-accept="10\*trtheta\|10 times inner\|ten times inner\|10 tr
+theta" placeholder="relationship"></label> <label><span>Why
+not tune too fast?</span><input type="text" data-dsa-input="risk"
+data-dsa-accept="saturation\|torque saturation\|flexible mode\|panel
+oscillation\|flexible-mode excitation" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="outer" data-dsa-hint="The outer loop should be slower
+so it does not fight the inner loop or excite panel flexure.">Check
+Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="outer" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="outer"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The outer rise time is
+chosen as <span class="math
+inline">\(t_{r_\phi}=10t_{r_\theta}\)</span>. Faster tuning risks
+torque saturation and flexible-panel oscillation.</p></details>
+</section> <section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>Before opening the implementation code,
+outline the nested PD controller and saturation check.</p> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="Write pseudocode for outer-loop phi error, inner-loop theta command, torque command, saturation, and simulation update."></textarea>
+</section> <div class="advanced-button-row"><button
+type="button" data-dsa-reveal-all>Show complete
+solution</button></div> <p class="quiz-feedback"
+data-dsa-complete-feedback aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The block diagram for the inner loop is shown in
+<strong>Fig.</strong> <a href="#fig:hw_satellite_PD_inner"
+data-reference-type="ref"
+data-reference="fig:hw_satellite_PD_inner">8.18</a>.</p>
+<figure id="fig:hw_satellite_PD_inner">
+<img src="6_design_studies/figures/hw_satellite_PD_inner.png"
+style="width:80.0%"
+alt="Block diagram for inner loop of satellite control" />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.18. </span>Block diagram for inner loop of satellite
+control</figcaption>
+</figure>
+<p>The closed loop transfer function from <span
+class="math inline">\(R_{\theta}\)</span> to <span
+class="math inline">\(\Theta\)</span> is given by <span
+class="math display">\[%
+\Theta(s) = \frac{\frac{k_{P_\theta}}{J_s + J_p}}{s^2
++\left(\frac{k_{D_\theta}}{J_s +
+J_p}\right)s+\left(\frac{k_{P_\theta}}{J_s + J_p}\right)}
+R_{\theta}(s).\]</span> Therefore the closed loop characteristic
+equation is <span class="math display">\[%
+\Delta_{cl}(s) = s^2 +\left(\frac{k_{D_\theta}}{J_s +
+J_p}\right)s+\left(\frac{k_{P_\theta}}{J_s + J_p}\right).\]</span> The
+desired closed loop characteristic equation is <span
+class="math display">\[\Delta_{cl}^d(s) = s^2 +
+2\zeta_{\theta}\omega_{n_\theta} s + \omega_{n_\theta}^2,\]</span>
+where</p>
+<p><span class="math display">\[\begin{aligned}
+\omega_{n_\theta} &amp;=
+\frac{1}{2}\frac{\pi}{t_{r_\theta}\sqrt{1-\zeta_{\theta}^2}} \\
+\zeta_{\theta} &amp;= 0.9.
+\end{aligned}\]</span> Therefore <span
+class="math display">\[\begin{aligned}
+%
+k_{P_\theta} &amp;= \omega_{n_\theta}^2(J_s + J_p) = 77.9 \\
+%
+k_{D_\theta} &amp;= 2\zeta_{\theta}\omega_{n_\theta}(J_s + J_p) = 38.9.
+\end{aligned}\]</span> The DC gain of the inner loop is given by <span
+class="math display">\[%
+k_{DC_{\theta}} = 1.\]</span></p>
+<p>Replacing the inner loop by its DC gain, the block diagram for the
+outer loop is shown in <strong>Fig.</strong> <a
+href="#fig:hw_satellite_PD_outer" data-reference-type="ref"
+data-reference="fig:hw_satellite_PD_outer">8.19</a>.</p>
+<figure id="fig:hw_satellite_PD_outer">
+<img src="6_design_studies/figures/hw_satellite_PD_outer.png"
+style="width:80.0%"
+alt="Block diagram for outer loop of satellite attitude control" />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.19. </span>Block diagram for outer loop of satellite
+attitude control</figcaption>
+</figure>
+<p>To find the closed loop transfer function from <span
+class="math inline">\(r_{\phi}\)</span> to <span
+class="math inline">\(\phi\)</span>, follow the loop backwards from
+<span class="math inline">\(\phi\)</span> to obtain <span
+class="math display">\[\Phi(s) =
+\left(\frac{\frac{b}{J_p}s+\frac{k}{J_p}}{s^2+\frac{b}{J_p}s+\frac{k}{J_p}}\right)\left[k_{DC_\theta}k_{P_\phi}(\Phi_r-\Phi)-k_{DC_\theta}k_{D_\phi}s\Phi\right].\]</span>
+After some manipulation we get <span
+class="math display">\[\begin{gathered}
+\big[(J_p+bk_{DC_\theta}k_{D_\phi})s^2 +
+(b+bk_{DC_\theta}k_{P_\phi}+kk_{DC_\theta}k_{D_\phi})s
+     + (k+kk_{DC_\theta}k_{P_\phi})\big]\Phi \\ =
+\left[bk_{DC_\theta}k_{P_\phi}s+kk_{DC_\theta}k_{P_\phi}\right]\Phi_r,
+\end{gathered}\]</span> which results in the monic transfer function
+<span
+class="math display">\[\Phi(s)=\frac{\left(\frac{bk_{DC_\theta}k_{P_\phi}}{J_p+bk_{DC_\theta}k_{D_\phi}}\right)s+\left(\frac{kk_{DC_\theta}k_{P_\phi}}{J_p+bk_{DC_\theta}k_{D_\phi}}\right)}{s^2
++
+\left(\frac{b+bk_{DC_\theta}k_{P_\phi}+kk_{DC_\theta}k_{D_\phi}}{J_p+bk_{DC_\theta}k_{D_\phi}}\right)s
++
+\left(\frac{k+kk_{DC_\theta}k_{P_\phi}}{J_p+bk_{DC_\theta}k_{D_\phi}}\right)}
+\Phi_r.\]</span> The desired closed loop characteristic equation for the
+outer loop is <span class="math display">\[\Delta_{cl}^d(s) = s^2 +
+2\zeta_{\phi}\omega_{n_\phi} s + \omega_{n_\phi}^2,\]</span> where <span
+class="math display">\[\begin{aligned}
+t_{r_\phi} &amp;= 10~t_{r_\theta} = 10 \\
+\omega_{n_\phi} &amp;=
+\frac{1}{2}\frac{\pi}{t_{r_\phi}\sqrt{1-\zeta_{\phi}^2}} \\
+\zeta_{\phi} &amp;= 0.9.
+\end{aligned}\]</span> Therefore the gains <span
+class="math inline">\(k_{P_\phi}\)</span> and <span
+class="math inline">\(k_{P_\phi}\)</span> satisfy <span
+class="math display">\[\begin{aligned}
+\frac{k+kk_{DC_\theta}k_{P_\phi}}{J_p+bk_{DC_\theta}k_{D_\phi}} &amp;=
+\omega_{n_\phi}^2 \\
+\frac{b+bk_{DC_\theta}k_{P_\phi}+kk_{DC_\theta}k_{D_\phi}}{J_p+bk_{DC_\theta}k_{D_\phi}}
+&amp;= 2\zeta_{\phi}\omega_{n_\phi}.
+\end{aligned}\]</span> Expressing these equations in matrix form gives
+<span class="math display">\[\begin{pmatrix} kk_{DC_\theta} &amp;
+-bk_{DC_\theta}\omega_{n_\phi}^2 \\ bk_{DC_\theta} &amp;
+kk_{DC_\theta}-2bk_{DC_\theta}\zeta_\phi\omega_{n_\phi}
+\end{pmatrix}\begin{pmatrix}k_{P_\phi}\\k_{D_\phi}\end{pmatrix} =
+\begin{pmatrix} -k + J_p\omega_{n_\phi}^2 \\ -b +
+2J_p\zeta_\phi\omega_{n_\phi} \end{pmatrix},\]</span> implying that
+<span class="math display">\[\begin{aligned}
+%
+\begin{pmatrix}k_{P_\phi}\\k_{D_\phi}\end{pmatrix} &amp;=
+\begin{pmatrix} kk_{DC_\theta} &amp; -bk_{DC_\theta}\omega_{n_\phi}^2 \\
+bk_{DC_\theta} &amp;
+kk_{DC_\theta}-2bk_{DC_\theta}\zeta_\phi\omega_{n_\phi}
+\end{pmatrix}^{-1}
+    \begin{pmatrix} -k + J_p\omega_{n_\phi}^2 \\ -b +
+2J_p\zeta_\phi\omega_{n_\phi} \end{pmatrix} \\
+    &amp;= \begin{pmatrix} 0.834 \\ 8.253 \end{pmatrix}
+\end{aligned}\]</span></p>
+<p>The DC gain of the outer loop is given by <span
+class="math display">\[%
+k_{DC_{\phi}} =
+\frac{kk_{DC_\theta}k_{P_\phi}}{k+kk_{DC_\theta}k_{P_\phi}} =
+0.455.\]</span> Note that the DC gain of the outer loop is not equal to
+one, so there will be significant steady state error. To remedy this, a
+feedforward term can be used to ensure that <span
+class="math inline">\(\theta\)</span> and <span
+class="math inline">\(\phi\)</span> are made to be equal in steady
+state, resulting in an overall DC gain of one. This configuration is
+depicted in <strong>Fig.</strong> <a
+href="#fig:hw_satellite_PD_outer_feedforward" data-reference-type="ref"
+data-reference="fig:hw_satellite_PD_outer_feedforward">8.20</a>.
+Feedforward control will be discussed in a later chapter.</p>
+<figure id="fig:hw_satellite_PD_outer_feedforward">
+<img
+src="6_design_studies/figures/hw_satellite_PD_outer_feedforward.png"
+style="width:80.0%"
+alt="Block diagram for outer loop of satellite attitude control with a feedforward term." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 8.20. </span>Block diagram for outer loop of satellite
+attitude control with a feedforward term.</figcaption>
+</figure>
+<p>A Python class that implements a PD controller using state feedback
+is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlPD.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> satelliteParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlPD:</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">####################################################</span></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#       PD Control: Time Design Strategy</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">####################################################</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tuning parameters</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tr_th = 1 # rise time for part a) </span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        tr_th <span class="op">=</span> <span class="fl">1.75</span> <span class="co"># ries time tuned to not saturate the input</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># inner loop damping ratio </span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        zeta_phi <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># outer loop damping ratio</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturation limits</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_max <span class="op">=</span> <span class="fl">30.0</span><span class="op">*</span>np.pi<span class="op">/</span><span class="fl">180.0</span>  </span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># maximum commanded base angle</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">#                    Inner Loop</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PD design for inner loop</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># natural frequency if zeta not 0.707, but &lt; 1.0</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_th<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_th<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp_th <span class="op">=</span> wn_th<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (P.Js <span class="op">+</span> P.Jp)</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd_th <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th <span class="op">*</span> (P.Js <span class="op">+</span> P.Jp)</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># DC gain for inner loop (this should be calculated, but it is 1)</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        DC_th <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="co">#                    Outer Loop</span></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PD design for outer loop</span></span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> <span class="fl">10.0</span>  <span class="co"># Time scale separation between loops</span></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        tr_phi <span class="op">=</span> M <span class="op">*</span> tr_th  <span class="co"># rise time for outer loop</span></span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        wn_phi <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_phi<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_phi<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># this is just a matrix inversion to solve for kp and kd</span></span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        AA <span class="op">=</span> np.array([</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>            [P.k <span class="op">*</span> DC_th, <span class="op">-</span>P.b <span class="op">*</span> DC_th <span class="op">*</span> wn_phi<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>            [P.b <span class="op">*</span> DC_th, <span class="op">\</span></span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>                P.k <span class="op">*</span> DC_th <span class="op">\</span></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>                    <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> zeta_phi <span class="op">*</span> wn_phi <span class="op">*</span> P.b <span class="op">*</span> DC_th]])    </span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        bb <span class="op">=</span> np.array([</span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>                    [<span class="op">-</span>P.k <span class="op">+</span> P.Jp <span class="op">*</span> wn_phi<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>                    [<span class="op">-</span>P.b <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> P.Jp <span class="op">*</span> zeta_phi <span class="op">*</span> wn_phi]])</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> np.linalg.inv(AA) <span class="op">@</span> bb</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp_phi <span class="op">=</span> tmp[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd_phi <span class="op">=</span> tmp[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># DC gain for outer loop</span></span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>        k_DC_phi <span class="op">=</span> P.k <span class="op">*</span> DC_th <span class="op">*</span> <span class="va">self</span>.kp_phi <span class="op">\</span></span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>            <span class="op">/</span> (P.k <span class="op">+</span> P.k <span class="op">*</span> DC_th <span class="op">*</span> <span class="va">self</span>.kp_phi)</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print control gains to terminal        </span></span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;k_DC_phi&#39;</span>, k_DC_phi)</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp_th: &#39;</span>, <span class="va">self</span>.kp_th)</span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd_th: &#39;</span>, <span class="va">self</span>.kd_th)</span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp_phi: &#39;</span>, <span class="va">self</span>.kp_phi)</span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd_phi: &#39;</span>, <span class="va">self</span>.kd_phi)</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, phi_r, state):</span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> state[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        phi <span class="op">=</span> state[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        thetadot <span class="op">=</span> state[<span class="dv">2</span>, <span class="dv">0</span>]</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>        phidot <span class="op">=</span> state[<span class="dv">3</span>, <span class="dv">0</span>]</span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># outer loop: outputs the reference angle for theta</span></span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>        <span class="co"># note that book recommends a feed forward term because</span></span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># of poor DC gain on the outer loop which</span></span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># is why we add an addition &quot;phi_r&quot; at the end</span></span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        theta_r <span class="op">=</span> <span class="va">self</span>.kp_phi <span class="op">*</span> (phi_r <span class="op">-</span> phi) <span class="op">\</span></span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span> <span class="va">self</span>.kd_phi <span class="op">*</span> phidot <span class="op">+</span> phi_r</span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>        theta_r <span class="op">=</span> saturate(theta_r, <span class="va">self</span>.theta_max)</span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        <span class="co"># inner loop: outputs the torque applied to the base</span></span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> <span class="va">self</span>.kp_th <span class="op">*</span> (theta_r <span class="op">-</span> theta) <span class="op">\</span></span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span> <span class="va">self</span>.kd_th <span class="op">*</span> thetadot</span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> saturate(tau, P.tau_max)</span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="8.5" id="coding-lab-pd-controller-implementation"><span class="header-section-number">8.5</span> Coding Lab: PD Controller
+Implementation</h2>
+<figure id="fig:pid_pd_coding_setup" class="interactive-setup-figure">
+
+<svg viewBox="0 0 980 230" role="img" aria-label="Second-order feedback
+setup with PD controller"
+style="width:min(98vw,1000px);height:auto;display:block;margin:0
+auto;"> <defs> <marker id="arrow" markerWidth="10"
+markerHeight="8" refX="9" refY="4" orient="auto"> <polygon
+points="0,0 10,4 0,8" fill="rgb(53,82,104)"></polygon> </marker>
+</defs> <rect x="295" y="55" width="170"
+height="78" rx="8" fill="rgb(245,251,252)"
+stroke="rgb(157,187,199)"></rect> <text x="380" y="88"
+text-anchor="middle" font-size="20" fill="rgb(30,58,70)">PD
+Controller</text> <text x="380" y="112" text-anchor="middle"
+font-size="16" fill="rgb(30,58,70)">u = kₚe + kᴅ ė</text>
+
+<rect x="560" y="55" width="185" height="78" rx="8"
+fill="rgb(246,248,251)" stroke="rgb(159,176,204)"></rect> <text
+x="652" y="86" text-anchor="middle" font-size="18"
+fill="rgb(31,47,74)">Plant P(s)</text> <text x="652" y="112"
+text-anchor="middle" font-size="16" fill="rgb(31,47,74)">ωₙ² /
+(s² + 2ζωₙs + ωₙ²)</text>
+
+<circle cx="202" cy="94" r="23" fill="rgb(255,255,255)"
+stroke="rgb(157,187,199)"></circle> <text x="202" y="100"
+text-anchor="middle" font-size="21"
+fill="rgb(37,66,79)">Σ</text> <text x="190" y="78"
+font-size="14" fill="rgb(37,66,79)">+</text> <text x="189"
+y="117" font-size="18" fill="rgb(37,66,79)">−</text>
+
+<line x1="35" y1="94" x2="179" y2="94"
+stroke="rgb(53,82,104)" stroke-width="2.8"
+marker-end="url(#arrow)"></line> <line x1="225" y1="94"
+x2="295" y2="94" stroke="rgb(53,82,104)" stroke-width="2.8"
+marker-end="url(#arrow)"></line> <line x1="465" y1="94"
+x2="560" y2="94" stroke="rgb(53,82,104)" stroke-width="2.8"
+marker-end="url(#arrow)"></line> <line x1="745" y1="94"
+x2="925" y2="94" stroke="rgb(53,82,104)" stroke-width="2.8"
+marker-end="url(#arrow)"></line> <line x1="822" y1="94"
+x2="822" y2="184" stroke="rgb(53,82,104)"
+stroke-width="2.6"></line> <line x1="822" y1="184" x2="202"
+y2="184" stroke="rgb(53,82,104)" stroke-width="2.6"></line>
+<line x1="202" y1="184" x2="202" y2="118"
+stroke="rgb(53,82,104)" stroke-width="2.6"
+marker-end="url(#arrow)"></line>
+
+<line x1="652" y1="32" x2="652" y2="54"
+stroke="rgb(122,93,44)" stroke-width="2.5"
+marker-end="url(#arrow)"></line>
+
+<text x="22" y="84" font-size="19"
+fill="rgb(33,61,73)">r(t)</text> <text x="252" y="84"
+font-size="17" fill="rgb(33,61,73)">e(t)</text> <text x="500"
+y="84" font-size="17" fill="rgb(33,61,73)">u(t)</text> <text
+x="934" y="84" font-size="19"
+fill="rgb(33,61,73)">y(t)</text> <text x="836" y="171"
+font-size="16" fill="rgb(33,61,73)">feedback</text> <text
+x="665" y="25" font-size="16"
+fill="rgb(122,93,44)">d(t)</text> </svg>
+<figcaption>
+Figure 8.21. Block-diagram setup for the Chapter 8 coding lab on
+second-order closed-loop control.
+</figcaption>
+</figure>
+<div class="knowledge-check coding-lab-copy"> <p><strong>Plant
+model used in this lab:</strong></p> <p><em>ÿ</em> +
+2ζω<sub>n</sub><em>ẏ</em> +
+ω<sub>n</sub><sup>2</sup><em>y</em> =
+ω<sub>n</sub><sup>2</sup><em>u</em></p>
+<p><strong>Section 8.6 coding lab objective:</strong> complete the
+controller template and use the targeted checks to evaluate
+step-response performance for the second-order system.</p>
+<p><strong>Evaluation criteria:</strong> rise time &le; 1.2 s,
+overshoot &le; 20 percent, and steady-state error &le; 0.03.</p>
+<p>Use the code editor to complete the controller class.</p>
+</div>
+<figure id="fig:pid_pd_coding_lab" class="marimo-figure">
+<iframe src="../marimo/lab_8_pd_controller/index.html?v=20260224f"
+loading="lazy" title="Chapter 8 PD coding lab"
+style="width:min(98vw,1100px);height:1900px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption>
+Figure 8.22 (Interactive). Chapter 8 coding lab workspace and automated
+performance checks.
+</figcaption>
+</figure>
+<h2 data-number="8.6" id="knowledge-check-7"><span class="header-section-number">8.6</span> Knowledge Check</h2>
+<p>
+Use these quick checks to test understanding of Chapter 8 concepts
+before moving on.
+</p>
+<article class="quiz-card ch8-mcq" data-quiz-type="mcq"
+data-answer="B"> <h4>Q1. Effect of ω<sub>n</sub></h4> <p
+class="quiz-prompt">If ζ is fixed and ω<sub>n</sub> increases,
+what happens to rise time?</p> <div class="quiz-options">
+<label><input type="radio" name="pid-ch8-q1" value="A"><span class="quiz-option-text">A) It
+increases</span></label> <label><input type="radio" name="pid-ch8-q1"
+value="B"><span class="quiz-option-text">B) It decreases</span></label> <label><input type="radio"
+name="pid-ch8-q1" value="C"><span class="quiz-option-text">C) It stays the same</span></label>
+<label><input type="radio" name="pid-ch8-q1" value="D"><span class="quiz-option-text">D) It
+becomes unstable</span></label> </div> <div class="quiz-actions">
+<button type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> B. Larger
+ω<sub>n</sub> usually yields a faster response and shorter rise
+time.</p></details></div> </article>
+<article class="quiz-card ch8-mcq" data-quiz-type="mcq"
+data-answer="C"> <h4>Q2. Damping classification</h4> <p
+class="quiz-prompt">Which damping range gives an oscillatory step
+response in a standard second-order system?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch8-q2" value="A"><span class="quiz-option-text">A) ζ &gt; 1</span></label> <label><input
+type="radio" name="pid-ch8-q2" value="B"><span class="quiz-option-text">B) ζ = 1</span></label>
+<label><input type="radio" name="pid-ch8-q2" value="C"><span class="quiz-option-text">C) 0
+&lt; ζ &lt; 1</span></label> <label><input type="radio"
+name="pid-ch8-q2" value="D"><span class="quiz-option-text">D) ζ = 0 only</span></label> </div> <div
+class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> C. Complex
+conjugate poles (underdamped case) produce oscillation and possible
+overshoot.</p></details></div> </article>
+<article class="quiz-card" data-quiz-type="short"
+data-answers="underdamped\|under damped"> <h4>Q3. Pole
+interpretation</h4> <p class="quiz-prompt">A system has poles at s
+= -0.8 ± j1.5. Enter the damping type.</p> <div
+class="quiz-options"> <label><span>Answer:</span><input
+type="text" name="pid-ch8-q3" placeholder="e.g., underdamped"
+/></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> Underdamped.
+Nonzero imaginary parts indicate oscillatory
+behavior.</p></details></div> </article>
+<article class="quiz-card ch8-mcq" data-quiz-type="mcq"
+data-answer="B"> <h4>Q4. Overshoot trend</h4> <p
+class="quiz-prompt">If ω<sub>n</sub> is fixed and ζ increases
+from 0.3 to 0.9, what happens to percent overshoot?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch8-q4" value="A"><span class="quiz-option-text">A) It increases</span></label>
+<label><input type="radio" name="pid-ch8-q4" value="B"><span class="quiz-option-text">B) It
+decreases</span></label> <label><input type="radio" name="pid-ch8-q4"
+value="C"><span class="quiz-option-text">C) It is unchanged</span></label> <label><input
+type="radio" name="pid-ch8-q4" value="D"><span class="quiz-option-text">D) It is always
+zero</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> B. Increasing
+damping ratio reduces oscillation and
+overshoot.</p></details></div> </article>
+<article class="quiz-card ch8-mcq" data-quiz-type="mcq"
+data-answer="B"> <h4>Q5. Effect of a nonminimum-phase zero</h4>
+<p class="quiz-prompt">Changing the zero parameter to produce
+nonminimum-phase behavior most directly causes:</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch8-q5" value="A"><span class="quiz-option-text">A) Faster settling with no
+tradeoff</span></label> <label><input type="radio" name="pid-ch8-q5"
+value="B"><span class="quiz-option-text">B) Initial response in the wrong direction</span></label>
+<label><input type="radio" name="pid-ch8-q5" value="C"><span class="quiz-option-text">C)
+Elimination of overshoot</span></label> <label><input type="radio"
+name="pid-ch8-q5" value="D"><span class="quiz-option-text">D) No visible response
+change</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> B. A
+nonminimum-phase zero can produce an inverse initial
+response.</p></details></div> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. The derivative gain multiplies s in
+the controller and changes the coefficient of s, not the constant
+term." data-feedback-b="B is not correct. The proportional gain
+changes the constant term, not the s coefficient." data-feedback-c="C
+is correct. The derivative gain changes the coefficient of s, and the
+proportional gain changes the constant term." data-feedback-d="D is
+not correct. The original second-order plant denominator terms must
+still contribute to the characteristic equation."> <h4>Q6. PD
+characteristic equation</h4> <p class="quiz-prompt">For unity
+negative feedback with <span class="math
+inline">\(P(s)=\frac{2}{s^2+3s+1}\)</span> and <span class="math
+inline">\(C(s)=k_P+k_Ds\)</span>, which characteristic equation should
+be used for pole placement?</p> <div class="quiz-options">
+<label><input type="radio" name="pid-ch8-exam-q1" value="A"><span class="quiz-option-text">A) <span class="math
+inline">\(s^2 + (3 + 2k_P)s + (1 + 2k_D) = 0\)</span></span></label>
+<label><input type="radio" name="pid-ch8-exam-q1" value="B"><span class="quiz-option-text">B) <span class="math
+inline">\(s^2 + (3 + k_D)s + (1 + k_P) = 0\)</span></span></label>
+<label><input type="radio" name="pid-ch8-exam-q1" value="C"><span class="quiz-option-text">C) <span class="math
+inline">\(s^2 + (3 + 2k_D)s + (1 + 2k_P) = 0\)</span></span></label>
+<label><input type="radio" name="pid-ch8-exam-q1" value="D"><span class="quiz-option-text">D) <span class="math
+inline">\(s^2 + 2(k_P + k_D)s + 1 = 0\)</span></span></label> </div>
+<div class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. These gains make the constant term 5
+and the s coefficient 6, not the desired polynomial."
+data-feedback-b="B is correct. The desired poles give s\^2 + 4s + 8, so
+3 + 2k_D = 4 and 1 + 2k_P = 8." data-feedback-c="C is not correct.
+This swaps the proportional and derivative roles." data-feedback-d="D
+is not correct. These gains do not match either coefficient.">
+<h4>Q7. Matching desired poles</h4> <p class="quiz-prompt">Using
+the same plant and controller, the desired poles are -2 +/- j2. Which
+gains match the desired characteristic polynomial?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch8-exam-q2" value="A"><span class="quiz-option-text">A) k<sub>P</sub> = 2,
+k<sub>D</sub> = 1.5</span></label> <label><input type="radio"
+name="pid-ch8-exam-q2" value="B"><span class="quiz-option-text">B) k<sub>P</sub> = 3.5,
+k<sub>D</sub> = 0.5</span></label> <label><input type="radio"
+name="pid-ch8-exam-q2" value="C"><span class="quiz-option-text">C) k<sub>P</sub> = 0.5,
+k<sub>D</sub> = 3.5</span></label> <label><input type="radio"
+name="pid-ch8-exam-q2" value="D"><span class="quiz-option-text">D) k<sub>P</sub> = 4,
+k<sub>D</sub> = 8</span></label> </div> <div class="quiz-actions">
+<button type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. Moving poles left usually increases
+required actuation and can amplify neglected dynamics."
+data-feedback-b="B is not correct. Larger gains often make noise and
+actuator limits more important." data-feedback-c="C is not correct.
+Model accuracy matters more when the design demands faster dynamics."
+data-feedback-d="D is correct. Pole placement must be balanced against
+actuator limits, noise sensitivity, and model uncertainty."> <h4>Q8.
+Pole-placement tradeoff</h4> <p class="quiz-prompt">Why is it
+usually not a good design rule to place the closed-loop poles as far
+left as possible?</p> <div class="quiz-options"> <label><input
+type="radio" name="pid-ch8-exam-q3" value="A"><span class="quiz-option-text">A) Far-left poles
+always make the response slower.</span></label> <label><input
+type="radio" name="pid-ch8-exam-q3" value="B"><span class="quiz-option-text">B) Far-left poles
+eliminate all noise and saturation concerns.</span></label> <label><input
+type="radio" name="pid-ch8-exam-q3" value="C"><span class="quiz-option-text">C) Pole locations
+do not affect transient response.</span></label> <label><input
+type="radio" name="pid-ch8-exam-q3" value="D"><span class="quiz-option-text">D) Faster poles
+can require excessive control effort and expose noise or model-limit
+issues.</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<h2 data-number="8.7" id="notes-and-references-6" class="section-notes"><span class="header-section-number">8.7</span> Notes and References</h2>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

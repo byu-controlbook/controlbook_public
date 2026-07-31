@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="12" id="integrator-with-full-state-feedback"><span class="header-section-number">12</span> Integrator with Full State
+Feedback</h1>
+<h2 data-number="12.1" id="theory-10"><span class="header-section-number">12.1</span> Theory</h2>
+<p>In the previous chapter we derived a full state feedback controller
+that stabilized the system and ensured that the DC-gain from the
+reference <span class="math inline">\(r(t)\)</span> to the reference
+output<span id="idx-0152" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(y_r(t)\)</span> is equal to one. If the model is
+precise, meaning that we know all of the parameters exactly and we have
+not neglected any dynamics, or if there are no disturbances on the
+system, then the output will track the reference as time goes to
+infinity. However, models are never precise, and there are almost always
+disturbances on the system, which implies that there will be steady
+state error in the response. In
+Chapter <a href="09-9-system-type-and-integrators.html#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a> we showed that adding an
+integrator to the controller is an effective way of eliminating steady
+state error caused by model mismatch and input/output disturbances. In
+this section we will show how to add an integrator to the full state
+feedback controller derived in
+Chapter <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a>. <span id="idx-0153" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>A block diagram of the system with full state feedback and an
+integrator is shown in
+<strong>Fig.</strong> <a href="#fig:ss_full_state_feedback_integrator"
+data-reference-type="ref"
+data-reference="fig:ss_full_state_feedback_integrator">12.1</a>.</p>
+<figure id="fig:ss_full_state_feedback_integrator">
+<img
+src="4_observer_based/figures/ss_full_state_feedback_integrator.png"
+style="width:80.0%" alt="Full state feedback with integrator." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 12.1. </span>Full state feedback with
+integrator.</figcaption>
+</figure>
+<p>Let the state of the integrator be defined as <span
+class="math inline">\(x_I\)</span>, as shown in
+<strong>Fig.</strong> <a href="#fig:ss_full_state_feedback_integrator"
+data-reference-type="ref"
+data-reference="fig:ss_full_state_feedback_integrator">12.1</a>, then
+<span class="math display">\[\dot{x}_I = r-y_r = r-C_rx.\]</span> In
+Appendix <a href="28-p-6-root-locus.html#----root-locus" data-reference-type="ref"
+data-reference="chap:PID-root-locus">30</a> we argue using the root
+locus<span id="idx-0154" class="book-index-anchor" aria-hidden="true"></span>, that adding an
+integrator after the other gains are selected, will change all of the
+pole locations. Since the pole placement<span id="idx-0155" class="book-index-anchor" aria-hidden="true"></span> design methods
+described in Part <a href="06-6-state-space-models.html#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a> were limited to second-order
+systems, we did not have an effective method for placing the system
+poles and the integrator pole simultaneously. On the other hand, the
+pole placement technique described in
+Chapter <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> was not limited to
+second-order systems. As such, there should be a way to use the methods
+of Chapter <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> to simultaneously place both
+the system poles and the integrator pole. To do so, we augment the
+states of the original system with the integrator state <span
+class="math inline">\(x_I\)</span>. Since the dynamics of the original
+system are given by <span class="math inline">\(\dot{x}=Ax+Bu\)</span>,
+the dynamics of the augmented system are given by <span
+class="math display">\[\label{eq:ss_augmented_system}
+\begin{pmatrix} \dot{x} \\ \dot{x}_I \end{pmatrix} = \begin{pmatrix} A
+&amp; \mathbf{0} \\ -C_r &amp; \mathbf{0}\end{pmatrix} \begin{pmatrix} x
+\\ x_I \end{pmatrix} + \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} u +
+\begin{pmatrix} 0 \\ 1 \end{pmatrix} r,\]</span> where the state of the
+augmented system<span id="idx-0156" class="book-index-anchor" aria-hidden="true"></span> is <span
+class="math inline">\((x^\top, x_I)^\top\)</span>, the interaction
+matrix<span id="idx-0157" class="book-index-anchor" aria-hidden="true"></span>, or the “<span
+class="math inline">\(A\)</span>-matrix,” of the augmented system is
+<span class="math display">\[A_1 = \begin{pmatrix} A &amp; \mathbf{0} \\
+-C_r &amp; \mathbf{0}\end{pmatrix},\]</span> and the “<span
+class="math inline">\(B\)</span>-matrix” of the augmented system is
+<span class="math display">\[B_1=\begin{pmatrix} B \\
+\mathbf{0}\end{pmatrix}.\]</span> The first question that might be asked
+is whether the augmented system <span
+class="math inline">\((A_1,B_1)\)</span> is controllable when the
+original system <span class="math inline">\((A,B)\)</span> is
+controllable.<span id="idx-0158" class="book-index-anchor" aria-hidden="true"></span> Since the original
+system is controllable, we know that the controllability matrix<span id="idx-0159" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\mathcal{C}_{A,B} = \begin{pmatrix} B &amp; AB
+&amp; \dots &amp; A^{n-1}B \end{pmatrix}\]</span> has rank <span
+class="math inline">\(n\)</span>. For the augmented system, the
+controllability matrix is <span
+class="math display">\[\mathcal{C}_{A_1,B_1}
+= \begin{pmatrix} B &amp; AB &amp; A^2B &amp; \dots &amp; A^{n-1}B &amp;
+A^nB \\ 0 &amp; -C_rB &amp; -C_rAB &amp; \dots &amp; -C_rA^{n-2}B &amp;
+-C_rA^{n-1}B \end{pmatrix},\]</span> which is guaranteed to have rank
+<span class="math inline">\(n+1\)</span> if <span
+class="math inline">\(C_rA^{n-1}B \neq 0\)</span>. When the augmented
+system is controllable, we can use the pole placement technique
+described in
+Chapter <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> to place the system poles
+and the pole of the integrator simultaneously using the augmented
+system. For example, letting <span class="math inline">\(A_1\)</span>
+and <span class="math inline">\(B_1\)</span> represent the augmented
+system, and using the Python place command</p>
+<pre><code>import control as cnt
+K1 = cnt.place(A1,B1, [p1,...,pn,pI])</code></pre>
+<p>where <span class="math inline">\(p_I\)</span> is the integrator
+pole. The resulting controller is <span
+class="math display">\[\begin{aligned}
+u(t) &amp;= -K_1\begin{pmatrix}x \\ x_I \end{pmatrix} = -\begin{pmatrix}
+K &amp; k_I \end{pmatrix}\begin{pmatrix}x \\ x_I \end{pmatrix}
+  =-Kx-k_Ix_I\\
+  &amp;= \underbrace{-Kx(t)}_{\text{state feedback}} - \underbrace{k_I
+\int_0^t(r(\tau)-y_r(\tau))d\tau}_{\text{integral feedback}} \quad.
+\end{aligned}\]</span></p>
+<p>We can show that adding the integrator ensures that the
+DC-gain<span id="idx-0160" class="book-index-anchor" aria-hidden="true"></span> of the closed-loop
+system is equal to one. Indeed from
+Equation <a href="#theory-10" data-reference-type="eqref"
+data-reference="eq:ss_augmented_system"><a href="#integrator-with-full-state-feedback">12.1</a></a> the
+augmented closed-loop system is <span
+class="math display">\[\begin{aligned}
+\begin{pmatrix} \dot{x} \\ \dot{x}_I \end{pmatrix} &amp;=
+\begin{pmatrix} A &amp; \mathbf{0} \\ -C_r &amp; \mathbf{0}\end{pmatrix}
+\begin{pmatrix} x \\ x_I \end{pmatrix} - \begin{pmatrix} B \\ \mathbf{0}
+\end{pmatrix} \begin{pmatrix} K &amp; k_I \end{pmatrix}\begin{pmatrix} x
+\\ x_I \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} r \\
+&amp;= \begin{pmatrix} A-BK &amp; -Bk_I \\ -C_r &amp;
+0\end{pmatrix}\begin{pmatrix} x \\ x_I \end{pmatrix} +
+    \begin{pmatrix} 0 \\ 1 \end{pmatrix} r,
+\end{aligned}\]</span> where the reference output equation is <span
+class="math display">\[y_r = \begin{pmatrix} C_r &amp; 0 \end{pmatrix}
+    \begin{pmatrix} x \\ x_I \end{pmatrix}.\]</span> Therefore, the
+transfer function from <span class="math inline">\(R(s)\)</span> to
+<span class="math inline">\(Y_r(s)\)</span> is <span
+class="math display">\[Y_r(s) = \begin{pmatrix} C_r &amp; 0
+\end{pmatrix} \left(sI - \begin{pmatrix} A-BK &amp; -Bk_I \\ -C_r &amp;
+0\end{pmatrix}\right)^{-1} \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+R(s),\]</span> which implies that the DC-gain is <span
+class="math display">\[\begin{aligned}
+k_{DC} &amp;=   -\begin{pmatrix} C_r &amp; 0
+\end{pmatrix}  \begin{pmatrix} A-BK &amp; -Bk_I \\ -C_r &amp;
+0\end{pmatrix}^{-1} \begin{pmatrix} 0 \\ 1 \end{pmatrix}.
+\end{aligned}\]</span> Defining <span
+class="math inline">\(M\stackrel{\triangle}{=}(A-BK)^{-1}\)</span>, and
+using the Matrix inversion formula for block matrices given in
+Appendix <a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
+data-reference="chap:linear_algebra">31</a>
+Equation <a href="29-p-7-review-of-linear-algebra.html#trace" data-reference-type="eqref"
+data-reference="eq:matrix_inversion_lemma_2"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7.2</a></a>
+we get <span class="math display">\[\begin{aligned}
+k_{DC} &amp;=   -\begin{pmatrix} C_r &amp; 0
+\end{pmatrix}  \begin{pmatrix} M-MBk_I(C_rMBk_I)^{-1}C_rM &amp;
+-MBk_I(C_rMBk_I)^{-1} \\ -(C_rMBk_I)^{-1}C_rM &amp;
+(C_rMBk_I)^{-1}\end{pmatrix} \begin{pmatrix} 0 \\ 1 \end{pmatrix} \\
+&amp;= C_rMBk_I(C_rMBk_I)^{-1} \\
+&amp;= 1.
+\end{aligned}\]</span></p>
+<h3 data-number="12.1.1"
+id="integral-feedback-for-linearized-systems"><span class="header-section-number">12.1.1</span> Integral Feedback for
+Linearized Systems</h3>
+<p><span id="idx-0161" class="book-index-anchor" aria-hidden="true"></span> Suppose that the state
+space model is from a linearized system, i.e, suppose that <span
+class="math inline">\(x\in\mathbb{R}^n\)</span> is the state, <span
+class="math inline">\(x_e\in\mathbb{R}^n\)</span> is the equilibrium
+state, and that <span class="math inline">\(\tilde{x}=x-x_e\)</span> is
+the state linearized around the equilibrium. Similarly, suppose that
+<span class="math inline">\(u\in\mathbb{R}^m\)</span> is the input, that
+<span class="math inline">\(u_e\in\mathbb{R}^m\)</span> is the input at
+equilibrium, and that <span
+class="math inline">\(\tilde{u}=u-u_e\)</span> is the input linearized
+around equilibrium, and that <span
+class="math inline">\(y_r\in\mathbf{R}^p\)</span> is the reference
+output, <span
+class="math inline">\(y_{re}=C_rx_e\in\mathbf{R}^p\)</span> is the
+reference output at equilibrium, <span
+class="math inline">\(\tilde{y}_r=y_r-y_{re}\)</span> is the reference
+output linearized about equilibrium, and the reference input is given by
+<span class="math inline">\(\tilde{r}=r-y_{re}\)</span>. In this case
+the integral state is selected as <span
+class="math inline">\(\tilde{x}_I=\int(\tilde{r}-\tilde{y}_r)d\tau\)</span>,
+and the augmented system is given by <span
+class="math display">\[\begin{pmatrix} \dot{\tilde{x}} \\
+\dot{\tilde{x}}_I \end{pmatrix} = \begin{pmatrix} A &amp; \mathbf{0} \\
+-C_r &amp; \mathbf{0}\end{pmatrix} \begin{pmatrix} \tilde{x} \\
+\tilde{x}_I \end{pmatrix} + \begin{pmatrix} B \\ \mathbf{0}
+\end{pmatrix} \tilde{u} + \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+\tilde{r}.\]</span> The pole placement design proceeds as in the
+previous section with the resulting controller being <span
+class="math display">\[\tilde{u} = -K\tilde{x} - k_I \int_{-\infty}^t
+\tilde{e}(\tau)d\tau.\]</span> Noting that <span
+class="math display">\[\tilde{e} = \tilde{r}-\tilde{y} =
+(r-y_{re})-(y_r-y_{re}) = r-y_r\]</span> we get that the controller for
+the linearized system is given by <span class="math display">\[u = u_e -
+K(x-x_e) - k_I \int_{-\infty}^t (r(\tau)-y_r(\tau))d\tau.\]</span></p>
+<h2 data-number="12.2"
+id="summary-of-design-process---state-feedback-with-integrator"><span class="header-section-number">12.2</span> Summary of Design Process -
+State Feedback with Integrator</h2>
+<p>The design process for adding an integrator to state feedback can be
+summarized as follows. Given the plant <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + Bu \\
+y_r &amp;= C_rx,
+\end{aligned}\]</span> where we desire that <span
+class="math inline">\(y_r\)</span> tracks the reference <span
+class="math inline">\(r\)</span> using integral action using the
+controller <span class="math display">\[u(t) = -Kx(t) -
+k_I\int_{-\infty}^t (r(\tau)-y_r(\tau))d\tau,\]</span> with desired
+closed-loop gains at <span class="math inline">\(p_1, p_2, \dots,
+p_n\)</span>, <span class="math inline">\(p_I\)</span>.</p>
+<p>Step 1.<br />
+Augment the state evolution equation as <span
+class="math display">\[\begin{pmatrix}\dot{x} \\ \dot{x}_I \end{pmatrix}
+= \begin{pmatrix} A &amp; \mathbf{0} \\ -C_r &amp; \mathbf{0}
+\end{pmatrix} \begin{pmatrix}x \\ x_I\end{pmatrix} + \begin{pmatrix}B \\
+\mathbf{0}\end{pmatrix}u + \begin{pmatrix}\mathbf{0} \\
+I\end{pmatrix}r,\]</span> and let <span
+class="math display">\[\begin{aligned}
+A_1 &amp;= \begin{pmatrix} A &amp; \mathbf{0} \\ -C_r &amp; \mathbf{0}
+\end{pmatrix} \\
+B_1 &amp;= \begin{pmatrix}B \\ \mathbf{0}\end{pmatrix}
+\end{aligned}\]</span></p>
+<p>Step 2.<br />
+Follow the pole placement procedure outlined in
+Chapter <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> to find <span
+class="math inline">\(K_1\)</span> that places the poles of the
+augmented system at <span class="math inline">\(p_1, p_2, \dots,
+p_n\)</span>, and <span class="math inline">\(p_I\)</span>.</p>
+<p>Step 3.<br />
+Find the gains <span class="math inline">\(K\)</span> and <span
+class="math inline">\(k_I\)</span> as <span
+class="math display">\[\begin{aligned}
+K &amp;= K_1(1:n) \\
+k_I &amp;= K_1(n+1).
+\end{aligned}\]</span></p>
+<p>Using Python, these steps can be implemented using the following
+script.</p>
+<pre><code>import numpy as np
+import control as cnt
+
+# augment the system matrices
+A1 = np.vstack((
+    np.hstack((A, np.zeros((np.size(A,1),1)))),
+    np.hstack((-Cr, 0)) ))
+    
+B1 = np.vstack((
+    B, 0))
+
+# Compute the gains if the system is controllable
+if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != np.size(A1,1):
+    print(&quot;The system is not controllable&quot;)
+else:
+    K1 = cnt.acker(A1, B1, [p1, p2, ..., pn, pI])
+
+    #extract the state feedback gains and the integral gain
+    K = K1[0,0:-1]
+    ki = K1[0,-1]
+
+print(&#39;K: &#39;, K)
+print(&#39;ki: &#39;, ki)</code></pre>
+<h3 data-number="12.2.1" id="simple-example-1"><span class="header-section-number">12.2.1</span> Simple example</h3>
+<p>Given the system <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} 0 &amp; 1 \\ 2 &amp; 3 \end{pmatrix} x +
+\begin{pmatrix} 0 \\ 4 \end{pmatrix} u \\
+y_r &amp;= \begin{pmatrix} 5 &amp; 0 \end{pmatrix} x
+\end{aligned}\]</span> find the feedback gain <span
+class="math inline">\(K\)</span> to place the closed-loop poles at <span
+class="math inline">\(-1\pm j\)</span>, and the reference gain <span
+class="math inline">\(k_r\)</span> so that the DC-gain is one, and add
+an integrator with gain at <span
+class="math inline">\(p_I=-0.1\)</span>.</p>
+<p>Step 1.<br />
+Form the augmented system <span class="math display">\[\begin{aligned}
+A_1 &amp;= \begin{pmatrix} A &amp; \mathbf{0} \\ -C_r &amp; \mathbf{0}
+\end{pmatrix} = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 2 &amp; 3 &amp; 0
+\\ -5 &amp; 0 &amp; 0 \end{pmatrix} \\
+B_1 &amp;= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} =
+\begin{pmatrix} 0 \\ 4 \\ 0 \end{pmatrix}
+\end{aligned}\]</span></p>
+<p>Step 2.<br />
+To place the poles at <span class="math inline">\(p_1=-1+j\)</span>,
+<span class="math inline">\(p_2=-1-j\)</span>, <span
+class="math inline">\(p_I=-0.1\)</span>, we first form the
+controllability matrix <span
+class="math display">\[\mathcal{C}_{A_1,B_1} = [B_1, A_1B_1, A_1^2B_1] =
+\begin{pmatrix} 0 &amp; 4 &amp; 12 \\ 4 &amp; 12 &amp; 44 \\ 0 &amp; 0
+&amp; -20 \end{pmatrix}.\]</span> The determinant is <span
+class="math inline">\(det(\mathcal{C}_{A_1,B_1})=320\neq 0\)</span>,
+therefore the system is controllable.</p>
+<p>The open-loop characteristic polynomial <span
+class="math display">\[\begin{aligned}
+\Delta_{ol}(s)&amp;=\text{det}(sI-A_1) = \text{det}\begin{pmatrix} s
+&amp; -1 &amp; 0  \\ -2 &amp; s-3 &amp; 0 \\ 5 &amp; 0 &amp;
+s\end{pmatrix} \\ &amp;= s^3 - 3s^2 -2s,
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\begin{aligned}
+\mathbf{a}_{A_1} &amp;= \begin{pmatrix}-3, &amp; -2, &amp;
+0\end{pmatrix} \\
+\mathcal{A}_{A_1} &amp;= \begin{pmatrix}
+1 &amp; -3 &amp; -2 \\ 0 &amp; 1 &amp; -3 \\ 0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\end{aligned}\]</span></p>
+<p>The desired closed-loop polynomial <span
+class="math display">\[\begin{aligned}
+\Delta_{cl}^d(s) &amp;= (s+1-j)(s+1+j)(s+0.1) \\
+&amp;=s^3+2.1s^2+2.2s+0.2,
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\boldsymbol{\alpha} = \begin{pmatrix}2.1, &amp;
+2.2, &amp; 0.2\end{pmatrix}.\]</span></p>
+<p>The augmented gains are therefore given as <span
+class="math display">\[\begin{aligned}
+K_1 &amp;=
+(\boldsymbol{\alpha}-\mathbf{a}_{A_1})\mathcal{A}_{A_1}^{-1}\mathcal{C}_{A_1,B_1}^{-1}
+\\
+  &amp;= \left( (2.1, 2.2, 0.2) - (-3, -2, 0) \right) \cdot \\
+&amp;\qquad \begin{pmatrix}1 &amp; -3 &amp; -2 \\ 0 &amp; 1 &amp; -3 \\
+0 &amp; 0 &amp; 1\end{pmatrix}^{-1}\begin{pmatrix}0 &amp; 4 &amp; 12 \\
+4 &amp; 12 &amp; 44 \\ 0 &amp; 0 &amp; -20 \end{pmatrix}^{-1} \\
+  &amp;= \begin{pmatrix} 1.05, &amp; 1.275, &amp; -0.01 \end{pmatrix}
+\end{aligned}\]</span></p>
+<p>Step 3.<br />
+The feedback gains are therefore given by <span
+class="math display">\[\begin{aligned}
+K &amp;= K_1(1:2) = \begin{pmatrix} 1.05, &amp; 1.275 \end{pmatrix} \\
+k_I &amp;= K_1(3) = -0.01
+\end{aligned}\]</span></p>
+<p>Alternatively, we could have used the following Python script</p>
+<pre><code>import numpy as np
+import control as cnt
+
+# define original state space system and desired poles
+A = np.array([[0.0, 1.0], [2.0, 3.0]])
+B = np.array([[0.0], [4.0]])
+Cr = np.array([5.0, 0])
+
+p1 = -1.0 - 1.j
+p2 = -1.0 + 1.j
+pI = -0.1
+
+# augment the system matrices
+A1 = np.vstack((
+    np.hstack((A, np.zeros((np.size(A,1),1)))),
+    np.hstack((-Cr, 0)) ))
+B1 = np.vstack((
+    B, 0))
+
+# Compute the gains if the system is controllable
+if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != np.size(A1,1):
+    print(&quot;The system is not controllable&quot;)
+else:
+    K1 = cnt.acker(A1, B1, [p1, p2, pI])
+
+    #extract the state feedback gains and the integral gain
+    K = K1[0,0:-1]
+    ki = K1[0,-1]</code></pre>
+<section id="integrator-ch12-guided-design">
+<article class="guided-design-activity" data-guided-design="ch12-integrator-feedback">
+<p class="advanced-kicker">
+Chapter 12 guided activity
+</p>
+<h3>
+Work through a second integrator-augmented design
+</h3>
+<p>
+Use the same procedure as the simple example above. For the system
+below, compute each quantity in order and click <strong>Check</strong>
+before moving on. The solution for each step is revealed only after that
+step is checked.
+</p>
+<p class="quiz-equation">
+xdot = A x + B u with A = (0, 1; -2, -3), B = (0; 1), C<sub>r</sub> =
+(1, 0), and desired augmented closed-loop poles = -1 and -2 ± j.
+</p>
+<section class="guided-step" data-guided-step="augmented">
+<h4>
+Step 1. Augmented system
+</h4>
+<p>
+Form A<sub>1</sub> = (A, 0; -C<sub>r</sub>, 0) and B<sub>1</sub> = (B;
+0). Enter A<sub>1</sub> row by row and B<sub>1</sub> from top to bottom.
+</p>
+<div class="guided-input-grid guided-input-grid-augmented">
+<span class="guided-math-label">A<sub>1</sub> =</span> <div
+class="guided-matrix guided-matrix-3x3" aria-label="Augmented A matrix
+entries"> <label><input type="text" data-guided-input="a11"
+placeholder="11" aria-label="A1 11"></label> <label><input type="text"
+data-guided-input="a12" placeholder="12" aria-label="A1 12"></label>
+<label><input type="text" data-guided-input="a13" placeholder="13"
+aria-label="A1 13"></label> <label><input type="text"
+data-guided-input="a21" placeholder="21" aria-label="A1 21"></label>
+<label><input type="text" data-guided-input="a22" placeholder="22"
+aria-label="A1 22"></label> <label><input type="text"
+data-guided-input="a23" placeholder="23" aria-label="A1 23"></label>
+<label><input type="text" data-guided-input="a31" placeholder="31"
+aria-label="A1 31"></label> <label><input type="text"
+data-guided-input="a32" placeholder="32" aria-label="A1 32"></label>
+<label><input type="text" data-guided-input="a33" placeholder="33"
+aria-label="A1 33"></label>
+</div>
+<span class="guided-math-label">B<sub>1</sub> =</span> <div
+class="guided-matrix guided-vector guided-vector-column"
+aria-label="Augmented B vector entries"> <label><input type="text"
+data-guided-input="b1" placeholder="1" aria-label="B1 1"></label>
+<label><input type="text" data-guided-input="b2" placeholder="2"
+aria-label="B1 2"></label> <label><input type="text"
+data-guided-input="b3" placeholder="3" aria-label="B1 3"></label>
+</div>
+</div>
+<button type="button" data-guided-check="augmented">
+Check Step 1
+</button>
+<p class="quiz-feedback" data-guided-feedback="augmented" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="augmented" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> A<sub>1</sub> = (0, 1, 0; -2, -3, 0; -1, 0, 0)
+and B<sub>1</sub> = (0, 1, 0)<sup>T</sup>.
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="controllability">
+<h4>
+Step 2. Augmented controllability matrix
+</h4>
+<p>
+Compute C<sub>A1,B1</sub> = \[B<sub>1</sub>, A<sub>1</sub>B<sub>1</sub>,
+A<sub>1</sub><sup>2</sup>B<sub>1</sub>\]. Enter the matrix row by row
+and the determinant.
+</p>
+<div class="guided-input-grid guided-input-grid-augmented">
+<span class="guided-math-label">C<sub>A1,B1</sub> =</span> <div
+class="guided-matrix guided-matrix-3x3" aria-label="Augmented
+controllability matrix entries"> <label><input type="text"
+data-guided-input="c11" placeholder="11" aria-label="C 11"></label>
+<label><input type="text" data-guided-input="c12" placeholder="12"
+aria-label="C 12"></label> <label><input type="text"
+data-guided-input="c13" placeholder="13" aria-label="C 13"></label>
+<label><input type="text" data-guided-input="c21" placeholder="21"
+aria-label="C 21"></label> <label><input type="text"
+data-guided-input="c22" placeholder="22" aria-label="C 22"></label>
+<label><input type="text" data-guided-input="c23" placeholder="23"
+aria-label="C 23"></label> <label><input type="text"
+data-guided-input="c31" placeholder="31" aria-label="C 31"></label>
+<label><input type="text" data-guided-input="c32" placeholder="32"
+aria-label="C 32"></label> <label><input type="text"
+data-guided-input="c33" placeholder="33" aria-label="C 33"></label>
+</div>
+<label
+class="guided-scalar-entry">det(C)<input
+type="text" data-guided-input="detc"
+placeholder="value"></label>
+</div>
+<button type="button" data-guided-check="controllability">
+Check Step 2
+</button>
+<p class="quiz-feedback" data-guided-feedback="controllability" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="controllability" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> C<sub>A1,B1</sub> = (0, 1, -3; 1, -3, 7; 0, 0,
+-1) and det(C<sub>A1,B1</sub>) = 1, so the augmented system is
+controllable.
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="open-loop">
+<h4>
+Step 3. Open-loop augmented polynomial
+</h4>
+<p>
+Compute det(sI - A<sub>1</sub>) = s<sup>3</sup> +
+a<sub>2</sub>s<sup>2</sup> + a<sub>1</sub>s + a<sub>0</sub>.
+</p>
+
+<span class="guided-math-label">a =</span> <div
+class="guided-matrix guided-vector guided-vector-row-3"
+aria-label="Open-loop augmented coefficient vector entries">
+<label><input type="text"
+data-guided-input="a2" placeholder="a2"
+aria-label="a2"></label> <label><input type="text"
+data-guided-input="a1" placeholder="a1"
+aria-label="a1"></label> <label><input type="text"
+data-guided-input="a0" placeholder="a0"
+aria-label="a0"></label>
+
+</div>
+<button type="button" data-guided-check="open-loop">
+Check Step 3
+</button>
+<p class="quiz-feedback" data-guided-feedback="open-loop" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="open-loop" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> det(sI - A<sub>1</sub>) = s<sup>3</sup> +
+3s<sup>2</sup> + 2s, so a = (3, 2, 0).
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="desired">
+<h4>
+Step 4. Desired augmented polynomial
+</h4>
+<p>
+Compute (s + 1)((s + 2)<sup>2</sup> + 1) = s<sup>3</sup> +
+alpha<sub>2</sub>s<sup>2</sup> + alpha<sub>1</sub>s + alpha<sub>0</sub>.
+</p>
+
+<span class="guided-math-label">α =</span> <div
+class="guided-matrix guided-vector guided-vector-row-3"
+aria-label="Desired augmented coefficient vector entries">
+<label><input type="text" data-guided-input="alpha2"
+placeholder="alpha2" aria-label="alpha2"></label>
+<label><input type="text" data-guided-input="alpha1"
+placeholder="alpha1" aria-label="alpha1"></label>
+<label><input type="text" data-guided-input="alpha0"
+placeholder="alpha0" aria-label="alpha0"></label>
+
+</div>
+<button type="button" data-guided-check="desired">
+Check Step 4
+</button>
+<p class="quiz-feedback" data-guided-feedback="desired" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="desired" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> The desired polynomial is s<sup>3</sup> +
+5s<sup>2</sup> + 9s + 5, so alpha = (5, 9, 5).
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="gain">
+<h4>
+Step 5. Augmented feedback gain
+</h4>
+<p>
+Use K<sub>1</sub> = (alpha - a)
+Acal<sub>A1</sub><sup>-1</sup>C<sub>A1,B1</sub><sup>-1</sup>. Enter the
+three entries of K<sub>1</sub>.
+</p>
+
+<span class="guided-math-label">K<sub>1</sub> =</span> <div
+class="guided-matrix guided-vector guided-vector-row-3"
+aria-label="Augmented gain entries"> <label><input type="text"
+data-guided-input="k1" placeholder="k1"
+aria-label="k1"></label> <label><input type="text"
+data-guided-input="k2" placeholder="k2"
+aria-label="k2"></label> <label><input type="text"
+data-guided-input="ki" placeholder="kI"
+aria-label="kI"></label>
+
+</div>
+<button type="button" data-guided-check="gain">
+Check Step 5
+</button>
+<p class="quiz-feedback" data-guided-feedback="gain" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="gain" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> alpha - a = (2, 7, 5), which gives
+K<sub>1</sub> = (7, 2, -5).
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="extract">
+<h4>
+Step 6. Extract the gains
+</h4>
+<p>
+Separate K<sub>1</sub> into the state-feedback gain K and the integrator
+gain k<sub>I</sub>.
+</p>
+
+<span class="guided-math-label">K =</span> <div
+class="guided-matrix guided-vector guided-vector-row"
+aria-label="State-feedback entries"> <label><input type="text"
+data-guided-input="kx1" placeholder="k1" aria-label="K 1"></label>
+<label><input type="text" data-guided-input="kx2" placeholder="k2"
+aria-label="K 2"></label>
+
+<span class="guided-math-label">k<sub>I</sub> =</span> <div
+class="guided-matrix guided-vector guided-vector-column"
+aria-label="Integral gain entry"> <label><input type="text"
+data-guided-input="kiextract" placeholder="kI"
+aria-label="kI"></label>
+</div>
+</div>
+<button type="button" data-guided-check="extract">
+Check Step 6
+</button>
+<p class="quiz-feedback" data-guided-feedback="extract" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="extract" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> K = (7, 2) and k<sub>I</sub> = -5.
+</p>
+</details>
+</section>
+</article>
+</section>
+<h2 data-number="12.3"
+id="design-study-a-single-link-robot-arm-10" class="section-design-study"><span class="header-section-number">12.3</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="12.3.1" id="-example-problem-3115" class="section-example"><span class="header-section-number">12.3.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a></h3>
+<p>Modify the state feedback solution developed in
+Homework <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> to add an integrator with
+anti-windup.</p>
+<p>Add a 0.25 Newton disturbance to the system and allow the system
+parameters to change up to 20%.</p>
+<p>Tune the integrator pole (and other gains if necessary) to get good
+tracking performance.</p>
+<section id="design-study-a-ch12-integrator-state-feedback">
+<article class="guided-design-study guided-design-activity"
+data-design-study-a="hw12-integrator-state-feedback"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Add integral action before viewing the solution</h3>
+<p>Augment the state with the integral of tracking error and place the
+added pole deliberately.</p>
+
+<section class="guided-step" data-dsa-step="augmented-size">
+<h4>Step 1. Augmented system size</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Number of augmented states</span><input
+type="text" data-dsa-input="states" data-dsa-accept="3"
+placeholder="numeric value"></label> </div> <button
+type="button" data-dsa-check="augmented-size">Check Step
+1</button> <p class="quiz-feedback"
+data-dsa-feedback="augmented-size" aria-live="polite"></p>
+<details class="quiz-answer" data-dsa-answer="augmented-size"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The two plant states plus
+one integrator state give a third-order augmented
+model.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="integrator-pole">
+<h4>Step 2. Integrator pole placement</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Integrator pole sign</span><input type="text"
+data-dsa-input="sign" data-dsa-accept="negative\|left half
+plane\|stable" placeholder="short answer"></label> </div>
+<button type="button" data-dsa-check="integrator-pole">Check Step
+2</button> <p class="quiz-feedback"
+data-dsa-feedback="integrator-pole" aria-live="polite"></p>
+<details class="quiz-answer" data-dsa-answer="integrator-pole"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The added integrator pole
+must be placed in the stable left-half plane.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="gain-parts">
+<h4>Step 3. Gain partition</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>State-feedback
+part</span><input type="text" data-dsa-input="state"
+data-dsa-accept="K\|k" placeholder="symbol"></label>
+<label><span>Integrator part</span><input type="text"
+data-dsa-input="integrator" data-dsa-accept="ki\|k_i\|kI"
+placeholder="symbol"></label> </div> <button type="button"
+data-dsa-check="gain-parts">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="gain-parts"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="gain-parts" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The augmented gain is
+separated into the state-feedback gain <span class="math
+inline">\(K\)</span> and integral gain <span class="math
+inline">\(k_I\)</span>.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes
+state-feedback-with-integrator code. Before opening it, outline how you
+would update the integrator state, compute the augmented feedback input,
+and apply anti-windup if needed.</p> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="Write pseudocode for one state-feedback-with-integrator update."></textarea> <p class="advanced-caption">This prompt is
+ungraded. It is intended to connect the augmented-state design to the
+implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<dl>
+<dt>Step 1.</dt>
+<dd>
+<p>The original state space equations are <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} 0 &amp;   1.0000 \\ 0 &amp;  -0.667
+\end{pmatrix}x + \begin{pmatrix} 0 \\ 66.667 \end{pmatrix} u \\
+y &amp;= \begin{pmatrix}1 &amp; 0 \end{pmatrix}x,
+\end{aligned}\]</span> therefore the augmented system is <span
+class="math display">\[\begin{aligned}
+A_1 &amp;= \begin{pmatrix} A &amp; \mathbf{0} \\ -C &amp; \mathbf{0}
+\end{pmatrix} = \begin{pmatrix} 0 &amp;   1.0000 &amp; 0 \\ 0
+&amp;  -0.667 &amp; 0 \\ -1 &amp; 0 &amp; 0 \end{pmatrix} \\
+B_1 &amp;= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} =
+\begin{pmatrix} 0 \\ 66.667 \\ 0 \end{pmatrix}
+\end{aligned}\]</span></p>
+</dd>
+<dt>Step 2.</dt>
+<dd>
+<p>After the design in HW <a href="01-1-introduction.html#design-study-single-link-robot-arm"
+data-reference-type="ref" data-reference="ds:single_link_arm">3.1</a>.<a
+href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a>, the closed loop poles were
+located at <span class="math inline">\(p_{1,2} = -3.18 \pm j
+3.18\)</span>. We will add the integrator pole at <span
+class="math inline">\(p_I=-5\)</span>. The new controllability matrix is
+<span class="math display">\[\begin{aligned}
+\mathcal{C}_{A_1,B_1} &amp;= [B_1, A_1B_1, A_1^2B_1] \\ &amp;=
+\begin{pmatrix}
+         0 &amp;   66.6670 &amp; -44.4669 \\
+   66.6670 &amp; -44.4669  &amp; 29.6594 \\
+         0 &amp;        0  &amp; -66.6670
+\end{pmatrix}.
+\end{aligned}\]</span></p>
+<p>The determinant is <span
+class="math inline">\(det(\mathcal{C}_{A_1,B_1})=2.9630e+05\neq
+0\)</span>, therefore the system is controllable.</p>
+<p>The open loop characteristic polynomial <span
+class="math display">\[\begin{aligned}
+\Delta_{ol}(s)&amp;=\text{det}(sI-A_1) = \text{det}\begin{pmatrix}
+s &amp;   -1.0000 &amp; 0 \\
+0 &amp;  s+0.667 &amp; 0 \\
+1 &amp; 0 &amp; s
+\end{pmatrix} \\ &amp;= s^3 + 0.6174s^2,
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\begin{aligned}
+\mathbf{a}_{A_1} &amp;= \begin{pmatrix}0.6174,
+&amp;        0,  &amp;       0\end{pmatrix} \\
+\mathcal{A}_{A_1} &amp;= \begin{pmatrix}
+1 &amp; 0.6174 &amp; 0 \\ 0 &amp; 1 &amp; 0.6174 \\ 0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\end{aligned}\]</span></p>
+<p>The desired closed loop polynomial <span
+class="math display">\[\begin{aligned}
+\Delta_{cl}^d(s) &amp;=s^3+11.36s^2+52.04s+101.2,
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\boldsymbol{\alpha} = \begin{pmatrix}11.36,
+&amp;  52.04, &amp;   101.2\end{pmatrix}.\]</span></p>
+<p>The augmented gains are therefore given as <span
+class="math display">\[\begin{aligned}
+K_1 &amp;=
+(\boldsymbol{\alpha}-\mathbf{a}_{A_1})\mathcal{A}_{A_1}^{-1}\mathcal{C}_{A_1,B_1}^{-1}
+\\
+  &amp;= \begin{pmatrix} 0.7807, &amp;    0.1604, &amp;   -1.518
+\end{pmatrix}
+\end{aligned}\]</span></p>
+</dd>
+<dt>Step 3.</dt>
+<dd>
+<p>The feedback gains are therefore given by <span
+class="math display">\[\begin{aligned}
+K &amp;= K_1(1:2) = \begin{pmatrix} 0.7807, &amp;    0.1604
+\end{pmatrix} \\
+k_I &amp;= K_1(3) = -1.518
+\end{aligned}\]</span></p>
+</dd>
+</dl>
+<p>A Python class that implements state feedback control with an
+integrator for the single link robot arm is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlStateFeedbackIntegrator.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> armParam <span class="im">as</span> P</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlStateFeedbackIntegrator:</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Feedback Control Design</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">#  tuning parameters</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        tr <span class="op">=</span> <span class="fl">0.4890</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        zeta <span class="op">=</span> <span class="fl">0.707</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        integrator_pole <span class="op">=</span> <span class="op">-</span><span class="fl">5.</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Space Equations</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xdot = A*x + B*u</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y = C*x</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.array([[<span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>, <span class="op">-</span><span class="fl">3.0</span> <span class="op">*</span> P.b <span class="op">/</span> P.m <span class="op">/</span> (P.ell<span class="op">**</span><span class="dv">2</span>)]])</span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> np.array([[<span class="fl">0.0</span>],</span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">3.0</span> <span class="op">/</span> P.m <span class="op">/</span> (P.ell<span class="op">**</span><span class="dv">2</span>)]])        </span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        Cr <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># form augmented system</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        A1 <span class="op">=</span> np.vstack((np.hstack((A, np.zeros((np.size(A,<span class="dv">1</span>),<span class="dv">1</span>)))), </span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>                        np.hstack((<span class="op">-</span>Cr, np.array([[<span class="fl">0.0</span>]]))) ))</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>        B1 <span class="op">=</span> np.vstack((B, <span class="fl">0.0</span>))</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># gain calculation</span></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        wn <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr  <span class="co"># natural frequency</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">#wn = 0.5*np.pi/(tr*np.sqrt(1-zeta**2)) # natural frequency</span></span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        des_char_poly <span class="op">=</span> np.convolve([<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta <span class="op">*</span> wn, wn<span class="op">**</span><span class="dv">2</span>], </span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>                                    [<span class="dv">1</span>, <span class="op">-</span>integrator_pole])</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        des_poles <span class="op">=</span> np.roots(des_char_poly)</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is controllable</span></span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(A1, B1)) <span class="op">!=</span> <span class="dv">3</span>:</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not controllable&quot;</span>)</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>            K1 <span class="op">=</span> cnt.place(A1, B1, des_poles)</span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.K <span class="op">=</span> K1[:, <span class="dv">0</span>:<span class="dv">2</span>]</span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.ki <span class="op">=</span> K1[<span class="dv">0</span>, <span class="dv">2</span>]</span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;K: &#39;</span>, <span class="va">self</span>.K)</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;ki &#39;</span>, <span class="va">self</span>.ki)</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(des_poles)</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># variables to implement integrator</span></span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># integrator</span></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_d1 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># error signal delayed by 1 sample</span></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, theta_r, x):</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> x[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error</span></span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>        error <span class="op">=</span> theta_r <span class="op">-</span> theta</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator <span class="op">=</span> <span class="va">self</span>.integrator <span class="op">\</span></span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>                          <span class="op">+</span> (P.Ts <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> (error <span class="op">+</span> <span class="va">self</span>.error_d1)</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_d1 <span class="op">=</span> error</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute feedback linearizing torque tau_fl</span></span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>        tau_fl <span class="op">=</span> P.m <span class="op">*</span> P.g <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> np.cos(theta)</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the state feedback controller</span></span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        tau_tilde <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.K <span class="op">@</span> x <span class="op">-</span> <span class="va">self</span>.ki <span class="op">*</span> <span class="va">self</span>.integrator</span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute total torque</span></span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> saturate(tau_fl <span class="op">+</span> tau_tilde[<span class="dv">0</span>, <span class="dv">0</span>], P.tau_max)</span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tau</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="12.4" id="design-study-b-inverted-pendulum-8" class="section-design-study"><span class="header-section-number">12.4</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="12.4.1" id="-example-problem-3215" class="section-example"><span class="header-section-number">12.4.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a></h3>
+<p>(a) Modify the state feedback solution developed in
+Homework <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> to add an integrator with
+anti-windup to the position feedback.</p>
+<p>(b) Add a constant input disturbance of 0.5 Newtons to the input of the
+plant and allow the system parameters to change up to 20%.</p>
+<p>(c) Tune the integrator pole (and other gains if necessary) to get good
+tracking performance. You may need to make the gains less aggressive
+(slower rise time) to get stable performance.</p>
+<section id="design-study-b-ch12-integrator-state-feedback">
+<article class="guided-design-study guided-design-activity"
+data-design-study-b="hw12"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Add cart-position integral action
+before viewing the solution</h3> <p>Augment the system with an
+integrator on z tracking error.</p> <section class="guided-step"
+data-dsa-step="integrator-output"> <h4>Step 1. Integrated
+output</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Integrated
+variable</span><input type="text" data-dsa-input="var"
+data-dsa-accept="z\|cart position\|position"
+placeholder="variable"></label> </div> <button type="button"
+data-dsa-check="integrator-output">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="integrator-output"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="integrator-output"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The integrator is added
+to cart-position tracking, not both measured outputs.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="size"> <h4>Step 2.
+Augmented size</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Augmented
+states</span><input type="text" data-dsa-input="states"
+data-dsa-accept="5\|five" placeholder="number"></label> </div>
+<button type="button" data-dsa-check="size">Check Step
+2</button> <p class="quiz-feedback" data-dsa-feedback="size"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="size" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> The
+four plant states plus one integrator state give a five-state augmented
+model.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="gain"> <h4>Step 3.
+Gain partition</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>State
+gain</span><input type="text" data-dsa-input="state"
+data-dsa-accept="K\|k" placeholder="symbol"></label>
+<label><span>Integral gain</span><input type="text"
+data-dsa-input="integrator" data-dsa-accept="ki\|k_i\|kI"
+placeholder="symbol"></label> </div> <button type="button"
+data-dsa-check="gain">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="gain"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="gain" hidden><summary>Show
+solution for Step 3</summary><p><strong>Answer:</strong> The
+augmented gain separates into K for plant states and k_I for the
+integrator.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes
+implementation code. Before opening it, outline the algorithm in your
+own words.</p> <textarea class="guided-design-study-pseudocode"
+rows="5" placeholder="Write pseudocode for updating the integrator, applying anti-windup, and computing the state-feedback input."></textarea> <p class="advanced-caption">This prompt is
+ungraded. It is intended to connect the derivation to the implementation
+code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<dl>
+<dt>Step 1.</dt>
+<dd>
+<p>The original state space equations are <span
+class="math display">\[\begin{aligned}
+    \dot{x} &amp;= \begin{pmatrix}
+        0 &amp;        0 &amp;   1.0000 &amp;        0 \\
+        0 &amp;        0 &amp;        0 &amp;   1.0000 \\
+        0 &amp;  -1.7294 &amp;   -0.0471 &amp;        0 \\
+        0 &amp;  34.5882 &amp;   0.1412 &amp;        0 \\
+    \end{pmatrix} x + \begin{pmatrix}
+        0 \\
+        0 \\
+        0.9412 \\
+        -2.8235 \\
+    \end{pmatrix} u \notag \\
+    y &amp;= \begin{pmatrix}
+        1 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 1 &amp; 0 &amp; 0
+    \end{pmatrix} x,
+\end{aligned}\]</span> The integrator will only be on <span
+class="math inline">\(z=x_1\)</span>, therefore <span
+class="math display">\[C_r = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}.\]</span> The augmented system is therefore <span
+class="math display">\[\begin{aligned}
+A_1 &amp;= \begin{pmatrix} A &amp; \mathbf{0} \\ -C_r &amp; \mathbf{0}
+\end{pmatrix} \\ &amp;= \begin{pmatrix}
+         0 &amp;        0 &amp;   1.0000 &amp;        0  &amp;       0
+\\
+         0 &amp;        0 &amp;        0 &amp;   1.0000  &amp;       0
+\\
+         0 &amp;  -1.7294 &amp;  -0.0471 &amp;        0  &amp;       0
+\\
+         0 &amp;  34.5882 &amp;    0.1412 &amp;        0  &amp;       0
+\\
+    -1.0000 &amp;        0 &amp;        0 &amp;        0  &amp;       0
+\end{pmatrix} \\
+B_1 &amp;= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} =
+\begin{pmatrix}
+0   \\      0  \\  0.9412 \\  -2.8235   \\      0
+\end{pmatrix}
+\end{aligned}\]</span></p>
+</dd>
+<dt>Step 2.</dt>
+<dd>
+<p>After the design in HW <a href="01-1-introduction.html#design-study-pendulum-on-a-cart"
+data-reference-type="ref" data-reference="ds:pendulum">3.2</a>.<a
+href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a>, the closed loop poles were
+located at <span class="math inline">\(p_{1,2} = -1.4140 \pm
+j1.4144\)</span>, <span class="math inline">\(p_{3,4}=  -0.8000 \pm j
+0.6000\)</span>. We will add the integrator pole at <span
+class="math inline">\(p_I=-10\)</span>. The new controllability matrix
+<span class="math display">\[\begin{aligned}
+\mathcal{C}_{A_1,B_1} &amp;= [B_1, A_1B_1, A_1^2B_1, A_1^3B_1, A_1^4B_1]
+\\
+&amp;= \begin{pmatrix}
+         0     0.94118 &amp; -0.044291 &amp;   4.8851 &amp; -0.45968 \\
+        0 &amp;   -2.8235 &amp;   0.13287 &amp;  -97.667 &amp;   5.2855
+\\
+    0.94118 &amp; -0.044291 &amp;    4.8851 &amp; -0.45968
+&amp;   168.93 \\
+   -2.8235 &amp;   0.13287 &amp;   -97.667 &amp;   5.2855 &amp;  -3378.2
+\\
+        0 &amp;         0 &amp;  -0.94118 &amp; 0.044291 &amp;  -4.8851
+         \end{pmatrix}.
+\end{aligned}\]</span> The determinant is nonzero, therefore the system
+is controllable.</p>
+<p>The open loop characteristic polynomial <span
+class="math display">\[\begin{aligned}
+\Delta_{ol}(s)&amp;=\text{det}(sI-A_1) \\
+&amp;= \text{det} \begin{pmatrix}
+        s &amp;        0 &amp;   -1 &amp;        0  &amp;       0 \\
+        0 &amp;        s &amp;        0 &amp;   -1  &amp;       0 \\
+        0 &amp;  1.7294 &amp;  s+0.0471 &amp;        0  &amp;       0 \\
+        0 &amp;  -34.588 &amp;   -0.14118 &amp;        s  &amp;       0
+\\
+        1 &amp;        0 &amp;        0 &amp;        0  &amp;       s
+    \end{pmatrix} \\
+&amp;= s^5 + 0.0471s^4 -34.588s^3 - 1.3835s^2,
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\begin{aligned}
+\mathbf{a}_{A_1} &amp;= \begin{pmatrix}0.0471, &amp; -34.588, &amp;
+1.3835,  &amp;      0,  &amp;       0\end{pmatrix} \\
+\mathcal{A}_{A_1} &amp;= \begin{pmatrix}
+1 &amp; 0.0471 &amp; -34.588 &amp;   -1.3835 &amp; 0 \\
+0 &amp; 1 &amp; 0.0471 &amp; -34.588 &amp;   -1.3835 \\
+0 &amp; 0 &amp; 1 &amp; 0.0471 &amp; -34.588 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0.0471 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\end{aligned}\]</span></p>
+<p>The desired closed loop polynomial <span
+class="math display">\[\begin{aligned}
+\Delta_{cl}^d(s) &amp;= (s+1.297-j0.6283)(+1.297+j0.6283)\dots \\
+&amp;\quad
+(s+6.487-j3.141)(s+6.487+j3.141)
+(s+2) \\          
+&amp;=s^5+17.57s^4+118.8s^3+337.1s^2\\ &amp;\qquad +431.4s+215.9,
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\boldsymbol{\alpha} = \begin{pmatrix}   17.57,
+&amp;   118.8, &amp;  337.1, &amp;  431.4, &amp; 215.9
+\end{pmatrix}.\]</span></p>
+<p>The augmented gains are therefore given as <span
+class="math display">\[\begin{aligned}
+K_1 &amp;=
+(\boldsymbol{\alpha}-\mathbf{a}_{A_1})\mathcal{A}_{A_1}^{-1}\mathcal{C}_{A_1,B_1}^{-1}
+\\
+  &amp;= \begin{pmatrix} -31.18, &amp; -117.2, &amp; -25.48,
+&amp;  -29.40, &amp; 15.60\end{pmatrix}
+\end{aligned}\]</span></p>
+</dd>
+<dt>Step 3.</dt>
+<dd>
+<p>The feedback gains are therefore given by <span
+class="math display">\[\begin{aligned}
+K &amp;= K_1(1:4) = \begin{pmatrix} -31.18, &amp; -117.2, &amp; -25.48,
+&amp;  -29.40, \end{pmatrix} \\
+k_I &amp;= K_1(5) = 15.60
+\end{aligned}\]</span></p>
+</dd>
+</dl>
+<p>A Python class that implements a state feedback controller with
+integrator for the inverted is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlStateFeedbackIntegrator.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlStateFeedbackIntegrator:</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Feedback Control Design</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tuning parameters</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        tr_theta <span class="op">=</span> <span class="fl">0.5</span>     <span class="co"># rise time for angle</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        tr_z <span class="op">=</span> tr_theta<span class="op">*</span><span class="dv">3</span>  <span class="co"># rise time for position</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        zeta_z <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio position</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio angle</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        integrator_pole <span class="op">=</span> <span class="op">-</span><span class="dv">2</span>  <span class="co"># integrator pole</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Augmented State Space Equations</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xdot = A*x + B*u</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y = C*x</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.array([</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="op">-</span><span class="dv">3</span> <span class="op">*</span> P.m1 <span class="op">*</span> P.g <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2),</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span>P.b <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2), <span class="fl">0.0</span>],</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, </span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>                <span class="dv">3</span><span class="op">*</span>(P.m1<span class="op">+</span>P.m2) <span class="op">*</span> P.g<span class="op">/</span><span class="dv">2</span><span class="op">/</span>(<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2)<span class="op">/</span>P.ell,</span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>                <span class="dv">3</span> <span class="op">*</span> P.b <span class="op">/</span> <span class="dv">2</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2) <span class="op">/</span> P.ell, <span class="fl">0.0</span>]</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>            ])</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> np.array([[<span class="fl">0.0</span>],</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>],</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>                      [<span class="dv">1</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2)],</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>                      [<span class="op">-</span><span class="fl">3.0</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2) <span class="op">/</span> P.ell]])</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        Cr <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># form augmented system</span></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        A1 <span class="op">=</span> np.vstack((</span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>                np.hstack((A, np.zeros((<span class="dv">4</span>,<span class="dv">1</span>)))),</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>                np.hstack((<span class="op">-</span>Cr, np.zeros((<span class="dv">1</span>,<span class="dv">1</span>))))))</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>        B1 <span class="op">=</span> np.vstack((B, np.zeros((<span class="dv">1</span>,<span class="dv">1</span>))))</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># gain calculation</span></span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># natural frequency for angle</span></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_theta<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_th<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># natural frequency for position</span></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        wn_z <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_z<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_z<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        des_char_poly <span class="op">=</span> np.convolve(</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>            np.convolve([<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_z <span class="op">*</span> wn_z, wn_z<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th, wn_th<span class="op">**</span><span class="dv">2</span>]),</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>            np.poly([integrator_pole]))</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>        des_poles <span class="op">=</span> np.roots(des_char_poly)</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is controllable</span></span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(A1, B1)) <span class="op">!=</span> <span class="dv">5</span>:</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not controllable&quot;</span>)</span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>            K1 <span class="op">=</span> cnt.place(A1, B1, des_poles)</span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.K <span class="op">=</span> K1[:, <span class="dv">0</span>:<span class="dv">4</span>]</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.ki <span class="op">=</span> K1[<span class="dv">0</span>, <span class="dv">4</span>]</span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print gains to terminal</span></span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;K: &#39;</span>, <span class="va">self</span>.K)</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;ki: &#39;</span>, <span class="va">self</span>.ki)</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturation limits</span></span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>        theta_max <span class="op">=</span> <span class="fl">30.0</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="fl">180.0</span>  <span class="co"># Max theta, rads</span></span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># variables to implement integrator</span></span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_z <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># integrator</span></span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_z_d1 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># error signal delayed by 1 sample</span></span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, z_r, x):</span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> x[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error</span></span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>        error_z <span class="op">=</span> z_r <span class="op">-</span> z</span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error</span></span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_z <span class="op">=</span> <span class="va">self</span>.integrator_z <span class="op">\</span></span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (P.Ts <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> (error_z <span class="op">+</span> <span class="va">self</span>.error_z_d1)</span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_z_d1 <span class="op">=</span> error_z</span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the state feedback controller</span></span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a>        F_unsat <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.K <span class="op">@</span> x <span class="op">-</span> <span class="va">self</span>.ki <span class="op">*</span> <span class="va">self</span>.integrator_z</span>
+<span id="cb1-89"><a href="18-18-compensator-design.html#cb1-89" aria-hidden="true" tabindex="-1"></a>        F <span class="op">=</span> saturate(F_unsat[<span class="dv">0</span>, <span class="dv">0</span>], P.F_max)</span>
+<span id="cb1-90"><a href="18-18-compensator-design.html#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="18-18-compensator-design.html#cb1-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> F</span>
+<span id="cb1-92"><a href="18-18-compensator-design.html#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="18-18-compensator-design.html#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="18-18-compensator-design.html#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-95"><a href="18-18-compensator-design.html#cb1-95" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-96"><a href="18-18-compensator-design.html#cb1-96" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-97"><a href="18-18-compensator-design.html#cb1-97" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="12.5"
+id="design-study-c-satellite-attitude-control-9" class="section-design-study"><span class="header-section-number">12.5</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="12.5.1" id="-example-problem-3315" class="section-example"><span class="header-section-number">12.5.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a></h3>
+<p>Modify the state feedback solution developed in
+Homework <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> to add an integrator with
+anti-windup to the feedback loop for <span
+class="math inline">\(\phi\)</span>.</p>
+<p>Add a constant input disturbance of 1 Newton-meter to the input of
+the plant and allow the plant parameters to vary up to 20%.</p>
+<p>Tune the integrator pole (and other gains if necessary) to get good
+tracking performance.</p>
+<section id="design-study-c-ch12-integrator-state-feedback">
+<article class="guided-design-study guided-design-activity"
+data-design-study-c="hw12" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Add satellite integrator feedback before viewing the
+solution</h3> <p>The augmented controller integrates panel-angle
+tracking error while handling disturbance, uncertainty, and actuator
+limits.</p> <section class="guided-step"
+data-dsa-step="integrator"> <h4>Step 1. Choose the integrator
+error</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Error
+signal</span><input type="text" data-dsa-input="error"
+data-dsa-accept="phi_r-phi\|phir-phi\|reference minus phi\|panel
+reference minus panel angle" placeholder="expression"></label>
+<label><span>Controlled output</span><input type="text"
+data-dsa-input="output" data-dsa-accept="phi\|panel angle\|solar
+panel angle" placeholder="variable"></label> </div> <button
+type="button" data-dsa-check="integrator" data-dsa-hint="The
+integrator is for panel-angle tracking.">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="integrator"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="integrator"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> Integrate <span
+class="math inline">\(e_\phi=\phi_r-\phi\)</span>.</p></details>
+</section> <section class="guided-step"
+data-dsa-step="disturbance"> <h4>Step 2. Robustness
+challenge</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Input
+disturbance</span><input type="text" data-dsa-input="disturbance"
+data-dsa-accept="1\|1 nm\|1 newton-meter\|1 newton meter"
+placeholder="value"></label> <label><span>Parameter
+uncertainty</span><input type="text" data-dsa-input="uncertainty"
+data-dsa-accept="20 </div> <button type="button"
+data-dsa-check="disturbance" data-dsa-hint="The problem adds both a
+constant disturbance and parameter uncertainty.">Check Step
+2</button> <p class="quiz-feedback"
+data-dsa-feedback="disturbance" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="disturbance" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> The simulation
+includes a 1 Nm input disturbance and 20 percent parameter
+uncertainty.</p></details> </section> <section
+class="guided-step" data-dsa-step="antiwindup"> <h4>Step 3.
+Anti-windup purpose</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Anti-windup protects
+against</span><input type="text" data-dsa-input="risk"
+data-dsa-accept="saturation\|torque saturation\|integrator
+windup\|windup" placeholder="short answer"></label> </div>
+<button type="button" data-dsa-check="antiwindup"
+data-dsa-hint="The torque actuator is limited.">Check Step
+3</button> <p class="quiz-feedback"
+data-dsa-feedback="antiwindup" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="antiwindup" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> Anti-windup prevents the
+integrator from accumulating excessive error when the torque command
+saturates.</p></details> </section> <div
+class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution anyway</button></div>
+<p class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<dl>
+<dt>Step 1.</dt>
+<dd>
+<p>The original state space equations are <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix}
+         0 &amp;        0 &amp;   1 &amp;        0 \\
+         0 &amp;        0 &amp;        0 &amp;   1 \\
+   -0.03 &amp;   0.03 &amp;  -0.01 &amp;   0.01 \\
+    0.14 &amp;  -0.14 &amp;   0.05 &amp;  -0.05
+\end{pmatrix}x + \begin{pmatrix}
+0    \\     0 \\   0.21 \\  0
+\end{pmatrix} u \\
+y &amp;= \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0
+\end{pmatrix}x.
+\end{aligned}\]</span> The integrator will only be on <span
+class="math inline">\(\phi=x_2\)</span>, therefore <span
+class="math display">\[C_r = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; 0
+\end{pmatrix}.\]</span> The augmented system is therefore <span
+class="math display">\[\begin{aligned}
+A_1 &amp;= \begin{pmatrix} A &amp; \mathbf{0} \\ -C_r &amp; \mathbf{0}
+\end{pmatrix}\\
+&amp;= \begin{pmatrix}
+         0 &amp;        0 &amp;   1 &amp;        0 &amp;        0 \\
+         0 &amp;        0 &amp;        0 &amp;   1 &amp;        0 \\
+   -0.03 &amp;   0.03 &amp;  -0.01 &amp;   0.01 &amp;        0 \\
+    0.14 &amp;  -0.14 &amp;   0.05 &amp;  -0.05 &amp;        0 \\
+         0 &amp;   -1 &amp;        0 &amp;        0 &amp;        0 \\
+\end{pmatrix} \\
+B_1 &amp;= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} =
+\begin{pmatrix}
+0   \\      0  \\  0.21 \\  0   \\      0
+\end{pmatrix}
+\end{aligned}\]</span></p>
+</dd>
+<dt>Step 2.</dt>
+<dd>
+<p>After the design in HW <a href="01-1-introduction.html#design-study-satellite-attitude-control"
+data-reference-type="ref" data-reference="ds:satellite">3.3</a>.<a
+href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a>, the closed loop poles were
+located at <span class="math inline">\(p_{1,2} = -1.0605 \pm j
+1.0608\)</span>, <span class="math inline">\(p_{3,4}=  -0.7016 \pm j
+0.7018\)</span>. We will add the integrator pole at <span
+class="math inline">\(p_I=-1\)</span>. The new controllability matrix
+<span class="math display">\[\begin{aligned}
+\mathcal{C}_{A_1,B_1} &amp;= [B_1, A_1B_1, A_1^2B_1, A_1^3B_1, A_1^4B_1]
+\\
+&amp;= \begin{pmatrix}
+         0 &amp;   0.21 &amp;  -0.0023 &amp;  -0.0062 &amp;   0.0008 \\
+         0 &amp;        0 &amp;   0.011 &amp;   0.0279 &amp;  -0.0034 \\
+    0.21 &amp;  -0.0023 &amp;  -0.0062 &amp;   0.0008 &amp;   0.0010 \\
+         0 &amp;   0.011 &amp;   0.0279 &amp;  -0.0034 &amp;  -0.0044 \\
+         0 &amp;        0 &amp;        0 &amp;   0.0105 &amp;   0.0279
+         \end{pmatrix}.
+\end{aligned}\]</span> The determinant is nonzero, therefore the system
+is controllable.</p>
+<p>The open loop characteristic polynomial <span
+class="math display">\[\begin{aligned}
+\Delta_{ol}(s)&amp;=\text{det}(sI-A_1) \\
+&amp;= s^5 + 0.0611 s^4 + 0.1657 s^3,
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\begin{aligned}
+\mathbf{a}_{A_1} &amp;=
+\begin{pmatrix}0.0611,  &amp;   0.1657,   &amp;       0,   &amp;       0,     &amp;     0\end{pmatrix}
+\\
+\mathcal{A}_{A_1} &amp;= \begin{pmatrix}
+1 &amp; 0.0611 &amp;    0.1657 &amp;         0 &amp;        0 \\
+0 &amp; 1 &amp; 0.0611 &amp;    0.1657 &amp;         0 \\
+0 &amp; 0 &amp; 1 &amp; 0.0611 &amp;    0.1657 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0.0611 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\end{aligned}\]</span></p>
+<p>The desired closed loop polynomial <span
+class="math display">\[\begin{aligned}
+\Delta_{cl}^d(s) &amp;= (s+1.622 - j0.7854)(s+1.622 +j0.78545)\dots \\
+&amp;\quad
+(s+0.5405-j0.2618)(s+0.5405+j0.2618)
+(s+1) \\
+&amp;=s^5+6.324 s^4+ 15.76 s^3+ 18.91 s^2 \\ &amp;\qquad +10.53 s+2.342,
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\boldsymbol{\alpha} = \begin{pmatrix} 6.324,
+&amp;    15.76 &amp;    18.91, &amp;   10.53,
+&amp;    2.342\end{pmatrix}.\]</span></p>
+<p>The augmented gains are therefore given as <span
+class="math display">\[\begin{aligned}
+K_1 &amp;=
+(\boldsymbol{\alpha}-\mathbf{a}_{A_1})\mathcal{A}_{A_1}^{-1}\mathcal{C}_{A_1,B_1}^{-1}
+\\
+  &amp;= \begin{pmatrix} 42.64, &amp; 425.3, &amp;   31.32,
+&amp;  680.0, &amp;
+    -117.1 \end{pmatrix}.
+\end{aligned}\]</span></p>
+</dd>
+<dt>Step 3.</dt>
+<dd>
+<p>The feedback gains are therefore given by <span
+class="math display">\[\begin{aligned}
+K &amp;= K_1(1:4) = \begin{pmatrix} 42.64, &amp; 425.3, &amp;   31.32,
+&amp;  680.0 \end{pmatrix} \\
+k_I &amp;= K_1(5) = -117.1.
+\end{aligned}\]</span></p>
+</dd>
+</dl>
+<p>A Python class that implements a state feedback controller with
+integrator for the satellite is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlStateFeedbackIntegrator.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> satelliteParam <span class="im">as</span> P</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlStateFeedbackIntegrator:</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Feedback Control Design</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        tr_th <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> <span class="fl">3.0</span>  <span class="co"># Time scale separation between loops</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        tr_phi <span class="op">=</span> M <span class="op">*</span> tr_th  <span class="co"># rise time for outer loop</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio for theta</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        zeta_phi <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio for phi</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        integrator_pole <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Space Equations</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xdot = A*x + B*u</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y = C*x</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.array([[<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>                      [<span class="op">-</span>P.k<span class="op">/</span>P.Js, P.k<span class="op">/</span>P.Js, <span class="op">-</span>P.b<span class="op">/</span>P.Js, P.b<span class="op">/</span>P.Js],</span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>                      [P.k<span class="op">/</span>P.Jp, <span class="op">-</span>P.k<span class="op">/</span>P.Jp, P.b<span class="op">/</span>P.Jp, <span class="op">-</span>P.b<span class="op">/</span>P.Jp]])</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> np.array([[<span class="fl">0.0</span>],</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>],</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">1.0</span> <span class="op">/</span> P.Js],</span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>]])</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>                      [<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># form augmented system</span></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        Cr <span class="op">=</span> np.array([[<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        A1 <span class="op">=</span> np.vstack((np.hstack((A, np.zeros((np.size(A,<span class="dv">1</span>),<span class="dv">1</span>)))), </span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>                        np.hstack((<span class="op">-</span>Cr, np.array([[<span class="fl">0.0</span>]]))) ))</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        B1 <span class="op">=</span> np.vstack( (B, <span class="fl">0.0</span>) )</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># gain calculation</span></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_th<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_th<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        wn_phi <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_phi<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_phi<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        des_char_poly <span class="op">=</span> np.convolve(</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>                np.convolve([<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_phi <span class="op">*</span> wn_phi, wn_phi<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>                            [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th, wn_th<span class="op">**</span><span class="dv">2</span>]),</span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">1</span>, <span class="op">-</span>integrator_pole])</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        des_poles <span class="op">=</span> np.roots(des_char_poly)</span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is controllable</span></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(A1, B1)) <span class="op">!=</span> <span class="dv">5</span>:</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not controllable&quot;</span>)</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>            K1 <span class="op">=</span> cnt.place(A1, B1, des_poles)</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.K <span class="op">=</span> K1[:, <span class="dv">0</span>:<span class="dv">4</span>]</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.ki <span class="op">=</span> K1[<span class="dv">0</span>, <span class="dv">4</span>]</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;K: &#39;</span>, <span class="va">self</span>.K)</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;ki: &#39;</span>, <span class="va">self</span>.ki)</span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># variables to implement integrator</span></span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_phi <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># integrator</span></span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_phi_d1 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># error signal delayed by 1 sample</span></span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, phi_r, x):</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>        phi <span class="op">=</span> x[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error</span></span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        error_phi <span class="op">=</span> phi_r <span class="op">-</span> phi</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error</span></span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_phi <span class="op">=</span> <span class="va">self</span>.integrator_phi <span class="op">\</span></span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (P.Ts <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> (error_phi <span class="op">+</span> <span class="va">self</span>.error_phi_d1)</span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_phi_d1 <span class="op">=</span> error_phi</span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the state feedback controller</span></span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        tau_unsat <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.K <span class="op">@</span> x <span class="op">-</span> <span class="va">self</span>.ki <span class="op">*</span> <span class="va">self</span>.integrator_phi</span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> saturate(tau_unsat[<span class="dv">0</span>, <span class="dv">0</span>], P.tau_max)</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tau</span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="12.6" id="interactive-augmented-state-check"><span class="header-section-number">12.6</span> Interactive Augmented-State
+Check</h2>
+<section id="state-feedback-ch12-integrator-check">
+<article class="advanced-activity" data-advanced-activity="integrator-pole">
+<p class="advanced-kicker">
+Chapter 12 activity
+</p>
+<h3>
+Integrator pole tradeoff
+</h3>
+<p>
+Adding integral action creates one extra state and one extra pole to
+place. Move the integrator pole and disturbance level to see the
+qualitative speed/effort tradeoff. The readouts use the book’s
+pole-placement idea: a farther-left integrator pole increases the
+response rate associated with the added integrator state, but it also
+tends to require larger control action and can make the transient more
+aggressive.
+</p>
+
+<label>Integrator pole magnitude<input type="range"
+data-input="ipole" min="1" max="8" step="0.5"
+value="4"></label> <label>Constant disturbance size<input
+type="range" data-input="disturbance" min="0" max="0.6"
+step="0.05" value="0.2"></label>
+
+<strong>Estimated settling
+effect</strong><span data-output="settling"></span>
+
+<strong>Relative control
+effort</strong><span data-output="effort"></span>
+
+<strong>Overshoot
+tendency</strong><span data-output="overshoot"></span>
+
+<strong>Tuning
+note</strong><span data-output="tradeoff"></span>
+
+<p class="advanced-callout">
+The augmented matrices add one integrator state with x<sub>I</sub> dot =
+r - y<sub>r</sub>. That is why the bottom row contains -C<sub>r</sub> in
+A<sub>1</sub> and why controllability must be checked again. In this
+activity, |p<sub>I</sub>| is the selected integrator-pole magnitude
+and d is the constant disturbance size.
+</p>
+</article>
+</section>
+<h2 data-number="12.7" id="knowledge-check-11"><span class="header-section-number">12.7</span> Knowledge Check</h2>
+<section id="state-feedback-ch12-knowledge-check" class="quiz-list">
+<article class="quiz-card"
+data-quiz-type="mcq" data-answer="A" data-feedback-a="A is correct.
+Integral action adds an additional state that stores accumulated
+tracking error." data-feedback-b="B is not correct. An integrator is
+memory." data-feedback-c="C is not correct. The chapter changes the
+controller state, not only the sensor." data-feedback-d="D is not
+correct. The augmented dynamics change because the order increases.">
+<h4>Q1. Augmented state</h4> <p class="quiz-prompt">Adding an
+integrator to state feedback introduces:</p> <div
+class="quiz-options"> <label><input type="radio"
+name="state-ch12-q1" value="A"><span class="quiz-option-text">A) An additional state</span></label>
+<label><input type="radio" name="state-ch12-q1" value="B"><span class="quiz-option-text">B)
+No state memory</span></label> <label><input type="radio"
+name="state-ch12-q1" value="C"><span class="quiz-option-text">C) Only a new output
+sensor</span></label> <label><input type="radio" name="state-ch12-q1"
+value="D"><span class="quiz-option-text">D) No changed dynamics</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card state-ch12-q2-options"
+data-quiz-type="mcq" data-answer="A" data-feedback-a="A is correct.
+If &lt;span
+class=&quot;inline-equation&quot;&gt;x&lt;sub&gt;I&lt;/sub&gt;&prime; =
+r - C&lt;sub&gt;r&lt;/sub&gt;x&lt;/span&gt;, then the augmented &lt;span
+class=&quot;inline-equation&quot;&gt;A&lt;sub&gt;1&lt;/sub&gt;&lt;/span&gt;
+row contains &lt;span
+class=&quot;inline-equation&quot;&gt;-C&lt;sub&gt;r&lt;/sub&gt;&lt;/span&gt;."
+data-feedback-b="B is not correct for the sign convention used here."
+data-feedback-c="C is not correct. &lt;span
+class=&quot;inline-equation&quot;&gt;B&lt;sup&gt;T&lt;/sup&gt;&lt;/span&gt;
+is not the integrator row." data-feedback-d="D is not correct. K is
+the feedback gain, not the plant augmentation row."> <h4>Q2.
+Integrator row</h4> <p class="quiz-prompt">The integrator row in
+the augmented <span
+class="inline-equation">A<sub>1</sub></span> matrix
+contains:</p> <div class="quiz-options"> <label><input
+type="radio" name="state-ch12-q2" value="A"><span
+class="quiz-option-text">A) <span
+class="inline-equation">-C<sub>r</sub></span></span></label>
+<label><input type="radio" name="state-ch12-q2"
+value="B"><span class="quiz-option-text">B) <span
+class="inline-equation">+C<sub>r</sub></span></span></label>
+<label><input type="radio" name="state-ch12-q2"
+value="C"><span class="quiz-option-text">C) <span
+class="inline-equation">B<sup>T</sup></span></span></label>
+<label><input type="radio" name="state-ch12-q2"
+value="D"><span class="quiz-option-text">D) <span
+class="inline-equation">K</span></span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="3" data-tolerance="0.001">
+<h4>
+Q3. Augmented dimension
+</h4>
+<p class="quiz-prompt">
+If the original plant has two states and one tracking integrator is
+added, enter the augmented system order.
+</p>
+
+<label>Order:<input type="text" name="state-ch12-q3"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 3. The augmented system contains the two
+physical states plus one integrator state.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="-1" data-tolerance="0.001">
+<h4>
+Q4. Augmented matrix sign
+</h4>
+<p class="quiz-prompt">
+For <span class="inline-equation">C<sub>r</sub> = (1, 0)</span> and
+<span class="inline-equation">x<sub>I</sub>′ = r -
+C<sub>r</sub>x</span>, enter the first entry of the integrator row in
+<span class="inline-equation">A<sub>1</sub></span>.
+</p>
+
+<label>Matrix entry:<input type="text" name="state-ch12-q4"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> -1. The row is
+<span class="inline-equation">-C<sub>r</sub></span>, so
+<span class="inline-equation">(1, 0)</span> becomes
+<span class="inline-equation">(-1, 0)</span>.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short"
+data-answers="steady-state error\|constant error\|bias\|tracking
+error">
+<h4>
+Q5. Purpose of integral action
+</h4>
+<p class="quiz-prompt">
+Integral action is primarily added to remove what kind of error or bias?
+</p>
+
+<label>Answer:<input type="text" name="state-ch12-q5"
+placeholder="short phrase"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> Steady-state tracking error or constant bias.
+The integrator keeps acting until the accumulated error is driven down.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The added integrator state stores
+accumulated tracking error." data-feedback-b="B is not correct.
+Integral action is not a measurement-noise differentiator."
+data-feedback-c="C is not correct. Integral action adds controller
+state, not a plant mass." data-feedback-d="D is not correct. The
+purpose is not to remove feedback."> <h4>Q6. Purpose of the
+augmented integrator</h4> <p class="quiz-prompt">In state feedback
+with integral action, what does the added integrator state
+represent?</p> <div class="quiz-options"> <label><input
+type="radio" name="state-ch12-exam-q1" value="A"><span class="quiz-option-text">A) Accumulated
+tracking error</span></label> <label><input type="radio"
+name="state-ch12-exam-q1" value="B"><span class="quiz-option-text">B) Differentiated measurement
+noise</span></label> <label><input type="radio"
+name="state-ch12-exam-q1" value="C"><span class="quiz-option-text">C) A new physical mass in the
+plant</span></label> <label><input type="radio"
+name="state-ch12-exam-q1" value="D"><span class="quiz-option-text">D) An open-loop replacement
+for feedback</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. The sign would integrate y - r, not
+r - y." data-feedback-b="B is not correct. B is the input matrix, not
+the output row." data-feedback-c="C is correct. Since xdot_I = r - y =
+r - Cx, the augmented A row contains -C and zero on the integrator
+state." data-feedback-d="D is not correct. K is selected after
+augmentation; it is not the row that defines the integrator state
+equation."> <h4>Q7. Augmented A row</h4> <p
+class="quiz-prompt">If xdot<sub>I</sub> = r - y = r - Cx, which
+row appears in the augmented A matrix for the integrator equation?</p>
+<div class="quiz-options"> <label><input type="radio"
+name="state-ch12-exam-q2" value="A"><span class="quiz-option-text">A)
+\[C&nbsp;&nbsp;0\]</span></label> <label><input type="radio"
+name="state-ch12-exam-q2" value="B"><span class="quiz-option-text">B)
+\[B<sup>T</sup>&nbsp;&nbsp;0\]</span></label> <label><input
+type="radio" name="state-ch12-exam-q2" value="C"><span class="quiz-option-text">C)
+\[-C&nbsp;&nbsp;0\]</span></label> <label><input type="radio"
+name="state-ch12-exam-q2" value="D"><span class="quiz-option-text">D)
+\[K&nbsp;&nbsp;1\]</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. A very slow integrator tends to
+reject constant bias slowly." data-feedback-b="B is correct. If the
+integrator pole is too slow, the accumulated-error correction acts
+slowly." data-feedback-c="C is not correct. Pole location affects the
+closed-loop dynamics." data-feedback-d="D is not correct. A slow
+integrator does not by itself make the plant unobservable."> <h4>Q8.
+Slow integrator pole</h4> <p class="quiz-prompt">What is a likely
+consequence of choosing the integrator pole much slower than the rest of
+the closed-loop poles?</p> <div class="quiz-options">
+<label><input type="radio" name="state-ch12-exam-q3"
+value="A"><span class="quiz-option-text">A) Instantaneous bias rejection</span></label> <label><input
+type="radio" name="state-ch12-exam-q3" value="B"><span class="quiz-option-text">B) Slow removal
+of steady-state error</span></label> <label><input type="radio"
+name="state-ch12-exam-q3" value="C"><span class="quiz-option-text">C) No effect on the
+response</span></label> <label><input type="radio"
+name="state-ch12-exam-q3" value="D"><span class="quiz-option-text">D) Automatic loss of
+observability</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="12.8" id="notes-and-references-11" class="section-notes"><span class="header-section-number">12.8</span> Notes and References</h2>
+<p>Integral control for linear state space systems is a well established
+technique. Additional examples can be found in [4, 5, 19]. A nice
+introduction to integral control for nonlinear systems is given
+in [20].</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>
