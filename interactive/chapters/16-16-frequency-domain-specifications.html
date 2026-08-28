@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="16" id="frequency-domain-specifications"><span class="header-section-number">16</span> Frequency Domain
+Specifications</h1>
+<h2 data-number="16.1" id="theory-14"><span class="header-section-number">16.1</span> Theory</h2>
+<p>In this chapter we show how the magnitude of the frequency response
+of the open loop system can be used to determine the performance of the
+closed-loop feedback system.<span id="idx-0208" class="book-index-anchor" aria-hidden="true"></span><span id="idx-0209" class="book-index-anchor" aria-hidden="true"></span> A general feedback
+loop is shown in
+<strong>Fig.</strong> <a href="#fig:ls_general_feedback" data-reference-type="ref"
+data-reference="fig:ls_general_feedback">16.1</a>. In this feedback
+system, <span class="math inline">\(r(t)\)</span> is the reference input
+to be tracked by <span class="math inline">\(y(t)\)</span>, <span
+class="math inline">\(d_{in}(t)\)</span> is an unknown input
+disturbance,<span id="idx-0210" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(d_{out}\)</span> is an unknown output
+disturbance,<span id="idx-0211" class="book-index-anchor" aria-hidden="true"></span> and <span
+class="math inline">\(n(t)\)</span> is an unknown noise signal.<span id="idx-0212" class="book-index-anchor" aria-hidden="true"></span> Note that because of
+the presence of <span class="math inline">\(n\)</span>, the error signal
+<span class="math inline">\(e=r-y\)</span> is no longer the input to
+<span class="math inline">\(C(s)\)</span>. The input to <span
+class="math inline">\(C(s)\)</span> is now <span
+class="math inline">\(r-y-n\)</span>. Note that this is a different
+definition than was used in
+Chapter <a href="09-9-system-type-and-integrators.html#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a> and will result in a
+different transfer function between the error and the noise. To find the
+transfer function from the inputs <span
+class="math inline">\(r\)</span>, <span
+class="math inline">\(d_{in}\)</span>, <span
+class="math inline">\(d_{out}\)</span>, and <span
+class="math inline">\(n\)</span> to the error <span
+class="math inline">\(e(t)\)</span> we start by finding the transfer
+functions to <span class="math inline">\(y\)</span>. Starting at <span
+class="math inline">\(Y(s)\)</span> and following the loop backward
+until returning to <span class="math inline">\(Y\)</span> we get <span
+class="math display">\[\begin{aligned}
+&amp; Y(s) = -D_{out}(s) + P \left( - D_{in}(s) + C\left(R(s) - N(s) -
+Y(s)\right) \right) \notag \\
+\implies &amp; (1+PC) Y(s) = PC R(s) - PC N(s) - D_{out}(s) - P
+D_{in}(s) \notag \\
+         &amp; Y(s) = \frac{PC}{1+PC}R(s) - \frac{PC}{1+PC} N(s)
+%
+         - \frac{1}{1+PC} D_{out}(s) - \frac{P}{1+PC} D_{in}(s).
+\label{eq:loop_transfer_functions_output}
+\end{aligned}\]</span> Defining the error to be <span
+class="math inline">\(E(s) \stackrel{\triangle}{=}R(s)-Y(s)\)</span> we
+get <span class="math display">\[\begin{aligned}
+E(s) &amp;= R(s) - Y(s) \\
+%
+&amp;= \frac{1}{1+PC}R(s) + \frac{PC}{1+PC} N(s)
+%
+    + \frac{1}{1+PC} D_{out}(s) + \frac{P}{1+PC} D_{in}(s),
+\label{eq:loop_transfer_functions}
+\end{aligned}\]</span> Therefore,</p>
+<ol>
+<li><p>The transfer function from the reference <span
+class="math inline">\(r\)</span> to the error <span
+class="math inline">\(e\)</span> is <span
+class="math inline">\(\frac{1}{1+P(s)C(s)}\)</span>,</p></li>
+<li><p>The transfer function from the noise <span
+class="math inline">\(n\)</span> to the error <span
+class="math inline">\(e\)</span> is <span
+class="math inline">\(\frac{P(s)C(s)}{1+P(s)C(s)}\)</span>,</p></li>
+<li><p>The transfer function from the output disturbance <span
+class="math inline">\(d_{out}\)</span> to the error <span
+class="math inline">\(e\)</span> is <span
+class="math inline">\(\frac{1}{1+P(s)C(s)}\)</span>, and</p></li>
+<li><p>The transfer function from the input disturbance <span
+class="math inline">\(d_{in}\)</span> to the error <span
+class="math inline">\(e\)</span> is <span
+class="math inline">\(\frac{P(s)}{1+P(s)C(s)}\)</span>.</p></li>
+</ol>
+<figure id="fig:ls_general_feedback">
+<img src="5_loopshaping/figures/ls_general_feedback.png"
+style="width:80.0%" alt="General feedback loop." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.1. </span>General feedback loop.</figcaption>
+</figure>
+<section id="loop-ch16-signal-path-check">
+<article class="advanced-activity" data-advanced-activity="signal-path">
+<p class="advanced-kicker">
+Chapter 16 activity
+</p>
+<h3>
+Trace the error transfer path
+</h3>
+<p>
+Select one input signal and follow how it appears in the error equation.
+The highlighted path reinforces why different specifications use
+different closed-loop transfer functions.
+</p>
+<div class="advanced-grid ch16-signal-path-layout">
+
+<label>Input source <select
+data-select="signal-path-source"> <option
+value="reference">Reference R(s)</option> <option
+value="noise">Sensor noise N(s)</option> <option
+value="output-disturbance">Output disturbance D_out(s)</option>
+<option value="input-disturbance">Input disturbance D_in(s)</option>
+</select> </label>
+
+<figure class="advanced-visual ch16-signal-path-figure"> <canvas
+data-plot="signal-path" width="820" height="430" role="img"
+aria-label="Interactive feedback diagram showing transfer paths to the
+error signal">
+</canvas>
+<figcaption><span class="fig-number">Figure 1.6. </span>
+The selected path shows which blocks determine the transfer function
+from the chosen input to the error signal.
+</figcaption>
+</figure>
+</div>
+<section
+class="advanced-solution ch16-signal-path-solution"> <h4>Selected
+path</h4> <p class="advanced-equation
+ch16-signal-path-result"><strong>Transfer to error:</strong>
+<span data-output="signal-transfer"></span></p> <p
+class="advanced-equation
+ch16-signal-path-result"><strong>Specification
+connection:</strong> <span
+data-output="signal-note"></span></p> </section>
+</article>
+</section>
+<p>For typical applications, we have that</p>
+<ol>
+<li><p>The reference signal <span class="math inline">\(r(t)\)</span> is
+a low frequency signal with frequency content below <span
+class="math inline">\(\omega_r\)</span>,</p></li>
+<li><p>The noise signal <span class="math inline">\(n(t)\)</span> is a
+high frequency signal with frequency content above <span
+class="math inline">\(\omega_{\mathit{no}}\)</span>,</p></li>
+<li><p>The output disturbance signal <span
+class="math inline">\(d_{out}(t)\)</span> is a low frequency signal with
+frequency content below <span
+class="math inline">\(\omega_{d_{out}}\)</span>,</p></li>
+<li><p>The input disturbance signal <span
+class="math inline">\(d_{in}(t)\)</span> is a low frequency signal with
+frequency content below <span
+class="math inline">\(\omega_{d_{in}}\)</span>.</p></li>
+</ol>
+<p>The objective for the control design is to find <span
+class="math inline">\(C(s)\)</span> so that the following specifications
+are satisfied:</p>
+<ol>
+<li><p><strong>Tracking</strong>: Track reference signals <span
+class="math inline">\(r(t)\)</span> with frequency content below <span
+class="math inline">\(\omega_r\)</span> so that the error due to the
+reference signal satisfies <span id="idx-0213" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\left|e(t)\right|\leq
+\gamma_r\left|r(t)\right|,\]</span></p></li>
+<li><p><strong>Noise Attenuation</strong>: Attenuate noise signals <span
+class="math inline">\(n(t)\)</span> with frequency content above <span
+class="math inline">\(\omega_{no}\)</span> so that the error due to the
+noise signal satisfies <span id="idx-0214" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\left|e(t)\right|\leq
+\gamma_n\left|n(t)\right|,\]</span></p></li>
+<li><p><strong>Reject Output Disturbances</strong>: Reject output
+disturbance signals <span class="math inline">\(d_{out}(t)\)</span> with
+frequency content below <span
+class="math inline">\(\omega_{d_{out}}\)</span> so that the error due to
+the output disturbance signal satisfies <span id="idx-0215" class="book-index-anchor" aria-hidden="true"></span><span id="idx-0216" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\left|e(t)\right|\leq
+\gamma_{d_{out}}\left|d_{out}(t)\right|,\]</span></p></li>
+<li><p><strong>Reject Input Disturbances</strong>: Reject input
+disturbance signals <span class="math inline">\(d_{in}(t)\)</span> with
+frequency content below <span
+class="math inline">\(\omega_{d_{in}}\)</span> so that the error due to
+the input disturbance signal satisfies <span id="idx-0217" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\left|e(t)\right|\leq
+\gamma_{d_{in}}\left|d_{in}(t)\right|.\]</span></p></li>
+</ol>
+<p>The objective in the remainder of this chapter is to show how each of
+these specifications can be translated into a requirement on the
+magnitude of the (open) loop gain <span
+class="math inline">\(20\log_{10}\left|P(j\omega)C(j\omega)\right|\)</span>.</p>
+<h3 data-number="16.1.1" id="tracking"><span class="header-section-number">16.1.1</span> Tracking</h3>
+<p><span id="idx-0218" class="book-index-anchor" aria-hidden="true"></span> The transfer function
+from the reference signal <span class="math inline">\(r(t)\)</span> to
+the error <span class="math inline">\(e(t)\)</span> is <span
+class="math display">\[E(s) = \frac{1}{1+P(s)C(s)}R(s).\]</span>
+Therefore, <span class="math display">\[\left|E(j\omega)\right| \leq
+\left|\frac{1}{1+P(j\omega)C(j\omega)}\right|\left|R(j\omega)\right|.\]</span>
+The objective is to track reference signals <span
+class="math inline">\(r(t)\)</span> with frequency content below <span
+class="math inline">\(\omega_r\)</span> so that the error due to the
+reference signal satisfies <span
+class="math display">\[\left|e(t)\right|\leq \gamma_r
+\left|r(t)\right|.\]</span> Therefore, the controller <span
+class="math inline">\(C(s)\)</span> needs to be designed so that <span
+class="math display">\[\left|\frac{1}{1+P(j\omega)C(j\omega)}\right|
+\leq \gamma_r,\]</span> or equivalently so that <span
+class="math display">\[\left|1+P(j\omega)C(j\omega)\right| \geq
+\frac{1}{\gamma_r}.\]</span> If <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\gg 1\)</span>,
+then a sufficient condition is that <span
+class="math display">\[\left|P(j\omega)C(j\omega)\right| \geq
+\frac{1}{\gamma_r},\]</span> or equivalently <span
+class="math display">\[\label{eq:loop_constraint_gamma_r}
+20\log_{10}\left|P(j\omega)C(j\omega)\right| \geq
+20\log_{10}1/\gamma_r,\]</span> which needs to be satisfied for all
+<span class="math inline">\(\omega\leq\omega_r\)</span>. On a Bode plot,
+the constraint represented by
+Equation <a href="#frequency-domain-specifications" data-reference-type="eqref"
+data-reference="eq:loop_constraint_gamma_r"><a href="#frequency-domain-specifications">16.4</a></a>
+is shown graphically in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_gamma_r" data-reference-type="ref"
+data-reference="fig:ls_constraint_gamma_r">16.2</a>.</p>
+<figure id="fig:ls_constraint_gamma_r">
+<img src="5_loopshaping/figures/ls_constraint_gamma_r.png"
+style="width:95.0%"
+alt="Bode plot representation of the loop-shaping constraint corresponding to tracking r(t) so that the corresponding error satisfies \left|e(t)\right|\leq\gamma_r\left|r(t)\right|." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.2. </span>Bode plot representation of the
+loop-shaping constraint corresponding to tracking <span
+class="math inline"><em>r</em>(<em>t</em>)</span> so that the
+corresponding error satisfies <span
+class="math inline">|<em>e</em>(<em>t</em>)| ≤ <em>γ</em><sub><em>r</em></sub>|<em>r</em>(<em>t</em>)|</span>.</figcaption>
+</figure>
+<p>Alternatively, from the Bode plot of <span
+class="math inline">\(PC\)</span> we can compute the tracking
+characteristics of the closed-loop system. For example, suppose that on
+the Bode plot <span
+class="math display">\[20\log_{10}\left|P(j\omega)C(j\omega)\right|&gt;
+B_r\text{~dB}\]</span> for all <span
+class="math inline">\(\omega&lt;\omega_r\)</span>, then <span
+class="math display">\[\left|P(j\omega)C(j\omega)\right|&gt;
+10^{B_r/20},\]</span> for all <span
+class="math inline">\(\omega&lt;\omega_r\)</span>. If <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\gg 1\)</span>
+for all <span class="math inline">\(\omega&lt;\omega_r\)</span>, then
+<span
+class="math display">\[\left|\frac{1}{1+P(j\omega)C(j\omega)}\right|\lessapprox
+10^{-B_r/20},\]</span> which implies that <span
+class="math display">\[\left|E(j\omega)\right| \leq 10^{-B_r/20}
+\left|R(j\omega)\right|\]</span> for all <span
+class="math inline">\(\omega&lt;\omega_r\)</span>, or in other words
+that <span class="math display">\[\label{eq:loop_tracking_Br}
+\left|e(t)\right| \leq 10^{-B_r/20} \left|r(t)\right|,\]</span> for all
+<span class="math inline">\(r(t)\)</span> with frequency content below
+<span class="math inline">\(\omega_r\)</span>, which implies that <span
+class="math display">\[\gamma_r = 10^{-B_r/20}.\]</span></p>
+<h3 data-number="16.1.2" id="noise-attenuation"><span class="header-section-number">16.1.2</span> Noise Attenuation</h3>
+<p><span id="idx-0219" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>The transfer function from the noise signal <span
+class="math inline">\(n(t)\)</span> to the error <span
+class="math inline">\(e(t)\)</span> is <span class="math display">\[E(s)
+= \frac{P(s)C(s)}{1+P(s)C(s)}N(s).\]</span> Therefore, <span
+class="math display">\[\left|E(j\omega)\right| \leq
+\left|\frac{P(j\omega)C(j\omega)}{1+P(j\omega)C(j\omega)}\right|\left|N(j\omega)\right|.\]</span>
+The objective is to attenuate noise signals <span
+class="math inline">\(n(t)\)</span> with frequency content above <span
+class="math inline">\(\omega_{no}\)</span> so that the error due to the
+noise signal satisfies <span
+class="math display">\[\left|e(t)\right|\leq \gamma_n
+\left|n(t)\right|.\]</span> Therefore, the controller <span
+class="math inline">\(C(s)\)</span> needs to be designed so that <span
+class="math display">\[\left|\frac{P(j\omega)C(j\omega)}{1+P(j\omega)C(j\omega)}\right|
+\leq \gamma_n.\]</span> If <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\ll 1\)</span>,
+then a sufficient condition is that <span
+class="math display">\[\left|P(j\omega)C(j\omega)\right| \leq
+\gamma_n,\]</span> or equivalently <span
+class="math display">\[\label{eq:loop_constraint_gamma_n}
+20\log_{10}\left|P(j\omega)C(j\omega)\right| \leq
+20\log_{10}\gamma_n,\]</span> which needs to be satisfied for all <span
+class="math inline">\(\omega\geq\omega_{no}\)</span>. On a Bode plot,
+the constraint represented by
+Equation <a href="#frequency-domain-specifications" data-reference-type="eqref"
+data-reference="eq:loop_constraint_gamma_n"><a href="#frequency-domain-specifications">16.6</a></a>
+is shown graphically in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_gamma_n" data-reference-type="ref"
+data-reference="fig:ls_constraint_gamma_n">16.3</a>.</p>
+<figure id="fig:ls_constraint_gamma_n">
+<img src="5_loopshaping/figures/ls_constraint_gamma_n.png"
+style="width:95.0%"
+alt="Bode plot representation of the loop-shaping constraint corresponding to attenuating the noise n(t) so that the corresponding error satisfies \left|e(t)\right|\leq\gamma_n\left|n(t)\right|." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.3. </span>Bode plot representation of the
+loop-shaping constraint corresponding to attenuating the noise <span
+class="math inline"><em>n</em>(<em>t</em>)</span> so that the
+corresponding error satisfies <span
+class="math inline">|<em>e</em>(<em>t</em>)| ≤ <em>γ</em><sub><em>n</em></sub>|<em>n</em>(<em>t</em>)|</span>.</figcaption>
+</figure>
+<p>Alternatively, from the Bode plot of <span
+class="math inline">\(PC\)</span> we can compute the noise attenuation
+characteristics of the closed-loop system. For example, suppose that on
+the Bode plot <span
+class="math display">\[20\log_{10}\left|P(j\omega)C(j\omega)\right|&lt;
+-B_n\text{~dB}\]</span> for all <span
+class="math inline">\(\omega&gt;\omega_{no}\)</span>, then <span
+class="math display">\[\left|P(j\omega)C(j\omega)\right|&lt;
+10^{-B_n/20},\]</span> for all <span
+class="math inline">\(\omega&gt;\omega_{no}\)</span>. If <span
+class="math inline">\(P(j\omega)C(j\omega)\ll 1\)</span> for all <span
+class="math inline">\(\omega&gt;\omega_{no}\)</span>, then <span
+class="math display">\[\left|\frac{P(j\omega)C(j\omega)}{1+P(j\omega)C(j\omega)}\right|\lessapprox
+10^{-B_n/20},\]</span> which implies that <span
+class="math display">\[\left|E(j\omega)\right| \leq 10^{-B_n/20}
+\left|N(j\omega)\right|\]</span> for all <span
+class="math inline">\(\omega&gt;\omega_{no}\)</span>, or in other words
+that <span class="math display">\[\left|e(t)\right| \leq 10^{-B_n/20}
+\left|n(t)\right|,\]</span> for all <span
+class="math inline">\(n(t)\)</span> with frequency content above <span
+class="math inline">\(\omega_{no}\)</span>, which implies that <span
+class="math display">\[\gamma_n = 10^{-B_n/20}.\]</span></p>
+<h3 data-number="16.1.3" id="reject-output-disturbances"><span class="header-section-number">16.1.3</span> Reject Output
+Disturbances</h3>
+<p><span id="idx-0220" class="book-index-anchor" aria-hidden="true"></span><span id="idx-0221" class="book-index-anchor" aria-hidden="true"></span> The transfer function
+from the output disturbance signals <span
+class="math inline">\(d_{out}(t)\)</span> to the error <span
+class="math inline">\(e(t)\)</span> is <span class="math display">\[E(s)
+= \frac{1}{1+P(s)C(s)}D_{out}(s).\]</span> Therefore, <span
+class="math display">\[\left|E(j\omega)\right| \leq
+\left|\frac{1}{1+P(j\omega)C(j\omega)}\right|\left|D_{out}(j\omega)\right|.\]</span>
+The objective is to attenuate output disturbance signals <span
+class="math inline">\(d_{out}(t)\)</span> with frequency content below
+<span class="math inline">\(\omega_{d_{out}}\)</span> so that the error
+due to the output disturbance signal satisfies <span
+class="math display">\[\left|e(t)\right|\leq \gamma_{d_{out}}
+\left|d_{out}(t)\right|.\]</span> Therefore, the controller <span
+class="math inline">\(C(s)\)</span> needs to be designed so that <span
+class="math display">\[\left|\frac{1}{1+P(j\omega)C(j\omega)}\right|
+\leq \gamma_{d_{out}},\]</span> or equivalently so that <span
+class="math display">\[\left|1+P(j\omega)C(j\omega)\right| \geq
+\frac{1}{\gamma_{d_{out}}}.\]</span> If <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\gg 1\)</span>,
+then a sufficient condition is that <span
+class="math display">\[\left|P(j\omega)C(j\omega)\right| \geq
+\frac{1}{\gamma_{d_{out}}},\]</span> or equivalently <span
+class="math display">\[\label{eq:loop_constraint_gamma_do}
+20\log_{10}\left|P(j\omega)C(j\omega)\right| \geq
+20\log_{10}1/\gamma_{d_{out}},\]</span> which needs to be satisfied for
+all <span class="math inline">\(\omega\leq\omega_{d_{out}}\)</span>. On
+a Bode plot, the constraint represented by
+Equation <a href="#notes-and-references-15" data-reference-type="eqref"
+data-reference="eq:loop_constraint_gamma_do"><a href="#frequency-domain-specifications">16.7</a></a>
+is shown graphically in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_gamma_do" data-reference-type="ref"
+data-reference="fig:ls_constraint_gamma_do">16.4</a>.</p>
+<figure id="fig:ls_constraint_gamma_do">
+<img src="5_loopshaping/figures/ls_constraint_gamma_do.png"
+style="width:95.0%"
+alt="Bode plot representation of the loop-shaping constraint corresponding to rejecting the output disturbance d_{out}(t) so that the corresponding error satisfies \left|e(t)\right|\leq\gamma_{d_{out}}\left|d_{out}(t)\right|." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.4. </span>Bode plot representation of the
+loop-shaping constraint corresponding to rejecting the output
+disturbance <span
+class="math inline"><em>d</em><sub><em>o</em><em>u</em><em>t</em></sub>(<em>t</em>)</span>
+so that the corresponding error satisfies <span
+class="math inline">|<em>e</em>(<em>t</em>)| ≤ <em>γ</em><sub><em>d</em><sub><em>o</em><em>u</em><em>t</em></sub></sub>|<em>d</em><sub><em>o</em><em>u</em><em>t</em></sub>(<em>t</em>)|</span>.</figcaption>
+</figure>
+<p>Alternatively, from the Bode plot of <span
+class="math inline">\(PC\)</span> we can compute the output disturbance
+rejection characteristics of the closed-loop system. For example,
+suppose that on the Bode plot <span
+class="math display">\[20\log_{10}\left|P(j\omega)C(j\omega)\right|&gt;
+B_{d_{out}}\text{~dB}\]</span> for all <span
+class="math inline">\(\omega&lt;\omega_{d_{out}}\)</span>, then <span
+class="math display">\[\left|P(j\omega)C(j\omega)\right|&gt;
+10^{B_{d_{out}}/20},\]</span> for all <span
+class="math inline">\(\omega&lt;\omega_{d_{out}}\)</span>. If <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\gg 1\)</span>
+for all <span class="math inline">\(\omega&lt;\omega_{d_{out}}\)</span>,
+then <span
+class="math display">\[\left|\frac{1}{1+P(j\omega)C(j\omega)}\right|\lessapprox
+10^{-B_{d_{out}}/20},\]</span> which implies that <span
+class="math display">\[\left|E(j\omega)\right| \leq 10^{-B_{d_{out}}/20}
+\left|D_{out}(j\omega)\right|\]</span> for all <span
+class="math inline">\(\omega&lt;\omega_{d_{out}}\)</span>, or in other
+words that <span class="math display">\[\left|e(t)\right| \leq
+10^{-B_{d_{out}}/20} \left|d_{out}(t)\right|,\]</span> for all <span
+class="math inline">\(d_{out}(t)\)</span> with frequency content below
+<span class="math inline">\(\omega_{d_{out}}\)</span>, which implies
+that <span class="math display">\[\gamma_{d_{out}} =
+10^{-B_{d_{out}}/20}.\]</span></p>
+<h3 data-number="16.1.4" id="reject-input-disturbances"><span class="header-section-number">16.1.4</span> Reject Input
+Disturbances</h3>
+<p><span id="idx-0222" class="book-index-anchor" aria-hidden="true"></span><span id="idx-0223" class="book-index-anchor" aria-hidden="true"></span> The transfer function
+from the input disturbance signals <span
+class="math inline">\(d_{in}(t)\)</span> to the error <span
+class="math inline">\(e(t)\)</span> is <span class="math display">\[E(s)
+= \frac{P(s)}{1+P(s)C(s)}D_{in}(s).\]</span> Therefore, <span
+class="math display">\[\left|E(j\omega)\right| \leq
+\left|\frac{P(j\omega)}{1+P(j\omega)C(j\omega)}\right|\left|D_{in}(j\omega)\right|.\]</span>
+The objective is to attenuate input disturbance signals <span
+class="math inline">\(d_{in}(t)\)</span> with frequency content below
+<span class="math inline">\(\omega_{d_{in}}\)</span> so that the error
+due to the input disturbance signal satisfies <span
+class="math display">\[\left|e(t)\right|\leq \gamma_{d_{in}}
+\left|d_{in}(t)\right|.\]</span> Therefore, the controller <span
+class="math inline">\(C(s)\)</span> needs to be designed so that <span
+class="math display">\[\left|\frac{P(j\omega)}{1+P(j\omega)C(j\omega)}\right|
+\leq \gamma_{d_{in}},\]</span> or equivalently so that <span
+class="math display">\[\frac{\left|1+P(j\omega)C(j\omega)\right|}{\left|P(j\omega)\right|}
+\geq \frac{1}{\gamma_{d_{in}}}.\]</span> If <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\gg 1\)</span>,
+then a sufficient condition is that <span
+class="math display">\[\frac{\left|P(j\omega)C(j\omega)\right|}{\left|P(j\omega)\right|}
+\geq \frac{1}{\gamma_{d_{in}}},\]</span> or equivalently <span
+class="math display">\[\label{eq:loop_constraint_gamma_di}
+20\log_{10}\left|P(j\omega)C(j\omega)\right| -
+20\log_{10}\left|P(j\omega)\right| \geq
+20\log_{10}1/\gamma_{d_{in}},\]</span> which needs to be satisfied for
+all <span class="math inline">\(\omega\leq\omega_{d_{in}}\)</span>. On a
+Bode plot, the constraint represented by
+Equation <a href="#frequency-domain-specifications" data-reference-type="eqref"
+data-reference="eq:loop_constraint_gamma_di"><a href="#frequency-domain-specifications">16.8</a></a>
+is shown graphically in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_gamma_di" data-reference-type="ref"
+data-reference="fig:ls_constraint_gamma_di">16.5</a>, where it can be
+seen that the loop gain <span
+class="math inline">\(\left|PC\right|\)</span> must be above the
+magnitude of the plant <span
+class="math inline">\(\left|P\right|\)</span> by the specified
+amount.</p>
+<figure id="fig:ls_constraint_gamma_di">
+<img src="5_loopshaping/figures/ls_constraint_gamma_di.png"
+style="width:95.0%"
+alt="Bode plot representation of the loop-shaping constraint corresponding to rejecting the input disturbance d_{in}(t) so that the corresponding error satisfies \left|e(t)\right|\leq\gamma_{d_{in}}\left|d_{in}(t)\right|." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.5. </span>Bode plot representation of the
+loop-shaping constraint corresponding to rejecting the input disturbance
+<span
+class="math inline"><em>d</em><sub><em>i</em><em>n</em></sub>(<em>t</em>)</span>
+so that the corresponding error satisfies <span
+class="math inline">|<em>e</em>(<em>t</em>)| ≤ <em>γ</em><sub><em>d</em><sub><em>i</em><em>n</em></sub></sub>|<em>d</em><sub><em>i</em><em>n</em></sub>(<em>t</em>)|</span>.</figcaption>
+</figure>
+<p>Alternatively, from the Bode plot of <span
+class="math inline">\(PC\)</span> we can compute the input disturbance
+rejection characteristics of the closed-loop system. For example,
+suppose that on the Bode plot <span
+class="math display">\[20\log_{10}\left|P(j\omega)C(j\omega)\right|-20\log_{10}\left|P(j\omega)\right|&gt;
+B_{d_{in}}\text{~dB}\]</span> for all <span
+class="math inline">\(\omega&lt;\omega_{d_{in}}\)</span>, then <span
+class="math display">\[\frac{\left|P(j\omega)C(j\omega)\right|}{\left|P(j\omega)\right|}&gt;
+10^{B_{d_{in}}/20},\]</span> for all <span
+class="math inline">\(\omega&lt;\omega_{d_{in}}\)</span>. If <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\gg 1\)</span>
+for all <span class="math inline">\(\omega&lt;\omega_{d_{in}}\)</span>,
+then <span
+class="math display">\[\left|\frac{P(j\omega)}{1+P(j\omega)C(j\omega)}\right|\lessapprox
+10^{-B_{d_{in}}/20},\]</span> which implies that <span
+class="math display">\[\left|E(j\omega)\right| \leq 10^{-B_{d_{in}}/20}
+\left|D_{in}(j\omega)\right|\]</span> for all <span
+class="math inline">\(\omega&lt;\omega_{d_{in}}\)</span>, or in other
+words that <span
+class="math display">\[\label{eq:loop_input_dist_rejection}
+\left|e(t)\right| \leq 10^{-B_{d_{in}}/20}
+\left|d_{in}(t)\right|,\]</span> for all <span
+class="math inline">\(d_{in}(t)\)</span> with frequency content below
+<span class="math inline">\(\omega_{d_{in}}\)</span>, which implies that
+<span class="math display">\[\gamma_{d_{in}} =
+10^{-B_{d_{in}}/20}.\]</span></p>
+<h3 data-number="16.1.5"
+id="frequency-response-characterization-of-system-type"><span class="header-section-number">16.1.5</span> Frequency Response
+Characterization of System Type</h3>
+<p><span id="idx-0224" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>Recall that the loop gain <span
+class="math inline">\(P(s)C(s)\)</span> is said to be</p>
+<ul>
+<li><p>Type 0 if there are no free integrators,</p></li>
+<li><p>Type 1 if there is one free integrator,</p></li>
+<li><p>Type 2 if there are two free integrators, etc..</p></li>
+</ul>
+<h4 data-number="15.1.5.1" id="type-0-system"><span
+class="header-section-number">15.1.5.1</span> Type 0 System</h4>
+<p><span id="idx-0225" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>Note that for a type 0 system <span
+class="math display">\[\begin{aligned}
+&amp; \lim_{s\to 0} P(s)C(s) = \text{~constant} \\
+\implies &amp; \lim_{\omega\to 0}\left|P(j\omega)C(j\omega)\right| =
+\text{~constant} \\
+\implies &amp; \lim_{\omega\to 0}
+20\log_{10}\left|P(j\omega)C(j\omega)\right| = \text{~constant}.
+\end{aligned}\]</span> In other words, at low frequency, the Bode
+magnitude plot is as shown in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_type0" data-reference-type="ref"
+data-reference="fig:ls_constraint_type0">16.6</a>.</p>
+<figure id="fig:ls_constraint_type0">
+<img src="5_loopshaping/figures/ls_constraint_type0.png"
+style="width:95.0%" alt="Bode plot of a type 0 system." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.6. </span>Bode plot of a type 0
+system.</figcaption>
+</figure>
+<p>Recall that for a step input to a type 0 system where <span
+class="math inline">\(R(s) = A/s\)</span>, the steady state error is
+<span class="math display">\[e_{ss} = \lim_{t\to \infty} e(t) =
+\lim_{s\to 0} sE(s) = \lim_{s\to 0} \frac{A}{1+P(s)C(s)} =
+\frac{A}{1+M_p},\]</span> where <span class="math display">\[M_p =
+\lim_{s\to 0}P(s)C(s) = \lim_{\omega\to 0}
+\left|P(j\omega)C(j\omega)\right|.\]</span> As shown in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_type0" data-reference-type="ref"
+data-reference="fig:ls_constraint_type0">16.6</a>, <span
+class="math inline">\(20\log_{10}M_p\)</span> is the constant limit of
+the loop gain as <span class="math inline">\(\omega\to 0\)</span>.</p>
+<p>Therefore, from the Bode plot of <span
+class="math inline">\(PC\)</span> for a type 0 system, we can compute
+the tracking error for a step input of size <span
+class="math inline">\(A\)</span>. Suppose that on the Bode plot <span
+class="math display">\[\lim_{\omega\to 0}
+20\log_{10}\left|P(j\omega)C(j\omega)\right| = B_0\text{~dB}.\]</span>
+Then <span class="math display">\[M_p = 10^{B_0/20},\]</span> and <span
+class="math display">\[\label{eq:loop_type0_error_step}
+\lim_{t\to\infty}\left|e(t)\right| \leq \frac{1}{1+M_p} A.\]</span></p>
+<h4 data-number="15.1.5.2" id="type-1-system"><span
+class="header-section-number">15.1.5.2</span> Type 1 System</h4>
+<p><span id="idx-0226" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>For a type 1 system since <span
+class="math inline">\(P(s)C(s)\)</span> has one free integrator <span
+class="math display">\[\begin{aligned}
+&amp; \lim_{s\to 0} sP(s)C(s) = \text{~constant} \\
+\implies &amp; \lim_{\omega\to
+0}\left|(j\omega)P(j\omega)C(j\omega)\right| = \text{~constant} \\
+\implies &amp; \lim_{\omega\to
+0}\frac{\left|P(j\omega)C(j\omega)\right|}{\left|\frac{1}{j\omega}\right|}
+= \text{~constant} \\
+\implies &amp; \lim_{\omega\to 0} \left[
+20\log_{10}\left|P(j\omega)C(j\omega)\right| -
+20\log_{10}\left|\frac{1}{j\omega}\right|\right] = \text{~constant}.
+\end{aligned}\]</span> In other words, at low frequency, the Bode
+magnitude plot of <span
+class="math inline">\(20\log_{10}\left|P(j\omega)C(j\omega)\right|\)</span>
+has a slope of <span class="math inline">\(-20\)</span> dB/decade as
+<span class="math inline">\(\omega\to 0\)</span>, as shown in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_type1" data-reference-type="ref"
+data-reference="fig:ls_constraint_type1">16.7</a>.</p>
+<figure id="fig:ls_constraint_type1">
+<img src="5_loopshaping/figures/ls_constraint_type1.png"
+style="width:95.0%" alt="Bode plot of a type 1 system." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.7. </span>Bode plot of a type 1
+system.</figcaption>
+</figure>
+<p>Recall that for a ramp input to a type 1 system where <span
+class="math inline">\(R(s) = A/s^2\)</span>, the steady state error is
+<span class="math display">\[e_{ss} = \lim_{t\to \infty} e(t) =
+\lim_{s\to 0} sE(s) = \lim_{s\to 0} \frac{A}{s+sP(s)C(s)} =
+\frac{A}{M_v},\]</span> where <span class="math display">\[M_v =
+\lim_{s\to 0}sP(s)C(s) = \lim_{\omega\to 0}
+\left|(j\omega)P(j\omega)C(j\omega)\right|.\]</span> As shown in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_type1" data-reference-type="ref"
+data-reference="fig:ls_constraint_type1">16.7</a>, <span
+class="math inline">\(20\log_{10}M_v\)</span> is the amount that the
+loop gain exceeds the Bode plot of <span
+class="math inline">\(20\log_{10}\left|1/j\omega\right|\)</span> as
+<span class="math inline">\(\omega\to 0\)</span>.</p>
+<p>Therefore, from the Bode plot of <span
+class="math inline">\(PC\)</span> for a type 1 system, we can compute
+the tracking error for a ramp input with slope <span
+class="math inline">\(A\)</span>. Suppose that on the Bode plot <span
+class="math display">\[\lim_{\omega\to 0} \left[
+20\log_{10}\left|P(j\omega)C(j\omega)\right| -
+20\log_{10}\left|\frac{1}{j\omega}\right| \right] =
+B_1\text{~dB},\]</span> then <span class="math display">\[M_v =
+10^{B_1/20},\]</span> and <span
+class="math display">\[\label{eq:loop:type_1_error_ramp}
+\lim_{t\to\infty}\left|e(t)\right| \leq \frac{1}{M_v} A.\]</span></p>
+<h4 data-number="15.1.5.3" id="type-2-system"><span
+class="header-section-number">15.1.5.3</span> Type 2 System</h4>
+<p><span id="idx-0227" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>For a type 2 system where <span
+class="math inline">\(P(s)C(s)\)</span> has two free integrators we have
+<span class="math display">\[\begin{aligned}
+&amp; \lim_{s\to 0} s^2P(s)C(s) = \text{~constant} \\
+\implies &amp; \lim_{\omega\to
+0}\left|(j\omega)^2P(j\omega)C(j\omega)\right| = \text{~constant} \\
+\implies &amp; \lim_{\omega\to
+0}\frac{\left|P(j\omega)C(j\omega)\right|}{\left|\frac{1}{j\omega}\right|^2}
+= \text{~constant} \\
+\implies &amp; \lim_{\omega\to 0} \left[
+20\log_{10}\left|P(j\omega)C(j\omega)\right| -
+20\log_{10}\left|\frac{1}{j\omega}\right|^2\right] = \text{~constant}.
+\end{aligned}\]</span> In other words, at low frequency, the Bode
+magnitude plot of <span
+class="math inline">\(20\log_{10}\left|P(j\omega)C(j\omega)\right|\)</span>
+has a slope of <span class="math inline">\(-40\)</span> dB/decade as
+<span class="math inline">\(\omega\to 0\)</span>, as shown in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_type2" data-reference-type="ref"
+data-reference="fig:ls_constraint_type2">16.8</a>.</p>
+<figure id="fig:ls_constraint_type2">
+<img src="5_loopshaping/figures/ls_constraint_type2.png"
+style="width:95.0%" alt="Bode plot of a type 2 system." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.8. </span>Bode plot of a type 2
+system.</figcaption>
+</figure>
+<p>Recall that for a parabolic input to a type 2 system where <span
+class="math inline">\(R(s) = A/s^3\)</span>, the steady state error is
+<span class="math display">\[e_{ss} = \lim_{t\to \infty} e(t) =
+\lim_{s\to 0} sE(s) = \lim_{s\to 0} \frac{A}{s^2+s^2P(s)C(s)} =
+\frac{A}{M_a},\]</span> where <span class="math display">\[M_a =
+\lim_{s\to 0}s^2P(s)C(s) = \lim_{\omega\to 0}
+\left|(j\omega)^2P(j\omega)C(j\omega)\right|.\]</span> As shown in
+<strong>Fig.</strong> <a href="#fig:ls_constraint_type2" data-reference-type="ref"
+data-reference="fig:ls_constraint_type2">16.8</a>, <span
+class="math inline">\(20\log_{10}M_a\)</span> is the amount that the
+loop gain exceeds the Bode plot of <span
+class="math inline">\(20\log_{10}\left|1/j\omega\right|^2\)</span> as
+<span class="math inline">\(\omega\to 0\)</span>.</p>
+<p>Therefore, from the Bode plot of <span
+class="math inline">\(PC\)</span> for a type 2 system, we can compute
+the tracking error for a parabola input with curvature <span
+class="math inline">\(A\)</span>. Suppose that on the Bode plot <span
+class="math display">\[\lim_{\omega\to 0} \left[
+20\log_{10}\left|P(j\omega)C(j\omega)\right| -
+20\log_{10}\left|\frac{1}{j\omega}\right|^2 \right] =
+B_2\text{~dB}.\]</span> Then <span class="math display">\[M_a =
+10^{B_2/20},\]</span> and <span
+class="math display">\[\label{eq:loop:type_2_error_parabola}
+\lim_{t\to\infty}\left|e(t)\right| \leq \frac{1}{M_a} A.\]</span></p>
+<section id="loop-ch16-system-type-check">
+<article class="advanced-activity" data-advanced-activity="system-type">
+<p class="advanced-kicker">
+Chapter 16 activity
+</p>
+<h3>
+Measure system type from the low-frequency slope
+</h3>
+<p>
+Use two markers to measure the low-frequency slope of
+<span class="inline-equation">|L(jω)|</span>. The slope tells you
+how many free integrators are in the loop: 0, 1, or 2. After classifying
+the type, choose an input class to estimate the corresponding
+steady-state error constant.
+</p>
+<div class="advanced-grid ch16-system-type-layout"> <div
+class="advanced-controls ch16-system-type-controls
+ch16-system-type-measure-controls"> <p class="advanced-kicker
+ch16-system-type-step">Step 1: measure the low-frequency slope
+</p>
+<label>Example loop shape <select
+data-select="system-type-example"> <option
+value="unknown-a">Unknown loop A</option> <option
+value="unknown-b">Unknown loop B</option> <option
+value="unknown-c">Unknown loop C</option> <option
+value="pi-shaped">PI-shaped low-frequency loop</option> <option
+value="lag-shaped">Lag-shaped low-frequency loop</option> <option
+value="measured">Noisy measured loop</option> </select> </label> <p
+class="advanced-callout ch16-system-type-marker-note">Place both
+markers on the low-frequency straight-line part of the Bode magnitude
+curve.
+</p>
+<label>Low-frequency marker 1 <input type="range"
+data-input="system-type-w1" min="-3" max="-0.4" step="0.02"
+value="-2.5">
+<span class="advanced-control-value"><span class="inline-equation">ω<sub>1</sub></span>
+=
+10<sup><span data-output="system-type-w1-exp"></span></sup>
+=
+<span class="ch16-system-type-value-unit"><span data-output="system-type-w1"></span>
+rad/s</span></span> </label> <label>Low-frequency marker 2
+<input type="range"
+data-input="system-type-w2" min="-3" max="-0.4" step="0.02"
+value="-1.5">
+<span class="advanced-control-value"><span class="inline-equation">ω<sub>2</sub></span>
+=
+10<sup><span data-output="system-type-w2-exp"></span></sup>
+=
+<span class="ch16-system-type-value-unit"><span data-output="system-type-w2"></span>
+rad/s</span></span> </label> <div class="advanced-readout
+ch16-system-type-marker-readout"> <div class="advanced-metric
+ch16-system-type-marker-gain"><strong>Marker 1
+gain</strong><span class="ch16-system-type-gain-value">|L(jω<sub>1</sub>)|
+= <span data-output="system-type-db1"></span> dB</span>
+</div>
+<div class="advanced-metric
+ch16-system-type-marker-gain"><strong>Marker 2 gain</strong><span
+class="ch16-system-type-gain-value">|L(j&omega;<sub>2</sub>)|
+= <span data-output="system-type-db2"></span> dB</span></div>
+</div>
+<p class="advanced-equation
+ch16-system-type-slope-formula"><span
+class="metric-equation">slope = (gain<sub>2</sub> -
+gain<sub>1</sub>) / (log<sub>10</sub>&omega;<sub>2</sub> -
+log<sub>10</sub>&omega;<sub>1</sub>) dB/decade</span></p>
+<div class="advanced-callout ch16-system-type-reference">
+<strong>Slope-to-type reference:</strong> <span>0 dB/decade &rarr;
+Type 0</span> <span>-20 dB/decade &rarr; Type 1</span> <span>-40
+dB/decade &rarr; Type 2</span> </div>
+<label
+class="ch16-system-type-guess-control">Classify from measured slope
+<select data-select="system-type-guess"> <option value="">Choose
+after measuring the slope</option> <option value="0">Type 0: 0
+dB/decade</option> <option value="1">Type 1: -20 dB/decade</option>
+<option value="2">Type 2: -40 dB/decade</option> </select> </label>
+<div class="advanced-button-row ch16-system-type-check-panel">
+<button type="button" class="quiz-check ch16-system-type-check-button"
+data-action="system-type-check">Check classification</button> <p
+class="quiz-feedback ch16-system-type-feedback"
+data-output="system-type-check-feedback" aria-live="polite">
+</p>
+</div>
+</div>
+<figure class="advanced-visual
+ch16-system-type-figure"> <canvas data-plot="system-type"
+width="980" height="540" role="img" aria-label="Interactive Bode
+plot for measuring system type"></canvas> <figcaption><span class="fig-number">Figure 1.7. </span>Use the two
+markers to estimate the low-frequency slope. After the type is
+classified correctly, the orange guide shows the input class used to
+measure the relevant error constant.</figcaption> </figure>
+<div
+class="advanced-controls ch16-system-type-controls
+ch16-system-type-error-controls"> <p class="advanced-kicker
+ch16-system-type-step">Step 2: estimate the steady-state error</p>
+<label>After classification: choose the input to test <select
+data-select="system-type-input"> <option value="0">Step input ->
+use M_p</option> <option value="1">Ramp input -> use
+M_v</option> <option value="2">Parabolic input -> use
+M_a</option> </select> </label> <label><span
+class="ch16-system-type-amplitude-label">Input size <span
+class="inline-equation">A</span> = <span
+data-output="system-type-amplitude"></span></span> <input
+type="range" data-input="system-type-amplitude" min="0.1"
+max="5" step="0.1" value="1"> </label> <p
+class="advanced-callout ch16-system-type-input-note">The input size
+<span class="inline-equation">A</span> scales the final error. It
+does not move the Bode curve. After the type is classified, compare
+<span
+class="inline-equation">|L(j&omega;)|</span>
+with the selected input-class guide to estimate <span
+class="inline-equation">M<sub>p</sub></span>, <span
+class="inline-equation">M<sub>v</sub></span>, or <span
+class="inline-equation">M<sub>a</sub></span>.</p> </div>
+</div>
+<section class="advanced-solution
+ch16-system-type-results"> <h4>System type measurement</h4> <p
+class="advanced-equation
+ch16-system-type-result-row"><strong>Measured slope</strong>
+<span data-output="system-type-slope"></span></p> <p
+class="advanced-equation ch16-system-type-result-row"><strong>Type
+classification</strong> <span
+data-output="system-type-classification"></span></p> <p
+class="advanced-equation
+ch16-system-type-result-row"><strong>Measured constant</strong>
+<span data-output="system-type-constant"></span></p> <p
+class="advanced-equation
+ch16-system-type-result-row"><strong>Steady-state result</strong>
+<span data-output="system-type-error"></span></p> <p
+class="advanced-equation
+ch16-system-type-result-row"><strong>Interpretation</strong>
+<span data-output="system-type-note"></span></p> </section>
+</article>
+</section>
+<h2 data-number="16.2"
+id="design-study-a-single-link-robot-arm-14" class="section-design-study"><span class="header-section-number">16.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="16.2.1" id="-example-problem-3119" class="section-example"><span class="header-section-number">16.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#frequency-domain-specifications" data-reference-type="ref"
+data-reference="chap:tracking_disturbance_noise">19</a></h3>
+<p>For the single link robot arm, use the <code>bode</code> command
+(from Matlab or Python) to create a graph that simultaneously displays
+the Bode plots for (1) the plant, (2) the plant under PID control, using
+the control gains calculated in
+HW <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(a) To what percent error can the closed loop system under PID control track
+the desired input if all of the frequency content of <span
+class="math inline">\(\theta_r(t)\)</span> is below <span
+class="math inline">\(\omega_r = 0.4\)</span> radians per second?</p>
+<p>(b) If the reference input is <span class="math inline">\(\theta_r(t) =
+5t^2\)</span> for <span class="math inline">\(t\geq 0\)</span>, what
+will the steady state tracking error to this input be when using PID
+control?</p>
+<p>(c) If all of the frequency content of the input disturbance <span
+class="math inline">\(d_{in}(t)\)</span> is below <span
+class="math inline">\(\omega_{d_{in}} = 0.01\)</span> radians per
+second, what percentage of the input disturbance shows up in the output
+<span class="math inline">\(\theta\)</span> under PID control?</p>
+<p>(d) If all of the frequency content of the noise <span
+class="math inline">\(n(t)\)</span> is greater than <span
+class="math inline">\(\omega_{no} = 100\)</span> radians per second,
+what percentage of the noise shows up in the output signal <span
+class="math inline">\(\theta\)</span>?</p>
+<section id="design-study-a-ch16-frequency-specs">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw16-frequency-specs"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Measure frequency-domain specifications before viewing the
+solution</h3> <p>Read tracking, disturbance, and noise bounds as
+frequency-specific magnitude requirements.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Bode plot with frequency-domain specification markers">
+<img src="6_design_studies/figures/hw_arm_bode_specs_W2021.png"
+alt="Bode plot for the single link robot arm with PID control and
+specification markers."> <p class="advanced-caption">Use the
+marked Bode plot to read the frequency and magnitude values used in the
+specification checks.</p> </div>
+
+<section class="guided-step" data-dsa-step="tracking-bound">
+<h4>Step 1. Tracking specification variables</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Frequency symbol</span><input type="text"
+data-dsa-input="freq" data-dsa-accept="omega_r\|wr\|omegar"
+placeholder="symbol"></label> <label><span>Magnitude-bound
+symbol</span><input type="text" data-dsa-input="mag"
+data-dsa-accept="gamma_r\|gammar" placeholder="symbol"></label>
+</div> <button type="button"
+data-dsa-check="tracking-bound">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="tracking-bound"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="tracking-bound" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> The acceptable
+tracking region is specified by a frequency <span class="math
+inline">\(\omega_r\)</span> and a magnitude bound <span class="math
+inline">\(\gamma_r\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="percent-error">
+<h4>Step 2. Convert magnitude bound to percent</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Percent error expression</span><input type="text"
+data-dsa-input="percent"
+data-dsa-accept="100\*gamma_r\|100\*gammar\|gamma_r\*100"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="percent-error">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="percent-error"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="percent-error" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> A magnitude error
+bound <span class="math inline">\(\gamma_r\)</span> corresponds to
+approximately <span class="math
+inline">\(100\gamma_r%\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="spec-types">
+<h4>Step 3. Identify high- and low-frequency specs</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Noise attenuation is mainly</span><input
+type="text" data-dsa-input="noise" data-dsa-accept="high
+frequency\|high-frequency" placeholder="short answer"></label>
+<label><span>Disturbance rejection is mainly</span><input
+type="text" data-dsa-input="disturbance" data-dsa-accept="low
+frequency\|low-frequency" placeholder="short answer"></label>
+</div> <button type="button" data-dsa-check="spec-types">Check
+Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="spec-types" aria-live="polite"></p> <details
+class="quiz-answer" data-dsa-answer="spec-types"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> Disturbance rejection is
+a low-frequency requirement, while sensor-noise attenuation is a
+high-frequency requirement.</p></details> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p><strong>(a)</strong> The Bode plot of the plant <span
+class="math inline">\(P(s)\)</span>, and the loop gain with PID control
+<span class="math inline">\(P(s)C_{PID}(s)\)</span> is shown in
+<strong>Fig.</strong> <a href="#fig:hw_arm_bode_specs"
+data-reference-type="ref"
+data-reference="fig:hw_arm_bode_specs">16.9</a>.</p>
+<figure id="fig:hw_arm_bode_specs">
+<img src="6_design_studies/figures/hw_arm_bode_specs_W2021.png"
+style="width:95.0%"
+alt="Bode plot for single link robot arm, plant only and under PID control." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.9. </span>Bode plot for single link robot arm,
+plant only and under PID control.</figcaption>
+</figure>
+<p>From <strong>Fig.</strong> <a href="#fig:hw_arm_bode_specs"
+data-reference-type="ref"
+data-reference="fig:hw_arm_bode_specs">16.9</a> we see that below <span
+class="math inline">\(\omega_r = 0.4\)</span> rad/sec, the loop gain is
+above <span class="math inline">\(B_r=44.5\)</span> dB. Therefore, from
+Equation <a href="#frequency-domain-specifications" data-reference-type="eqref"
+data-reference="eq:loop_tracking_Br"><a href="#frequency-domain-specifications">16.5</a></a> we have
+that <span class="math display">\[\left|e(t)\right| \leq \gamma_r
+\left|r(t)\right|,\]</span> where <span class="math inline">\(\gamma_r =
+10^{-44.5/20} = 0.006\)</span>, which implies that the tracking error
+will be 0.60% of the magnitude of the input.</p>
+<p><strong>(b)</strong> Suppose now that the desired reference input is
+<span class="math inline">\(\theta_r(t) = 5t^2\)</span>. Under PID
+control, the slope of the loop gain as <span
+class="math inline">\(\omega\to 0\)</span> is <span
+class="math inline">\(-40\)</span> dB/dec, which implies that the system
+is type 2 and will track a step and a ramp with zero steady state error.
+For a parabola, there will be a finite error. Since the loop gain under
+PID control is <span class="math inline">\(B_2=28\)</span> dB above the
+<span class="math inline">\(1/s^2\)</span> line, from Equation <a
+href="#frequency-domain-specifications" data-reference-type="eqref"
+data-reference="eq:loop:type_2_error_parabola"><a href="#frequency-domain-specifications">16.12</a></a>
+the steady state error satisfies <span
+class="math display">\[\lim_{t\to\infty}\left|e(t)\right| \leq
+\frac{A}{M_a}  = 5\cdot 10^{-28/20} = 0.2.\]</span></p>
+<p><strong>(c)</strong> If the input disturbance is below <span
+class="math inline">\(\omega_{d_{in}} = 0.01\)</span> rad/s, then the
+difference between the loop gain and the plant is <span
+class="math inline">\(B_{d_{in}}=28\)</span> dB at <span
+class="math inline">\(\omega_{d_{in}} = 0.01\)</span> rad/s, therefore,
+from Equation <a href="#frequency-domain-specifications"
+data-reference-type="eqref"
+data-reference="eq:loop_input_dist_rejection"><a href="#frequency-domain-specifications">16.9</a></a>
+we see that <span class="math display">\[\gamma_{d_{in}} = 10^{-28/20} =
+0.04,\]</span> implying that 4% of the input disturbance will show up in
+the output.</p>
+<p><strong>(d)</strong> For noise greater than <span
+class="math inline">\(\omega_{no}=100\)</span> rad/sec, we see from
+<strong>Fig.</strong> <a href="#fig:hw_arm_bode_specs"
+data-reference-type="ref"
+data-reference="fig:hw_arm_bode_specs">16.9</a> that <span
+class="math inline">\(B_n = 32.6\)</span> dB. Therefore, <span
+class="math inline">\(\gamma_n = 10^{-32.6/20} = 0.023\)</span> which
+implies that <span class="math inline">\(2.3\)</span>% of the noise will
+show up in the output signal.</p>
+<p>Python code to generate the relevant plots can be downloaded at <a
+href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="16.3" id="design-study-b-inverted-pendulum-12" class="section-design-study"><span class="header-section-number">16.3</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="16.3.1" id="-example-problem-3219" class="section-example"><span class="header-section-number">16.3.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#frequency-domain-specifications" data-reference-type="ref"
+data-reference="chap:tracking_disturbance_noise">19</a></h3>
+<p>For the inner loop of the inverted pendulum, use the
+<code>bode</code> command (in Python or Matlab) to create a graph that
+simultaneously displays the Bode plots for (1) the plant, and (2) the
+plant under PD control, using the control gains calculated in
+Homework <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(a) To what percent error can the closed loop system track the desired input
+if all of the frequency content of <span
+class="math inline">\(\theta_r(t)\)</span> is below <span
+class="math inline">\(\omega_r = 1.0\)</span> radians per second?</p>
+<p>(b) If all of the frequency content of the sensor noise on the inner <span
+class="math inline">\(n(t)\)</span> is greater than <span
+class="math inline">\(\omega_{no} = 200\)</span> radians per second,
+what percentage of the noise shows up in the output signal <span
+class="math inline">\(\theta\)</span>?</p>
+<p>For the outer loop of the inverted pendulum, use the Matlab
+<code>bode</code> command to create a graph that simultaneously displays
+the Bode plots for the plant, and the plant under PID control, using the
+control gains calculated in
+Homework <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(c) If the reference signal <span class="math inline">\(y_r(t)\)</span> has
+frequency content below <span
+class="math inline">\(\omega_r=0.001\)</span> radians/second, what is
+the tracking error under PID control if <span
+class="math inline">\(\left|r(t)\right|\leq 50\)</span>?</p>
+<section id="design-study-b-ch16-frequency-specs">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw16"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Read pendulum frequency-domain specs
+before viewing the solution</h3> <p>Use Bode-plot bounds to estimate
+tracking and noise attenuation.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Inner-loop pendulum Bode plot with specifications.">
+<img
+src="6_design_studies/figures/hw_pendulum_bode_specs_in_W2021.png"
+alt="Inner-loop pendulum Bode plot with specifications."> <p
+class="advanced-caption">Use the markers to connect dB bounds to
+tracking and noise percentages.</p> </div>
+
+<section class="guided-step" data-dsa-step="tracking">
+<h4>Step 1. Inner-loop tracking frequency</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Reference frequency</span><input type="text"
+data-dsa-input="omega" data-dsa-accept="1\|1.0\|1 rad/s\|1.0 rad/s"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="tracking">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="tracking"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="tracking"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The inner-loop tracking
+specification is evaluated below omega_r = 1 rad/s.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="noise"> <h4>Step 2.
+Inner-loop noise frequency</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Noise
+frequency</span><input type="text" data-dsa-input="omega"
+data-dsa-accept="200\|200 rad/s" placeholder="value"></label>
+</div> <button type="button" data-dsa-check="noise">Check Step
+2</button> <p class="quiz-feedback" data-dsa-feedback="noise"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="noise" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> The
+inner-loop noise specification is evaluated above omega_no = 200
+rad/s.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="outer"> <h4>Step 3.
+Outer-loop reference frequency</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Outer reference
+frequency</span><input type="text" data-dsa-input="omega"
+data-dsa-accept="0.001\|0.001 rad/s" placeholder="value"></label>
+</div> <button type="button" data-dsa-check="outer">Check Step
+3</button> <p class="quiz-feedback" data-dsa-feedback="outer"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="outer" hidden><summary>Show
+solution for Step 3</summary><p><strong>Answer:</strong> The
+outer-loop tracking bound is evaluated below omega_r = 0.001
+rad/s.</p></details> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p><strong>(a)</strong> The Bode plot of the plant <span
+class="math inline">\(P(s)\)</span>, and the loop gain with PD control
+<span class="math inline">\(P(s)C_{PD}(s)\)</span> are shown in
+<strong>Fig.</strong> <a href="#fig:hw_pendulum_bode_specs_in"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_bode_specs_in">16.10</a>.</p>
+<figure id="fig:hw_pendulum_bode_specs_in">
+<img src="6_design_studies/figures/hw_pendulum_bode_specs_in_W2021.png"
+style="width:95.0%"
+alt="Bode plot for the inner loop of the inverted pendulum for (1) plant only (blue), and (2) under PD control (orange)." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.10. </span>Bode plot for the inner loop of the
+inverted pendulum for (1) plant only (blue), and (2) under PD control
+(orange).</figcaption>
+</figure>
+<p>From <strong>Fig.</strong> <a href="#fig:hw_pendulum_bode_specs_in"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_bode_specs_in">16.10</a> we see that
+below <span class="math inline">\(\omega_r = 1.0\)</span> rad/sec, the
+loop gain is above <span class="math inline">\(B_r=6.5\)</span> dB.
+Therefore, from Equation <a href="#frequency-domain-specifications"
+data-reference-type="eqref"
+data-reference="eq:loop_tracking_Br"><a href="#frequency-domain-specifications">16.5</a></a> we have
+that <span class="math display">\[\left|e(t)\right| \leq \gamma_r
+\left|r(t)\right|,\]</span> where <span class="math inline">\(\gamma_r =
+10^{-6.5/20} = 0.47\)</span>, which implies that the tracking error will
+be 47% of the magnitude of the input.</p>
+<p><strong>(b)</strong> For noise greater than <span
+class="math inline">\(\omega_{no}=200\)</span> rad/sec, we see from
+<strong>Fig.</strong> <a href="#fig:hw_pendulum_bode_specs_in"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_bode_specs_in">16.10</a> that <span
+class="math inline">\(B_n = 32.2\)</span> dB. Therefore, <span
+class="math inline">\(\gamma_n = 10^{-32.2/20} = 0.0245\)</span> which
+implies that <span class="math inline">\(2.45\)</span>% of the noise
+will show up in the output signal.</p>
+<p><strong>(c)</strong> The Bode plot of the outer loop <span
+class="math inline">\(P(s)\)</span>, and the loop gain with PID control
+<span class="math inline">\(P(s)C_{PID}(s)\)</span> is shown in
+<strong>Fig.</strong> <a href="#fig:hw_pendulum_bode_specs_out"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_bode_specs_out">16.11</a>.</p>
+<figure id="fig:hw_pendulum_bode_specs_out">
+<img src="6_design_studies/figures/hw_pendulum_bode_specs_out_W2021.png"
+style="width:95.0%"
+alt="Bode plot for the outer loop of the inverted pendulum for (1) plant only (blue), and (2) under PID control (orange)." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.11. </span>Bode plot for the outer loop of the
+inverted pendulum for (1) plant only (blue), and (2) under PID control
+(orange).</figcaption>
+</figure>
+<p>From <strong>Fig.</strong> <a href="#fig:hw_pendulum_bode_specs_out"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_bode_specs_out">16.11</a> it can be seen
+that the loop gain under PID control for the outer loop is above <span
+class="math inline">\(B_r=154\)</span> dB for all <span
+class="math inline">\(\omega&lt;\omega_r=0.001\)</span> radians/second.
+Therefore, from Equation <a href="#frequency-domain-specifications"
+data-reference-type="eqref"
+data-reference="eq:loop_tracking_Br"><a href="#frequency-domain-specifications">16.5</a></a> the
+tracking error satisfies <span
+class="math display">\[\left|e(t)\right|\leq \gamma_r
+\left|r(t)\right|,\]</span> where <span class="math inline">\(\gamma_r =
+10^{-154/20}=2.0e-08\)</span>. Therefore, if <span
+class="math inline">\(\left|r(t)\right|\leq 50\)</span>, then <span
+class="math inline">\(\left|e(t)\right|\leq 100e-08\)</span>.</p>
+<p>Python code to generate the relevant plots can be downloaded at <a
+href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="16.4"
+id="design-study-c-satellite-attitude-control-13" class="section-design-study"><span class="header-section-number">16.4</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="16.4.1" id="-example-problem-3319" class="section-example"><span class="header-section-number">16.4.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#frequency-domain-specifications" data-reference-type="ref"
+data-reference="chap:tracking_disturbance_noise">19</a></h3>
+<p>For the inner loop of the satellite attitude control, use the
+<code>bode</code> command to create a graph that simultaneously displays
+the Bode plots for (1) the plant, and (2) the plant under PD control,
+using the control gains calculated in
+Homework <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(a) To what percent error can the closed loop system under PD control track
+a step in <span class="math inline">\(\theta_r(t)=20 t^2\)</span> for
+<span class="math inline">\(t\geq0\)</span>?</p>
+<p>(b) If the input disturbance has frequency content below <span
+class="math inline">\(\omega_{d_{in}}=0.1\)</span> radians per second,
+what percentage of the input disturbance appears in the output?</p>
+<p>For the outer loop of the satellite attitude control, use the
+<code>bode</code> command to create a graph that simultaneously displays
+the Bode plots for (1) the plant, (2) the plant under PID control using
+the control gains calculated in
+Homework <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(c) If all of the frequency content of the noise <span
+class="math inline">\(n(t)\)</span> is greater than <span
+class="math inline">\(\omega_{no} = 10\)</span> radians per second, what
+percentage of the noise shows up in the output signal <span
+class="math inline">\(\phi\)</span>, using PI control?</p>
+<section id="design-study-c-ch16-frequency-specs">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw16" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Read satellite frequency-domain specs before viewing the
+solution</h3> <p>Use Bode-plot offsets to estimate tracking error,
+disturbance rejection, and noise transmission.</p> <section
+class="guided-step" data-dsa-step="tracking"> <h4>Step 1.
+Inner-loop tracking type</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Low-frequency
+slope</span><input type="text" data-dsa-input="slope"
+data-dsa-accept="-40\|-40 db/dec\|-40 db per decade"
+placeholder="slope"></label> <label><span>System
+type</span><input type="text" data-dsa-input="type"
+data-dsa-accept="2\|type2\|type 2" placeholder="type"></label>
+</div> <button type="button" data-dsa-check="tracking"
+data-dsa-hint="A -40 dB/dec low-frequency loop-gain slope corresponds
+to type 2.">Check Step 1</button> <p class="quiz-feedback"
+data-dsa-feedback="tracking" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="tracking"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The inner loop is type 2
+for tracking, so parabolic inputs have finite steady-state
+error.</p></details> </section> <section class="guided-step"
+data-dsa-step="disturbance"> <h4>Step 2. Disturbance
+frequency</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Input disturbance
+frequency bound</span><input type="text" data-dsa-input="omega"
+data-dsa-accept="0.1\|0.1 rad/s\|.1" placeholder="value"></label>
+<label><span>Readout uses</span><input type="text"
+data-dsa-input="readout" data-dsa-accept="difference between loop
+gain and plant\|loop gain minus plant\|db difference"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="disturbance"
+data-dsa-hint="Input-disturbance rejection is read from the separation
+between loop gain and plant.">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="disturbance"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="disturbance"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> Evaluate
+input-disturbance rejection below \(\omega_{d_{in}}=0.1\) rad/s using the
+dB separation between loop gain and plant.</p></details>
+</section> <section class="guided-step" data-dsa-step="noise">
+<h4>Step 3. Outer-loop noise</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Noise frequency
+bound</span><input type="text" data-dsa-input="omega"
+data-dsa-accept="10\|10 rad/s" placeholder="value"></label>
+<label><span>Design tradeoff</span><input type="text"
+data-dsa-input="tradeoff" data-dsa-accept="noise vs tracking\|noise
+attenuation vs bandwidth\|high frequency gain" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="noise" data-dsa-hint="Reducing high-frequency gain
+attenuates noise but can limit bandwidth.">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="noise"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="noise" hidden><summary>Show
+solution for Step 3</summary><p><strong>Answer:</strong> Noise
+above \(10\) rad/s is evaluated from the high-frequency loop behavior;
+reducing it trades against bandwidth and response
+speed.</p></details> </section> <div
+class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution anyway</button></div>
+<p class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p><strong>(a)</strong></p>
+<p>The Bode plot of the plant <span class="math inline">\(P(s)\)</span>
+and the loop gain with PD control <span
+class="math inline">\(P(s)C_{PD}(s)\)</span> are shown in
+<strong>Fig.</strong> <a href="#fig:hw_satellite_bode_specs_in_2"
+data-reference-type="ref"
+data-reference="fig:hw_satellite_bode_specs_in_2">16.12</a>.</p>
+<figure id="fig:hw_satellite_bode_specs_in_2">
+<img src="6_design_studies/figures/hw_satellite_bode_specs_in_W2021.png"
+style="width:95.0%"
+alt="Bode plot for the inner loop of the satellite attitude control for (a) plant only (blue), and (b) under PD control (orange)." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.12. </span>Bode plot for the inner loop of the
+satellite attitude control for (a) plant only (blue), and (b) under PD
+control (orange).</figcaption>
+</figure>
+<p>Suppose that the desired reference input is <span
+class="math inline">\(\theta^r(t) = 20t^2\)</span>. Under PD control,
+the slope of the loop gain as <span class="math inline">\(\omega\to
+0\)</span> is <span class="math inline">\(-40\)</span> dB/dec, which
+implies that the system is type 2 and will track a step and a ramp with
+zero steady state error. For a parabola, there will be a finite error.
+Since the loop gain under PID control is <span
+class="math inline">\(B_2=20\)</span> dB above the <span
+class="math inline">\(1/s^2\)</span> line, from Equation <a
+href="#frequency-domain-specifications" data-reference-type="eqref"
+data-reference="eq:loop:type_2_error_parabola"><a href="#frequency-domain-specifications">16.12</a></a>
+the steady state error satisfies <span
+class="math display">\[\lim_{t\to\infty}\left|e(t)\right| \leq
+\frac{A}{M_a}  = 20\cdot 10^{-22.3/20} = 1.53.\]</span></p>
+<p><strong>(b)</strong> If the input disturbance is below <span
+class="math inline">\(\omega_{d_{in}} = 0.1\)</span> rad/s, then the
+difference between the loop gain and the plant is <span
+class="math inline">\(B_{d_{in}}=38\)</span> dB, therefore, from
+Equation <a href="#frequency-domain-specifications"
+data-reference-type="eqref"
+data-reference="eq:loop_input_dist_rejection"><a href="#frequency-domain-specifications">16.9</a></a>
+we see that <span class="math display">\[\gamma_{d_{in}} = 10^{-38/20} =
+0.0126,\]</span> implying that 1.26% of the input disturbance will show
+up in the output.</p>
+<p><strong>(c)</strong> The Bode plot of outer loop <span
+class="math inline">\(P_{out}(s)\)</span>, and the loop gain with PI
+control <span class="math inline">\(P_{out}(s)C_{PI}(s)\)</span> are
+shown in <strong>Fig.</strong> <a
+href="#fig:hw_satellite_bode_specs_out" data-reference-type="ref"
+data-reference="fig:hw_satellite_bode_specs_out">16.13</a>.</p>
+<figure id="fig:hw_satellite_bode_specs_out">
+<img
+src="6_design_studies/figures/hw_satellite_bode_specs_out_W2021.png"
+style="width:95.0%"
+alt="Bode plot for the outer loop of the satellite attitude control for (a) plant only (blue), and (b) PI control (orange)." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 16.13. </span>Bode plot for the outer loop of the
+satellite attitude control for (a) plant only (blue), and (b) PI control
+(orange).</figcaption>
+</figure>
+<p>For noise greater than <span
+class="math inline">\(\omega_{no}=10\)</span> rad/sec, we see from
+<strong>Fig.</strong> <a href="#fig:hw_satellite_bode_specs_out"
+data-reference-type="ref"
+data-reference="fig:hw_satellite_bode_specs_out">16.13</a> that <span
+class="math inline">\(B_n = 8.4\)</span> dB. Therefore, <span
+class="math inline">\(\gamma_n = 10^{-8.4/20} = 0.380\)</span> which
+implies that <span class="math inline">\(38\)</span>% of the noise will
+show up in the output signal.</p>
+<p>Python code to generate the relevant plots can be downloaded at <a
+href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="16.5" id="interactive-specification-check"><span class="header-section-number">16.5</span> Interactive Specification
+Check</h2>
+<section id="loop-ch16-specification-check">
+<article class="advanced-activity" data-advanced-activity="frequency-spec">
+<p class="advanced-kicker">
+Chapter 16 activity
+</p>
+<h3>
+Measure frequency-domain specifications
+</h3>
+<p>
+Select a specification, choose a base plant, then set the specification
+frequency and dB level. The shaded region marks the acceptable part of
+the loop-gain plot for that frequency-domain requirement.
+</p>
+<div class="advanced-grid ch16-frequency-spec-layout"> <div
+class="advanced-controls ch16-frequency-spec-controls">
+<label>Specification <select
+data-select="frequency-spec-kind"> <option
+value="tracking">Reference tracking, gamma_r</option> <option
+value="noise">Noise attenuation, gamma_n</option> <option
+value="output-disturbance">Output disturbance, gamma_dout</option>
+<option value="input-disturbance">Input disturbance,
+gamma_din</option> <option value="type0">Type 0 step error</option>
+<option value="type1">Type 1 ramp error</option>
+<option value="type2">Type 2 parabola error</option> </select>
+</label> <label>Base plant P(s) <select
+data-select="frequency-spec-plant"> <option value="constant">P(s) =
+1</option> <option value="integrator">P(s) = 1/s</option>
+<option value="double-integrator">P(s) = 1/s^2</option> <option
+value="first-order">P(s) = 1/(s+1)</option> <option
+value="zero-integrator">P(s) = (s+1)/(s(s+5))</option> </select>
+</label> <label><span class="advanced-control-label">Specification
+frequency <span class="inline-equation">ω</span></span>
+<span class="advanced-control-value"><span class="inline-equation">ω</span>
+= <span data-output="spec-frequency"></span>
+rad/sec</span> <input
+type="range" data-input="spec-frequency-exp" min="-2" max="2"
+step="0.02" value="-1"> </label>
+<label><span class="advanced-control-label">Specification level
+<span data-output="spec-level-label"></span></span>
+<span class="advanced-control-value"><span data-output="spec-level-db"></span>
+dB</span> <input
+type="range" data-input="spec-level-db" min="-60" max="60"
+step="1" value="20"> </label> <label>Loop-height offset
+<span class="advanced-control-value">controller shift =
+<span data-output="loop-offset-db"></span> dB</span>
+<input
+type="range" data-input="loop-offset-db" min="-40" max="60"
+step="1" value="20"> </label> <label>Input amplitude
+<span class="inline-equation">A</span>
+<span class="advanced-control-value">A =
+<span data-output="spec-amplitude"></span></span> <input
+type="range" data-input="spec-amplitude" min="0.1" max="5"
+step="0.1" value="1"> </label> <p class="advanced-callout
+ch16-frequency-spec-amplitude-note">The amplitude
+<span class="inline-equation">A</span> scales the steady-state error
+calculation for the system-type cases. It does not move the Bode curves;
+it changes the computed error for step, ramp, and parabolic reference
+inputs.
+</p>
+</div>
+<figure class="advanced-visual
+ch16-frequency-spec-figure"> <canvas data-plot="frequency-spec"
+width="1080" height="520" role="img" aria-label="Bode magnitude
+plot for measuring Chapter 16 frequency specifications"></canvas>
+<figcaption><span class="fig-number">Figure 1.8. </span>The gray curve is the base plant magnitude <span
+class="inline-equation">|P(j&omega;)|</span>. The blue
+curve is the loop gain <span
+class="inline-equation">|P(j&omega;)C(j&omega;)|</span>
+after the loop-height offset is applied.</figcaption> </figure>
+</div>
+<section class="advanced-solution
+ch16-frequency-spec-solution"> <h4>Measured specification</h4> <p
+class="advanced-equation"><strong>At the selected
+frequency:</strong> <span
+data-output="spec-measurement"></span></p> <p
+class="advanced-equation"><strong>Computed bound:</strong> <span
+data-output="spec-bound"></span></p> <p
+class="advanced-equation"><strong>Interpretation:</strong> <span
+data-output="spec-note"></span></p> </section>
+</article>
+</section>
+<h2 data-number="16.6" id="knowledge-check-15"><span class="header-section-number">16.6</span> Knowledge Check</h2>
+<section id="loop-ch16-knowledge-check" class="quiz-list">
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Large low-frequency loop gain makes S
+small." data-feedback-b="B is not correct. Zero loop gain generally
+gives poor tracking." data-feedback-c="C is not correct. Frequency
+dependence is central to these specifications." data-feedback-d="D is
+not correct. Phase alone does not set tracking error."> <h4>Q1.
+Low-frequency gain</h4> <p class="quiz-prompt">Tracking error is
+small when low-frequency loop gain is:</p> <div
+class="quiz-options"><label><input type="radio"
+name="loop-ch16-q1" value="A"><span class="quiz-option-text">A) Large</span></label><label><input
+type="radio" name="loop-ch16-q1" value="B"><span class="quiz-option-text">B)
+Zero</span></label><label><input type="radio" name="loop-ch16-q1"
+value="C"><span class="quiz-option-text">C) Unrelated to frequency</span></label><label><input
+type="radio" name="loop-ch16-q1" value="D"><span class="quiz-option-text">D) Determined only by
+phase</span></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. High-frequency noise attenuation usually
+requires the loop gain to roll off." data-feedback-b="B is not
+correct. Large high-frequency gain tends to transmit sensor noise."
+data-feedback-c="C is not correct. DC gain does not determine
+high-frequency noise behavior." data-feedback-d="D is not correct.
+Noise attenuation is frequency dependent."> <h4>Q2. Noise
+attenuation</h4> <p class="quiz-prompt">Noise attenuation
+generally requires loop gain to be:</p> <div
+class="quiz-options"><label><input type="radio"
+name="loop-ch16-q2" value="A"><span class="quiz-option-text">A) Small at high
+frequency</span></label><label><input type="radio" name="loop-ch16-q2"
+value="B"><span class="quiz-option-text">B) Large at all high frequencies</span></label><label><input
+type="radio" name="loop-ch16-q2" value="C"><span class="quiz-option-text">C) Large only at
+DC</span></label><label><input type="radio" name="loop-ch16-q2"
+value="D"><span class="quiz-option-text">D) Unrelated to frequency</span></label></div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="-20" data-tolerance="0.1">
+<h4>
+Q3. Sensitivity bound
+</h4>
+<p class="quiz-prompt">
+If a specification requires |S| <= 0.1, enter that bound in dB.
+</p>
+
+<label>dB bound:<input type="text" name="loop-ch16-q3"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> -20 dB because 20 log10(0.1) = -20.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="20" data-tolerance="0.1">
+<h4>
+Q4. Loop-gain requirement
+</h4>
+<p class="quiz-prompt">
+Approximately how many dB of loop gain are needed for |S| near 0.1
+when L is large?
+</p>
+
+<label>Loop gain in dB:<input type="text" name="loop-ch16-q4"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> About 20 dB. When L is large, S is
+approximately 1/L.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answers="sensitivity\|s">
+<h4>
+Q5. Output disturbance function
+</h4>
+<p class="quiz-prompt">
+Which closed-loop function is most directly associated with output
+disturbance rejection?
+</p>
+
+<label>Answer:<input type="text" name="loop-ch16-q5" placeholder="short phrase"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> Sensitivity, S = 1/(1+PC), is the key function
+for output disturbance and tracking error.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. A larger high-frequency noise
+transfer magnitude passes more noise." data-feedback-b="B is not
+correct. The phase alone does not set the noise amplitude bound."
+data-feedback-c="C is correct. Keeping the relevant transfer magnitude
+below 0.01 keeps the output contribution below about 1 percent of the
+noise amplitude." data-feedback-d="D is not correct. Low-frequency
+loop gain does not directly guarantee high-frequency noise
+attenuation."> <h4>Q6. Noise attenuation bound</h4> <p
+class="quiz-prompt">If high-frequency sensor noise should contribute
+less than 1 percent to the output, what magnitude bound should the
+relevant noise transfer path satisfy?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="loop-ch16-exam-q1" value="A"><span class="quiz-option-text">A) Greater than 100</span></label>
+<label><input type="radio" name="loop-ch16-exam-q1" value="B"><span class="quiz-option-text">B) Phase equal to -180 degrees</span></label> <label><input type="radio"
+name="loop-ch16-exam-q1" value="C"><span class="quiz-option-text">C) Less than 0.01</span></label>
+<label><input type="radio" name="loop-ch16-exam-q1" value="D"><span class="quiz-option-text">D) Any value if low-frequency gain is high</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Low-frequency tracking error is tied to
+the sensitivity function S = 1/(1 + L)." data-feedback-b="B is not
+correct. T is more directly associated with reference-to-output and
+noise transmission behavior." data-feedback-c="C is not correct. The
+plant alone does not include feedback correction." data-feedback-d="D
+is not correct. A controller numerator alone is not the closed-loop
+tracking-error transfer function."> <h4>Q7. Tracking-error
+function</h4> <p class="quiz-prompt">Which closed-loop function is
+most directly used to bound low-frequency reference tracking error in
+unity feedback?</p> <div class="quiz-options"> <label><input
+type="radio" name="loop-ch16-exam-q2" value="A"><span class="quiz-option-text">A) Sensitivity S
+= 1/(1 + L)</span></label> <label><input type="radio"
+name="loop-ch16-exam-q2" value="B"><span class="quiz-option-text">B) Complementary sensitivity T
+= L/(1 + L) only</span></label> <label><input type="radio"
+name="loop-ch16-exam-q2" value="C"><span class="quiz-option-text">C) The plant P(s)
+alone</span></label> <label><input type="radio"
+name="loop-ch16-exam-q2" value="D"><span class="quiz-option-text">D) The numerator of C(s)
+only</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. A disturbance added at the output
+and one added at the plant input pass through different transfer
+paths." data-feedback-b="B is not correct. The reference path does not
+determine every disturbance specification." data-feedback-c="C is not
+correct. The highest-frequency signal is not automatically the relevant
+path." data-feedback-d="D is correct. The appropriate
+disturbance-rejection transfer function depends on where the disturbance
+enters the loop."> <h4>Q8. Disturbance location</h4> <p
+class="quiz-prompt">Why do input-disturbance and output-disturbance
+specifications use different transfer paths?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="loop-ch16-exam-q3" value="A"><span class="quiz-option-text">A) They always use the same
+path.</span></label> <label><input type="radio"
+name="loop-ch16-exam-q3" value="B"><span class="quiz-option-text">B) Every disturbance should be
+treated as a reference command.</span></label> <label><input
+type="radio" name="loop-ch16-exam-q3" value="C"><span class="quiz-option-text">C) Only the
+highest-frequency signal matters.</span></label> <label><input
+type="radio" name="loop-ch16-exam-q3" value="D"><span class="quiz-option-text">D) The
+disturbance injection point changes the transfer path to the error or
+output.</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. A flat low-frequency magnitude
+suggests no free integrator." data-feedback-b="B is correct. Each free
+integrator contributes a -20 dB/decade low-frequency slope to the loop
+magnitude." data-feedback-c="C is not correct. A free integrator
+affects magnitude slope, not just phase." data-feedback-d="D is not
+correct. System type is inferred from low-frequency asymptotic
+behavior."> <h4>Q9. System type from slope</h4> <p
+class="quiz-prompt">What low-frequency loop-gain slope indicates one
+free integrator?</p> <div class="quiz-options"> <label><input
+type="radio" name="loop-ch16-exam-q4" value="A"><span class="quiz-option-text">A) 0
+dB/decade</span></label> <label><input type="radio"
+name="loop-ch16-exam-q4" value="B"><span class="quiz-option-text">B) -20 dB/decade</span></label>
+<label><input type="radio" name="loop-ch16-exam-q4" value="C"><span class="quiz-option-text">C) +20 dB/decade</span></label> <label><input type="radio"
+name="loop-ch16-exam-q4" value="D"><span class="quiz-option-text">D) No slope can indicate an
+integrator</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. High gain everywhere conflicts with
+noise attenuation, actuator limits, robustness, and unmodeled
+dynamics." data-feedback-b="B is not correct. Higher gain is not
+always better at high frequency." data-feedback-c="C is not correct. A
+single gain cannot satisfy all frequency-dependent specifications in
+general." data-feedback-d="D is not correct. Phase and robustness
+constraints still matter."> <h4>Q10. Why not high gain
+everywhere?</h4> <p class="quiz-prompt">Why not simply make the
+loop gain very large at every frequency?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="loop-ch16-exam-q5" value="A"><span class="quiz-option-text">A) It can worsen noise
+transmission, actuator effort, robustness, and model-limit
+issues.</span></label> <label><input type="radio"
+name="loop-ch16-exam-q5" value="B"><span class="quiz-option-text">B) High-frequency gain always
+improves noise attenuation.</span></label> <label><input type="radio"
+name="loop-ch16-exam-q5" value="C"><span class="quiz-option-text">C) Frequency-dependent
+specifications become unnecessary.</span></label> <label><input
+type="radio" name="loop-ch16-exam-q5" value="D"><span class="quiz-option-text">D) Phase margin
+is unaffected by loop shape.</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="16.7" id="notes-and-references-15" class="section-notes"><span class="header-section-number">16.7</span> Notes and References</h2>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

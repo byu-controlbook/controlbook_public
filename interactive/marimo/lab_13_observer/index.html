@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-CZceb_kH.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-Bam3NpBI.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-C_DwAp7Z.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-CEsLFVD9.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-D5MAsWEG.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-C6PDArdf.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>lab 13 observer</title>
+    <script type="module" crossorigin src="./assets/index-CA2sQKnW.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-DdZsAcJe.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-Bj1aDYRI.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-B3qBwwSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-BqBOg78p.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-DvoEXWke.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-DPBdGRrH.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-NX56vp6K.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-Lfi0pexn.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-xq8miGHn.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-DQRuLEof.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-Dz_KRrWq.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-DCUzRj2J.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-DOX1Xxa9.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-BbCh-29a.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-CSu739Rf.js">
+    <link rel="modulepreload" crossorigin href="./assets/fullscreen-eipL3i3Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-DcP01QzW.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BdyjRhEt.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-D5guW7EU.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-BH35Ndha.js">
+    <link rel="modulepreload" crossorigin href="./assets/x-C-6liIBr.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-DZcFyKFQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-DTV9tlSr.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-ERM44-k9.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-D91BmmQi.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-BUdrueMv.js">
+    <link rel="modulepreload" crossorigin href="./assets/isObject-DvLSfCY5.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFor-DKD1r8uL.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-_9WLTEyt.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-H_cgTO0M.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-Wvjk_Y4h.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-DWBqOhWa.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-D_zLHhNi.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-CzVJLtsG.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-DMpttj8Q.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-DGdfs0bJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-C2lTvbuU.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-DIwGYs0l.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-DieWOfXE.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-DfoVjkkH.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-Kwyx4PvL.js">
+    <link rel="modulepreload" crossorigin href="./assets/arrays-DYDL-3-i.js">
+    <link rel="modulepreload" crossorigin href="./assets/strings-wdPMRf6Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-DRroIaBz.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-A_KhFcGV.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-CI9qeK_X.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-SFhaqGlE.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BrR4M-k3.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-HlsDto3K.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CHcznzB-.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BU26XwgJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-COs9gIu5.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BZr6MMV-.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DCqxOggh.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DkA__6UI.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-C9ZB41s2.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-lcoTi-7o.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-B5A0DFEz.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-DvRMX74T.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-BRGiG41H.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BT6B8Bon.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-CsYTPAhW.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-DhnxH9Rh.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-kIkTfzTX.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-B0OX4z33.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-Dnu4nDoy.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-DyYDV0HI.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-BJB2rf7K.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-hKfTes-m.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-BqFLkbUc.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-DqOQT_n4.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-_BZcy6gx.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-mY4EY0yG.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-BIDQNg9Q.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-C1Tm_47t.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-CW4V-fpE.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-jH2RfcUG.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-CVE-gIjt.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-DEC1mXgV.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-PQYiMZw1.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-CUuNtzHt.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-DrHguQlr.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-CG5QYXYk.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-CR7cnzLX.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-B8WzCnbo.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-C0BPo9m1.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-Ch48HVPK.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-BwrPA9zQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-BdZPgXgo.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-B5r25cP5.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-I-LOgxeP.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-D9EoHCkz.js">
+    <link rel="modulepreload" crossorigin href="./assets/package-B8oXOUM-.js">
+    <link rel="modulepreload" crossorigin href="./assets/sparkles-CC9Bko6a.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-XWqnhvJ6.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-UuZAUjoP.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-D6SgvARi.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-BaOnnMs-.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-C5i0IRVM.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-GdhQ07zA.js">
+    <link rel="modulepreload" crossorigin href="./assets/micromark-factory-space-BUQpMdx2.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-BSzccEgu.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-BQ-BQLiJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-2NPJCYDa.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-DNlzfMKW.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-Bz_0Vkyf.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-iwK4b4VF.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-B1QFVDP-.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-DQE9hQzM.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-DPVTppnD.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-CLO6LFll.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-BRq458WH.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-C7vnqfgk.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-DdlR4-BY.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-DI1TvEEK.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-n3GaPJwv.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-Dqvpuc10.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-Dangy3Bv.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-d3yglQmW.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-icons.esm--O4lBTlZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/RSPContexts-Bk1r00gJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-6NxtGaCm.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-KAhMaCIV.js">
+    <link rel="modulepreload" crossorigin href="./assets/external-link-BTNxSavU.js">
+    <link rel="modulepreload" crossorigin href="./assets/message-circle-1YLdnr8A.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-BJLYnZpG.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-Ce2ksurd.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-05-R3eil.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-nqk474t8.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-blYaQso8.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-D1ptWKg6.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-vertical-CkwWkOQL.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-a_9k9BK7.js">
+    <link rel="modulepreload" crossorigin href="./assets/tree-actions-DY8FUp3V.js">
+    <link rel="modulepreload" crossorigin href="./assets/components-zB5yT_R8.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-BLIWbdOX.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-8tfAri2V.js">
+    <link rel="modulepreload" crossorigin href="./assets/radio-group-rsi1ibXY.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-DbOtUfo-.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-DoKw85w0.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-Cb2bnV6o.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-BT-KOYV5.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-CxkHs8QM.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-BKYj8PNf.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-headphone-B3fuktN0.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-HTLbeC2b.js">
+    <link rel="modulepreload" crossorigin href="./assets/image-BIibSXT6.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-icons-B6DaZdP0.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-BtkQp293.js">
+    <link rel="modulepreload" crossorigin href="./assets/events-CBm-hwqS.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-CpVAcN9Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-oorMPghT.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-3_FN0u9S.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-Tp7rARFe.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-C-qh_et5.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-CxV9N1bc.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-BXNNuw9g.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-xHqFtfdz.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-BBTcSr-i.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-DLc784Sj.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-BjUJP6PJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-DK-VjfaX.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-B8LMGUHl.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-CWcgQCbT.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-BYwxXaSY.js">
+    <link rel="modulepreload" crossorigin href="./assets/semaphore-X3ApuO41.js">
+    <link rel="modulepreload" crossorigin href="./assets/fileToBase64-BeYUTUzO.js">
+    <link rel="modulepreload" crossorigin href="./assets/pathUtils-vgBYIo5B.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-DVDiRdwc.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-au8YY-8E.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-DiS_ryrS.js">
+    <link rel="modulepreload" crossorigin href="./assets/flatten-Dl4V1ub3.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-DqWUNly1.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-CZN6vNxu.js">
+    <link rel="modulepreload" crossorigin href="./assets/house-D2ldnAB9.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-rACnnz-q.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-CJ0ZIqcz.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-BXIlAZ6T.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DH00kbhV.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    
+<script data-marimo="true">
+    Object.defineProperty(window, "__MARIMO_EXPORT_CONTEXT__", {
+        value: Object.freeze({
+            trusted: true,
+            notebookCode: "import marimo\n\n__generated_with = \"0.23.8\"\napp = marimo.App(width=\"medium\")\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import numpy as np\n    import matplotlib.pyplot as plt\n\n    return mo, np, plt\n\n\n@app.cell\ndef _(mo):\n    mo.md(\"\"\"\n    # Chapter 13 Coding Lab: Observer Design\n\n    Design a Luenberger observer, implement one observer update, and verify\n    that the estimate converges for an observable plant.\n    \"\"\")\n    return\n\n\n@app.cell\ndef _():\n    starter = \"\\n\".join(\n        [\n            \"import numpy as np\",\n            \"\",\n            \"def observability_matrix(A, C):\",\n            \"    # TODO: return the controllability matrix for this second-order example.\",\n            \"    return np.zeros((2, 2))\",\n            \"\",\n            \"def observer_gain(A, C, desired_poles):\",\n            \"    # For C = [1, 0], return L with shape (2, 1)\",\n            \"    # so A - L C has the desired characteristic polynomial.\",\n            \"    L = np.zeros((2, 1))\",\n            \"    return L\",\n            \"\",\n            \"def observer_update(A, B, C, L, xhat, u, y, dt):\",\n            \"    # TODO: implement xhat_dot = A*xhat + B*u + L*(y - C*xhat)\",\n            \"    xhat_dot = np.zeros_like(xhat)\",\n            \"    return xhat + dt * xhat_dot\",\n        ]\n    )\n    return (starter,)\n\n\n@app.cell\ndef _(mo, starter):\n    code_editor = mo.ui.code_editor(\n        value=starter,\n        language=\"python\",\n        label=\"Student task: implement observability_matrix(), observer_gain(), and observer_update()\",\n        min_height=340,\n    )\n    code_editor\n    return (code_editor,)\n\n\n@app.cell\ndef _(code_editor):\n    namespace = {}\n    compile_error = None\n    try:\n        exec(code_editor.value, namespace)\n    except Exception as exc:\n        compile_error = f\"Code error: {exc}\"\n    return compile_error, namespace\n\n\n@app.cell\ndef _(np):\n    A = np.array([[0.0, 1.0], [-2.0, -3.0]])\n    B = np.array([[0.0], [1.0]])\n    C = np.array([[1.0, 0.0]])\n    desired_poles = np.array([-6.0, -7.0])\n\n    def simulate(A, B, C, L, update, dt=0.002, t_end=4.0):\n        t = np.arange(0.0, t_end + dt, dt)\n        x = np.zeros((len(t), 2, 1))\n        xhat = np.zeros((len(t), 2, 1))\n        x[0, :, 0] = [1.0, -0.5]\n        u = 0.0\n        err = np.zeros(len(t))\n        for k in range(len(t) - 1):\n            y = float(C @ x[k])\n            xdot = A @ x[k] + B * u\n            x[k + 1] = x[k] + dt * xdot\n            xhat[k + 1] = update(A, B, C, L, xhat[k], u, y, dt)\n            err[k] = float(np.linalg.norm(x[k] - xhat[k]))\n        err[-1] = float(np.linalg.norm(x[-1] - xhat[-1]))\n        return t, x[:, 0, 0], xhat[:, 0, 0], err\n\n    return A, B, C, desired_poles, simulate\n\n\n@app.cell\ndef _(A, B, C, compile_error, desired_poles, mo, namespace, np, plt, simulate):\n    feedback = \"\"\n    plot_obj = None\n    if compile_error is not None:\n        feedback = f\"**Fix code first:** {compile_error}\"\n    else:\n        try:\n            observability_matrix = namespace.get(\"observability_matrix\")\n            observer_gain = namespace.get(\"observer_gain\")\n            observer_update = namespace.get(\"observer_update\")\n            if None in (observability_matrix, observer_gain, observer_update):\n                raise ValueError(\"Required functions are missing.\")\n            obsv = np.asarray(observability_matrix(A, C), dtype=float)\n            L = np.asarray(observer_gain(A, C, desired_poles), dtype=float).reshape(2, 1)\n            eigs = np.linalg.eigvals(A - L @ C)\n            t, x1, xhat1, err = simulate(A, B, C, L, observer_update)\n            rank_ok = obsv.shape == (2, 2) and np.linalg.matrix_rank(obsv) == 2\n            gain_ok = np.allclose(L, np.array([[10.0], [10.0]]), atol=1e-3)\n            pole_ok = np.allclose(np.sort(eigs), desired_poles, atol=1e-2)\n            convergence_ok = err[-1] \u003C= 0.02 and err[-1] \u003C 0.05 * err[0]\n            passed = rank_ok and gain_ok and pole_ok and convergence_ok\n            feedback = (\n                f\"\u003Cdiv\u003E\u003Cstrong\u003Eobserver_check(): {'PASS' if passed else 'FAIL'}\u003C/strong\u003E\u003C/div\u003E\"\n                \"\u003Cul\u003E\"\n                f\"\u003Cli\u003Eobservability rank: {'PASS' if rank_ok else 'FAIL'}\u003C/li\u003E\"\n                f\"\u003Cli\u003EL = [10, 10]^T: {'PASS' if gain_ok else 'FAIL'}\u003C/li\u003E\"\n                f\"\u003Cli\u003Eobserver poles at -6 and -7: {'PASS' if pole_ok else 'FAIL'}\u003C/li\u003E\"\n                f\"\u003Cli\u003Eestimation error converges: {'PASS' if convergence_ok else 'FAIL'}\u003C/li\u003E\"\n                \"\u003C/ul\u003E\"\n            )\n            fig, ax = plt.subplots(2, 1, figsize=(8.5, 5.8), sharex=True)\n            ax[0].plot(t, x1, label=\"x1\")\n            ax[0].plot(t, xhat1, \"--\", label=\"xhat1\")\n            ax[0].set_ylabel(\"State estimate\")\n            ax[0].grid(True, alpha=0.3)\n            ax[0].legend()\n            ax[1].semilogy(t, err, color=\"#0b7285\")\n            ax[1].set_ylabel(\"||x - xhat||\")\n            ax[1].set_xlabel(\"Time (s)\")\n            ax[1].grid(True, alpha=0.3)\n            fig.tight_layout()\n            plot_obj = fig\n        except Exception as exc:\n            feedback = f\"**Runtime error:** {exc}\"\n    mo.vstack([mo.md(feedback), plot_obj if plot_obj is not None else mo.md(\"_No plot available._\")])\n    return\n\n\nif __name__ == \"__main__\":\n    app.run()\n",
+        }),
+        writable: false,
+        configurable: false,
+    });
+</script>
+<marimo-code hidden="">import%20marimo%0A%0A__generated_with%20%3D%20%220.23.8%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20matplotlib.pyplot%20as%20plt%0A%0A%20%20%20%20return%20mo%2C%20np%2C%20plt%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(%22%22%22%0A%20%20%20%20%23%20Chapter%2013%20Coding%20Lab%3A%20Observer%20Design%0A%0A%20%20%20%20Design%20a%20Luenberger%20observer%2C%20implement%20one%20observer%20update%2C%20and%20verify%0A%20%20%20%20that%20the%20estimate%20converges%20for%20an%20observable%20plant.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20starter%20%3D%20%22%5Cn%22.join(%0A%20%20%20%20%20%20%20%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22import%20numpy%20as%20np%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22def%20observability_matrix(A%2C%20C)%3A%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%23%20TODO%3A%20return%20the%20controllability%20matrix%20for%20this%20second-order%20example.%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20return%20np.zeros((2%2C%202))%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22def%20observer_gain(A%2C%20C%2C%20desired_poles)%3A%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%23%20For%20C%20%3D%20%5B1%2C%200%5D%2C%20return%20L%20with%20shape%20(2%2C%201)%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%23%20so%20A%20-%20L%20C%20has%20the%20desired%20characteristic%20polynomial.%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20L%20%3D%20np.zeros((2%2C%201))%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20return%20L%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22def%20observer_update(A%2C%20B%2C%20C%2C%20L%2C%20xhat%2C%20u%2C%20y%2C%20dt)%3A%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%23%20TODO%3A%20implement%20xhat_dot%20%3D%20A*xhat%20%2B%20B*u%20%2B%20L*(y%20-%20C*xhat)%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20xhat_dot%20%3D%20np.zeros_like(xhat)%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20return%20xhat%20%2B%20dt%20*%20xhat_dot%22%2C%0A%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20)%0A%20%20%20%20return%20(starter%2C)%0A%0A%0A%40app.cell%0Adef%20_(mo%2C%20starter)%3A%0A%20%20%20%20code_editor%20%3D%20mo.ui.code_editor(%0A%20%20%20%20%20%20%20%20value%3Dstarter%2C%0A%20%20%20%20%20%20%20%20language%3D%22python%22%2C%0A%20%20%20%20%20%20%20%20label%3D%22Student%20task%3A%20implement%20observability_matrix()%2C%20observer_gain()%2C%20and%20observer_update()%22%2C%0A%20%20%20%20%20%20%20%20min_height%3D340%2C%0A%20%20%20%20)%0A%20%20%20%20code_editor%0A%20%20%20%20return%20(code_editor%2C)%0A%0A%0A%40app.cell%0Adef%20_(code_editor)%3A%0A%20%20%20%20namespace%20%3D%20%7B%7D%0A%20%20%20%20compile_error%20%3D%20None%0A%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20exec(code_editor.value%2C%20namespace)%0A%20%20%20%20except%20Exception%20as%20exc%3A%0A%20%20%20%20%20%20%20%20compile_error%20%3D%20f%22Code%20error%3A%20%7Bexc%7D%22%0A%20%20%20%20return%20compile_error%2C%20namespace%0A%0A%0A%40app.cell%0Adef%20_(np)%3A%0A%20%20%20%20A%20%3D%20np.array(%5B%5B0.0%2C%201.0%5D%2C%20%5B-2.0%2C%20-3.0%5D%5D)%0A%20%20%20%20B%20%3D%20np.array(%5B%5B0.0%5D%2C%20%5B1.0%5D%5D)%0A%20%20%20%20C%20%3D%20np.array(%5B%5B1.0%2C%200.0%5D%5D)%0A%20%20%20%20desired_poles%20%3D%20np.array(%5B-6.0%2C%20-7.0%5D)%0A%0A%20%20%20%20def%20simulate(A%2C%20B%2C%20C%2C%20L%2C%20update%2C%20dt%3D0.002%2C%20t_end%3D4.0)%3A%0A%20%20%20%20%20%20%20%20t%20%3D%20np.arange(0.0%2C%20t_end%20%2B%20dt%2C%20dt)%0A%20%20%20%20%20%20%20%20x%20%3D%20np.zeros((len(t)%2C%202%2C%201))%0A%20%20%20%20%20%20%20%20xhat%20%3D%20np.zeros((len(t)%2C%202%2C%201))%0A%20%20%20%20%20%20%20%20x%5B0%2C%20%3A%2C%200%5D%20%3D%20%5B1.0%2C%20-0.5%5D%0A%20%20%20%20%20%20%20%20u%20%3D%200.0%0A%20%20%20%20%20%20%20%20err%20%3D%20np.zeros(len(t))%0A%20%20%20%20%20%20%20%20for%20k%20in%20range(len(t)%20-%201)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20y%20%3D%20float(C%20%40%20x%5Bk%5D)%0A%20%20%20%20%20%20%20%20%20%20%20%20xdot%20%3D%20A%20%40%20x%5Bk%5D%20%2B%20B%20*%20u%0A%20%20%20%20%20%20%20%20%20%20%20%20x%5Bk%20%2B%201%5D%20%3D%20x%5Bk%5D%20%2B%20dt%20*%20xdot%0A%20%20%20%20%20%20%20%20%20%20%20%20xhat%5Bk%20%2B%201%5D%20%3D%20update(A%2C%20B%2C%20C%2C%20L%2C%20xhat%5Bk%5D%2C%20u%2C%20y%2C%20dt)%0A%20%20%20%20%20%20%20%20%20%20%20%20err%5Bk%5D%20%3D%20float(np.linalg.norm(x%5Bk%5D%20-%20xhat%5Bk%5D))%0A%20%20%20%20%20%20%20%20err%5B-1%5D%20%3D%20float(np.linalg.norm(x%5B-1%5D%20-%20xhat%5B-1%5D))%0A%20%20%20%20%20%20%20%20return%20t%2C%20x%5B%3A%2C%200%2C%200%5D%2C%20xhat%5B%3A%2C%200%2C%200%5D%2C%20err%0A%0A%20%20%20%20return%20A%2C%20B%2C%20C%2C%20desired_poles%2C%20simulate%0A%0A%0A%40app.cell%0Adef%20_(A%2C%20B%2C%20C%2C%20compile_error%2C%20desired_poles%2C%20mo%2C%20namespace%2C%20np%2C%20plt%2C%20simulate)%3A%0A%20%20%20%20feedback%20%3D%20%22%22%0A%20%20%20%20plot_obj%20%3D%20None%0A%20%20%20%20if%20compile_error%20is%20not%20None%3A%0A%20%20%20%20%20%20%20%20feedback%20%3D%20f%22**Fix%20code%20first%3A**%20%7Bcompile_error%7D%22%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20observability_matrix%20%3D%20namespace.get(%22observability_matrix%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20observer_gain%20%3D%20namespace.get(%22observer_gain%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20observer_update%20%3D%20namespace.get(%22observer_update%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20None%20in%20(observability_matrix%2C%20observer_gain%2C%20observer_update)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20raise%20ValueError(%22Required%20functions%20are%20missing.%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20obsv%20%3D%20np.asarray(observability_matrix(A%2C%20C)%2C%20dtype%3Dfloat)%0A%20%20%20%20%20%20%20%20%20%20%20%20L%20%3D%20np.asarray(observer_gain(A%2C%20C%2C%20desired_poles)%2C%20dtype%3Dfloat).reshape(2%2C%201)%0A%20%20%20%20%20%20%20%20%20%20%20%20eigs%20%3D%20np.linalg.eigvals(A%20-%20L%20%40%20C)%0A%20%20%20%20%20%20%20%20%20%20%20%20t%2C%20x1%2C%20xhat1%2C%20err%20%3D%20simulate(A%2C%20B%2C%20C%2C%20L%2C%20observer_update)%0A%20%20%20%20%20%20%20%20%20%20%20%20rank_ok%20%3D%20obsv.shape%20%3D%3D%20(2%2C%202)%20and%20np.linalg.matrix_rank(obsv)%20%3D%3D%202%0A%20%20%20%20%20%20%20%20%20%20%20%20gain_ok%20%3D%20np.allclose(L%2C%20np.array(%5B%5B10.0%5D%2C%20%5B10.0%5D%5D)%2C%20atol%3D1e-3)%0A%20%20%20%20%20%20%20%20%20%20%20%20pole_ok%20%3D%20np.allclose(np.sort(eigs)%2C%20desired_poles%2C%20atol%3D1e-2)%0A%20%20%20%20%20%20%20%20%20%20%20%20convergence_ok%20%3D%20err%5B-1%5D%20%3C%3D%200.02%20and%20err%5B-1%5D%20%3C%200.05%20*%20err%5B0%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20passed%20%3D%20rank_ok%20and%20gain_ok%20and%20pole_ok%20and%20convergence_ok%0A%20%20%20%20%20%20%20%20%20%20%20%20feedback%20%3D%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cdiv%3E%3Cstrong%3Eobserver_check()%3A%20%7B'PASS'%20if%20passed%20else%20'FAIL'%7D%3C%2Fstrong%3E%3C%2Fdiv%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22%3Cul%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cli%3Eobservability%20rank%3A%20%7B'PASS'%20if%20rank_ok%20else%20'FAIL'%7D%3C%2Fli%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cli%3EL%20%3D%20%5B10%2C%2010%5D%5ET%3A%20%7B'PASS'%20if%20gain_ok%20else%20'FAIL'%7D%3C%2Fli%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cli%3Eobserver%20poles%20at%20-6%20and%20-7%3A%20%7B'PASS'%20if%20pole_ok%20else%20'FAIL'%7D%3C%2Fli%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cli%3Eestimation%20error%20converges%3A%20%7B'PASS'%20if%20convergence_ok%20else%20'FAIL'%7D%3C%2Fli%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22%3C%2Ful%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20%20%20%20%20fig%2C%20ax%20%3D%20plt.subplots(2%2C%201%2C%20figsize%3D(8.5%2C%205.8)%2C%20sharex%3DTrue)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.plot(t%2C%20x1%2C%20label%3D%22x1%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.plot(t%2C%20xhat1%2C%20%22--%22%2C%20label%3D%22xhat1%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.set_ylabel(%22State%20estimate%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.legend()%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.semilogy(t%2C%20err%2C%20color%3D%22%230b7285%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.set_ylabel(%22%7C%7Cx%20-%20xhat%7C%7C%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.set_xlabel(%22Time%20(s)%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20%20%20%20%20%20%20%20%20fig.tight_layout()%0A%20%20%20%20%20%20%20%20%20%20%20%20plot_obj%20%3D%20fig%0A%20%20%20%20%20%20%20%20except%20Exception%20as%20exc%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20feedback%20%3D%20f%22**Runtime%20error%3A**%20%7Bexc%7D%22%0A%20%20%20%20mo.vstack(%5Bmo.md(feedback)%2C%20plot_obj%20if%20plot_obj%20is%20not%20None%20else%20mo.md(%22_No%20plot%20available._%22)%5D)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      Object.defineProperty(window, "__MARIMO_MOUNT_CONFIG__", {
+        value: Object.freeze({
+            "filename": "notebook.py",
+            "cwd": "",
+            "lspWorkspace": null,
+            "mode": "read",
+            "version": "0.23.8",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": true, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "show_tracebacks": false, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        }),
+        writable: false,
+        configurable: false,
+      });
+    </script>
+  </body>
+</html>

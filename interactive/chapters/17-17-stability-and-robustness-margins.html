@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="17" id="stability-and-robustness-margins"><span class="header-section-number">17</span> Stability and Robustness
+Margins</h1>
+<h2 data-number="17.1" id="theory-15"><span class="header-section-number">17.1</span> Theory</h2>
+<h3 data-number="17.1.1" id="phase-and-gain-margins"><span class="header-section-number">17.1.1</span> Phase and Gain Margins</h3>
+<p>To achieve the objectives discussed in
+Chapter <a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications" data-reference-type="ref"
+data-reference="chap:tracking_disturbance_noise">19</a>, the closed-loop
+system must be stable. Recall that tracking performance<span id="idx-0228" class="book-index-anchor" aria-hidden="true"></span> and disturbance
+rejection<span id="idx-0229" class="book-index-anchor" aria-hidden="true"></span> characteristics are
+determined by the loop shape<span id="idx-0230" class="book-index-anchor" aria-hidden="true"></span> at low frequencies
+when <span class="math inline">\(\left|P(j\omega)C(j\omega)\right|\gg
+1\)</span>. Similarly, noise attenuation<span id="idx-0231" class="book-index-anchor" aria-hidden="true"></span> properties are
+determined by the loop shape at high frequencies when <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\ll 1\)</span>.
+In both cases we ignored the phase of <span
+class="math inline">\(P(j\omega)C(j\omega)\)</span>. It turns out that
+stability of the closed-loop system is determined by the phase of <span
+class="math inline">\(P(j\omega)C(j\omega)\)</span> when <span
+class="math inline">\(P(j\omega)C(j\omega)=1\)</span>, as depicted in
+<strong>Fig.</strong> <a href="#fig:ls_margins_1" data-reference-type="ref"
+data-reference="fig:ls_margins_1">17.1</a>.</p>
+<figure id="fig:ls_margins_1">
+<img src="5_loopshaping/figures/ls_margins_1.png"
+style="width:95.0%"
+alt="The shape of the magnitude plot primarily determines the tracking and disturbance rejection characteristics at low frequencies and the noise attenuation at high frequencies. Stability is primarily determined by the phase at the crossover frequency." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.1. </span>The shape of the magnitude plot primarily
+determines the tracking and disturbance rejection characteristics at low
+frequencies and the noise attenuation at high frequencies. Stability is
+primarily determined by the phase at the crossover
+frequency.</figcaption>
+</figure>
+<p>Define the <em>crossover frequency <span
+class="math inline">\(\omega_{co}\)</span></em><span id="idx-0232" class="book-index-anchor" aria-hidden="true"></span> to be the frequency
+where <span
+class="math display">\[\left|P(j\omega_{co})C(j\omega_{co})\right|=1,\]</span>
+or equivalently where <span
+class="math display">\[20\log_{10}\left|P(j\omega_{co})C(j\omega_{co})\right|
+= 0\text{~dB}.\]</span> The phase <span class="math inline">\(\angle
+P(j\omega_{co})C(j\omega_{co})\)</span> at the crossover frequency plays
+a critical role in determining the stability of the system. To better
+understand why this is the case, consider the transfer functions from
+<span class="math inline">\(R\)</span>, <span
+class="math inline">\(D_{in}\)</span>, <span
+class="math inline">\(D_{out}\)</span>, and <span
+class="math inline">\(N\)</span>, to <span
+class="math inline">\(E\)</span> in
+Equation <a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications" data-reference-type="eqref"
+data-reference="eq:loop_transfer_functions"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16.3</a></a>.
+The denominator in each transfer function is <span
+class="math inline">\(1+P(s)C(s)\)</span>. Therefore, the closed-loop
+poles are given by the closed-loop characteristic equation <span
+class="math display">\[1+P(s)C(s) = 0,\]</span> or equivalently where
+<span class="math display">\[P(s)C(s) = -1.\]</span></p>
+<p>Recall that for any <span class="math inline">\(s\)</span>, <span
+class="math inline">\(P(s)C(s)\)</span> is a complex number with
+magnitude and phase. Therefore, given any <span
+class="math inline">\(s_0\)</span> we can draw <span
+class="math inline">\(1+P(s_0)C(s_0)\)</span> in the complex plane as
+shown in
+<strong>Fig.</strong> <a href="#fig:ls_margins_2" data-reference-type="ref"
+data-reference="fig:ls_margins_2">17.2</a>.</p>
+<figure id="fig:ls_margins_2">
+<img src="5_loopshaping/figures/ls_margins_2.png"
+style="width:70.0%"
+alt="The plot of 1+P(s_0)C(s_0) in the complex plane, is the sum of the complex number 1+j0 and P(s_0)C(s_0)." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.2. </span>The plot of <span
+class="math inline">1 + <em>P</em>(<em>s</em><sub>0</sub>)<em>C</em>(<em>s</em><sub>0</sub>)</span>
+in the complex plane, is the sum of the complex number <span
+class="math inline">1 + <em>j</em>0</span> and <span
+class="math inline"><em>P</em>(<em>s</em><sub>0</sub>)<em>C</em>(<em>s</em><sub>0</sub>)</span>.</figcaption>
+</figure>
+<p>Since the physical response of the system is determined by <span
+class="math inline">\(P(s)C(s)\)</span> evaluated on the <span
+class="math inline">\(j\omega\)</span>-axis, there are stability
+problems if there exists an <span
+class="math inline">\(\omega_0\)</span> such that <span
+class="math inline">\(P(j\omega_0)C(j\omega_0)=-1\)</span>, or in other
+words when <span
+class="math display">\[\left|P(j\omega_0)C(j\omega_0)\right|=1
+\qquad\text{and}\qquad \angle P(j\omega_0)C(j\omega_0) =
+-180^\circ,\]</span> as shown in
+<strong>Fig.</strong> <a href="#fig:ls_margins_3" data-reference-type="ref"
+data-reference="fig:ls_margins_3">17.3</a>.</p>
+<figure id="fig:ls_margins_3">
+<img src="5_loopshaping/figures/ls_margins_3.png"
+style="width:50.0%"
+alt="The plot of 1+P(j\omega_0)C(j\omega_0) in the complex plane when P(j\omega_0)C(j\omega_0)=-1." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.3. </span>The plot of <span
+class="math inline">1 + <em>P</em>(<em>j</em><em>ω</em><sub>0</sub>)<em>C</em>(<em>j</em><em>ω</em><sub>0</sub>)</span>
+in the complex plane when <span
+class="math inline"><em>P</em>(<em>j</em><em>ω</em><sub>0</sub>)<em>C</em>(<em>j</em><em>ω</em><sub>0</sub>) = −1</span>.</figcaption>
+</figure>
+<p>Since the magnitude of the loop gain<span id="idx-0233" class="book-index-anchor" aria-hidden="true"></span> is equal to one at the
+crossover frequency <span class="math inline">\(\omega_{co}\)</span>, it
+turns out that the quality of stability is determined by the phase of
+the loop gain at the crossover frequency. Define the <em>phase margin
+<span class="math inline">\(PM\)</span></em><span id="idx-0234" class="book-index-anchor" aria-hidden="true"></span> as <span
+class="math display">\[PM = \angle P(j\omega_{co})C(j\omega_{co}) -
+(-180)^\circ.\]</span>
+<strong>Fig.</strong> <a href="#fig:ls_margins_4" data-reference-type="ref"
+data-reference="fig:ls_margins_4">17.4</a> depicts the phase margin on
+the Bode plot.<span id="idx-0235" class="book-index-anchor" aria-hidden="true"></span></p>
+<figure id="fig:ls_margins_4">
+<img src="5_loopshaping/figures/ls_margins_4.png"
+style="width:95.0%"
+alt="The phase margin PM is the difference between the phase of P(j\omega)C(j\omega) and -180 degrees at the crossover frequency \omega_{co}. The gain margin GM is the magnitude of P(j\omega)C(j\omega) when the phase crosses -180 degrees." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.4. </span>The phase margin <span
+class="math inline"><em>P</em><em>M</em></span> is the difference
+between the phase of <span
+class="math inline"><em>P</em>(<em>j</em><em>ω</em>)<em>C</em>(<em>j</em><em>ω</em>)</span>
+and <span class="math inline">−180</span> degrees at the crossover
+frequency <span
+class="math inline"><em>ω</em><sub><em>c</em><em>o</em></sub></span>.
+The gain margin <span class="math inline"><em>G</em><em>M</em></span> is
+the magnitude of <span
+class="math inline"><em>P</em>(<em>j</em><em>ω</em>)<em>C</em>(<em>j</em><em>ω</em>)</span>
+when the phase crosses <span
+class="math inline">−180</span> degrees.</figcaption>
+</figure>
+<article class="advanced-activity ch17-activity"
+data-advanced-activity="margins"> <p
+class="advanced-kicker">Chapter 17 interactive figure</p>
+<h3>Measure gain and phase margins on a Bode plot</h3> <p>Move the
+loop gain and added phase lag. The same loop shape is used in the gain
+and phase plots, so the crossover markers and margin measurements update
+together.</p> <div class="advanced-grid ch17-margin-layout"> <div
+class="advanced-controls ch17-margin-controls"> <label>Gain shift
+<input type="range" data-input="gain-shift" min="-12" max="18"
+step="1" value="0"> <span class="advanced-control-value"><span
+data-output="gain-shift"></span> dB</span> </label>
+<label>Additional phase lag <input type="range"
+data-input="phase-lag" min="10" max="80" step="1" value="40">
+<span class="advanced-control-value"><span
+data-output="phase-lag"></span> deg</span> </label> <p
+class="advanced-callout ch17-margin-control-note">Increasing gain
+usually moves the gain crossover. Adding phase lag directly reduces the
+phase margin and can reduce the gain margin.</p> </div> <figure
+class="advanced-visual advanced-visual--auto ch17-margin-figure">
+<svg viewBox="0 0 760 520" role="img" aria-label="Interactive Bode
+phase margin and gain margin plots"> <g data-auto-visual></g>
+</svg> <figcaption><span class="fig-number">Figure 1.9. </span>Interactive Figure 17.I1. Phase margin is read at
+gain crossover; gain margin is read at phase crossover.</figcaption>
+</figure> <div class="advanced-readout ch17-margin-readout"> <p
+class="advanced-metric"><strong>Gain crossover</strong><span
+data-output="wcg"></span></p> <p
+class="advanced-metric"><strong>Phase crossover</strong><span
+data-output="wcp"></span></p> <p
+class="advanced-metric"><strong>Phase margin</strong><span
+data-output="pm"></span></p> <p
+class="advanced-metric"><strong>Gain margin</strong><span
+data-output="gm"></span></p> <p
+class="advanced-metric"><strong>Robustness note</strong><span
+data-output="margin-note"></span></p> </div> </div>
+</article>
+<p>Another way to understand the phase margin is shown in
+<strong>Fig.</strong> <a href="#fig:ls_margins_5" data-reference-type="ref"
+data-reference="fig:ls_margins_5">17.5</a>. The phase margin indicates
+the angular distance that <span
+class="math inline">\(P(j\omega_{co})C(j\omega_{co})\)</span> is from
+<span class="math inline">\(-1\)</span>.</p>
+<figure id="fig:ls_margins_5">
+<img src="5_loopshaping/figures/ls_margins_5.png"
+style="width:50.0%"
+alt="Alternative graphical view of the phase margin PM." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.5. </span>Alternative graphical view of the phase
+margin <span
+class="math inline"><em>P</em><em>M</em></span>.</figcaption>
+</figure>
+<p>A related quantity is the <em>Gain Margin <span
+class="math inline">\(GM\)</span></em>,<span id="idx-0236" class="book-index-anchor" aria-hidden="true"></span> which measures how far
+the magnitude <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\)</span> is from
+unity when the phase <span class="math inline">\(\angle
+P(j\omega)C(j\omega) = -180\)</span> degrees. The gain margin is
+depicted on the Bode plot in
+<strong>Fig.</strong> <a href="#fig:ls_margins_4" data-reference-type="ref"
+data-reference="fig:ls_margins_4">17.4</a>. An alternative view is shown
+in
+<strong>Fig.</strong> <a href="#fig:ls_margins_6" data-reference-type="ref"
+data-reference="fig:ls_margins_6">17.6</a>.</p>
+<figure id="fig:ls_margins_6">
+<img src="5_loopshaping/figures/ls_margins_6.png"
+style="width:50.0%"
+alt="Alternative graphical view of the gain margin GM." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.6. </span>Alternative graphical view of the gain
+margin <span
+class="math inline"><em>G</em><em>M</em></span>.</figcaption>
+</figure>
+<p>A good control design will have large phase and gain margins. A phase
+margin of <span class="math inline">\(PM=60\)</span> degrees is
+considered to be very good and is optimal for many applications. A gain
+margin of <span class="math inline">\(GM=10\)</span> dB would be
+considered very good for most applications.</p>
+<h3 data-number="17.1.2"
+id="open-and-closed-loop-frequency-response"><span class="header-section-number">17.1.2</span> Open and Closed Loop
+Frequency Response</h3>
+<p><span id="idx-0237" class="book-index-anchor" aria-hidden="true"></span> From
+Equation <a href="16-16-frequency-domain-specifications.html#theory-14" data-reference-type="eqref"
+data-reference="eq:loop_transfer_functions_output"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16.1</a></a>,
+the transfer function from the reference <span
+class="math inline">\(R(s)\)</span> to the output <span
+class="math inline">\(Y(s)\)</span> is <span class="math display">\[Y(s)
+= \frac{P(s)C(s)}{1+P(s)C(s)}R(s)\]</span> Note that</p>
+<ul>
+<li><p>when <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\gg 1\)</span>,
+then <span
+class="math inline">\(\left|\frac{P(j\omega)C(j\omega)}{1+P(j\omega)C(j\omega)}\right|\approx
+1\)</span>,</p></li>
+<li><p>when <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|\ll 1\)</span>,
+then <span
+class="math inline">\(\left|\frac{P(j\omega)C(j\omega)}{1+P(j\omega)C(j\omega)}\right|\approx
+\left|P(j\omega)C(j\omega)\right|\)</span>.</p></li>
+</ul>
+<p>When <span
+class="math inline">\(\left|P(j\omega)C(j\omega)\right|=1\)</span>,
+i.e., when <span class="math inline">\(\omega=\omega_{co}\)</span>, then
+<span
+class="math inline">\(\left|\frac{P(j\omega_{co})C(j\omega_{co})}{1+P(j\omega_{co})C(j\omega_{co})}\right|\)</span>
+is a complex number divided by a complex number, and the magnitude will
+depend on the phase of the <span
+class="math inline">\(P(j\omega_{co})C(j\omega_{co})\)</span>, or in
+other words the phase margin <span class="math inline">\(PM\)</span>. As
+shown in Figure <a href="#fig:ls_margins_5" data-reference-type="ref"
+data-reference="fig:ls_margins_5">17.5</a>, <span
+class="math inline">\(PM\)</span> will determine the magnitude of <span
+class="math inline">\(1+P(j\omega_{co})C(j\omega_{co})\)</span>. When
+<span class="math inline">\(PM\)</span> is small, <span
+class="math inline">\(\left|1+P(j\omega_{co})C(j\omega_{co})\right|\)</span>
+will be small and <span
+class="math inline">\(\left|\frac{P(j\omega_{co})C(j\omega_{co})}{1+P(j\omega_{co})C(j\omega_{co})}\right|\)</span>
+will be larger than one. When <span class="math inline">\(PM\)</span> is
+larger than <span class="math inline">\(90\)</span> degrees, <span
+class="math inline">\(\left|1+P(j\omega_{co})C(j\omega_{co})\right|\)</span>
+will be larger than <span
+class="math inline">\(\left|P(j\omega_{co})C(j\omega_{co})\right|\)</span>
+and <span
+class="math inline">\(\left|\frac{P(j\omega_{co})C(j\omega_{co})}{1+P(j\omega_{co})C(j\omega_{co})}\right|\)</span>
+will be less than one.</p>
+<p><strong>Fig.</strong> <a href="#fig:ls_closed_loop_response" data-reference-type="ref"
+data-reference="fig:ls_closed_loop_response">17.7</a> shows the
+closed-loop Bode plot<span id="idx-0238" class="book-index-anchor" aria-hidden="true"></span> superimposed on the
+open loop Bode plot for different values of the phase margin. Note that
+when the phase margin is <span
+class="math inline">\(PM=60\)</span> degrees, the closed-loop frequency
+response looks very similar to the closed-loop frequency response for a
+second-order system when <span
+class="math inline">\(\zeta=0.707\)</span>,<span id="idx-0239" class="book-index-anchor" aria-hidden="true"></span> as shown in
+<strong>Fig.</strong> <a href="15-15-frequency-response-of-lti-systems.html#fig:ls_2nd_order_bode" data-reference-type="ref"
+data-reference="fig:ls_2nd_order_bode">15.9</a>. Phase margins smaller
+than <span class="math inline">\(60\)</span> degrees have a peaking
+response similar to a second-order system with <span
+class="math inline">\(\zeta&lt;0.707\)</span>. Note also that the
+bandwidth of the closed-loop system is approximately the crossover
+frequency of the open loop system. In general, the crossover frequency
+<span class="math inline">\(\omega_{co}\)</span> plays a similar role
+for general systems that the natural frequency <span
+class="math inline">\(\omega_n\)</span> plays for second-order systems.
+<span id="idx-0240" class="book-index-anchor" aria-hidden="true"></span></p>
+<figure id="fig:ls_closed_loop_response">
+<img src="5_loopshaping/figures/ls_closed_loop_response.png"
+style="width:95.0%"
+alt="Closed-loop Bode plot superimposed on the open loop Bode plot, together with the closed-loop step response, for different phase margins." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.7. </span>Closed-loop Bode plot superimposed on the
+open loop Bode plot, together with the closed-loop step response, for
+different phase margins.</figcaption>
+</figure>
+<article class="advanced-activity ch17-activity"
+data-advanced-activity="ch17-phase-response"> <p
+class="advanced-kicker">Chapter 17 interactive figure</p>
+<h3>Phase margin, closed-loop peaking, and ringing</h3> <p>Predict
+what will happen before moving the slider: if the phase margin
+decreases, should the closed-loop frequency-response peak and the
+step-response overshoot increase or decrease? The plots use a
+second-order approximation to show the trend described in the
+text.</p> <div class="advanced-grid ch17-phase-response-layout">
+<div class="advanced-controls ch17-phase-response-controls">
+<label>Phase margin <span class="inline-equation">PM</span>
+<input type="range" data-input="ch17-phase-margin" min="25"
+max="100" step="1" value="60"> <span
+class="advanced-control-value"><span
+data-output="ch17-phase-margin"></span> deg</span> </label>
+</div> <figure class="advanced-visual advanced-visual--auto
+ch17-phase-response-figure"> <svg viewBox="0 0 900 680"
+role="img" aria-label="Closed-loop Bode and step response versus
+phase margin"> <g data-auto-visual></g> </svg>
+<figcaption><span class="fig-number">Figure 1.10. </span>Interactive Figure 17.I3. Smaller phase margin increases
+the closed-loop resonant peak and step-response overshoot. Faint curves
+show reference cases at 45, 60, and 80 degrees.</figcaption>
+</figure> <div class="advanced-readout
+ch17-phase-response-readout"> <p
+class="advanced-metric"><strong>Damping proxy</strong><span
+data-output="ch17-phase-zeta"></span></p> <p
+class="advanced-metric"><strong>Closed-loop peak</strong><span
+data-output="ch17-phase-peak"></span></p> <p
+class="advanced-metric"><strong>Step overshoot</strong><span
+data-output="ch17-phase-overshoot"></span></p> <p
+class="advanced-metric"><strong>Design
+interpretation</strong><span
+data-output="ch17-phase-interpretation"></span></p> <p
+class="advanced-metric"><strong>Approximation used</strong><span
+data-output="ch17-phase-approximation"></span></p> </div>
+</div> </article>
+<p><strong>Fig.</strong> <a href="#fig:ls_closed_loop_response" data-reference-type="ref"
+data-reference="fig:ls_closed_loop_response">17.7</a> also shows the
+corresponding step response for the closed-loop system.<span id="idx-0241" class="book-index-anchor" aria-hidden="true"></span> The step response
+looks similar to the step response for second-order systems shown in
+<strong>Fig.</strong> <a href="08-8-design-strategies-for-second-order-systems.html#fig:pid_second_order_response_1" data-reference-type="ref"
+data-reference="fig:pid_second_order_response_1">8.3</a>,
+where again, the step response for <span
+class="math inline">\(PM=60\)</span> degrees in
+<strong>Fig.</strong> <a href="#fig:ls_closed_loop_response" data-reference-type="ref"
+data-reference="fig:ls_closed_loop_response">17.7</a> is roughly
+equivalent to the step response for <span
+class="math inline">\(\zeta=0.707\)</span> in
+<strong>Fig.</strong> <a href="08-8-design-strategies-for-second-order-systems.html#fig:pid_second_order_response_2" data-reference-type="ref"
+data-reference="fig:pid_second_order_response_2">8.4</a>.</p>
+<p>For a given reference signal, the size of the control signal <span
+class="math inline">\(u(t)\)</span> is determined by the crossover
+frequency. A large crossover frequency will result in a larger control
+signal <span class="math inline">\(u(t)\)</span>.
+<strong>Fig.</strong> <a href="#fig:ls_size_input_signal" data-reference-type="ref"
+data-reference="fig:ls_size_input_signal">17.8</a> shows the open and
+closed-loop transfer functions for a plant equal to <span
+class="math inline">\(P(s) = \frac{1}{s(s+1)}\)</span> and for three
+different controllers that are tuned for equivalent phase margins but
+with crossover frequency at <span class="math inline">\(2\)</span>,
+<span class="math inline">\(20\)</span>, and <span
+class="math inline">\(200\)</span> respectively. The corresponding
+control signal when the reference is a unit step is also shown in
+<strong>Fig.</strong> <a href="#fig:ls_size_input_signal" data-reference-type="ref"
+data-reference="fig:ls_size_input_signal">17.8</a>. Note that as <span
+class="math inline">\(\omega_{co}\)</span> increases, the magnitude of
+the control signal increases and the speed of the response also
+increases. In fact, the integral of the control signals will be the same
+for each <span class="math inline">\(\omega_{co}\)</span>. Therefore,
+saturation constraints on <span class="math inline">\(u(t)\)</span> will
+necessarily limit the size of the crossover frequency <span
+class="math inline">\(\omega_{co}\)</span>. <span id="idx-0242" class="book-index-anchor" aria-hidden="true"></span></p>
+<figure id="fig:ls_size_input_signal">
+<img src="5_loopshaping/figures/ls_size_input_signal.png"
+style="width:95.0%"
+alt="Closed-loop Bode plot superimposed on the open loop Bode plot, together with the corresponding control signal, for different cross-over frequencies." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.8. </span>Closed-loop Bode plot superimposed on the
+open loop Bode plot, together with the corresponding control signal, for
+different cross-over frequencies.</figcaption>
+</figure>
+<article class="advanced-activity ch17-activity"
+data-advanced-activity="ch17-crossover-effort"> <p
+class="advanced-kicker">Chapter 17 interactive figure</p>
+<h3>Crossover frequency and control effort</h3> <p>Move the
+crossover frequency while holding a similar phase-margin trend. The
+response gets faster as <span
+class="inline-equation">&omega;<sub>co</sub></span> increases,
+but the required control signal grows.</p> <div class="advanced-grid
+ch17-crossover-layout"> <div class="advanced-controls
+ch17-crossover-controls"> <label><span
+class="advanced-control-label">Crossover frequency</span> <span
+class="advanced-control-value"><span
+class="inline-equation">&omega;<sub>co</sub></span> = <span
+data-output="ch17-crossover-value"></span> rad/s</span> <input
+type="range" data-input="ch17-crossover-exp" min="0" max="2.3"
+step="0.02" value="1"> </label> </div> <figure
+class="advanced-visual advanced-visual--auto ch17-crossover-figure">
+<svg viewBox="0 0 900 540" role="img" aria-label="Step response
+and control effort versus crossover frequency"> <g
+data-auto-visual></g> </svg> <figcaption><span class="fig-number">Figure 1.11. </span>Interactive Figure
+17.I4. Larger crossover frequency makes the response faster, but
+actuator effort increases.</figcaption> </figure> <div
+class="advanced-readout ch17-crossover-readout"> <p
+class="advanced-metric"><strong>Settling-time
+proxy</strong><span
+data-output="ch17-crossover-settling"></span></p> <p
+class="advanced-metric"><strong>Peak control
+effort</strong><span
+data-output="ch17-crossover-peak-u"></span></p> <p
+class="advanced-metric"><strong>Design warning</strong><span
+data-output="ch17-crossover-note"></span></p> </div> </div>
+</article>
+<h3 data-number="17.1.3" id="bode-phase-gain-relationship"><span class="header-section-number">17.1.3</span> Bode Phase Gain
+Relationship</h3>
+<p><span id="idx-0243" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>In Bode’s original work, he proved the following theorem that relates
+the slope of the magnitude plot to the phase.</p>
+<p>. For any stable, minimum phase (i.e., zeros in the LHP), linear
+time-invariant system <span class="math inline">\(G(s)\)</span>, the
+phase of <span class="math inline">\(G(j\omega)\)</span> is uniquely
+related to <span
+class="math inline">\(20\log_{10}\left|G(j\omega)\right|\)</span> by
+<span class="math display">\[\label{eq:loop_bode_gain_phase}
+\angle G(j\omega_0) = \frac{1}{\pi}\int_{-\infty}^{\infty}
+\left(\frac{dM}{du}\right)W(u)\,du,\]</span> where <span
+class="math display">\[\begin{aligned}
+M &amp;= 20\log_{10}\left|G(j\omega)\right|, \\
+u &amp;= \log_{10}\left|\frac{\omega}{\omega_0}\right|, \\
+W(u) &amp;= \log_{10}\left(\coth \frac{\left|u\right|}{2}\right).
+\end{aligned}\]</span></p>
+<p>The term <span class="math inline">\(\frac{dM}{du}\)</span> in
+Equation <a href="#theory-15" data-reference-type="eqref"
+data-reference="eq:loop_bode_gain_phase"><a href="#stability-and-robustness-margins">17.1</a></a>
+is the slope of the magnitude of <span
+class="math inline">\(G(j\omega)\)</span> on the Bode plot. A plot of
+<span class="math inline">\(W(u)\)</span> is shown in
+<strong>Fig.</strong> <a href="#fig:ls_W_u" data-reference-type="ref"
+data-reference="fig:ls_W_u">17.9</a>, where it can be seen that <span
+class="math inline">\(W(u)\)</span> heavily weights the slope of the
+Bode magnitude around <span class="math inline">\(\omega_0\)</span>, but
+also includes bleed-over from the slope for roughly a decade before and
+after <span class="math inline">\(\omega_0\)</span>. This implies that
+the phase of <span class="math inline">\(P(j\omega)C(j\omega)\)</span>
+at <span class="math inline">\(\omega=\omega_0\)</span> is determined by
+the slope of the Bode magnitude plot in a region about <span
+class="math inline">\(\omega_0\)</span>.</p>
+<figure id="fig:ls_W_u">
+<img src="5_loopshaping/figures/ls_W_u.png"
+style="width:50.0%"
+alt="The weighting function W(u) in the Bode gain-phase relationship heavily weights the slope around \omega_0." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.9. </span>The weighting function <span
+class="math inline"><em>W</em>(<em>u</em>)</span> in the Bode gain-phase
+relationship heavily weights the slope around <span
+class="math inline"><em>ω</em><sub>0</sub></span>.</figcaption>
+</figure>
+<p>Recall that the phase for an integrator <span
+class="math inline">\(1/s\)</span> is <span
+class="math inline">\(-90\)</span> degrees and that the phase for a
+differentiator is <span class="math inline">\(90\)</span> degrees. Also,
+recall that the phase for a constant is <span
+class="math inline">\(0\)</span> degrees. Therefore, we can approximate
+Equation <a href="#theory-15" data-reference-type="eqref"
+data-reference="eq:loop_bode_gain_phase"><a href="#stability-and-robustness-margins">17.1</a></a>
+as follows:</p>
+<ul>
+<li><p><span class="math inline">\(\text{Slope of~}
+20\log_{10}\left|G(j\omega_0)\right| \approx +20 \text{~dB/dec~} \\
+\implies \angle G(j\omega_0) \approx +90 \text{~deg}\)</span>,</p></li>
+<li><p><span class="math inline">\(\text{Slope of~}
+20\log_{10}\left|G(j\omega_0)\right| \approx 0 \text{~dB/dec~}  \\
+\implies \angle G(j\omega_0) \approx 0 \text{~deg}\)</span>,</p></li>
+<li><p><span class="math inline">\(\text{Slope of~}
+20\log_{10}\left|G(j\omega_0)\right| \approx -20 \text{~dB/dec~} \\
+\implies \angle G(j\omega_0) \approx -90 \text{~deg}\)</span>,</p></li>
+<li><p><span class="math inline">\(\text{Slope of~}
+20\log_{10}\left|G(j\omega_0)\right| \approx -40 \text{~dB/dec~} \\
+\implies \angle G(j\omega_0) \approx -180 \text{~deg}\)</span>,</p></li>
+<li><p><span class="math inline">\(\text{Slope of~}
+20\log_{10}\left|G(j\omega_0)\right| \approx -60 \text{~dB/dec~} \\
+\implies \angle G(j\omega_0) \approx -270 \text{~deg}\)</span>.</p></li>
+</ul>
+<p>Of course, these values are approximate and require that the slope
+around <span class="math inline">\(\omega_0\)</span> persist for
+approximately a decade before and after <span
+class="math inline">\(\omega_0\)</span>.</p>
+<p>While we do not directly use
+Equation <a href="#theory-15" data-reference-type="eqref"
+data-reference="eq:loop_bode_gain_phase"><a href="#stability-and-robustness-margins">17.1</a></a>
+in practice, it has clear implications for feedback design. In
+particular, the takeaway message is that to have a good phase margin,
+the slope of the Bode magnitude plot at the crossover frequency <span
+class="math inline">\(\omega_{co}\)</span> cannot be too steep, and that
+it needs to be reasonably shallow for roughly a decade before and after
+crossover. As a rule of thumb, a phase margin of <span
+class="math inline">\(PM=60\)</span> degrees requires that the slope at
+crossover is between <span class="math inline">\(-20\)</span> dB/dec and
+<span class="math inline">\(-40\)</span> dB/dec. In other words, the
+ideal loop shape will need to look something like
+<strong>Fig.</strong> <a href="#fig:ls_margins_7" data-reference-type="ref"
+data-reference="fig:ls_margins_7">17.10</a>. It is also important to
+understand that the Bode phase-gain theorem requires that there is
+adequate frequency separation between the frequency content of signals
+that we are tracking or rejecting and the frequency content of the
+sensor noise that is to be attenuated.</p>
+<figure id="fig:ls_margins_7">
+<img src="5_loopshaping/figures/ls_margins_7.png"
+style="width:95.0%"
+alt="The ideal loop shape is large at low frequencies to achieve good tracking and disturbance rejection, is small at high frequencies to attenuate sensor noise, has a shallow slope at the crossover frequency to achieve a good phase margin, and has a small enough crossover frequency to satisfy the input saturation constraints." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.10. </span>The ideal loop shape is large at low
+frequencies to achieve good tracking and disturbance rejection, is small
+at high frequencies to attenuate sensor noise, has a shallow slope at
+the crossover frequency to achieve a good phase margin, and has a small
+enough crossover frequency to satisfy the input saturation
+constraints.</figcaption>
+</figure>
+<article class="advanced-activity ch17-activity"
+data-advanced-activity="ch17-loopshape-checklist"> <p
+class="advanced-kicker">Chapter 17 interactive figure</p>
+<h3>Ideal loop-shape checklist</h3> <p>Adjust the loop-shape
+parameters and use the checklist to connect the ideal Bode picture in
+Figure&nbsp;17.10 to the design requirement it represents.</p> <div
+class="advanced-grid ch17-loopshape-layout"> <div
+class="advanced-controls ch17-loopshape-controls"> <label><span
+class="advanced-control-label">Low-frequency loop gain</span>
+<span class="advanced-control-value"><span
+data-output="ch17-loopshape-low-gain"></span> dB</span> <input
+type="range" data-input="ch17-loopshape-low-gain" min="20"
+max="70" step="1" value="50"> </label> <label><span
+class="advanced-control-label">Crossover frequency</span> <span
+class="advanced-control-value"><span
+class="inline-equation">&omega;<sub>co</sub></span> = <span
+data-output="ch17-loopshape-wc"></span> rad/s</span> <input
+type="range" data-input="ch17-loopshape-wc-exp" min="-0.45"
+max="0.8" step="0.01" value="0.15"> </label> <label><span
+class="advanced-control-label">Slope near crossover</span> <span
+class="advanced-control-value">slope = <span
+data-output="ch17-loopshape-slope"></span> dB/dec</span> <input
+type="range" data-input="ch17-loopshape-slope" min="15" max="65"
+step="1" value="40"> </label> <label><span
+class="advanced-control-label">High-frequency rolloff</span> <span
+class="advanced-control-value">extra rolloff = <span
+data-output="ch17-loopshape-rolloff"></span> dB/dec</span>
+<input type="range" data-input="ch17-loopshape-rolloff" min="0"
+max="50" step="1" value="25"> </label> </div> <figure
+class="advanced-visual advanced-visual--auto ch17-loopshape-figure">
+<svg viewBox="0 0 900 720" role="img" aria-label="Interactive
+ideal loop-shape checklist Bode plot"> <g data-auto-visual></g>
+</svg> <figcaption><span class="fig-number">Figure 1.12. </span>Interactive Figure 17.I5. Adjust the loop shape
+and select checklist items to explain the ideal requirements in
+Figure&nbsp;17.10.</figcaption> </figure> <div
+class="advanced-readout ch17-loopshape-readout"> <div
+class="ch17-loopshape-tabs" role="group" aria-label="Ideal
+loop-shape checklist topics"> <button type="button"
+class="is-active" data-ch17-loopshape-hotspot="low">1. Low gain
+region</button> <button type="button"
+data-ch17-loopshape-hotspot="slope">2. Crossover slope</button>
+<button type="button" data-ch17-loopshape-hotspot="effort">3.
+Crossover limit</button> <button type="button"
+data-ch17-loopshape-hotspot="noise">4. Noise region</button>
+</div> <p class="advanced-metric ch17-loopshape-focus"><strong
+data-output="ch17-loopshape-title">Low-frequency
+gain</strong><span data-output="ch17-loopshape-goal">Design goal:
+make the loop gain large at low frequency.</span></p> <p
+class="advanced-metric"><strong>Why it matters</strong><span
+data-output="ch17-loopshape-why">Large low-frequency loop gain makes
+the sensitivity function small where commands and disturbances usually
+have most of their energy.</span></p> <p
+class="advanced-metric"><strong>How to check or fix
+it</strong><span data-output="ch17-loopshape-fix">Check that
+|PC| is well above 0 dB at low frequency. Increase low-frequency gain
+with integral action or lag, but watch the crossover
+frequency.</span></p> <p
+class="advanced-metric"><strong>Current checklist
+status</strong><span
+data-output="ch17-loopshape-status"></span></p> <div
+class="advanced-metric ch17-loopshape-check">
+<strong>Self-check</strong> <span
+data-output="ch17-loopshape-question">Which design action best
+supports this region?</span> <div
+class="ch17-loopshape-answer-row"> <button type="button"
+data-ch17-loopshape-answer="a"></button> <button type="button"
+data-ch17-loopshape-answer="b"></button> <button type="button"
+data-ch17-loopshape-answer="c"></button> </div> <span
+class="quiz-feedback" data-output="ch17-loopshape-feedback"
+aria-live="polite"></span> </div> </div> </div> </article>
+<h2 data-number="17.2"
+id="design-study-a-single-link-robot-arm-15" class="section-design-study"><span class="header-section-number">17.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="17.2.1" id="-example-problem-3120" class="section-example"><span class="header-section-number">17.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#stability-and-robustness-margins" data-reference-type="ref"
+data-reference="chap:margins">20</a></h3>
+<p>For the single link robot arm, use the <code>bode</code> and
+<code>margin</code> commands (from Python or Matlab) to find the phase
+and gain margin for the closed loop system under PID control. On the
+same graph, plot the open loop Bode plot and the closed loop Bode plot.
+What is the bandwidth of the closed loop system, and how does this
+relate to the crossover frequency? Use the gains found in
+HW <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<section id="design-study-a-ch17-margins">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw17-margins"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Measure stability margins before viewing the solution</h3>
+<p>Use the open-loop Bode plot to identify crossover, gain margin,
+phase margin, and bandwidth.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Bode plot for measuring margins and bandwidth"> <img
+src="6_design_studies/figures/hw_arm_margins_W2021.png" alt="Bode
+plots of open-loop and closed-loop PID-controlled arm responses."> <p
+class="advanced-caption">Use this plot to identify gain crossover,
+phase margin, gain margin, and closed-loop bandwidth.</p> </div>
+
+<section class="guided-step" data-dsa-step="crossover">
+<h4>Step 1. Gain crossover definition</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Magnitude at gain crossover</span><input
+type="text" data-dsa-input="mag" data-dsa-accept="0db\|0 dB\|1"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="crossover">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="crossover"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="crossover" hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> Gain crossover occurs
+where the open-loop magnitude is <span class="math
+inline">\(0\)</span> dB, or magnitude <span class="math
+inline">\(1\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="phase-margin">
+<h4>Step 2. Phase margin reference</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Phase margin is measured from</span><input
+type="text" data-dsa-input="reference"
+data-dsa-accept="-180\|-180deg\|-180 degrees"
+placeholder="phase"></label> </div> <button type="button"
+data-dsa-check="phase-margin">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="phase-margin"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="phase-margin" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> Phase margin is the
+additional lag needed to reach <span class="math
+inline">\(-180^\circ\)</span> at gain crossover.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="bandwidth"> <h4>Step
+3. Bandwidth relationship</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Closed-loop bandwidth is
+often</span><input type="text" data-dsa-input="relation"
+data-dsa-accept="near crossover\|slightly larger\|larger than
+crossover" placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="bandwidth">Check Step 3</button>
+<p class="quiz-feedback" data-dsa-feedback="bandwidth"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="bandwidth" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> Closed-loop bandwidth is
+usually near the open-loop crossover and can be slightly larger for this
+design.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes margin-plot
+code. Before opening it, outline how you would compute the open-loop and
+closed-loop transfer functions, measure margins, and annotate the Bode
+plot.</p> <textarea class="guided-design-study-pseudocode"
+rows="5" placeholder="Write pseudocode for computing margins and plotting the results."></textarea> <p
+class="advanced-caption">This prompt is ungraded. It is intended to
+connect the margin measurements to the implementation code in the
+complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>Python code to generate the plots from this problem is included
+below. However, similar Matlab code is available on the book website
+(see <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>).</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="hw17.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Single link arm Parameter File</span></span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hw16 <span class="im">as</span> P16</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> loopshape_tools <span class="im">as</span> ls</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># flag to define if using dB or absolute scale for M(omega)</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>dB_flag <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># assigning plant and controller from past HW (to make sure</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># we don&#39;t introduce additional errors)</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>Plant <span class="op">=</span> P16.Plant</span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>C_pid <span class="op">=</span> P16.C_pid</span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>sys_open_loop <span class="op">=</span> C_pid <span class="op">*</span> Plant</span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>sys_closed_loop <span class="op">=</span> sys_open_loop <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> sys_open_loop)</span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># display the phase and gain margins</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>    ls.print_margins(sys_open_loop, <span class="st">&quot;Open-loop&quot;</span>, dB_flag)</span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># display bode plots of transfer functions</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure()</span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>    axes <span class="op">=</span> fig.subplots(<span class="dv">2</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">&quot;Bode Plots: Single Link Arm&quot;</span>)</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this makes two bode plots for open and closed loop</span></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>    cnt.bode(</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        [sys_open_loop, sys_closed_loop],</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        dB<span class="op">=</span>dB_flag,</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes,</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        display_margins<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span>[<span class="st">&quot;Open-loop&quot;</span>, <span class="st">&quot;Closed-loop&quot;</span>],</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>    fig.tight_layout()</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div>
+<p>The transfer function for the plant is defined in Line 14. The
+transfer function for the PID controller is <span
+class="math display">\[\begin{aligned}
+C_{PID}(s) &amp;= k_P + \frac{k_I}{s} + \frac{k_D s}{\sigma s + 1}
+           = \frac{s(\sigma s+1)k_P + (\sigma s + 1)k_I + k_D
+s^2}{s(\sigma s + 1)} \\
+           &amp;= \frac{(k_D+\sigma k_P)s^2 + (k_P+\sigma k_I)s +
+k_I}{s(\sigma s + 1)},
+\end{aligned}\]</span> and is defined in Line 15. In Python the
+<code>margin</code> command returns information about the phase margin,
+gain margin, and frequencies where those are calculated (like the
+crossover frequency). The <code>bode</code> command can be used to make
+plots of transfer functions (and will show the margin information if
+sent the “margin=True” argument). The result of the Python code is shown
+in <strong>Fig.</strong> <a href="#fig:hw_arm_margins"
+data-reference-type="ref"
+data-reference="fig:hw_arm_margins">17.11</a>.</p>
+<figure id="fig:hw_arm_margins">
+<img src="6_design_studies/figures/hw_arm_margins_W2021.png"
+style="width:95.0%"
+alt="Bode plots of the open loop and closed loop system for the single link robot arm under PID control." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.11. </span>Bode plots of the open loop and closed
+loop system for the single link robot arm under PID
+control.</figcaption>
+</figure>
+<p>As seen in <strong>Fig.</strong> <a href="#fig:hw_arm_margins"
+data-reference-type="ref" data-reference="fig:hw_arm_margins">17.11</a>
+the bandwidth for PID control is approximately <span
+class="math inline">\(18\)</span> rad/sec, which is slightly larger than
+the crossover frequency of <span
+class="math inline">\(10.8\)</span> rad/sec. The larger bandwidth is due
+to the small phase margin of <span
+class="math inline">\(PM=49.0\)</span> degrees.</p></section> </article>
+</section>
+<h2 data-number="17.3" id="design-study-b-inverted-pendulum-13" class="section-design-study"><span class="header-section-number">17.3</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="17.3.1" id="-example-problem-3220" class="section-example"><span class="header-section-number">17.3.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#stability-and-robustness-margins" data-reference-type="ref"
+data-reference="chap:margins">20</a></h3>
+<p>For this problem, use the gains found in
+HW <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<ul>
+<li><p>For the inner loop of the inverted pendulum, use the Python or
+Matlab <code>bode</code> and <code>margin</code> commands to find the
+phase and gain margin for the inner loop system under PD control. On the
+same graph, plot the open loop Bode plot and the closed loop Bode plot.
+What is the bandwidth of the inner loop, and how does this relate to the
+crossover frequency?</p></li>
+<li><p>For the outer loop of the inverted pendulum, use the
+<code>bode</code> and <code>margin</code> commands to find the phase and
+gain margin for the outer loop system under PID control. Plot the open
+and closed loop Bode plots for the outer loop on the same plot as the
+open and closed loop for the inner loop. What is the bandwidth of the
+outer loop, and how does this relate to the crossover
+frequency?</p></li>
+<li><p>What is the bandwidth separation between the inner (fast) loop,
+and the outer (slow) loop? For this design, is successive loop closure
+justified?</p></li>
+</ul>
+<section id="design-study-b-ch17-margins">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw17"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Measure pendulum stability margins
+before viewing the solution</h3> <p>Compare inner-loop and
+outer-loop margins and bandwidths.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Inner-loop pendulum margins plot."> <img
+src="6_design_studies/figures/hw_pendulum_margins_inner_W2021.png"
+alt="Inner-loop pendulum margins plot."> <p
+class="advanced-caption">Use margin plots to compare crossover, phase
+margin, gain margin, and bandwidth.</p> </div>
+
+<section class="guided-step" data-dsa-step="inner"> <h4>Step 1.
+Inner-loop bandwidth</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Approximate
+bandwidth</span><input type="text" data-dsa-input="bw"
+data-dsa-accept="19\|19 rad/s\|about 19"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="inner">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="inner"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="inner" hidden><summary>Show
+solution for Step 1</summary><p><strong>Answer:</strong> The
+inner-loop bandwidth is approximately 19 rad/s.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="outer"> <h4>Step 2.
+Outer-loop bandwidth</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Approximate
+bandwidth</span><input type="text" data-dsa-input="bw"
+data-dsa-accept="1.3\|1.3 rad/s\|about 1.3"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="outer">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="outer"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="outer" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> The
+outer-loop bandwidth is approximately 1.3 rad/s.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="separation">
+<h4>Step 3. Bandwidth separation</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Enough separation?</span><input type="text"
+data-dsa-input="separation" data-dsa-accept="yes\|one decade\|about
+one decade\|justified" placeholder="short answer"></label>
+</div> <button type="button" data-dsa-check="separation">Check
+Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="separation" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="separation" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The bandwidths are
+separated by about a decade, justifying successive loop
+closure.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution computes separate
+inner-loop and outer-loop margin plots. Before opening it, outline each
+component separately.</p> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="Inner-loop margin code: write pseudocode for defining the inner open-loop and closed-loop transfer functions, computing margins, and annotating the Bode plot."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="Outer-loop margin code: write pseudocode for defining the outer open-loop and closed-loop transfer functions, computing margins, and annotating the Bode plot."></textarea> <p
+class="advanced-caption">These prompts are ungraded. They are
+intended to connect the derivation to the implementation code in the
+complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>second-order The Python code that can be used to generate the plots
+for this solution is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="hw17.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hw16 <span class="im">as</span> P16</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> control <span class="im">import</span> bode, margin, mag2db</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># flag to define if using dB or absolute scale for M(omega)</span></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>dB_flag <span class="op">=</span> P16.dB_flag</span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># flag to define if using dB or absolute scale for M(omega)</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>dB_flag <span class="op">=</span> P16.dB_flag</span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign inner and outer open-loop transfer functions from</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># previous HW solution</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>P_in <span class="op">=</span> P16.P_in</span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>P_out <span class="op">=</span> P16.P_out</span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute inner and outer closed-loop transfer functions</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>C_in <span class="op">=</span> P16.C_in</span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>C_out <span class="op">=</span> P16.C_out</span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span><span class="op">==</span><span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>      <span class="co">##################################################</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>      <span class="co">########### Inner loop ###########################</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calculate the phase and gain margins</span></span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> dB_flag:</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>            gm, pm, Wcg, Wcp <span class="op">=</span> margin(P_in<span class="op">*</span>C_in)</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>            gm <span class="op">=</span> mag2db(gm)</span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;Inner Loop:&quot;</span>, <span class="st">&quot;gm: &quot;</span>,gm,</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot; pm: &quot;</span>, pm,<span class="st">&quot; Wcg: &quot;</span>, Wcg, <span class="st">&quot; Wcp: &quot;</span>, Wcp)</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>            gm, pm, Wcg, Wcp <span class="op">=</span> margin(P_in <span class="op">*</span> C_in)</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;Inner Loop:&quot;</span>, <span class="st">&quot;gm: &quot;</span>, gm,</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot; pm: &quot;</span>, pm, <span class="st">&quot; Wcg: &quot;</span>, Wcg, <span class="st">&quot; Wcp: &quot;</span>, Wcp)</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>      <span class="co"># display bode plots of transfer functions</span></span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>      fig1 <span class="op">=</span> plt.figure()</span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>      <span class="co"># this makes two bode plots for open and closed loop</span></span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>      bode(P_in <span class="op">*</span> C_in, dB<span class="op">=</span>dB_flag,</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="st">&#39;\(C_</span><span class="sc">{in}</span><span class="st">P_</span><span class="sc">{in}</span><span class="st">\) - Open-loop&#39;</span>)</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>      bode(P_in<span class="op">*</span>C_in<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>P_in<span class="op">*</span>C_in), dB<span class="op">=</span>dB_flag, </span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="vs">r&#39;</span><span class="dv">\(</span><span class="ch">\f</span><span class="vs">rac{P_{in}C_{in}}{1</span><span class="op">+</span><span class="vs">P_{in}C_{in}}</span><span class="dv">\)</span><span class="vs">&#39;</span></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>                  <span class="op">+</span><span class="st">&#39;- Closed-loop&#39;</span>)</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>      <span class="co"># now we can add lines to show where we calculated the GM and PM</span></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>      gm_line <span class="op">=</span> fig1.axes[<span class="dv">0</span>].plot([Wcg, Wcg],</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>                                    plt.ylim(), <span class="st">&#39;k--&#39;</span>, label<span class="op">=</span><span class="st">&#39;GM&#39;</span>)</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>      gm_line[<span class="dv">0</span>].set_label(<span class="st">&#39;GM&#39;</span>)</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>      fig1.axes[<span class="dv">0</span>].legend()</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>      fig1.axes[<span class="dv">1</span>].plot([Wcp, Wcp], plt.ylim(), <span class="st">&#39;b--&#39;</span>, label<span class="op">=</span><span class="st">&#39;PM&#39;</span>)</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>      plt.legend()</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>      <span class="co"># setting axis title</span></span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>      fig1.axes[<span class="dv">0</span>].set_title(<span class="st">&#39;Pendulum Inner Loop - &#39;</span><span class="op">+</span></span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&#39;GM:&#39;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">round</span>(gm, <span class="dv">2</span>))<span class="op">+</span></span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&#39;, PM:&#39;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">round</span>(pm, <span class="dv">2</span>)))</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>      <span class="co">##################################################</span></span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>      <span class="co">########### Outer loop ###########################</span></span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calculate the phase and gain margins</span></span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> dB_flag:</span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>            gm, pm, Wcg, Wcp <span class="op">=</span> margin(P_out <span class="op">*</span> C_out)</span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>            gm <span class="op">=</span> mag2db(gm)</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;Outer Loop:&quot;</span>, <span class="st">&quot;gm: &quot;</span>, gm,</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot; pm: &quot;</span>, pm, <span class="st">&quot; Wcg: &quot;</span>, Wcg, <span class="st">&quot; Wcp: &quot;</span>, Wcp)</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>            gm, pm, Wcg, Wcp <span class="op">=</span> margin(P_out <span class="op">*</span> C_out)</span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;Outer Loop:&quot;</span>, <span class="st">&quot;gm: &quot;</span>, gm,</span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot; pm: &quot;</span>, pm, <span class="st">&quot; Wcg: &quot;</span>, Wcg, <span class="st">&quot; Wcp: &quot;</span>, Wcp)</span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>      <span class="co"># display bode plots of transfer functions</span></span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>      fig2 <span class="op">=</span> plt.figure()</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>      <span class="co"># this makes two bode plots for open and closed loop</span></span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>      bode(P_out <span class="op">*</span> C_out, dB<span class="op">=</span>dB_flag,</span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="st">&#39;\(C_</span><span class="sc">{out}</span><span class="st">P_</span><span class="sc">{out}</span><span class="st">\) - Open-loop&#39;</span>)</span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>      bode(P_out<span class="op">*</span>C_out<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>P_out<span class="op">*</span>C_out), dB<span class="op">=</span>dB_flag, </span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="vs">r&#39;</span><span class="dv">\(</span><span class="ch">\f</span><span class="vs">rac{P_{out}C_{out}}{1</span><span class="op">+</span><span class="vs">P_{out}C_{out}}</span><span class="dv">\)</span><span class="vs">&#39;</span></span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>                  <span class="op">+</span><span class="st">&#39; - Closed-loop&#39;</span>)</span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a>      <span class="co"># now we can add lines to show where we calculated the GM and PM</span></span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a>      gm_line <span class="op">=</span> fig2.axes[<span class="dv">0</span>].plot([Wcg, Wcg],</span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a>                                    plt.ylim(), <span class="st">&#39;k--&#39;</span>, label<span class="op">=</span><span class="st">&#39;GM&#39;</span>)</span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a>      gm_line[<span class="dv">0</span>].set_label(<span class="st">&#39;GM&#39;</span>)</span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a>      fig2.axes[<span class="dv">0</span>].legend()</span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a>      fig2.axes[<span class="dv">1</span>].plot([Wcp, Wcp], plt.ylim(), <span class="st">&#39;b--&#39;</span>, label<span class="op">=</span><span class="st">&#39;PM&#39;</span>)</span>
+<span id="cb1-89"><a href="18-18-compensator-design.html#cb1-89" aria-hidden="true" tabindex="-1"></a>      plt.legend()</span>
+<span id="cb1-90"><a href="18-18-compensator-design.html#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="18-18-compensator-design.html#cb1-91" aria-hidden="true" tabindex="-1"></a>      <span class="co"># setting axis title</span></span>
+<span id="cb1-92"><a href="18-18-compensator-design.html#cb1-92" aria-hidden="true" tabindex="-1"></a>      fig2.axes[<span class="dv">0</span>].set_title(<span class="st">&#39;Pendulum Outer Loop - &#39;</span><span class="op">+</span></span>
+<span id="cb1-93"><a href="18-18-compensator-design.html#cb1-93" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&#39;GM:&#39;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">round</span>(gm, <span class="dv">2</span>))<span class="op">+</span></span>
+<span id="cb1-94"><a href="18-18-compensator-design.html#cb1-94" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&#39;, PM:&#39;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">round</span>(pm, <span class="dv">2</span>)))</span>
+<span id="cb1-95"><a href="18-18-compensator-design.html#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="18-18-compensator-design.html#cb1-96" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">&#39;Close window to end program&#39;</span>)</span>
+<span id="cb1-97"><a href="18-18-compensator-design.html#cb1-97" aria-hidden="true" tabindex="-1"></a>      plt.show()</span></code></pre></div>
+<p>The transfer functions for the inner and outer loop plants and
+controller are defined in Lines 14–19. For this problem, we first
+calculate the gain and phase margins (see Lines 26–35). We do this so
+that we can then plot the open-loop and closed-loop Bode plots with
+stability margin information shown on the plots (see Lines 38–56). If
+all we want is the open-loop Bode plot with stability margins, we can
+simply pass the argument “margins=True” to the <code>bode</code>
+function. The results of this code are shown in <strong>Fig.</strong> <a
+href="#fig:hw_pendulum_margins_inner" data-reference-type="ref"
+data-reference="fig:hw_pendulum_margins_inner">17.12</a>. We follow a
+similar process for the outer loop with results shown in
+<strong>Fig.</strong> <a href="#fig:hw_pendulum_margins_outer"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_margins_outer">17.13</a>.</p>
+<figure id="fig:hw_pendulum_margins_inner">
+<img src="6_design_studies/figures/hw_pendulum_margins_inner_W2021.png"
+style="width:95.0%"
+alt="Bode plots with stability margins for the open and closed-loop systems of the inner loop of the inverted pendulum system." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.12. </span>Bode plots with stability margins for the
+open and closed-loop systems of the inner loop of the inverted pendulum
+system.</figcaption>
+</figure>
+<figure id="fig:hw_pendulum_margins_outer">
+<img src="6_design_studies/figures/hw_pendulum_margins_outer_W2021.png"
+style="width:95.0%"
+alt="Bode plots with stability margins for the open and closed-loop systems of the outer loop of the inverted pendulum system." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.13. </span>Bode plots with stability margins for the
+open and closed-loop systems of the outer loop of the inverted pendulum
+system.</figcaption>
+</figure>
+<p>As seen from <strong>Fig.</strong> <a
+href="#fig:hw_pendulum_margins_inner" data-reference-type="ref"
+data-reference="fig:hw_pendulum_margins_inner">17.12</a>, the bandwidth
+of the inner loop is approximately <span
+class="math inline">\(19\)</span> rad/sec, which is slightly larger than
+the crossover frequency of <span
+class="math inline">\(10\)</span> rad/sec. Similarly,
+<strong>Fig.</strong> <a href="#fig:hw_pendulum_margins_outer"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_margins_outer">17.13</a> indicates that
+the bandwidth of the outer loop is approximately <span
+class="math inline">\(1.3\)</span> rad/sec, which is slightly larger
+than the crossover frequency of <span
+class="math inline">\(1.0\)</span> rad/sec with a phase margin of <span
+class="math inline">\(PM=72\)</span> degrees (the plot says -108, but
+this is off by <span class="math inline">\(180\)</span>, so that <span
+class="math inline">\(PM = 180-108\)</span>).</p>
+<p>For a second-order system, making the step response 10 times faster
+implies that <span class="math inline">\(t_r\)</span> is divided by 10,
+or equivalently that <span class="math inline">\(\omega_n\)</span> is
+multiplied by 10. A similar principle holds for high order systems. To
+be 10 times faster, the closed loop bandwidth of the inner loop should
+be a decade higher on the Bode plot than the closed loop bandwidth of
+the outer loop. The bandwidth separation between the inner and outer
+loop is about one decade justifying the successive loop closure design
+approach.</p></section> </article>
+</section>
+<h2 data-number="17.4"
+id="design-study-c-satellite-attitude-control-14" class="section-design-study"><span class="header-section-number">17.4</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="17.4.1" id="-example-problem-3320" class="section-example"><span class="header-section-number">17.4.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#stability-and-robustness-margins" data-reference-type="ref"
+data-reference="chap:margins">20</a></h3>
+<p>For this problem, use the gains found in
+HW <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<ul>
+<li><p>For the inner loop of the satellite attitude controller, use the
+<code>bode</code> and <code>margin</code> commands (from Matlab or
+Python) to find the phase and gain margin for the inner loop system
+under PD control. On the same graph, plot the open loop Bode plot and
+the closed loop Bode plot. What is the bandwidth of the closed loop
+system, and how does this relate to the crossover frequency?</p></li>
+<li><p>For the outer loop of the satellite attitude controller, use the
+<code>bode</code> and <code>margin</code> commands to find the phase and
+gain margin for the outer loop system under PID control. Plot the open
+and closed loop Bode plots for the outer loop on the same plot as the
+open and closed loop for the inner loop. What is the bandwidth of the
+closed loop system, and how does this relate to the crossover
+frequency?</p></li>
+<li><p>What is the bandwidth separation between the inner (fast) loop,
+and the outer (slow) loop? For this design, is successive loop closure
+justified?</p></li>
+</ul>
+<section id="design-study-c-ch17-margins">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw17" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Measure satellite stability margins before viewing the
+solution</h3> <p>Compare the inner and outer loop crossover
+frequencies, phase margins, bandwidths, and bandwidth separation.</p>
+<section class="guided-step" data-dsa-step="inner"> <h4>Step 1.
+Inner-loop margin context</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Approximate inner
+bandwidth</span><input type="text" data-dsa-input="bw"
+data-dsa-accept="11\|11 rad/s\|about 11"
+placeholder="value"></label> <label><span>Approximate phase
+margin</span><input type="text" data-dsa-input="pm"
+data-dsa-accept="56\|56 degrees\|about 56"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="inner" data-dsa-hint="The solution reports the inner
+loop bandwidth and phase margin from Bode/margin plots.">Check Step
+1</button> <p class="quiz-feedback" data-dsa-feedback="inner"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="inner" hidden><summary>Show
+solution for Step 1</summary><p><strong>Answer:</strong> The
+inner-loop bandwidth is about 11 rad/s with phase margin about 56
+degrees.</p></details> </section> <section class="guided-step"
+data-dsa-step="outer"> <h4>Step 2. Outer-loop margin context</h4>
+<div class="guided-input-grid guided-input-grid-scalars">
+<label><span>Approximate outer bandwidth</span><input
+type="text" data-dsa-input="bw" data-dsa-accept="1\|1 rad/s\|about
+1" placeholder="value"></label> <label><span>Bandwidth
+separation</span><input type="text" data-dsa-input="separation"
+data-dsa-accept="one decade\|about one decade\|10\|close to a decade"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="outer" data-dsa-hint="The inner loop
+should be roughly a decade faster than the outer loop.">Check Step
+2</button> <p class="quiz-feedback" data-dsa-feedback="outer"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="outer" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong> The
+outer-loop bandwidth is about 1 rad/s, giving close to a decade of
+separation.</p></details> </section> <section
+class="guided-step" data-dsa-step="justification"> <h4>Step 3.
+Successive-loop closure judgment</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Is successive loop
+closure justified?</span><input type="text"
+data-dsa-input="justified"
+data-dsa-accept="yes\|justified\|approximately yes" placeholder="yes or no"></label> </div> <button type="button"
+data-dsa-check="justification" data-dsa-hint="Use bandwidth
+separation and closed inner-loop behavior.">Check Step 3</button>
+<p class="quiz-feedback" data-dsa-feedback="justification"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="justification"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> Yes, the bandwidths are
+close to a decade apart and the closed inner loop is approximately one
+over the outer-loop bandwidth.</p></details> </section> <div
+class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution anyway</button></div>
+<p class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>Python code to generate the plots in this solution is included
+below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="hw17.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Satellite Parameter File</span></span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> satelliteParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hw16 <span class="im">as</span> P16</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> control <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># flag to define if using dB or absolute scale for M(omega)</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>dB_flag <span class="op">=</span> P16.dB_flag</span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute inner and outer open-loop transfer functions</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>P_in <span class="op">=</span> P16.P_in</span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>P_out <span class="op">=</span> P16.P_out</span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the controller transfer functions from HW10</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># (to make sure we don&#39;t introduce additional errors)</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>C_in <span class="op">=</span> P16.C_in</span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>C_out <span class="op">=</span> P16.C_out</span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we have to define the frequencies, or we get non-smooth</span></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bode plots.</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>    omegas <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1000</span>)</span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">##################################################</span></span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">########### Inner loop ###########################</span></span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the phase and gain margins</span></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dB_flag:</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        gm, pm, Wcg, Wcp <span class="op">=</span> margin(P_in <span class="op">*</span> C_in)</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        gm <span class="op">=</span> mag2db(gm)</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Inner Loop:&quot;</span>, <span class="st">&quot;gm: &quot;</span>, gm,</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot; pm: &quot;</span>, pm, <span class="st">&quot; Wcg: &quot;</span>, Wcg, <span class="st">&quot; Wcp: &quot;</span>, Wcp)</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        gm, pm, Wcg, Wcp <span class="op">=</span> margin(P_in <span class="op">*</span> C_in)</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Inner Loop:&quot;</span>, <span class="st">&quot;gm: &quot;</span>, gm,</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot; pm: &quot;</span>, pm, <span class="st">&quot; Wcg: &quot;</span>, Wcg, <span class="st">&quot; Wcp: &quot;</span>, Wcp)</span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># display bode plots of transfer functions</span></span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>    fig1 <span class="op">=</span> plt.figure()</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this makes two bode plots for open and closed loop</span></span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>    bode(P_in <span class="op">*</span> C_in, omega<span class="op">=</span>omegas, dB<span class="op">=</span>dB_flag,</span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">&#39;\(C_</span><span class="sc">{in}</span><span class="st">P_</span><span class="sc">{in}</span><span class="st">\) - Open-loop&#39;</span>)</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>    bode(P_in <span class="op">*</span> C_in <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> P_in <span class="op">*</span> C_in),</span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>         omega<span class="op">=</span>omegas, dB<span class="op">=</span>dB_flag,</span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="vs">r&#39;</span><span class="dv">\(</span><span class="ch">\f</span><span class="vs">rac{P_{in}C_{in}}{1</span><span class="op">+</span><span class="vs">P_{in}C_{in}}</span><span class="dv">\)</span><span class="vs">&#39;</span></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>               <span class="op">+</span> <span class="st">&#39;- Closed-loop&#39;</span>)</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># now we can add lines to show where we calculated the GM and PM</span></span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>    gm_line <span class="op">=</span> fig1.axes[<span class="dv">0</span>].plot([Wcg, Wcg],</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>                                plt.ylim(), <span class="st">&#39;k--&#39;</span>, label<span class="op">=</span><span class="st">&#39;GM&#39;</span>)</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>    gm_line[<span class="dv">0</span>].set_label(<span class="st">&#39;GM&#39;</span>)</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>    fig1.axes[<span class="dv">0</span>].legend()</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>    fig1.axes[<span class="dv">1</span>].plot([Wcp, Wcp], plt.ylim(), <span class="st">&#39;b--&#39;</span>, label<span class="op">=</span><span class="st">&#39;PM&#39;</span>)</span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># setting axis title</span></span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>    fig1.axes[<span class="dv">0</span>].set_title(<span class="vs">r&#39;Satellite Inner Loop </span><span class="kw">(</span><span class="dv">\(</span><span class="ch">\t</span><span class="vs">heta</span><span class="dv">\)</span><span class="kw">)</span><span class="vs"> - &#39;</span> <span class="op">+</span></span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&#39;GM:&#39;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">round</span>(gm, <span class="dv">2</span>)) <span class="op">+</span></span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&#39;, PM:&#39;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">round</span>(pm, <span class="dv">2</span>)))</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="co">##################################################</span></span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="co">########### Outer loop ###########################</span></span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the phase and gain margins</span></span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dB_flag:</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>        gm, pm, Wcg, Wcp <span class="op">=</span> margin(P_out <span class="op">*</span> C_out)</span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        gm <span class="op">=</span> mag2db(gm)</span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Outer Loop:&quot;</span>, <span class="st">&quot;gm: &quot;</span>, gm,</span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot; pm: &quot;</span>, pm, <span class="st">&quot; Wcg: &quot;</span>, Wcg, <span class="st">&quot; Wcp: &quot;</span>, Wcp)</span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        gm, pm, Wcg, Wcp <span class="op">=</span> margin(P_out <span class="op">*</span> C_out)</span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Outer Loop:&quot;</span>, <span class="st">&quot;gm: &quot;</span>, gm,</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot; pm: &quot;</span>, pm, <span class="st">&quot; Wcg: &quot;</span>, Wcg, <span class="st">&quot; Wcp: &quot;</span>, Wcp)</span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># display bode plots of transfer functions</span></span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a>    fig2 <span class="op">=</span> plt.figure()</span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this makes two bode plots for open and closed loop</span></span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>    bode(P_out <span class="op">*</span> C_out, omega<span class="op">=</span>omegas, dB<span class="op">=</span>dB_flag,</span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">&#39;\(C_</span><span class="sc">{out}</span><span class="st">P_</span><span class="sc">{out}</span><span class="st">\) - Open-loop&#39;</span>)</span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a>    bode(P_out <span class="op">*</span> C_out <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> P_out <span class="op">*</span> C_out),</span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a>         omega<span class="op">=</span>omegas, dB<span class="op">=</span>dB_flag,</span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="vs">r&#39;</span><span class="dv">\(</span><span class="ch">\f</span><span class="vs">rac{P_{out}C_{out}}{1</span><span class="op">+</span><span class="vs">P_{out}C_{out}}</span><span class="dv">\)</span><span class="vs">&#39;</span></span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a>               <span class="op">+</span> <span class="st">&#39; - Closed-loop&#39;</span>)</span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a>    <span class="co"># now we can add lines to show where we calculated the GM and PM</span></span>
+<span id="cb1-89"><a href="18-18-compensator-design.html#cb1-89" aria-hidden="true" tabindex="-1"></a>    gm_line <span class="op">=</span> fig2.axes[<span class="dv">0</span>].plot([Wcg, Wcg],</span>
+<span id="cb1-90"><a href="18-18-compensator-design.html#cb1-90" aria-hidden="true" tabindex="-1"></a>                                plt.ylim(), <span class="st">&#39;k--&#39;</span>, label<span class="op">=</span><span class="st">&#39;GM&#39;</span>)</span>
+<span id="cb1-91"><a href="18-18-compensator-design.html#cb1-91" aria-hidden="true" tabindex="-1"></a>    gm_line[<span class="dv">0</span>].set_label(<span class="st">&#39;GM&#39;</span>)</span>
+<span id="cb1-92"><a href="18-18-compensator-design.html#cb1-92" aria-hidden="true" tabindex="-1"></a>    fig2.axes[<span class="dv">0</span>].legend()</span>
+<span id="cb1-93"><a href="18-18-compensator-design.html#cb1-93" aria-hidden="true" tabindex="-1"></a>    fig2.axes[<span class="dv">1</span>].plot([Wcp, Wcp], plt.ylim(), <span class="st">&#39;b--&#39;</span>, label<span class="op">=</span><span class="st">&#39;PM&#39;</span>)</span>
+<span id="cb1-94"><a href="18-18-compensator-design.html#cb1-94" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb1-95"><a href="18-18-compensator-design.html#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="18-18-compensator-design.html#cb1-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># setting axis title</span></span>
+<span id="cb1-97"><a href="18-18-compensator-design.html#cb1-97" aria-hidden="true" tabindex="-1"></a>    fig2.axes[<span class="dv">0</span>].set_title(<span class="vs">r&#39;Satellite Outer Loop </span><span class="kw">(</span><span class="dv">\(</span><span class="er">\</span><span class="vs">phi</span><span class="dv">\)</span><span class="kw">)</span><span class="vs"> - &#39;</span> <span class="op">+</span></span>
+<span id="cb1-98"><a href="18-18-compensator-design.html#cb1-98" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&#39;GM:&#39;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">round</span>(gm, <span class="dv">2</span>)) <span class="op">+</span></span>
+<span id="cb1-99"><a href="18-18-compensator-design.html#cb1-99" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&#39;, PM:&#39;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">round</span>(pm, <span class="dv">2</span>)))</span>
+<span id="cb1-100"><a href="18-18-compensator-design.html#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="18-18-compensator-design.html#cb1-101" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;Close window to end program&#39;</span>)</span>
+<span id="cb1-102"><a href="18-18-compensator-design.html#cb1-102" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div>
+<p>Similar to the last two case studies, the transfer functions for the
+inner and outer loop plants are calculated first. Then we find the
+stability margins and generate Bode plots for the inner loop (see
+<strong>Fig.</strong> <a href="#fig:hw_satellite_margins_inner"
+data-reference-type="ref"
+data-reference="fig:hw_satellite_margins_inner">17.14</a>). We follow
+the same procedure for the outer loop plots shown in
+<strong>Fig.</strong> <a href="#fig:hw_satellite_margins_outer"
+data-reference-type="ref"
+data-reference="fig:hw_satellite_margins_outer">17.15</a>.</p>
+<figure id="fig:hw_satellite_margins_inner">
+<img src="6_design_studies/figures/hw_satellite_margins_inner_W2021.png"
+style="width:95.0%"
+alt="Bode plots with stability margins for the open and closed-loop systems of the inner loop of the satellite system." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.14. </span>Bode plots with stability margins for the
+open and closed-loop systems of the inner loop of the satellite
+system.</figcaption>
+</figure>
+<figure id="fig:hw_satellite_margins_outer">
+<img src="6_design_studies/figures/hw_satellite_margins_outer_W2021.png"
+style="width:95.0%"
+alt="Bode plots with stability margins for the open and closed-loop systems of the outer loop of the satellite system." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 17.15. </span>Bode plots with stability margins for the
+open and closed-loop systems of the outer loop of the satellite
+system.</figcaption>
+</figure>
+<p>As seen from <strong>Fig.</strong> <a
+href="#fig:hw_satellite_margins_inner" data-reference-type="ref"
+data-reference="fig:hw_satellite_margins_inner">17.14</a>,the bandwidth
+of the inner loop is approximately <span
+class="math inline">\(11\)</span> rad/sec, which is slightly larger than
+the crossover frequency of <span
+class="math inline">\(7\)</span> rad/sec, with a phase margin of <span
+class="math inline">\(PM=56\)</span> degrees. Similarly,
+<strong>Fig.</strong> <a href="#fig:hw_satellite_margins_outer"
+data-reference-type="ref"
+data-reference="fig:hw_satellite_margins_outer">17.15</a> indicates that
+the bandwidth of the outer loop is approximately the crossover frequency
+of <span class="math inline">\(1\)</span> rad/sec. The bandwidth
+separation between the inner and outer loop is close to a decade and the
+closed-loop Bode plot of the inner-loop is approximately one for
+frequencies far beyond the crossover frequency of the outer loop.</p></section> </article>
+</section>
+<h2 data-number="17.5" id="coding-lab-stability-margins"><span class="header-section-number">17.5</span> Coding Lab: Stability
+Margins</h2>
+<div class="knowledge-check coding-lab-copy">
+<p><strong>Objective:</strong> estimate gain crossover, phase
+margin, phase crossover, and gain margin from sampled Bode data.</p>
+<p><strong>Evaluation criteria:</strong> the lab checks
+interpolation at crossover points and compares the computed margins to a
+reference result.</p> </div>
+<figure id="fig:loop_ch17_margin_lab" class="marimo-figure">
+<iframe src="../marimo/lab_17_margins/index.html?v=20260604a"
+loading="lazy" title="Chapter 17 stability margin coding lab"
+style="width:min(98vw,1100px);height:1500px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption>
+Figure 17.1 (Interactive). Stability-margin coding lab with crossover
+annotations.
+</figcaption>
+</figure>
+<h2 data-number="17.6" id="knowledge-check-16"><span class="header-section-number">17.6</span> Knowledge Check</h2>
+<section id="loop-ch17-knowledge-check" class="quiz-list">
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Phase margin is read at gain
+crossover." data-feedback-b="B is not correct. Zero frequency is not
+the margin measurement point." data-feedback-c="C is not correct. Gain
+margin is read at phase crossover." data-feedback-d="D is not correct.
+Poles do not each have a phase margin."> <h4>Q1. Phase margin
+location</h4> <p class="quiz-prompt">Phase margin is measured
+at:</p> <div class="quiz-options"><label><input type="radio"
+name="loop-ch17-q1" value="A"><span class="quiz-option-text">A) Gain
+crossover</span></label><label><input type="radio" name="loop-ch17-q1"
+value="B"><span class="quiz-option-text">B) Zero frequency</span></label><label><input type="radio"
+name="loop-ch17-q1" value="C"><span class="quiz-option-text">C) Phase
+crossover</span></label><label><input type="radio" name="loop-ch17-q1"
+value="D"><span class="quiz-option-text">D) Every pole</span></label></div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Gain margin is measured where phase is
+-180 degrees." data-feedback-b="B is not correct. Phase margin is
+measured at gain crossover." data-feedback-c="C is not correct.
+Sampling rate is not the gain-margin reference." data-feedback-d="D is
+not correct. State dimension does not define the margin."> <h4>Q2.
+Gain margin location</h4> <p class="quiz-prompt">Gain margin is
+measured relative to:</p> <div
+class="quiz-options"><label><input type="radio"
+name="loop-ch17-q2" value="A"><span class="quiz-option-text">A) Phase
+crossover</span></label><label><input type="radio" name="loop-ch17-q2"
+value="B"><span class="quiz-option-text">B) Gain crossover</span></label><label><input type="radio"
+name="loop-ch17-q2" value="C"><span class="quiz-option-text">C) The sampling
+rate</span></label><label><input type="radio" name="loop-ch17-q2"
+value="D"><span class="quiz-option-text">D) The state dimension</span></label></div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="45" data-tolerance="0.5">
+<h4>
+Q3. Phase margin calculation
+</h4>
+<p class="quiz-prompt">
+If the phase at gain crossover is -135 degrees, enter the phase margin
+in degrees.
+</p>
+
+<label>Phase margin:<input type="text" name="loop-ch17-q3"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 45 degrees because the phase is 45 degrees
+above -180 degrees.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="8" data-tolerance="0.5">
+<h4>
+Q4. Gain margin calculation
+</h4>
+<p class="quiz-prompt">
+At phase crossover, the magnitude is -8 dB. Enter the gain margin in dB.
+</p>
+
+<label>Gain margin:<input type="text" name="loop-ch17-q4"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 8 dB because the gain could increase by 8 dB
+before reaching 0 dB at phase crossover.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short"
+data-answers="undefined\|no crossover\|does not exist">
+<h4>
+Q5. Missing crossover
+</h4>
+<p class="quiz-prompt">
+If the Bode plot has no gain crossover, what should you say about phase
+margin?
+</p>
+
+<label>Answer:<input type="text" name="loop-ch17-q5" placeholder="short phrase"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> It is undefined or does not exist because there
+is no gain-crossover frequency where it can be measured.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. Phase margin is measured from -180
+degrees, not from 0 degrees." data-feedback-b="B is not correct. This
+is not the distance from -180 degrees." data-feedback-c="C is correct.
+If the phase at gain crossover is -140 degrees, the phase margin is 40
+degrees." data-feedback-d="D is not correct. 180 degrees would require
+phase equal to 0 degrees at gain crossover."> <h4>Q6. Phase margin
+readout</h4> <p class="quiz-prompt">At the gain-crossover
+frequency, the phase is -140 degrees. What is the phase margin?</p>
+<div class="quiz-options"> <label><input type="radio"
+name="loop-ch17-exam-q1" value="A"><span class="quiz-option-text">A) -40 degrees</span></label>
+<label><input type="radio" name="loop-ch17-exam-q1" value="B"><span class="quiz-option-text">B) 20 degrees</span></label> <label><input type="radio"
+name="loop-ch17-exam-q1" value="C"><span class="quiz-option-text">C) 40 degrees</span></label>
+<label><input type="radio" name="loop-ch17-exam-q1" value="D"><span class="quiz-option-text">D) 180 degrees</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. The gain margin is positive when the
+magnitude is below 0 dB at phase crossover." data-feedback-b="B is
+correct. If the magnitude is -12 dB at phase crossover, the gain can
+increase by 12 dB before reaching 0 dB." data-feedback-c="C is not
+correct. 0 dB would mean no gain margin at the phase crossover."
+data-feedback-d="D is not correct. This reads the sign backward.">
+<h4>Q7. Gain margin readout</h4> <p class="quiz-prompt">At phase
+crossover, the magnitude is -12 dB. What is the gain margin?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="loop-ch17-exam-q2" value="A"><span class="quiz-option-text">A) -12 dB</span></label>
+<label><input type="radio" name="loop-ch17-exam-q2" value="B"><span class="quiz-option-text">B) 12 dB</span></label> <label><input type="radio"
+name="loop-ch17-exam-q2" value="C"><span class="quiz-option-text">C) 0 dB</span></label>
+<label><input type="radio" name="loop-ch17-exam-q2" value="D"><span class="quiz-option-text">D) 24 dB</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Raising loop gain typically moves gain
+crossover to a higher frequency, where the phase may be more negative."
+data-feedback-b="B is not correct. Higher gain does not guarantee
+higher phase margin." data-feedback-c="C is not correct. The crossover
+frequency usually changes when gain changes." data-feedback-d="D is
+not correct. Gain changes affect the margin readout through the
+crossover location."> <h4>Q8. Gain increase consequence</h4> <p
+class="quiz-prompt">What commonly happens when loop gain is increased
+in a system whose phase becomes more negative at higher frequency?</p>
+<div class="quiz-options"> <label><input type="radio"
+name="loop-ch17-exam-q3" value="A"><span class="quiz-option-text">A) Gain crossover moves higher
+and phase margin may decrease.</span></label> <label><input type="radio"
+name="loop-ch17-exam-q3" value="B"><span class="quiz-option-text">B) Phase margin is guaranteed
+to increase.</span></label> <label><input type="radio"
+name="loop-ch17-exam-q3" value="C"><span class="quiz-option-text">C) Crossover frequency cannot
+change.</span></label> <label><input type="radio"
+name="loop-ch17-exam-q3" value="D"><span class="quiz-option-text">D) Stability margins are
+unrelated to gain.</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. You cannot read a finite gain margin
+without a phase-crossover point in the plotted data."
+data-feedback-b="B is not correct. Phase margin is measured at gain
+crossover, not phase crossover." data-feedback-c="C is not correct.
+The magnitude at zero frequency does not define gain margin."
+data-feedback-d="D is correct. If there is no phase crossover in the
+plotted range, the gain margin cannot be read there and may be undefined
+or effectively infinite depending on the full response."> <h4>Q9.
+Missing phase crossover</h4> <p class="quiz-prompt">If the Bode
+plot does not show a phase crossover in the plotted frequency range,
+what should you conclude about gain margin from that plot alone?</p>
+<div class="quiz-options"> <label><input type="radio"
+name="loop-ch17-exam-q4" value="A"><span class="quiz-option-text">A) The gain margin is exactly 0
+dB.</span></label> <label><input type="radio" name="loop-ch17-exam-q4"
+value="B"><span class="quiz-option-text">B) The phase margin equals the gain margin.</span></label>
+<label><input type="radio" name="loop-ch17-exam-q4" value="C"><span class="quiz-option-text">C) The gain margin is the magnitude at zero frequency.</span></label>
+<label><input type="radio" name="loop-ch17-exam-q4" value="D"><span class="quiz-option-text">D) It cannot be read from that plot range and may be undefined or
+infinite depending on the full response.</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="17.7" id="notes-and-references-16" class="section-notes"><span class="header-section-number">17.7</span> Notes and References</h2>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-B2ootaw-.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-CxL0S8W7.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-D9fedIX3.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-BTCkDNvf.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-DU3aDxX5.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-CLVRCuM9.ttf" as="font" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        var scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          var element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          var hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          var newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((entries) => {
+          setHeight();
+        });
+        resizeObserver.observe(obj.contentWindow.document.body);
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>fig 8 6 damping ratio</title>
+    <script type="module" crossorigin src="./assets/index-DgI7bmFZ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B-hr6ABS.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="">import%20marimo%0A%0A__generated_with%20%3D%20%220.14.9%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20matplotlib.pyplot%20as%20plt%0A%20%20%20%20return%20mo%2C%20np%2C%20plt%0A%0A%0A%40app.cell%0Adef%20_(np)%3A%0A%20%20%20%20def%20second_order_step_response(t%2C%20wn%2C%20zeta)%3A%0A%20%20%20%20%20%20%20%20if%20zeta%20%3C%201.0%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20wd%20%3D%20wn%20*%20np.sqrt(1.0%20-%20zeta**2)%0A%20%20%20%20%20%20%20%20%20%20%20%20phi%20%3D%20np.arctan2(np.sqrt(1.0%20-%20zeta**2)%2C%20zeta)%0A%20%20%20%20%20%20%20%20%20%20%20%20return%201.0%20-%20(np.exp(-zeta%20*%20wn%20*%20t)%20%2F%20np.sqrt(1.0%20-%20zeta**2))%20*%20np.sin(wd%20*%20t%20%2B%20phi)%0A%20%20%20%20%20%20%20%20if%20zeta%20%3D%3D%201.0%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20return%201.0%20-%20np.exp(-wn%20*%20t)%20*%20(1.0%20%2B%20wn%20*%20t)%0A%0A%20%20%20%20%20%20%20%20a%20%3D%20np.sqrt(zeta**2%20-%201.0)%0A%20%20%20%20%20%20%20%20term1%20%3D%20np.exp(-wn%20*%20(zeta%20-%20a)%20*%20t)%20*%20(zeta%20%2B%20a)%0A%20%20%20%20%20%20%20%20term2%20%3D%20np.exp(-wn%20*%20(zeta%20%2B%20a)%20*%20t)%20*%20(zeta%20-%20a)%0A%20%20%20%20%20%20%20%20return%201.0%20-%20(term1%20-%20term2)%20%2F%20(2.0%20*%20a)%0A%0A%20%20%20%20return%20(second_order_step_response%2C)%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20zeta%20%3D%20mo.ui.slider(0.05%2C%202.0%2C%20step%3D0.01%2C%20value%3D0.707%2C%20label%3D%22Damping%20ratio%20%CE%B6%22)%0A%20%20%20%20zeta%0A%20%20%20%20return%20(zeta%2C)%0A%0A%0A%40app.cell%0Adef%20_(mo%2C%20zeta)%3A%0A%20%20%20%20regime%20%3D%20%22under%20damped%22%20if%20zeta.value%20%3C%201.0%20else%20(%22critically%20damped%22%20if%20abs(zeta.value%20-%201.0)%20%3C%201e-9%20else%20%22over%20damped%22)%0A%20%20%20%20mo.md(f%22**%CE%B6%20%3D%20%7Bzeta.value%3A.3f%7D**%20(%7Bregime%7D)%2C%20**%CF%89_n%20%3D%201.0**%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(np%2C%20plt%2C%20second_order_step_response%2C%20zeta)%3A%0A%20%20%20%20wn%20%3D%201.0%0A%20%20%20%20t%20%3D%20np.linspace(0.0%2C%2025.0%2C%201200)%0A%20%20%20%20y%20%3D%20second_order_step_response(t%2C%20wn%2C%20zeta.value)%0A%20%20%20%20sigma%20%3D%20-zeta.value%20*%20wn%0A%20%20%20%20if%20abs(zeta.value%20-%201.0)%20%3C%201e-9%3A%0A%20%20%20%20%20%20%20%20regime_label%20%3D%20%22critically%20damped%22%0A%20%20%20%20elif%20zeta.value%20%3C%201.0%3A%0A%20%20%20%20%20%20%20%20regime_label%20%3D%20%22under%20damped%22%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20regime_label%20%3D%20%22over%20damped%22%0A%0A%20%20%20%20if%20zeta.value%20%3C%201.0%3A%0A%20%20%20%20%20%20%20%20wd%20%3D%20wn%20*%20np.sqrt(1.0%20-%20zeta.value**2)%0A%20%20%20%20%20%20%20%20poles%20%3D%20%5Bcomplex(sigma%2C%20wd)%2C%20complex(sigma%2C%20-wd)%5D%0A%20%20%20%20elif%20zeta.value%20%3D%3D%201.0%3A%0A%20%20%20%20%20%20%20%20poles%20%3D%20%5Bcomplex(sigma%2C%200.0)%2C%20complex(sigma%2C%200.0)%5D%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20spread%20%3D%20wn%20*%20np.sqrt(zeta.value**2%20-%201.0)%0A%20%20%20%20%20%20%20%20poles%20%3D%20%5Bcomplex(sigma%20%2B%20spread%2C%200.0)%2C%20complex(sigma%20-%20spread%2C%200.0)%5D%0A%0A%20%20%20%20fig%2C%20ax%20%3D%20plt.subplots(1%2C%202%2C%20figsize%3D(10.5%2C%204.3))%0A%0A%20%20%20%20ax%5B0%5D.plot(t%2C%20y%2C%20linewidth%3D2.2%2C%20color%3D%22%230b7285%22)%0A%20%20%20%20ax%5B0%5D.axhline(1.0%2C%20linestyle%3D%22--%22%2C%20linewidth%3D1.2%2C%20color%3D%22%236c757d%22%2C%20alpha%3D0.8)%0A%20%20%20%20ax%5B0%5D.set_title(%22Step%20Response%22)%0A%20%20%20%20ax%5B0%5D.set_xlabel(%22Time%20(seconds)%22)%0A%20%20%20%20ax%5B0%5D.set_ylabel(%22Amplitude%22)%0A%20%20%20%20ax%5B0%5D.set_xlim(0.0%2C%2025.0)%0A%20%20%20%20ax%5B0%5D.set_ylim(-0.2%2C%201.4)%0A%20%20%20%20ax%5B0%5D.grid(True%2C%20alpha%3D0.35)%0A%0A%20%20%20%20ax%5B1%5D.axhline(0.0%2C%20color%3D%22%236c757d%22%2C%20linewidth%3D1.0%2C%20alpha%3D0.7)%0A%20%20%20%20ax%5B1%5D.axvline(0.0%2C%20color%3D%22%236c757d%22%2C%20linewidth%3D1.0%2C%20alpha%3D0.7)%0A%20%20%20%20ax%5B1%5D.scatter(%5Bp.real%20for%20p%20in%20poles%5D%2C%20%5Bp.imag%20for%20p%20in%20poles%5D%2C%20s%3D70%2C%20color%3D%22%23d9480f%22)%0A%20%20%20%20ax%5B1%5D.set_title(%22Pole%20Locations%22)%0A%20%20%20%20ax%5B1%5D.set_xlabel(%22Real%22)%0A%20%20%20%20ax%5B1%5D.set_ylabel(%22Imaginary%22)%0A%20%20%20%20ax%5B1%5D.set_xlim(-2.2%2C%200.5)%0A%20%20%20%20ax%5B1%5D.set_ylim(-2.2%2C%202.2)%0A%20%20%20%20ax%5B1%5D.set_aspect(%22equal%22%2C%20adjustable%3D%22box%22)%0A%20%20%20%20ax%5B1%5D.text(%0A%20%20%20%20%20%20%20%200.03%2C%0A%20%20%20%20%20%20%20%200.95%2C%0A%20%20%20%20%20%20%20%20regime_label%2C%0A%20%20%20%20%20%20%20%20transform%3Dax%5B1%5D.transAxes%2C%0A%20%20%20%20%20%20%20%20ha%3D%22left%22%2C%0A%20%20%20%20%20%20%20%20va%3D%22top%22%2C%0A%20%20%20%20%20%20%20%20fontsize%3D10%2C%0A%20%20%20%20%20%20%20%20color%3D%22%23495057%22%2C%0A%20%20%20%20%20%20%20%20bbox%3Ddict(boxstyle%3D%22round%2Cpad%3D0.25%22%2C%20facecolor%3D%22white%22%2C%20edgecolor%3D%22%23dee2e6%22%2C%20alpha%3D0.9)%2C%0A%20%20%20%20)%0A%20%20%20%20ax%5B1%5D.grid(True%2C%20alpha%3D0.35)%0A%0A%20%20%20%20fig.tight_layout()%0A%20%20%20%20fig%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "notebook.py",
+            "mode": "read",
+            "version": "0.14.9",
+            "serverToken": "unused",
+            "config": {"completion": {"activate_on_typing": true, "copilot": false}, "display": {"cell_output": "above", "code_editor_font_size": 14, "dataframes": "rich", "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": false, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": true}}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": true, "auto_reload": "off", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
+    </script>
+  </body>
+</html>

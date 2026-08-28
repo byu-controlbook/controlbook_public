@@ -1,3 +1,4 @@
+import os
 import sys
 import serial
 
@@ -16,17 +17,31 @@ animate = False
 P.controller = P.controller_pitch if P.H_number == 7 else P.controller_km  
 
 # ----------------Check for Serial Connection--------------------
-try:
-    # Change the com port
-    ser = serial.Serial('/dev/ttyUSB0', 115200)
-except Exception as e:
-    print()
-    print("Hummingbird not connected")
-    print("Check COM Port")
-    print()
-    print(e)
-    print()
-    sys.exit()   
+def get_hummingbird_usb_device():
+    devs = [dev for dev in os.listdir('/dev') if 'USB' in dev]
+    if len(devs) == 0:
+        raise SystemError('No USB devices detected. Make sure hummingbird is plugged into the computer.')
+    elif len(devs) == 1:
+        hb_dev = devs[0]
+    else:
+        print('Multiple USB devices detected:')
+        for i, p in enumerate(devs, start=0):
+            print(f'\t{i}: {p}')
+        print('')
+        valid_port = False
+        while not valid_port:
+            valid_range = f"(enter a number between 0-{len(devs)-1})"
+            answer = input(f'Which would you like to use {valid_range}? ')
+            try:
+                num = int(answer)
+                hb_dev = devs[num]
+                valid_port = True
+            except:
+                print(f'Invalid input...')
+        print("Attempting to connect to", hb_dev)
+    return f'/dev/{hb_dev}'
+
+ser = serial.Serial(get_hummingbird_usb_device(), 115200)
 
 # ----------------Start Arduino Thread--------------------
 thread = Thread(target=lambda: ardCom.read_from_arduino(ser))

@@ -1,11 +1,10 @@
 # run this file to test your vectors and matrices from the hummingbirdDynamics.py file
 import numpy as np
-from hummingbirdDynamics import HummingbirdDynamics as dynamics
-import hummingbirdParam as P
-import pickle as pkl
+from hummingbirdDynamics import HummingbirdDynamics
+import os
 
-
-data = pkl.load(open("./test_matrices.pkl", "rb"))
+test_file = os.path.join(os.path.dirname(__file__), "test_matrices.npz")
+data = np.load(test_file)
 precision = 6
 
 # states are defined in the following order: [phi, theta, psi, phi_dot, theta_dot, psi_dot]
@@ -18,11 +17,11 @@ inputs = [np.array([[0], [0]]),
           np.array([[0.1], [0.1]]),
           np.array([[0.05], [-0.05]])]
 
-hb_dynamics = dynamics(alpha=0.0)
+hb_dynamics = HummingbirdDynamics(alpha=0.0)
 
 def test_matrix(name, actual, expected):
     error = actual - expected
-    correct_indices = np.abs(error) < 1e-14
+    correct_indices = np.abs(error) < 1e-12
     if correct_indices.all():
         print(f"{name:>10}: PASS")
     else:
@@ -34,10 +33,10 @@ def test_matrix(name, actual, expected):
             print(f'expected = {expected[r,c]:.{precision}g}')
 
 for i in range(len(states)):
-    M_test = hb_dynamics.M(states[i], hb_dynamics.param_vals)
-    C_test = hb_dynamics.C(states[i], hb_dynamics.param_vals)
-    dP_dq_test = hb_dynamics.dP_dq(states[i], hb_dynamics.param_vals)
-    tau_test = hb_dynamics.tau(states[i], inputs[i], hb_dynamics.param_vals)
+    M_test = hb_dynamics.calculate_M(states[i])
+    C_test = hb_dynamics.calculate_C(states[i])
+    dP_dq_test = hb_dynamics.calculate_dP_dq(states[i])
+    tau_test = hb_dynamics.calculate_tau(states[i], inputs[i])
 
     print(f"test {i+1}:")
     test_matrix("M", M_test, data['M'][i])

@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="9" id="system-type-and-integrators"><span class="header-section-number">9</span> System Type and Integrators</h1>
+<h2 data-number="9.1" id="theory-7"><span class="header-section-number">9.1</span> Theory</h2>
+<p>In the previous chapter we explored design techniques for
+second-order systems where the feedback controller was a PD-type
+control. Since second-order systems have two degrees of freedom, their
+transient response can be completely determined by the proportional and
+derivative gains. However, from the simulation results it can easily be
+observed that if there is a disturbance on the system, or if the
+controller does not know the system parameters exactly, then there will
+be a steady state error in the output. The steady state error can be
+effectively removed using an integrator in the control law. In this
+chapter we will explore these ideas in more detail and explain when and
+how integral control can be used to enhance steady state tracking and to
+reduce the effect of disturbances.</p>
+<h3 data-number="9.1.1" id="final-value-theorem"><span class="header-section-number">9.1.1</span> Final Value Theorem</h3>
+<p>The key theoretical tool to understanding the steady state
+error<span id="idx-0097" class="book-index-anchor" aria-hidden="true"></span> and the effect of
+integrators<span id="idx-0098" class="book-index-anchor" aria-hidden="true"></span> is the final value
+theorem, which we state and prove below.</p>
+<p>.<span id="idx-0099" class="book-index-anchor" aria-hidden="true"></span><br />
+Suppose that <span class="math inline">\(z(t)\)</span> and <span
+class="math inline">\(Z(s)\)</span> are Laplace transform pairs, and
+suppose that <span class="math inline">\(\lim_{t\to\infty}z(t)\)</span>
+is finite, then <span class="math display">\[\lim_{t\to\infty}z(t) =
+\lim_{s\to 0} sZ(s).\]</span></p>
+<section class="chapter-nine-panel" data-ch9-fvt-explorer>
+<p class="chapter-nine-kicker">
+Interactive check
+</p>
+<h3>
+Final value theorem validity explorer
+</h3>
+<p>
+The final value theorem is useful only when the final value exists.
+Select a transform, predict whether the theorem applies, and then check
+the poles of sY(s).
+</p>
+<section class="ch9-compact-control">
+<label>Choose Y(s) <select
+class="ch9-inline-select" data-ch9-fvt-case> <option
+value="stableStep">Y(s) = 1 / (s(s + 2))</option> <option
+value="decaying">Y(s) = 1 / (s + 2)</option> <option
+value="unstable">Y(s) = 1 / (s(s - 1))</option> <option
+value="oscillatory">Y(s) = 1 / (s^2 + 1)</option> <option
+value="unbounded">Y(s) = 1 / s^2</option> </select> </label>
+</section>
+<section class="ch9-fvt-workflow">
+<article class="ch9-result-card">
+<strong>Step 1: form sY(s)</strong>
+<p class="ch9-equation" data-ch9-fvt-transfer>
+</p>
+<p class="ch9-equation" data-ch9-fvt-sy>
+</p>
+</article>
+<article class="ch9-result-card">
+<strong>Step 2: check poles of sY(s)</strong>
+<p data-ch9-fvt-poles>
+</p>
+<ul class="ch9-pole-check" data-ch9-fvt-checklist>
+</ul>
+</article>
+</section>
+<section class="ch9-fvt-prediction">
+<strong>Step 3: make a prediction before checking</strong>
+
+<label><input type="radio"
+name="pid-ch9-fvt-prediction" value="valid">Valid: final value
+theorem applies</label> <label><input type="radio"
+name="pid-ch9-fvt-prediction" value="unstable">Invalid:
+right-half-plane pole</label> <label><input type="radio"
+name="pid-ch9-fvt-prediction" value="oscillatory">Invalid: nonzero
+imaginary-axis pole</label> <label><input
+type="radio" name="pid-ch9-fvt-prediction"
+value="unbounded">Invalid: final value is unbounded</label>
+
+<button type="button" class="quiz-check" data-ch9-fvt-check>
+Check
+</button>
+<button type="button"
+class="quiz-reset" data-ch9-fvt-reset>Reset</button>
+
+<p class="quiz-feedback" data-ch9-fvt-feedback aria-live="polite">
+</p>
+</section>
+<section class="ch9-result-grid ch9-fvt-results" data-ch9-fvt-results
+hidden>
+<article class="ch9-result-card">
+<strong>Algebraic limit</strong>
+<p class="ch9-equation" data-ch9-fvt-limit>
+</p>
+</article>
+<article class="ch9-result-card">
+<strong>Interpretation</strong>
+<p data-ch9-fvt-status>
+</p>
+<p data-ch9-fvt-result>
+</p>
+</article>
+<article class="ch9-result-card">
+<strong>Process</strong>
+<ol class="ch9-fvt-process">
+<li>
+Compute sY(s).
+</li>
+<li>
+Check the poles of sY(s).
+</li>
+<li>
+If the pole check is valid, compute lim<sub>s->0</sub> sY(s).
+</li>
+<li>
+Interpret that value as the final value.
+</li>
+</ol>
+</article>
+</section>
+<div class="ch9-plot ch9-fvt-plot"> <svg viewBox="0 0 740 280"
+role="img" aria-label="Conceptual response for the selected transfer
+function."> <rect x="0" y="0" width="740" height="280"
+fill="rgb(255,255,255)"></rect> <line x1="50" y1="245"
+x2="700" y2="245" stroke="rgb(215,222,208)"
+stroke-width="2"></line> <line x1="50" y1="35" x2="50"
+y2="245" stroke="rgb(215,222,208)" stroke-width="2"></line>
+<path data-ch9-fvt-response-path d="" fill="none"
+stroke="rgb(29,102,112)" stroke-width="4"></path> <line
+data-ch9-fvt-final-line x1="50" y1="125" x2="700" y2="125"
+stroke="rgb(126,91,30)" stroke-width="3" stroke-dasharray="8 6"></line>
+<rect x="424" y="42" width="262" height="58"
+rx="8" fill="rgba(255,255,255,0.88)"
+stroke="rgb(229,234,222)"></rect> <text x="440" y="64"
+fill="rgb(29,102,112)" font-size="16">conceptual response
+y(t)</text> <text data-ch9-fvt-plot-label x="440" y="88"
+fill="rgb(126,91,30)" font-size="16"></text> <text x="610"
+y="265" fill="rgb(77,90,69)" font-size="15">time</text> </svg>
+</div>
+<article class="quiz-card ch9-fvt-numeric"
+data-quiz-type="short" data-answer-number="0.75"
+data-tolerance="0.01"> <h4>Numeric final-value check</h4> <p
+class="quiz-prompt">For Y(s) = 3 / (s(s + 4)), enter the final value
+if the final value theorem applies.</p> <div class="quiz-options">
+<label><span>Final value:</span><input type="text"
+name="pid-ch9-fvt-numeric" placeholder="numeric value" /></label>
+</div> <div class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> 0.75. Since sY(s)
+= 3/(s + 4), the pole is at s = -4 and the theorem applies;
+lim<sub>s->0</sub> 3/(s + 4) = 3/4.</p></details></div>
+</article>
+</section>
+<h3 data-number="9.1.2" id="system-type-for-reference-tracking"><span class="header-section-number">9.1.2</span> System Type for Reference
+Tracking</h3>
+<figure id="fig:pid_reference_tracking">
+<img src="3_PID/figures/pid_reference_tracking.png"
+style="width:50.0%" alt="Block diagram for reference tracking." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.1. </span>Block diagram for reference
+tracking.</figcaption>
+</figure>
+<p>Consider the closed-loop system shown in
+<strong>Fig.</strong> <a href="#fig:pid_reference_tracking" data-reference-type="ref"
+data-reference="fig:pid_reference_tracking">9.1</a>. The transfer
+function from the reference <span class="math inline">\(r\)</span> to
+the error <span class="math inline">\(e=r-y\)</span> is computed as
+<span class="math display">\[\begin{aligned}
+&amp; E(s) = R(s) - P(s)C(s)E(s) \\
+\implies &amp; E(s) = \frac{1}{1+P(s)C(s)}R(s)
+\end{aligned}\]</span></p>
+<p>Suppose that <span class="math inline">\(r(t)\)</span> is a step of
+size one, then <span class="math inline">\(R(s)=\frac{1}{s}\)</span> and
+<span class="math display">\[E(s) =
+\frac{1}{1+P(s)C(s)}\frac{1}{s}.\]</span> Assuming that the closed-loop
+system is stable and therefore that <span
+class="math inline">\(\lim_{t\to\infty}e(t)\)</span> is finite, then the
+final value theorem gives <span class="math display">\[\begin{aligned}
+\lim_{t\to\infty}e(t) &amp;= \lim_{s\to 0} sE(s) \\
+&amp;= \lim_{s\to 0} s\frac{1}{1+P(s)C(s)}\frac{1}{s} \\
+&amp;= \lim_{s\to 0}\frac{1}{1+P(s)C(s)} \\
+&amp;= \frac{1}{1+\lim_{s\to 0} P(s)C(s)}.
+\end{aligned}\]</span> Let <span class="math display">\[M_p
+\stackrel{\triangle}{=}\lim_{s\to 0} P(s)C(s),\]</span> then <span
+class="math display">\[\lim_{t\to\infty}e(t) =
+\frac{1}{1+M_p}.\]</span></p>
+<p>Now suppose that <span class="math display">\[P(s)C(s) =
+\frac{K(s+z_1)(s+z_2)\cdots(s+z_m)}{(s+p_1)(s+p_2)\cdots(s+p_n)},\]</span>
+then <span class="math display">\[M_p = \lim_{s\to 0} P(s)C(s) =
+\frac{Kz_1z_2\cdots z_m}{p_1p_2\cdots p_n}.\]</span> In this case, the
+steady state error is <span
+class="math inline">\(\frac{1}{1+M_p}\)</span> which is finite. Note
+also that the DC-gain of the closed-loop system is <span
+class="math display">\[k_{DC} = \frac{1}{1+M_p}.\]</span></p>
+<p>Now suppose that <span class="math inline">\(P(s)C(s)\)</span>
+contains a pole at the origin, or in other words, one free integrator,
+i.e., <span class="math display">\[P(s)C(s) =
+\frac{K(s+z_1)(s+z_2)\cdots(s+z_m)}{s(s+p_1)(s+p_2)\cdots(s+p_n)}.\]</span>
+In this case we have <span class="math display">\[M_p = \lim_{s\to 0}
+P(s)C(s) = \infty,\]</span> and the steady state error is <span
+class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{1+\infty} =
+0.\]</span> Therefore, one free integrator in <span
+class="math inline">\(P(s)C(s)\)</span> implies that the steady state
+error to a step is zero. Note that multiple free integrators, i.e.,
+<span class="math display">\[P(s)C(s) =
+\frac{K(s+z_1)(s+z_2)\cdots(s+z_m)}{s^q(s+p_1)(s+p_2)\cdots(s+p_n)},\]</span>
+gives that same result for <span class="math inline">\(q\geq
+1\)</span>.</p>
+<p>Now suppose that <span class="math inline">\(r(t)\)</span> is a unit
+ramp, or in other words that <span
+class="math inline">\(R(s)=\frac{1}{s^2}\)</span>. In this case the
+error is given by <span class="math display">\[E(s) =
+\frac{1}{1+P(s)C(s)}\frac{1}{s^2}.\]</span> Again assuming that the
+closed-loop system is stable, the final value theorem gives <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty} e(t) &amp;= \lim_{s\to 0} sE(s) \\
+&amp;= \lim_{s\to 0} s \frac{1}{1+P(s)C(s)}\frac{1}{s^2} \\
+&amp;= \lim_{s\to 0} \frac{1}{s+sP(s)C(s)} \\
+&amp;= \frac{1}{\lim_{s\to 0} sP(s)C(s)}.
+\end{aligned}\]</span> Defining <span class="math display">\[M_v =
+\lim_{s\to 0} sP(s)C(s),\]</span> gives <span
+class="math display">\[\lim_{t\to\infty} e(t) = \frac{1}{M_v}.\]</span>
+If <span class="math inline">\(P(s)C(s)\)</span> has no free
+integrators, i.e., <span class="math display">\[P(s)C(s) =
+\frac{K(s+z_1)(s+z_2)\cdots(s+z_m)}{(s+p_1)(s+p_2)\cdots(s+p_n)}\]</span>
+then <span class="math display">\[M_v = \lim_{s\to 0}
+s\frac{K(s+z_1)(s+z_2)\cdots(s+z_m)}{(s+p_1)(s+p_2)\cdots(s+p_n)} =
+0.\]</span> Therefore <span class="math display">\[\lim_{t\to\infty}
+e(t) = \frac{1}{0}=\infty.\]</span> If on the other hand <span
+class="math inline">\(P(s)C(s)\)</span> has one free integrator, i.e.,
+<span class="math display">\[P(s)C(s) =
+\frac{K(s+z_1)(s+z_2)\cdots(s+z_m)}{s(s+p_1)(s+p_2)\cdots(s+p_n)}\]</span>
+then <span class="math display">\[M_v = \lim_{s\to 0} s
+\frac{K(s+z_1)(s+z_2)\cdots(s+z_m)}{s(s+p_1)(s+p_2)\cdots(s+p_n)} =
+\frac{Kz_1z_2\cdots z_m}{p_1p_2\cdots p_n},\]</span> therefore the
+steady state error is finite. If <span
+class="math inline">\(P(s)C(s)\)</span> has two or more free
+integrators, then <span class="math display">\[M_v = \lim_{s\to 0} s
+\frac{K(s+z_1)(s+z_2)\cdots(s+z_m)}{s^q(s+p_1)(s+p_2)\cdots(s+p_n)} =
+\infty,\]</span> when <span class="math inline">\(q\geq 2\)</span>,
+therefore <span class="math display">\[\lim_{t\to\infty} e(t) =
+\frac{1}{\infty} = 0.\]</span> Therefore, the number of free integrators
+in <span class="math inline">\(P(s)C(s)\)</span> is the key parameter
+for reference tracking with zero steady state error.</p>
+<p>For the reference tracking problem, we say that the system is
+<em>type <span class="math inline">\(q\)</span></em><span id="idx-0101" class="book-index-anchor" aria-hidden="true"></span> if the steady state
+error to input <span class="math inline">\(R(s) =
+\frac{1}{s^{q+1}}\)</span> is finite and if the steady state error to
+input <span class="math inline">\(R(s)=\frac{1}{s^p}\)</span> is zero
+for <span class="math inline">\(1\leq p\leq q\)</span>. In general, for
+the feedback system shown in
+<strong>Fig.</strong> <a href="#fig:pid_reference_tracking" data-reference-type="ref"
+data-reference="fig:pid_reference_tracking">9.1</a>, the steady state
+tracking error when <span
+class="math inline">\(R(s)=\frac{1}{s^{q+1}}\)</span> is given by <span
+class="math display">\[\lim_{t\to\infty}e(t) = \lim_{s\to 0} s E(s) =
+\lim_{s\to 0}
+\left(\frac{1}{1+P(s)C(s)}\right)\left(\frac{1}{s^q}\right).\]</span>
+Table <a href="#table:system_type" data-reference-type="ref"
+data-reference="table:system_type">12.1</a> summarizes the tracking
+error for different inputs as a function of system type, where <span
+class="math display">\[\begin{aligned}
+M_p &amp;= \lim_{s\to 0}P(s)C(s) \\
+M_v &amp;= \lim_{s\to 0}sP(s)C(s) \\
+M_a &amp;= \lim_{s\to 0}s^2P(s)C(s).
+\end{aligned}\]</span></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">System Type</th>
+<th style="text-align: center;">Step (<span
+class="math inline">\(\frac{1}{s}\)</span>)</th>
+<th style="text-align: center;">Ramp (<span
+class="math inline">\(\frac{1}{s^2}\)</span>)</th>
+<th style="text-align: center;">Parabola (<span
+class="math inline">\(\frac{1}{s^3}\)</span>)</th>
+<th style="text-align: center;"><span
+class="math inline">\(\cdots\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span
+class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\frac{1}{1+M_p}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span
+class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\frac{1}{M_v}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span
+class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\frac{1}{M_a}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span
+class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span
+class="math inline">\(\vdots\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\vdots\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\vdots\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\vdots\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>Reference tracking verse system type.</p>
+<p><span id="table:system_type" label="table:system_type"></span></p>
+<section class="chapter-nine-panel" data-ch9-reference-explorer>
+<p class="chapter-nine-kicker">
+Interactive figure
+</p>
+<h3>
+Reference-tracking system type explorer
+</h3>
+<p>
+Use the controls to connect the table to a visual prediction. The input
+order is determined by R(s), while the tracking type is determined by
+the number of free integrators in P(s)C(s).
+</p>
+
+<label>System type for tracking <select
+data-ch9-reference-type> <option value="0">Type 0</option>
+<option value="1" selected>Type 1</option> <option
+value="2">Type 2</option> </select> </label> <label>Reference input
+<select data-ch9-reference-input> <option value="step">Step: R(s) =
+1/s</option> <option value="ramp" selected>Ramp: R(s) = 1/s^2</option>
+<option value="parabola">Parabola: R(s) = 1/s^3</option> </select>
+</label> <label>Low-frequency error constant:
+<span data-ch9-reference-gain-value=""></span> <input
+type="range" min="1" max="12" step="0.5" value="4"
+data-ch9-reference-gain /> </label>
+
+<section class="ch9-tracking-plot-grid">
+<figure class="ch9-plot
+ch9-reference-plot"> <svg viewBox="0 0 740 280" role="img"
+aria-label="Conceptual reference and output response for selected
+system type."> <rect x="0" y="0" width="740" height="280"
+fill="rgb(255,255,255)"></rect> <line x1="50" y1="245"
+x2="700" y2="245" stroke="rgb(215,222,208)"
+stroke-width="2"></line> <line x1="50" y1="35" x2="50"
+y2="245" stroke="rgb(215,222,208)" stroke-width="2"></line>
+<path data-ch9-reference-path d="" fill="none"
+stroke="rgb(126,91,30)" stroke-width="4"></path> <path
+data-ch9-response-path d="" fill="none" stroke="rgb(29,102,112)"
+stroke-width="4" stroke-dasharray="9 6"></path> <line
+data-ch9-error-offset-line x1="610" y1="80" x2="610" y2="120"
+stroke="rgb(170,82,58)" stroke-width="3" stroke-dasharray="5
+5"></line> <text x="70" y="55" fill="rgb(126,91,30)"
+font-size="16">reference r(t)</text> <text x="70" y="80"
+fill="rgb(29,102,112)" font-size="16">output y(t)</text> <text
+data-ch9-response-error-label x="515" y="110"
+fill="rgb(170,82,58)" font-size="16"></text> <text x="610"
+y="265" fill="rgb(77,90,69)" font-size="15">time</text>
+</svg> <figcaption><span class="fig-number">Figure 1.3. </span>Reference and output. Finite steady-state error
+appears as a persistent vertical gap.</figcaption> </figure>
+<figure class="ch9-plot ch9-error-plot"> <svg viewBox="0 0 740
+280" role="img" aria-label="Conceptual tracking error for selected
+system type."> <rect x="0" y="0" width="740" height="280"
+fill="rgb(255,255,255)"></rect> <line x1="50" y1="145"
+x2="700" y2="145" stroke="rgb(215,222,208)"
+stroke-width="3"></line> <line x1="50" y1="35" x2="50"
+y2="245" stroke="rgb(215,222,208)" stroke-width="2"></line>
+<path data-ch9-error-path d="" fill="none"
+stroke="rgb(170,82,58)" stroke-width="4"></path> <line
+data-ch9-error-final-line x1="50" y1="105" x2="700" y2="105"
+stroke="rgb(126,91,30)" stroke-width="3" stroke-dasharray="8
+6"></line> <text x="70" y="60" fill="rgb(170,82,58)"
+font-size="16">tracking error e(t) = r(t) - y(t)</text> <text
+data-ch9-error-plot-label x="70" y="88" fill="rgb(126,91,30)"
+font-size="16"></text> <text x="610" y="265"
+fill="rgb(77,90,69)" font-size="15">time</text> </svg>
+<figcaption><span class="fig-number">Figure 1.4. </span>Error response. This is the plot that determines zero,
+finite, or infinite steady-state error.</figcaption> </figure>
+</section>
+<span class="ch9-badge" data-ch9-reference-badge=""></span>
+
+<strong>Prediction</strong>
+<p data-ch9-reference-result>
+</p>
+
+<strong>Why</strong>
+<p data-ch9-reference-formula>
+</p>
+
+<strong>Error constant effect</strong>
+<p data-ch9-reference-error-rule>
+</p>
+
+</section>
+<p>As an example, consider the feedback system shown in
+<strong>Fig.</strong> <a href="#fig:pid_system_type_ex1" data-reference-type="ref"
+data-reference="fig:pid_system_type_ex1">9.2</a>.</p>
+<figure id="fig:pid_system_type_ex1">
+<img src="3_PID/figures/pid_system_type_ex1.png"
+style="width:60.0%"
+alt="The system type for reference tracking for this system is type 1." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.2. </span>The system type for reference tracking
+for this system is type 1.</figcaption>
+</figure>
+<p>The open loop system <span class="math display">\[P(s)C(s) =
+\frac{k_P}{s(s+2)}\]</span> has one free integrator<span id="idx-0102" class="book-index-anchor" aria-hidden="true"></span> (pole at zero) and
+therefore the system is type 1. From
+Table <a href="#table:system_type" data-reference-type="ref"
+data-reference="table:system_type">12.1</a> the tracking error when the
+input is a step is zero, and the tracking error when the input is a ramp
+of slope one is <span class="math display">\[\lim_{t\to\infty}e(t) =
+\frac{1}{M_v} = \frac{1}{\lim_{s\to 0} sP(s)C(s)} =
+\frac{1}{\frac{k_P}{2}} = \frac{2}{k_P}.\]</span> The tracking error
+when the input is a parabola, or higher-order polynomial, is <span
+class="math inline">\(\infty\)</span>, meaning that <span
+class="math inline">\(y(t)\)</span> and <span
+class="math inline">\(r(t)\)</span> diverge as <span
+class="math inline">\(t\to\infty\)</span>.</p>
+<p>As another example, consider the system shown in
+<strong>Fig.</strong> <a href="#fig:pid_system_type_ex2" data-reference-type="ref"
+data-reference="fig:pid_system_type_ex2">9.3</a>.</p>
+<figure id="fig:pid_system_type_ex2">
+<img src="3_PID/figures/pid_system_type_ex2.png"
+style="width:70.0%"
+alt="The system type for reference tracking for this system is type 0." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.3. </span>The system type for reference tracking
+for this system is type 0.</figcaption>
+</figure>
+<p>In this case, the open loop system <span
+class="math display">\[P(s)C(s) = \frac{k_D s +
+k_P}{(s+3)(s+4)}\]</span> does not have any free integrators<span id="idx-0103" class="book-index-anchor" aria-hidden="true"></span> (poles at zero) and
+therefore the system is type 0. From
+Table <a href="#table:system_type" data-reference-type="ref"
+data-reference="table:system_type">12.1</a> the tracking error when the
+input is a step is <span class="math display">\[\lim_{t\to\infty}e(t) =
+\frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0} P(s)C(s)} =
+\frac{1}{1+\frac{k_P}{12}} = \frac{12}{12+k_P}.\]</span> The tracking
+error when the input is a ramp, or higher-order polynomial, is <span
+class="math inline">\(\infty\)</span>, meaning that <span
+class="math inline">\(y(t)\)</span> and <span
+class="math inline">\(r(t)\)</span> diverge as <span
+class="math inline">\(t\to\infty\)</span>.</p>
+<p>If on the other hand, a PID controller is used as shown in
+<strong>Fig.</strong> <a href="#fig:pid_system_type_ex3" data-reference-type="ref"
+data-reference="fig:pid_system_type_ex3">9.4</a> where <span
+class="math display">\[U(s) = \left(k_P  + \frac{k_I}{s} + k_D
+s\right)E(s) = \left(\frac{k_D s^2 + k_P s +
+k_I}{s}\right)E(s),\]</span></p>
+<figure id="fig:pid_system_type_ex3">
+<img src="3_PID/figures/pid_system_type_ex3.png"
+style="width:70.0%"
+alt="The system type for reference tracking for this system is type 1." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.4. </span>The system type for reference tracking
+for this system is type 1.</figcaption>
+</figure>
+<p>then the open loop system <span class="math display">\[P(s)C(s) =
+\frac{k_D s^2 + k_Ps + k_I}{s(s+3)(s+4)}\]</span> has one free
+integrator (pole at zero) and therefore the system becomes type 1 by
+design. From
+Table <a href="#table:system_type" data-reference-type="ref"
+data-reference="table:system_type">12.1</a> the tracking error when the
+input is a step is zero, and the tracking error when the input is a ramp
+is <span class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_v} =
+\frac{1}{\lim_{s\to 0} sP(s)C(s)} = \frac{1}{\frac{k_I}{12}} =
+\frac{12}{k_I}.\]</span> The tracking error when the input is a
+parabola, or higher-order polynomial, is <span
+class="math inline">\(\infty\)</span>, meaning that <span
+class="math inline">\(y(t)\)</span> and <span
+class="math inline">\(r(t)\)</span> diverge as <span
+class="math inline">\(t\to\infty\)</span>.</p>
+<h3 data-number="9.1.3" id="system-type-for-input-disturbances"><span class="header-section-number">9.1.3</span> System Type for Input
+Disturbances</h3>
+<p>Consider the general feedback loop shown in
+<strong>Fig.</strong> <a href="#fig:pid_general_feedback_loop" data-reference-type="ref"
+data-reference="fig:pid_general_feedback_loop">9.5</a>. There are in
+general four inputs to the system, namely the reference input<span id="idx-0104" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(r(t)\)</span>, the input disturbance<span id="idx-0105" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(d_{in}(t)\)</span>, the output disturbance<span id="idx-0106" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(d_{out}(t)\)</span>, and the sensor noise<span id="idx-0107" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(n(t)\)</span>. In general <span
+class="math inline">\(r(t)\)</span>, <span
+class="math inline">\(d_{in}(t)\)</span>, and <span
+class="math inline">\(d_{out}(t)\)</span> are signals with low frequency
+content, and the sensor noise <span class="math inline">\(n(t)\)</span>
+has high frequency content. The negative sign on the disturbance and
+noise terms is for notational convenience.</p>
+<figure id="fig:pid_general_feedback_loop">
+<img src="3_PID/figures/pid_general_feedback_loop.png"
+style="width:80.0%"
+alt="General feedback loop with reference input r(t), input disturbance d_{in}(t), output disturbance d_{out}(t), and sensor noise n(t)." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.5. </span>General feedback loop with reference
+input <span class="math inline"><em>r</em>(<em>t</em>)</span>, input
+disturbance <span
+class="math inline"><em>d</em><sub><em>i</em><em>n</em></sub>(<em>t</em>)</span>,
+output disturbance <span
+class="math inline"><em>d</em><sub><em>o</em><em>u</em><em>t</em></sub>(<em>t</em>)</span>,
+and sensor noise <span
+class="math inline"><em>n</em>(<em>t</em>)</span>.</figcaption>
+</figure>
+<p>We can compute the transfer function from each input to the error
+signal by following the signal flow to obtain <span
+class="math display">\[E(s) = R(s) + N(s) + D_{out}(s) + P(s)D_{in}(s) -
+P(s)C(s)E(s).\]</span> Solving for <span
+class="math inline">\(E(s)\)</span> gives <span
+class="math display">\[\begin{gathered}
+E(s) = \frac{1}{1+P(s)C(s)} R(s) + \frac{1}{1+P(s)C(s)}N(s)  \\ +
+\frac{1}{1+P(s)C(s)}D_{out}(s) + \frac{P(s)}{1+P(s)C(s)}D_{in}(s).
+\end{gathered}\]</span> Since the transfer function from <span
+class="math inline">\(N(s)\)</span> and <span
+class="math inline">\(D_{out}(s)\)</span> to <span
+class="math inline">\(E(s)\)</span> is identical to the transfer
+function from <span class="math inline">\(R(s)\)</span> to <span
+class="math inline">\(E(s)\)</span>, the system type as defined in the
+previous section for reference inputs, also characterizes the steady
+state response to output disturbances and noise. However, the transfer
+function from the input disturbance to the error is different, and so we
+need to further analyze system type with respect to input
+disturbances.</p>
+<p>Suppose that the input disturbance is given by <span
+class="math inline">\(D_{in}(s) = \frac{1}{s^{q+1}}\)</span>, then by
+the final value theorem, the steady state error due to the input
+disturbance is <span class="math display">\[\lim_{t\to\infty} e(t) =
+\lim_{s\to 0} s\frac{P(s)}{1+P(s)C(s)}D_{in}(s) = \lim_{s\to 0}
+\left(\frac{P(s)}{1+P(s)C(s)}\right)\left(\frac{1}{s^q}\right).\]</span>
+The system type<span id="idx-0108" class="book-index-anchor" aria-hidden="true"></span> with respect to input
+disturbance is the value of <span class="math inline">\(q\)</span> such
+that the steady state error is finite, and the steady state error is
+zero for <span class="math inline">\(D_{in}(s) = \frac{1}{s^p}\)</span>
+for <span class="math inline">\(1\leq p \leq q\)</span>.</p>
+<p>For example, consider the system shown in
+<strong>Fig.</strong> <a href="#fig:pid_system_type_ex4" data-reference-type="ref"
+data-reference="fig:pid_system_type_ex4">9.6</a>. Recall from the
+discussion above, that the system type with respect to the reference
+input is type 1.</p>
+<figure id="fig:pid_system_type_ex4">
+<img src="3_PID/figures/pid_system_type_ex4.png"
+style="width:70.0%"
+alt="The system type for input disturbances for this system is type 0." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.6. </span>The system type for input disturbances
+for this system is type 0.</figcaption>
+</figure>
+<p>For the input disturbance we have <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty} e(t) &amp;= \lim_{s\to 0}
+\left(\frac{P(s)}{1+P(s)C(s)}\right)\left(\frac{1}{s^q}\right) \\
+&amp;=\lim_{s\to 0}
+\left(\frac{\frac{1}{s(s+2)}}{1+\left(\frac{1}{s(s+2)}\right)(k_Ds+k_P)}\right)\left(\frac{1}{s^q}\right)
+\\
+&amp;=\lim_{s\to 0}
+\left(\frac{1}{s(s+2)+(k_Ds+k_P)}\right)\left(\frac{1}{s^q}\right) \\
+&amp;=\lim_{s\to 0} \left(\frac{1}{k_P}\right)\left(\frac{1}{s^q}\right)
+\end{aligned}\]</span> which is finite when <span
+class="math inline">\(q=0\)</span>. Therefore, the system type with
+respect to input disturbances is type 0 and the steady state error to a
+step input disturbance is <span
+class="math inline">\(\frac{1}{k_P}\)</span> whereas the steady state
+error with respect to a ramp and higher-order polynomials is
+infinite.</p>
+<p>If on the other hand, we add an integrator as in
+<strong>Fig.</strong> <a href="#fig:pid_system_type_ex5" data-reference-type="ref"
+data-reference="fig:pid_system_type_ex5">9.7</a>, then <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty} e(t) &amp;= \lim_{s\to 0}
+\left(\frac{P(s)}{1+P(s)C(s)}\right)\left(\frac{1}{s^q}\right) \\
+&amp;=\lim_{s\to 0}
+\left(\frac{\frac{1}{s(s+2)}}{1+\left(\frac{1}{s(s+2)}\right)(\frac{k_Ds^2+k_Ps+k_I}{s})}\right)\left(\frac{1}{s^q}\right)
+\\
+&amp;=\lim_{s\to 0}
+\left(\frac{s}{s^2(s+2)+(k_Ds^2+k_Ps+k_I)}\right)\left(\frac{1}{s^q}\right)
+\\
+&amp;=\lim_{s\to 0}
+\left(\frac{1}{k_I}\right)\left(\frac{1}{s^{q-1}}\right)
+\end{aligned}\]</span> which is finite when <span
+class="math inline">\(q=1\)</span>. Therefore, the system type with
+respect to input disturbances is type 1 and the steady state error to a
+step on the input disturbance is zero. The steady state error with
+respect to a ramp on the input disturbance is <span
+class="math inline">\(\frac{1}{k_I}\)</span> whereas the steady state
+error with respect to a parabola and higher-order polynomials on the
+input disturbance is infinite.</p>
+<figure id="fig:pid_system_type_ex5">
+<img src="3_PID/figures/pid_system_type_ex5.png"
+style="width:80.0%"
+alt="The system type for input disturbances for this system is type 1." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.7. </span>The system type for input disturbances
+for this system is type 1.</figcaption>
+</figure>
+<p>Therefore, the system type with respect to input disturbances is
+related to the number of free integrators in the controller <span
+class="math inline">\(C(s)\)</span> and not in the open loop system
+<span class="math inline">\(P(s)C(s)\)</span>. As a consequence, while
+an integrator may not be necessary for steady state tracking, it is
+often necessary to reject constant input disturbances.</p>
+<section class="chapter-nine-panel" data-ch9-disturbance-explorer>
+<p class="chapter-nine-kicker">
+Interactive figure
+</p>
+<h3>
+Disturbance-path explorer
+</h3>
+<p>
+Select a case to highlight where the signal enters the loop and which
+low-frequency path determines the steady-state error. The key
+distinction is that an input disturbance passes through P(s), while
+output disturbance and sensor noise use the same denominator path as
+reference tracking.
+</p>
+
+<div class="ch9-button-stack" aria-label="Disturbance cases"> <button
+type="button" class="ch9-choice-button is-active"
+data-ch9-disturbance-case="inputP">Input disturbance, P
+control</button> <button type="button" class="ch9-choice-button"
+data-ch9-disturbance-case="inputPI">Input disturbance, PI/PID
+control</button> <button type="button" class="ch9-choice-button"
+data-ch9-disturbance-case="outputP">Output disturbance</button>
+<button type="button" class="ch9-choice-button"
+data-ch9-disturbance-case="noisePI">Sensor noise</button>
+
+<svg class="ch9-disturbance-loop" viewBox="0 0 760 250" role="img"
+aria-label="General feedback loop with reference, controller, plant,
+disturbances, and noise."> <defs> <marker id="ch9-arrow" viewBox="0 0
+10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+orient="auto-start-reverse"> <path d="M 0 0 L 10 5 L 0 10 z"
+fill="rgb(53,82,104)"></path> </marker> <marker id="ch9-active-arrow"
+viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+orient="auto-start-reverse"> <path d="M 0 0 L 10 5 L 0 10 z"
+fill="rgb(170,82,58)"></path> </marker> </defs> <rect
+x="230" y="83" width="125" height="62" rx="10"
+fill="rgb(237,243,218)" stroke="rgb(105,117,29)" stroke-width="2"
+data-ch9-disturbance-block-highlight="inputPI"></rect> <text
+x="271" y="120" fill="rgb(37,50,23)"
+font-size="20">C(s)</text> <rect x="455" y="83" width="125"
+height="62" rx="10" fill="rgb(232,245,246)"
+stroke="rgb(29,102,112)" stroke-width="2"></rect> <text
+x="497" y="120" fill="rgb(18,63,70)"
+font-size="20">P(s)</text> <circle cx="170" cy="114" r="20"
+fill="rgb(255,255,255)" stroke="rgb(53,82,104)"
+stroke-width="2"></circle> <text x="153" y="110"
+fill="rgb(53,82,104)" font-size="20">+</text> <text x="166"
+y="137" fill="rgb(53,82,104)" font-size="22">-</text> <line
+x1="55" y1="114" x2="150" y2="114" stroke="rgb(53,82,104)"
+stroke-width="3" marker-end="url(#ch9-arrow)"></line> <line
+x1="190" y1="114" x2="230" y2="114" stroke="rgb(53,82,104)"
+stroke-width="3" marker-end="url(#ch9-arrow)"></line> <line
+x1="355" y1="114" x2="455" y2="114" stroke="rgb(53,82,104)"
+stroke-width="3" marker-end="url(#ch9-arrow)"></line> <line
+x1="580" y1="114" x2="700" y2="114" stroke="rgb(53,82,104)"
+stroke-width="3" marker-end="url(#ch9-arrow)"></line> <line
+x1="650" y1="114" x2="650" y2="200" stroke="rgb(53,82,104)"
+stroke-width="2.8"></line> <line x1="650" y1="200" x2="170"
+y2="200" stroke="rgb(53,82,104)" stroke-width="2.8"></line>
+<line x1="170" y1="200" x2="170" y2="136"
+stroke="rgb(53,82,104)" stroke-width="2.8"
+marker-end="url(#ch9-arrow)"></line> <line x1="410" y1="42"
+x2="410" y2="114" stroke="rgb(139,100,32)" stroke-width="3"
+marker-end="url(#ch9-arrow)"></line> <line x1="620" y1="42"
+x2="620" y2="114" stroke="rgb(139,100,32)" stroke-width="3"
+marker-end="url(#ch9-arrow)"></line> <line x1="735" y1="200"
+x2="654" y2="200" stroke="rgb(139,100,32)" stroke-width="3"
+marker-end="url(#ch9-arrow)"></line>
+
+<path class="ch9-disturbance-path"
+data-ch9-disturbance-path-highlight="inputP inputPI" d="M 410 42 L 410
+114 L 455 114 L 580 114 L 650 114 L 650 200 L 170 200 L 170 136"
+fill="none" stroke="rgb(170,82,58)" stroke-width="7"
+stroke-linecap="round" stroke-linejoin="round"
+marker-end="url(#ch9-active-arrow)"></path> <path
+class="ch9-disturbance-path"
+data-ch9-disturbance-path-highlight="outputP" d="M 620 42 L 620 114 L
+650 114 L 650 200 L 170 200 L 170 136" fill="none"
+stroke="rgb(170,82,58)" stroke-width="7" stroke-linecap="round"
+stroke-linejoin="round" marker-end="url(#ch9-active-arrow)"></path>
+<path class="ch9-disturbance-path"
+data-ch9-disturbance-path-highlight="noisePI" d="M 735 200 L 650 200 L
+170 200 L 170 136" fill="none" stroke="rgb(170,82,58)" stroke-width="7"
+stroke-linecap="round" stroke-linejoin="round"
+marker-end="url(#ch9-active-arrow)"></path>
+
+<text x="60" y="102" fill="rgb(53,82,104)"
+font-size="18">r</text> <text x="372" y="34"
+fill="rgb(139,100,32)" font-size="17">d_in</text> <text
+x="588" y="34" fill="rgb(139,100,32)"
+font-size="17">d_out</text> <text x="720" y="188"
+fill="rgb(139,100,32)" font-size="17">n</text> <text x="705"
+y="103" fill="rgb(53,82,104)" font-size="18">y</text> <text
+x="210" y="224" fill="rgb(53,82,104)" font-size="15">measured
+feedback path</text> </svg> <p class="ch9-diagram-caption
+ch9-diagram-note" data-ch9-disturbance-diagram-note>
+</p>
+<p class="ch9-diagram-caption">
+The highlighted path shows the signal path being used to compute E(s).
+First identify the entry point, then use the matching transfer function
+below.
+</p>
+
+<strong>Error path</strong>
+<p data-ch9-disturbance-path>
+</p>
+
+<strong>System type</strong>
+<p data-ch9-disturbance-type>
+</p>
+
+<strong>Implication</strong>
+<p data-ch9-disturbance-effect>
+</p>
+
+</div>
+</section>
+<section class="chapter-nine-panel ch9-problem5-panel"> <p
+class="chapter-nine-kicker">Transfer-path practice</p>
+<h3>Practice problem: derive the error paths</h3> <p>Use the signs
+in the block diagram to derive the transfer functions from the external
+inputs R, D, and N to the error E. Do this before counting free
+integrators.</p>
+
+<figure class="ch9-problem5-figure"> <svg viewBox="0 -28 1030
+418" role="img" aria-label="Feedback loop with reference R,
+disturbance D, sensor noise N, controller Gc(s), plant Gp(s), and sensor
+H(s)."> <defs> <marker id="ch9-p5-arrow" viewBox="0 0 10 10"
+refX="9" refY="5" markerWidth="7" markerHeight="7"
+orient="auto-start-reverse"> <path d="M 0 0 L 10 5 L 0 10 z"
+fill="rgb(0,0,0)"></path> </marker> </defs> <line x1="45"
+y1="118" x2="155" y2="118" stroke="rgb(0,0,0)"
+stroke-width="7" marker-end="url(#ch9-p5-arrow)"></line> <text
+x="58" y="92" font-size="30" font-style="italic">R</text>
+<circle cx="205" cy="118" r="39" fill="rgb(255,255,255)"
+stroke="rgb(0,0,0)" stroke-width="7"></circle> <text x="150"
+y="94" font-size="30">+</text> <text x="160" y="178"
+font-size="30">-</text> <line x1="244" y1="118" x2="320"
+y2="118" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow)"></line> <rect x="330" y="64"
+width="140" height="108" fill="rgb(255,255,255)"
+stroke="rgb(0,0,0)" stroke-width="7"></rect> <text x="358"
+y="130" font-size="30">Gc(s)</text> <line x1="470" y1="118"
+x2="530" y2="118" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow)"></line> <circle cx="565"
+cy="118" r="39" fill="rgb(255,255,255)" stroke="rgb(0,0,0)"
+stroke-width="7"></circle> <text x="518" y="94"
+font-size="30">-</text> <line x1="565" y1="-28" x2="565"
+y2="78" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow)"></line> <text x="590" y="35"
+font-size="30" font-style="italic">D</text> <line x1="604"
+y1="118" x2="665" y2="118" stroke="rgb(0,0,0)"
+stroke-width="7" marker-end="url(#ch9-p5-arrow)"></line> <rect
+x="675" y="64" width="155" height="108"
+fill="rgb(255,255,255)" stroke="rgb(0,0,0)"
+stroke-width="7"></rect> <text x="720" y="130"
+font-size="30">Gp(s)</text> <line x1="830" y1="118" x2="955"
+y2="118" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow)"></line> <text x="934" y="98"
+font-size="30" font-style="italic">y</text> <line x1="875"
+y1="118" x2="875" y2="285" stroke="rgb(0,0,0)"
+stroke-width="7"></line> <circle cx="875" cy="285" r="39"
+fill="rgb(255,255,255)" stroke="rgb(0,0,0)"
+stroke-width="7"></circle> <line x1="1025" y1="285" x2="914"
+y2="285" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow)"></line> <text x="948" y="260"
+font-size="30" font-style="italic">N</text> <text x="915"
+y="340" font-size="30">-</text> <line x1="836" y1="285"
+x2="640" y2="285" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow)"></line> <rect x="470" y="231"
+width="160" height="108" fill="rgb(255,255,255)"
+stroke="rgb(0,0,0)" stroke-width="7"></rect> <text x="522"
+y="297" font-size="30">H(s)</text> <line x1="470" y1="285"
+x2="205" y2="285" stroke="rgb(0,0,0)"
+stroke-width="7"></line> <line x1="205" y1="285" x2="205"
+y2="157" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow)"></line> </svg>
+<figcaption>Figure 9.x. Transfer-path diagram for Problem 5. The
+disturbance D enters with a negative sign before the plant. The sensor
+noise N is subtracted from the measured output before
+H(s).</figcaption> </figure>
+
+<section class="quiz-list"> <article class="quiz-card
+ch9-transfer-q1" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. The disturbance D enters before
+Gp(s), so Gp(s)H(s) appears in the numerator of E/D."
+data-feedback-b="B is correct. Solving E = R - H(Y - N), Y = Gp(GcE -
+D) gives E/R = 1/(1+GcGpH), E/D = GpH/(1+GcGpH), and E/N =
+H/(1+GcGpH)." data-feedback-c="C is not correct. The noise N enters
+before H(s), so H(s) appears in the numerator of E/N."
+data-feedback-d="D is not correct. The signs in the diagram do not make
+all three transfer functions negative."> <h4>Q1. Transfer functions
+into the error</h4> <p class="quiz-prompt">Which set gives the
+transfer functions from R, D, and N to E for the diagram above?</p>
+<div class="quiz-options"> <label><input type="radio"
+name="pid-ch9-p5-q1" value="A"><span class="quiz-option-text"><span>A) <span
+class="inline-frac"><span class="frac-top">E</span><span
+class="frac-bottom">R</span></span> = <span
+class="inline-frac"><span class="frac-top">1</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span>,
+<span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">D</span></span> = <span
+class="inline-frac"><span class="frac-top">H</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span>,
+<span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">N</span></span> = <span
+class="inline-frac"><span
+class="frac-top">G<sub>p</sub>H</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span></span></span></label>
+<label><input type="radio" name="pid-ch9-p5-q1"
+value="B"><span class="quiz-option-text"><span>B) <span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">R</span></span> = <span
+class="inline-frac"><span class="frac-top">1</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span>,
+<span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">D</span></span> = <span
+class="inline-frac"><span
+class="frac-top">G<sub>p</sub>H</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span>,
+<span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">N</span></span> = <span
+class="inline-frac"><span class="frac-top">H</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span></span></span></label>
+<label><input type="radio" name="pid-ch9-p5-q1"
+value="C"><span class="quiz-option-text"><span>C) <span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">R</span></span> = <span
+class="inline-frac"><span
+class="frac-top">G<sub>c</sub>G<sub>p</sub></span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span>,
+<span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">D</span></span> = <span
+class="inline-frac"><span
+class="frac-top">G<sub>p</sub></span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span>,
+<span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">N</span></span> = <span
+class="inline-frac"><span class="frac-top">1</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span></span></span></label>
+<label><input type="radio" name="pid-ch9-p5-q1"
+value="D"><span class="quiz-option-text"><span>D) <span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">R</span></span> = -<span
+class="inline-frac"><span class="frac-top">1</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span>,
+<span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">D</span></span> = -<span
+class="inline-frac"><span
+class="frac-top">G<sub>p</sub>H</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span>,
+<span class="inline-frac"><span
+class="frac-top">E</span><span
+class="frac-bottom">N</span></span> = -<span
+class="inline-frac"><span class="frac-top">H</span><span
+class="frac-bottom">1+G<sub>c</sub>G<sub>p</sub>H</span></span></span></span></label>
+</div> <div class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. For E/R, the low-frequency behavior is
+set by 1/(1+GcGpH), so free integrators in the loop product reduce
+low-order reference-tracking error." data-feedback-b="B is not
+correct. Gp(s) alone does not determine reference-tracking type; the
+loop product GcGpH matters." data-feedback-c="C is not correct. H(s)
+is part of the loop, but not the only part that determines E/R."
+data-feedback-d="D is not correct. Free integrators are exactly what
+determine the low-frequency system type."> <h4>Q2. Intuition for
+reference input R</h4> <p class="quiz-prompt">For the reference
+path E/R, which free integrators most directly increase the system
+type?</p> <div class="quiz-options"> <label><input
+type="radio" name="pid-ch9-p5-q2" value="A"><span class="quiz-option-text">A) Free integrators
+in the loop product Gc(s)Gp(s)H(s)</span></label> <label><input
+type="radio" name="pid-ch9-p5-q2" value="B"><span class="quiz-option-text">B) Free integrators
+in Gp(s) only</span></label> <label><input type="radio"
+name="pid-ch9-p5-q2" value="C"><span class="quiz-option-text">C) Free integrators in H(s)
+only</span></label> <label><input type="radio" name="pid-ch9-p5-q2"
+value="D"><span class="quiz-option-text">D) Free integrators do not affect reference type</span></label>
+</div> <div class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. The disturbance D enters after
+Gc(s), so the controller integrators are especially important."
+data-feedback-b="B is not correct. H(s) affects the formula, but the
+input disturbance is injected before the plant and after the
+controller." data-feedback-c="C is correct. At low frequency, E/D =
+GpH/(1+GcGpH) behaves like 1/Gc when loop gain is large, so controller
+integrators dominate the disturbance type." data-feedback-d="D is not
+correct. The reference signal does not set the disturbance type.">
+<h4>Q3. Intuition for disturbance input D</h4> <p
+class="quiz-prompt">For the disturbance path E/D, which free
+integrators should you look at first?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch9-p5-q3" value="A"><span class="quiz-option-text">A) Free integrators in Gp(s)
+only</span></label> <label><input type="radio" name="pid-ch9-p5-q3"
+value="B"><span class="quiz-option-text">B) Free integrators in H(s) only</span></label>
+<label><input type="radio" name="pid-ch9-p5-q3" value="C"><span class="quiz-option-text">C)
+Free integrators in Gc(s)</span></label> <label><input type="radio"
+name="pid-ch9-p5-q3" value="D"><span class="quiz-option-text">D) Free integrators in
+R(s)</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. The sensor block H(s) is in the
+numerator, but it also appears in the loop product denominator."
+data-feedback-b="B is correct. For the low-frequency noise signal N(s),
+E/N = H/(1+GcGpH) behaves like 1/(GcGp) when loop gain is large. Sensor
+noise is often high frequency, so this low-frequency type result is not
+the whole design story." data-feedback-c="C is not correct. The
+controller block Gc(s) alone misses the plant block Gp(s) in the
+low-frequency approximation." data-feedback-d="D is not correct. The
+noise signal N(s) is the input being applied; its own free integrators
+describe the input shape, not the loop path type."> <h4>Q4.
+Intuition for sensor noise N(s)</h4> <p class="quiz-prompt">For
+the low-frequency sensor-noise path E/N, which block or signal has the
+free integrators that most directly affect the type?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch9-p5-q4" value="A"><span class="quiz-option-text">A) Sensor block H(s) only</span></label>
+<label><input type="radio" name="pid-ch9-p5-q4" value="B"><span class="quiz-option-text">B)
+Controller and plant blocks Gc(s)Gp(s)</span></label> <label><input
+type="radio" name="pid-ch9-p5-q4" value="C"><span class="quiz-option-text">C) Controller block
+Gc(s) only</span></label> <label><input type="radio"
+name="pid-ch9-p5-q4" value="D"><span class="quiz-option-text">D) Noise input signal
+N(s)</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+
+<figure class="ch9-problem5-figure"> <svg viewBox="0 0 980 390"
+role="img" aria-label="Problem 5 feedback loop with specific transfer
+functions in Gc, Gp, and H."> <defs> <marker
+id="ch9-p5-arrow-values" viewBox="0 0 10 10" refX="9" refY="5"
+markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="rgb(0,0,0)"></path>
+</marker> </defs> <line x1="45" y1="118" x2="155" y2="118"
+stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow-values)"></line> <text x="58"
+y="92" font-size="30" font-style="italic">R</text> <circle
+cx="205" cy="118" r="39" fill="rgb(255,255,255)"
+stroke="rgb(0,0,0)" stroke-width="7"></circle> <text x="150"
+y="94" font-size="30">+</text> <text x="160" y="178"
+font-size="30">-</text> <line x1="244" y1="118" x2="320"
+y2="118" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow-values)"></line> <rect x="330"
+y="64" width="140" height="108" fill="rgb(255,255,255)"
+stroke="rgb(0,0,0)" stroke-width="7"></rect> <text x="397"
+y="103" text-anchor="middle" font-size="28">1</text> <line
+x1="355" y1="118" x2="460" y2="118" stroke="rgb(0,0,0)"
+stroke-width="3"></line> <text x="397" y="150"
+text-anchor="middle" font-size="26">s(s + 1)</text> <line
+x1="470" y1="118" x2="530" y2="118" stroke="rgb(0,0,0)"
+stroke-width="7" marker-end="url(#ch9-p5-arrow-values)"></line>
+<circle cx="565" cy="118" r="39" fill="rgb(255,255,255)"
+stroke="rgb(0,0,0)" stroke-width="7"></circle> <text x="518"
+y="94" font-size="30">-</text> <line x1="565" y1="5"
+x2="565" y2="78" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow-values)"></line> <text x="590"
+y="35" font-size="30" font-style="italic">D</text> <line
+x1="604" y1="118" x2="665" y2="118" stroke="rgb(0,0,0)"
+stroke-width="7" marker-end="url(#ch9-p5-arrow-values)"></line>
+<rect x="675" y="64" width="155" height="108"
+fill="rgb(255,255,255)" stroke="rgb(0,0,0)"
+stroke-width="7"></rect> <text x="752" y="103"
+text-anchor="middle" font-size="28">1</text> <line x1="700"
+y1="118" x2="805" y2="118" stroke="rgb(0,0,0)"
+stroke-width="3"></line> <text x="752" y="150"
+text-anchor="middle" font-size="25">s<tspan
+baseline-shift="super" font-size="17">2</tspan>(s + 2)</text>
+<line x1="830" y1="118" x2="955" y2="118" stroke="rgb(0,0,0)"
+stroke-width="7" marker-end="url(#ch9-p5-arrow-values)"></line>
+<text x="934" y="98" font-size="30"
+font-style="italic">y</text> <line x1="875" y1="118"
+x2="875" y2="285" stroke="rgb(0,0,0)"
+stroke-width="7"></line> <circle cx="875" cy="285" r="39"
+fill="rgb(255,255,255)" stroke="rgb(0,0,0)"
+stroke-width="7"></circle> <line x1="980" y1="285" x2="914"
+y2="285" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow-values)"></line> <text x="948"
+y="260" font-size="30" font-style="italic">N</text> <text
+x="915" y="340" font-size="30">-</text> <line x1="836"
+y1="285" x2="640" y2="285" stroke="rgb(0,0,0)"
+stroke-width="7" marker-end="url(#ch9-p5-arrow-values)"></line>
+<rect x="470" y="231" width="160" height="108"
+fill="rgb(255,255,255)" stroke="rgb(0,0,0)"
+stroke-width="7"></rect> <text x="550" y="271"
+text-anchor="middle" font-size="28">s + 2</text> <line
+x1="495" y1="286" x2="605" y2="286" stroke="rgb(0,0,0)"
+stroke-width="3"></line> <text x="550" y="319"
+text-anchor="middle" font-size="25">s(s + 1)</text> <line
+x1="470" y1="285" x2="205" y2="285" stroke="rgb(0,0,0)"
+stroke-width="7"></line> <line x1="205" y1="285" x2="205"
+y2="157" stroke="rgb(0,0,0)" stroke-width="7"
+marker-end="url(#ch9-p5-arrow-values)"></line> </svg>
+<figcaption>Figure 9.x. Practice problem with specific transfer
+functions. Use your transfer paths from Q1 and the final value theorem
+to complete the table.</figcaption> </figure>
+
+<article class="quiz-card ch9-final-table-card"
+data-ch9-final-value-table> <h4>Final-value computation</h4> <p
+class="quiz-prompt">For the specific system above, enter the final
+value of e(t) for each input path and polynomial input. Use
+<code>infinity</code> for an unbounded error.</p> <table
+class="ch9-final-value-table"> <thead> <tr> <th>Input
+path</th> <th>Step</th> <th>Ramp</th> <th>Parabola</th>
+</tr> </thead> <tbody> <tr> <th>R to E</th> <td><input
+type="text" data-ch9-final-answer="0" aria-label="R step final
+value" /></td> <td><input type="text"
+data-ch9-final-answer="0" aria-label="R ramp final value" /></td>
+<td><input type="text" data-ch9-final-answer="0" aria-label="R
+parabola final value" /></td> </tr> <tr> <th>D to E</th>
+<td><input type="text" data-ch9-final-answer="0" aria-label="D
+step final value" /></td> <td><input type="text"
+data-ch9-final-answer="1" aria-label="D ramp final value" /></td>
+<td><input type="text" data-ch9-final-answer="infinity"
+aria-label="D parabola final value" /></td> </tr> <tr> <th>N
+to E</th> <td><input type="text" data-ch9-final-answer="0"
+aria-label="N step final value" /></td> <td><input type="text"
+data-ch9-final-answer="0" aria-label="N ramp final value" /></td>
+<td><input type="text" data-ch9-final-answer="0" aria-label="N
+parabola final value" /></td> </tr> </tbody> </table> <div
+class="quiz-actions"> <button type="button" class="quiz-check"
+data-ch9-final-check>Check</button> <button type="button"
+class="quiz-reset" data-ch9-final-reset>Reset</button> </div> <p
+class="quiz-feedback" data-ch9-final-feedback
+aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Solution:</strong> The loop product
+is GcGpH = 1/\[s<sup>4</sup>(s+1)<sup>2</sup>\]. Therefore E/R
+behaves like s<sup>4</sup>, E/D behaves like s, and E/N behaves like
+2s<sup>3</sup> near s = 0. Thus R gives 0 for step, ramp, and
+parabola; D gives 0 for step, 1 for ramp, and infinity for parabola; N
+gives 0 for step, ramp, and parabola.</p></details></div>
+</article> </section>
+<h2 data-number="9.2" id="design-study-a-single-link-robot-arm-7" class="section-design-study"><span class="header-section-number">9.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="9.2.1" id="-example-problem-3112" class="section-example"><span class="header-section-number">9.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a></h3>
+<p>When the controller for the single link robot arm is PD control, what
+is the system type? Characterize the steady state error when the
+reference input is a step, a ramp, and a parabola. How does this change
+if you add an integrator?</p>
+<p>Consider the case where a constant disturbance acts at the input to
+the plant (for example gravity in this case). What is the steady state
+error to a constant input disturbance when the integrator is not present
+and when it is present?</p>
+<section id="design-study-a-ch9-system-type">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw9-system-type"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Classify tracking and disturbance type before viewing the
+solution</h3> <p>Count free integrators in the relevant loop
+transfer function before applying the final value theorem.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Closed-loop signal map for system type analysis"> <img
+src="6_design_studies/figures/hw_arm_system_type.png"
+alt="Closed-loop system diagram for system type analysis."> <p
+class="advanced-caption">Use this closed-loop signal map to decide
+which loop transfer function determines tracking and disturbance
+error.</p> </div>
+
+<section class="guided-step" data-dsa-step="pd-type">
+<h4>Step 1. PD tracking type</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>System type without
+integrator</span><input type="text" data-dsa-input="type"
+data-dsa-accept="1\|type1\|type 1" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="pd-type">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="pd-type"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="pd-type" hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The arm plant contributes
+one free integrator, so the PD loop is type 1 for reference
+tracking.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="pid-type"> <h4>Step
+2. PID tracking type</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>System type with
+integrator</span><input type="text" data-dsa-input="type"
+data-dsa-accept="2\|type2\|type 2" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="pid-type">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="pid-type"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="pid-type" hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> Adding integral action
+gives two free integrators, so the reference-tracking loop is type
+2.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="errors"> <h4>Step 3.
+Error interpretation</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Type 1 ramp
+error</span><input type="text" data-dsa-input="ramp"
+data-dsa-accept="finite\|constant\|nonzero finite" placeholder="short answer"></label> <label><span>Type 2 ramp error</span><input
+type="text" data-dsa-input="pidramp" data-dsa-accept="0\|zero"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="errors">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="errors"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="errors" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> A type 1 loop has finite
+ramp error; a type 2 loop has zero ramp error.</p></details>
+</section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The closed loop system is shown in <strong>Fig.</strong> <a
+href="#fig:hw_arm_system_type" data-reference-type="ref"
+data-reference="fig:hw_arm_system_type">9.8</a>.</p>
+<figure id="fig:hw_arm_system_type">
+<img src="6_design_studies/figures/hw_arm_system_type.png"
+style="width:80.0%" alt="Closed loop system for problem HW 3.1.12." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.8. </span>Closed loop system for problem HW <a
+href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a
+href="#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a>.</figcaption>
+</figure>
+<p>Without the integrator, the open-loop transfer function is given by
+<span class="math display">\[P(s)C(s) =
+\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)\left(k_D
+s + k_P\right).\]</span> The system has one free integrator and is
+therefore type 1, which, from Table <a href="#table:system_type"
+data-reference-type="ref" data-reference="table:system_type">12.1</a>
+implies that the tracking error when the input is a step is zero, and
+the tracking error when the input is a ramp is <span
+class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_v} =
+\frac{1}{\lim_{s\to 0} sP(s)C(s)} = \frac{1}{\frac{k_P}{b}} =
+\frac{b}{k_P}.\]</span> The tracking error when the input is a parabola,
+or higher order polynomial, is <span
+class="math inline">\(\infty\)</span>, meaning that <span
+class="math inline">\(\theta(t)\)</span> and <span
+class="math inline">\(\theta_r(t)\)</span> diverge as <span
+class="math inline">\(t\to\infty\)</span>.</p>
+<p>With the integrator, the open loop transfer function is <span
+class="math display">\[P(s)C(s) =
+\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)\left(\frac{k_D
+s^2 + k_Ps + k_I}{s}\right).\]</span> which has two free integrators and
+is therefore type 2. Therefore, from Table <a href="#table:system_type"
+data-reference-type="ref" data-reference="table:system_type">12.1</a>
+the tracking error when the input is either a step or a ramp is zero,
+and the tracking error when the input is a parabola is <span
+class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_a} =
+\frac{1}{\lim_{s\to 0} s^2P(s)C(s)} = \frac{1}{\frac{k_I}{b}} =
+\frac{b}{k_I}.\]</span> The tracking error when the input is <span
+class="math inline">\(t^3\)</span> or a higher order polynomial, is
+<span class="math inline">\(\infty\)</span>.</p>
+<p>For the input disturbance, the transfer function from <span
+class="math inline">\(D(s)\)</span> to <span
+class="math inline">\(E(s)\)</span> is given by <span
+class="math display">\[E(s) = \frac{P(s)}{1+P(s)C(s)}D(s).\]</span>
+Without the integrator, and when <span class="math inline">\(D(s)=
+\frac{A}{s^{q+1}}\)</span>, the steady state error is given by <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty} e(t) &amp;= \lim_{s\to 0} \frac{P}{1+PC}\frac{A}{s^q}
+\\
+&amp;= \lim_{s\to 0}
+\left(\frac{\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)}{1+\left(\frac{\frac{3}{m\ell^2}(k_Ds+k_P)}{s(s+\frac{3b}{m\ell^2})}\right)}\right)\left(\frac{A}{s^q}\right)
+\\
+&amp;= \lim_{s\to 0}
+\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})+\frac{3}{m\ell^2}(k_Ds+k_P)}\right)\left(\frac{A}{s^q}\right)
+\\
+&amp;= \frac{A\frac{3}{m\ell^2}}{\frac{3k_P}{m\ell^2}}
+= \frac{A}{k_P},
+\end{aligned}\]</span> if <span class="math inline">\(q=0\)</span>.
+Therefore, to an input disturbance the system is type 0. The steady
+state error when a constant step of size <span
+class="math inline">\(A\)</span> is placed on <span
+class="math inline">\(d(t)\)</span> is <span
+class="math inline">\(\frac{A}{k_P}\)</span>.</p>
+<p>With the integrator, and when <span class="math inline">\(D(s)=
+\frac{A}{s^{q+1}}\)</span>, the steady state error is given by <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty} e(t) &amp;= \lim_{s\to 0} \frac{P}{1+PC}\frac{A}{s^q}
+\\
+&amp;= \lim_{s\to 0}
+\left(\frac{\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)}{1+\left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right)}\right)\left(\frac{A}{s^q}\right)
+\\
+&amp;= \lim_{s\to 0}
+\left(s\frac{\frac{3}{m\ell^2}}{s^2(s+\frac{3b}{m\ell^2})+\frac{3}{m\ell^2}(k_Ds^2+k_Ps+k_I)}\right)\left(\frac{A}{s^q}\right)
+\\
+&amp;= \frac{A\frac{3}{m\ell^2}}{\frac{3k_I}{m\ell^2}}
+= \frac{A}{k_I},
+\end{aligned}\]</span> if <span class="math inline">\(q=1\)</span>.
+Therefore, to an input disturbance the system is type 1. The steady
+state error when <span class="math inline">\(d(t)\)</span> is a constant
+step is zero, and the steady state error when <span
+class="math inline">\(d(t)\)</span> is a ramp of slope size <span
+class="math inline">\(A\)</span> is <span
+class="math inline">\(\frac{A}{k_I}\)</span>.</p></section> </article>
+</section>
+<h2 data-number="9.3" id="design-study-b-inverted-pendulum-5" class="section-design-study"><span class="header-section-number">9.3</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="9.3.1" id="-example-problem-3212" class="section-example"><span class="header-section-number">9.3.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a></h3>
+<p>When the inner loop controller for the inverted pendulum is PD
+control, what is the system type with respect to tracking of the inner
+loop? Characterize the steady state error when <span
+class="math inline">\(\tilde{R}_{\theta}\)</span> is a step, a ramp, and
+a parabola. What is the system type with respect to an input
+disturbance?</p>
+<p>When the outer loop controller for the inverted pendulum is PD
+control, what is the system type of the outer loop with respect to
+tracking? Characterize the steady state error when <span
+class="math inline">\(r_z\)</span> is a step, a ramp, and a parabola.
+How does this change if you add an integrator? What is the system type
+with respect to an input disturbance for both PD and PID control?</p>
+<section id="design-study-b-ch9-system-type">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw9"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Classify pendulum system type before
+viewing the solution</h3> <p>Count free integrators separately for
+the inner and outer loops.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Inner-loop system type diagram for pendulum."> <img
+src="6_design_studies/figures/hw_pendulum_system_type_inner.png"
+alt="Inner-loop system type diagram for pendulum."> <p
+class="advanced-caption">Use the inner and outer loop diagrams to
+decide which loop transfer function determines each steady-state
+error.</p> </div>
+
+<section class="guided-step" data-dsa-step="inner"> <h4>Step 1.
+Inner-loop tracking type</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Inner loop
+type</span><input type="text" data-dsa-input="type"
+data-dsa-accept="0\|type0\|type 0" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="inner">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="inner"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="inner" hidden><summary>Show
+solution for Step 1</summary><p><strong>Answer:</strong> The
+inner PD loop has no free integrators for theta tracking, so it is type
+0.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="outer-pd"> <h4>Step
+2. Outer-loop PD tracking type</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Outer PD
+type</span><input type="text" data-dsa-input="type"
+data-dsa-accept="2\|type2\|type 2" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="outer-pd">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="outer-pd"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="outer-pd"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The outer plant
+contributes two free integrators, so the PD outer loop is type 2 for
+tracking.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="outer-pid"> <h4>Step
+3. Outer-loop PID tracking type</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Outer PID
+type</span><input type="text" data-dsa-input="type"
+data-dsa-accept="3\|type3\|type 3" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="outer-pid">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="outer-pid"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="outer-pid"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> Adding the integrator
+makes the outer tracking loop type 3.</p></details> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The block diagram for the inner loop is shown in
+<strong>Fig.</strong> <a href="#fig:hw_pendulum_system_type_inner"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_system_type_inner">9.9</a>.</p>
+<figure id="fig:hw_pendulum_system_type_inner">
+<img src="6_design_studies/figures/hw_pendulum_system_type_inner.png"
+style="width:80.0%" alt="Inner loop system for problem HW 3.2.12." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.9. </span>Inner loop system for problem HW <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#system-type-and-integrators"
+data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a>.</figcaption>
+</figure>
+<p>The open loop system is given by <span
+class="math display">\[P(s)C(s) =
+\left(\frac{-\frac{1}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}{s^2-\frac{(m_1+m_2)g}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}\right)\left(k_Ds+k_P\right).\]</span>
+Since there are no free integrators, the system is type 0, and from
+Table <a href="#table:system_type" data-reference-type="ref"
+data-reference="table:system_type">12.1</a> the tracking error when the
+input is a step is <span class="math display">\[\lim_{t\to\infty}e(t) =
+\frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0} P(s)C(s)} =
+\frac{1}{1+\frac{k_P}{(m_1+m_2)g}}.\]</span> The tracking error when the
+input is a ramp, or higher order polynomial, is <span
+class="math inline">\(\infty\)</span>.</p>
+<p>For the disturbance input, the steady state error to a step on <span
+class="math inline">\(d(t)\)</span> is <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty}e(t) &amp;= \lim_{s\to
+0}s\frac{P(s)}{1+P(s)C(s)}\frac{1}{s} \\
+&amp;= \lim_{s\to 0}
+\frac{\left(\frac{-\frac{1}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}{s^2-\frac{(m_1+m_2)g}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}\right)}{1+\left(\frac{-\frac{1}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}{s^2-\frac{(m_1+m_2)g}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}\right)\left(k_Ds+k_P\right)}
+\\
+&amp;= \lim_{s\to 0}
+\frac{\left(-\frac{1}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}\right)}{\left(s^2-\frac{(m_1+m_2)g}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}\right)+\left(-\frac{1}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}\right)\left(k_Ds+k_P\right)}
+\\
+&amp;=\frac{\left(-\frac{1}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}\right)}{\left(-\frac{(m_1+m_2)g}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}\right)+\left(-\frac{k_p}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}\right)}
+= \frac{1}{(m_1+m_2)g+k_P}.
+\end{aligned}\]</span> The system is type 0 with respect to the input
+disturbance.</p>
+<p>The block diagram for the outer loop is shown in
+<strong>Fig.</strong> <a href="#fig:hw_pendulum_system_type_outer"
+data-reference-type="ref"
+data-reference="fig:hw_pendulum_system_type_outer">9.10</a>.</p>
+<figure id="fig:hw_pendulum_system_type_outer">
+<img src="6_design_studies/figures/hw_pendulum_system_type_outer.png"
+style="width:80.0%" alt="Outer loop system for problem HW 3.2.12." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.10. </span>Outer loop system for problem HW <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#system-type-and-integrators"
+data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a>.</figcaption>
+</figure>
+<p>The open loop system is given by <span
+class="math display">\[P(s)C(s) = \left(\frac{\frac{-2\ell
+s^2}{3}+g}{s^2}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right).\]</span>
+When <span class="math inline">\(k_I=0\)</span> there are two free
+integrators in <span class="math inline">\(P(s)C(s)\)</span> and the
+system is type 2, and from Table <a href="#table:system_type"
+data-reference-type="ref" data-reference="table:system_type">12.1</a>
+the tracking error when the input is a parabola is <span
+class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_a} =
+\frac{1}{\lim_{s\to 0} s^2P(s)C(s)} = \frac{1}{k_Pg}.\]</span> When
+<span class="math inline">\(k_I\neq 0\)</span>, there are three free
+integrators in <span class="math inline">\(P(s)C(s)\)</span> and the
+system is type 3, with zero tracking error for a step, ramp, and
+parabola input.</p>
+<p>For the disturbance input, the steady state error when <span
+class="math inline">\(D(s) = \frac{1}{s^{q+1}}\)</span> is <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty}e(t) &amp;= \lim_{s\to
+0}s\frac{P(s)}{1+P(s)C(s)}\frac{1}{s^{q+1}} \\
+&amp;= \lim_{s\to 0} \frac{\left(\frac{\frac{2\ell
+s^2}{3}-g}{s^2}\right)}{1+\left(\frac{\frac{2\ell
+s^2}{3}-g}{s^2}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right)}\frac{1}{s^q}.
+\end{aligned}\]</span> Without the integrator, i.e., when <span
+class="math inline">\(k_I=0\)</span> we have <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty}e(t) &amp;= \lim_{s\to 0} \frac{\frac{2\ell
+s^2}{3}-g}{s^2+\left(\frac{2\ell
+s^2}{3}-g\right)\left(k_Ds+k_P\right)}\frac{1}{s^q}
+= \lim_{s\to 0} \frac{g}{g\left(k_P\right)}\frac{1}{s^q}
+\end{aligned}\]</span> which is finite when <span
+class="math inline">\(q=0\)</span>. Therefore, the system is type 0 with
+respect to the input disturbance and the steady state error when <span
+class="math inline">\(d_2(t)\)</span> is a unit step is <span
+class="math inline">\(1/k_P\)</span>.</p>
+<p>When <span class="math inline">\(k_I\neq 0\)</span>, we have <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty}e(t) &amp;= \lim_{s\to 0} \frac{s(\frac{2\ell
+s^2}{3}-g)}{s^3+\left(\frac{2\ell s^2}{3}-g
+\right)\left(k_Ds^2+k_Ps+k_I\right)}\frac{1}{s^q}
+= \lim_{s\to 0} \frac{g}{g\left(k_I\right)}\frac{1}{s^{q-1}}
+\end{aligned}\]</span> which is finite when <span
+class="math inline">\(q=1\)</span>. Therefore, the system is type 1 with
+respect to the input disturbance and the steady state error when <span
+class="math inline">\(d_2(t)\)</span> is a unit ramp is <span
+class="math inline">\(1/k_I\)</span>.</p></section> </article>
+</section>
+<h2 data-number="9.4"
+id="design-study-c-satellite-attitude-control-6" class="section-design-study"><span class="header-section-number">9.4</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="9.4.1" id="-example-problem-3312" class="section-example"><span class="header-section-number">9.4.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a></h3>
+<p>When the inner loop controller of the satellite system is PD control,
+what is the system type of the inner loop with respect to the reference
+input and with respect to the disturbance input? Characterize the steady
+state error when the reference input is a step, a ramp, and a parabola.
+Characterize the steady state error when the input disturbance is a
+step, a ramp, and a parabola.</p>
+<p>With PD control for the outer loop, what is the system type of the
+outer loop with respect to the reference input and with respect to the
+disturbance input? Characterize the steady state error when the
+reference input and disturbance input is a step, a ramp, and a parabola.
+How does this change if you add an integrator?</p>
+<section id="design-study-c-ch9-system-type">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw9" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Classify satellite system type before viewing the solution</h3>
+<p>Separate the reference-tracking and disturbance-rejection paths for
+the inner and outer loops.</p> <section class="guided-step"
+data-dsa-step="inner"> <h4>Step 1. Inner loop with PD
+control</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Reference
+type</span><input type="text" data-dsa-input="reference"
+data-dsa-accept="2\|type2\|type 2" placeholder="type"></label>
+<label><span>Step reference error</span><input type="text"
+data-dsa-input="step" data-dsa-accept="0\|zero"
+placeholder="error"></label> </div> <button type="button"
+data-dsa-check="inner" data-dsa-hint="The approximate inner plant has
+two free integrators.">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="inner"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="inner" hidden><summary>Show
+solution for Step 1</summary><p><strong>Answer:</strong> The
+inner reference path is type 2, so step and ramp reference errors are
+zero and parabola error is finite.</p></details> </section>
+<section class="guided-step" data-dsa-step="outer-pd"> <h4>Step
+2. Outer loop with PD control</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Outer PD reference
+type</span><input type="text" data-dsa-input="type"
+data-dsa-accept="0\|type0\|type 0" placeholder="type"></label>
+<label><span>Step error behavior</span><input type="text"
+data-dsa-input="step" data-dsa-accept="finite\|nonzero
+finite\|constant" placeholder="behavior"></label> </div>
+<button type="button" data-dsa-check="outer-pd" data-dsa-hint="The
+flexible panel transfer function has nonzero DC gain but no free
+integrator.">Check Step 2</button> <p class="quiz-feedback"
+data-dsa-feedback="outer-pd" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="outer-pd"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> With PD outer-loop
+control, the outer reference path is type 0, so a step has finite
+nonzero error.</p></details> </section> <section
+class="guided-step" data-dsa-step="outer-pid"> <h4>Step 3. Add an
+integrator</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Outer PID reference
+type</span><input type="text" data-dsa-input="type"
+data-dsa-accept="1\|type1\|type 1" placeholder="type"></label>
+<label><span>Step reference error</span><input type="text"
+data-dsa-input="step" data-dsa-accept="0\|zero"
+placeholder="error"></label> </div> <button type="button"
+data-dsa-check="outer-pid" data-dsa-hint="Integral action adds one
+free integrator to the outer loop.">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="outer-pid"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="outer-pid"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> Adding an integrator
+makes the outer reference path type 1, giving zero step error and finite
+ramp error.</p></details> </section> <div
+class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>The block diagram for the inner loop is shown in
+<strong>Fig.</strong> <a href="#fig:hw_satellite_system_type_inner"
+data-reference-type="ref"
+data-reference="fig:hw_satellite_system_type_inner">9.11</a>.</p>
+<figure id="fig:hw_satellite_system_type_inner">
+<img src="6_design_studies/figures/hw_satellite_system_type_inner.png"
+style="width:80.0%" alt="Inner loop system for problem HW 3.3.12." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.11. </span>Inner loop system for problem HW <a
+href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#system-type-and-integrators"
+data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a>.</figcaption>
+</figure>
+<p>The open loop system is given by <span class="math display">\[%
+P(s)C(s) = \left(\frac{1}{(J_s +
+J_p)s^2}\right)\left(k_Ds+k_P\right).\]</span> Since there are two free
+integrators, the system is type 2, and from Table <a
+href="#table:system_type" data-reference-type="ref"
+data-reference="table:system_type">12.1</a> the tracking error when the
+input is a step is <span class="math display">\[%
+\lim_{t\to\infty}e(t) = \frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0}
+P(s)C(s)} = 0.\]</span> The tracking error when the input is a ramp is
+<span class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_v} =
+\frac{1}{\lim_{s\to 0} sP(s)C(s)} = 0.\]</span> Finally, the tracking
+error when the input is a parabola is <span
+class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_a} =
+\frac{1}{\lim_{s\to 0} s^2P(s)C(s)} = \frac{J_p + J_s}{k_p}.\]</span>
+The tracking error for higher order polynomials is <span
+class="math inline">\(\infty\)</span>. For a disturbance input of <span
+class="math inline">\(D(s)=1/s^{q+1}\)</span>, the steady state error is
+<span class="math display">\[\begin{aligned}
+\lim_{t\to\infty}e(t) &amp;= \lim_{s\to
+0}s\frac{P(s)}{1+P(s)C(s)}\frac{1}{s^{q+1}}
+%
+= \lim_{s\to 0}\frac{1}{(J_s+J_p)s^2+k_ds+k_p}\frac{1}{s^q}
+%
+%
+\end{aligned}\]</span> which is finite and equal to <span
+class="math inline">\(1/k_P\)</span> when <span
+class="math inline">\(q=0\)</span>. Therefore, the system is type 0 with
+respect to the input disturbance, and the steady state error to a step
+on <span class="math inline">\(d(t)\)</span> is <span
+class="math inline">\(1/k_P\)</span> which is infinite to a ramp and
+higher order polynomials.</p>
+<p>The block diagram for the outer loop is shown in
+<strong>Fig.</strong> <a href="#fig:hw_satellite_system_type_outer"
+data-reference-type="ref"
+data-reference="fig:hw_satellite_system_type_outer">9.12</a>.</p>
+<figure id="fig:hw_satellite_system_type_outer">
+<img src="6_design_studies/figures/hw_satellite_system_type_outer.png"
+style="width:80.0%" alt="Outer loop system for problem HW 3.3.12." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 9.12. </span>Outer loop system for problem HW <a
+href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#system-type-and-integrators"
+data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a>.</figcaption>
+</figure>
+<p>The open loop system is given by <span
+class="math display">\[P(s)C(s) =
+\left(\frac{\frac{b}{J_P}s+\frac{k}{J_p}}{s^2+\frac{b}{J_p}s+\frac{k}{J_p}}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right).\]</span>
+When <span class="math inline">\(k_I=0\)</span> there are no free
+integrators in <span class="math inline">\(P(s)C(s)\)</span> and the
+system is type 0, and from Table <a href="#table:system_type"
+data-reference-type="ref" data-reference="table:system_type">12.1</a>
+the tracking error when the input is a step is <span
+class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{1+M_p} =
+\frac{1}{1+\lim_{s\to 0} P(s)C(s)} = \frac{1}{1+k_P}.\]</span> When the
+reference is a ramp or higher order polynomial, the tracking error is
+infinite. When <span class="math inline">\(k_I\neq 0\)</span>, there is
+one free integrator in <span class="math inline">\(P(s)C(s)\)</span> and
+the system is type 1. From Table <a href="#table:system_type"
+data-reference-type="ref" data-reference="table:system_type">12.1</a>
+the tracking error when the input is a ramp is <span
+class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_v} =
+\frac{1}{\lim_{s\to 0} sP(s)C(s)} = \frac{1}{k_I}.\]</span> The tracking
+error when <span class="math inline">\(\phi_r\)</span> is a step is
+zero, and it is infinite when <span
+class="math inline">\(\phi_r\)</span> is a parabola or higher order
+polynomial.</p>
+<p>For the disturbance input, the steady state error when <span
+class="math inline">\(D(s) = \frac{1}{s^{q+1}}\)</span> is <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty}e(t) &amp;= \lim_{s\to
+0}s\frac{P(s)}{1+P(s)C(s)}\frac{1}{s^{q+1}} \\
+&amp;= \lim_{s\to 0}
+\frac{\left(\frac{\frac{b}{J_P}s+\frac{k}{J_p}}{s^2+\frac{b}{J_p}s+\frac{k}{J_p}}\right)}{1+\left(\frac{\frac{b}{J_P}s+\frac{k}{J_p}}{s^2+\frac{b}{J_p}s+\frac{k}{J_p}}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right)}\frac{1}{s^q}.
+\end{aligned}\]</span> Without the integrator, i.e., when <span
+class="math inline">\(k_I=0\)</span> we have <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty}e(t) &amp;= \lim_{s\to 0}
+\frac{\frac{b}{J_p}s+\frac{k}{J_p}}{(s^2+\frac{b}{J_p}s+\frac{k}{J_p})+(\frac{b}{J_P}s+\frac{k}{J_p})(k_Ds+k_P)}\frac{1}{s^q}
+\\
+&amp;= \lim_{s\to 0} \frac{1}{1+k_P}\frac{1}{s^q}
+\end{aligned}\]</span> which is finite when <span
+class="math inline">\(q=0\)</span>. Therefore, the system is type 0 with
+respect to the input disturbance and the steady state error when <span
+class="math inline">\(d_2(t)\)</span> is a unit step is <span
+class="math inline">\(1/(1+k_P)\)</span>.</p>
+<p>When <span class="math inline">\(k_I\neq 0\)</span>, we have <span
+class="math display">\[\begin{aligned}
+\lim_{t\to\infty}e(t) &amp;= \lim_{s\to 0}
+\frac{s\left(\frac{b}{J_p}s+\frac{k}{J_p}\right)}{s\left(s^2+\frac{b}{J_p}s+\frac{k}{J_p}\right)+\left(\frac{b}{J_p}s+\frac{k}{J_p}\right)\left(k_Ds^2+k_Ps+k_I\right)}\frac{1}{s^q}
+\\
+&amp;= \lim_{s\to 0} \frac{1}{k_I}\frac{1}{s^{q-1}}
+\end{aligned}\]</span> which is finite when <span
+class="math inline">\(q=1\)</span>. Therefore, the system is type 1 with
+respect to the input disturbance and the steady state error when <span
+class="math inline">\(d_2(t)\)</span> is a unit ramp is <span
+class="math inline">\(1/k_I\)</span>. It is zero when <span
+class="math inline">\(d_2\)</span> is a step, and it is infinite when
+<span class="math inline">\(d_2\)</span> is a parabola or higher order
+polynomial.</p></section> </article>
+</section>
+<h2 data-number="9.5" id="knowledge-check-8"><span class="header-section-number">9.5</span> Knowledge Check</h2>
+<section class="knowledge-check" id="pid-ch9-knowledge-check">
+<p>
+Use these checks to test final-value theorem conditions,
+reference-tracking type, and disturbance-path type before moving on.
+</p>
+
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The final value theorem requires the
+final time-domain limit to exist; in practice, check that sY(s) has no
+right-half-plane or nonzero imaginary-axis poles." data-feedback-b="B
+is not correct. The algebraic limit can exist even when the time
+response is unstable or oscillatory." data-feedback-c="C is not
+correct. The theorem is about the steady-state limit, not only the
+initial value." data-feedback-d="D is not correct. Controller type
+does not by itself guarantee that a particular final-value calculation
+is valid."> <h4>Q1. Final value theorem condition</h4> <p
+class="quiz-prompt">Before accepting lim<sub>s->0</sub> sY(s) as
+the final value, what must be true?</p> <div class="quiz-options">
+<label><input type="radio" name="pid-ch9-q1" value="A"><span class="quiz-option-text">A) The
+final time-domain value must exist.</span></label> <label><input
+type="radio" name="pid-ch9-q1" value="B"><span class="quiz-option-text">B) The algebraic limit
+must be easy to compute.</span></label> <label><input type="radio"
+name="pid-ch9-q1" value="C"><span class="quiz-option-text">C) The initial value must be
+zero.</span></label> <label><input type="radio" name="pid-ch9-q1"
+value="D"><span class="quiz-option-text">D) The controller must include derivative
+control.</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. A type 1 system has one free
+integrator, not zero free integrators." data-feedback-b="B is correct.
+For reference tracking, type is the number of free integrators in the
+open-loop product P(s)C(s)." data-feedback-c="C is not correct. Two
+free integrators would make the system type 2 for reference tracking."
+data-feedback-d="D is not correct. The number of zeros at the origin is
+not the definition used here."> <h4>Q2. Type number</h4> <p
+class="quiz-prompt">For reference tracking, a type 1 system has how
+many free integrators in P(s)C(s)?</p> <div class="quiz-options">
+<label><input type="radio" name="pid-ch9-q2" value="A"><span class="quiz-option-text">A)
+Zero</span></label> <label><input type="radio" name="pid-ch9-q2"
+value="B"><span class="quiz-option-text">B) One</span></label> <label><input type="radio"
+name="pid-ch9-q2" value="C"><span class="quiz-option-text">C) Two</span></label> <label><input
+type="radio" name="pid-ch9-q2" value="D"><span class="quiz-option-text">D) One zero at the
+origin</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. A type 1 system gives zero steady-state
+error for a step and finite steady-state error for a ramp."
+data-feedback-b="B is not correct. Type 1 does not give zero error for
+a ramp; it gives a finite ramp error of 1/M_v." data-feedback-c="C is
+not correct. A type 1 system improves step tracking, so the step error
+is zero under the chapter assumptions." data-feedback-d="D is not
+correct. A parabola is a higher-order input than a type 1 system can
+track with finite error."> <h4>Q3. Tracking consequence</h4> <p
+class="quiz-prompt">For a stable type 1 reference-tracking system,
+what steady-state tracking behavior should you expect?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch9-q3" value="A"><span class="quiz-option-text">A) Zero step error and finite ramp
+error.</span></label> <label><input type="radio" name="pid-ch9-q3"
+value="B"><span class="quiz-option-text">B) Zero step error and zero ramp error.</span></label>
+<label><input type="radio" name="pid-ch9-q3" value="C"><span class="quiz-option-text">C)
+Finite step error and infinite ramp error.</span></label> <label><input
+type="radio" name="pid-ch9-q3" value="D"><span class="quiz-option-text">D) Zero parabola
+error.</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. For the input-disturbance path, the
+controller integrator changes the low-frequency behavior of
+P(s)/(1+P(s)C(s))." data-feedback-b="B is not correct. The plant
+matters, but the chapter example shows that the controller integrator
+changes the input-disturbance type." data-feedback-c="C is not
+correct. The sensor is not where the input disturbance enters."
+data-feedback-d="D is not correct. The reference signal does not
+determine the input-disturbance type."> <h4>Q4. Input-disturbance
+type</h4> <p class="quiz-prompt">For input disturbances in the
+chapter examples, where is the free integrator that most directly
+improves constant disturbance rejection?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch9-q4" value="A"><span class="quiz-option-text">A) In the controller C(s)</span></label>
+<label><input type="radio" name="pid-ch9-q4" value="B"><span class="quiz-option-text">B) In
+the plant only</span></label> <label><input type="radio"
+name="pid-ch9-q4" value="C"><span class="quiz-option-text">C) In the sensor only</span></label>
+<label><input type="radio" name="pid-ch9-q4" value="D"><span class="quiz-option-text">D) In
+the reference signal</span></label> </div> <div class="quiz-actions">
+<button type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. Sensor noise usually has
+high-frequency content, so an integrator is not the primary fix."
+data-feedback-b="B is not correct. Actuator saturation is a nonlinear
+limitation and is not solved by simply adding an integrator."
+data-feedback-c="C is correct. The chapter motivation for integral
+control is removing steady-state error caused by constant low-frequency
+inputs or disturbances." data-feedback-d="D is not correct. A
+derivative term affects transient behavior, not the basic type argument
+for constant input-disturbance rejection."> <h4>Q5. What integral
+action most directly helps</h4> <p class="quiz-prompt">Which issue
+is integral action most directly intended to improve in this
+chapter?</p> <div class="quiz-options"> <label><input
+type="radio" name="pid-ch9-q5" value="A"><span class="quiz-option-text">A) High-frequency
+sensor noise</span></label> <label><input type="radio"
+name="pid-ch9-q5" value="B"><span class="quiz-option-text">B) Actuator saturation</span></label>
+<label><input type="radio" name="pid-ch9-q5" value="C"><span class="quiz-option-text">C)
+Constant steady-state tracking or disturbance error</span></label>
+<label><input type="radio" name="pid-ch9-q5" value="D"><span class="quiz-option-text">D) The
+need for derivative control</span></label> </div> <div
+class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card ch9-numeric-check" data-quiz-type="short"
+data-answer-number="0.25" data-tolerance="0.01"> <h4>Q6.
+Ramp-error calculation</h4> <p class="quiz-prompt">A type 1
+reference-tracking system has M<sub>v</sub> = 4. For a unit ramp
+input, enter the steady-state error.</p> <div
+class="quiz-options"> <label
+class="ch9-numeric-answer"><span>e<sub>ss</sub>:</span><input
+type="text" name="pid-ch9-q6" placeholder="numeric value"
+/></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> 0.25. For a type 1
+system tracking a unit ramp, e<sub>ss</sub> = 1/M<sub>v</sub> =
+1/4.</p></details></div> </article>
+<article class="quiz-card ch9-numeric-check" data-quiz-type="short"
+data-answer-number="0" data-tolerance="0.001"> <h4>Q7. Step-error
+calculation</h4> <p class="quiz-prompt">For the same type 1
+reference-tracking system, enter the steady-state error for a unit step
+input.</p> <div class="quiz-options"> <label
+class="ch9-numeric-answer"><span>e<sub>ss</sub>:</span><input
+type="text" name="pid-ch9-q7" placeholder="numeric value"
+/></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> 0. A type 1 system
+gives zero steady-state error for a step input, assuming the closed loop
+is stable.</p></details></div> </article>
+<article class="quiz-card" data-quiz-type="short"
+data-answers="type 0\|type zero\|0"> <h4>Q8. Classify tracking
+type</h4> <p class="quiz-prompt">If P(s)C(s) has no free
+integrators, enter the reference-tracking system type.</p> <div
+class="quiz-options"> <label><span>Type:</span><input
+type="text" name="pid-ch9-q8" placeholder="e.g., type 0"
+/></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> Type 0. The type
+equals the number of free integrators in P(s)C(s) for reference
+tracking.</p></details></div> </article>
+<article class="quiz-card" data-quiz-type="short"
+data-answers="controller\|controller c(s)\|c(s)"> <h4>Q9.
+Disturbance-path identification</h4> <p class="quiz-prompt">In one
+word or expression, where should you look first for the free integrator
+that improves input-disturbance rejection in the chapter examples?</p>
+<div class="quiz-options"> <label><span>Answer:</span><input
+type="text" name="pid-ch9-q9" placeholder="e.g., controller"
+/></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> The controller
+C(s). For input disturbances, the chapter examples show that adding an
+integrator to the controller changes the disturbance
+type.</p></details></div> </article>
+
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. In unity negative feedback, E(s)/R(s) =
+1/(1 + C(s)P(s))." data-feedback-b="B is not correct. That is the
+complementary sensitivity from reference to output."
+data-feedback-c="C is not correct. The plant alone does not include the
+feedback correction." data-feedback-d="D is not correct. The error
+transfer function is not the open-loop transfer function."> <h4>Q10.
+Error transfer from reference</h4> <p class="quiz-prompt">For
+unity negative feedback with plant P(s) and controller C(s), what is the
+transfer function from R(s) to E(s)?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch9-exam-q1" value="A"><span class="quiz-option-text">A) E(s)/R(s) = 1/(1 +
+C(s)P(s))</span></label> <label><input type="radio"
+name="pid-ch9-exam-q1" value="B"><span class="quiz-option-text">B) E(s)/R(s) = C(s)P(s)/(1 +
+C(s)P(s))</span></label> <label><input type="radio"
+name="pid-ch9-exam-q1" value="C"><span class="quiz-option-text">C) E(s)/R(s) = P(s)</span></label>
+<label><input type="radio" name="pid-ch9-exam-q1" value="D"><span class="quiz-option-text">D) E(s)/R(s) = C(s)P(s)</span></label> </div> <div
+class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. The disturbance is injected at the
+plant input, so P(s) appears in the path to the output and error."
+data-feedback-b="B is correct. With R(s) = 0, the error magnitude path
+for an input disturbance is proportional to P(s)/(1 + C(s)P(s))."
+data-feedback-c="C is not correct. That is the open-loop product and
+omits the closed-loop denominator." data-feedback-d="D is not correct.
+This expression omits the plant path from the disturbance injection
+point."> <h4>Q11. Input-disturbance path</h4> <p
+class="quiz-prompt">For a disturbance D(s) added at the plant input
+in unity feedback, which closed-loop factor determines the error path
+magnitude from D(s) to E(s)?</p> <div class="quiz-options">
+<label><input type="radio" name="pid-ch9-exam-q2" value="A"><span class="quiz-option-text">A) 1/(1 + C(s)P(s))</span></label> <label><input type="radio"
+name="pid-ch9-exam-q2" value="B"><span class="quiz-option-text">B) P(s)/(1 + C(s)P(s))</span></label>
+<label><input type="radio" name="pid-ch9-exam-q2" value="C"><span class="quiz-option-text">C) C(s)P(s)</span></label> <label><input type="radio"
+name="pid-ch9-exam-q2" value="D"><span class="quiz-option-text">D) C(s)/(1 + C(s)P(s))</span></label>
+</div> <div class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. There is one free integrator at s =
+0." data-feedback-b="B is correct. The open-loop product has exactly
+one factor of s in the denominator, so it is type 1."
+data-feedback-c="C is not correct. Type 2 would require two free
+integrators." data-feedback-d="D is not correct. The finite pole at -5
+is not a free integrator."> <h4>Q12. Count the free
+integrators</h4> <p class="quiz-prompt">For reference tracking
+with C(s)P(s)H(s) = 10(s + 2)/(s(s + 5)), what is the system type?</p>
+<div class="quiz-options"> <label><input type="radio"
+name="pid-ch9-exam-q3" value="A"><span class="quiz-option-text">A) Type 0</span></label>
+<label><input type="radio" name="pid-ch9-exam-q3" value="B"><span class="quiz-option-text">B) Type 1</span></label> <label><input type="radio"
+name="pid-ch9-exam-q3" value="C"><span class="quiz-option-text">C) Type 2</span></label>
+<label><input type="radio" name="pid-ch9-exam-q3" value="D"><span class="quiz-option-text">D) Type 5</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. Reference type and disturbance type
+can differ because the signal enters at a different point."
+data-feedback-b="B is not correct. Zeros at the origin are not free
+integrators." data-feedback-c="C is correct. For a disturbance, form
+the transfer path from that disturbance to the error and count its free
+integrators." data-feedback-d="D is not correct. System type is not
+determined by the desired input alone."> <h4>Q13. Disturbance
+type</h4> <p class="quiz-prompt">When determining the system type
+for a disturbance input, what should you count?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch9-exam-q4" value="A"><span class="quiz-option-text">A) Only the free integrators in
+the reference path.</span></label> <label><input type="radio"
+name="pid-ch9-exam-q4" value="B"><span class="quiz-option-text">B) The zeros at the origin in the
+plant numerator.</span></label> <label><input type="radio"
+name="pid-ch9-exam-q4" value="C"><span class="quiz-option-text">C) The free integrators in the
+transfer path from that disturbance to the error.</span></label>
+<label><input type="radio" name="pid-ch9-exam-q4" value="D"><span class="quiz-option-text">D) The order of the desired reference signal.</span></label> </div> <div
+class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. A stable type 1 system has finite,
+not zero, ramp error." data-feedback-b="B is not correct. That would
+correspond to M_v = 1." data-feedback-c="C is not correct. This
+inverts the relationship." data-feedback-d="D is correct. For a stable
+type 1 system tracking a unit ramp, e_ss = 1/M_v = 1/5 = 0.2.">
+<h4>Q14. Ramp-error constant</h4> <p class="quiz-prompt">A
+stable type 1 reference-tracking system has M<sub>v</sub> = 5. What
+is the steady-state error for a unit ramp?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch9-exam-q5" value="A"><span class="quiz-option-text">A) 0</span></label> <label><input
+type="radio" name="pid-ch9-exam-q5" value="B"><span class="quiz-option-text">B) 1</span></label>
+<label><input type="radio" name="pid-ch9-exam-q5" value="C"><span class="quiz-option-text">C) 5</span></label> <label><input type="radio" name="pid-ch9-exam-q5"
+value="D"><span class="quiz-option-text">D) 0.2</span></label> </div> <div class="quiz-actions">
+<button type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="9.6" id="notes-and-references-7" class="section-notes"><span class="header-section-number">9.6</span> Notes and References</h2>
+<p>The PID structure analyzed in this chapter uses a differentiator on
+the error as shown in
+<strong>Fig.</strong> <a href="07-7-pole-placement-for-second-order-systems.html#fig:pid_PD_control_2" data-reference-type="ref"
+data-reference="fig:pid_PD_control_2">7.1</a> instead of
+differentiating the output variable as shown in
+<strong>Fig.</strong> <a href="07-7-pole-placement-for-second-order-systems.html#fig:pid_PD_control_3" data-reference-type="ref"
+data-reference="fig:pid_PD_control_3">7.2</a>. It is straightforward to
+show, using the final value theorem, that the system type does not
+change under the two configurations. However, the value of the steady
+state error does change and is not necessarily given by the simple
+formulas in Table <a href="#table:system_type" data-reference-type="ref"
+data-reference="table:system_type">12.1</a>.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

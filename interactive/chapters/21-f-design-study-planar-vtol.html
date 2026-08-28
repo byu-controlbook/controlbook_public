@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="F" id="design-study-planar-vtol" class="section-design-study"><span class="header-section-number">F</span> Design Study: Planar VTOL</h1>
+<p><img src="6_design_studies/figures/hw_planar_VTOL_defn.png"
+style="width:59.0%" alt="image" /></p>
+<p>In this design study we explore the control design for a simplified
+planar version of a quadrotor following a ground target. In particular,
+we constrain the dynamics to be in a two dimensional plane. In Cartesian
+space, the position of the VTOL can be defined by a variable describing
+the vertical position, one describing the horizontal position, and one
+angular variable describing the orientation, as shown in
+<strong>Fig.</strong> <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="fig:planar_VTOL_defn">21.1</a>. The
+planar vertical take-off and landing (VTOL) system is comprised of a
+center pod of mass <span class="math inline">\(m_c\)</span> and inertia
+<span class="math inline">\(J_c\)</span>, a right motor/rotor that is
+modeled as a point mass <span class="math inline">\(m_r\)</span> that
+exerts a force <span class="math inline">\(f_r\)</span> at a distance
+<span class="math inline">\(d\)</span> from the center of mass, and a
+left motor/rotor that is modeled as a point mass <span
+class="math inline">\(m_\ell\)</span> that exerts a force <span
+class="math inline">\(f_\ell\)</span> at a distance <span
+class="math inline">\(-d\)</span> from the center of mass. The position
+of the center of mass of the planar VTOL system is given by horizontal
+position <span class="math inline">\(z_v\)</span> and altitude <span
+class="math inline">\(h\)</span>. The airflow through the rotor creates
+a change in the direction of flow of air and causes what is called
+“momentum drag.” Momentum drag can be modeled as a viscous drag force
+that is proportional to the horizontal velocity <span
+class="math inline">\(\dot{z}_v\)</span>. In other words, the drag force
+is <span class="math inline">\(F_{\text{drag}}=-\mu \dot{z}_v\)</span>.
+The target on the ground will be modeled as an object with position
+<span class="math inline">\(z_t\)</span> and altitude <span
+class="math inline">\(h=0\)</span>. We will not explicitly model the
+dynamics of the target.</p>
+<p>Use the following physical parameters: <span
+class="math inline">\(m_c=1\)</span> kg, <span
+class="math inline">\(J_c=0.0042\)</span> kg m<span
+class="math inline">\(^2\)</span>, <span
+class="math inline">\(m_r=0.25\)</span> kg, <span
+class="math inline">\(m_\ell=0.25\)</span> kg, <span
+class="math inline">\(d=0.3\)</span> m, <span class="math inline">\(\mu
+= 0.1\)</span> kg/s, <span
+class="math inline">\(g=9.81\)</span> m/s<span
+class="math inline">\(^2\)</span>.</p>
+<p><strong><a href="#design-study-planar-vtol">F.2</a></strong> Kinetic
+energy.</p>
+<p><strong><a href="#design-study-planar-vtol">F.3</a></strong>
+Equations of Motion.</p>
+<p><strong><a href="#design-study-planar-vtol">F.4</a></strong> Linearize
+equations of motion.</p>
+<p><strong><a href="#design-study-planar-vtol">F.5</a></strong>
+Transfer function model.</p>
+<p><strong><a href="#design-study-planar-vtol">F.6</a></strong> State space
+model.</p>
+<p><strong><a href="#design-study-planar-vtol">F.7</a></strong> Pole
+Placement using PD.</p>
+<p><strong><a href="#design-study-planar-vtol">F.8</a></strong> Successive loop
+closure.</p>
+<p><strong><a href="#design-study-planar-vtol">F.9</a></strong> Integrators
+and system type.</p>
+<p><strong><a href="#design-study-planar-vtol">F.P.6</a></strong> Root
+locus.</p>
+<p><strong><a href="#design-study-planar-vtol">F.10</a></strong> Digital
+PID.</p>
+<p><strong><a href="#design-study-planar-vtol">F.11</a></strong> Full
+state feedback.</p>
+<p><strong><a
+href="#design-study-planar-vtol">F.12</a></strong> Full state
+with integrator.</p>
+<p><strong><a href="#design-study-planar-vtol">F.13</a></strong> Observer based
+control.</p>
+<p><strong><a href="#design-study-planar-vtol">F.14</a></strong>
+Disturbance observer.</p>
+<p><strong><a href="#design-study-planar-vtol">F.15</a></strong> Frequency
+Response.</p>
+<p><strong><a href="#design-study-planar-vtol">F.16</a></strong> Loop gain.</p>
+<p><strong><a href="#design-study-planar-vtol">F.17</a></strong> Stability
+margins.</p>
+<p><strong><a href="#design-study-planar-vtol">F.18</a></strong> Loopshaping
+design.</p>
+<h2 data-number="F.1" id="-homework-24chapkinetic-energy"><span class="header-section-number">F.1</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems" data-reference-type="ref"
+data-reference="chap:kinetic-energy"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2</a></a></h2>
+<p>(a) Using the configuration variables <span
+class="math inline">\(z_v\)</span>, <span
+class="math inline">\(h\)</span>, and <span
+class="math inline">\(\theta\)</span>, write an expression for the
+kinetic energy of the system.</p>
+<p>(b) Create an animation of the planar VTOL system. The inputs to the
+animation should be <span class="math inline">\(z_v\)</span>, <span
+class="math inline">\(z_t\)</span>, <span
+class="math inline">\(h\)</span>, and <span
+class="math inline">\(\theta\)</span>. Turn in a screen capture of the
+animation.</p>
+<h2 data-number="F.2" id="-homework-246"><span class="header-section-number">F.2</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations" data-reference-type="ref"
+data-reference="chap:euler-lagrange">6</a></h2>
+<p>(a) Find the potential energy for the system.</p>
+<p>(b) Define the generalized coordinates and damping forces.</p>
+<p>(c) Find the generalized forces. Note that the right and left forces are
+more easily modeled as a total force on the center of mass, and a torque
+about the center of mass.</p>
+<p>(d) Derive the equations of motion for the planar VTOL system using the
+Euler-Lagrange equations.</p>
+<p>(e) Referring to Appendices <a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python" data-reference-type="ref"
+data-reference="chap:python">25</a>,
+<a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab" data-reference-type="ref"
+data-reference="chap:matlab">26</a>,
+and <a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink" data-reference-type="ref"
+data-reference="chap:simulink">27</a>, write a class or s-function that
+implements the equations of motion. Simulate the system using a variable
+force inputs <span class="math inline">\(f_r\)</span> and <span
+class="math inline">\(f_\ell\)</span>. The output should connect to the
+animation function developed in
+homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems" data-reference-type="ref"
+data-reference="chap:kinetic-energy"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2</a></a>. Do not
+be surprised if the system does not behave well (i.e. the VTOL system
+seems to crash or go off to infinity). We are simulating an open-loop
+system with no control to stabilize the behavior.</p>
+<h2 data-number="F.3" id="-homework-247"><span class="header-section-number">F.3</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization" data-reference-type="ref"
+data-reference="chap:linearization">7</a></h2>
+<p>Since <span class="math inline">\(f_r\)</span> and <span
+class="math inline">\(f_\ell\)</span> appear in the equations as either
+<span class="math inline">\(f_r+f_\ell\)</span> or <span
+class="math inline">\(d(f_r-f_\ell)\)</span>, it is easier to think of
+the inputs as the total force <span
+class="math inline">\(F\stackrel{\triangle}{=}f_r+f_\ell\)</span>, and
+the torque <span class="math inline">\(\tau=d(f_r-f_\ell)\)</span>. Note
+that since <span class="math display">\[\begin{pmatrix} F \\ \tau
+\end{pmatrix} = \begin{pmatrix} 1 &amp; 1 \\ d &amp; -d
+\end{pmatrix}\begin{pmatrix} f_r \\ f_\ell \end{pmatrix},\]</span> then
+<span class="math display">\[\begin{pmatrix} f_r \\ f_\ell \end{pmatrix}
+= \begin{pmatrix} 1 &amp; 1 \\ d &amp; -d
+\end{pmatrix}^{-1}\begin{pmatrix} F \\ \tau \end{pmatrix}
+= \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2d} \\ \frac{1}{2} &amp;
+-\frac{1}{2d} \end{pmatrix} \begin{pmatrix} F \\ \tau
+\end{pmatrix}.\]</span> Therefore, in subsequent exercises, if we
+determine <span class="math inline">\(F\)</span> and <span
+class="math inline">\(\tau\)</span>, then the right and left forces are
+given by <span class="math display">\[\begin{aligned}
+f_r &amp;= \frac{1}{2} F + \frac{1}{2d}\tau \\
+f_\ell &amp;= \frac{1}{2}F - \frac{1}{2d}\tau.
+\end{aligned}\]</span></p>
+<p>(a) Find the equilibria of the system.</p>
+<p>(b) Linearize the equations about the equilibria using Jacobian
+linearization.</p>
+<p>(c) If possible, linearize the system using feedback linearization.</p>
+<h2 data-number="F.4" id="-homework-248"><span class="header-section-number">F.4</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a></h2>
+<p>For the planar VTOL system, note that the system naturally divides
+into so-called longitudinal dynamics (up-down motion) with total force
+<span class="math inline">\(\tilde{F}\)</span> as the input and altitude
+<span class="math inline">\(\tilde{h}\)</span> as the output, and
+lateral dynamics (side-to-side motion) with <span
+class="math inline">\(\tilde{\tau}\)</span> as the input and <span
+class="math inline">\(\tilde{z}\)</span> as the output, with <span
+class="math inline">\(\tilde{\theta}\)</span> as an intermediate
+variable.</p>
+<p>(a) Start with the linearized equations of motion and use the Laplace
+transform to convert the equations of motion to the s-domain.</p>
+<p>(b) For the longitudinal dynamics, find the transfer function from the input
+<span class="math inline">\(\tilde{F}(s)\)</span> to the output <span
+class="math inline">\(\tilde{H}(s)\)</span>.</p>
+<p>(c) For the lateral dynamics, find the transfer function from the input
+<span class="math inline">\(\tilde{\tau}(s)\)</span> to the intermediate
+state <span class="math inline">\(\tilde{\Theta}(s)\)</span> and the
+output <span class="math inline">\(\tilde{Z}(s)\)</span>. Find the
+transfer function from <span
+class="math inline">\(\tilde{\Theta}(s)\)</span> to <span
+class="math inline">\(\tilde{Z}(s)\)</span>.</p>
+<p>(d) Draw a block diagram of the open loop longitudinal and lateral
+systems.</p>
+<h2 data-number="F.5" id="-homework-249"><span class="header-section-number">F.5</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a></h2>
+<p>(a) Defining the longitudinal states as <span
+class="math inline">\(\tilde{x}_{lon}=(\tilde{h},
+\dot{\tilde{h}})^\top\)</span> and the longitudinal input as <span
+class="math inline">\(\tilde{u}_{lon}=\tilde{F}\)</span> and the
+longitudinal output as <span class="math inline">\(\tilde{y}_{lon} =
+\tilde{h}\)</span>, find the linear state space equations in the form
+<span class="math display">\[\begin{aligned}
+        \dot{\tilde{x}}_{lon} &amp;= A\tilde{x}_{lon} + B\tilde{u}_{lon}
+\\
+        \tilde{y}_{lon} &amp;= C\tilde{x}_{lon} + D\tilde{u}_{lon}.
+    \end{aligned}\]</span></p>
+<p>(b) Defining the lateral states as <span
+class="math inline">\(\tilde{x}_{lat}=(\tilde{z}, \tilde{\theta},
+\dot{\tilde{z}}, \dot{\tilde{\theta}})^\top\)</span> and the lateral
+input as <span
+class="math inline">\(\tilde{u}_{lat}=\tilde{\tau}\)</span> and the
+lateral output as <span class="math inline">\(\tilde{y}_{lat} =
+(\tilde{z}, \tilde{\theta})^\top\)</span>, find the linear state space
+equations in the form <span class="math display">\[\begin{aligned}
+        \dot{\tilde{x}}_{lat} &amp;= A\tilde{x}_{lat} + B\tilde{u}_{lat}
+\\
+        \tilde{y}_{lat} &amp;= C\tilde{x}_{lat} + D\tilde{u}_{lat}.
+    \end{aligned}\]</span></p>
+<h2 data-number="F.6" id="-homework-2410"><span class="header-section-number">F.6</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-pole-placement">10</a></h2>
+<p>For this problem we will only consider the longitudinal (up-down)
+dynamics of the VTOL system.</p>
+<p>(a) Given the open-loop transfer function from total force <span
+class="math inline">\(\tilde{F}\)</span> to altitude <span
+class="math inline">\(\tilde{h}\)</span> found in
+homework  <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="05-5-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">8</a>, find the open-loop
+poles of the system.</p>
+<p>(b) Using PD control architecture shown in
+Figure <a href="07-7-pole-placement-for-second-order-systems.html#fig:pid_PD_control_3" data-reference-type="ref"
+data-reference="fig:pid_PD_control_3">7.2</a>, find the closed-loop
+transfer function from <span class="math inline">\(\tilde{h}_r\)</span>
+to <span class="math inline">\(\tilde{h}\)</span> and find the
+closed-loop poles as a function of <span
+class="math inline">\(k_P\)</span> and <span
+class="math inline">\(k_D\)</span>.</p>
+<p>(c) Select <span class="math inline">\(k_P\)</span> and <span
+class="math inline">\(k_D\)</span> to place the closed-loop poles at
+<span class="math inline">\(p_1=-0.2\)</span> and <span
+class="math inline">\(p_2=-0.3\)</span>.</p>
+<p>(d) Using the gains from part (c), implement the PD control for the altitude
+control in simulation and plot the response for a reference input of a
+square wave with magnitude <span class="math inline">\(5 \pm
+3\)</span> meters and frequency <span
+class="math inline">\(0.03\)</span> Hz.</p>
+<h2 data-number="F.7" id="-homework-2411"><span class="header-section-number">F.7</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a></h2>
+<p>For the VTOL system, do the following:</p>
+<p>(a) For the longitudinal (altitude) dynamics of the VTOL, suppose that the
+design requirements are that the rise time is <span
+class="math inline">\(t_r \approx 8\)</span> seconds, with a damping
+ratio of <span class="math inline">\(\zeta=0.707\)</span>. Find the
+desired closed-loop characteristic polynomial <span
+class="math inline">\(\Delta_{cl}^d(s)\)</span>, and the associated pole
+locations. Find the proportional and derivative gains <span
+class="math inline">\(k_{P_h}\)</span> and <span
+class="math inline">\(k_{D_h}\)</span> to achieve these specifications,
+and modify the computer simulation from
+HW <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-pole-placement">10</a> to verify that the
+response satisfies the requirements using the same reference input.</p>
+<p>(b) The lateral dynamics (side-to-side) will be designed using successive
+loop closure with the inner-loop using torque to regulate the roll
+angle, and the outer-loop using roll angle to regulate the position
+<span class="math inline">\(z\)</span>. Focusing on the inner loop, find
+the PD gains <span class="math inline">\(k_{P_\theta}\)</span> and <span
+class="math inline">\(k_{D_\theta}\)</span> so that the rise time of the
+inner loop is <span
+class="math inline">\(t_{r_\theta}=0.8\)</span> seconds, and the damping
+ratio is <span class="math inline">\(\zeta_{\theta}=0.707\)</span>.</p>
+<p>(c) Find the DC gain <span class="math inline">\(k_{DC_\theta}\)</span> of
+the inner loop.</p>
+<p>(d) Replacing the inner loop by its DC-gain, find the PD gains <span
+class="math inline">\(k_{P_z}\)</span> and <span
+class="math inline">\(k_{D_z}\)</span> so that the rise time of the
+outer loop is <span class="math inline">\(t_{r_z}=10
+t_{r_\theta}\)</span> and the damping ratio is <span
+class="math inline">\(\zeta_z=0.707\)</span>.</p>
+<p>(e) Implement the successive loop closure design for the lateral control of
+the VTOL system where the commanded lateral position is given by a
+square wave with magnitude <span class="math inline">\(5 \pm
+4\)</span> meters and frequency <span
+class="math inline">\(0.05\)</span> Hz. Tune the rise time for the inner
+lateral control loop to achieve good performance.</p>
+<p>(f) Suppose that the size of the force on each rotor is constrained by <span
+class="math inline">\(0\leq f_\ell \leq f_{\max}=10\)</span> N, and
+<span class="math inline">\(0\leq f_r \leq f_{\max}=10\)</span> N.
+Modify the simulation to include saturations on the right and left
+forces <span class="math inline">\(f_\ell\)</span> and <span
+class="math inline">\(f_r\)</span>. Using the rise time for the altitude
+controller, and the rise time for the lateral controller as tuning
+parameters, tune the controller to achieve the fastest possible response
+without input saturation.</p>
+<h2 data-number="F.8" id="-homework-2412"><span class="header-section-number">F.8</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="09-9-system-type-and-integrators.html#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">12</a></h2>
+<p>(a) When the longitudinal controller for the VTOL system is PD control, what
+is the system type? Characterize the steady state error when <span
+class="math inline">\(h^d\)</span> is a step, a ramp, and a parabola.
+How does this change if you add an integrator? What is the system type
+with respect to an input disturbance for both PD and PID control?</p>
+<p>(b) When the inner loop of the lateral controller for the VTOL system is PD
+control, what is the system type of the inner loop? Characterize the
+steady state error when <span
+class="math inline">\(\tilde{\theta}^d\)</span> is a step, a ramp, and a
+parabola. What is the system type with respect to an input
+disturbance?</p>
+<p>(c) When the outer loop of the lateral controller for the VTOL system is PD
+control, what is the system type of the outer loop? Characterize the
+steady state error when <span class="math inline">\(z^d\)</span> is a
+step, a ramp, and a parabola. How does this change if you add an
+integrator? What is the system type with respect to an input disturbance
+for both PD and PID control?</p>
+<h2 data-number="F.9" id="-homework-2430"><span class="header-section-number">F.9</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="28-p-6-root-locus.html#----root-locus" data-reference-type="ref"
+data-reference="chap:PID-root-locus">30</a></h2>
+<p>(a) Adding an integrator to obtain PID control for the longitudinal
+controller for the VTOL system, put the characteristic equation in
+Evans’ form and use the Matlab/Python <code>rlocus</code> command to
+plot the root locus versus the integrator gain <span
+class="math inline">\(k_{I_h}\)</span>. Select a value for <span
+class="math inline">\(k_{I_h}\)</span> that does not significantly
+change the other locations of the closed loop poles.</p>
+<p>(b) Adding an integrator to obtain PID control for the outer loop of the
+lateral controller for the VTOL system, put the characteristic equation
+of the outer loop in Evans’ form and use the Matlab/Python
+<code>rlocus</code> command to plot the root locus versus the integrator
+gain <span class="math inline">\(k_{I_z}\)</span>. Select a value for
+<span class="math inline">\(k_{I_z}\)</span> that does not significantly
+change the other locations of the closed loop poles.</p>
+<h2 data-number="F.10" id="-homework-2413"><span class="header-section-number">F.10</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a></h2>
+<p>The objective of this problem is to implement the PID controller
+using only measured outputs of the system.</p>
+<p>(a) Modify the system dynamics file so that the parameters <span
+class="math inline">\(m_c\)</span>, <span
+class="math inline">\(J_c\)</span>, <span
+class="math inline">\(d\)</span>, and <span
+class="math inline">\(\mu\)</span> vary by up to 20% of their nominal
+value each time they are run (uncertainty parameter = 0.2).</p>
+<p>(b) Change the simulation files so that the input to the controller is the
+output and not the state. Implement the nested PID loops in
+Problem <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>. Use the dirty derivative
+gain of <span class="math inline">\(\sigma=0.05\)</span>. Tune the
+integrator so that there is no steady state error. You may also adjust
+damping and rise time to improve performance. The controller should only
+assume knowledge of the position <span class="math inline">\(z\)</span>,
+the angle <span class="math inline">\(\theta\)</span>, the altitude
+<span class="math inline">\(h\)</span>, the reference position <span
+class="math inline">\(z_r\)</span>, and the reference altitude <span
+class="math inline">\(h_r\)</span>.</p>
+<h2 data-number="F.11" id="-homework-2414"><span class="header-section-number">F.11</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a></h2>
+<p>The objective of this problem is to implement a state feedback
+controller for the VTOL system. Start with the simulation files
+developed in Homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(a) Using the values for <span class="math inline">\(\omega_{n_h}\)</span>,
+<span class="math inline">\(\zeta_h\)</span>, <span
+class="math inline">\(\omega_{n_z}\)</span>, and <span
+class="math inline">\(\zeta_z\)</span> from
+Homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>, choose the closed-loop
+pole locations to ensure that the longitudinal poles have damping ratios
+greater than <span class="math inline">\(\zeta_h\)</span> and natural
+frequencies greater than <span
+class="math inline">\(\omega_{n_h}\)</span>. Similarly choose the
+closed-loop poles for the lateral dynamics to ensure that their damping
+ratios are greater than <span class="math inline">\(\zeta_z\)</span> and
+natural frequencies greater than <span
+class="math inline">\(\omega_{n_z}\)</span></p>
+<p>(b) Add the state space matrices <span class="math inline">\(A\)</span>,
+<span class="math inline">\(B\)</span>, <span
+class="math inline">\(C\)</span>, <span class="math inline">\(D\)</span>
+derived in Homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a> to your param file.</p>
+<p>(c) Verify that the state space system is controllable by checking that
+<span
+class="math inline">\(\text{rank}(\mathcal{C}_{A,B})=n\)</span>.</p>
+<p>(d) Find the feedback gain <span class="math inline">\(K\)</span> such that
+the eigenvalues of <span class="math inline">\((A-BK)\)</span> are equal
+to desired closed loop poles. Find the reference gains <span
+class="math inline">\(k_{r_h}\)</span> and <span
+class="math inline">\(k_{r_z}\)</span> so that the DC-gain from <span
+class="math inline">\(h_r\)</span> to <span
+class="math inline">\(h\)</span> is equal to one, and the DC-gain from
+<span class="math inline">\(z_r\)</span> to <span
+class="math inline">\(z\)</span> is equal to one.</p>
+<p>(e) Implement the state feedback scheme and tune the closed-loop poles to
+get acceptable response. What changes would you make to your closed-loop
+pole locations to decrease the rise time of the system? How would you
+change them to lower the overshoot in response to a step command?</p>
+<h2 data-number="F.12" id="-homework-2415"><span class="header-section-number">F.12</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a></h2>
+<p>Modify the state feedback solution developed in
+Homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> to add an integrator with
+anti-windup to the altitude feedback loop and to the position feedback
+loop.</p>
+<p>Allow the plant parameters to vary up to 20% and add a constant input
+disturbance of <span class="math inline">\(0.1\)</span> Newtons to the
+input of position dynamics simulating wind. <em>Hint: The best place to
+add the wind force is in the class that implements the dynamics. For
+example, one possibility is to modify the <span
+class="math inline">\(z\)</span> dynamics as:</em> <span
+class="math inline">\(\ddot{z} =
+\left(-(f_r+f_l)sin(\theta)-\mu\dot{z}+F\_{wind}\right)/\left(m_c+2m_r\right)\)</span></p>
+<p>Tune the integrator poles on both loops (and other gains if
+necessary) to get good tracking performance.</p>
+<h2 data-number="F.13" id="-homework-2416"><span class="header-section-number">F.13</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="13-13-observers.html#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a></h2>
+<p>The objective of this problem is to design an observer that estimates
+the state of the system and to use the estimated state in the controller
+designed in Homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>.</p>
+<p>(a) For the sake of understanding the function of the observer, for this
+problem we will use exact parameters, without an input disturbance.
+Modify the VTOL dynamics so that the parameters known to the controller
+are the actual plant parameters (uncertainty parameter <span
+class="math inline">\(\alpha=0\)</span>).</p>
+<p>(b) Verify that the state space system is observable by checking that <span
+class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>.</p>
+<p>(c) In the control block, add an observer to estimate the state <span
+class="math inline">\(\hat{x}\)</span>, and use the estimate of the
+state in your feedback controller. Tune the poles of the controller and
+observer to obtain good performance.</p>
+<p>(d) Modify the simulation files so that the controller outputs both <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(\hat{x}\)</span>. Add a plotting routine to plot
+both the state and the estimated state of the system on the same
+graph.</p>
+<p>(e) As motivation for the next chapter, add an input force disturbance to
+the system of <span class="math inline">\(1.0\)</span> and an input
+torque disturbance of <span class="math inline">\(0.1\)</span> and
+observe that there is steady state error in the response even though
+there is an integrator. This is caused by a steady state error in the
+observation error. In the next chapter we will show how to remove the
+steady state error in the observation error.</p>
+<h2 data-number="F.14" id="-homework-2417"><span class="header-section-number">F.14</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="14-14-disturbance-observers.html#disturbance-observers" data-reference-type="ref"
+data-reference="chap:disturbance_observers">17</a></h2>
+<p>(a) Modify your solution from
+HW <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="13-13-observers.html#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a> so that the uncertainty parameter
+is <span class="math inline">\(\alpha=0.2\)</span>, representing 20%
+inaccuracy in the knowledge of the system parameters. Modify
+<code>VTOL_dynamics</code> to add an altitude disturbance of <span
+class="math inline">\(1.0\)</span> and a wind disturbance of <span
+class="math inline">\(1.0\)</span> m/s. A Python code snippet that
+implements these disturbances is given by</p>
+<pre><code>  from math import sin
+  # disturbances
+  wind = 1.0
+  altitude_dist = 1.0
+
+  # add wind disturbance
+  zdot = zdot + wind
+
+  zddot = -(fr+fl)*sin(theta)/(mc+2*mr)
+  hddot = (-(mc+2*mr)*g  \ 
+           + (fr+fl)*cos(theta))/(mc+2*mr)  \ 
+           + altitude_dist
+  thetaddot = d*(fr-fl)/(Jc+2*mr*d**2)</code></pre>
+<p>Before adding the disturbance observer, run the simulation and note
+that the controller is not robust to the input disturbance.</p>
+<p>(b) Add a disturbance observer to both controllers, and add noise to each
+output with standard deviation of <span
+class="math inline">\(0.01\)</span>. Then verify that the steady state
+error in the estimator has been removed and that the disturbances have
+been adequately compensated. Tune the system to get good response.</p>
+<h2 data-number="F.15" id="-homework-2418"><span class="header-section-number">F.15</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems" data-reference-type="ref"
+data-reference="chap:bode_plots">18</a></h2>
+<p>Draw by hand the Bode plot of the altitude transfer function from
+force <span class="math inline">\(\tilde{F}\)</span> to altitude <span
+class="math inline">\(\tilde{h}\)</span>. Use the <code>bode</code>
+command (from Matlab or Python) and compare your results.</p>
+<p>Draw by hand the Bode plot of the inner loop transfer function for
+the lateral dynamics from torque <span
+class="math inline">\(\tau\)</span> to angle <span
+class="math inline">\(\theta\)</span>. Use the <code>bode</code> command
+and compare your results.</p>
+<p>Draw by hand the Bode plot of the outer loop transfer function for
+the lateral dynamics from angle <span
+class="math inline">\(\theta\)</span> to position <span
+class="math inline">\(z(t)\)</span>. Use the <code>bode</code> command
+and compare your results.</p>
+<h2 data-number="F.16" id="-homework-2419"><span class="header-section-number">F.16</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications" data-reference-type="ref"
+data-reference="chap:tracking_disturbance_noise">19</a></h2>
+<p>For the altitude hold loop of the VTOL system, use the
+<code>bode</code> command (from Matlab or Python) to create a graph that
+simultaneously displays the Bode plots for (1) the plant, and (2) the
+plant under PID control using the control gains calculated in
+Homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>. Use the dirty
+derivative when implementing the derivative portion of the PID
+control.</p>
+<p>(a) What is the tracking error if the reference input is a parabola with
+curvature <span class="math inline">\(5\)</span>?</p>
+<p>(b) If all of the frequency content of the noise <span
+class="math inline">\(n(t)\)</span> is greater than <span
+class="math inline">\(\omega_{no} = 30\)</span> radians per second, what
+percentage of the noise shows up in the output signal <span
+class="math inline">\(h\)</span>?</p>
+<p>For the inner loop of the lateral controller for the VTOL system, use
+the <code>bode</code> command to create a graph that simultaneously
+displays the Bode plots for (1) the plant, and (2) the plant under PD
+control, using the control gains calculated in
+Homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>. Use the dirty derivative
+when implementing the derivative portion of the PD control.</p>
+<p>(c) If the frequency content of the input disturbance is all contained below
+<span class="math inline">\(\omega_{d_{in}}=2\)</span> radians per
+second, what percentage of the input disturbance shows up in the
+output?</p>
+<p>(d) If a sensor for <span class="math inline">\(\theta\)</span> is to be
+selected, what are the characteristics of the sensor (frequency band and
+size) that would result in measurement noise for <span
+class="math inline">\(\theta\)</span> that is less than <span
+class="math inline">\(0.1\)</span> degrees?</p>
+<p>For the outer loop of the lateral controller for the VTOL system, use
+the <code>bode</code> command to create a graph that simultaneously
+displays the Bode plots for (1) the plant, and (2) the plant under PID
+control, using the control gains calculated in
+Homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<p>(e) To what percent error can the closed loop system track the desired input
+if all of the frequency content of <span
+class="math inline">\(z_r(t)\)</span> is below <span
+class="math inline">\(\omega_r = 0.1\)</span> radians per second?</p>
+<p>(f) If the frequency content of an output disturbance is contained below
+<span class="math inline">\(\omega_{d_{out}}=0.01\)</span> radian/sec,
+what percentage of the output disturbance will be contained in the
+output?</p>
+<h2 data-number="F.17" id="-homework-2420"><span class="header-section-number">F.17</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins" data-reference-type="ref"
+data-reference="chap:margins">20</a></h2>
+<p>For this problem, use the gains found in
+Homework <a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>.</p>
+<ul>
+<li><p>For the altitude hold loop of the VTOL system, use the
+<code>bode</code> and <code>margin</code> commands (from Matlab or
+Python) to find the phase and gain margin for the closed loop system
+under PID control. On the same graph, plot the open loop Bode plot and
+the closed loop Bode plot. What is the bandwidth of the closed loop
+system, and how does this relate to the crossover frequency?</p></li>
+<li><p>For the inner loop of the lateral control loop, use the
+<code>bode</code> and <code>margin</code> commands to find the phase and
+gain margin for the inner loop system under PD control. On the same
+graph, plot the open loop Bode plot and the closed loop Bode plot. What
+is the bandwidth of the closed loop system, and how does this relate to
+the crossover frequency?</p></li>
+<li><p>For the outer loop of the lateral control loop, use the
+<code>bode</code> and <code>margin</code> commands to find the phase and
+gain margin for the outer loop system under PD control. Plot the open
+and closed loop Bode plots for the outer loop on the same plot as the
+open and closed loop for the inner loop. What is the bandwidth of the
+closed loop system, and how does this relate to the crossover
+frequency?</p></li>
+<li><p>What is the bandwidth separation between the inner (fast) loop,
+and the outer (slow) loop? For this design, is successive loop closure
+justified?</p></li>
+</ul>
+<h2 data-number="F.18" id="-homework-2421"><span class="header-section-number">F.18</span> <a href="#design-study-planar-vtol"><img
+src="6_design_studies/figures/hw_planar_VTOL_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Homework
+<a href="#design-study-planar-vtol" data-reference-type="ref"
+data-reference="hw:vtol">24</a>.<a href="18-18-compensator-design.html#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">21</a></h2>
+<p>For this homework assignment we will use the loopshaping design
+technique to design a controller for the VTOL flight control
+problem.</p>
+<p>(a) First consider the longitudinal or altitude control problem. For this
+part, the force command will be <span class="math display">\[F = F_e +
+C_{lon}(s)E_h(s),\]</span> where <span
+class="math inline">\(F_e\)</span> is the equilibrium force as found in
+other homework problems, and the error signal is <span
+class="math inline">\(e_h=h^r_f - h_m\)</span>, where <span
+class="math inline">\(h^r_f\)</span> is the prefiltered reference
+altitude command, and <span class="math inline">\(h_m\)</span> is the
+measured altitude. Find the longitudinal controller <span
+class="math inline">\(C_{lon}(s)\)</span> so that the closed loop system
+meets the following specifications.</p>
+<ul>
+<li><p>Reject constant input disturbances.</p></li>
+<li><p>Track reference signals with frequency content below <span
+class="math inline">\(\omega_r=0.1\)</span> rad/s to within <span
+class="math inline">\(\gamma_r=0.01\)</span>.</p></li>
+<li><p>Attenuate noise on the measurement of <span
+class="math inline">\(h\)</span> for all frequencies above <span
+class="math inline">\(\omega_n=200\)</span> rad/s by <span
+class="math inline">\(\gamma_n=10^{-4}\)</span>.</p></li>
+<li><p>The phase margin is close to <span
+class="math inline">\(PM=60\)</span> deg.</p></li>
+<li><p>Use a prefilter to improve the closed loop response.</p></li>
+</ul>
+<p>(b) Now consider the inner loop of the lateral, or position, dynamics. Find
+the inner loop controller <span
+class="math inline">\(C_{lat_{in}}(s)\)</span> so that the inner loop is
+stable with phase margin approximately <span
+class="math inline">\(PM=60\)</span> deg, and with closed loop bandwidth
+approximately <span class="math inline">\(\omega_{co}=10\)</span> rad/s.
+Add a low pass filter to enhance noise rejection.</p>
+<p>(c) For the outer loop of the lateral system, find the controller <span
+class="math inline">\(C_{lat_{out}}(s)\)</span> to meet the following
+specifications:</p>
+<ul>
+<li><p>Crossover frequency is around <span
+class="math inline">\(\omega_{co}=1\)</span> rad/s.</p></li>
+<li><p>Reject constant input disturbances.</p></li>
+<li><p>Attenuate noise on the measurement of <span
+class="math inline">\(z\)</span> for all frequencies above <span
+class="math inline">\(\omega_{no}=100\)</span> rad/s by <span
+class="math inline">\(\gamma_{no}=10^{-5}\)</span> .</p></li>
+<li><p>The phase margin is close to <span
+class="math inline">\(PM=60\)</span> deg.</p></li>
+<li><p>Use a prefilter to reduce overshoot in the step
+response.</p></li>
+</ul>
+<p>(d) Implement the developed control strategy in simulation using the state
+space or digital filter equivalents of <span
+class="math inline">\(C(s)\)</span> and <span
+class="math inline">\(F(s)\)</span>.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

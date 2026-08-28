@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="P.2" id="simulating-control-systems-using-matlab"><span class="header-section-number">P.2</span> Simulating Control Systems Using
+Matlab</h1>
+<p>In this appendix we will show how to simulate the feedback control of
+a dynamic system using <code>Matlab</code>’s object oriented class
+structure. Consider the general feedback control system shown in
+Figure <a href="#fig:matlab_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:matlab_feedback_block_diagram">2.1</a>. The output
+of the physical system is the <span class="math inline">\(y(t)\)</span>,
+the inputs to the physical system are <span
+class="math inline">\(u(t)\)</span> and an external disturbance signal
+<span class="math inline">\(d(t)\)</span>. The output of the system
+<span class="math inline">\(y(t)\)</span> is corrupted by zero-mean
+noise <span class="math inline">\(n(t)\)</span>. The input to the
+controller is the reference signal <span
+class="math inline">\(r(t)\)</span> as well as the output corrupted by
+noise. In <code>Matlab</code>, each block shown in
+Figure <a href="#fig:matlab_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:matlab_feedback_block_diagram">2.1</a> can be
+implemented using a <code>Matlab Class</code>.</p>
+<figure id="fig:matlab_feedback_block_diagram">
+<img src="app_matlab/figures/feedback_block_diagram.png"
+style="width:90.0%" alt="Block diagram of a general feedback system." />
+<figcaption aria-hidden="true">Block diagram of a general feedback
+system.</figcaption>
+</figure>
+<p>We will illustrate how to implement feedback control systems in
+<code>Matlab</code> by simulating the physical system described by the
+differential equation <span
+class="math display">\[\label{eq:matlab_system_dynamics}
+\ddot{y} + 2\dot{y} + 3 y = 4 u,\]</span> and using the PID controller
+<span class="math display">\[\label{eq:matlab_PID_control}
+u(t) = k_p (r(t)-y(t)) + k_i \int_{-\infty}^t (r(\tau)-y(\tau))d\tau -
+k_d \dot{y}.\]</span></p>
+<p>The feedback control system system shown in
+Figure <a href="#fig:matlab_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:matlab_feedback_block_diagram">2.1</a> is simulated
+in <code>systemSim.m</code> which is listed below.</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="va">t_start</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span>  <span class="co">% start time</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="va">t_end</span> <span class="op">=</span> <span class="fl">20</span><span class="op">;</span>  <span class="co">% end time</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="va">t_plot</span> <span class="op">=</span> <span class="fl">0.1</span><span class="op">;</span>  <span class="co">% sample rate for plotter and animation</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="va">Ts</span> <span class="op">=</span><span class="fl">0.01</span><span class="op">;</span>  <span class="co">% sample rate for dynamics and controller</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">% instantiate system, controller, and reference classes</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="va">system</span> <span class="op">=</span> <span class="va">systemDynamics</span>(<span class="va">Ts</span>)<span class="op">;</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="va">controller</span> <span class="op">=</span> <span class="va">systemController</span>(<span class="va">Ts</span>)<span class="op">;</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="va">reference</span> <span class="op">=</span> <span class="va">signalGenerator</span>(<span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.05</span>)<span class="op">;</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="va">disturbance</span> <span class="op">=</span> <span class="va">signalGenerator</span>(<span class="fl">1.0</span><span class="op">,</span> <span class="fl">0.0</span>)<span class="op">;</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="va">noise</span> <span class="op">=</span> <span class="va">signalGenerator</span>(<span class="fl">0.01</span>)<span class="op">;</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co">% instantiate the data plots and animation</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="va">dataPlot</span> <span class="op">=</span> <span class="va">dataPlotter</span>()<span class="op">;</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="va">animation</span> <span class="op">=</span> <span class="va">systemAnimation</span>()<span class="op">;</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co">% main simulation loop</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="va">t</span> <span class="op">=</span> <span class="va">t_start</span><span class="op">;</span>  <span class="co">% time starts at t_start</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="va">y</span> <span class="op">=</span> <span class="va">system</span>.<span class="va">h</span>()<span class="op">;</span>  <span class="co">% system output at start of simulation</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="kw">while</span> <span class="va">t</span> <span class="op">&lt;</span> <span class="va">t_end</span>  </span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">% set time for next plot</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">t_next_plot</span> <span class="op">=</span> <span class="va">t</span> <span class="op">+</span> <span class="va">P</span>.<span class="va">t_plot</span><span class="op">;</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">% updates control and dynamics at faster simulation rate</span></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">while</span> <span class="va">t</span> <span class="op">&lt;</span> <span class="va">t_next_plot</span> </span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">r</span> <span class="op">=</span> <span class="va">reference</span>.<span class="va">square</span>(<span class="va">t</span>)<span class="op">;</span>  <span class="co">% assign reference</span></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">d</span> <span class="op">=</span> <span class="va">disturbance</span>.<span class="va">step</span>(<span class="va">t</span>)<span class="op">;</span>  <span class="co">% simulate input disturbance</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">n</span> <span class="op">=</span> <span class="va">noise</span>.<span class="va">random</span>(<span class="va">t</span>)<span class="op">;</span>  <span class="co">% simulate noise</span></span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">u</span> <span class="op">=</span> <span class="va">controller</span>.<span class="va">update</span>(<span class="va">r</span><span class="op">,</span> <span class="va">y</span> <span class="op">+</span> <span class="va">n</span>)<span class="op">;</span>  <span class="co">% update controller</span></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">y</span> <span class="op">=</span> <span class="va">system</span>.<span class="va">update</span>(<span class="va">u</span><span class="op">+</span><span class="va">d</span>)<span class="op">;</span>  <span class="co">% Propagate the dynamics</span></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">t</span> <span class="op">=</span> <span class="va">t</span> <span class="op">+</span> <span class="va">Ts</span><span class="op">;</span> <span class="co">% advance time by Ts</span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">% update animation and data plots</span></span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">animation</span>.<span class="va">update</span>(<span class="va">system</span>.<span class="va">state</span>)<span class="op">;</span></span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>    <span class="va">dataPlot</span>.<span class="va">update</span>(<span class="va">t</span><span class="op">,</span> <span class="va">r</span><span class="op">,</span> <span class="va">system</span>.<span class="va">state</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<p>The physical system is implemented in a class contained in
+<code>systemDynamic.m</code>, which will be discussed below, and which
+is instantiated on line 7. The system is updated at sample rate <span
+class="math inline">\(T_s\)</span> given the control input <span
+class="math inline">\(u\)</span> and the input disturbance <span
+class="math inline">\(d\)</span> on line 29.</p>
+<p>The controller is implemented in a class contained in<br />
+<code>systemController.m</code>, which will be discussed below, and
+which is instantiated on line 8. Given the reference input <span
+class="math inline">\(r\)</span>, and the system output <span
+class="math inline">\(y\)</span>, the controller is updated at the fast
+sample rate <span class="math inline">\(T_s\)</span> on line 28. At the
+initial time, the controller needs the initial output at time <span
+class="math inline">\(t=0\)</span>, which is computed on line 19 before
+the main loop begins.</p>
+<p>The reference input is implemented using the
+<code>signalGenerator</code> class that is contained in
+<code>signalGenerator.m</code>, which is described below, and which is
+instantiated on line 9. The reference input at time <span
+class="math inline">\(t\)</span>, i.e., <span
+class="math inline">\(r(t)\)</span> is assigned a value on line 25.</p>
+<p>The external disturbance <span class="math inline">\(d(t)\)</span> is
+also implemented using the<br />
+<code>signalGenerator</code> class and is instantiated on line 10 and
+assigned a value on line 26. For this example, the external disturbance
+will be a constant value of <span
+class="math inline">\(d(t)=1.0\)</span>. The noise <span
+class="math inline">\(n(t)\)</span> is also implemented using the
+<code>signalGenerator</code> class and is instantiated on line 11 and
+assigned a value on line 27.</p>
+<p>In addition to the feedback loop as implemented above, the system
+will be visualized through an animation, and also by plotting important
+variables like the reference input, the system states, and the control
+input. The animation and data plotting functions are implemented in
+<code>systemAnimation.m</code> and<br />
+<code>dataPlotter.m</code>, which are instantiated on lines 14–15, and
+updated on lines 33–34.</p>
+<h2 data-number="P.2.1" id="system-dynamics-1"><span class="header-section-number">P.2.1</span> System Dynamics</h2>
+<p>This section will describe how to implement the system dynamics given
+in
+Equation <a href="#system-dynamics-1" data-reference-type="eqref"
+data-reference="eq:matlab_system_dynamics"><a href="#simulating-control-systems-using-matlab">P.2.1</a></a>.
+The first step is to convert the dynamics to the state space form <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= f(x, u) \\
+y &amp;= h(x,u).    
+\end{aligned}\]</span> For the differential equation in
+Equation <a href="#system-dynamics-1" data-reference-type="eqref"
+data-reference="eq:matlab_system_dynamics"><a href="#simulating-control-systems-using-matlab">P.2.1</a></a>
+let <span class="math inline">\(x = (y, \dot{y})^\top\)</span>, which
+gives <span class="math display">\[\begin{aligned}
+\dot{x}&amp; = \begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \end{pmatrix} =
+\begin{pmatrix} \dot{y} \\ \ddot{y} \end{pmatrix} = \begin{pmatrix}
+\dot{y} \\ -2\dot{y} - 3y + 4u \end{pmatrix} = \begin{pmatrix} x_2 \\
+-2x_2 - 3 x_1 + 4 u \end{pmatrix} \stackrel{\triangle}{=}f(x,u)
+\label{eq:matlab_f} \\
+y &amp;= x_1 \stackrel{\triangle}{=}h(x). \label{eq:matlab_h}
+\end{aligned}\]</span></p>
+<p>The dynamics of the system are implemented in
+<code>systemDynamics.m</code> which is listed below.</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">classdef</span> <span class="va">systemDynamics</span> <span class="op">&lt;</span> <span class="va">handle</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">properties</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">state</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">Ts</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">limit</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">a0</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">a1</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">b0</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">methods</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">%---constructor-------------------------</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span> <span class="op">=</span> <span class="va">systemDynamics</span>(<span class="va">sample_rate</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>            <span class="va">y0</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span>  <span class="co">% initial condition for y</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>            <span class="va">ydot0</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span>  <span class="co">% initial condition for ydot</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">state</span> <span class="op">=</span> [<span class="op">...</span>  <span class="co">% initial state</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>                        <span class="va">y0</span><span class="op">;...</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>                        <span class="va">ydot0</span><span class="op">;...</span>  </span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>                        ]<span class="op">;</span> </span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">Ts</span> <span class="op">=</span> <span class="va">sample_rate</span><span class="op">;</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">limit</span> <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span>  <span class="co">% saturation limit</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>            <span class="co">% system parameters</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">a0</span> <span class="op">=</span> <span class="fl">3.0</span><span class="op">;</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">a1</span> <span class="op">=</span> <span class="fl">2.0</span><span class="op">;</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">b0</span> <span class="op">=</span> <span class="fl">4.0</span><span class="op">;</span></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>            <span class="co">% modify the system parameters by random value</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>            <span class="va">alpha</span> <span class="op">=</span> <span class="fl">0.2</span><span class="op">;</span>  <span class="co">% Uncertainty parameter</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">a0</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">a0</span> <span class="op">*</span> (<span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">alpha</span><span class="op">*</span><span class="va">rand</span><span class="op">-</span><span class="va">alpha</span>)<span class="op">;</span>  </span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">a1</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">a1</span> <span class="op">*</span> (<span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">alpha</span><span class="op">*</span><span class="va">rand</span><span class="op">-</span><span class="va">alpha</span>)<span class="op">;</span>  </span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">b0</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">b0</span> <span class="op">*</span> (<span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">alpha</span><span class="op">*</span><span class="va">rand</span><span class="op">-</span><span class="va">alpha</span>)<span class="op">;</span>  </span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">xdot</span> <span class="op">=</span> <span class="va">f</span>(<span class="va">self</span><span class="op">,</span> <span class="va">state</span><span class="op">,</span> <span class="va">u</span>)</span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>            <span class="co">% Return xdot = f(x,u)</span></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>            <span class="va">y</span> <span class="op">=</span> <span class="va">state</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>            <span class="va">ydot</span> <span class="op">=</span> <span class="va">state</span>(<span class="fl">2</span>)<span class="op">;</span></span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>            <span class="co">% The equations of motion.</span></span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a>            <span class="va">yddot</span> <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.<span class="va">a1</span> <span class="op">*</span> <span class="va">ydot</span> <span class="op">-</span> <span class="va">self</span>.<span class="va">a0</span> <span class="op">*</span> <span class="va">y</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">b0</span> <span class="op">*</span> <span class="va">u</span><span class="op">;</span></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>            <span class="co">% build xdot and return</span></span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>            <span class="va">xdot</span> <span class="op">=</span> [<span class="va">ydot</span><span class="op">;</span> <span class="va">yddot</span>]<span class="op">;</span></span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">y</span> <span class="op">=</span> <span class="va">h</span>(<span class="va">self</span>)</span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a>            <span class="co">% y = h(x)</span></span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a>            <span class="va">y</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">state</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">y</span> <span class="op">=</span> <span class="va">update</span>(<span class="va">self</span><span class="op">,</span> <span class="va">u</span>)</span>
+<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a>            <span class="co">% This is the external method that takes input u</span></span>
+<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a>            <span class="co">% and returns output y.</span></span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>            <span class="va">u</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">saturate</span>(<span class="va">u</span><span class="op">,</span> <span class="va">self</span>.<span class="va">limit</span>)<span class="op">;</span>  <span class="co">% saturate input</span></span>
+<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">rk4_step</span>(<span class="va">u</span>)<span class="op">;</span>  <span class="co">% propagate state by one time step</span></span>
+<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a>            <span class="va">y</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">h</span>()<span class="op">;</span>  <span class="co">% compute the output at current time</span></span>
+<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span> <span class="op">=</span> <span class="va">rk4_step</span>(<span class="va">self</span><span class="op">,</span> <span class="va">u</span>)</span>
+<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a>            <span class="co">% Integrate ODE using Runge-Kutta-4 algorithm</span></span>
+<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a>            <span class="va">F1</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a>            <span class="va">F2</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">/</span><span class="fl">2</span><span class="op">*</span><span class="va">F1</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a>            <span class="va">F3</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">/</span><span class="fl">2</span><span class="op">*</span><span class="va">F2</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a>            <span class="va">F4</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">f</span>(<span class="va">self</span>.<span class="va">state</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">*</span><span class="va">F3</span><span class="op">,</span> <span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb31-61"><a href="#cb31-61" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">state</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">state</span><span class="op">...</span></span>
+<span id="cb31-62"><a href="#cb31-62" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">/</span><span class="fl">6</span> <span class="op">*</span> (<span class="va">F1</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="va">F2</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="va">F3</span> <span class="op">+</span> <span class="va">F4</span>)<span class="op">;</span></span>
+<span id="cb31-63"><a href="#cb31-63" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb31-64"><a href="#cb31-64" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-65"><a href="#cb31-65" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">out</span> <span class="op">=</span> <span class="va">saturate</span>(<span class="va">self</span><span class="op">,</span> <span class="va">in</span><span class="op">,</span> <span class="va">limit</span>)</span>
+<span id="cb31-66"><a href="#cb31-66" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="va">abs</span>(<span class="va">in</span>) <span class="op">&gt;</span> <span class="va">limit</span></span>
+<span id="cb31-67"><a href="#cb31-67" aria-hidden="true" tabindex="-1"></a>                <span class="va">out</span> <span class="op">=</span> <span class="va">limit</span> <span class="op">*</span> <span class="va">sign</span>(<span class="va">in</span>)<span class="op">;</span></span>
+<span id="cb31-68"><a href="#cb31-68" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span> </span>
+<span id="cb31-69"><a href="#cb31-69" aria-hidden="true" tabindex="-1"></a>                <span class="va">out</span> <span class="op">=</span> <span class="va">in</span><span class="op">;</span></span>
+<span id="cb31-70"><a href="#cb31-70" aria-hidden="true" tabindex="-1"></a>            <span class="kw">end</span></span>
+<span id="cb31-71"><a href="#cb31-71" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb31-72"><a href="#cb31-72" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-73"><a href="#cb31-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb31-74"><a href="#cb31-74" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<p>In Matlab, the class definition
+<code>classdef systemDynamics &lt; handle</code> must contain the
+<code>&lt; handle</code> to ensure that internal methods can modify the
+class properties. The internal properties are specified in lines 2–9.
+The class methods are specified in lines 10–66. The class constructor is
+given in lines 12–30 and is called when a class object is instantiated.
+The state is initialized on lines 13–18 based on the initial conditions
+for <span class="math inline">\(y(0)\)</span> and <span
+class="math inline">\(\dot{y}(0)\)</span>. The system parameters are
+initialized in lines 21–29. The parameters for any physical system are
+never known exactly. Therefore, feedback systems need to be designed to
+be robust to this uncertainty. In the simulation, we model uncertainty
+in our knowledge of the physical parameters by changing the nominal
+value by a uniform random variable. Let <span
+class="math inline">\(\alpha\)</span> be the amount of change allowed
+for each parameter, i.e., alpha = 0.2, means that the physical
+parameters may change by up to 20%. The function <code>rand()</code>
+returns a uniform random variable in the interval <span
+class="math inline">\([0, 1]\)</span>. Therefore <span
+class="math inline">\((1 + \alpha
+(2*\texttt{np.random.rand()}-1))\)</span> is a random variable in the
+interval <span class="math inline">\([-\alpha, \alpha]\)</span>. The
+nominal value for the physical parameters that are known to the
+designer, are specified in lines 22–24. The actual values used by the
+simulation, are randomly selected in lines 27–29.</p>
+<p>The system dynamics <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= f(x, u) \\
+y &amp;= h(x, u).   
+\end{aligned}\]</span> are specified in lines 32–45. Lines 32–40 define
+<span class="math inline">\(f(x,u)\)</span>, and lines 42–45 define
+<span class="math inline">\(h(x, u)\)</span>, as given by
+Equations <a href="23-p-1-simulating-control-systems-using-python.html#signal-generator" data-reference-type="eqref"
+data-reference="eq:python_f"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1.3</a></a>
+and <a href="23-p-1-simulating-control-systems-using-python.html#data-plotter" data-reference-type="eqref"
+data-reference="eq:python_h"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1.4</a></a> respectively.</p>
+<p>The main feedback loop calls the <code>update</code> method on
+lines 47–53. The <code>update</code> function first saturates the input
+on line 50, where the <code>saturation</code> function is defined in
+lines 64–70. The system dynamics are then propagated forward by one
+sample time <span class="math inline">\(T_s\)</span> using the
+Runge-Kutta 4 algorithm on line 51, where the RK4 algorithm is specified
+on lines 55–62, as described in
+Appendix <a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations" data-reference-type="ref"
+data-reference="chap:runge_kutta">28</a>. The <code>update</code>
+function finally computes and returns the output <span
+class="math inline">\(y\)</span> on line 52.</p>
+<h2 data-number="P.2.2" id="controller-1"><span class="header-section-number">P.2.2</span> Controller</h2>
+<p>This section will describe how to implement the PID controller given
+in Equation <a href="#controller-1" data-reference-type="eqref"
+data-reference="eq:matlab_PID_control"><a href="#simulating-control-systems-using-matlab">P.2.2</a></a>. The
+controller is implemented in <code>systemController.m</code>, which is
+listed below.</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">classdef</span> <span class="va">systemController</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">properties</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">kp</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">kd</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">ki</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">Ts</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">sigma</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">beta</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">limit</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">ydot</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">y_d1</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">integrator</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">error_d1</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">methods</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">%------constructor----------------------</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span> <span class="op">=</span> <span class="va">systemController</span>(<span class="va">sample_rate</span>)</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>            <span class="co">% specify gains</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">kp</span> <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">kd</span> <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">ki</span> <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">Ts</span> <span class="op">=</span> <span class="va">sample_rate</span><span class="op">;</span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">sigma</span> <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> <span class="va">self</span>.<span class="va">Ts</span><span class="op">;</span></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">beta</span> <span class="op">=</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">sigma</span><span class="op">-</span><span class="va">self</span>.<span class="va">Ts</span>)<span class="op">/</span>(<span class="fl">2.0</span><span class="op">*</span><span class="va">sigma</span><span class="op">+</span><span class="va">self</span>.<span class="va">Ts</span>)<span class="op">;</span></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">limit</span> <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span></span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>            <span class="co">% internal storage for differentiator</span></span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">ydot</span> <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">y_d1</span> <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>            <span class="co">% internal storage for integrator</span></span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">integrator</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">error_d1</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">u</span> <span class="op">=</span> <span class="va">update</span>(<span class="va">self</span><span class="op">,</span> <span class="va">r</span><span class="op">,</span> <span class="va">y</span>)</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>            <span class="va">e</span> <span class="op">=</span> <span class="va">r</span> <span class="op">-</span> <span class="va">y</span><span class="op">;</span>  <span class="co">% define the error</span></span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>            <span class="va">I</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">integrate_e</span>(<span class="va">e</span>)<span class="op">;</span>  <span class="co">% integrate error</span></span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>            <span class="va">ydot</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">differentiate_y</span>(<span class="va">y</span>)<span class="op">;</span>  <span class="co">%differentiate y</span></span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>            <span class="co">% form PID controller, saturate, and return</span></span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>            <span class="va">u</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">kp</span> <span class="op">*</span> <span class="va">e</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">ki</span> <span class="op">*</span> <span class="va">I</span> <span class="op">-</span> <span class="va">self</span>.<span class="va">kd</span> <span class="op">*</span> <span class="va">ydot</span><span class="op">;</span></span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>            <span class="va">u</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">saturate</span>(<span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">I</span> <span class="op">=</span> <span class="va">integrate_e</span>(<span class="va">self</span><span class="op">,</span> <span class="va">error</span>)</span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">integrator</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">integrator</span><span class="op">...</span></span>
+<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> (<span class="va">self</span>.<span class="va">Ts</span> <span class="op">/</span> <span class="fl">2</span>) <span class="op">*</span> (<span class="va">error</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">error_d1</span>)<span class="op">;</span></span>
+<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">error_d1</span> <span class="op">=</span> <span class="va">error</span><span class="op">;</span></span>
+<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>            <span class="va">I</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">integrator</span><span class="op">;</span></span>
+<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">ydot</span> <span class="op">=</span> <span class="va">differentiate_y</span>(<span class="va">self</span><span class="op">,</span> <span class="va">y</span>)</span>
+<span id="cb32-51"><a href="#cb32-51" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">ydot</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">beta</span><span class="op">*</span><span class="va">self</span>.<span class="va">ydot</span><span class="op">...</span></span>
+<span id="cb32-52"><a href="#cb32-52" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> (<span class="fl">1</span><span class="op">-</span><span class="va">self</span>.<span class="va">beta</span>)<span class="op">/</span><span class="va">self</span>.<span class="va">Ts</span> <span class="op">*</span> (<span class="va">y</span> <span class="op">-</span> <span class="va">self</span>.<span class="va">y_d1</span>)<span class="op">;</span></span>
+<span id="cb32-53"><a href="#cb32-53" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">y_d1</span> <span class="op">=</span> <span class="va">y</span><span class="op">;</span></span>
+<span id="cb32-54"><a href="#cb32-54" aria-hidden="true" tabindex="-1"></a>            <span class="va">ydot</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">ydot</span><span class="op">;</span></span>
+<span id="cb32-55"><a href="#cb32-55" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb32-56"><a href="#cb32-56" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb32-57"><a href="#cb32-57" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">out</span> <span class="op">=</span> <span class="va">saturate</span>(<span class="va">self</span><span class="op">,</span> <span class="va">in</span>)<span class="op">:</span></span>
+<span id="cb32-58"><a href="#cb32-58" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="va">abs</span>(<span class="va">in</span>) <span class="op">&gt;</span> <span class="va">self</span>.<span class="va">limit</span></span>
+<span id="cb32-59"><a href="#cb32-59" aria-hidden="true" tabindex="-1"></a>                <span class="va">out</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">limit</span> <span class="op">*</span> <span class="va">sign</span>(<span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb32-60"><a href="#cb32-60" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span></span>
+<span id="cb32-61"><a href="#cb32-61" aria-hidden="true" tabindex="-1"></a>                <span class="va">out</span> <span class="op">=</span> <span class="va">in</span><span class="op">;</span></span>
+<span id="cb32-62"><a href="#cb32-62" aria-hidden="true" tabindex="-1"></a>            <span class="kw">end</span></span>
+<span id="cb32-63"><a href="#cb32-63" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb32-64"><a href="#cb32-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-65"><a href="#cb32-65" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb32-66"><a href="#cb32-66" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<p>The controller properties are specified on lines 2–14, and
+instantiated in the constructor on lines 17–32. The PID gains are
+specified on lines 19–21. The sample rate of the controller is passed
+into the system at the time of instantiation and is assigned an internal
+variable <span class="math inline">\(T_s\)</span> in line 9. The dirty
+derivative gain <span class="math inline">\(\sigma\)</span> described in
+Chapter <a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a> is specified on
+line 22, and the intermediate gain <span class="math inline">\(\beta =
+\frac{2\sigma-T_s}{2\sigma+T_s}\)</span> is specified on line 24.
+Internal storage variables for the differentiator and the integrator, as
+explained in
+Chapter <a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a> are given in
+lines 27–31. The PID control <code>update</code> routine is specified in
+lines 34–41. The error <span class="math inline">\(e=r-y\)</span> as
+shown in
+Figure <a href="23-p-1-simulating-control-systems-using-python.html#fig:python_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:python_feedback_block_diagram">1.1</a> is defined
+on line 35. The PID controller in
+Equations <a href="#controller-1" data-reference-type="eqref"
+data-reference="eq:matlab_PID_control"><a href="#simulating-control-systems-using-matlab">P.2.2</a></a> uses
+the integral of <span class="math inline">\(e\)</span> and the
+derivative of <span class="math inline">\(y\)</span>. The integral of
+<span class="math inline">\(e\)</span> is computed on line 36 using the
+routine specified on lines 43–48. A derivation of the integral equations
+is given in
+Chapter <a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>. The derivative
+of <span class="math inline">\(y\)</span> is computed in line 37 using
+the routine specified in lines 50-53. A derivation of the dirty
+derivative equations is given in
+Chapter <a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>. Finally, the
+PID controller computed, the value is saturated, and returned on
+lines 39, and 40, respectively.</p>
+<h2 data-number="P.2.3" id="signal-generator-1"><span class="header-section-number">P.2.3</span> Signal Generator</h2>
+<p>Matlab code for the signal generator class is listed below.</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">classdef</span> <span class="va">signalGenerator</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">%   produces: square_wave, step, sawtooth_wave, </span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">%             random_wave, sin_wave.</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">properties</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">amplitude</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">frequency</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">y_offset</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">methods</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">%---constructor--------------------------------</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span> <span class="op">=</span> <span class="va">signalGenerator</span>(<span class="op">...</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>                <span class="va">amplitude</span><span class="op">,</span> <span class="va">frequency</span><span class="op">,</span> <span class="va">y_offset</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">amplitude</span> <span class="op">=</span> <span class="va">amplitude</span><span class="op">;</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="va">nargin</span><span class="op">&gt;</span><span class="fl">1</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.<span class="va">frequency</span> <span class="op">=</span> <span class="va">frequency</span><span class="op">;</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.<span class="va">frequency</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>            <span class="kw">end</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="va">nargin</span><span class="op">&gt;</span><span class="fl">2</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.<span class="va">y_offset</span> <span class="op">=</span> <span class="va">y_offset</span><span class="op">;</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.<span class="va">y_offset</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>            <span class="kw">end</span></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">out</span> <span class="op">=</span> <span class="va">square</span>(<span class="va">self</span><span class="op">,</span> <span class="va">t</span>)</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="va">mod</span>(<span class="va">t</span><span class="op">,</span> <span class="fl">1</span><span class="op">/</span><span class="va">self</span>.<span class="va">frequency</span>)<span class="op">&lt;=</span><span class="fl">0.5</span><span class="op">/</span><span class="va">self</span>.<span class="va">frequency</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>                <span class="va">out</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">amplitude</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">y_offset</span><span class="op">;</span></span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>                <span class="va">out</span> <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.<span class="va">amplitude</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">y_offset</span><span class="op">;</span></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>            <span class="kw">end</span></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">out</span> <span class="op">=</span> <span class="va">step</span>(<span class="va">self</span><span class="op">,</span> <span class="va">t</span>)</span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="va">t</span><span class="op">&gt;=</span><span class="fl">0</span></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>                <span class="va">out</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">amplitude</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">y_offset</span><span class="op">;</span></span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>                <span class="va">out</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>            <span class="kw">end</span></span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">out</span> <span class="op">=</span> <span class="va">sawtooth</span>(<span class="va">self</span><span class="op">,</span> <span class="va">t</span>)</span>
+<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a>            <span class="va">out</span> <span class="op">=</span> <span class="fl">4</span><span class="op">*</span><span class="va">self</span>.<span class="va">amplitude</span><span class="op">*</span><span class="va">self</span>.<span class="va">frequency</span><span class="op">...</span></span>
+<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a>                <span class="op">*</span> <span class="va">mod</span>(<span class="va">t</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">/</span><span class="va">self</span>.<span class="va">frequency</span>)<span class="op">...</span></span>
+<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span> <span class="va">self</span>.<span class="va">amplitude</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">y_offset</span><span class="op">;</span></span>
+<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">out</span> <span class="op">=</span> <span class="va">random</span>(<span class="va">self</span><span class="op">,</span> <span class="va">t</span>)</span>
+<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a>            <span class="va">out</span> <span class="op">=</span> <span class="va">sqrt</span>(<span class="va">self</span>.<span class="va">amplitude</span>)<span class="op">*</span><span class="va">randn</span> <span class="op">+</span> <span class="va">self</span>.<span class="va">y_offset</span><span class="op">;</span></span>
+<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">out</span> <span class="op">=</span> <span class="va">sin</span>(<span class="va">self</span><span class="op">,</span> <span class="va">t</span>)</span>
+<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a>            <span class="va">out</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">amplitude</span><span class="op">*</span><span class="va">sin</span>(<span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="va">self</span>.<span class="va">frequency</span><span class="op">*</span><span class="va">t</span>)<span class="op">...</span></span>
+<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> <span class="va">self</span>.<span class="va">y_offset</span><span class="op">;</span></span>
+<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<p>The class is instantiated by passing in the desired amplitude of the
+signal, the frequency in Hertz, and a y-offset value. For random
+signals, the amplitude is interpreted to be the standard deviation of
+the signal. The signal generator can then be used to produce a square
+wave, a sawtooth signal, a step, a random signal, or a sinusoid, as
+specified in lines 26–55.</p>
+<h2 data-number="P.2.4" id="data-plotter-1"><span class="header-section-number">P.2.4</span> Data Plotter</h2>
+<p>The objective of the data plotter is to plot the relevant signals
+during the simulation. For this simple example, we will plot the output
+<span class="math inline">\(y\)</span> and the reference <span
+class="math inline">\(r\)</span> on one plot, the velocity <span
+class="math inline">\(\dot{y}\)</span> on another plot, and the control
+signal <span class="math inline">\(u\)</span> on a third plot. Matlab
+code for the data plotter class is listed below.</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">classdef</span> <span class="va">dataPlotter</span> <span class="op">&lt;</span> <span class="va">handle</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">properties</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">% data histories</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">time_history</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">r_history</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">y_history</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">ydot_history</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">u_history</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">index</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">% figure handles</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">r_handle</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">y_handle</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">ydot_handle</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">u_handle</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">methods</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">%--constructor--------------------------</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span> <span class="op">=</span> <span class="va">dataPlotter</span>(<span class="va">P</span>)</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>            <span class="co">% Instantiate lists to hold the time and data histories</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">time_history</span><span class="op">...</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>                <span class="op">=</span> <span class="va">NaN</span><span class="op">*</span><span class="va">ones</span>(<span class="fl">1</span><span class="op">,</span>(<span class="va">P</span>.<span class="va">t_end</span><span class="op">-</span><span class="va">P</span>.<span class="va">t_start</span>)<span class="op">/</span><span class="va">P</span>.<span class="va">t_plot</span>)<span class="op">;</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">r_history</span><span class="op">...</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>                <span class="op">=</span> <span class="va">NaN</span><span class="op">*</span><span class="va">ones</span>(<span class="fl">1</span><span class="op">,</span>(<span class="va">P</span>.<span class="va">t_end</span><span class="op">-</span><span class="va">P</span>.<span class="va">t_start</span>)<span class="op">/</span><span class="va">P</span>.<span class="va">t_plot</span>)<span class="op">;</span></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">y_history</span><span class="op">...</span></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>                <span class="op">=</span> <span class="va">NaN</span><span class="op">*</span><span class="va">ones</span>(<span class="fl">1</span><span class="op">,</span>(<span class="va">P</span>.<span class="va">t_end</span><span class="op">-</span><span class="va">P</span>.<span class="va">t_start</span>)<span class="op">/</span><span class="va">P</span>.<span class="va">t_plot</span>)<span class="op">;</span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">ydot_history</span><span class="op">...</span></span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>                <span class="op">=</span> <span class="va">NaN</span><span class="op">*</span><span class="va">ones</span>(<span class="fl">1</span><span class="op">,</span>(<span class="va">P</span>.<span class="va">t_end</span><span class="op">-</span><span class="va">P</span>.<span class="va">t_start</span>)<span class="op">/</span><span class="va">P</span>.<span class="va">t_plot</span>)<span class="op">;</span></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">u_history</span><span class="op">...</span></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>                <span class="op">=</span> <span class="va">NaN</span><span class="op">*</span><span class="va">ones</span>(<span class="fl">1</span><span class="op">,</span>(<span class="va">P</span>.<span class="va">t_end</span><span class="op">-</span><span class="va">P</span>.<span class="va">t_start</span>)<span class="op">/</span><span class="va">P</span>.<span class="va">t_plot</span>)<span class="op">;</span></span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">index</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>            <span class="co">% Create figure and axes handles</span></span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>            <span class="va">figure</span>(<span class="fl">2</span>)<span class="op">,</span> <span class="va">clf</span></span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>            <span class="va">subplot</span>(<span class="fl">311</span>)</span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>                <span class="va">hold</span> <span class="va">on</span></span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.<span class="va">r_handle</span><span class="op">...</span></span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>                    <span class="op">=</span> <span class="va">plot</span>(<span class="va">self</span>.<span class="va">time_history</span><span class="op">,...</span></span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>                           <span class="va">self</span>.<span class="va">r_history</span><span class="op">,</span> <span class="ss">&#39;g&#39;</span>)<span class="op">;</span></span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.<span class="va">y_handle</span><span class="op">...</span></span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>                    <span class="op">=</span> <span class="va">plot</span>(<span class="va">self</span>.<span class="va">time_history</span><span class="op">,...</span></span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>                           <span class="va">self</span>.<span class="va">y_history</span><span class="op">,</span> <span class="ss">&#39;b&#39;</span>)<span class="op">;</span></span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>                <span class="va">ylabel</span>(<span class="ss">&#39;y&#39;</span>)</span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a>                <span class="va">title</span>(<span class="ss">&#39;System Data&#39;</span>)</span>
+<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a>            <span class="va">subplot</span>(<span class="fl">312</span>)</span>
+<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a>                <span class="va">hold</span> <span class="va">on</span></span>
+<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.<span class="va">ydot_handle</span><span class="op">...</span></span>
+<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a>                    <span class="op">=</span> <span class="va">plot</span>(<span class="va">self</span>.<span class="va">time_history</span><span class="op">,...</span></span>
+<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a>                           <span class="va">self</span>.<span class="va">ydot_history</span><span class="op">,</span> <span class="ss">&#39;b&#39;</span>)<span class="op">;</span></span>
+<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a>                <span class="va">ylabel</span>(<span class="ss">&#39;ydot&#39;</span>)</span>
+<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a>            <span class="va">subplot</span>(<span class="fl">313</span>)</span>
+<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a>                <span class="va">hold</span> <span class="va">on</span></span>
+<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.<span class="va">u_handle</span><span class="op">...</span></span>
+<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a>                    <span class="op">=</span> <span class="va">plot</span>(<span class="va">self</span>.<span class="va">time_history</span><span class="op">,...</span></span>
+<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a>                           <span class="va">self</span>.<span class="va">u_history</span><span class="op">,</span> <span class="ss">&#39;b&#39;</span>)<span class="op">;</span></span>
+<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a>                <span class="va">ylabel</span>(<span class="ss">&#39;u&#39;</span>)</span>
+<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="va">self</span><span class="op">=</span><span class="va">update</span>(<span class="va">self</span><span class="op">,</span> <span class="va">time</span><span class="op">,</span> <span class="va">reference</span><span class="op">,</span> <span class="va">states</span><span class="op">,</span> <span class="va">control</span>)</span>
+<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a>            <span class="co">% update the time history of all plot variables</span></span>
+<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">time_history</span>(<span class="va">self</span>.<span class="va">index</span>) <span class="op">=</span> <span class="va">time</span><span class="op">;</span></span>
+<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">r_history</span>(<span class="va">self</span>.<span class="va">index</span>) <span class="op">=</span> <span class="va">reference</span><span class="op">;</span></span>
+<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">y_history</span>(<span class="va">self</span>.<span class="va">index</span>) <span class="op">=</span> <span class="va">states</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">ydot_history</span>(<span class="va">self</span>.<span class="va">index</span>) <span class="op">=</span> <span class="va">states</span>(<span class="fl">2</span>)<span class="op">;</span></span>
+<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">u_history</span>(<span class="va">self</span>.<span class="va">index</span>) <span class="op">=</span> <span class="va">control</span><span class="op">;</span></span>
+<span id="cb34-64"><a href="#cb34-64" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.<span class="va">index</span> <span class="op">=</span> <span class="va">self</span>.<span class="va">index</span> <span class="op">+</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a>            <span class="co">% update the plots with associated histories</span></span>
+<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a>            <span class="va">set</span>(<span class="va">self</span>.<span class="va">r_handle</span><span class="op">,...</span></span>
+<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a>                <span class="ss">&#39;Xdata&#39;</span><span class="op">,</span> <span class="va">self</span>.<span class="va">time_history</span><span class="op">,...</span></span>
+<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a>                <span class="ss">&#39;Ydata&#39;</span><span class="op">,</span> <span class="va">self</span>.<span class="va">r_history</span>)</span>
+<span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a>            <span class="va">set</span>(<span class="va">self</span>.<span class="va">y_handle</span><span class="op">,...</span></span>
+<span id="cb34-70"><a href="#cb34-70" aria-hidden="true" tabindex="-1"></a>                <span class="ss">&#39;Xdata&#39;</span><span class="op">,</span> <span class="va">self</span>.<span class="va">time_history</span><span class="op">,...</span></span>
+<span id="cb34-71"><a href="#cb34-71" aria-hidden="true" tabindex="-1"></a>                <span class="ss">&#39;Ydata&#39;</span><span class="op">,</span> <span class="va">self</span>.<span class="va">y_history</span>)</span>
+<span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a>            <span class="va">set</span>(<span class="va">self</span>.<span class="va">ydot_handle</span><span class="op">,...</span></span>
+<span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a>                <span class="ss">&#39;Xdata&#39;</span><span class="op">,</span> <span class="va">self</span>.<span class="va">time_history</span><span class="op">,...</span></span>
+<span id="cb34-74"><a href="#cb34-74" aria-hidden="true" tabindex="-1"></a>                <span class="ss">&#39;Ydata&#39;</span><span class="op">,</span> <span class="va">self</span>.<span class="va">ydot_history</span>)</span>
+<span id="cb34-75"><a href="#cb34-75" aria-hidden="true" tabindex="-1"></a>            <span class="va">set</span>(<span class="va">self</span>.<span class="va">u_handle</span><span class="op">,...</span></span>
+<span id="cb34-76"><a href="#cb34-76" aria-hidden="true" tabindex="-1"></a>                <span class="ss">&#39;Xdata&#39;</span><span class="op">,</span> <span class="va">self</span>.<span class="va">time_history</span><span class="op">,...</span></span>
+<span id="cb34-77"><a href="#cb34-77" aria-hidden="true" tabindex="-1"></a>                <span class="ss">&#39;Ydata&#39;</span><span class="op">,</span> <span class="va">self</span>.<span class="va">u_history</span>)</span>
+<span id="cb34-78"><a href="#cb34-78" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb34-79"><a href="#cb34-79" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb34-80"><a href="#cb34-80" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<p>The plotter constructor is listed on lines 18–55. Lines 20–29
+initialize arrays that will hold the data histories. Allocating memory
+for the arrays upon initialization speeds up the run-time execution of
+the data plotter. Lines 32–54 set up the plot window with three subplots
+and plot the initial data. The Matlab <code>plot</code> routine returns
+a Matlab <code>handle</code> to the line, which is a data structure that
+contains all data associated with each line. The first subplot (311)
+will plot <span class="math inline">\(r(t)\)</span> in green
+(<code>’g’</code>), and <span class="math inline">\(y(t)\)</span> in
+blue (<code>’b’</code>). The second subplot (312) will plot <span
+class="math inline">\(\dot{y}\)</span> in blue, and the third subplot
+(313) will plot <span class="math inline">\(u(t)\)</span> in blue.</p>
+<p>The <code>update</code> method receives as input the current
+<code>time</code>,<br />
+<code>reference</code>, <code>state</code>, and <code>control</code>
+values. Lines 59–63 append the current values to their histories. The
+plots are then updated with the new histories in lines 66–77 by calling
+the <code>set</code> routine and passing in the associated
+<code>handle</code>.</p>
+<h2 data-number="P.2.5" id="animation-1"><span class="header-section-number">P.2.5</span> Animation</h2>
+<p>In this section we will show how to create an animation for the
+inverted pendulum case study. Consider the image of the inverted
+pendulum shown in
+<strong>Fig.</strong> <a href="#fig:matlab-animation-pendulum" data-reference-type="ref"
+data-reference="fig:matlab-animation-pendulum">2.2</a>, where the
+configuration is completely specified by the position of the cart <span
+class="math inline">\(z\)</span>, and the angle of the rod from vertical
+<span class="math inline">\(\theta\)</span>. The physical parameters of
+the system are the rod length <span class="math inline">\(\ell\)</span>,
+the base width <span class="math inline">\(w\)</span>, the base height
+<span class="math inline">\(h\)</span>, and the gap between the base and
+the track <span class="math inline">\(g\)</span>.</p>
+<figure id="fig:matlab-animation-pendulum">
+<img src="app_matlab/figures/animation-pendulum.png"
+style="width:60.0%"
+alt="Drawing for inverted pendulum. The first step in developing an animation is to draw a figure of the object to be animated and identify all of the physical parameters." />
+<figcaption aria-hidden="true">Drawing for inverted pendulum. The first
+step in developing an animation is to draw a figure of the object to be
+animated and identify all of the physical parameters.</figcaption>
+</figure>
+<p>The first step in developing the animation is to determine the
+position of points that define the animation. The pendulum will require
+that we draw three objects: the rectangular cart, the circular bob at
+the end of the rod, and the rod. We will draw the cart as a rectangle,
+the bob as a circle, and the rod as a line. In Matlab, rectangles are
+specified by their corners. The four corners of the rectangle are given
+by <span class="math display">\[C = \begin{bmatrix}
+z-w/2, &amp; g \\
+z_w/2, &amp; g \\
+z+w/2, &amp; g+h \\
+z-w/2, &amp; g+h   
+\end{bmatrix}.\]</span> In Matlab, lines are specified by the <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> locations of their endpoints. The <span
+class="math inline">\(x\)</span> locations of the endpoints of the rod
+are <span class="math inline">\(X=[z, z+\ell\sin\theta]\)</span>, and
+the <span class="math inline">\(y\)</span> locations of the endpoints
+are <span class="math inline">\(Y=[g+h, g+h+\ell\cos\theta]\)</span>. In
+Matlab, circles are drawn as a sequence of small line segments, that
+must be specified by the <span class="math inline">\(x\)</span> and
+<span class="math inline">\(y\)</span> locations. The center of the bob
+is given by <span class="math inline">\(C = (z+(\ell+R)\sin\theta,
+g+h+(\ell+R)\cos\theta)\)</span>, and so points on the edge of the bob
+will be given by <span class="math inline">\(X = [C_x +
+R\cos\theta]\)</span> and <span class="math inline">\(Y=[C_y +
+R\sin\theta]\)</span>. Matlab code for the animation class is listed
+below.</p>
+<p>The <code>pendulumAnimation</code> class is initialized on
+lines 14–32. Lines 15–19 sets all of the plot parameters based on data
+passed through the structure <code>P</code>. Line 21 initializes the
+plot window and line 23 draws the ground track, which will not change
+during the animation. Lines 26–26 draws the base, bob, and line for the
+first time, where a Matlab <code>handle</code> is returned to each
+object in the animation. Line 30 sets the plot axes, and line 31 labels
+the plot.</p>
+<p>The animation function is updated each time step using the
+<code>update</code> method on lines 34–42. The input to the
+<code>update</code> method is the <code>state</code> of the pendulum, of
+which the first element is <span class="math inline">\(z\)</span> and
+the second element is <span class="math inline">\(\theta\)</span>
+(lines 36–37). Lines 38–40 then call methods, that will be described
+below, that draw the cart, rod, and bob. Line 41 forces Matlab to update
+the animation at each time step.</p>
+<p>The <code>draw_cart</code> method is listed on lines 44–56. The cart
+is drawn using the <code>fill</code> routine, where the <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> locations of each corner must be
+specified, as shown on lines 46–49. The first time
+<code>draw_cart</code> is called, the <code>cart_handle</code> will not
+exist, and so it is created through a call to <code>fill</code> on
+line 52. Upon subsequent calls to <code>draw_cart</code>, the handle
+will exist and so the cart location is updated through the
+<code>set</code> command on line 54. Since the <span
+class="math inline">\(y\)</span> data of the cart doesn’t change with
+time, only the <span class="math inline">\(x\)</span> data is
+updated.</p>
+<p>The <code>draw_rod</code> method is listed on lines 58–71. The rod is
+drawn using the <code>plot</code> routine, where the <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> locations of the ends of the rod must
+be specified, as shown on lines 60–64. The first time
+<code>draw_rod</code> is called, the <code>rod_handle</code> will not
+exist, and so it is created through a call to <code>plot</code> on
+line 67. Upon subsequent calls to <code>draw_rod</code>, the handle will
+exist and so the rod points are updated through the <code>set</code>
+command on line 69. Note that both the <span
+class="math inline">\(x\)</span> and the <span
+class="math inline">\(y\)</span> data of the rod must be updated at each
+time step.</p>
+<p>The <code>draw_bob</code> method is listed on lines 73–90. The bob is
+drawn using the <code>fill</code> routine, where the <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> locations of each point on the bob must
+be specified. The points are parametrized by <span
+class="math inline">\(\vartheta\)</span> which ranges from zero to <span
+class="math inline">\(2\pi\)</span>. Line 74 establishes an array of
+<span class="math inline">\(N=10\)</span> angle points. The center of
+the bob is specified on lines 76–79, and the <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> points along the outline of the bob are
+given on lines 81–82. The first time <code>draw_bob</code> is called,
+the <code>bob_handle</code> will not exist, and so it is created through
+a call to <code>fill</code> on line 85. Upon subsequent calls to
+<code>draw_bob</code>, the handle will exist and so the cart location is
+updated through the <code>set</code> command on lines 87–88. Note that
+both the <span class="math inline">\(x\)</span> and the <span
+class="math inline">\(y\)</span> data of the bob must be updated at each
+time step.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

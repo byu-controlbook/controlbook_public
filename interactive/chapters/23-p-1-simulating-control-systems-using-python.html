@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="P.1" id="simulating-control-systems-using-python"><span class="header-section-number">P.1</span> Simulating Control Systems Using
+Python</h1>
+<p>In this appendix we will show how to simulate the feedback control of
+a dynamic system using <code>Python</code>. Consider the general
+feedback control system shown in
+Figure <a href="#fig:python_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:python_feedback_block_diagram">1.1</a>. The output
+of the physical system is the <span class="math inline">\(y(t)\)</span>,
+the input to the physical system is <span
+class="math inline">\(u(t)\)</span> plus an external disturbance signal
+<span class="math inline">\(d(t)\)</span>. The output of the system is
+corrupted by zero-mean noise <span class="math inline">\(n(t)\)</span>.
+The input to the controller is the reference signal <span
+class="math inline">\(r(t)\)</span> as well as the output corrupted by
+noise. In <code>Python</code>, each block shown in
+Figure <a href="#fig:python_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:python_feedback_block_diagram">1.1</a> is
+implemented using a <code>Python Class</code>.</p>
+<figure id="fig:python_feedback_block_diagram">
+<img src="app_python/figures/feedback_block_diagram.png"
+style="width:90.0%" alt="Block diagram of a general feedback system." />
+<figcaption aria-hidden="true">Block diagram of a general feedback
+system.</figcaption>
+</figure>
+<p>We will illustrate how to implement feedback control systems in
+<code>Python</code> by simulating the physical system described by the
+differential equation <span
+class="math display">\[\label{eq:python_system_dynamics}
+\ddot{y} + 2\dot{y} + 3 y = 4 u,\]</span> and using the PID controller
+<span class="math display">\[\label{eq:python_PID_control}
+u(t) = k_p (r(t)-y(t)) + k_i \int_{-\infty}^t (r(\tau)-y(\tau))d\tau -
+k_d \dot{y}.\]</span></p>
+<p>The feedback control system shown in
+Figure <a href="#fig:python_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:python_feedback_block_diagram">1.1</a> is simulated
+in <code>systemSim.py</code> which is listed below.</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> systemDynamics <span class="im">import</span> systemDynamics</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> systemController <span class="im">import</span> systemController</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> signalGenerator <span class="im">import</span> signalGenerator</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> systemAnimation <span class="im">import</span> systemAnimation</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataPlotter <span class="im">import</span> dataPlotter</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># simulation parameters</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>t_start <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># start time</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>t_end <span class="op">=</span> <span class="fl">20.0</span>  <span class="co"># end time</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>t_plot <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># sample rate for plotter and animation</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>Ts <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># sample rate for dynamics and controller</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate system, controller, and reference classes</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>system <span class="op">=</span> systemDynamics(sample_rate<span class="op">=</span>Ts)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>controller <span class="op">=</span> pendulumController(sample_rate<span class="op">=</span>Ts)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>reference <span class="op">=</span> signalGenerator(amplitude<span class="op">=</span><span class="fl">0.5</span>, frequency<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>disturbance <span class="op">=</span> signalGenerator(amplitude<span class="op">=</span><span class="fl">1.0</span>, frequency <span class="op">=</span> <span class="fl">0.0</span>)</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> signalGenerator(amplitude<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate the simulation plots and animation</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>dataPlot <span class="op">=</span> dataPlotter()</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>animation <span class="op">=</span> systemAnimation()</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> t_start  <span class="co"># time starts at t_start</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> system.h()  <span class="co"># output of system at start of simulation</span></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> t <span class="op">&lt;</span> t_end:  <span class="co"># main simulation loop</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set time for next plot</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    t_next_plot <span class="op">=</span> t <span class="op">+</span> t_plot</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propagate dynamics and controller at fast rate Ts</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> t <span class="op">&lt;</span> t_next_plot:</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> reference.square(t)  <span class="co"># assign reference</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> disturbance.step(t)  <span class="co"># simulate input disturbance</span></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> noise.random(t)  <span class="co"># simulate sensor noise</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> controller.update(r, y <span class="op">+</span> n)  <span class="co"># update controller</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> system.update(u <span class="op">+</span> d)  <span class="co"># Propagate the dynamics</span></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> t <span class="op">+</span> Ts  <span class="co"># advance time by Ts</span></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># update animation and data plots</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>    animation.update(system.state)</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>    dataPlot.update(t, ref_input, pendulum.state, u)</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pause causes the figure to be displayed during the simulation</span></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>    plt.pause(<span class="fl">0.0001</span>)</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Keeps the program from closing until the user presses a button.</span></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Press key to close&#39;</span>)</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>plt.waitforbuttonpress()</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code></pre></div>
+<p>The physical system is implemented in a class contained in<br />
+<code>systemDynamic.py</code>, which will be discussed below, and which
+is imported on line 2, and instantiated on line 15. The system is
+updated at sample rate <span class="math inline">\(T_s\)</span> given
+the control input <span class="math inline">\(u\)</span> and the input
+disturbance <span class="math inline">\(d\)</span> on line 36.</p>
+<p>The controller is implemented in a class contained in<br />
+<code>systemController.py</code>, which will be discussed below, and
+which is imported on line 3, and instantiated on line 16. Given the
+reference input <span class="math inline">\(r\)</span>, and the system
+output <span class="math inline">\(y\)</span>, the controller is updated
+at the fast sample rate <span class="math inline">\(T_s\)</span> on
+line 35. At the initial time, the controller needs the initial output at
+time <span class="math inline">\(t=0\)</span>, which is computed on
+line 26 before the main loop begins.</p>
+<p>The reference input is implemented using the
+<code>signalGenerator</code> class that is contained in
+<code>signalGenerator.py</code>, which is described below, and which is
+imported on line 4 and instantiated on line 17. The reference input at
+time <span class="math inline">\(t\)</span>, i.e., <span
+class="math inline">\(r(t)\)</span> is assigned a value on line 32.</p>
+<p>The external disturbance <span class="math inline">\(d(t)\)</span> is
+also implemented using the<br />
+<code>signalGenerator</code> class and is instantiated on line 17, and
+assigned a value on line 33. For this example, the external disturbance
+will be a constant value of <span
+class="math inline">\(d(t)=1.0\)</span>. The disturbance is assigned on
+line 33, and is input to the system on line 36.</p>
+<p>In addition to the feedback loop as implemented above, the system
+will be visualized through an animation, and also by plotting important
+variables like the reference input, the system states, and the control
+input. The animation and data plotting functions are implemented in
+<code>systemAnimation.py</code> and<br />
+<code>dataPlotter.py</code>, are imported on lines 5 and 6, instantiated
+on lines 22 and 23, and updated on lines 39 and 40. The
+<code>pause</code> command on line 42 forces the animation and data
+plotting functions to update their displays each time through the
+loop.</p>
+<h2 data-number="P.1.1" id="system-dynamics"><span class="header-section-number">P.1.1</span> System Dynamics</h2>
+<p>This section will describe how to implement the system dynamics given
+in
+Equation <a href="#system-dynamics" data-reference-type="eqref"
+data-reference="eq:python_system_dynamics"><a href="#simulating-control-systems-using-python">P.1.1</a></a>.
+The first step is to convert the dynamics to the state space form <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= f(x, u) \\
+y &amp;= h(x,u).    
+\end{aligned}\]</span> For the differential equation in
+Equation <a href="#system-dynamics" data-reference-type="eqref"
+data-reference="eq:python_system_dynamics"><a href="#simulating-control-systems-using-python">P.1.1</a></a>
+let <span class="math inline">\(x = (y, \dot{y})^\top\)</span>, which
+gives <span class="math display">\[\begin{aligned}
+\dot{x}&amp; = \begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \end{pmatrix} =
+\begin{pmatrix} \dot{y} \\ \ddot{y} \end{pmatrix} = \begin{pmatrix}
+\dot{y} \\ -2\dot{y} - 3y + 4u \end{pmatrix} = \begin{pmatrix} x_2 \\
+-2x_2 - 3 x_1 + 4 u \end{pmatrix} \stackrel{\triangle}{=}f(x,u)
+\label{eq:python_f} \\
+y &amp;= x_1 \stackrel{\triangle}{=}h(x). \label{eq:python_h}
+\end{aligned}\]</span></p>
+<p>The dynamics of the system are implemented in
+<code>systemDynamics.py</code> which is listed below.</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> systemDynamics:</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, sample_rate):</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initial state conditions</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        y0 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        ydot0 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> np.array([</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>            [y0],  <span class="co"># initial condition for y</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>            [ydot0],  <span class="co"># initial condition for ydot</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Ts <span class="op">=</span> sample_rate  <span class="co"># sample rate of system</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.limit <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># input saturation limit</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># system parameters</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a0 <span class="op">=</span> <span class="fl">3.0</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a1 <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b0 <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># modify the system parameters by random value</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>        alpha <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># Uncertainty parameter</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a1 <span class="op">=</span> <span class="va">self</span>.a1 <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a0 <span class="op">=</span> <span class="va">self</span>.a0 <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b0 <span class="op">=</span> <span class="va">self</span>.b0 <span class="op">*</span> (<span class="fl">1.</span><span class="op">+</span>alpha<span class="op">*</span>(<span class="fl">2.</span><span class="op">*</span>np.random.rand()<span class="op">-</span><span class="fl">1.</span>))</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> f(<span class="va">self</span>, state, u):</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for system xdot = f(x,u), return f(x,u)</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> state.item(<span class="dv">0</span>)</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>        ydot <span class="op">=</span> state.item(<span class="dv">1</span>)</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The equations of motion.</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>        yddot <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.a1 <span class="op">*</span> ydot <span class="op">-</span> <span class="va">self</span>.a0 <span class="op">*</span> y <span class="op">+</span> <span class="va">self</span>.b0 <span class="op">*</span> u</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># build xdot and return</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>        xdot <span class="op">=</span> np.array([[ydot], [yddot]])</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xdot</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> h(<span class="va">self</span>):</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Returns the measured output y = h(x)</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="va">self</span>.state.item(<span class="dv">0</span>)</span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return output</span></span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, u):</span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This is the external method that takes the input u(t)</span></span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># and returns the output y(t).</span></span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> <span class="va">self</span>.saturate(u, <span class="va">self</span>.limit)  <span class="co"># saturate the input</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rk4_step(u)  <span class="co"># propagate the state by one time step</span></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="va">self</span>.h()  <span class="co"># compute the output at the current state</span></span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rk4_step(<span class="va">self</span>, u):</span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Integrate ODE using Runge-Kutta RK4 algorithm</span></span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state, u)</span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>        F2 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F1, u)</span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>        F3 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F2, u)</span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a>        F4 <span class="op">=</span> <span class="va">self</span>.f(<span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">*</span> F3, u)</span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">+=</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> (F1 <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> F2 <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> F3 <span class="op">+</span> F4)</span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> saturate(<span class="va">self</span>, u, limit):</span>
+<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>            u <span class="op">=</span> limit<span class="op">*</span>np.sign(u)</span>
+<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> u</span></code></pre></div>
+<p>The system is initialized in lines 4–22. The state is initialized in
+lines 6–11 based on the initial conditions for <span
+class="math inline">\(y(0)\)</span> and <span
+class="math inline">\(\dot{y}(0)\)</span>. The system parameters are
+initialized in lines 15–22. The parameters for any physical system are
+never known exactly. Therefore, feedback systems need to be designed to
+be robust to this uncertainty. In the simulation, we model uncertainty
+in our knowledge of the physical parameters by changing the nominal
+value by a uniform random variable. Let <span
+class="math inline">\(\alpha\)</span> be the amount of change allowed
+for each parameter, i.e., alpha = 0.2, means that the physical
+parameters may change by up to 20%. The function
+<code>np.random.rand()</code> returns a uniform random variable in the
+interval <span class="math inline">\([0, 1]\)</span>. Therefore <span
+class="math inline">\((1 + \alpha
+(2*\texttt{np.random.rand()}-1))\)</span> is a random variable in the
+interval <span class="math inline">\([-\alpha, \alpha]\)</span>. The
+nominal values for the physical parameters that are known to the
+designer, are specified in lines 15–17. The actual values used by the
+simulation, are randomly selected in lines 19–22.</p>
+<p>The system dynamics <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= f(x, u) \\
+y &amp;= h(x, u).   
+\end{aligned}\]</span> are specified in lines 24–38. Lines 24–32 define
+<span class="math inline">\(f(x,u)\)</span>, and lines 34–38 define
+<span class="math inline">\(h(x, u)\)</span>, as given by
+Equations <a href="#signal-generator" data-reference-type="eqref"
+data-reference="eq:python_f"><a href="#simulating-control-systems-using-python">P.1.3</a></a>
+and <a href="#data-plotter" data-reference-type="eqref"
+data-reference="eq:python_h"><a href="#simulating-control-systems-using-python">P.1.4</a></a> respectively.</p>
+<p>The main feedback loop calls the <code>update</code> routine in
+lines 40–46. The <code>update</code> function first saturates the input
+in line 43, where the <code>saturation</code> function is defined in
+lines 56–59. The system dynamics are then propagated forward by one
+sample time <span class="math inline">\(T_s\)</span> using the
+Runge-Kutta 4 algorithm in line 44, where the RK4 algorithm is specified
+in lines 48–54, as described in
+Appendix <a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations" data-reference-type="ref"
+data-reference="chap:runge_kutta">28</a>. The <code>update</code>
+function finally computes and returns the output <span
+class="math inline">\(y\)</span> in lines 45–46.</p>
+<h2 data-number="P.1.2" id="controller"><span class="header-section-number">P.1.2</span> Controller</h2>
+<p>This section will describe how to implement the PID controller given
+in Equation <a href="25-p-3-simulating-control-systems-using-simulink.html#controller-2" data-reference-type="eqref"
+data-reference="eq:python_PID_control"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3.2</a></a>. The
+controller is implemented in <code>systemController.py</code>, which is
+listed below.</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> systemController:</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, sample_rate):</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># specify gains</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ki <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Ts <span class="op">=</span> sample_rate</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sigma <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> <span class="va">self</span>.Ts</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.beta <span class="op">=</span> (<span class="fl">2.0</span><span class="op">*</span>sigma<span class="op">-</span><span class="va">self</span>.Ts)<span class="op">/</span>(<span class="fl">2.0</span><span class="op">*</span>sigma<span class="op">+</span><span class="va">self</span>.Ts)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.limit <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># internal storage for differentiator</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_dot <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_d1 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># internal storage for integrator</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_d1 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, r, y):</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>        e <span class="op">=</span> r <span class="op">-</span> y  <span class="co"># define the error</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>        I <span class="op">=</span> <span class="va">self</span>.integrate_e(e)  <span class="co"># integrate error</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>        ydot <span class="op">=</span> <span class="va">self</span>.differentiate_y(y)  <span class="co"># differentiate y</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># form PID controller, saturate, and return</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> <span class="va">self</span>.kp <span class="op">*</span> e <span class="op">+</span> <span class="va">self</span>.ki <span class="op">*</span> I <span class="op">-</span> <span class="va">self</span>.kd <span class="op">*</span> ydot</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> <span class="va">self</span>.saturate(u)</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> u</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> integrate_e(<span class="va">self</span>, e):</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator <span class="op">=</span> <span class="va">self</span>.integrator <span class="op"></span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (<span class="va">self</span>.Ts <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> (error <span class="op">+</span> <span class="va">self</span>.error_d1)</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_d1 <span class="op">=</span> error</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.integrator</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> differentiate_y(<span class="va">self</span>, y):</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_dot <span class="op">=</span> <span class="va">self</span>.beta<span class="op">*</span><span class="va">self</span>.y_dot <span class="op"></span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span><span class="va">self</span>.beta)<span class="op">/</span><span class="va">self</span>.Ts <span class="op">*</span> (y <span class="op">-</span> <span class="va">self</span>.y_d1)</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_d1 <span class="op">=</span> y</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.y_dot</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> saturate(<span class="va">self</span>, u):</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> <span class="va">self</span>.limit:</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>            u <span class="op">=</span> <span class="va">self</span>.limit<span class="op">*</span>np.sign(u)</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> u</span></code></pre></div>
+<p>The controller is instantiated in lines 4–18. The PID gains are
+specified in lines 6–8. The sample rate of the controller is passed into
+the system at the time of instantiation and is assigned an internal
+variable <span class="math inline">\(T_s\)</span> in line 9. The dirty
+derivative gain <span class="math inline">\(\sigma\)</span> described in
+Chapter <a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a> is specified in
+line 10, and the intermediate gain <span class="math inline">\(\beta =
+\frac{2\sigma-T_s}{2\sigma+T_s}\)</span> is specified on line 11.
+Internal storage variables for the differentiator and the integrator, as
+explained in
+Chapter <a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a> are given in
+lines 13–18. The PID control <code>update</code> routine is specified in
+lines 20–27. The error <span class="math inline">\(e=r-y\)</span> as
+shown in
+Figure <a href="#fig:python_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:python_feedback_block_diagram">1.1</a> is defined
+in line 21. The PID controller in
+Equations <a href="25-p-3-simulating-control-systems-using-simulink.html#controller-2" data-reference-type="eqref"
+data-reference="eq:python_PID_control"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3.2</a></a> uses
+the integral of <span class="math inline">\(e\)</span> and the
+derivative of <span class="math inline">\(y\)</span>. The integral of
+<span class="math inline">\(e\)</span> is computed on line 22 using the
+routine specified in lines 29–33. A derivation of the integral equations
+is given in
+Chapter <a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>. The derivative
+of <span class="math inline">\(y\)</span> is computed in line 23 using
+the routine specified in lines 35–39. A derivation of the dirty
+derivative equations is given in
+Chapter <a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a>. Finally, the
+PID controller computed, the value is saturated, and returned in
+lines 25, 26, and 27, respectively.</p>
+<h2 data-number="P.1.3" id="signal-generator"><span class="header-section-number">P.1.3</span> Signal Generator</h2>
+<p>Python code for the signal generator class is listed below.</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> signalGenerator:</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, amplitude<span class="op">=</span><span class="fl">1.0</span>, frequency<span class="op">=</span><span class="fl">0.001</span>, y_offset<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.amplitude <span class="op">=</span> amplitude  <span class="co"># signal amplitude</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.frequency <span class="op">=</span> frequency  <span class="co"># signal frequency</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_offset <span class="op">=</span> y_offset  <span class="co"># signal y-offset</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> square(<span class="va">self</span>, t):</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> t <span class="op">%</span> (<span class="fl">1.0</span><span class="op">/</span><span class="va">self</span>.frequency) <span class="op">&lt;=</span> <span class="fl">0.5</span><span class="op">/</span><span class="va">self</span>.frequency:</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>            out <span class="op">=</span> <span class="va">self</span>.amplitude <span class="op">+</span> <span class="va">self</span>.y_offset</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>            out <span class="op">=</span> <span class="op">-</span> <span class="va">self</span>.amplitude <span class="op">+</span> <span class="va">self</span>.y_offset</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sawtooth(<span class="va">self</span>, t):</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> t <span class="op">%</span> (<span class="fl">0.5</span><span class="op">/</span><span class="va">self</span>.frequency)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> <span class="va">self</span>.amplitude <span class="op">*</span> <span class="va">self</span>.frequency<span class="op">*</span>tmp <span class="op"></span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>              <span class="op">-</span> <span class="va">self</span>.amplitude <span class="op">+</span> <span class="va">self</span>.y_offset</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> step(<span class="va">self</span>, t):</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> t <span class="op">&gt;=</span> <span class="fl">0.0</span>:</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>            out <span class="op">=</span> <span class="va">self</span>.amplitude <span class="op">+</span> <span class="va">self</span>.y_offset</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>            out <span class="op">=</span> <span class="va">self</span>.y_offset</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> random(<span class="va">self</span>, t):</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> np.random.normal(<span class="va">self</span>.y_offset, <span class="va">self</span>.amplitude)</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sin(<span class="va">self</span>, t):</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.amplitude <span class="op">*</span> np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="va">self</span>.frequency<span class="op">*</span>t) <span class="op"></span></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>              <span class="op">+</span> <span class="va">self</span>.y_offset</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span></code></pre></div>
+<p>The class is instantiated by passing in the desired amplitude of the
+signal, the frequency in Hertz, and a y-offset value. For random
+signals, the amplitude is interpreted to be the standard deviation of
+the signal. The signal generator can then be used to produce a square
+wave, a sawtooth signal, a step, a random signal, or a sinusoid, as
+specified in lines 9–36.</p>
+<h2 data-number="P.1.4" id="data-plotter"><span class="header-section-number">P.1.4</span> Data Plotter</h2>
+<p>The objective of the data plotter is to plot the relevant signals
+during the simulation. For this simple example, we will plot the output
+<span class="math inline">\(y\)</span> and the reference <span
+class="math inline">\(r\)</span> on one plot, the velocity <span
+class="math inline">\(\dot{y}\)</span> on another plot, and the control
+signal <span class="math inline">\(u\)</span> on a third plot. For
+plotting and animation, we will use the Python <code>Matplotlib</code>
+library. Python code for the data plotter class is listed below.</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>plt.ion()  <span class="co"># enable interactive drawing</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> dataPlotter:</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Number of subplots = num_of_rows*num_of_cols</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.num_rows <span class="op">=</span> <span class="dv">3</span>    <span class="co"># Number of subplot rows</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.num_cols <span class="op">=</span> <span class="dv">1</span>    <span class="co"># Number of subplot columns</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Crete figure and axes handles</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fig, <span class="va">self</span>.ax <span class="op">=</span> plt.subplots(<span class="va">self</span>.num_rows,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>                                         <span class="va">self</span>.num_cols,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>                                         sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Instantiate lists to hold the time and data histories</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.time_history <span class="op">=</span> []  <span class="co"># time</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.r_history <span class="op">=</span> []  <span class="co"># reference r</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_history <span class="op">=</span> []  <span class="co"># output y</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ydot_history <span class="op">=</span> []  <span class="co"># velocity ydot</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.u_history <span class="op">=</span> []  <span class="co"># input u</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create a handle for every subplot.</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.handle <span class="op">=</span> []</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.handle.append(subplotWindow(<span class="va">self</span>.ax[<span class="dv">0</span>],</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>                                  ylabel<span class="op">=</span><span class="st">&#39;y&#39;</span>,</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>                                  title<span class="op">=</span><span class="st">&#39;Simple System&#39;</span>))</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.handle.append(subplotWindow(<span class="va">self</span>.ax[<span class="dv">1</span>],</span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>                                  ylabel<span class="op">=</span><span class="st">&#39;ydot&#39;</span>))</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.handle.append(subplotWindow(<span class="va">self</span>.ax[<span class="dv">2</span>],</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>                                  xlabel<span class="op">=</span><span class="st">&#39;t(s)&#39;</span>,</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>                                  ylabel<span class="op">=</span><span class="st">&#39;u&#39;</span>))</span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, time, reference, state, control):</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update the time history of all plot variables</span></span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.time_history.append(time)</span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.r_history.append(reference)</span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_history.append(state.item(<span class="dv">0</span>))</span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ydot_history.append(state.item(<span class="dv">1</span>))</span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.u_history.append(control)</span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update the plots with associated histories</span></span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.handle[<span class="dv">0</span>].update(<span class="va">self</span>.time_history,</span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>                              [<span class="va">self</span>.r_history, <span class="va">self</span>.y_history])</span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.handle[<span class="dv">1</span>].update(<span class="va">self</span>.time_history,</span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>                              [<span class="va">self</span>.ydot_history])</span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.handle[<span class="dv">2</span>].update(<span class="va">self</span>.time_history,</span>
+<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>                              [<span class="va">self</span>.u_history])</span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> subplotWindow:</span>
+<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create each individual subplot.</span></span>
+<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ax, xlabel<span class="op">=</span><span class="st">&#39;&#39;</span>, ylabel<span class="op">=</span><span class="st">&#39;&#39;</span>, title<span class="op">=</span><span class="st">&#39;&#39;</span>,</span>
+<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a>                 legend<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a>        <span class="co">&#39;&#39;&#39; </span></span>
+<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a><span class="co">            ax - This is a handle to the  axes of the figure</span></span>
+<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a><span class="co">            xlabel - Label of the x-axis</span></span>
+<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a><span class="co">            ylabel - Label of the y-axis</span></span>
+<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a><span class="co">            title - Plot title</span></span>
+<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a><span class="co">            legend - A tuple of strings that identify the data. </span></span>
+<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a><span class="co">                     EX: (&quot;data1&quot;,&quot;data2&quot;, ... , &quot;dataN&quot;)</span></span>
+<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a><span class="co">        &#39;&#39;&#39;</span></span>
+<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.legend <span class="op">=</span> legend</span>
+<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax <span class="op">=</span> ax                  <span class="co"># Axes handle</span></span>
+<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.colors <span class="op">=</span> [<span class="st">&#39;b&#39;</span>, <span class="st">&#39;g&#39;</span>, <span class="st">&#39;r&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;m&#39;</span>, <span class="st">&#39;y&#39;</span>, <span class="st">&#39;b&#39;</span>]</span>
+<span id="cb28-64"><a href="#cb28-64" aria-hidden="true" tabindex="-1"></a>        <span class="co"># A list of colors. The first color in the list corresponds</span></span>
+<span id="cb28-65"><a href="#cb28-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># to the first line object, etc.</span></span>
+<span id="cb28-66"><a href="#cb28-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># &#39;b&#39; - blue, &#39;g&#39; - green, &#39;r&#39; - red, &#39;c&#39; - cyan,</span></span>
+<span id="cb28-67"><a href="#cb28-67" aria-hidden="true" tabindex="-1"></a>        <span class="co"># &#39;m&#39; - magenta, &#39;y&#39; - yellow, &#39;k&#39; - black</span></span>
+<span id="cb28-68"><a href="#cb28-68" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.line_styles <span class="op">=</span> [<span class="st">&#39;-&#39;</span>, <span class="st">&#39;-&#39;</span>, <span class="st">&#39;--&#39;</span>, <span class="st">&#39;-.&#39;</span>, <span class="st">&#39;:&#39;</span>]</span>
+<span id="cb28-69"><a href="#cb28-69" aria-hidden="true" tabindex="-1"></a>        <span class="co"># A list of line styles.  The first line style in the list</span></span>
+<span id="cb28-70"><a href="#cb28-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># corresponds to the first line object.</span></span>
+<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a>        <span class="co"># &#39;-&#39; solid, &#39;--&#39; dashed, &#39;-.&#39; dash_dot, &#39;:&#39; dotted</span></span>
+<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.line <span class="op">=</span> []</span>
+<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Configure the axes</span></span>
+<span id="cb28-74"><a href="#cb28-74" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_ylabel(ylabel)</span>
+<span id="cb28-75"><a href="#cb28-75" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_xlabel(xlabel)</span>
+<span id="cb28-76"><a href="#cb28-76" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_title(title)</span>
+<span id="cb28-77"><a href="#cb28-77" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.grid(<span class="va">True</span>)</span>
+<span id="cb28-78"><a href="#cb28-78" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Keeps track of initialization</span></span>
+<span id="cb28-79"><a href="#cb28-79" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.init <span class="op">=</span> <span class="va">True</span>   </span>
+<span id="cb28-80"><a href="#cb28-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-81"><a href="#cb28-81" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, time, data):</span>
+<span id="cb28-82"><a href="#cb28-82" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Adds data to the plot.</span></span>
+<span id="cb28-83"><a href="#cb28-83" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initialize the plot the first time routine is called</span></span>
+<span id="cb28-84"><a href="#cb28-84" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.init<span class="op">==</span><span class="va">True</span>:</span>
+<span id="cb28-85"><a href="#cb28-85" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data)):</span>
+<span id="cb28-86"><a href="#cb28-86" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Instantiate line object and add it to the axes</span></span>
+<span id="cb28-87"><a href="#cb28-87" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.line.append(Line2D(time, data[i],</span>
+<span id="cb28-88"><a href="#cb28-88" aria-hidden="true" tabindex="-1"></a>                    color<span class="op">=</span><span class="va">self</span>.colors[np.mod(i,<span class="bu">len</span>(<span class="va">self</span>.colors)<span class="op">-</span><span class="dv">1</span>)],</span>
+<span id="cb28-89"><a href="#cb28-89" aria-hidden="true" tabindex="-1"></a>                    ls<span class="op">=</span><span class="va">self</span>.line_styles</span>
+<span id="cb28-90"><a href="#cb28-90" aria-hidden="true" tabindex="-1"></a>                            [np.mod(i, <span class="bu">len</span>(<span class="va">self</span>.line_styles) <span class="op">-</span> <span class="dv">1</span>)],</span>
+<span id="cb28-91"><a href="#cb28-91" aria-hidden="true" tabindex="-1"></a>                    label<span class="op">=</span><span class="va">self</span>.legend</span>
+<span id="cb28-92"><a href="#cb28-92" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> <span class="va">self</span>.legend<span class="op">!=</span><span class="va">None</span> <span class="cf">else</span> <span class="va">None</span>))</span>
+<span id="cb28-93"><a href="#cb28-93" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.ax.add_line(<span class="va">self</span>.line[i])</span>
+<span id="cb28-94"><a href="#cb28-94" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.init <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb28-95"><a href="#cb28-95" aria-hidden="true" tabindex="-1"></a>            <span class="co"># add legend if one is specified</span></span>
+<span id="cb28-96"><a href="#cb28-96" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="va">self</span>.legend<span class="op">!=</span><span class="va">None</span>:</span>
+<span id="cb28-97"><a href="#cb28-97" aria-hidden="true" tabindex="-1"></a>                plt.legend(handles<span class="op">=</span><span class="va">self</span>.line)</span>
+<span id="cb28-98"><a href="#cb28-98" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>: <span class="co"># Add new data to the plot</span></span>
+<span id="cb28-99"><a href="#cb28-99" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Updates the x and y data of each line.</span></span>
+<span id="cb28-100"><a href="#cb28-100" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(<span class="va">self</span>.line)):</span>
+<span id="cb28-101"><a href="#cb28-101" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.line[i].set_xdata(time)</span>
+<span id="cb28-102"><a href="#cb28-102" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.line[i].set_ydata(data[i])</span>
+<span id="cb28-103"><a href="#cb28-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-104"><a href="#cb28-104" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Adjusts the axis to fit all of the data</span></span>
+<span id="cb28-105"><a href="#cb28-105" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.relim()</span>
+<span id="cb28-106"><a href="#cb28-106" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.autoscale()</span>
+<span id="cb28-107"><a href="#cb28-107" aria-hidden="true" tabindex="-1"></a>           </span></code></pre></div>
+<p>The plotter is initialized in lines 9–31. Lines 10–11, specify that
+the plot window will contain three plots arranged as a <span
+class="math inline">\(3\times 1\)</span> array. The routine keeps track
+of the time histories of all variables to be plotted. Lines 17-21
+initialize time histories for the time <span
+class="math inline">\(t\)</span>, the reference signal <span
+class="math inline">\(r\)</span>, the output <span
+class="math inline">\(y\)</span>, and the velocity <span
+class="math inline">\(\dot{y}\)</span>, and the input <span
+class="math inline">\(u\)</span>. Lines 23–31 set up the individual
+plots with labels, by instantiating objects from the
+<code>subplotWindow</code> class, which will be described below.</p>
+<p>The <code>update</code> method receives as input the current
+<code>time</code>,<br />
+<code>reference</code>, <code>state</code>, and <code>control</code>
+values. Lines 35–39 append the current values to the history lists
+maintained in memory for each of those values. The plots are then
+updated with the new histories in lines 42–47 by calling the
+<code>subplotWindow.update</code> method, which will be described
+below.</p>
+<p>The <code>subplotWindow</code> class is instantiated in lines 50–79.
+If multiple data streams are on a single plot, the color of the line
+corresponds to the order specified on line 63, and the style of the
+lines will be in the order specified on line 68. The
+<code>subplotWindow.update</code> method is specified in lines 81–102.
+The first time the <code>subplotWindow.update</code> method is called,
+the line objects are initialized and plotted in lines 85–97. In
+subsequent calls to <code>subplotWindow.update</code> the data lines are
+modified in lines 100–102.</p>
+<h2 data-number="P.1.5" id="animation"><span class="header-section-number">P.1.5</span> Animation</h2>
+<p>In this section we will show how to create an animation for the
+inverted pendulum case study. Consider the image of the inverted
+pendulum shown in
+<strong>Fig.</strong> <a href="#fig:python-animation-pendulum" data-reference-type="ref"
+data-reference="fig:python-animation-pendulum">1.2</a>, where the
+configuration is completely specified by the position of the cart <span
+class="math inline">\(z\)</span>, and the angle of the rod from vertical
+<span class="math inline">\(\theta\)</span>. The physical parameters of
+the system are the rod length <span class="math inline">\(\ell\)</span>,
+the base width <span class="math inline">\(w\)</span>, the base height
+<span class="math inline">\(h\)</span>, and the gap between the base and
+the track <span class="math inline">\(g\)</span>.</p>
+<figure id="fig:python-animation-pendulum">
+<img src="app_python/figures/animation-pendulum.png"
+style="width:60.0%"
+alt="Drawing for inverted pendulum. The first step in developing an animation is to draw a figure of the object to be animated and identify all of the physical parameters." />
+<figcaption aria-hidden="true">Drawing for inverted pendulum. The first
+step in developing an animation is to draw a figure of the object to be
+animated and identify all of the physical parameters.</figcaption>
+</figure>
+<p>The first step in developing the animation is to determine the
+position of points that define the animation. The pendulum will require
+that we draw three objects: the rectangular cart, the circular bob at
+the end of the rod, and the rod. We will draw the cart as a rectangle,
+the bob as a circle, and the rod as a line. In Python, rectangles are
+specified by their lower-left corner, their width, and their height. The
+lower left corner of the rectangle is <span
+class="math inline">\((z-w/2, g)\)</span>. In Python, circles are
+specified by their center and radius. The center of the bob is <span
+class="math inline">\((z+(\ell+R)\sin\theta,
+g+h+(\ell+R)\cos\theta)\)</span>. In Python, lines are specified by the
+<span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> locations of their endpoints. The <span
+class="math inline">\(x\)</span> locations of the endpoints of the rod
+are <span class="math inline">\(X=(z, z+\ell\sin\theta)\)</span>, and
+the <span class="math inline">\(y\)</span> locations of the endpoints
+are <span class="math inline">\(Y=(g+h,
+g+h+\ell\cos\theta)\)</span>.</p>
+<p>Python code for the animation class is listed below.</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> patches <span class="im">as</span> mpatches</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.widgets <span class="im">import</span> Button</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> signal</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># if you are having difficulty with the graphics,</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># try using one of the following backends</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># See https://matplotlib.org/stable/users/explain/backends.html</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.use(&#39;qtagg&#39;)  # requires pyqt or pyside</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.use(&#39;ipympl&#39;)  # requires ipympl</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.use(&#39;gtk3agg&#39;)  # requires pyGObject and pycairo</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.use(&#39;gtk4agg&#39;)  # requires pyGObject and pycairo</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.use(&#39;gtk3cairo&#39;)  # requires pyGObject and pycairo</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.use(&#39;gtk4cairo&#39;)  # requires pyGObject and pycairo</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>matplotlib.use(<span class="st">&#39;tkagg&#39;</span>)  <span class="co"># requires TkInter</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.use(&#39;wxagg&#39;)  # requires wxPython</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> pendulumAnimation:</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flag_init <span class="op">=</span> <span class="va">True</span>  <span class="co"># Used to indicate initialization</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initialize a figure and axes object</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fig, <span class="va">self</span>.ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initializes a list of objects (patches and lines)</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.handle <span class="op">=</span> []</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Specify the x,y axis limits</span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>        plt.axis([<span class="op">-</span><span class="dv">3</span><span class="op">*</span>P.ell, <span class="dv">3</span><span class="op">*</span>P.ell, <span class="op">-</span><span class="fl">0.1</span>, <span class="dv">3</span><span class="op">*</span>P.ell])</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Draw line for the ground</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>        plt.plot([<span class="op">-</span><span class="dv">2</span><span class="op">*</span>P.ell, <span class="dv">2</span><span class="op">*</span>P.ell], [<span class="dv">0</span>, <span class="dv">0</span>], <span class="st">&#39;b--&#39;</span>)</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># label axes</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">&#39;z&#39;</span>)</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create exit button</span></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.button_ax <span class="op">=</span> plt.axes([<span class="fl">0.8</span>, <span class="fl">0.805</span>, <span class="fl">0.1</span>, <span class="fl">0.075</span>])  <span class="co"># [left, bottom, width, height]</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.exit_button <span class="op">=</span> Button(<span class="va">self</span>.button_ax, label<span class="op">=</span><span class="st">&#39;Exit&#39;</span>, color<span class="op">=</span><span class="st">&#39;r&#39;</span>,)</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.exit_button.label.set_fontweight(<span class="st">&#39;bold&#39;</span>)</span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.exit_button.label.set_fontsize(<span class="dv">18</span>)</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.exit_button.on_clicked(<span class="kw">lambda</span> event: exit())</span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Register &lt;ctrl+c&gt; signal handler to stop the simulation</span></span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>        signal.signal(signal.SIGINT, signal.SIG_DFL)</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, state):</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> state[<span class="dv">0</span>, <span class="dv">0</span>]  <span class="co"># Horizontal position of cart, m</span></span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> state[<span class="dv">1</span>, <span class="dv">0</span>]  <span class="co"># Angle of pendulum, rads</span></span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># draw plot elements: cart, bob, rod</span></span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.draw_cart(z)</span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.draw_bob(z, theta)</span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.draw_rod(z, theta)</span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.axis(<span class="st">&#39;equal&#39;</span>)</span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Set initialization flag to False after first call</span></span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.flag_init <span class="op">==</span> <span class="va">True</span>:</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.flag_init <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> draw_cart(<span class="va">self</span>, z):</span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># specify bottom left corner of rectangle</span></span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> z<span class="op">-</span>P.w<span class="op">/</span><span class="fl">2.0</span></span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> P.gap</span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a>        corner <span class="op">=</span> (x, y)</span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create rectangle on first call, update on subsequent calls</span></span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.flag_init <span class="kw">is</span> <span class="va">True</span>:</span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Create the Rectangle patch and append its handle</span></span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a>            <span class="co"># to the handle list</span></span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.handle.append(</span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a>                mpatches.Rectangle(corner, P.w, P.h, fc<span class="op">=</span><span class="st">&#39;blue&#39;</span>, ec<span class="op">=</span><span class="st">&#39;black&#39;</span>))</span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add the patch to the axes</span></span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.ax.add_patch(<span class="va">self</span>.handle[<span class="dv">0</span>])</span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.handle[<span class="dv">0</span>].set_xy(corner)  <span class="co"># Update patch</span></span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> draw_bob(<span class="va">self</span>, z, theta):</span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a>        <span class="co"># specify center of circle</span></span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> z<span class="op">+</span>(P.ell<span class="op">+</span>P.radius)<span class="op">*</span>np.sin(theta)</span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> P.gap<span class="op">+</span>P.h<span class="op">+</span>(P.ell<span class="op">+</span>P.radius)<span class="op">*</span>np.cos(theta)</span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a>        center <span class="op">=</span> (x, y)</span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create circle on first call, update on subsequent calls</span></span>
+<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.flag_init <span class="kw">is</span> <span class="va">True</span>:</span>
+<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Create the CirclePolygon patch and append its handle</span></span>
+<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a>            <span class="co"># to the handle list</span></span>
+<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.handle.append(</span>
+<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a>                mpatches.CirclePolygon(center, radius<span class="op">=</span>P.radius,</span>
+<span id="cb29-85"><a href="#cb29-85" aria-hidden="true" tabindex="-1"></a>                                       resolution<span class="op">=</span><span class="dv">15</span>, fc<span class="op">=</span><span class="st">&#39;limegreen&#39;</span>, ec<span class="op">=</span><span class="st">&#39;black&#39;</span>))</span>
+<span id="cb29-86"><a href="#cb29-86" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add the patch to the axes</span></span>
+<span id="cb29-87"><a href="#cb29-87" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.ax.add_patch(<span class="va">self</span>.handle[<span class="dv">1</span>])</span>
+<span id="cb29-88"><a href="#cb29-88" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb29-89"><a href="#cb29-89" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.handle[<span class="dv">1</span>].xy <span class="op">=</span> center</span>
+<span id="cb29-90"><a href="#cb29-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-91"><a href="#cb29-91" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> draw_rod(<span class="va">self</span>, z, theta):</span>
+<span id="cb29-92"><a href="#cb29-92" aria-hidden="true" tabindex="-1"></a>        <span class="co"># specify x-y points of the rod</span></span>
+<span id="cb29-93"><a href="#cb29-93" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> [z, z<span class="op">+</span>P.ell<span class="op">*</span>np.sin(theta)]</span>
+<span id="cb29-94"><a href="#cb29-94" aria-hidden="true" tabindex="-1"></a>        Y <span class="op">=</span> [P.gap<span class="op">+</span>P.h, P.gap<span class="op">+</span>P.h<span class="op">+</span>P.ell<span class="op">*</span>np.cos(theta)]</span>
+<span id="cb29-95"><a href="#cb29-95" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create rod on first call, update on subsequent calls</span></span>
+<span id="cb29-96"><a href="#cb29-96" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.flag_init <span class="kw">is</span> <span class="va">True</span>:</span>
+<span id="cb29-97"><a href="#cb29-97" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Create the line object and append its handle</span></span>
+<span id="cb29-98"><a href="#cb29-98" aria-hidden="true" tabindex="-1"></a>            <span class="co"># to the handle list.</span></span>
+<span id="cb29-99"><a href="#cb29-99" aria-hidden="true" tabindex="-1"></a>            line, <span class="op">=</span> <span class="va">self</span>.ax.plot(X, Y, lw<span class="op">=</span><span class="dv">1</span>, c<span class="op">=</span><span class="st">&#39;black&#39;</span>)</span>
+<span id="cb29-100"><a href="#cb29-100" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.handle.append(line)</span>
+<span id="cb29-101"><a href="#cb29-101" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb29-102"><a href="#cb29-102" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.handle[<span class="dv">2</span>].set_xdata(X)</span>
+<span id="cb29-103"><a href="#cb29-103" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.handle[<span class="dv">2</span>].set_ydata(Y)</span></code></pre></div>
+<p>The <code>pendulumAnimation</code> class is initialized in
+lines 7–18. The flag<br />
+<code>self.flag_init</code> is used to indicate the first time the
+animation function is called. On the first call when
+<code>self.flag_init==True</code>, all of the plot elements are
+initialized and configured (see lines 38–45, lines 55–62, and
+lines 71–75). After the first call, when
+<code>self.flag_init==False</code>, each plot element is simply updated
+(see lines 47, lines 64, and lines 77–78). Line 10 initializes the plot
+window and axes, line 12 initializes an empty list of handles to plot
+objects, line 14 sets the size of the axes to be <span
+class="math inline">\(\pm 3\ell\)</span> along the <span
+class="math inline">\(x\)</span>-axes and <span
+class="math inline">\(-0.1\)</span> to <span
+class="math inline">\(3\ell\)</span> along the <span
+class="math inline">\(y\)</span>-axis, line 16 draws the line
+representing the ground, and line 18 labels the <span
+class="math inline">\(x\)</span>-axis as the configuration variable
+<span class="math inline">\(z\)</span>.</p>
+<p>The animation function is updated each time step using the
+<code>update</code> method shown in lines 20–30. The input to the
+<code>update</code> method is the <code>state</code> of the pendulum, of
+which the first element is <span class="math inline">\(z\)</span> and
+the second element is <span class="math inline">\(\theta\)</span>
+(lines 21–22). Lines 24–26 then call methods, that will be described
+below, that draw the cart, bob, and rod. Line 27 ensures that the axes
+are not distorted. Lines 29–30 set the initialization flag
+<code>self.flat_init</code> to <code>False</code> after the first call
+to <code>update</code>.</p>
+<p>The <code>draw_cart</code> method is listed in lines 32–47. The cart
+is drawn as a rectangle patch, which is specified by its lower-left
+corner, and the width and height of the rectangle. The lower-left corner
+of the rectangle is specified in lines 34–35, and the width and height
+are specified in line 42. The rectangle patch is created in lines 42–43
+and appended to the list of handles in line 41. The patch is added to
+the graph in line 45. After initialization, the only element of the cart
+rectangle that changes with time is the lower-left corner, which is
+updated in line 47.</p>
+<p>The <code>draw_bob</code> method is listed in lines 49–64. The bob is
+represented as a circle patch, which in Python is specified by the <span
+class="math inline">\(x-y\)</span> coordinates of the center of the
+circle, and by its radius. The <span class="math inline">\(x-y\)</span>
+center coordinates are given in lines 51–53. The circle patch is
+initialized in lines 59–60, where <code>resolution</code> is the angular
+resolution of the circle patch, <code>fc</code> is the color of the bob,
+and <code>ec</code> is the color of the outline. The circle patch is
+added to the handle list in line 58, and the handle is added to figure
+in line 62. After initialization, the only element of the bob that
+changes with time is it center, which is updated on line 64.</p>
+<p>The <code>draw_rod</code> method is listed in lines 66–78. The rod is
+draw as a line, which in Python is specified by the <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>-coordinates of the start and end of the
+line, which are given in lines 68–69. The line object is created in
+line 74, and added to the handle list in line 75. After initialization,
+both ends of the line change with time and are updated on
+lines 77–78.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

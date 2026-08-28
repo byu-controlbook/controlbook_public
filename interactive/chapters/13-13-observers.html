@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="13" id="observers"><span class="header-section-number">13</span> Observers</h1>
+<h2 data-number="13.1" id="theory-11"><span class="header-section-number">13.1</span> Theory</h2>
+<p>In the previous two chapters we assumed that the full state <span
+class="math inline">\(x\)</span> was available to the controller for
+full state feedback. In this chapter we remove that assumption and show
+how the state can be reconstructed given the measurements. We will
+assume that the state space model<span id="idx-0162" class="book-index-anchor" aria-hidden="true"></span> is given by <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + Bu \label{eq:ss_luenberger_observer_1}\\
+y &amp;= C x \label{eq:ss_luenberger_observer_2} \\
+y_r &amp;= C_r x, \notag
+\end{aligned}\]</span> where <span
+class="math inline">\(y_r\in\mathbb{R}^r\)</span> is the reference
+output<span id="idx-0163" class="book-index-anchor" aria-hidden="true"></span> as discussed in the
+previous two chapters, and <span
+class="math inline">\(y\in\mathbb{R}^p\)</span> is the measured
+output,<span id="idx-0164" class="book-index-anchor" aria-hidden="true"></span> or the signals
+measured by the sensors. While the objective of the controller is to
+force <span class="math inline">\(y_r(t)\)</span> to converge to the
+reference <span class="math inline">\(r(t)\)</span>, the objective of
+the observer<span id="idx-0165" class="book-index-anchor" aria-hidden="true"></span> is to estimate the
+state <span class="math inline">\(x(t)\)</span> given a history of the
+input <span class="math inline">\(u(t)\)</span> and the measured output
+<span class="math inline">\(y(t)\)</span>. In this book, the estimate of
+the state will be denoted as <span
+class="math inline">\(\hat{x}(t)\)</span>.</p>
+<p>A block diagram of the closed-loop system with observer based control
+is shown in
+<strong>Fig.</strong> <a href="#fig:ss_observer_based_feedback" data-reference-type="ref"
+data-reference="fig:ss_observer_based_feedback">13.1</a>. Comparing
+<strong>Fig.</strong> <a href="#fig:ss_observer_based_feedback" data-reference-type="ref"
+data-reference="fig:ss_observer_based_feedback">13.1</a> to the case of
+full state feedback in
+<strong>Fig.</strong> <a href="11-11-full-state-feedback.html#fig:ss_full_state_feedback" data-reference-type="ref"
+data-reference="fig:ss_full_state_feedback">11.4</a> note that the
+controller uses the estimated state <span
+class="math inline">\(\hat{x}\)</span><span id="idx-0166" class="book-index-anchor" aria-hidden="true"></span> instead of the full
+state <span class="math inline">\(x\)</span>. In other words, the
+controller in Equation <a href="11-11-full-state-feedback.html#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_full_state_feedback_controller"><a href="11-11-full-state-feedback.html#full-state-feedback">11.37</a></a>
+becomes <span class="math display">\[u=-K\hat{x} + k_r r.\]</span></p>
+<figure id="fig:ss_observer_based_feedback">
+<img
+src="4_observer_based/figures/ss_observer_based_feedback.png"
+style="width:80.0%"
+alt="Closed-loop system with observer based feedback." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 13.1. </span>Closed-loop system with observer based
+feedback.</figcaption>
+</figure>
+<p>In this chapter we will design a so-called Luenberger observer that
+has the structure given by <span
+class="math display">\[\label{eq:ss_luenberger_observer}
+\dot{\hat{x}} = \underbrace{A\hat{x} + Bu}_{\text{predictor}} +
+\underbrace{L \left(y - C \hat{x} \right)}_{\text{corrector}}.\]</span>
+The first term in
+Equation <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_luenberger_observer"><a href="#observers">13.3</a></a>,
+i.e., <span class="math inline">\(\dot{\hat{x}}=A\hat{x}+Bu\)</span> is
+a copy of the equations of motion for the plant given in
+Equation <a href="#theory-11" data-reference-type="eqref"
+data-reference="eq:ss_luenberger_observer_1"><a href="#observers">13.1</a></a>.
+The second term given by <span
+class="math inline">\(L(y-C\hat{x})\)</span> is a correction term, where
+<span class="math inline">\(L\)</span> is the observer gain,<span id="idx-0167" class="book-index-anchor" aria-hidden="true"></span> and <span
+class="math inline">\((y-C\hat{x})\)</span> is the difference between
+the measured output <span class="math inline">\(y=C x\)</span> and the
+predicted value of the measured output <span
+class="math inline">\(C\hat{x}\)</span>. The term <span
+class="math inline">\(y-C\hat{x}\)</span> is called the
+<em>innovation</em><span id="idx-0168" class="book-index-anchor" aria-hidden="true"></span> signal.</p>
+<p>Defining the observer error<span id="idx-0169" class="book-index-anchor" aria-hidden="true"></span> as <span
+class="math inline">\(e=x-\hat{x}\)</span> and differentiating with
+respect to time gives <span class="math display">\[\begin{aligned}
+\dot{e} &amp;= \dot{x} - \dot{\hat{x}} \\
+    &amp;= Ax + Bu - \left(A\hat{x} + Bu + Ly - LC\hat{x}\right) \\
+    &amp;= A(x-\hat{x}) - LC x + LC\hat{x} \\
+    &amp;= (A-LC)(x-\hat{x}) \\
+    &amp;= (A-LC)e.
+\end{aligned}\]</span> Therefore, the poles that govern the
+time-evolution of the observation error<span id="idx-0170" class="book-index-anchor" aria-hidden="true"></span> are given by the
+eigenvalues of <span class="math inline">\(A-LC\)</span>. The observer
+design problem is therefore to select <span
+class="math inline">\(L\)</span> to place the eigenvalues of <span
+class="math inline">\(A-LC\)</span> at locations specified by the
+control engineer. The derivation of a formula for the observer gain
+<span class="math inline">\(L\)</span> proceeds in a manner similar to
+the derivation of the feedback gain <span
+class="math inline">\(K\)</span> in
+Chapter <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a>.</p>
+<h3 data-number="13.1.1"
+id="observer-design-using-observer-canonic-form"><span class="header-section-number">13.1.1</span> Observer Design using
+Observer Canonic Form</h3>
+<p>Given the general SISO monic transfer function <span
+class="math display">\[\label{eq:ss_observer_transfer_function}
+Y(s) = \frac{b_ms^m + b_{m-1}s^{m-1} + \dots + b_1 s + b_0}{s^n +
+a_{n-1}s^{n-1} + \dots + a_1 s + a_0} U(s),\]</span> where <span
+class="math inline">\(n&gt;m\)</span>, and taking the inverse Laplace
+transform gives <span class="math display">\[\begin{gathered}
+\frac{d^ny}{dt^n} + a_{n-1}\frac{d^{n-1}y}{dt^{n-1}} + \dots + a_1
+\dot{y} + a_0 y(t)  
+\\ = b_m\frac{d^m u}{dt^m} + b_{m-1}\frac{d^{m-1}u}{dt^{m-1}} + \dots +
+b_1 \dot{u} + b_0 u(t).
+\end{gathered}\]</span> Solving for the <span
+class="math inline">\(n^{th}\)</span> derivative of <span
+class="math inline">\(y\)</span> and collecting terms with similar order
+derivatives gives <span class="math display">\[\begin{gathered}
+\frac{d^ny}{dt^n}
+= - a_{n-1}\frac{d^{n-1}y}{dt^{n-1}} - a_{m+1}\frac{d^{m+1}y}{dt^{m+1}}
+\\ + \left(b_m\frac{d^m u}{dt^m} - a_m\frac{d^m y}{dt^m}\right)
++ \dots + \left(b_1 \dot{u} - a_1 \dot{y}\right) + \left(b_0 u - a_0
+y\right).
+\end{gathered}\]</span> Integrating <span
+class="math inline">\(n\)</span> times gives <span
+class="math display">\[\begin{gathered}
+\label{eq:ss_observer_1}
+y(t)
+= \int\Big[ - a_{n-1} y  \int\Big[ - \dots  - \int\Big[
+    - a_{m+1} y \\
+    + \int\Big[\left(b_m u - a_m y\right)
++ \dots  \\ + \int\Big[\left(b_1 u - a_1 y\right) + \int \left(b_0 u -
+a_0 y\right) \Big]\dots\Big]\dots\Big].
+\end{gathered}\]</span></p>
+<p>The analog computer<span id="idx-0171" class="book-index-anchor" aria-hidden="true"></span> implementation of
+Equation <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_observer_1"><a href="#observers">13.5</a></a> is shown in
+<strong>Fig.</strong> <a href="#fig:ss_observer_canonic_form_block_diagram"
+data-reference-type="ref"
+data-reference="fig:ss_observer_canonic_form_block_diagram">13.2</a>.</p>
+<figure id="fig:ss_observer_canonic_form_block_diagram">
+<img
+src="4_observer_based/figures/ss_observer_canonic_form_block_diagram.png"
+style="width:90.0%"
+alt="Block diagram showing the analog computer implementation of Equation 13.5." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 13.2. </span>Block diagram showing the analog computer
+implementation of Equation <a href="#observers"
+data-reference-type="eqref"
+data-reference="eq:ss_observer_1"><a href="#observers">13.5</a></a>.</figcaption>
+</figure>
+<p>Labeling the states as the output of the integrators, as shown in
+<strong>Fig.</strong> <a href="#fig:ss_observer_canonic_form_block_diagram"
+data-reference-type="ref"
+data-reference="fig:ss_observer_canonic_form_block_diagram">13.2</a> and
+writing the equations in linear state space form gives <span
+class="math display">\[\begin{aligned}
+\begin{pmatrix}\dot{x}_1 \\ \dot{x}_2 \\ \vdots \\ \dot{x}_{n-1} \\
+\dot{x}_n \end{pmatrix}
+&amp;= \begin{pmatrix} -a_{n-1} &amp; 1 &amp; \dots &amp; 0 &amp; 0 \\
+                   -a_{n-2} &amp; 0 &amp; \dots &amp; 0 &amp; 0 \\
+                   \vdots &amp; &amp; \ddots &amp; &amp; \vdots \\
+                   -a_1 &amp; 0 &amp; \dots &amp; 0 &amp; 1 \\
+                   -a_0 &amp; 0 &amp; \dots &amp; 0 &amp; 0
+\end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_{n-1} \\ x_n
+\end{pmatrix}
+    + \begin{pmatrix} 0 \\ \vdots \\ 0 \\ b_m \\ \vdots \\ b_1 \\ b_0
+\end{pmatrix} u
+    \label{eq:ss_observer_2}\\
+&amp;y= \begin{pmatrix} 1 &amp; 0 &amp; \dots &amp; 0 &amp;
+0\end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_{n-1} \\ x_n
+\end{pmatrix}.
+\label{eq:ss_observer_3}
+\end{aligned}\]</span> We define the observer canonic realization
+as<span id="idx-0172" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\begin{aligned}
+\dot{x}_o &amp;= A_o x_o + B_o u \\
+y &amp;= C_{o} x_o,
+\end{aligned}\]</span> where <span
+class="math display">\[\begin{aligned}
+A_o &amp;\stackrel{\triangle}{=}\begin{pmatrix} -a_{n-1} &amp; 1 &amp;
+\dots &amp; 0 &amp; 0 \\
+                   -a_{n-2} &amp; 0 &amp; \dots &amp; 0 &amp; 0 \\
+                   \vdots &amp; &amp; \ddots &amp; &amp; \vdots \\
+                   -a_1 &amp; 0 &amp; \dots &amp; 0 &amp; 1 \\
+                   -a_0 &amp; 0 &amp; \dots &amp; 0 &amp; 0
+\end{pmatrix}
+\label{eq:ss_observer_canonic_form_Ao} \\
+B_o &amp;\stackrel{\triangle}{=}\begin{pmatrix} 0 \\ \vdots \\ 0 \\ b_m
+\\ \vdots \\ b_1 \\ b_0 \end{pmatrix}
+\label{eq:ss_observer_canonic_form_Bo} \\
+C_o &amp;\stackrel{\triangle}{=}\begin{pmatrix} 1 &amp; 0 &amp; \dots
+&amp; 0 &amp; 0\end{pmatrix}.
+\label{eq:ss_observer_canonic_form_Co}
+\end{aligned}\]</span> Comparing the state space equations in observer
+canonic form in
+Equations <a href="#knowledge-check-12" data-reference-type="eqref"
+data-reference="eq:ss_observer_canonic_form_Ao"><a href="#observers">13.8</a></a>–<a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_observer_canonic_form_Co"><a href="#observers">13.10</a></a>
+with the state space equations for control canonic form in
+Equations <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_companion_form"><a href="11-11-full-state-feedback.html#full-state-feedback">11.14</a></a>-<a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_control_canonic_form_Cc"><a href="11-11-full-state-feedback.html#full-state-feedback">11.16</a></a>,
+we see that <span class="math display">\[\begin{aligned}
+A_o &amp;= A_c^\top \\
+B_o &amp;= C_c^\top \\
+C_o &amp;= B_c^\top.
+\end{aligned}\]</span></p>
+<p>Comparing the state equation in
+Equation <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_observer_2"><a href="#observers">13.6</a></a> with the
+transfer function in
+Equation <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_observer_transfer_function"><a href="#observers">13.4</a></a>
+we see that the eigenvalues of <span class="math inline">\(A_o\)</span>
+are the roots of the open-loop characteristic polynomial <span
+class="math display">\[\Delta_{ol}(s) = \det(sI-A_o) = s^n +
+a_{n-1}s^{n-1} + \dots + a_1 s + a_0.\]</span> Since <span
+class="math inline">\(C_o\)</span> in
+Equation <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_observer_3"><a href="#observers">13.7</a></a> has the
+structure of one in the first element followed by zeros, we see that the
+structure of <span class="math inline">\(A_o-L_oC_o\)</span> is given by
+<span class="math display">\[A_o-L_oC_o = \begin{pmatrix}
+-(a_{n-1}+\ell_1) &amp; 1 &amp; \dots &amp; 0 &amp; 0 \\
+                   -(a_{n-2}+\ell_2) &amp; 0 &amp; \dots &amp; 0 &amp; 0
+\\
+                   \vdots &amp; &amp; \ddots &amp; &amp; \vdots \\
+                   -(a_1+\ell_{n-1}) &amp; 0 &amp; \dots &amp; 0 &amp; 1
+\\
+                   -(a_0+\ell_n) &amp; 0 &amp; \dots &amp; 0 &amp; 0
+\end{pmatrix}.\]</span> The characteristic polynomial for the
+closed-loop observation error is therefore given by <span
+class="math display">\[\begin{aligned}
+\Delta_{cl,obs}(s) &amp;= \det(sI-(A_o-L_oC_o)) \\
+    &amp; = s^n + (a_{n-1}+\ell_1)s^{n-1} + \dots + (a_1+\ell_{n-1}) s +
+(a_0+\ell_n).
+\end{aligned}\]</span> If the desired characteristic polynomial for the
+closed-loop observation error is <span
+class="math display">\[\label{eq:ss_desired_closed_loop_observer_char_eq}
+\Delta_{cl,obs}^d(s) = s^n + \beta_{n-1} s^{n-1} + \dots + \beta_1 s +
+\beta_0,\]</span> then we have that <span
+class="math display">\[\begin{aligned}
+a_{n-1}+\ell_1 &amp;= \beta_{n-1} \\
+a_{n-2}+\ell_2 &amp;= \beta_{n-2} \\
+\vdots \\
+a_1+\ell_{n-1} &amp;= \beta_1 \\
+a_0+\ell_{n} &amp;= \beta_0.
+\end{aligned}\]</span> Defining the vectors <span
+class="math display">\[\begin{aligned}
+\mathbf{a}_A &amp;\stackrel{\triangle}{=}(a_{n-1}, a_{n-2}, \dots, a_1,
+a_0) \\
+\boldsymbol{\beta} &amp;\stackrel{\triangle}{=}(\beta_{n-1},
+\beta_{n-2}, \dots, \beta_1, \beta_0) \\
+L_o &amp;\stackrel{\triangle}{=}(\ell_1, \ell_2, \dots, \ell_{n-1},
+\ell_{n})^\top,
+\end{aligned}\]</span> we have that the observer gain<span id="idx-0173" class="book-index-anchor" aria-hidden="true"></span> satisfies <span
+class="math display">\[\label{eq:ss_observer_gain_observer_canonic_form}
+L_o = (\boldsymbol{\beta}-\mathbf{a}_A)^\top,\]</span> where the
+subscript “o” is used to emphasize what the gains are when the state
+equations are in observer canonic form. As an example, suppose that the
+transfer function model of the system is given by <span
+class="math display">\[Y(s) = \frac{9s+20}{s^3+6s^2-11s+8}U(s),\]</span>
+then the state space equations in observer canonic form are given by
+<span class="math display">\[\begin{aligned}
+\dot{x}_o &amp;= \begin{pmatrix} -6 &amp; 1 &amp; 0 \\ 11 &amp; 0 &amp;
+1 \\ -8 &amp; 0 &amp; 0 \end{pmatrix} x_o + \begin{pmatrix} 0 \\ 9 \\ 20
+\end{pmatrix} u \\
+y &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 \end{pmatrix} x_o.
+\end{aligned}\]</span> The open-loop characteristic polynomial is <span
+class="math display">\[\Delta_{ol}(s) = s^3+6s^2-11s+8,\]</span> with
+roots at <span class="math inline">\(-7.5885\)</span>, and <span
+class="math inline">\(0.7942\pm j0.6507\)</span>. Suppose that the
+desired poles for the observation error are at <span
+class="math inline">\(-10\)</span> and <span
+class="math inline">\(-20\pm j20\)</span>, then the desired closed-loop
+polynomial for the observation error is <span
+class="math display">\[\begin{aligned}
+\Delta_{cl,obs}^d(s) &amp;= (s+10)(s+20-j20)(s+20+j20) \\ &amp;= s^3 +
+50s^2 + 1200s + 8000,
+\end{aligned}\]</span> then <span
+class="math inline">\(\mathbf{a}_{A_o}=(6,-11,8)\)</span>, <span
+class="math inline">\(\boldsymbol{\beta}=(50,1200,8000)\)</span>, and
+the observer gain that places the eigenvalues of <span
+class="math inline">\(A_o-L_oC_o\)</span> at the desired locations is
+given by <span class="math display">\[L_o =
+(\boldsymbol{\beta}-\mathbf{a}_{A_o})^\top = \begin{pmatrix} 50 \\ 1200
+\\ 8000 \end{pmatrix} - \begin{pmatrix} 6 \\ -11 \\ 8 \end{pmatrix} =
+\begin{pmatrix} 44 \\ 1211 \\ 7992 \end{pmatrix}.\]</span></p>
+<h3 data-number="13.1.2"
+id="observer-design-general-state-space-equations"><span class="header-section-number">13.1.2</span> Observer Design: General
+State Space Equations</h3>
+<p>The formula given in
+Equation <a href="#observers"
+data-reference-type="eqref"
+data-reference="eq:ss_observer_gain_observer_canonic_form"><a href="#observers">13.12</a></a>
+assumes that the state space equations are in observer canonic form.
+Similar to the general full state feedback case discussed in
+Section <a href="11-11-full-state-feedback.html#full-state-feedback-general-case"
+data-reference-type="ref"
+data-reference="sec:full_state_feedback_general_case">14.1.3</a>, a
+formula for the observer gains can be derived for general state space
+equations. Following the method used in
+Section <a href="11-11-full-state-feedback.html#full-state-feedback-general-case"
+data-reference-type="ref"
+data-reference="sec:full_state_feedback_general_case">14.1.3</a>, the
+strategy is to find a state transformation matrix that converts the
+general state space equations into observer canonic form. Rather than
+repeating the steps in
+Section <a href="11-11-full-state-feedback.html#full-state-feedback-general-case"
+data-reference-type="ref"
+data-reference="sec:full_state_feedback_general_case">14.1.3</a> we will
+derive the formula for the observer gain by noting the similarities
+between the design problem for full state feedback and the design
+problem for the observer gain.</p>
+<p>For full state feedback, the feedback gains <span
+class="math inline">\(K\)</span> that place the eigenvalues of <span
+class="math inline">\(A-BK\)</span> at the roots of the desired
+characteristic equation given in
+Equation <a href="11-11-full-state-feedback.html#full-state-feedback"
+data-reference-type="eqref"
+data-reference="eq:ss_desired_closed_loop_char_polynomial"><a href="11-11-full-state-feedback.html#full-state-feedback">11.20</a></a>
+are given by
+Equation <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_ackermanns_formula"><a href="11-11-full-state-feedback.html#full-state-feedback">11.32</a></a>
+or <span class="math display">\[\label{eq:ss_ackermanns_formula_2}
+K =
+(\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1},\]</span>
+where <span class="math display">\[\begin{aligned}
+\mathcal{A}_A &amp;= \begin{pmatrix}
+    1 &amp; a_{n-1} &amp; a_{n-2} &amp; \dots &amp; a_2 &amp; a_1 \\
+    0 &amp; 1 &amp; a_{n-1} &amp; \vdots &amp; a_3 &amp; a_2 \\
+    0 &amp; 0 &amp; 1 &amp; \vdots &amp; a_4 &amp; a_3 \\
+    \vdots &amp; &amp; &amp; \ddots &amp; \vdots \\
+    0 &amp; 0 &amp; 0 &amp; \dots &amp; 1 &amp; a_{n-1} \\
+    0 &amp; 0 &amp; 0 &amp; \dots &amp; 0 &amp; 1
+    \end{pmatrix},
+\\
+\mathcal{C}_{A,B} &amp;= \begin{pmatrix}B &amp; AB &amp; A^2B &amp;
+\cdots &amp; A^{n-1}B\end{pmatrix},
+\end{aligned}\]</span> and where the subscripts are used to indicate
+that <span class="math inline">\(\mathcal{A}_A\)</span> is a function of
+the matrix <span class="math inline">\(A\)</span>, and <span
+class="math inline">\(\mathcal{C}_{A,B}\)</span> is a function of the
+matrices <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>.</p>
+<p>The observer design problem is to find the observer gain <span
+class="math inline">\(L\)</span> that places the eigenvalues of <span
+class="math inline">\(A-LC\)</span> at the roots of
+Equation <a href="#observers"
+data-reference-type="eqref"
+data-reference="eq:ss_desired_closed_loop_observer_char_eq"><a href="#observers">13.11</a></a>.
+Recalling from
+Appendix <a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
+data-reference="chap:linear_algebra">31</a> that for a general square
+matrix <span class="math inline">\(M\)</span>, the eigenvalues of <span
+class="math inline">\(M\)</span> equal the eigenvalues of <span
+class="math inline">\(M^\top\)</span>, the observer problem can be posed
+as finding <span class="math inline">\(L\)</span> that places the
+eigenvalues of <span class="math inline">\(A^\top - C^\top
+L^\top\)</span> at the roots of
+Equation <a href="#observers"
+data-reference-type="eqref"
+data-reference="eq:ss_desired_closed_loop_observer_char_eq"><a href="#observers">13.11</a></a>.
+This problem is identical to the full state feedback gain problem with
+<span class="math inline">\(A\)</span> replaced by <span
+class="math inline">\(A^\top\)</span>, <span
+class="math inline">\(B\)</span> replaced by <span
+class="math inline">\(C^\top\)</span>, and <span
+class="math inline">\(K\)</span> replaced by <span
+class="math inline">\(L^\top\)</span>. Making the appropriate
+substitutions in Ackermann’s
+formula <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_ackermanns_formula_2"><a href="#observers">13.13</a></a>
+gives <span class="math display">\[\label{eq:ss_ackermann_observer_1}
+L^\top =
+(\boldsymbol{\beta}-\mathbf{a}_{A})\mathcal{A}_{A^\top}^{-1}\mathcal{C}_{A^\top,C^\top}^{-1}\]</span>
+Since <span class="math inline">\(\det(sI-A)=\det(sI-A^\top)\)</span>,
+the characteristic equations for <span class="math inline">\(A\)</span>
+and <span class="math inline">\(A^\top\)</span> are identical, which
+implies that <span
+class="math inline">\(\mathbf{a}_A=\mathbf{a}_{A^\top}\)</span> and
+<span class="math inline">\(\mathcal{A}_A=\mathcal{A}_{A^\top}\)</span>.
+Taking the transpose of
+Equation <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_ackermann_observer_1"><a href="#observers">13.14</a></a>
+gives <span class="math display">\[\label{eq:ss_ackermann_observer_2}
+L =
+\mathcal{C}_{A^\top,C^\top}^{-\top}\mathcal{A}_{A}^{-\top}(\boldsymbol{\beta}-\mathbf{a}_{A})^\top,\]</span>
+where we have used the notation <span
+class="math display">\[M^{-\top}\stackrel{\triangle}{=}\left(M^{-1}\right)^\top
+= \left(M^\top\right)^{-1}.\]</span> Defining the <em>observability
+matrix</em><span id="idx-0174" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\begin{aligned}
+\mathcal{O}_{A,C}
+&amp;\stackrel{\triangle}{=}\mathcal{C}_{A^\top,C^\top}^\top \\
+    &amp;= \begin{pmatrix} C^\top &amp; A^\top C^\top &amp;
+(A^\top)^2C^\top &amp; \cdots &amp;
+(A^\top)^{n-1}C^\top\end{pmatrix}^\top \\
+    &amp;= \begin{pmatrix} C \\ CA \\ CA^2 \\ \vdots \\
+CA^{n-1}\end{pmatrix},
+\end{aligned}\]</span> the observer
+gain <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_ackermann_observer_2"><a href="#observers">13.15</a></a>
+can be written as <span
+class="math display">\[\label{eq:ss_ackermann_observer_3}
+L =
+\mathcal{O}_{A,C}^{-1}\mathcal{A}_{A}^{-\top}(\boldsymbol{\beta}-\mathbf{a}_{A})^\top,\]</span>
+where <span class="math inline">\(L\)</span> <span id="idx-0175" class="book-index-anchor" aria-hidden="true"></span> is well defined if the
+observability matrix <span
+class="math inline">\(\mathcal{O}_{A,C}\)</span> is invertible.
+Accordingly, the system <span class="math inline">\((A,C)\)</span> is
+said to be <em>observable</em><span id="idx-0176" class="book-index-anchor" aria-hidden="true"></span> if <span
+class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>.
+Equation <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_ackermann_observer_3"><a href="#observers">13.16</a></a>
+is Ackermann’s formula<span id="idx-0177" class="book-index-anchor" aria-hidden="true"></span> for the observer gain
+<span class="math inline">\(L\)</span>. Ackermann’s formula is only
+valid for single output systems. For multi-output systems there are more
+advanced methods that are implemented in the Matlab and Python
+<code>place</code> commands. The observer gain <span
+class="math inline">\(L\)</span> that places the eigenvalues of <span
+class="math inline">\(A-LC\)</span> at locations <span
+class="math inline">\(q_1, q_2, \dots, q_n\)</span> can be found using
+the following Python commands</p>
+<pre><code>import numpy as np
+import control as cnt
+
+if np.linalg.matrix_rank(cnt.obsv(A,C)) != n:
+    print(&#39;System Not Observable&#39;) 
+else:      # if so, compute observer gains
+    L = cnt.place(A.T,C.T,[q1,q2,...,qn]).T</code></pre>
+<p>where the first operation checks to see if the system is observable
+by checking whether <span
+class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>. When
+finding the gain <span class="math inline">\(L\)</span> it is important
+to note the three transposes which correspond to the transposes in
+Equation <a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_ackermann_observer_1"><a href="#observers">13.14</a></a>.</p>
+<p>If an integrator is used in the control law, as discussed in
+Chapter <a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>, then the
+complete observer based controller is shown in
+<strong>Fig.</strong> <a href="#fig:ss_observer_based_feedback_w_integrator"
+data-reference-type="ref"
+data-reference="fig:ss_observer_based_feedback_w_integrator">13.3</a>.
+Note that integral feedback<span id="idx-0178" class="book-index-anchor" aria-hidden="true"></span> uses the reference
+output <span class="math inline">\(y_r\)</span>, whereas the observer
+uses the measured output <span class="math inline">\(y\)</span>. There
+are many systems for which the measured output is identical to the
+reference output.</p>
+<figure id="fig:ss_observer_based_feedback_w_integrator">
+<img
+src="4_observer_based/figures/ss_observer_based_feedback_w_integrator.png"
+style="width:90.0%"
+alt="Closed-loop system with observer based feedback, including integral feedback." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 13.3. </span>Closed-loop system with observer based
+feedback, including integral feedback.</figcaption>
+</figure>
+<h3 data-number="13.1.3" id="separation-principle"><span class="header-section-number">13.1.3</span> Separation Principle</h3>
+<p><span id="idx-0179" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>The observer based feedback design consists of two steps:</p>
+<ul>
+<li><p>Find the state feedback gains <span
+class="math inline">\(K\)</span> to place the eigenvalues of <span
+class="math inline">\(A-BK\)</span> at specified locations <span
+class="math inline">\(p_1,\dots,p_n\)</span>,</p></li>
+<li><p>Find the observer gains <span class="math inline">\(L\)</span> to
+place the eigenvalues of <span class="math inline">\(A-LC\)</span> at
+specified locations <span
+class="math inline">\(q_1,\dots,q_n\)</span>.</p></li>
+</ul>
+<p>Since the closed-loop system includes both the observer and the state
+feedback, it is important to analyze whether the closed-loop system is
+stable and to determine the closed-loop poles. If the integrator is
+excluded in
+<strong>Fig.</strong> <a href="#fig:ss_observer_based_feedback_w_integrator"
+data-reference-type="ref"
+data-reference="fig:ss_observer_based_feedback_w_integrator">13.3</a>
+then the closed-loop system has <span class="math inline">\(2n\)</span>
+states: <span class="math inline">\(n\)</span> states associated with
+the open-loop plant <span class="math inline">\(x\)</span> and <span
+class="math inline">\(n\)</span> states associated with the observer
+<span class="math inline">\(\hat{x}\)</span>. Since the reference input
+doesn’t affect the internal stability of the systems, we can set <span
+class="math inline">\(r=0\)</span> and the equations of motion for the
+closed-loop system can be written as <span
+class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + Bu \\
+\dot{\hat{x}} &amp;= A\hat{x} + Bu + L(y - C \hat{x}) \\
+u &amp;= -K\hat{x} \\
+y &amp;= C x,
+\end{aligned}\]</span> which implies that <span
+class="math display">\[\begin{pmatrix} \dot{x} \\ \dot{\hat{x}}
+\end{pmatrix}
+    = \begin{pmatrix} A &amp; -BK \\ LC &amp; A-BK-LC \end{pmatrix}
+\begin{pmatrix} x \\ \hat{x} \end{pmatrix}.\]</span> Recalling that a
+change of variables does not change the eigenvalues of the system, and
+defining the observation error as <span
+class="math inline">\(e=x-\hat{x}\)</span>, and noting that <span
+class="math display">\[\begin{pmatrix} x \\ e \end{pmatrix} =
+\begin{pmatrix} I &amp; \mathbf{0} \\ I &amp; -I
+\end{pmatrix}\begin{pmatrix} x \\ \hat{x} \end{pmatrix},\]</span> we
+have that <span class="math display">\[\begin{aligned}
+\begin{pmatrix} \dot{x} \\ \dot{e} \end{pmatrix} &amp;= \begin{pmatrix}
+I &amp; \mathbf{0} \\ I &amp; -I \end{pmatrix}\begin{pmatrix} \dot{x} \\
+\dot{\hat{x}} \end{pmatrix} \\
+&amp;= \begin{pmatrix} I &amp; \mathbf{0} \\ I &amp; -I
+\end{pmatrix}\begin{pmatrix} A &amp; -BK \\ LC &amp; A-BK-LC
+\end{pmatrix} \begin{pmatrix} x \\ \hat{x} \end{pmatrix} \\
+&amp;= \begin{pmatrix} I &amp; \mathbf{0} \\ I &amp; -I
+\end{pmatrix}\begin{pmatrix} A &amp; -BK \\ LC &amp; A-BK-LC
+\end{pmatrix} \begin{pmatrix} I &amp; \mathbf{0} \\ I &amp; -I
+\end{pmatrix}^{-1} \begin{pmatrix} x \\ e \end{pmatrix},
+\end{aligned}\]</span> and noting that <span
+class="math display">\[\begin{pmatrix} I &amp; \mathbf{0} \\ I &amp; -I
+\end{pmatrix}^{-1} = \begin{pmatrix} I &amp; \mathbf{0} \\ I &amp; -I
+\end{pmatrix}\]</span> gives <span
+class="math display">\[\begin{pmatrix} \dot{x} \\ \dot{e} \end{pmatrix}
+= \begin{pmatrix} A-BK &amp; BK \\ \mathbf{0} &amp; A-LC \end{pmatrix}
+\begin{pmatrix} x \\ e \end{pmatrix}.\]</span> Using the determinant
+properties for block diagonal matrices discussed in
+Appendix <a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
+data-reference="chap:linear_algebra">31</a>, it is straightforward to
+show that <span class="math display">\[\text{eig}\begin{pmatrix} A-BK
+&amp; BK \\ \mathbf{0} &amp; A-LC \end{pmatrix} = \text{eig}(A-BK)\cup
+\text{eig}(A-LC).\]</span></p>
+<p>Therefore the poles of the closed-loop system are precisely the poles
+selected during the design of the feedback gains <span
+class="math inline">\(K\)</span> in addition to the poles selected
+during the design of the observer gains <span
+class="math inline">\(L\)</span>. This happy circumstance is called the
+<em>separation principle</em>,<span id="idx-0180" class="book-index-anchor" aria-hidden="true"></span> which in essence
+implies that the controller and the observer can be designed separately
+and then combined without affecting the stability of the system.
+Unfortunately, the separation principle does not hold in general for
+nonlinear systems, and even more unfortunately, while the separation
+principle guarantees stability, it turns out that the addition of an
+observer can negatively impact the robustness of a state feedback
+design.</p>
+<h3 data-number="13.1.4"
+id="observer-design-for-linearized-systems"><span class="header-section-number">13.1.4</span> Observer Design for
+Linearized Systems</h3>
+<p><span id="idx-0181" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>Suppose that the state space model is from a linearized system, i.e,
+suppose that <span class="math inline">\(x\in\mathbb{R}^n\)</span> is
+the state, <span class="math inline">\(x_e\in\mathbb{R}^n\)</span> is
+the equilibrium state, and that <span
+class="math inline">\(\tilde{x}=x-x_e\)</span> is the state linearized
+around the equilibrium. Similarly, suppose that <span
+class="math inline">\(u\in\mathbb{R}^m\)</span> is the input, that <span
+class="math inline">\(u_e\in\mathbb{R}^m\)</span> is the input at
+equilibrium, and that <span
+class="math inline">\(\tilde{u}=u-u_e\)</span> is the input linearized
+around equilibrium, and that <span
+class="math inline">\(y\in\mathbf{R}^p\)</span> is the measured output,
+<span class="math inline">\(y_{me}=C x_e\in\mathbf{R}^p\)</span> is the
+measured output at equilibrium, and <span
+class="math inline">\(\tilde{y}=y-y_{e}\)</span> is the measured output
+linearized about equilibrium, then the linearized state space model is
+given by <span class="math display">\[\begin{aligned}
+\dot{\tilde{x}} &amp;= A\tilde{x} + B\tilde{u} \\
+\tilde{y} &amp;= C\tilde{x}.
+\end{aligned}\]</span> The observer design problem then finds an
+observer gain so that the eigenvalues of <span
+class="math inline">\(A-LC\)</span> are at specified locations, and the
+resulting observer is <span class="math display">\[\dot{\hat{\tilde{x}}}
+= A\hat{\tilde{x}} + B\tilde{u} +
+L(\tilde{y}-C\hat{\tilde{x}}),\]</span> where <span
+class="math inline">\(\hat{\tilde{x}}=\hat{x}-x_e\)</span>. Writing the
+observer in terms of <span class="math inline">\(\hat{x}\)</span> gives
+<span class="math display">\[\dot{\hat{x}}-\dot{x}_e = A(\hat{x}-x_e) +
+B(u-u_e) + L\left((y-y_{e})-C(\hat{x}-x_e)\right).\]</span> Noting that
+<span class="math inline">\(\dot{x}_e=0\)</span> and that <span
+class="math inline">\(y_{e}=C x_e\)</span> gives <span
+class="math display">\[\dot{\hat{x}} = A(\hat{x}-x_e) + B(u-u_e) +
+L\left(y-C\hat{x}\right).\]</span></p>
+<h2 data-number="13.2"
+id="summary-of-design-process---observer-design"><span class="header-section-number">13.2</span> Summary of Design Process -
+Observer Design</h2>
+<p>The procedure for designing an observer is summarized as follows.</p>
+<p>Given the plant <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= Ax + Bu \\
+y &amp;= C x
+\end{aligned}\]</span> find the observer gain <span
+class="math inline">\(L\)</span> so that the state observer <span
+class="math display">\[\dot{\hat{x}}=A\hat{x} + Bu +
+L(y-C\hat{x})\]</span> has stable estimation error dynamics with poles
+located at <span class="math inline">\(q_1, q_2, \dots,
+q_n\)</span>.</p>
+<p>Step 1.<br />
+Check to see if the system is observable by computing the observability
+matrix <span class="math display">\[\mathcal{O}_{A,C} = \begin{pmatrix}
+C \\ C A \\ C A^2 \\ \vdots \\ C A^{n-1}\end{pmatrix}\]</span> and
+checking to see if <span
+class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>.</p>
+<p>Step 2.<br />
+Find the open-loop characteristic polynomial <span
+class="math display">\[\Delta_{ol}(s)=\text{det}(sI-A) = s^n +
+a_{n-1}s^{n-1} + \cdots + a_1 s + a_0,\]</span> and construct the row
+vector <span class="math display">\[\mathbf{a}_A = \begin{pmatrix}
+a_{n-1}, &amp; a_{n-2}, &amp; \dots, &amp; a_1, &amp;
+a_0\end{pmatrix}\]</span> and the matrix <span
+class="math display">\[\mathcal{A}_A = \begin{pmatrix}
+1 &amp; a_{n-1} &amp; a_{n-2} &amp; \cdots &amp; a_2 &amp; a_1 \\
+0 &amp; 1       &amp; a_{n-1} &amp; \cdots &amp; a_3 &amp; a_2 \\
+\cdots &amp; &amp; \ddots &amp;  &amp;  &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 &amp; a_{n-1} \\
+0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}\]</span></p>
+<p>Step 3.<br />
+Find the desired characteristic polynomial for the observation error
+<span class="math display">\[\begin{aligned}
+\Delta_{obs}^d(s) &amp;= (s-q_1)(s-q_2)\cdots(s-q_n) = s^n +
+\beta_{n-1}s^{n-1} + \cdots + \beta_1 s + \beta_0,
+\end{aligned}\]</span> and construct the row vector <span
+class="math display">\[\boldsymbol{\beta} = \begin{pmatrix}\beta_{n-1},
+&amp; \beta_{n-2}, &amp; \dots, &amp; \beta_1, &amp; \beta_0
+\end{pmatrix}.\]</span></p>
+<p>Step 4.<br />
+Compute the desired observer gains as <span class="math display">\[L =
+\mathcal{O}_{A,C}^{-1}(\mathcal{A}_A^\top)^{-1}(\boldsymbol{\beta}-\mathbf{a}_A)^\top\]</span></p>
+<p>Using Python, these steps can be implemented using the following
+script.</p>
+<pre><code>import numpy as np
+import control as cnt
+
+if np.linalg.matrix_rank(cnt.obsv(A,C)) != n:
+    print(&#39;System Not Observable&#39;) 
+else:   # if so, compute observer gains
+    L = cnt.place(A.T,C.T,[q1,q2,...,qn]).T</code></pre>
+<h3 data-number="13.2.1" id="simple-example-2"><span class="header-section-number">13.2.1</span> Simple example</h3>
+<p>Given the system <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= \begin{pmatrix} 0 &amp; 1 \\ 2 &amp; 3 \end{pmatrix} x +
+\begin{pmatrix} 0 \\ 4 \end{pmatrix} u \\
+y &amp;= \begin{pmatrix} 5 &amp; 0 \end{pmatrix} x
+\end{aligned}\]</span> find the observer gain <span
+class="math inline">\(L\)</span> so that the state observer <span
+class="math display">\[\dot{\hat{x}} = A\hat{x} + Bu +
+L(y-C\hat{x})\]</span> has stable estimation error dynamics with poles
+located at <span class="math inline">\(-10\pm j10\)</span>.</p>
+<p>Step 1.<br />
+The observability matrix is given by <span
+class="math display">\[\mathcal{O} = \begin{pmatrix} C \\ CA
+\end{pmatrix} = \begin{pmatrix} 5 &amp; 0 \\ 0 &amp; 5
+\end{pmatrix}.\]</span> The determinant is <span
+class="math inline">\(det(\mathcal{O})=25\neq 0\)</span>, therefore the
+system is observable.</p>
+<p>Step 2.<br />
+The open-loop characteristic polynomial <span
+class="math display">\[\Delta_{ol}(s)=\text{det}(sI-A) =
+\text{det}\begin{pmatrix} s &amp; -1 \\ -2 &amp; s-3 \end{pmatrix} = s^2
+- 3s -2,\]</span> implies that <span
+class="math display">\[\begin{aligned}
+\mathbf{a} &amp;= \begin{pmatrix} -3, &amp; -2 \end{pmatrix} \\
+\mathcal{A} &amp;= \begin{pmatrix}
+1 &amp; -3 \\ 0 &amp; 1
+\end{pmatrix}
+\end{aligned}\]</span></p>
+<p>Step 3.<br />
+The desired characteristic polynomial for the observation error is <span
+class="math display">\[\Delta_{obs}^d(s) =
+(s+10-j10)(s+10+j10)=s^2+20s+200,\]</span> which implies that <span
+class="math display">\[\boldsymbol{\beta} = \begin{pmatrix} 20, &amp;
+200 \end{pmatrix}.\]</span></p>
+<p>Step 4.<br />
+The observation gains are therefore given as <span
+class="math display">\[\begin{aligned}
+L &amp;=
+\mathcal{O}^{-1}(\mathcal{A}^\top)^{-1}(\boldsymbol{\beta}-\mathbf{a})^\top
+\\
+  &amp;= \begin{pmatrix}\frac{1}{5} &amp; 0 \\ 0 &amp; \frac{1}{5}
+\end{pmatrix}\begin{pmatrix}1 &amp; 0 \\ 3 &amp; 1\end{pmatrix}\left(
+(20, 200) - (-3, -2) \right)^\top \\
+  &amp;= \begin{pmatrix}1/5 &amp; 0 \\ 3/5 &amp; 1/5
+\end{pmatrix}\begin{pmatrix}23 \\ 202\end{pmatrix}
+  = \begin{pmatrix} 23/5 \\ 271/5 \end{pmatrix}
+\end{aligned}\]</span></p>
+<p>Alternatively, we could have used the following Python script</p>
+<pre><code>import numpy as np
+import control as cnt
+
+# original state space system
+A = np.array([[0.0, 1.0], [2.0, 3.0]])
+B = np.array([[0.0], [4.0]])
+C = np.array([[5.0, 0.0]])
+
+# desired poles for observer
+q1 = -10 + 10.j
+q2 = -10 - 10.j
+
+# is the system observable?
+if np.linalg.matrix_rank(cnt.obsv(A,C)) != np.size(A,1):
+    print(&#39;System Not Observable&#39;)
+else:  # if so, compute observer gains
+    L = cnt.place(A.T,C.T,[q1,q2]).T</code></pre>
+<p>The corresponding observer is given by <span
+class="math display">\[\label{eq:observer_example}
+\dot{\hat{x}} = \begin{pmatrix} 0 &amp; 1 \\ 2 &amp; 3
+\end{pmatrix}\hat{x} + \begin{pmatrix} 0 \\ 4 \end{pmatrix} u +
+\begin{pmatrix} 23/5 \\ 271/5 \end{pmatrix} \left( y - \begin{pmatrix} 5
+&amp; 0 \end{pmatrix}\hat{x} \right),\]</span> and can be implemented as
+member functions within a Python class as follows (see the solutions for
+case studies A-C for class-specific implementation examples):</p>
+<pre><code>def update_observer(self, y_m):
+    # update the observer using RK4 integration
+    F1 = self.observer_f(self.x_hat, y_m)
+    F2 = self.observer_f(self.x_hat + self.Ts / 2 * F1, y_m)
+    F3 = self.observer_f(self.x_hat + self.Ts / 2 * F2, y_m)
+    F4 = self.observer_f(self.x_hat + self.Ts * F3, y_m)
+
+    self.x_hat += self.Ts / 6 * (F1 + 2 * F2 + 2 * F3 + F4)
+
+    return self.x_hat
+
+def observer_f(self, x_hat, y_m):
+    # xhatdot = A*xhat + B*u + L(y-C*xhat)
+    # assumes that all matrices below are np.arrays
+    xhat_dot = self.A @ x_hat \
+               + self.B @ self.u \
+               + self.L @ (y_m-self.C @ x_hat)
+
+    return xhat_dot</code></pre>
+<p>Digital implementation<span id="idx-0182" class="book-index-anchor" aria-hidden="true"></span> of the observer in
+Equation <a href="#observers" data-reference-type="eqref"
+data-reference="eq:observer_example"><a href="#observers">13.17</a></a> requires
+two persistent (or member) variables, one for <span
+class="math inline">\(\hat{x}\)</span> and one for <span
+class="math inline">\(u\)</span>. The observer is updated using the RK4
+algorithm in lines 3–8. The differential equation that describes the
+observer is given on lines 15–17.</p>
+<section id="observer-ch13-guided-design">
+<article class="guided-observer-activity" data-guided-observer>
+<p class="advanced-kicker">
+Chapter 13 guided activity
+</p>
+<h3>
+Work through a second observer design
+</h3>
+<p>
+Use the same procedure as the simple example above. For the system
+below, compute each quantity in order and click <strong>Check</strong>
+before moving on. The solution for each step is revealed only after that
+step is checked.
+</p>
+<p class="quiz-equation">
+xdot = A x + B u with A = (0, 1; -6, -5), B = (0; 1), C = (2, 0), and
+desired observer poles = -4 ± j3.
+</p>
+<section class="guided-step" data-guided-step="observability">
+<h4>
+Step 1. Observability matrix
+</h4>
+<p>
+Compute O = (C; CA). Enter the four entries row by row and the rank.
+</p>
+<div class="guided-input-grid guided-input-grid-matrix-rank">
+<span class="guided-math-label">O =</span> <div
+class="guided-matrix guided-matrix-2x2" aria-label="Observability matrix
+entries"> <label><input type="text" data-guided-input="o11"
+placeholder="O11" aria-label="O11"></label> <label><input
+type="text" data-guided-input="o12" placeholder="O12"
+aria-label="O12"></label> <label><input type="text"
+data-guided-input="o21" placeholder="O21"
+aria-label="O21"></label> <label><input type="text"
+data-guided-input="o22" placeholder="O22"
+aria-label="O22"></label>
+</div>
+<label
+class="guided-scalar-entry">rank(O)<input
+type="text" data-guided-input="rank"
+placeholder="value"></label>
+</div>
+<button type="button" data-guided-check="observability">
+Check Step 1
+</button>
+<p class="quiz-feedback" data-guided-feedback="observability" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="observability" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> O = (2, 0; 0, 2), so rank(O) = 2 and the system
+is observable.
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="open-loop">
+<h4>
+Step 2. Open-loop characteristic polynomial
+</h4>
+<p>
+Compute det(sI - A) = s<sup>2</sup> + a<sub>1</sub>s + a<sub>0</sub>.
+</p>
+
+<span class="guided-math-label">a =</span> <div
+class="guided-matrix guided-vector guided-vector-row"
+aria-label="Open-loop coefficient vector entries">
+<label><input type="text"
+data-guided-input="a1" placeholder="a1"
+aria-label="a1"></label> <label><input type="text"
+data-guided-input="a0" placeholder="a0"
+aria-label="a0"></label>
+
+</div>
+<button type="button" data-guided-check="open-loop">
+Check Step 2
+</button>
+<p class="quiz-feedback" data-guided-feedback="open-loop" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="open-loop" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> det(sI - A) = s<sup>2</sup> + 5s + 6, so a =
+(5, 6).
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="desired">
+<h4>
+Step 3. Desired observer polynomial
+</h4>
+<p>
+Compute (s + 4 - j3)(s + 4 + j3) = s<sup>2</sup> + beta<sub>1</sub>s +
+beta<sub>0</sub>.
+</p>
+
+<span class="guided-math-label">β =</span> <div
+class="guided-matrix guided-vector guided-vector-row"
+aria-label="Desired coefficient vector entries"> <label><input
+type="text" data-guided-input="beta1" placeholder="beta1"
+aria-label="beta1"></label> <label><input type="text"
+data-guided-input="beta0" placeholder="beta0"
+aria-label="beta0"></label>
+
+</div>
+<button type="button" data-guided-check="desired">
+Check Step 3
+</button>
+<p class="quiz-feedback" data-guided-feedback="desired" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="desired" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> The desired polynomial is s<sup>2</sup> + 8s +
+25, so beta = (8, 25).
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="gain">
+<h4>
+Step 4. Observer gain
+</h4>
+<p>
+Use L = O<sup>-1</sup>(Acal<sup>T</sup>)<sup>-1</sup>(beta -
+a)<sup>T</sup>. Enter the two entries of L.
+</p>
+
+<span class="guided-math-label">L =</span> <div
+class="guided-matrix guided-vector guided-vector-column"
+aria-label="Observer gain vector entries">
+<label><input type="text" data-guided-input="l1"
+placeholder="L1" aria-label="L1"></label> <label><input
+type="text" data-guided-input="l2" placeholder="L2"
+aria-label="L2"></label>
+
+</div>
+<button type="button" data-guided-check="gain">
+Check Step 4
+</button>
+<p class="quiz-feedback" data-guided-feedback="gain" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="gain" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> beta - a = (3, 19),
+(Acal<sup>T</sup>)<sup>-1</sup>(beta - a)<sup>T</sup> = (3,
+4)<sup>T</sup>, and O<sup>-1</sup> = 0.5I, so L = (1.5, 2)<sup>T</sup>.
+</p>
+</details>
+</section>
+<section class="guided-step" data-guided-step="poles">
+<h4>
+Step 5. Check A - LC
+</h4>
+<p>
+Use your L to form A - LC. Enter the trace and determinant of A - LC.
+</p>
+<div class="guided-input-grid guided-input-grid-scalars"> <label
+class="guided-scalar-entry">trace(A - LC)<input
+type="text" data-guided-input="trace"
+placeholder="value"></label> <label
+class="guided-scalar-entry">det(A - LC)<input
+type="text" data-guided-input="det"
+placeholder="value"></label>
+</div>
+<button type="button" data-guided-check="poles">
+Check Step 5
+</button>
+<p class="quiz-feedback" data-guided-feedback="poles" aria-live="polite">
+</p>
+<details class="quiz-answer" data-guided-answer="poles" hidden>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> A - LC = (-3, 1; -10, -5), so trace(A - LC) =
+-8 and det(A - LC) = 25. The characteristic polynomial is
+s<sup>2</sup> + 8s + 25, giving poles -4 ± j3.
+</p>
+</details>
+</section>
+</article>
+</section>
+<h2 data-number="13.3"
+id="design-study-a-single-link-robot-arm-11" class="section-design-study"><span class="header-section-number">13.3</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="13.3.1" id="-example-problem-3116" class="section-example"><span class="header-section-number">13.3.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a></h3>
+<p>The objective of this problem is to design an observer that estimates
+the state of the system and uses the estimated state in the controller
+designed in
+Homework <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>.</p>
+<p>For the sake of understanding the function of the observer, for this
+problem we will use exact parameters, without an input disturbance.
+Modify the arm dynamics so that the parameters known to the controller
+are the actual plant parameters (uncertainty parameter <span
+class="math inline">\(\alpha=0\)</span>).</p>
+<p>Verify that the state space system is observable by checking that
+<span
+class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>.</p>
+<p>Modify the controller to add an observer to estimate the state <span
+class="math inline">\(\hat{x}\)</span>, and then use the estimate of the
+state <span class="math inline">\(\hat{x}\)</span> in your feedback
+controller. Tune the poles of the controller and observer to obtain good
+performance.</p>
+<p>Modify the simulation files so that the controller outputs both <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(\hat{x}\)</span>. Add a plotting routine to plot
+both the state and the estimated state of the system on the same
+graph.</p>
+<p>As motivation for the next chapter, add an input disturbance to the
+system of <span class="math inline">\(0.05\)</span> and observe that
+there is steady state error in the response. This is caused by a steady
+state error in the observation error. In the next chapter we will show
+how to remove the steady state error in the observation error.</p>
+<section id="design-study-a-ch13-observer">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw13-observer"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Design the observer before viewing the solution</h3> <p>Check
+observability, choose faster observer poles, and interpret estimated
+states.</p>
+
+<section class="guided-step" data-dsa-step="observability">
+<h4>Step 1. Observability rank</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Rank of <span
+class="math inline">\(\mathcal{O}\)</span></span><input
+type="text" data-dsa-input="rank" data-dsa-accept="2"
+placeholder="numeric value"></label> </div> <button
+type="button" data-dsa-check="observability">Check Step
+1</button> <p class="quiz-feedback"
+data-dsa-feedback="observability" aria-live="polite"></p>
+<details class="quiz-answer" data-dsa-answer="observability"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The arm model is
+observable from the measured angle because <span class="math
+inline">\(\operatorname{rank}(\mathcal{O})=2\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="pole-speed">
+<h4>Step 2. Observer pole speed</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Relative observer
+speed</span><input type="text" data-dsa-input="speed"
+data-dsa-accept="faster\|left of controller poles\|more negative"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="pole-speed">Check Step 2</button>
+<p class="quiz-feedback" data-dsa-feedback="pole-speed"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="pole-speed" hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> Observer poles are
+typically placed faster than the controller poles so estimation error
+decays quickly.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="estimate"> <h4>Step
+3. Estimated state notation</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Estimated state
+symbol</span><input type="text" data-dsa-input="xhat"
+data-dsa-accept="xhat\|hatx\|x_hat" placeholder="symbol"></label>
+</div> <button type="button" data-dsa-check="estimate">Check
+Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="estimate" aria-live="polite"></p> <details
+class="quiz-answer" data-dsa-answer="estimate"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The observer produces
+<span class="math inline">\(\hat{x}\)</span>, which is used by the
+controller in place of the full measured state.</p></details>
+</section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes separate
+observer-update and control-update functions. Before opening it, outline
+each component separately.</p> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="update_observer function: write pseudocode for propagating xhat with the observer dynamics and measurement correction."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="update function: write pseudocode for computing the control input from the reference, integrator state, and xhat."></textarea> <p
+class="advanced-caption">These prompts are ungraded. They are
+intended to connect the observer equations to the implementation code in
+the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>A Python class that implements observer-based control with an
+integrator for the single link robot arm is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlObserver.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> armParam <span class="im">as</span> P</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlObserver:</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Feedback Control Design</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">#  tuning parameters - these are similar to A.12, but </span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">#  do not match exactly. </span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        tr <span class="op">=</span> <span class="fl">0.4</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        zeta <span class="op">=</span> <span class="fl">0.707</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        integrator_pole <span class="op">=</span> <span class="op">-</span><span class="dv">9</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        tr_obs <span class="op">=</span> tr<span class="op">/</span><span class="dv">10</span>  <span class="co"># rise time frequency for observer</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        zeta_obs <span class="op">=</span> <span class="fl">0.707</span>  <span class="co"># damping ratio for observer</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Space Equations</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xdot = A*x + B*u</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y = C*x</span></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.A <span class="op">=</span> np.array([[<span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>                          [<span class="fl">0.0</span>, <span class="op">-</span><span class="fl">3.0</span> <span class="op">*</span> P.b <span class="op">/</span> P.m <span class="op">/</span> (P.ell<span class="op">**</span><span class="dv">2</span>)]])</span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.B <span class="op">=</span> np.array([[<span class="fl">0.0</span>],</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>                           [<span class="fl">3.0</span> <span class="op">/</span> P.m <span class="op">/</span> (P.ell<span class="op">**</span><span class="dv">2</span>)]])        </span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.C <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># form augmented system</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        A1 <span class="op">=</span> np.vstack((np.hstack((<span class="va">self</span>.A, np.zeros((<span class="dv">2</span>,<span class="dv">1</span>)))), </span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>                        np.hstack((<span class="op">-</span><span class="va">self</span>.C, np.zeros((<span class="dv">1</span>,<span class="dv">1</span>)))) ))</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        B1 <span class="op">=</span> np.vstack( (<span class="va">self</span>.B, <span class="fl">0.0</span>) )</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># gain calculation</span></span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        wn <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr  <span class="co"># natural frequency</span></span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        des_char_poly <span class="op">=</span> np.convolve([<span class="dv">1</span>, <span class="dv">2</span><span class="op">*</span>zeta<span class="op">*</span>wn, wn<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>                                    [<span class="dv">1</span>, <span class="op">-</span>integrator_pole])</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        des_poles <span class="op">=</span> np.roots(des_char_poly)</span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is controllable</span></span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(A1, B1)) <span class="op">!=</span> <span class="dv">3</span>:</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not controllable&quot;</span>)</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>            K1 <span class="op">=</span> cnt.place(A1, B1, des_poles)</span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.K <span class="op">=</span> K1[:, <span class="dv">0</span>:<span class="dv">2</span>]</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.ki <span class="op">=</span> K1[<span class="dv">0</span>, <span class="dv">2</span>]</span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># observer design</span></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        wn_obs <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr_obs</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>        des_obsv_char_poly <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span><span class="op">*</span>zeta_obs<span class="op">*</span>wn_obs, wn_obs<span class="op">**</span><span class="dv">2</span>]</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        des_obsv_poles <span class="op">=</span> np.roots(des_obsv_char_poly)</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is observable</span></span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(<span class="va">self</span>.A.T, <span class="va">self</span>.C.T)) <span class="op">!=</span> <span class="dv">2</span>:</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not observerable&quot;</span>)</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.L <span class="op">=</span> cnt.place(<span class="va">self</span>.A.T, <span class="va">self</span>.C.T, des_obsv_poles).T</span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;K: &#39;</span>, <span class="va">self</span>.K)</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;ki &#39;</span>, <span class="va">self</span>.ki)</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;L^T: &#39;</span>, <span class="va">self</span>.L.T)</span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="co"># variables to implement integrator</span></span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># integrator</span></span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_prev <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># error signal delayed by 1 sample</span></span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x_hat <span class="op">=</span> np.array([</span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>],  <span class="co"># theta_hat_0</span></span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>],  <span class="co"># thetadot_hat_0</span></span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tau_prev <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># control torque, delayed 1 sample</span></span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, theta_r, y):</span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update the observer and extract theta_hat</span></span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>        x_hat <span class="op">=</span> <span class="va">self</span>.update_observer(y)</span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        theta_hat <span class="op">=</span> x_hat[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error</span></span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        error <span class="op">=</span> theta_r <span class="op">-</span> theta_hat</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator <span class="op">=</span> <span class="va">self</span>.integrator <span class="op">\</span></span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>                          <span class="op">+</span> (P.Ts <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> (error <span class="op">+</span> <span class="va">self</span>.error_prev)</span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_prev <span class="op">=</span> error</span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        <span class="co"># feedback linearizing torque tau_fl</span></span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>        tau_fl <span class="op">=</span> P.m <span class="op">*</span> P.g <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> np.cos(theta_hat)</span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the state feedback controller</span></span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a>        tau_tilde <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.K <span class="op">@</span> x_hat <span class="op">-</span> <span class="va">self</span>.ki <span class="op">*</span> <span class="va">self</span>.integrator</span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute total torque</span></span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> saturate(tau_fl <span class="op">+</span> tau_tilde[<span class="dv">0</span>, <span class="dv">0</span>], P.tau_max)</span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tau_prev <span class="op">=</span> tau</span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="18-18-compensator-design.html#cb1-89" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tau, x_hat</span>
+<span id="cb1-90"><a href="18-18-compensator-design.html#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="18-18-compensator-design.html#cb1-91" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update_observer(<span class="va">self</span>, y_m):</span>
+<span id="cb1-92"><a href="18-18-compensator-design.html#cb1-92" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update the observer using RK4 integration</span></span>
+<span id="cb1-93"><a href="18-18-compensator-design.html#cb1-93" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat, y_m)</span>
+<span id="cb1-94"><a href="18-18-compensator-design.html#cb1-94" aria-hidden="true" tabindex="-1"></a>        F2 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F1, y_m)</span>
+<span id="cb1-95"><a href="18-18-compensator-design.html#cb1-95" aria-hidden="true" tabindex="-1"></a>        F3 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F2, y_m)</span>
+<span id="cb1-96"><a href="18-18-compensator-design.html#cb1-96" aria-hidden="true" tabindex="-1"></a>        F4 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">*</span> F3, y_m)</span>
+<span id="cb1-97"><a href="18-18-compensator-design.html#cb1-97" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x_hat <span class="op">=</span> <span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> (F1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F2 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F3 <span class="op">+</span> F4)</span>
+<span id="cb1-98"><a href="18-18-compensator-design.html#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="18-18-compensator-design.html#cb1-99" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.x_hat</span>
+<span id="cb1-100"><a href="18-18-compensator-design.html#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="18-18-compensator-design.html#cb1-101" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> observer_f(<span class="va">self</span>, x_hat, y_m):</span>
+<span id="cb1-102"><a href="18-18-compensator-design.html#cb1-102" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute feedback linearizing torque tau_fl</span></span>
+<span id="cb1-103"><a href="18-18-compensator-design.html#cb1-103" aria-hidden="true" tabindex="-1"></a>        theta_hat <span class="op">=</span> x_hat[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-104"><a href="18-18-compensator-design.html#cb1-104" aria-hidden="true" tabindex="-1"></a>        tau_fl <span class="op">=</span> P.m <span class="op">*</span> P.g <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> np.cos(theta_hat)</span>
+<span id="cb1-105"><a href="18-18-compensator-design.html#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="18-18-compensator-design.html#cb1-106" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xhatdot = A*(xhat-xe) + B*(u-ue) + L(y-C*xhat)</span></span>
+<span id="cb1-107"><a href="18-18-compensator-design.html#cb1-107" aria-hidden="true" tabindex="-1"></a>        xhat_dot <span class="op">=</span> <span class="va">self</span>.A <span class="op">@</span> x_hat<span class="op">\</span></span>
+<span id="cb1-108"><a href="18-18-compensator-design.html#cb1-108" aria-hidden="true" tabindex="-1"></a>                   <span class="op">+</span> <span class="va">self</span>.B <span class="op">*</span> (<span class="va">self</span>.tau_prev <span class="op">-</span> tau_fl)<span class="op">\</span></span>
+<span id="cb1-109"><a href="18-18-compensator-design.html#cb1-109" aria-hidden="true" tabindex="-1"></a>                   <span class="op">+</span> <span class="va">self</span>.L <span class="op">*</span> (y_m <span class="op">-</span> <span class="va">self</span>.C <span class="op">@</span> x_hat)</span>
+<span id="cb1-110"><a href="18-18-compensator-design.html#cb1-110" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xhat_dot</span>
+<span id="cb1-111"><a href="18-18-compensator-design.html#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="18-18-compensator-design.html#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-113"><a href="18-18-compensator-design.html#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-114"><a href="18-18-compensator-design.html#cb1-114" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-115"><a href="18-18-compensator-design.html#cb1-115" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-116"><a href="18-18-compensator-design.html#cb1-116" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>Notice that we must update the observer dynamics and that <span
+class="math inline">\(\hat{x}\)</span> is used in the controller instead
+of <span class="math inline">\(x\)</span>, but otherwise this controller
+is identical to the controller in Chapter <a
+href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>. The observer is
+updated using the RK4 algorithm (see line 48). The differential
+equations for the observer are also specified on lines 64–66.</p>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="13.4" id="design-study-b-inverted-pendulum-9" class="section-design-study"><span class="header-section-number">13.4</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="13.4.1" id="-example-problem-3216" class="section-example"><span class="header-section-number">13.4.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a></h3>
+<p>The objective of this problem is to design an observer that estimates
+the state of the system and to use the estimated state in the controller
+designed in Homework <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>.</p>
+<p>For the sake of understanding the function of the observer, for this
+problem we will use exact parameters, without an input disturbance.
+Modify the pendulum dynamics so that the parameters known to the
+controller are the actual plant parameters (uncertainty parameter <span
+class="math inline">\(\alpha=0\)</span>).</p>
+<p>Verify that the state space system is observable by checking that
+<span
+class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>.</p>
+<p>In the control block, add an observer to estimate the state <span
+class="math inline">\(\hat{x}\)</span>, and use the estimate of the
+state in your feedback controller. Tune the poles of the controller and
+observer to obtain good performance.</p>
+<p>Modify the simulation files so that the controller outputs both <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(\hat{x}\)</span>. Add a plotting routine to plot
+both the state and the estimated state of the system on the same
+graph.</p>
+<p>As motivation for the next chapter, add an input disturbance to the
+system of <span class="math inline">\(0.05\)</span> and observe that
+there is steady state error in the response even though there is an
+integrator. This is caused by a steady state error in the observation
+error. In the next chapter we will show how to remove the steady state
+error in the observation error.</p>
+<section id="design-study-b-ch13-observer">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw13"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Design the pendulum observer before
+viewing the solution</h3> <p>Use measured z and theta to estimate
+the full state for feedback.</p> <section class="guided-step"
+data-dsa-step="observability"> <h4>Step 1. Observability</h4>
+<div class="guided-input-grid guided-input-grid-scalars">
+<label><span>Rank condition</span><input type="text"
+data-dsa-input="rank" data-dsa-accept="4\|n\|full rank"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="observability">Check Step
+1</button> <p class="quiz-feedback"
+data-dsa-feedback="observability" aria-live="polite"></p>
+<details class="quiz-answer guided-step-solution"
+data-dsa-answer="observability" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> The four-state
+system must be observable from the measured outputs.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="poles"> <h4>Step 2.
+Observer pole choice</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Relative
+speed</span><input type="text" data-dsa-input="speed"
+data-dsa-accept="faster\|more negative\|left of controller poles"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="poles">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="poles"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="poles" hidden><summary>Show
+solution for Step 2</summary><p><strong>Answer:</strong>
+Observer poles are placed faster than controller poles so estimation
+error decays quickly.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="estimate"> <h4>Step
+3. Estimated state use</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Estimated
+state</span><input type="text" data-dsa-input="xhat"
+data-dsa-accept="xhat\|x_hat\|hat x\|estimated state"
+placeholder="symbol"></label> </div> <button type="button"
+data-dsa-check="estimate">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="estimate"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="estimate"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The controller uses xhat
+in place of the full measured state.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes separate
+observer-update and control-update functions. Before opening it, outline
+each component separately.</p> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="update_observer function: write pseudocode for propagating xhat with the observer dynamics and measurement correction."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="update function: write pseudocode for using xhat in the nested controller and computing the force command."></textarea> <p
+class="advanced-caption">These prompts are ungraded. They are
+intended to connect the derivation to the implementation code in the
+complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>A Python class that implements observer-based control with an
+integrator for the inverted pendulum is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlObserver.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> signal</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlObserver:</span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Feedback Control Design</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tuning parameters</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        tr_theta <span class="op">=</span> <span class="fl">0.5</span>     <span class="co"># rise time for angle</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        tr_z <span class="op">=</span> tr_theta<span class="op">*</span><span class="dv">3</span>  <span class="co"># rise time for position</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        zeta_z <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio position</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio angle</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        integrator_pole <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span>  <span class="co"># integrator pole</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        tr_z_obs <span class="op">=</span> tr_z <span class="op">/</span> <span class="fl">10.0</span> <span class="co"># rise time for position</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        tr_theta_obs <span class="op">=</span> tr_theta <span class="op">/</span> <span class="fl">10.0</span>  <span class="co"># rise time for angle</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Space Equations</span></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xdot = A*x + B*u</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y = C*x</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.A <span class="op">=</span> np.array([</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="op">-</span><span class="dv">3</span> <span class="op">*</span> P.m1 <span class="op">*</span> P.g <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2),</span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span>P.b <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2), <span class="fl">0.0</span>],</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="dv">3</span><span class="op">*</span>(P.m1 <span class="op">+</span> P.m2)<span class="op">*</span>P.g<span class="op">/</span><span class="dv">2</span><span class="op">/</span>(<span class="fl">0.25</span><span class="op">*</span>P.m1 <span class="op">+</span> P.m2)<span class="op">/</span>P.ell,</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>                <span class="dv">3</span> <span class="op">*</span> P.b <span class="op">/</span> <span class="dv">2</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2) <span class="op">/</span> P.ell, <span class="fl">0.0</span>]])</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.B <span class="op">=</span> np.array([[<span class="fl">0.0</span>],</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>                           [<span class="fl">0.0</span>],</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>                           [<span class="dv">1</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2)],</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>                           [<span class="op">-</span><span class="fl">3.0</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">/</span> (<span class="fl">.25</span> <span class="op">*</span> P.m1 <span class="op">+</span> P.m2) <span class="op">/</span> P.ell]])</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.C <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>                           [<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># form augmented system</span></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        Cr <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">0</span>]]) <span class="op">@</span> <span class="va">self</span>.C</span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        A1 <span class="op">=</span> np.concatenate((</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>                np.concatenate((<span class="va">self</span>.A, np.zeros((<span class="dv">4</span>, <span class="dv">1</span>))), axis<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>                np.concatenate((<span class="op">-</span>Cr, np.matrix([[<span class="fl">0.0</span>]])), axis<span class="op">=</span><span class="dv">1</span>)),</span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>                axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        B1 <span class="op">=</span> np.concatenate((<span class="va">self</span>.B, np.matrix([[<span class="fl">0.0</span>]])), axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># control gain calculation</span></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># natural frequency for angle</span></span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_theta<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_th<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># natural frequency for position</span></span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>        wn_z <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_z<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_z<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>        des_char_poly <span class="op">=</span> np.convolve(</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>                np.convolve([<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_z <span class="op">*</span> wn_z, wn_z<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>                            [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th, wn_th<span class="op">**</span><span class="dv">2</span>]),</span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>                np.poly([integrator_pole]))</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        des_poles <span class="op">=</span> np.roots(des_char_poly)</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the control gains if the system is controllable</span></span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(A1, B1)) <span class="op">!=</span> <span class="dv">5</span>:</span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not controllable&quot;</span>)</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>            K1 <span class="op">=</span> cnt.place(A1, B1, des_poles)</span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.K <span class="op">=</span> K1[:, <span class="dv">0</span>:<span class="dv">4</span>]</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.ki <span class="op">=</span> K1[<span class="dv">0</span>, <span class="dv">4</span>]</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute observer gains        </span></span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        wn_th_obs <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_theta_obs<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_th<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>        wn_z_obs <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_z_obs<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_z<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>        des_obs_char_poly <span class="op">=</span> np.convolve(</span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_z <span class="op">*</span> wn_z_obs, wn_z_obs<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th_obs, wn_th_obs<span class="op">**</span><span class="dv">2</span>])</span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        des_obs_poles <span class="op">=</span> np.roots(des_obs_char_poly)</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the observer gains if the system is observable</span></span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(<span class="va">self</span>.A.T, <span class="va">self</span>.C.T)) <span class="op">!=</span> <span class="dv">4</span>:</span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not observable&quot;</span>)</span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.L <span class="op">=</span> cnt.place(<span class="va">self</span>.A.T, <span class="va">self</span>.C.T, </span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>                                        des_obs_poles).T</span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print gains to terminal</span></span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;K: &#39;</span>, <span class="va">self</span>.K)</span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;ki: &#39;</span>, <span class="va">self</span>.ki)</span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;L^T: &#39;</span>, <span class="va">self</span>.L.T)</span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturation limits</span></span>
+<span id="cb1-89"><a href="18-18-compensator-design.html#cb1-89" aria-hidden="true" tabindex="-1"></a>        theta_max <span class="op">=</span> <span class="fl">30.0</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="fl">180.0</span>  <span class="co"># Max theta, rads</span></span>
+<span id="cb1-90"><a href="18-18-compensator-design.html#cb1-90" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-91"><a href="18-18-compensator-design.html#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="18-18-compensator-design.html#cb1-92" aria-hidden="true" tabindex="-1"></a>        <span class="co"># variables to implement integrator</span></span>
+<span id="cb1-93"><a href="18-18-compensator-design.html#cb1-93" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_z <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># integrator</span></span>
+<span id="cb1-94"><a href="18-18-compensator-design.html#cb1-94" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_z_d1 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># error signal delayed by 1 sample</span></span>
+<span id="cb1-95"><a href="18-18-compensator-design.html#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="18-18-compensator-design.html#cb1-96" aria-hidden="true" tabindex="-1"></a>        <span class="co"># estimated state variables</span></span>
+<span id="cb1-97"><a href="18-18-compensator-design.html#cb1-97" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x_hat <span class="op">=</span> np.array([</span>
+<span id="cb1-98"><a href="18-18-compensator-design.html#cb1-98" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>],  <span class="co"># initial estimate for z_hat</span></span>
+<span id="cb1-99"><a href="18-18-compensator-design.html#cb1-99" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>],  <span class="co"># initial estimate for theta_hat</span></span>
+<span id="cb1-100"><a href="18-18-compensator-design.html#cb1-100" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>],  <span class="co"># initial estimate for z_hat_dot</span></span>
+<span id="cb1-101"><a href="18-18-compensator-design.html#cb1-101" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>]])  <span class="co"># initial estimate for theta_hat_dot</span></span>
+<span id="cb1-102"><a href="18-18-compensator-design.html#cb1-102" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.F_d1 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Computed Force, delayed by one sample</span></span>
+<span id="cb1-103"><a href="18-18-compensator-design.html#cb1-103" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-104"><a href="18-18-compensator-design.html#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, z_r, y):</span>
+<span id="cb1-105"><a href="18-18-compensator-design.html#cb1-105" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update the observer and extract z_hat</span></span>
+<span id="cb1-106"><a href="18-18-compensator-design.html#cb1-106" aria-hidden="true" tabindex="-1"></a>        x_hat <span class="op">=</span> <span class="va">self</span>.update_observer(y)</span>
+<span id="cb1-107"><a href="18-18-compensator-design.html#cb1-107" aria-hidden="true" tabindex="-1"></a>        z_hat <span class="op">=</span> x_hat[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-108"><a href="18-18-compensator-design.html#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="18-18-compensator-design.html#cb1-109" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error</span></span>
+<span id="cb1-110"><a href="18-18-compensator-design.html#cb1-110" aria-hidden="true" tabindex="-1"></a>        error_z <span class="op">=</span> z_r <span class="op">-</span> z_hat</span>
+<span id="cb1-111"><a href="18-18-compensator-design.html#cb1-111" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_z <span class="op">=</span> <span class="va">self</span>.integrator_z <span class="op">\</span></span>
+<span id="cb1-112"><a href="18-18-compensator-design.html#cb1-112" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (P.Ts <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> (error_z <span class="op">+</span> <span class="va">self</span>.error_z_d1)</span>
+<span id="cb1-113"><a href="18-18-compensator-design.html#cb1-113" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_z_d1 <span class="op">=</span> error_z</span>
+<span id="cb1-114"><a href="18-18-compensator-design.html#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="18-18-compensator-design.html#cb1-115" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the state feedback controller</span></span>
+<span id="cb1-116"><a href="18-18-compensator-design.html#cb1-116" aria-hidden="true" tabindex="-1"></a>        F_unsat <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.K <span class="op">@</span> x_hat <span class="op">-</span> <span class="va">self</span>.ki <span class="op">*</span> <span class="va">self</span>.integrator_z</span>
+<span id="cb1-117"><a href="18-18-compensator-design.html#cb1-117" aria-hidden="true" tabindex="-1"></a>        F <span class="op">=</span> saturate(F_unsat[<span class="dv">0</span>, <span class="dv">0</span>], P.F_max)</span>
+<span id="cb1-118"><a href="18-18-compensator-design.html#cb1-118" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.F_d1 <span class="op">=</span> F</span>
+<span id="cb1-119"><a href="18-18-compensator-design.html#cb1-119" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> F, x_hat</span>
+<span id="cb1-120"><a href="18-18-compensator-design.html#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-121"><a href="18-18-compensator-design.html#cb1-121" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update_observer(<span class="va">self</span>, y_m):</span>
+<span id="cb1-122"><a href="18-18-compensator-design.html#cb1-122" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update the observer using RK4 integration</span></span>
+<span id="cb1-123"><a href="18-18-compensator-design.html#cb1-123" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat, y_m)</span>
+<span id="cb1-124"><a href="18-18-compensator-design.html#cb1-124" aria-hidden="true" tabindex="-1"></a>        F2 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F1, y_m)</span>
+<span id="cb1-125"><a href="18-18-compensator-design.html#cb1-125" aria-hidden="true" tabindex="-1"></a>        F3 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F2, y_m)</span>
+<span id="cb1-126"><a href="18-18-compensator-design.html#cb1-126" aria-hidden="true" tabindex="-1"></a>        F4 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">*</span> F3, y_m)</span>
+<span id="cb1-127"><a href="18-18-compensator-design.html#cb1-127" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x_hat <span class="op">=</span> <span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> (F1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F2 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F3 <span class="op">+</span> F4)</span>
+<span id="cb1-128"><a href="18-18-compensator-design.html#cb1-128" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.x_hat</span>
+<span id="cb1-129"><a href="18-18-compensator-design.html#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="18-18-compensator-design.html#cb1-130" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> observer_f(<span class="va">self</span>, x_hat, y_m):</span>
+<span id="cb1-131"><a href="18-18-compensator-design.html#cb1-131" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xhatdot = A*xhat + B*u + L(y-C*xhat)</span></span>
+<span id="cb1-132"><a href="18-18-compensator-design.html#cb1-132" aria-hidden="true" tabindex="-1"></a>        xhat_dot <span class="op">=</span> <span class="va">self</span>.A <span class="op">@</span> x_hat <span class="op">\</span></span>
+<span id="cb1-133"><a href="18-18-compensator-design.html#cb1-133" aria-hidden="true" tabindex="-1"></a>                   <span class="op">+</span> <span class="va">self</span>.B <span class="op">*</span> <span class="va">self</span>.F_d1 <span class="op">\</span></span>
+<span id="cb1-134"><a href="18-18-compensator-design.html#cb1-134" aria-hidden="true" tabindex="-1"></a>                   <span class="op">+</span> <span class="va">self</span>.L <span class="op">@</span> (y_m<span class="op">-</span><span class="va">self</span>.C <span class="op">@</span> x_hat)</span>
+<span id="cb1-135"><a href="18-18-compensator-design.html#cb1-135" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xhat_dot</span>
+<span id="cb1-136"><a href="18-18-compensator-design.html#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="18-18-compensator-design.html#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-138"><a href="18-18-compensator-design.html#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-139"><a href="18-18-compensator-design.html#cb1-139" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-140"><a href="18-18-compensator-design.html#cb1-140" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-141"><a href="18-18-compensator-design.html#cb1-141" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>The observer is updated on line 25, and <span
+class="math inline">\(\hat{x}\)</span> is used in the controller instead
+of <span class="math inline">\(x\)</span> but otherwise is identical to
+the controller in Chapter <a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback"
+data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>. The observer is
+updated on lines 40–48 using the RK4 algorithm. The differential
+equations for the observer are specified on lines 50–56.</p>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="13.5"
+id="design-study-c-satellite-attitude-control-10" class="section-design-study"><span class="header-section-number">13.5</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="13.5.1" id="-example-problem-3316" class="section-example"><span class="header-section-number">13.5.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a></h3>
+<p>The objective of this problem is to design an observer that estimates
+the state of the system and to use the estimated state in the controller
+designed in Homework <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>.</p>
+<p>For the sake of understanding the function of the observer, for this
+problem we will use exact parameters, without an input disturbance.
+Modify the satellite dynamics so that the parameters known to the
+controller are the actual plant parameters (uncertainty parameter <span
+class="math inline">\(\alpha=0\)</span>).</p>
+<p>Verify that the state space system is observable by checking that
+<span
+class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>.</p>
+<p>In the control block, add an observer to estimate the state <span
+class="math inline">\(\hat{x}\)</span>, and use the estimate of the
+state in your feedback controller. Tune the poles of the controller and
+observer to obtain good performance.</p>
+<p>Modify the simulation files so that the controller outputs both <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(\hat{x}\)</span>. Add a plotting routine to plot
+both the state and the estimated state of the system on the same
+graph.</p>
+<p>As motivation for the next chapter, add an input disturbance to the
+system of <span class="math inline">\(1.0\)</span> Newton-meter and
+observe that there is steady state error in the response even though
+there is an integrator. This is caused by a steady state error in the
+observation error. In the next chapter we will show how to remove the
+steady state error in the observation error.</p>
+<section id="design-study-c-ch13-observer">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw13" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Plan the satellite observer before viewing the solution</h3>
+<p>The observer estimates the full four-state satellite state from
+measured outputs.</p> <section class="guided-step"
+data-dsa-step="setup"> <h4>Step 1. Observer setup</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Uncertainty for first test</span><input
+type="text" data-dsa-input="uncertainty"
+data-dsa-accept="0\|zero\|alpha=0" placeholder="value"></label>
+<label><span>Estimated variable</span><input type="text"
+data-dsa-input="estimate" data-dsa-accept="xhat\|x_hat\|state\|full
+state" placeholder="variable"></label> </div> <button
+type="button" data-dsa-check="setup" data-dsa-hint="The first
+observer test isolates observer behavior using exact
+parameters.">Check Step 1</button> <p class="quiz-feedback"
+data-dsa-feedback="setup" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="setup"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> Use <span class="math
+inline">\(\alpha=0\)</span> initially and estimate <span class="math
+inline">\(\hat{x}\)</span>.</p></details> </section> <section
+class="guided-step" data-dsa-step="observability"> <h4>Step 2.
+Observability check</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Rank
+condition</span><input type="text" data-dsa-input="rank"
+data-dsa-accept="rank(O)=n\|rank observability equals
+n\|observable\|rank n" placeholder="condition"></label>
+<label><span>Measured outputs</span><input type="text"
+data-dsa-input="outputs" data-dsa-accept="theta,phi-theta\|theta and
+phi minus theta\|body angle and relative deflection"
+placeholder="signals"></label> </div> <button type="button"
+data-dsa-check="observability" data-dsa-hint="Use the C matrix from
+Chapter 6.">Check Step 2</button> <p class="quiz-feedback"
+data-dsa-feedback="observability" aria-live="polite"></p>
+<details class="quiz-answer guided-step-solution"
+data-dsa-answer="observability" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> Verify <span
+class="math
+inline">\(\operatorname{rank}(\mathcal{O}_{A,C})=n\)</span> using
+outputs <span class="math inline">\(\theta\)</span> and <span
+class="math inline">\(\phi-\theta\)</span>.</p></details>
+</section> <section class="guided-step"
+data-dsa-step="motivation"> <h4>Step 3. Motivation for disturbance
+observers</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Added
+disturbance</span><input type="text" data-dsa-input="disturbance"
+data-dsa-accept="1\|1 nm\|1 newton-meter\|1 newton meter"
+placeholder="value"></label> <label><span>Observed
+problem</span><input type="text" data-dsa-input="problem"
+data-dsa-accept="steady state error\|steady-state error\|estimation
+error\|observer error" placeholder="short answer"></label>
+</div> <button type="button" data-dsa-check="motivation"
+data-dsa-hint="The disturbance creates an observer-error
+offset.">Check Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="motivation" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="motivation" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> Adding a 1 Nm disturbance
+exposes steady-state error related to observation error, motivating
+Chapter 14.</p></details> </section> <div
+class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution anyway</button></div>
+<p class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>A Python class that implements observer-based control with an
+integrator for the satellite is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlObserver.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> control <span class="im">as</span> cnt</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> signal</span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> satelliteParam <span class="im">as</span> P</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlObserver:</span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Feedback Control Design</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tuning parameters</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        tr_th <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> <span class="fl">3.0</span>  <span class="co"># Time scale separation between loops</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        tr_phi <span class="op">=</span> M <span class="op">*</span> tr_th  <span class="co"># rise time for outer loop</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio for theta</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        zeta_phi <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio for phi</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        integrator_pole <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        tr_th_obs <span class="op">=</span> tr_th<span class="op">/</span><span class="fl">10.0</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        tr_phi_obs <span class="op">=</span> tr_phi<span class="op">/</span><span class="fl">10.0</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># State Space Equations</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xdot = A*x + B*u</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y = C*x</span></span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.A <span class="op">=</span> np.array([</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>            [<span class="op">-</span>P.k <span class="op">/</span> P.Js, P.k <span class="op">/</span> P.Js, <span class="op">-</span>P.b <span class="op">/</span> P.Js, P.b <span class="op">/</span> P.Js],</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>            [P.k <span class="op">/</span> P.Jp, <span class="op">-</span>P.k <span class="op">/</span> P.Jp, P.b <span class="op">/</span> P.Jp, <span class="op">-</span>P.b <span class="op">/</span> P.Jp]])</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.B <span class="op">=</span> np.array([[<span class="fl">0.0</span>],</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>                           [<span class="fl">0.0</span>],</span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>                           [<span class="fl">1.0</span> <span class="op">/</span> P.Js],</span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>                           [<span class="fl">0.0</span>]])</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.C <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>                           [<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># form augmented system</span></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        Cr <span class="op">=</span> np.array([[<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        A1 <span class="op">=</span> np.vstack((np.hstack((<span class="va">self</span>.A, np.zeros((<span class="dv">4</span>,<span class="dv">1</span>)))), </span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>                        np.hstack((<span class="op">-</span>Cr, np.zeros((<span class="dv">1</span>,<span class="dv">1</span>)))) ))</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        B1 <span class="op">=</span> np.vstack( (<span class="va">self</span>.B, <span class="fl">0.0</span>) )</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># gain calculation</span></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_th<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_th<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        wn_phi <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_phi<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_phi<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        des_char_poly <span class="op">=</span> np.convolve(</span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>                np.convolve([<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_phi <span class="op">*</span> wn_phi, wn_phi<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>                            [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th, wn_th<span class="op">**</span><span class="dv">2</span>]),</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">1</span>, <span class="op">-</span>integrator_pole])</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        des_poles <span class="op">=</span> np.roots(des_char_poly)</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is controllable</span></span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(A1, B1)) <span class="op">!=</span> <span class="dv">5</span>:</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not controllable&quot;</span>)</span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>            K1 <span class="op">=</span> cnt.place(A1, B1, des_poles)</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.K <span class="op">=</span> K1[:, <span class="dv">0</span>:<span class="dv">4</span>]</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.ki <span class="op">=</span> K1[<span class="dv">0</span>, <span class="dv">4</span>]</span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute observer gains</span></span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pick observer poles</span></span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>        wn_th_obs <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_th_obs<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_th<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>        wn_phi_obs <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr_phi_obs<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta_phi<span class="op">**</span><span class="dv">2</span>)) </span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        des_obs_char_poly <span class="op">=</span> np.convolve(</span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_phi <span class="op">*</span> wn_phi_obs, wn_phi_obs<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th_obs, wn_th_obs<span class="op">**</span><span class="dv">2</span>])</span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        des_obs_poles <span class="op">=</span> np.roots(des_obs_char_poly)</span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the gains if the system is observable</span></span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.matrix_rank(cnt.ctrb(<span class="va">self</span>.A.T, <span class="va">self</span>.C.T)) <span class="op">!=</span> <span class="dv">4</span>:</span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;The system is not observable&quot;</span>)</span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>            <span class="co"># place_poles returns an object with various properties.</span></span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a>            <span class="co"># The gains are accessed through .gain_matrix</span></span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>            <span class="co"># .T transposes the matrix</span></span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.L <span class="op">=</span> cnt.place(<span class="va">self</span>.A.T, <span class="va">self</span>.C.T, des_obs_poles).T</span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print gains to terminal</span></span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;K: &#39;</span>, <span class="va">self</span>.K)</span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;ki: &#39;</span>, <span class="va">self</span>.ki)</span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;L^T: &#39;</span>, <span class="va">self</span>.L.T)</span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a>        <span class="co">#--------------------------------------------------</span></span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a>        <span class="co"># variables to implement integrator</span></span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_phi <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># integrator</span></span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_phi_d1 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># error signal delayed by 1 sample</span></span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a>        <span class="co"># estimated state variables</span></span>
+<span id="cb1-89"><a href="18-18-compensator-design.html#cb1-89" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x_hat <span class="op">=</span> np.array([</span>
+<span id="cb1-90"><a href="18-18-compensator-design.html#cb1-90" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>],  <span class="co"># initial estimate for theta_hat</span></span>
+<span id="cb1-91"><a href="18-18-compensator-design.html#cb1-91" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>],  <span class="co"># initial estimate for phi_hat</span></span>
+<span id="cb1-92"><a href="18-18-compensator-design.html#cb1-92" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>],  <span class="co"># initial estimate for theta_hat_dot</span></span>
+<span id="cb1-93"><a href="18-18-compensator-design.html#cb1-93" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.0</span>],  <span class="co"># initial estimate for phi_hat_dot</span></span>
+<span id="cb1-94"><a href="18-18-compensator-design.html#cb1-94" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb1-95"><a href="18-18-compensator-design.html#cb1-95" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tau_d1 <span class="op">=</span> <span class="fl">0.0</span>      <span class="co"># Computed torque delayed 1 sample</span></span>
+<span id="cb1-96"><a href="18-18-compensator-design.html#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="18-18-compensator-design.html#cb1-97" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, phi_r, y):</span>
+<span id="cb1-98"><a href="18-18-compensator-design.html#cb1-98" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update the observer and extract z_hat</span></span>
+<span id="cb1-99"><a href="18-18-compensator-design.html#cb1-99" aria-hidden="true" tabindex="-1"></a>        x_hat <span class="op">=</span> <span class="va">self</span>.update_observer(y)</span>
+<span id="cb1-100"><a href="18-18-compensator-design.html#cb1-100" aria-hidden="true" tabindex="-1"></a>        phi_hat <span class="op">=</span> x_hat[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-101"><a href="18-18-compensator-design.html#cb1-101" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-102"><a href="18-18-compensator-design.html#cb1-102" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error</span></span>
+<span id="cb1-103"><a href="18-18-compensator-design.html#cb1-103" aria-hidden="true" tabindex="-1"></a>        error_phi <span class="op">=</span> phi_r <span class="op">-</span> phi_hat</span>
+<span id="cb1-104"><a href="18-18-compensator-design.html#cb1-104" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_phi <span class="op">=</span> <span class="va">self</span>.integrator_phi <span class="op">\</span></span>
+<span id="cb1-105"><a href="18-18-compensator-design.html#cb1-105" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (P.Ts <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> (error_phi <span class="op">+</span> <span class="va">self</span>.error_phi_d1)</span>
+<span id="cb1-106"><a href="18-18-compensator-design.html#cb1-106" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_phi_d1 <span class="op">=</span> error_phi</span>
+<span id="cb1-107"><a href="18-18-compensator-design.html#cb1-107" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-108"><a href="18-18-compensator-design.html#cb1-108" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the state feedback controller</span></span>
+<span id="cb1-109"><a href="18-18-compensator-design.html#cb1-109" aria-hidden="true" tabindex="-1"></a>        tau_unsat <span class="op">=</span> <span class="op">-</span><span class="va">self</span>.K <span class="op">@</span> x_hat <span class="op">-</span> <span class="va">self</span>.ki <span class="op">*</span> <span class="va">self</span>.integrator_phi</span>
+<span id="cb1-110"><a href="18-18-compensator-design.html#cb1-110" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> saturate(tau_unsat[<span class="dv">0</span>, <span class="dv">0</span>], P.tau_max)</span>
+<span id="cb1-111"><a href="18-18-compensator-design.html#cb1-111" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tau_d1 <span class="op">=</span> tau</span>
+<span id="cb1-112"><a href="18-18-compensator-design.html#cb1-112" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tau, x_hat</span>
+<span id="cb1-113"><a href="18-18-compensator-design.html#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="18-18-compensator-design.html#cb1-114" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update_observer(<span class="va">self</span>, y_m):</span>
+<span id="cb1-115"><a href="18-18-compensator-design.html#cb1-115" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update the observer using RK4 integration</span></span>
+<span id="cb1-116"><a href="18-18-compensator-design.html#cb1-116" aria-hidden="true" tabindex="-1"></a>        F1 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat, y_m)</span>
+<span id="cb1-117"><a href="18-18-compensator-design.html#cb1-117" aria-hidden="true" tabindex="-1"></a>        F2 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F1, y_m)</span>
+<span id="cb1-118"><a href="18-18-compensator-design.html#cb1-118" aria-hidden="true" tabindex="-1"></a>        F3 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> F2, y_m)</span>
+<span id="cb1-119"><a href="18-18-compensator-design.html#cb1-119" aria-hidden="true" tabindex="-1"></a>        F4 <span class="op">=</span> <span class="va">self</span>.observer_f(<span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">*</span> F3, y_m)</span>
+<span id="cb1-120"><a href="18-18-compensator-design.html#cb1-120" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x_hat <span class="op">=</span> <span class="va">self</span>.x_hat <span class="op">+</span> P.Ts <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> (F1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F2 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>F3 <span class="op">+</span> F4)</span>
+<span id="cb1-121"><a href="18-18-compensator-design.html#cb1-121" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.x_hat</span>
+<span id="cb1-122"><a href="18-18-compensator-design.html#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="18-18-compensator-design.html#cb1-123" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> observer_f(<span class="va">self</span>, x_hat, y_m):</span>
+<span id="cb1-124"><a href="18-18-compensator-design.html#cb1-124" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xhatdot = A*xhat + B*u + L(y-C*xhat)</span></span>
+<span id="cb1-125"><a href="18-18-compensator-design.html#cb1-125" aria-hidden="true" tabindex="-1"></a>        xhat_dot <span class="op">=</span> <span class="va">self</span>.A <span class="op">@</span> x_hat <span class="op">\</span></span>
+<span id="cb1-126"><a href="18-18-compensator-design.html#cb1-126" aria-hidden="true" tabindex="-1"></a>                   <span class="op">+</span> <span class="va">self</span>.B <span class="op">*</span> <span class="va">self</span>.tau_d1 <span class="op">\</span></span>
+<span id="cb1-127"><a href="18-18-compensator-design.html#cb1-127" aria-hidden="true" tabindex="-1"></a>                   <span class="op">+</span> <span class="va">self</span>.L <span class="op">@</span> (y_m <span class="op">-</span> <span class="va">self</span>.C <span class="op">@</span> x_hat)</span>
+<span id="cb1-128"><a href="18-18-compensator-design.html#cb1-128" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xhat_dot</span>
+<span id="cb1-129"><a href="18-18-compensator-design.html#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="18-18-compensator-design.html#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-131"><a href="18-18-compensator-design.html#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-132"><a href="18-18-compensator-design.html#cb1-132" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-133"><a href="18-18-compensator-design.html#cb1-133" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-134"><a href="18-18-compensator-design.html#cb1-134" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
+<p>The observer is updated on line 26, and <span
+class="math inline">\(\hat{x}\)</span> is used in the controller instead
+of <span class="math inline">\(x\)</span> but otherwise is identical to
+the controller in Chapter <a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback"
+data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>. The observer is
+updated on lines 41–49 using the RK4 algorithm. The differential
+equations for the observer are specified on lines 51–57.</p>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="13.6" id="interactive-observer-check"><span class="header-section-number">13.6</span> Interactive Observer
+Check</h2>
+<section id="observer-ch13-interactive-check">
+<article class="advanced-activity" data-advanced-activity="observer-innovation">
+<p class="advanced-kicker">
+Chapter 13 activity
+</p>
+<h3>
+Innovation term explorer
+</h3>
+<p>
+The observer is a model copy plus a correction term. For the simple
+constant-velocity system <span class="overdot">x</span> = Ax with A
+= (0, 1; 0, 0) and y = (1, 0)x, change L = (l<sub>1</sub>,
+l<sub>2</sub>)<sup>T</sup> and watch how the innovation y -
+C<span class="hat">x</span> changes the long-time estimate.
+</p>
+<div class="advanced-grid advanced-grid–visual">
+
+<label><span class="advanced-control-label"><span class="inline-equation">L<sub>1</sub></span>:
+position
+correction</span><input type="range" data-input="l1" min="-1"
+max="8" step="0.25" value="3"></label>
+<label><span class="advanced-control-label"><span class="inline-equation">L<sub>2</sub></span>:
+velocity
+correction</span><input type="range" data-input="l2" min="-2"
+max="10" step="0.25" value="2"></label>
+
+<strong>Observer gain
+L</strong><span data-output="innovation-l"></span>
+
+<strong>Error
+dynamics</strong><span data-output="innovation-matrix"></span>
+
+<strong>Estimated
+poles</strong><span data-output="innovation-poles"></span>
+
+<strong>Final error
+norm</strong><span data-output="innovation-error"></span>
+
+<div class="advanced-visual" role="figure" aria-label="Observer
+innovation simulation"> <canvas data-plot="innovation" width="760"
+height="440" aria-label="Observer innovation simulation">
+</canvas>
+<p class="advanced-caption">
+Interactive Figure 13.I1. The solid traces show true position and
+velocity; dashed traces show the observer estimates. The innovation y -
+C<span class="hat">x</span> drives the correction L(y -
+C<span class="hat">x</span>).
+</p>
+</div>
+</div>
+
+<h4>
+Check your understanding
+</h4>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The measured output is position, so the
+innovation is position error." data-feedback-b="B is not correct.
+Velocity is estimated indirectly here." data-feedback-c="C is not
+correct. The input is zero in this toy system." data-feedback-d="D is
+not correct. The observer uses y - C&lt;span
+class=&quot;hat&quot;&gt;x&lt;/span&gt;, not the raw estimate alone.">
+<p class="quiz-prompt">In this activity, what does the innovation
+y - C<span class="hat">x</span> measure?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="observer-innovation-q1" value="A"><span class="quiz-option-text">A) Position measurement
+error</span></label> <label><input type="radio"
+name="observer-innovation-q1" value="B"><span class="quiz-option-text">B) Velocity measurement
+error</span></label> <label><input type="radio"
+name="observer-innovation-q1" value="C"><span class="quiz-option-text">C) Input force
+error</span></label> <label><input type="radio"
+name="observer-innovation-q1" value="D"><span class="quiz-option-text">D) The full estimated
+state</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+
+</article>
+<article class="advanced-activity" data-advanced-activity="car-observability">
+<p class="advanced-kicker">
+Chapter 13 activity
+</p>
+<h3>
+Observability matrix rank: 1D car
+</h3>
+<p>
+For a car moving in one dimension, let x<sub>1</sub> be position and
+x<sub>2</sub> be velocity. The model is xdot = Ax with A = (0, 1; 0, 0).
+Change C = (c<sub>1</sub>, c<sub>2</sub>) and watch how the
+observability matrix O = (C; CA) changes.
+</p>
+<div class="advanced-grid advanced-grid–visual">
+
+<label><span class="advanced-control-label"><span class="inline-equation">c<sub>1</sub></span>:
+position sensor
+weight</span><input type="range" data-input="c1" min="-2"
+max="2" step="0.25" value="1"></label>
+<label><span class="advanced-control-label"><span class="inline-equation">c<sub>2</sub></span>:
+velocity sensor
+weight</span><input type="range" data-input="c2" min="-2"
+max="2" step="0.25" value="0"></label>
+
+<strong>Output matrix
+C</strong><span data-output="car-c"></span>
+
+<strong>Observability matrix
+O</strong><span data-output="car-o"></span>
+
+<strong>det(O)</strong><span data-output="car-det"></span>
+
+<strong>Rank
+conclusion</strong><span data-output="car-rank"></span>
+
+<div class="advanced-visual" role="figure" aria-label="One-dimensional
+car observability setup"> <svg viewBox="0 0 760 300" role="img"
+aria-label="One-dimensional car observability setup"
+data-car-observability-visual></svg>
+<p class="advanced-caption">
+Interactive Figure 13.I2. Position sensing can reveal velocity through
+how position changes over time. Velocity-only sensing cannot reveal the
+absolute initial position.
+</p>
+</div>
+</div>
+
+<h4>
+Check your understanding
+</h4>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Position over time reveals both initial
+position and velocity for the constant-velocity model."
+data-feedback-b="B is not correct. Velocity alone does not reveal
+absolute position." data-feedback-c="C is not correct. With C = \[0,
+0\], nothing is measured." data-feedback-d="D is not correct. The input
+is not what determines observability here.">
+<p class="quiz-prompt">
+Which measurement makes the 1D car observable?
+</p>
+
+<label><input
+type="radio" name="observer-car-q1" value="A"><span class="quiz-option-text">A) Position, C =
+\[1, 0\]</span></label> <label><input type="radio"
+name="observer-car-q1" value="B"><span class="quiz-option-text">B) Velocity only, C = \[0,
+1\]</span></label> <label><input type="radio" name="observer-car-q1"
+value="C"><span class="quiz-option-text">C) No sensor, C = \[0, 0\]</span></label> <label><input
+type="radio" name="observer-car-q1" value="D"><span class="quiz-option-text">D) Any input
+u</span></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Observing velocity gives the rate of
+change but not the absolute initial position." data-feedback-b="B is
+correct. The output y = velocity cannot distinguish two cars with the
+same velocity but different positions." data-feedback-c="C is not
+correct. Position sensing is the observable case." data-feedback-d="D
+is not correct. Rank depends on C and A, not on the name of the
+state."> <p class="quiz-prompt">Why is velocity-only sensing not
+observable for this model?</p> <div class="quiz-options">
+<label><input type="radio" name="observer-car-q2" value="A"><span class="quiz-option-text">A) Velocity cannot be measured by any sensor</span></label> <label><input
+type="radio" name="observer-car-q2" value="B"><span class="quiz-option-text">B) Initial
+position is hidden from y = x<sub>2</sub></span></label> <label><input
+type="radio" name="observer-car-q2" value="C"><span class="quiz-option-text">C) Position
+changes too quickly</span></label> <label><input type="radio"
+name="observer-car-q2" value="D"><span class="quiz-option-text">D) The system has only one
+state</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+
+</article>
+</section>
+<h2 data-number="13.7" id="coding-lab-observer-design"><span class="header-section-number">13.7</span> Coding Lab: Observer
+Design</h2>
+<div class="knowledge-check coding-lab-copy">
+<p><strong>Objective:</strong> synthesize a Luenberger observer
+gain and implement the observer update equation.</p>
+<p><strong>Evaluation criteria:</strong> the lab checks
+observability rank, observer-gain dimensions and values, observer pole
+locations, and convergence of the estimation error.</p> </div>
+<figure id="fig:observer_ch13_observer_lab" class="marimo-figure">
+<iframe src="../marimo/lab_13_observer/index.html?v=20260604a"
+loading="lazy" title="Chapter 13 observer coding lab"
+style="width:min(98vw,1100px);height:1650px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption>
+Figure 13.1 (Interactive). Observer-design coding lab with automatic
+convergence checks.
+</figcaption>
+</figure>
+<h2 data-number="13.8" id="knowledge-check-12"><span class="header-section-number">13.8</span> Knowledge Check</h2>
+<section id="observer-ch13-knowledge-check" class="quiz-list">
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The observer reconstructs states that
+are not directly measured." data-feedback-b="B is not correct.
+Saturation is a controller/actuator issue, not the main observer
+purpose." data-feedback-c="C is not correct. Reference steps are
+inputs, not unmeasured states." data-feedback-d="D is not correct.
+Transfer-function zeros are not state estimates."> <h4>Q1. Observer
+purpose</h4> <p class="quiz-prompt">An observer is used primarily
+to estimate:</p> <div class="quiz-options"> <label><input
+type="radio" name="observer-ch13-q1" value="A"><span class="quiz-option-text">A) Unmeasured
+states</span></label> <label><input type="radio"
+name="observer-ch13-q1" value="B"><span class="quiz-option-text">B) Actuator saturation</span></label>
+<label><input type="radio" name="observer-ch13-q1" value="C"><span class="quiz-option-text">C) Reference steps only</span></label> <label><input type="radio"
+name="observer-ch13-q1" value="D"><span class="quiz-option-text">D) Transfer-function zeros
+only</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The estimation error evolves according
+to A-LC." data-feedback-b="B is not correct. A+BK is not the observer
+error dynamics." data-feedback-c="C is not correct. B-LC does not have
+the right state-dynamics role." data-feedback-d="D is not correct.
+C-LA is not dimensionally the observer error matrix."> <h4>Q2. Error
+dynamics</h4> <p class="quiz-prompt">The observer error dynamics
+are governed by:</p> <div class="quiz-options"> <label><input
+type="radio" name="observer-ch13-q2" value="A"><span class="quiz-option-text">A) A -
+LC</span></label> <label><input type="radio" name="observer-ch13-q2"
+value="B"><span class="quiz-option-text">B) A + BK</span></label> <label><input type="radio"
+name="observer-ch13-q2" value="C"><span class="quiz-option-text">C) B - LC</span></label>
+<label><input type="radio" name="observer-ch13-q2" value="D"><span class="quiz-option-text">D) C - LA</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="2" data-tolerance="0.001">
+<h4>
+Q3. Observability rank
+</h4>
+<p class="quiz-prompt">
+A two-state SISO system is observable when its observability matrix has
+what rank?
+</p>
+
+<label>Rank:<input type="text" name="observer-ch13-q3"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 2. Full rank means the initial state can be
+reconstructed from the output history.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="-0.4" data-tolerance="0.001">
+<h4>
+Q4. One-step residual correction
+</h4>
+<p class="quiz-prompt">
+If y = 0.8 and Cxhat = 1.2, enter the measurement residual y - Cxhat.
+</p>
+
+<label>Residual:<input type="text" name="observer-ch13-q4"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> -0.4 because 0.8 - 1.2 = -0.4.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short"
+data-answers="separation principle\|controller and observer poles can be
+chosen separately\|separate pole placement">
+<h4>
+Q5. Separation principle
+</h4>
+<p class="quiz-prompt">
+What principle says controller poles and observer poles can be chosen
+separately?
+</p>
+
+<label>Answer:<input type="text" name="observer-ch13-q5"
+placeholder="short phrase"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> The separation principle.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. This is the controllability matrix
+for the related input vector, not the observability matrix."
+data-feedback-b="B is not correct. The second row should be CA = \[0,
+1\]." data-feedback-c="C is not correct. The second row does not
+include the A-matrix dynamics correctly." data-feedback-d="D is
+correct. C = \[1, 0\] and CA = \[0, 1\], so the observability matrix is
+the identity."> <h4>Q6. Observability matrix</h4> <p
+class="quiz-prompt">For A with rows (0, 1) and (-2, -3), and C = (1,
+0), which matrix is the observability matrix?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="observer-ch13-exam-q1" value="A"><span class="quiz-option-text">A) rows (0, 1) and (1,
+-3)</span></label> <label><input type="radio"
+name="observer-ch13-exam-q1" value="B"><span class="quiz-option-text">B) rows (1, 0) and (-2,
+-3)</span></label> <label><input type="radio"
+name="observer-ch13-exam-q1" value="C"><span class="quiz-option-text">C) rows (0, 1) and (-2,
+-3)</span></label> <label><input type="radio"
+name="observer-ch13-exam-q1" value="D"><span class="quiz-option-text">D) rows (1, 0) and (0,
+1)</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Observability does not mean every
+state is measured directly." data-feedback-b="B is correct.
+Observability means the state can be reconstructed from the input-output
+behavior of the model." data-feedback-c="C is not correct.
+Observability is separate from actuator saturation."
+data-feedback-d="D is not correct. Observability does not require zero
+output."> <h4>Q7. Meaning of observability</h4> <p
+class="quiz-prompt">What does full-rank observability mean for a
+linear model?</p> <div class="quiz-options"> <label><input
+type="radio" name="observer-ch13-exam-q2" value="A"><span class="quiz-option-text">A) Every
+state is directly measured by a separate sensor.</span></label>
+<label><input type="radio" name="observer-ch13-exam-q2"
+value="B"><span class="quiz-option-text">B) The state can be inferred from measured outputs and
+known inputs.</span></label> <label><input type="radio"
+name="observer-ch13-exam-q2" value="C"><span class="quiz-option-text">C) The actuator can always
+supply any input.</span></label> <label><input type="radio"
+name="observer-ch13-exam-q2" value="D"><span class="quiz-option-text">D) The output must be zero
+for all initial states.</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The observer gain L appears in the
+estimation-error dynamics as A - LC." data-feedback-b="B is not
+correct. A - BK is the state-feedback closed-loop matrix."
+data-feedback-c="C is not correct. The sign and matrix placement are
+wrong for the observer error equation." data-feedback-d="D is not
+correct. B and K do not define observer error correction."> <h4>Q8.
+Observer error matrix</h4> <p class="quiz-prompt">Which matrix
+determines the observer estimation-error dynamics?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="observer-ch13-exam-q3" value="A"><span class="quiz-option-text">A) A - LC</span></label>
+<label><input type="radio" name="observer-ch13-exam-q3"
+value="B"><span class="quiz-option-text">B) A - BK</span></label> <label><input type="radio"
+name="observer-ch13-exam-q3" value="C"><span class="quiz-option-text">C) A + CL</span></label>
+<label><input type="radio" name="observer-ch13-exam-q3"
+value="D"><span class="quiz-option-text">D) B - KC</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. Faster observer poles can increase
+sensitivity to measurement noise." data-feedback-b="B is not correct.
+Observer pole placement does not remove the need for measurements."
+data-feedback-c="C is correct. Very fast observer dynamics can amplify
+measurement noise or excite unmodeled dynamics." data-feedback-d="D is
+not correct. Fast observer poles do not automatically reduce actuator
+effort."> <h4>Q9. Fast observer pole tradeoff</h4> <p
+class="quiz-prompt">What is a practical downside of placing observer
+poles extremely far left?</p> <div class="quiz-options">
+<label><input type="radio" name="observer-ch13-exam-q4"
+value="A"><span class="quiz-option-text">A) The estimate becomes completely insensitive to
+measurement noise.</span></label> <label><input type="radio"
+name="observer-ch13-exam-q4" value="B"><span class="quiz-option-text">B) The measured output is
+no longer needed.</span></label> <label><input type="radio"
+name="observer-ch13-exam-q4" value="C"><span class="quiz-option-text">C) Measurement noise and
+unmodeled dynamics can be amplified.</span></label> <label><input
+type="radio" name="observer-ch13-exam-q4" value="D"><span class="quiz-option-text">D) Control
+effort is guaranteed to decrease.</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="13.9" id="notes-and-references-12" class="section-notes"><span class="header-section-number">13.9</span> Notes and References</h2>
+<p>The original source for Luenberger observers is in [21]. Observer
+design using pole placement is covered in most introductory textbooks on
+control, see for example [4, 22, 23], as well as introductions to state
+space design [5, 6]. The most common definition of observability is that
+a dynamic system is said to be <em>observable</em> if the initial state
+<span class="math inline">\(x_0\)</span> can be reconstructed by
+observing the output over any finite interval. Linear time-invariant
+systems are observable if and only if the observability matrix is full
+rank [5]. Observer theory and design is an interesting topic in its own
+right. The design of nonlinear observers is currently an active area of
+research. The most commonly used observer for nonlinear systems is the
+extended Kalman filter [24, 25].</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

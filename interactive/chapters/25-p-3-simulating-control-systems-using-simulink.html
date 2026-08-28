@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="P.3"
+id="simulating-control-systems-using-simulink"><span class="header-section-number">P.3</span> Simulating Control Systems Using
+Simulink</h1>
+<p><span id="chap:s_functions" label="chap:s_functions"></span></p>
+<p>In this appendix we will show how to simulate the feedback control of
+a dynamic system using Simulink. Consider the general feedback control
+system shown in
+Figure <a href="#fig:simulink_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:simulink_feedback_block_diagram">3.1</a>. The
+output of the physical system is <span
+class="math inline">\(y(t)\)</span>, the inputs to the physical system
+are <span class="math inline">\(u(t)\)</span> and an external
+disturbance signal <span class="math inline">\(d(t)\)</span>. The output
+of the system <span class="math inline">\(y(t)\)</span> is corrupted by
+zero-mean noise <span class="math inline">\(n(t)\)</span>. The input to
+the controller is the reference signal <span
+class="math inline">\(r(t)\)</span> as well as the output corrupted by
+noise.</p>
+<figure id="fig:simulink_feedback_block_diagram">
+<img src="app_simulink/figures/feedback_block_diagram.png"
+style="width:90.0%" alt="Block diagram of a general feedback system." />
+<figcaption aria-hidden="true">Block diagram of a general feedback
+system.</figcaption>
+</figure>
+<p>We will illustrate how to implement feedback control systems in
+<code>Simulink</code> by simulating the physical system described by the
+differential equation <span
+class="math display">\[\label{eq:simulink_system_dynamics}
+\ddot{y} + 2\dot{y} + 3 y = 4 u,\]</span> and using the PID controller
+<span class="math display">\[\label{eq:python_PID_control}
+u(t) = k_p (r(t)-y(t)) + k_i \int_{-\infty}^t (r(\tau)-y(\tau))d\tau -
+k_d \dot{y}.\]</span></p>
+<p>The Simulink diagram that corresponds to
+Figure <a href="#fig:simulink_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:simulink_feedback_block_diagram">3.1</a> is shown
+in
+Figure <a href="#fig:simulink_system_diagram" data-reference-type="ref"
+data-reference="fig:simulink_system_diagram">3.2</a>.</p>
+<figure id="fig:simulink_system_diagram">
+<img src="app_simulink/figures/system_diagram.png"
+style="width:90.0%"
+alt="Simulink diagram implementing the feedback control loop in Figure 27.1." />
+<figcaption aria-hidden="true">Simulink diagram implementing the
+feedback control loop in Figure <a
+href="#fig:simulink_feedback_block_diagram" data-reference-type="ref"
+data-reference="fig:simulink_feedback_block_diagram">3.1</a>.</figcaption>
+</figure>
+<p>The system dynamics are implemented in the <code>system</code> block,
+the controller is implemented in the <code>controller</code> block, and
+the animation is implemented in the <code>animation</code> block. The
+reference <span class="math inline">\(r(t)\)</span>, the disturbance
+<span class="math inline">\(d(t)\)</span>, and the noise <span
+class="math inline">\(n(t)\)</span> are all implemented using the
+Simulink built in <code>Signal Generator</code> block. The built in
+Simulink <code>Scope</code> blocks are used to display the output <span
+class="math inline">\(y\)</span> and the reference <span
+class="math inline">\(r\)</span>, as well as the input <span
+class="math inline">\(u\)</span>.</p>
+<p>System parameters can be loaded into Simulink at the beginning of a
+simulation by clicking on the <code>Model Properties</code> menu, as
+shown in
+Figure <a href="#fig:simulink_model_properties" data-reference-type="ref"
+data-reference="fig:simulink_model_properties">3.3</a>,</p>
+<figure id="fig:simulink_model_properties">
+<img src="app_simulink/figures/simulink_model_properties.png"
+style="width:90.0%" alt="Simulink Model Properties menu." />
+<figcaption aria-hidden="true">Simulink <code>Model Properties</code>
+menu.</figcaption>
+</figure>
+<p>and then selecting <code>Callbacks/InitFcn</code>, as shown in
+Figure <a href="#fig:simulink_initialization_script" data-reference-type="ref"
+data-reference="fig:simulink_initialization_script">3.4</a>.</p>
+<figure id="fig:simulink_initialization_script">
+<img
+src="app_simulink/figures/simulink_initialization_script.png"
+style="width:90.0%" alt="Simulink Callback/InitFcn script." />
+<figcaption aria-hidden="true">Simulink <code>Callback/InitFcn</code>
+script.</figcaption>
+</figure>
+<p>The commands listed under <code>Model initialization function:</code>
+are executed at the beginning of each Simulink simulation.</p>
+<h2 data-number="P.3.1" id="system-dynamics-2"><span class="header-section-number">P.3.1</span> System Dynamics</h2>
+<p>In this section we will describe how to implement the system
+dynamics. Double clicking on the <code>system</code> block shown in
+Figure <a href="#fig:simulink_system_diagram" data-reference-type="ref"
+data-reference="fig:simulink_system_diagram">3.2</a> results in the
+Simulink sub-diagram shown in
+Figure <a href="#fig:simulink_system_dynamics" data-reference-type="ref"
+data-reference="fig:simulink_system_dynamics">3.5</a>.</p>
+<figure id="fig:simulink_system_dynamics">
+<img src="app_simulink/figures/system_dynamics.png"
+style="width:90.0%" alt="Simulink system dynamics sub-diagram." />
+<figcaption aria-hidden="true">Simulink system dynamics
+sub-diagram.</figcaption>
+</figure>
+<p>Double clicking on the <code>System Dynamics</code> block results in
+Figure <a href="#fig:simulink_s_function" data-reference-type="ref"
+data-reference="fig:simulink_s_function">3.6</a>, which shows an
+<code>s-function</code> dialog block.</p>
+<figure id="fig:simulink_s_function">
+<img src="app_simulink/figures/s_function.png"
+style="width:90.0%" alt="Simulinks-function dialog." />
+<figcaption aria-hidden="true">Simulink<code>s-function</code>
+dialog.</figcaption>
+</figure>
+<p>In Simulink, system dynamics are implemented using
+<code>s-functions</code>. Simulink is essentially a sophisticated tool
+for solving interconnected hybrid ordinary differential and difference
+equations. Each block in Simulink is assumed to have the structure <span
+class="math display">\[\begin{aligned}
+\dot{x}_c &amp;= f(t, x_c, x_d, u); \qquad x_c(0) = x_{c0}
+\label{eq:simulink-xc} \\
+x_d[k+1] &amp;= g(t, x_c, x_d, u); \qquad x_d[0] = x_{d0}
+\label{eq:simulink-xd} \\
+y &amp;= h(t, x_c, x_d, u) \label{eq:simulink-y} ,
+\end{aligned}\]</span> where <span
+class="math inline">\(x_c\in{\mathbb{R}}^{n_c}\)</span> is a continuous
+state with initial condition <span
+class="math inline">\(x_{c0}\)</span>, <span
+class="math inline">\(x_d\in{\mathbb{R}}^{n_d}\)</span> is a discrete
+state with initial condition <span
+class="math inline">\(x_{d0}\)</span>, <span
+class="math inline">\(u\in{\mathbb{R}}^m\)</span> is the input to the
+block, <span class="math inline">\(y\in{\mathbb{R}}^p\)</span> is the
+output of the block, and <span class="math inline">\(t\)</span> is the
+elapsed simulation time. An s-function is a Simulink tool for explicitly
+defining the functions <span class="math inline">\(f\)</span>, <span
+class="math inline">\(g\)</span>, and <span
+class="math inline">\(h\)</span> and the initial conditions <span
+class="math inline">\(x_{c0}\)</span> and <span
+class="math inline">\(x_{d0}\)</span>. As explained in the
+Matlab/Simulink documentation, there are a number of methods for
+specifying an s-function<span id="idx-0269" class="book-index-anchor" aria-hidden="true"></span>. In this section, we
+will overview the method of using a level-1 m-file s-function.</p>
+<p>The system given in
+Equation <a href="#system-dynamics-2" data-reference-type="eqref"
+data-reference="eq:simulink_system_dynamics"><a href="#simulating-control-systems-using-simulink">P.3.1</a></a>
+is implemented using the s-function shown below.</p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> [<span class="va">sys</span><span class="op">,</span><span class="va">x0</span><span class="op">,</span><span class="va">str</span><span class="op">,</span><span class="va">ts</span><span class="op">,</span><span class="va">simStateCompliance</span>]<span class="op">...</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">=</span><span class="va">system_dynamics</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span><span class="op">,</span><span class="va">flag</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="kw">switch</span> <span class="va">flag</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="fl">0</span>  <span class="co">% Initialize block</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    [<span class="va">sys</span><span class="op">,</span><span class="va">x0</span><span class="op">,</span><span class="va">str</span><span class="op">,</span><span class="va">ts</span><span class="op">,</span><span class="va">simStateCompliance</span>]<span class="op">=</span><span class="va">mdlInitializeSizes</span><span class="op">;</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="fl">1</span>  <span class="co">% define xdot = f(t,x,u)</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">sys</span><span class="op">=</span><span class="va">mdlDerivatives</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="fl">3</span>  <span class="co">% define y = h(t,x,u)</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">sys</span><span class="op">=</span><span class="va">mdlOutputs</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)<span class="op">;</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">% GetTimeOfNextVarHit </span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">otherwise</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">DAStudio</span>.<span class="va">error</span>(<span class="op">...</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>        <span class="ss">&#39;Simulink:blocks:unhandledFlag&#39;</span><span class="op">,</span><span class="va">num2str</span>(<span class="va">flag</span>))<span class="op">;</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> [<span class="va">sys</span><span class="op">,</span><span class="va">x0</span><span class="op">,</span><span class="va">str</span><span class="op">,</span><span class="va">ts</span><span class="op">,</span><span class="va">simStateCompliance</span>]<span class="op">=</span><span class="va">mdlInitializeSizes</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span> <span class="op">=</span> <span class="va">simsizes</span><span class="op">;</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumContStates</span>  <span class="op">=</span> <span class="fl">2</span><span class="op">;</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumDiscStates</span>  <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumOutputs</span>     <span class="op">=</span> <span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">;</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumInputs</span>      <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">DirFeedthrough</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a><span class="va">sizes</span>.<span class="va">NumSampleTimes</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span>   </span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="va">sys</span> <span class="op">=</span> <span class="va">simsizes</span>(<span class="va">sizes</span>)<span class="op">;</span></span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a><span class="co">% define initial conditions</span></span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a><span class="va">y0</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span>  <span class="co">% initial condition for y</span></span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a><span class="va">ydot0</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span>  <span class="co">% initial condition for ydot</span></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a><span class="va">x0</span>  <span class="op">=</span> [<span class="va">y0</span><span class="op">;</span> <span class="va">ydot0</span>]<span class="op">;</span></span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="va">str</span> <span class="op">=</span> []<span class="op">;</span>  <span class="co">% str is always an empty matrix</span></span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a><span class="co">% initialize the array of sample times</span></span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a><span class="va">ts</span>  <span class="op">=</span> [<span class="fl">0</span> <span class="fl">0</span>]<span class="op">;</span></span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a><span class="va">simStateCompliance</span> <span class="op">=</span> <span class="ss">&#39;UnknownSimState&#39;</span><span class="op">;</span></span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">sys</span><span class="op">=</span><span class="va">mdlDerivatives</span>(<span class="va">t</span><span class="op">,</span><span class="va">x</span><span class="op">,</span><span class="va">u</span>)</span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">% Return xdot = f(x,u)</span></span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a>    <span class="va">y</span> <span class="op">=</span> <span class="va">x</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a>    <span class="va">ydot</span> <span class="op">=</span> <span class="va">x</span>(<span class="fl">2</span>)<span class="op">;</span></span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">% system parameters</span></span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">persistent</span> <span class="va">a0</span></span>
+<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">persistent</span> <span class="va">a1</span></span>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">persistent</span> <span class="va">b0</span></span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> <span class="va">t</span><span class="op">==</span><span class="fl">0</span></span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a>        <span class="va">a0</span> <span class="op">=</span> <span class="fl">3.0</span><span class="op">;</span></span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a>        <span class="va">a1</span> <span class="op">=</span> <span class="fl">2.0</span><span class="op">;</span></span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a>        <span class="va">b0</span> <span class="op">=</span> <span class="fl">4.0</span><span class="op">;</span></span>
+<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a>        <span class="co">% modify the system parameters by random value</span></span>
+<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a>        <span class="va">alpha</span> <span class="op">=</span> <span class="fl">0.2</span><span class="op">;</span>  <span class="co">% Uncertainty parameter</span></span>
+<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a>        <span class="va">a0</span> <span class="op">=</span> <span class="va">a0</span> <span class="op">*</span> (<span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">alpha</span><span class="op">*</span><span class="va">rand</span><span class="op">-</span><span class="va">alpha</span>)<span class="op">;</span>  </span>
+<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">a1</span> <span class="op">=</span> <span class="va">a1</span> <span class="op">*</span> (<span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">alpha</span><span class="op">*</span><span class="va">rand</span><span class="op">-</span><span class="va">alpha</span>)<span class="op">;</span>  </span>
+<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">b0</span> <span class="op">=</span> <span class="va">b0</span> <span class="op">*</span> (<span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">alpha</span><span class="op">*</span><span class="va">rand</span><span class="op">-</span><span class="va">alpha</span>)<span class="op">;</span> </span>
+<span id="cb35-54"><a href="#cb35-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb35-55"><a href="#cb35-55" aria-hidden="true" tabindex="-1"></a>    <span class="co">% The equations of motion.</span></span>
+<span id="cb35-56"><a href="#cb35-56" aria-hidden="true" tabindex="-1"></a>    <span class="va">yddot</span> <span class="op">=</span> <span class="op">-</span><span class="va">a1</span> <span class="op">*</span> <span class="va">ydot</span> <span class="op">-</span> <span class="va">a0</span> <span class="op">*</span> <span class="va">y</span> <span class="op">+</span> <span class="va">b0</span> <span class="op">*</span> <span class="va">u</span><span class="op">;</span></span>
+<span id="cb35-57"><a href="#cb35-57" aria-hidden="true" tabindex="-1"></a>    <span class="co">% build xdot and return</span></span>
+<span id="cb35-58"><a href="#cb35-58" aria-hidden="true" tabindex="-1"></a>    <span class="va">sys</span> <span class="op">=</span> [<span class="va">ydot</span><span class="op">;</span> <span class="va">yddot</span>]<span class="op">;</span></span>
+<span id="cb35-59"><a href="#cb35-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-60"><a href="#cb35-60" aria-hidden="true" tabindex="-1"></a><span class="co">%==============================================</span></span>
+<span id="cb35-61"><a href="#cb35-61" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">sys</span><span class="op">=</span><span class="va">mdlOutputs</span>(<span class="va">t</span><span class="op">,</span> <span class="va">x</span><span class="op">,</span> <span class="va">u</span>)</span>
+<span id="cb35-62"><a href="#cb35-62" aria-hidden="true" tabindex="-1"></a>    <span class="va">y</span> <span class="op">=</span> <span class="va">x</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb35-63"><a href="#cb35-63" aria-hidden="true" tabindex="-1"></a>    <span class="va">sys</span> <span class="op">=</span> [<span class="va">y</span><span class="op">;</span> <span class="va">x</span>]<span class="op">;</span>  <span class="co">% return output and state</span></span></code></pre></div>
+<p>Lines 1-2 define the main s-function file. The inputs to this
+function are always the elapsed time <span
+class="math inline">\(t\)</span>; the state <span
+class="math inline">\(x\)</span>, which is a concatenation of the
+continuous state and discrete state; the input <span
+class="math inline">\(u\)</span>; and a <code>flag</code>, followed by
+user defined input parameters, which are absent in this case. The
+Simulink engine calls the s-function and passes the parameters <span
+class="math inline">\(t\)</span>, <span
+class="math inline">\(x\)</span>, <span
+class="math inline">\(u\)</span>, and <code>flag</code>. When
+<code>flag==0</code>, the Simulink engine expects the s-function to
+return the structure <code>sys</code>, which defines the block; initial
+conditions <code>x0</code>; an empty string <code>str</code>; and an
+array <code>ts</code> that defines the sample times of the block. When
+<code>flag==1</code>, the Simulink engine expects the s-function to
+return the function <span class="math inline">\(f(t,x,u)\)</span>; and
+when <code>flag==3</code> the Simulink engine expects the s-function to
+return <span class="math inline">\(h(t,x,u)\)</span>. The switch
+statement that calls the proper functions based on the value of
+<code>flag</code> is shown in Lines 3–13. The block setup and the
+definition of the initial conditions are shown in Lines 16–33. The
+number of continuous states, discrete states, outputs, and inputs is
+defined on Lines 18-21, respectively. The direct feedthrough term on
+Line 22 is set to one if the output depends explicitly on the input
+<span class="math inline">\(u\)</span>. For example, if <span
+class="math inline">\(D\neq 0\)</span> in the linear state-space output
+equation <span class="math inline">\(y=Cx+Du\)</span>. The initial
+conditions are defined on Lines 26–29. The sample times are defined on
+Line 32. The format for this line is <code>ts = [period offset]</code>,
+where <code>period</code> defines the sample period and is <span
+class="math inline">\(0\)</span> for continuous time or <span
+class="math inline">\(-1\)</span> for inherited, and where
+<code>offset</code> is the sample time offset, which is typically <span
+class="math inline">\(0\)</span>. The function <span
+class="math inline">\(f(t,x,u)\)</span> is defined in Lines 36–58, and
+the output function <span class="math inline">\(h(t,x,u)\)</span> is
+defined in Lines 61–63.</p>
+<h2 data-number="P.3.2" id="controller-2"><span class="header-section-number">P.3.2</span> Controller</h2>
+<p>In this section we will describe how to implement the system
+dynamics. Double clicking on the <code>controller</code> block shown in
+Figure <a href="#fig:simulink_system_diagram" data-reference-type="ref"
+data-reference="fig:simulink_system_diagram">3.2</a> results in the
+Simulink sub-diagram shown in
+Figure <a href="#fig:simulink_control_block" data-reference-type="ref"
+data-reference="fig:simulink_control_block">3.7</a>, which also shows
+the pop-up window that results from clicking on the
+<code>Interpreted Matlab Function</code> block.</p>
+<figure id="fig:simulink_control_block">
+<img src="app_simulink/figures/control_block.png"
+style="width:90.0%"
+alt="Simulink controller sub-diagram, with pop-up window." />
+<figcaption aria-hidden="true">Simulink controller sub-diagram, with
+pop-up window.</figcaption>
+</figure>
+<p>This block calls the Matlab function <code>system_controller.m</code>
+with inputs <code>u</code>, coming into the Simulink block, and the
+parameter structure <code>P</code>, which must be defined in the Matlab
+workspace. The m-file that defines the controller is listed below.</p>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">u</span><span class="op">=</span><span class="va">system_controller</span>(<span class="va">in</span><span class="op">,</span> <span class="va">Ts</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">r</span>   <span class="op">=</span> <span class="va">in</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">y</span>   <span class="op">=</span> <span class="va">in</span>(<span class="fl">2</span>)<span class="op">;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">t</span>   <span class="op">=</span> <span class="va">in</span>(<span class="fl">3</span>)<span class="op">;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">% controller gains</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">kp</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">kd</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">ki</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">sigma</span> <span class="op">=</span> <span class="fl">2</span><span class="op">*</span><span class="va">Ts</span><span class="op">;</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">beta</span> <span class="op">=</span> (<span class="fl">2</span><span class="op">*</span><span class="va">sigma</span><span class="op">-</span><span class="va">Ts</span>)<span class="op">/</span>(<span class="fl">2</span><span class="op">*</span><span class="va">sigma</span><span class="op">+</span><span class="va">Ts</span>)<span class="op">;</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">limit</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">% define the error</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">error</span> <span class="op">=</span> <span class="va">r</span> <span class="op">-</span> <span class="va">y</span><span class="op">;</span>  </span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">% set persistent variables at start of simulation</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">persistent</span> <span class="va">integrator</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">persistent</span> <span class="va">ydot</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">persistent</span> <span class="va">error_d1</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">persistent</span> <span class="va">y_d1</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> <span class="va">t</span><span class="op">&lt;</span><span class="va">Ts</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">integrator</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">ydot</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">error_d1</span> <span class="op">=</span> <span class="va">error</span><span class="op">;</span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">y_d1</span> <span class="op">=</span> <span class="va">y</span><span class="op">;</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">% update the integrator</span></span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>    <span class="va">integrator</span> <span class="op">=</span> <span class="va">integrator</span> <span class="op">+</span> (<span class="va">Ts</span><span class="op">/</span><span class="fl">2</span>)<span class="op">*</span>(<span class="va">error</span><span class="op">+</span><span class="va">error_d1</span>)<span class="op">;</span></span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">% update the derivative of y</span></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>    <span class="va">ydot</span> <span class="op">=</span> <span class="va">beta</span><span class="op">*</span><span class="va">ydot</span> <span class="op">+</span> (<span class="fl">1</span><span class="op">-</span><span class="va">beta</span>)<span class="op">*</span>(<span class="va">y</span><span class="op">-</span><span class="va">y_d1</span>)<span class="op">/</span><span class="va">Ts</span><span class="op">;</span></span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">% form PID controller, saturate, and return</span></span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">u_unsat</span> <span class="op">=</span> <span class="va">kp</span><span class="op">*</span><span class="va">error</span> <span class="op">+</span> <span class="va">ki</span><span class="op">*</span><span class="va">integrator</span> <span class="op">-</span> <span class="va">kd</span><span class="op">*</span><span class="va">ydot</span><span class="op">;</span></span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>    <span class="va">u</span> <span class="op">=</span> <span class="va">saturate</span>(<span class="va">u_unsat</span><span class="op">,</span> <span class="va">limit</span>)<span class="op">;</span></span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">% update persistent delay variables</span></span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">error_d1</span> <span class="op">=</span> <span class="va">error</span><span class="op">;</span></span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">y_d1</span> <span class="op">=</span> <span class="va">y</span><span class="op">;</span></span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a><span class="co">%-----------------------------------------------------------------</span></span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a><span class="co">% saturation function</span></span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">out</span> <span class="op">=</span> <span class="va">sat</span>(<span class="va">in</span><span class="op">,</span><span class="va">limit</span>)</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span>     <span class="va">in</span> <span class="op">&gt;</span> <span class="va">limit</span><span class="op">,</span>      <span class="va">out</span> <span class="op">=</span> <span class="va">limit</span><span class="op">;</span></span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">elseif</span> <span class="va">in</span> <span class="op">&lt;</span> <span class="op">-</span><span class="va">limit</span><span class="op">,</span>     <span class="va">out</span> <span class="op">=</span> <span class="op">-</span><span class="va">limit</span><span class="op">;</span></span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span>                    <span class="va">out</span> <span class="op">=</span> <span class="va">in</span><span class="op">;</span></span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<p>The inputs to <code>system_controller.m</code> are <code>in</code>
+and the sample rate <code>Ts</code>. The input array is decomposed into
+the reference <span class="math inline">\(r\)</span>, the system output
+<span class="math inline">\(y\)</span>, and the time <span
+class="math inline">\(t\)</span> on lines 2–4. The controller gains are
+set on lines 5–11, and the error is calculated on line 14. The
+persistent variables that must persist between function calls, are
+defined and initialized on lines 16–26. The integrator is updated on
+line 29, the differentiator is updated on line 31, and the PID
+controller is specified on line  33-34. The delay variables are updated
+on lines 36–37.</p>
+<h2 data-number="P.3.3" id="animation-2"><span class="header-section-number">P.3.3</span> Animation</h2>
+<p>In this section we will show how to create an animation for the
+inverted pendulum case study in Simulink.</p>
+<p>When a graphics function like <code>plot</code> is called in Matlab,
+the function returns a <em>handle</em> to the plot. A graphics handle is
+similar to a pointer in C/C++ in the sense that all of the properties of
+the plot can be accessed through the handle. For example, the Matlab
+command</p>
+<pre><code>    &gt;&gt; plot_handle=plot(t,sin(t))</code></pre>
+<p>returns a pointer, or handle, to the plot of <code>sin(t)</code>.
+Properties of the plot can be changed by using the handle, rather than
+reissuing the <code>plot</code> command. For example, the Matlab
+command</p>
+<pre><code>    &gt;&gt; set(plot_handle, &#39;YData&#39;, cos(t))</code></pre>
+<p>changes the plot to <code>cos(t)</code> without redrawing the axes,
+title, label, or other objects that may be associated with the plot. If
+the plot contains drawings of several objects, a handle can be
+associated with each object. For example,</p>
+<pre><code>    &gt;&gt; plot_handle1 = plot(t,sin(t))
+    &gt;&gt; hold on
+    &gt;&gt; plot_handle2 = plot(t,cos(t))</code></pre>
+<p>draws both <code>sin(t)</code> and <code>cos(t)</code> on the same
+plot, with a handle associated with each object. The objects can be
+manipulated separately without redrawing the other object. For example,
+to change <code>cos(t)</code> to <code>cos(2t)</code>, issue the
+command</p>
+<pre><code>    &gt;&gt; set(plot_handle2, &#39;YData&#39;, cos(2*t))</code></pre>
+<p>We can exploit this property to animate simulations in Simulink by
+redrawing only the parts of the animation that change in time, and
+thereby significantly reducing the simulation time. To show how handle
+graphics can be used to produce animations in Simulink, we will show how
+to draw the inverted pendulum in a 2-D animation.</p>
+<p>Consider the image of the inverted pendulum shown in
+<strong>Fig.</strong> <a href="#fig:simulink-animation-pendulum" data-reference-type="ref"
+data-reference="fig:simulink-animation-pendulum">3.8</a>, where the
+configuration is completely specified by the position of the cart <span
+class="math inline">\(z\)</span>, and the angle of the rod from vertical
+<span class="math inline">\(\theta\)</span>. The physical parameters of
+the system are the rod length <span class="math inline">\(\ell\)</span>,
+the base width <span class="math inline">\(w\)</span>, the base height
+<span class="math inline">\(h\)</span>, and the gap between the base and
+the track <span class="math inline">\(g\)</span>.</p>
+<figure id="fig:simulink-animation-pendulum">
+<img src="app_simulink/figures/animation-pendulum.png"
+style="width:60.0%"
+alt="Drawing for inverted pendulum. The first step in developing an animation is to draw a figure of the object to be animated and identify all of the physical parameters." />
+<figcaption aria-hidden="true">Drawing for inverted pendulum. The first
+step in developing an animation is to draw a figure of the object to be
+animated and identify all of the physical parameters.</figcaption>
+</figure>
+<p>The first step in developing the animation is to determine the
+position of points that define the animation. For example, for the
+inverted pendulum in
+<strong>Fig.</strong> <a href="#fig:simulink-animation-pendulum" data-reference-type="ref"
+data-reference="fig:simulink-animation-pendulum">3.8</a>, the four
+corners of the base are <span class="math display">\[(z+w/2, g), (z+w/2,
+g+h), (z-w/2, g+h), \text{ and } (z-w/2, g),\]</span> and the two ends
+of the rod are given by <span class="math display">\[(z, g+h) \text{ and
+} (z+L\sin\theta, g+h+L\cos\theta).\]</span></p>
+<p>Since the base and the rod can move independently, each will need its
+own figure handle. The <code>drawBase</code> command can be implemented
+with the following Matlab code:</p>
+<pre><code>function handle...
+         = drawBase(z, width, height, gap, handle)
+  X = [z-width/2,z+width/2,z+width/2,z-width/2];
+  Y = [gap, gap, gap+height, gap+height];
+  if isempty(handle),
+    handle = fill(X,Y,&#39;m&#39;);
+  else
+    set(handle,&#39;XData&#39;,X,&#39;YData&#39;,Y);
+  end</code></pre>
+<p>Lines 2 and 3 define the X and Y locations of the corners of the
+base. Note that in Line 1, <code>handle</code> is both an input and an
+output. If an empty array is passed into the function, then the
+<code>fill</code> command is used to plot the base in Line 5. On the
+other hand, if a valid handle is passed into the function, then the base
+is redrawn using the <code>set</code> command in Line 7.</p>
+<p>The Matlab code for drawing the rod is similar and is listed
+below.</p>
+<pre><code>function handle...
+         = drawRod(z,theta,L,gap,height,handle)
+  X = [z, z+L*sin(theta)];
+  Y = [gap+height, gap + height + L*cos(theta)];
+  if isempty(handle),
+    handle = plot(X, Y, &#39;g&#39;);
+  else
+    set(handle,&#39;XData&#39;,X,&#39;YData&#39;,Y);
+  end</code></pre>
+<p>The main routine for the pendulum animation is listed below.</p>
+<pre><code>function drawPendulum(u)
+  %
+  z        = u(1);
+  theta    = u(2);
+  t        = u(3);
+
+  %
+  L = 1;
+  gap = 0.01;
+  width = 1.0;
+  height = 0.1;
+
+  %
+  persistent base_handle
+  persistent rod_handle
+
+  %
+  %
+  if t==0,
+    figure(1), clf
+    track_width=3;
+    %
+    plot([-track_width,track_width],[0,0],&#39;k&#39;); 
+    hold on
+    base_handle...
+       =drawBase(z, width, height, gap, []);
+    rod_handle...
+       =drawRod(z, theta, L, gap, height, []);
+    axis([-track_width,track_width,...
+          -L,2*track_width-L]);
+  %
+  else
+    drawBase(z, width, height, gap, base_handle);
+    drawRod(z, theta, L, gap, height, rod_handle);
+  end</code></pre>
+<p>The routine <code>drawPendulum</code> is called from the Simulink
+file shown above, where there are three inputs: the position <span
+class="math inline">\(z\)</span>, the angle <span
+class="math inline">\(\theta\)</span>, and the time <span
+class="math inline">\(t\)</span>. Lines 3-5 rename the inputs to <span
+class="math inline">\(z\)</span>, <span
+class="math inline">\(\theta\)</span>, and <span
+class="math inline">\(t\)</span>. Lines 8-11 define the drawing
+parameters. We require that the handle graphics persist between function
+calls to <code>drawPendulum</code>. Since a handle is needed for both
+the base and the rod, we define two persistent variables in Lines 14
+and 15. The <code>if</code> statement in Lines 19-32 is used to produce
+the animation. Lines 20–27 are called once at the beginning of the
+simulation, and draw the initial animation. Line 20 brings the figure 1
+window to the front and clears it. Lines 21 and 23 draw the ground along
+which the pendulum will move. Line 25 calls the <code>drawBase</code>
+routine with an empty handle as input, and returns the handle
+<code>base_handle</code> to the base. Line 26 calls the
+<code>drawRod</code> routine, and Line 25 sets the axes of the figure.
+After the initial time step, all that needs to be changed are the
+locations of the base and rod. Therefore, in Lines 30 and 31, the
+<code>drawBase</code> and <code>drawRod</code> routines are called with
+the figure handles as inputs.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

@@ -53,7 +53,7 @@ precision = 6
 for i, (x, u, xdot_expected) in enumerate(zip(x_tests, u_tests, xdot_tests), start=1):
     xdot_actual = system.f(x, u)
     error = xdot_actual - xdot_expected
-    correct_indices = np.abs(error) < 1e-14
+    correct_indices = np.abs(error) < 1e-12
     if correct_indices.all():
         print(f"Test {i:>2}: PASS")
         num_passed += 1

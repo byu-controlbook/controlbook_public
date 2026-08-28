@@ -1,63 +1,75 @@
-# MATLAB files & directories
+# MATLAB files and directories
 *.asv
 *.autosave
 *.mex*
 *.slxc
+*.slx.r2*
 slprj/
 sccprj/
-*.slx.r2*
-
-
 
 # LabVIEW files
 *.lvlps
 
-# LaTeX files
-*.toc
-*.log
+# LaTeX build products
 *.aux
 *.bbl
 *.blg
+*.fdb_latexmk
+*.fls
 *.idx
 *.ilg
 *.ind
+*.log
 *.out
-*.fls
+*.synctex*
+*.toc
 .texpadtmp/
-*.synctex.gz
 
-# latexmk files
-*.fdb_latexmk
-
-# macos files & directories
+# macOS files and directories
 .DS_Store
+._*
 __MACOSX/
 
-# Microsoft Office
+# Microsoft Office temporary files
 ~$*
 
 # Dropbox files
 .dropbox
 
-# Generic files (swap, etc.)
+# Generic local files
 *~
 .#*
-*.zip
+*.swp
+*.swo
+*.tmp
+*.bak
 
-# Python files & directories
-*.pyc
+# Python files and directories
+__pycache__/
+*.py[cod]
 *.ipynb_checkpoints/
 *.pkl
-__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
-# compiled and helper directories
+# Virtual environments
+.venv/
+venv/
+venv2/
+venv*_legacy*/
+env/
+ENV/
+
+# Local build/helper directories
 build/
 devel/
+cmake-build-*/
 
-# subversion directories
+# Subversion directories
 .svn/
 
-# LaTeX generated, production files
+# Generated production PDFs from LaTeX builds
 controlbook.pdf
 controlbook-Amazon-July-2019.pdf
 whirlybird_manual.pdf
@@ -65,20 +77,15 @@ whirlybird_manual_keep.pdf
 whirlybird_manual_orig.pdf
 solution_manual.pdf
 
-# old stuff
+# Old local folders
 matlab_old/
 python_old/
 python_qt/
 simulink_old/
 
-
-
-# =====================================
-
-# for any JetBrains IDE:
+# IDE metadata
 .idea/
-.venv/
+.vscode/
 
-# CMake
-cmake-build-*/
+# Local numeric output
 io_data.npy

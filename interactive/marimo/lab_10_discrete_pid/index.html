@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-CZceb_kH.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-Bam3NpBI.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-C_DwAp7Z.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-CEsLFVD9.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-D5MAsWEG.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-C6PDArdf.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>lab 10 discrete pid</title>
+    <script type="module" crossorigin src="./assets/index-CA2sQKnW.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-DdZsAcJe.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-Bj1aDYRI.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-B3qBwwSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-BqBOg78p.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-DvoEXWke.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-DPBdGRrH.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-NX56vp6K.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-Lfi0pexn.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-xq8miGHn.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-DQRuLEof.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-Dz_KRrWq.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-DCUzRj2J.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-DOX1Xxa9.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-BbCh-29a.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-CSu739Rf.js">
+    <link rel="modulepreload" crossorigin href="./assets/fullscreen-eipL3i3Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-DcP01QzW.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BdyjRhEt.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-D5guW7EU.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-BH35Ndha.js">
+    <link rel="modulepreload" crossorigin href="./assets/x-C-6liIBr.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-DZcFyKFQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-DTV9tlSr.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-ERM44-k9.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-D91BmmQi.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-BUdrueMv.js">
+    <link rel="modulepreload" crossorigin href="./assets/isObject-DvLSfCY5.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFor-DKD1r8uL.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-_9WLTEyt.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-H_cgTO0M.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-Wvjk_Y4h.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-DWBqOhWa.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-D_zLHhNi.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-CzVJLtsG.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-DMpttj8Q.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-DGdfs0bJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-C2lTvbuU.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-DIwGYs0l.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-DieWOfXE.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-DfoVjkkH.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-Kwyx4PvL.js">
+    <link rel="modulepreload" crossorigin href="./assets/arrays-DYDL-3-i.js">
+    <link rel="modulepreload" crossorigin href="./assets/strings-wdPMRf6Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-DRroIaBz.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-A_KhFcGV.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-CI9qeK_X.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-SFhaqGlE.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BrR4M-k3.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-HlsDto3K.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CHcznzB-.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BU26XwgJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-COs9gIu5.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BZr6MMV-.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DCqxOggh.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DkA__6UI.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-C9ZB41s2.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-lcoTi-7o.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-B5A0DFEz.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-DvRMX74T.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-BRGiG41H.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BT6B8Bon.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-CsYTPAhW.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-DhnxH9Rh.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-kIkTfzTX.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-B0OX4z33.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-Dnu4nDoy.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-DyYDV0HI.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-BJB2rf7K.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-hKfTes-m.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-BqFLkbUc.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-DqOQT_n4.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-_BZcy6gx.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-mY4EY0yG.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-BIDQNg9Q.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-C1Tm_47t.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-CW4V-fpE.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-jH2RfcUG.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-CVE-gIjt.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-DEC1mXgV.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-PQYiMZw1.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-CUuNtzHt.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-DrHguQlr.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-CG5QYXYk.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-CR7cnzLX.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-B8WzCnbo.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-C0BPo9m1.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-Ch48HVPK.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-BwrPA9zQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-BdZPgXgo.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-B5r25cP5.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-I-LOgxeP.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-D9EoHCkz.js">
+    <link rel="modulepreload" crossorigin href="./assets/package-B8oXOUM-.js">
+    <link rel="modulepreload" crossorigin href="./assets/sparkles-CC9Bko6a.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-XWqnhvJ6.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-UuZAUjoP.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-D6SgvARi.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-BaOnnMs-.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-C5i0IRVM.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-GdhQ07zA.js">
+    <link rel="modulepreload" crossorigin href="./assets/micromark-factory-space-BUQpMdx2.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-BSzccEgu.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-BQ-BQLiJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-2NPJCYDa.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-DNlzfMKW.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-Bz_0Vkyf.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-iwK4b4VF.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-B1QFVDP-.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-DQE9hQzM.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-DPVTppnD.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-CLO6LFll.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-BRq458WH.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-C7vnqfgk.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-DdlR4-BY.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-DI1TvEEK.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-n3GaPJwv.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-Dqvpuc10.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-Dangy3Bv.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-d3yglQmW.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-icons.esm--O4lBTlZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/RSPContexts-Bk1r00gJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-6NxtGaCm.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-KAhMaCIV.js">
+    <link rel="modulepreload" crossorigin href="./assets/external-link-BTNxSavU.js">
+    <link rel="modulepreload" crossorigin href="./assets/message-circle-1YLdnr8A.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-BJLYnZpG.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-Ce2ksurd.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-05-R3eil.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-nqk474t8.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-blYaQso8.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-D1ptWKg6.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-vertical-CkwWkOQL.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-a_9k9BK7.js">
+    <link rel="modulepreload" crossorigin href="./assets/tree-actions-DY8FUp3V.js">
+    <link rel="modulepreload" crossorigin href="./assets/components-zB5yT_R8.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-BLIWbdOX.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-8tfAri2V.js">
+    <link rel="modulepreload" crossorigin href="./assets/radio-group-rsi1ibXY.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-DbOtUfo-.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-DoKw85w0.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-Cb2bnV6o.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-BT-KOYV5.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-CxkHs8QM.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-BKYj8PNf.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-headphone-B3fuktN0.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-HTLbeC2b.js">
+    <link rel="modulepreload" crossorigin href="./assets/image-BIibSXT6.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-icons-B6DaZdP0.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-BtkQp293.js">
+    <link rel="modulepreload" crossorigin href="./assets/events-CBm-hwqS.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-CpVAcN9Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-oorMPghT.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-3_FN0u9S.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-Tp7rARFe.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-C-qh_et5.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-CxV9N1bc.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-BXNNuw9g.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-xHqFtfdz.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-BBTcSr-i.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-DLc784Sj.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-BjUJP6PJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-DK-VjfaX.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-B8LMGUHl.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-CWcgQCbT.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-BYwxXaSY.js">
+    <link rel="modulepreload" crossorigin href="./assets/semaphore-X3ApuO41.js">
+    <link rel="modulepreload" crossorigin href="./assets/fileToBase64-BeYUTUzO.js">
+    <link rel="modulepreload" crossorigin href="./assets/pathUtils-vgBYIo5B.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-DVDiRdwc.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-au8YY-8E.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-DiS_ryrS.js">
+    <link rel="modulepreload" crossorigin href="./assets/flatten-Dl4V1ub3.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-DqWUNly1.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-CZN6vNxu.js">
+    <link rel="modulepreload" crossorigin href="./assets/house-D2ldnAB9.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-rACnnz-q.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-CJ0ZIqcz.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-BXIlAZ6T.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DH00kbhV.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    
+<script data-marimo="true">
+    Object.defineProperty(window, "__MARIMO_EXPORT_CONTEXT__", {
+        value: Object.freeze({
+            trusted: true,
+            notebookCode: "import marimo\n\n__generated_with = \"0.23.8\"\napp = marimo.App(width=\"medium\")\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import numpy as np\n    import matplotlib.pyplot as plt\n\n    return mo, np, plt\n\n\n@app.cell\ndef _(mo):\n    mo.md(\"\"\"\n    # Chapter 10 Coding Lab: Discrete PID Implementation\n\n    Complete `PIDController.update(r, y, Ts)` using the implementation details\n    from Chapter 10. The checks exercise proportional action, trapezoidal\n    integration, derivative-on-measurement, saturation, and anti-windup.\n    \"\"\")\n    return\n\n\n@app.cell\ndef _():\n    starter = \"\\n\".join(\n        [\n            \"class PIDController:\",\n            \"    def __init__(self, kp=3.0, ki=1.2, kd=0.45, limit=4.0, sigma=0.05):\",\n            \"        self.kp = kp\",\n            \"        self.ki = ki\",\n            \"        self.kd = kd\",\n            \"        self.limit = limit\",\n            \"        self.sigma = sigma\",\n            \"        self.integrator = 0.0\",\n            \"        self.error_delay_1 = 0.0\",\n            \"        self.y_delay_1 = 0.0\",\n            \"        self.differentiator = 0.0\",\n            \"\",\n            \"    def update(self, r, y, Ts):\",\n            \"        # TODO: compute current error\",\n            \"        error = 0.0\",\n            \"\",\n            \"        # TODO: trapezoidal integrator update\",\n            \"        # self.integrator += ...\",\n            \"\",\n            \"        # TODO: dirty derivative of the measured output y\",\n            \"        # beta = ...\",\n            \"        # self.differentiator = ...\",\n            \"\",\n            \"        # TODO: unsaturated PID using derivative-on-output\",\n            \"        u_unsat = 0.0\",\n            \"\",\n            \"        # TODO: saturate to +/- self.limit\",\n            \"        u = u_unsat\",\n            \"\",\n            \"        # TODO: simple anti-windup back-calculation\",\n            \"        # if self.ki != 0:\",\n            \"        #     self.integrator += ...\",\n            \"\",\n            \"        self.error_delay_1 = error\",\n            \"        self.y_delay_1 = y\",\n            \"        return u\",\n        ]\n    )\n    return (starter,)\n\n\n@app.cell\ndef _(mo, starter):\n    code_editor = mo.ui.code_editor(\n        value=starter,\n        language=\"python\",\n        label=\"Student task: implement PIDController.update()\",\n        min_height=360,\n    )\n    code_editor\n    return (code_editor,)\n\n\n@app.cell\ndef _(code_editor):\n    namespace = {}\n    compile_error = None\n    controller_class = None\n    try:\n        exec(code_editor.value, namespace)\n        controller_class = namespace.get(\"PIDController\")\n        if controller_class is None:\n            compile_error = \"`PIDController` class is missing.\"\n    except Exception as exc:\n        compile_error = f\"Code error: {exc}\"\n    return compile_error, controller_class\n\n\n@app.cell\ndef _(np):\n    def simulate(controller, Ts=0.01, t_end=8.0):\n        t = np.arange(0.0, t_end + Ts, Ts)\n        y = np.zeros_like(t)\n        u = np.zeros_like(t)\n        r = np.ones_like(t)\n        for k in range(len(t) - 1):\n            uk = float(controller.update(float(r[k]), float(y[k]), Ts))\n            u[k] = uk\n            # Stable first-order plant ydot = -y + u.\n            y[k + 1] = y[k] + Ts * (-y[k] + uk)\n        u[-1] = u[-2]\n        return t, r, y, u\n\n    def metrics(t, r, y, u):\n        return {\n            \"final_error\": float(abs(r[-1] - y[-1])),\n            \"max_u\": float(np.max(np.abs(u))),\n            \"rise_time\": next((float(ti) for ti, yi in zip(t, y) if yi \u003E= 0.9), None),\n            \"overshoot\": float(max(0.0, np.max(y) - 1.0)),\n        }\n\n    return metrics, simulate\n\n\n@app.cell\ndef _(compile_error, controller_class, metrics, plt, simulate):\n    feedback = \"\"\n    plot_obj = None\n    if compile_error is not None:\n        feedback = f\"**Fix code first:** {compile_error}\"\n    else:\n        try:\n            controller = controller_class()\n            t, r, y, u = simulate(controller)\n            m = metrics(t, r, y, u)\n            limit_ok = m[\"max_u\"] \u003C= controller.limit + 1e-9\n            tracking_ok = m[\"final_error\"] \u003C= 0.12\n            response_ok = m[\"rise_time\"] is not None and m[\"rise_time\"] \u003C= 4.0\n            state_ok = abs(getattr(controller, \"integrator\", 0.0)) \u003E 0.02\n            derivative_ok = abs(getattr(controller, \"differentiator\", 0.0)) \u003E 1e-4\n            passed = limit_ok and tracking_ok and response_ok and state_ok and derivative_ok\n            feedback = (\n                f\"\u003Cdiv\u003E\u003Cstrong\u003Emetric_check(): {'PASS' if passed else 'FAIL'}\u003C/strong\u003E\u003C/div\u003E\"\n                f\"\u003Cdiv\u003Efinal error = {m['final_error']:.3f}; \"\n                f\"rise time to 90 percent = {m['rise_time'] if m['rise_time'] is not None else 'n/a'} s; \"\n                f\"max |u| = {m['max_u']:.3f}\u003C/div\u003E\"\n                \"\u003Cul\u003E\"\n                f\"\u003Cli\u003Esaturation respected: {'PASS' if limit_ok else 'FAIL'}\u003C/li\u003E\"\n                f\"\u003Cli\u003Esteady-state tracking: {'PASS' if tracking_ok else 'FAIL'}\u003C/li\u003E\"\n                f\"\u003Cli\u003Eresponse speed: {'PASS' if response_ok else 'FAIL'}\u003C/li\u003E\"\n                f\"\u003Cli\u003Eintegrator state updated: {'PASS' if state_ok else 'FAIL'}\u003C/li\u003E\"\n                f\"\u003Cli\u003Ederivative state updated: {'PASS' if derivative_ok else 'FAIL'}\u003C/li\u003E\"\n                \"\u003C/ul\u003E\"\n            )\n            fig, ax = plt.subplots(2, 1, figsize=(8.5, 5.8), sharex=True)\n            ax[0].plot(t, r, \"--\", label=\"r(t)\")\n            ax[0].plot(t, y, label=\"y(t)\", linewidth=2)\n            ax[0].set_ylabel(\"Output\")\n            ax[0].grid(True, alpha=0.3)\n            ax[0].legend()\n            ax[1].plot(t, u, color=\"#0b7285\", linewidth=1.8)\n            ax[1].axhline(controller.limit, color=\"#b23a48\", linestyle=\"--\")\n            ax[1].axhline(-controller.limit, color=\"#b23a48\", linestyle=\"--\")\n            ax[1].set_ylabel(\"Control u\")\n            ax[1].set_xlabel(\"Time (s)\")\n            ax[1].grid(True, alpha=0.3)\n            fig.tight_layout()\n            plot_obj = fig\n        except Exception as exc:\n            feedback = f\"**Runtime error:** {exc}\"\n    return feedback, plot_obj\n\n\n@app.cell\ndef _(feedback, mo, plot_obj):\n    mo.vstack([\n        mo.md(feedback),\n        plot_obj if plot_obj is not None else mo.md(\"_No plot available._\"),\n    ])\n    return\n\n\nif __name__ == \"__main__\":\n    app.run()\n",
+        }),
+        writable: false,
+        configurable: false,
+    });
+</script>
+<marimo-code hidden="">import%20marimo%0A%0A__generated_with%20%3D%20%220.23.8%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20matplotlib.pyplot%20as%20plt%0A%0A%20%20%20%20return%20mo%2C%20np%2C%20plt%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(%22%22%22%0A%20%20%20%20%23%20Chapter%2010%20Coding%20Lab%3A%20Discrete%20PID%20Implementation%0A%0A%20%20%20%20Complete%20%60PIDController.update(r%2C%20y%2C%20Ts)%60%20using%20the%20implementation%20details%0A%20%20%20%20from%20Chapter%2010.%20The%20checks%20exercise%20proportional%20action%2C%20trapezoidal%0A%20%20%20%20integration%2C%20derivative-on-measurement%2C%20saturation%2C%20and%20anti-windup.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20starter%20%3D%20%22%5Cn%22.join(%0A%20%20%20%20%20%20%20%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22class%20PIDController%3A%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20def%20__init__(self%2C%20kp%3D3.0%2C%20ki%3D1.2%2C%20kd%3D0.45%2C%20limit%3D4.0%2C%20sigma%3D0.05)%3A%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.kp%20%3D%20kp%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.ki%20%3D%20ki%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.kd%20%3D%20kd%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.limit%20%3D%20limit%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.sigma%20%3D%20sigma%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.integrator%20%3D%200.0%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.error_delay_1%20%3D%200.0%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.y_delay_1%20%3D%200.0%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.differentiator%20%3D%200.0%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20def%20update(self%2C%20r%2C%20y%2C%20Ts)%3A%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20TODO%3A%20compute%20current%20error%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20error%20%3D%200.0%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20TODO%3A%20trapezoidal%20integrator%20update%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20self.integrator%20%2B%3D%20...%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20TODO%3A%20dirty%20derivative%20of%20the%20measured%20output%20y%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20beta%20%3D%20...%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20self.differentiator%20%3D%20...%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20TODO%3A%20unsaturated%20PID%20using%20derivative-on-output%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20u_unsat%20%3D%200.0%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20TODO%3A%20saturate%20to%20%2B%2F-%20self.limit%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20u%20%3D%20u_unsat%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20TODO%3A%20simple%20anti-windup%20back-calculation%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20if%20self.ki%20!%3D%200%3A%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20%23%20%20%20%20%20self.integrator%20%2B%3D%20...%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.error_delay_1%20%3D%20error%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20self.y_delay_1%20%3D%20y%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%20%20%20%20%20%20%20%20return%20u%22%2C%0A%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20)%0A%20%20%20%20return%20(starter%2C)%0A%0A%0A%40app.cell%0Adef%20_(mo%2C%20starter)%3A%0A%20%20%20%20code_editor%20%3D%20mo.ui.code_editor(%0A%20%20%20%20%20%20%20%20value%3Dstarter%2C%0A%20%20%20%20%20%20%20%20language%3D%22python%22%2C%0A%20%20%20%20%20%20%20%20label%3D%22Student%20task%3A%20implement%20PIDController.update()%22%2C%0A%20%20%20%20%20%20%20%20min_height%3D360%2C%0A%20%20%20%20)%0A%20%20%20%20code_editor%0A%20%20%20%20return%20(code_editor%2C)%0A%0A%0A%40app.cell%0Adef%20_(code_editor)%3A%0A%20%20%20%20namespace%20%3D%20%7B%7D%0A%20%20%20%20compile_error%20%3D%20None%0A%20%20%20%20controller_class%20%3D%20None%0A%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20exec(code_editor.value%2C%20namespace)%0A%20%20%20%20%20%20%20%20controller_class%20%3D%20namespace.get(%22PIDController%22)%0A%20%20%20%20%20%20%20%20if%20controller_class%20is%20None%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20compile_error%20%3D%20%22%60PIDController%60%20class%20is%20missing.%22%0A%20%20%20%20except%20Exception%20as%20exc%3A%0A%20%20%20%20%20%20%20%20compile_error%20%3D%20f%22Code%20error%3A%20%7Bexc%7D%22%0A%20%20%20%20return%20compile_error%2C%20controller_class%0A%0A%0A%40app.cell%0Adef%20_(np)%3A%0A%20%20%20%20def%20simulate(controller%2C%20Ts%3D0.01%2C%20t_end%3D8.0)%3A%0A%20%20%20%20%20%20%20%20t%20%3D%20np.arange(0.0%2C%20t_end%20%2B%20Ts%2C%20Ts)%0A%20%20%20%20%20%20%20%20y%20%3D%20np.zeros_like(t)%0A%20%20%20%20%20%20%20%20u%20%3D%20np.zeros_like(t)%0A%20%20%20%20%20%20%20%20r%20%3D%20np.ones_like(t)%0A%20%20%20%20%20%20%20%20for%20k%20in%20range(len(t)%20-%201)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20uk%20%3D%20float(controller.update(float(r%5Bk%5D)%2C%20float(y%5Bk%5D)%2C%20Ts))%0A%20%20%20%20%20%20%20%20%20%20%20%20u%5Bk%5D%20%3D%20uk%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20Stable%20first-order%20plant%20ydot%20%3D%20-y%20%2B%20u.%0A%20%20%20%20%20%20%20%20%20%20%20%20y%5Bk%20%2B%201%5D%20%3D%20y%5Bk%5D%20%2B%20Ts%20*%20(-y%5Bk%5D%20%2B%20uk)%0A%20%20%20%20%20%20%20%20u%5B-1%5D%20%3D%20u%5B-2%5D%0A%20%20%20%20%20%20%20%20return%20t%2C%20r%2C%20y%2C%20u%0A%0A%20%20%20%20def%20metrics(t%2C%20r%2C%20y%2C%20u)%3A%0A%20%20%20%20%20%20%20%20return%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22final_error%22%3A%20float(abs(r%5B-1%5D%20-%20y%5B-1%5D))%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22max_u%22%3A%20float(np.max(np.abs(u)))%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22rise_time%22%3A%20next((float(ti)%20for%20ti%2C%20yi%20in%20zip(t%2C%20y)%20if%20yi%20%3E%3D%200.9)%2C%20None)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22overshoot%22%3A%20float(max(0.0%2C%20np.max(y)%20-%201.0))%2C%0A%20%20%20%20%20%20%20%20%7D%0A%0A%20%20%20%20return%20metrics%2C%20simulate%0A%0A%0A%40app.cell%0Adef%20_(compile_error%2C%20controller_class%2C%20metrics%2C%20plt%2C%20simulate)%3A%0A%20%20%20%20feedback%20%3D%20%22%22%0A%20%20%20%20plot_obj%20%3D%20None%0A%20%20%20%20if%20compile_error%20is%20not%20None%3A%0A%20%20%20%20%20%20%20%20feedback%20%3D%20f%22**Fix%20code%20first%3A**%20%7Bcompile_error%7D%22%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20controller%20%3D%20controller_class()%0A%20%20%20%20%20%20%20%20%20%20%20%20t%2C%20r%2C%20y%2C%20u%20%3D%20simulate(controller)%0A%20%20%20%20%20%20%20%20%20%20%20%20m%20%3D%20metrics(t%2C%20r%2C%20y%2C%20u)%0A%20%20%20%20%20%20%20%20%20%20%20%20limit_ok%20%3D%20m%5B%22max_u%22%5D%20%3C%3D%20controller.limit%20%2B%201e-9%0A%20%20%20%20%20%20%20%20%20%20%20%20tracking_ok%20%3D%20m%5B%22final_error%22%5D%20%3C%3D%200.12%0A%20%20%20%20%20%20%20%20%20%20%20%20response_ok%20%3D%20m%5B%22rise_time%22%5D%20is%20not%20None%20and%20m%5B%22rise_time%22%5D%20%3C%3D%204.0%0A%20%20%20%20%20%20%20%20%20%20%20%20state_ok%20%3D%20abs(getattr(controller%2C%20%22integrator%22%2C%200.0))%20%3E%200.02%0A%20%20%20%20%20%20%20%20%20%20%20%20derivative_ok%20%3D%20abs(getattr(controller%2C%20%22differentiator%22%2C%200.0))%20%3E%201e-4%0A%20%20%20%20%20%20%20%20%20%20%20%20passed%20%3D%20limit_ok%20and%20tracking_ok%20and%20response_ok%20and%20state_ok%20and%20derivative_ok%0A%20%20%20%20%20%20%20%20%20%20%20%20feedback%20%3D%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cdiv%3E%3Cstrong%3Emetric_check()%3A%20%7B'PASS'%20if%20passed%20else%20'FAIL'%7D%3C%2Fstrong%3E%3C%2Fdiv%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cdiv%3Efinal%20error%20%3D%20%7Bm%5B'final_error'%5D%3A.3f%7D%3B%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22rise%20time%20to%2090%20percent%20%3D%20%7Bm%5B'rise_time'%5D%20if%20m%5B'rise_time'%5D%20is%20not%20None%20else%20'n%2Fa'%7D%20s%3B%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22max%20%7Cu%7C%20%3D%20%7Bm%5B'max_u'%5D%3A.3f%7D%3C%2Fdiv%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22%3Cul%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cli%3Esaturation%20respected%3A%20%7B'PASS'%20if%20limit_ok%20else%20'FAIL'%7D%3C%2Fli%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cli%3Esteady-state%20tracking%3A%20%7B'PASS'%20if%20tracking_ok%20else%20'FAIL'%7D%3C%2Fli%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cli%3Eresponse%20speed%3A%20%7B'PASS'%20if%20response_ok%20else%20'FAIL'%7D%3C%2Fli%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cli%3Eintegrator%20state%20updated%3A%20%7B'PASS'%20if%20state_ok%20else%20'FAIL'%7D%3C%2Fli%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%3Cli%3Ederivative%20state%20updated%3A%20%7B'PASS'%20if%20derivative_ok%20else%20'FAIL'%7D%3C%2Fli%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22%3C%2Ful%3E%22%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20%20%20%20%20fig%2C%20ax%20%3D%20plt.subplots(2%2C%201%2C%20figsize%3D(8.5%2C%205.8)%2C%20sharex%3DTrue)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.plot(t%2C%20r%2C%20%22--%22%2C%20label%3D%22r(t)%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.plot(t%2C%20y%2C%20label%3D%22y(t)%22%2C%20linewidth%3D2)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.set_ylabel(%22Output%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B0%5D.legend()%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.plot(t%2C%20u%2C%20color%3D%22%230b7285%22%2C%20linewidth%3D1.8)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.axhline(controller.limit%2C%20color%3D%22%23b23a48%22%2C%20linestyle%3D%22--%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.axhline(-controller.limit%2C%20color%3D%22%23b23a48%22%2C%20linestyle%3D%22--%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.set_ylabel(%22Control%20u%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.set_xlabel(%22Time%20(s)%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20ax%5B1%5D.grid(True%2C%20alpha%3D0.3)%0A%20%20%20%20%20%20%20%20%20%20%20%20fig.tight_layout()%0A%20%20%20%20%20%20%20%20%20%20%20%20plot_obj%20%3D%20fig%0A%20%20%20%20%20%20%20%20except%20Exception%20as%20exc%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20feedback%20%3D%20f%22**Runtime%20error%3A**%20%7Bexc%7D%22%0A%20%20%20%20return%20feedback%2C%20plot_obj%0A%0A%0A%40app.cell%0Adef%20_(feedback%2C%20mo%2C%20plot_obj)%3A%0A%20%20%20%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20mo.md(feedback)%2C%0A%20%20%20%20%20%20%20%20plot_obj%20if%20plot_obj%20is%20not%20None%20else%20mo.md(%22_No%20plot%20available._%22)%2C%0A%20%20%20%20%5D)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      Object.defineProperty(window, "__MARIMO_MOUNT_CONFIG__", {
+        value: Object.freeze({
+            "filename": "notebook.py",
+            "cwd": "",
+            "lspWorkspace": null,
+            "mode": "read",
+            "version": "0.23.8",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": true, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "show_tracebacks": false, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        }),
+        writable: false,
+        configurable: false,
+      });
+    </script>
+  </body>
+</html>

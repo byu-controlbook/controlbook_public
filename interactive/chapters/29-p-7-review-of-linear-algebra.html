@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="P.7" id="review-of-linear-algebra"><span class="header-section-number">P.7</span> Review of Linear Algebra</h1>
+<p>Let <span class="math inline">\(A\)</span> be an <span
+class="math inline">\(m\times n\)</span> matrix of real numbers, denoted
+as <span class="math inline">\(A\in\mathbb{R}^{m\times n}\)</span>. Then
+<span class="math display">\[A = \begin{pmatrix} a_{11} &amp;
+a_{12}&amp; \dots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
+\vdots &amp; &amp; &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn} \end{pmatrix}.\]</span>
+<span id="idx-0285" class="book-index-anchor" aria-hidden="true"></span> Matrix addition is
+defined element wise for matrices of compatible dimensions as <span
+class="math display">\[\begin{gathered}
+\underbrace{\begin{pmatrix}
+a_{11} &amp; a_{12}&amp; \dots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
+\vdots &amp; &amp; &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn} \end{pmatrix}}_{A}
++
+\underbrace{\begin{pmatrix}
+b_{11} &amp; b_{12}&amp; \dots  &amp; b_{1n} \\
+b_{21} &amp; b_{22} &amp; \dots &amp; b_{2n} \\
+\vdots &amp; &amp; &amp; \vdots \\
+b_{m1} &amp; b_{m2} &amp; \dots &amp; b_{mn} \end{pmatrix}}_{B}
+\\
+=
+\underbrace{\begin{pmatrix}
+a_{11}+b_{11} &amp; a_{12}+b_{12} &amp; \dots &amp; a_{1n}+a_{1n} \\
+a_{21}+b_{21} &amp; a_{22}+b_{22} &amp; \dots &amp; a_{2n}+b_{2n} \\
+\vdots &amp; &amp; &amp; \vdots \\
+a_{m1}+b_{m1} &amp; a_{m2}+b_{m2} &amp; \dots &amp; a_{mn}+b_{mn}
+\end{pmatrix}}_{C}.
+\end{gathered}\]</span> <span id="idx-0286" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0287" class="book-index-anchor" aria-hidden="true"></span> To multiply a matrix
+times a vector, the inner dimensions must match: <span
+class="math display">\[\underbrace{A}_{m\times n}\underbrace{x}_{n\times
+1}
+= \begin{pmatrix}
+    a_{11} &amp; \dots &amp; a_{1n} \\
+    \vdots &amp;&amp; \vdots \\
+        a_{m1} &amp; \dots &amp; a_{mn} \end{pmatrix}
+    \begin{pmatrix} x_1 \\ \vdots \\ x_n\end{pmatrix}
+    = \begin{pmatrix}
+        \sum_{i=1}^n a_{1i}x_i \\ \vdots \\ \sum_{i=1}^n a_{mi}x_i
+\end{pmatrix}
+    = \underbrace{b}_{m\times 1}.\]</span> For example, <span
+class="math display">\[\begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4
+\end{pmatrix} \begin{pmatrix} 5 \\ 6 \end{pmatrix} = \begin{pmatrix} 17
+\\ 39 \end{pmatrix}.\]</span> Multiplying two matrices also requires
+matching dimensions: <span class="math display">\[\begin{aligned}
+\underbrace{A}_{m\times n} \underbrace{B}_{n\times p}
+    &amp;= \begin{pmatrix} a_{11} &amp; \dots &amp; a_{1n} \\
+                \vdots &amp;&amp; \vdots \\
+                a_{m1} &amp; \dots &amp; a_{mn} \end{pmatrix}
+\begin{pmatrix} b_{11} &amp; \dots &amp; b_{1n} \\ \vdots &amp;&amp;
+\vdots \\ b_{m1} &amp; \dots &amp; b_{mn} \end{pmatrix}
+\\
+&amp;= \begin{pmatrix} \sum_{i=1}^n a_{1i}b_{i1} &amp; \dots &amp;
+\sum_{i=1}^n a_{1i}b_{ip} \\ \vdots &amp;&amp; \vdots \\ \sum_{i=1}^n
+a_{mi}b_{i1} &amp; \dots &amp; \sum_{i=1}^n a_{mi}b_{ip}\end{pmatrix}
+= \underbrace{C}_{m\times p}.
+\end{aligned}\]</span> Note that if <span
+class="math inline">\(A\in\mathbb{R}^{m\times n}\)</span> and <span
+class="math inline">\(B\in\mathbb{R}^{n\times p}\)</span>, then <span
+class="math inline">\(AB\)</span> is a valid product, but <span
+class="math inline">\(BA\)</span> is not a valid product. Even if the
+dimensions are compatible, i.e., if <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> are square, in general <span
+class="math display">\[AB \neq BA.\]</span></p>
+<h2 data-number="P.7.1" id="transpose"><span class="header-section-number">P.7.1</span> Transpose</h2>
+<p><span id="idx-0288" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0289" class="book-index-anchor" aria-hidden="true"></span> If <span
+class="math inline">\(A\in\mathbb{R}^{m\times n}\)</span>, then the
+transpose of <span class="math inline">\(A\)</span>, denoted as <span
+class="math inline">\(A^{\top}\in\mathbb{R}^{n\times m}\)</span> is
+obtained by interchanging the rows and the columns. For example <span
+class="math display">\[\begin{aligned}
+\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix}^\top &amp;=
+\begin{pmatrix} x_1 &amp; x_2 &amp; x_3 \end{pmatrix}, \\
+\begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix}^{\top} &amp;=
+\begin{pmatrix} 1 &amp; 3 \\ 2 &amp; 4 \end{pmatrix}.
+\end{aligned}\]</span> A square matrix <span
+class="math inline">\(A\)</span> is said to be <em>symmetric</em> if
+<span class="math inline">\(A^\top=A\)</span>. Similarly, <span
+class="math inline">\(A\)</span> is said to be <em>skew-symmetric</em>
+if <span class="math inline">\(A^\top=-A\)</span>. Every square matrix
+<span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> can be
+decomposed into the sum of a symmetric and a skew-symmetric matrix as
+<span class="math display">\[\begin{aligned}
+A &amp;= \frac{1}{2}A + \frac{1}{2}A + \frac{1}{2}A^\top -
+\frac{1}{2}A^\top \\
+&amp;= \left(\frac{1}{2}A + \frac{1}{2}A^\top\right) +
+\left(\frac{1}{2}A-\frac{1}{2}A^\top\right) \\
+&amp; = A_s + A_{ss},
+\end{aligned}\]</span> where <span
+class="math inline">\(A_s=\frac{1}{2}(A+A^\top)\)</span> is symmetric,
+and <span class="math inline">\(A_{ss}=\frac{1}{2}(A-A^\top)\)</span> is
+skew-symmetric.</p>
+<p>The following properties are easily verified by direct manipulation:
+<span class="math display">\[\begin{aligned}
+(AB)^\top &amp;= B^\top A^\top \\
+(A+B)^\top &amp;= A^\top + B^\top.
+\end{aligned}\]</span></p>
+<h2 data-number="P.7.2" id="trace"><span class="header-section-number">P.7.2</span> Trace</h2>
+<p><span id="idx-0290" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0291" class="book-index-anchor" aria-hidden="true"></span> The trace operator is
+defined for square matrices. If <span
+class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>, then <span
+class="math display">\[\text{tr}(A) = \sum_{i=1}^n a_{ii},\]</span> or
+in other words, the sum of the diagonals of <span
+class="math inline">\(A\)</span>. For example <span
+class="math display">\[\text{tr}\begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4
+\end{pmatrix} = 1+4 = 5.\]</span></p>
+<h2 data-number="P.7.3" id="determinant"><span class="header-section-number">P.7.3</span> Determinant</h2>
+<p><span id="idx-0292" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0293" class="book-index-anchor" aria-hidden="true"></span> The
+<em>determinant</em> operator is defined for square matrices <span
+class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> as <span
+class="math display">\[\det(A) = \sum_{j=1}^n
+a_{ij}\gamma_{ij},\]</span> for any <span
+class="math inline">\(i=1,\dots,n\)</span>, where the <em>co-factor</em>
+<span id="idx-0294" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math display">\[\gamma_{ij} = (-1)^{(i+j)}\det(M_{ij})\]</span>
+and where the minor <span class="math inline">\(M_{ij}\)</span> is the
+<span class="math inline">\((n-1)\times(n-1)\)</span> matrix obtained by
+removing the <span class="math inline">\(i^{th}\)</span> row and the
+<span class="math inline">\(j^{th}\)</span> column of <span
+class="math inline">\(A\)</span>. <span id="idx-0295" class="book-index-anchor" aria-hidden="true"></span> As an example, <span
+class="math display">\[\begin{aligned}
+\det\begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 0 \\ 6 &amp; 7
+&amp; 8\end{pmatrix} &amp;=
+1\cdot\det\begin{pmatrix} 5 &amp; 0 \\ 7 &amp; 8\end{pmatrix} -
+2\cdot\det\begin{pmatrix} 4 &amp; 0 \\ 6 &amp; 8 \end{pmatrix}
+    \\ &amp;\qquad
+    + 3\cdot\det\begin{pmatrix} 4 &amp; 5 \\ 6 &amp; 7 \end{pmatrix} \\
+&amp;= 1\cdot(5\cdot 8 - 7\cdot 0) - 2\cdot(4\cdot 8 - 6\cdot 0)
+    \\ &amp;\qquad + 3\cdot(4\cdot 7 - 6\cdot 5) \\
+&amp;= -30.
+\end{aligned}\]</span> The <em>adjugate of <span
+class="math inline">\(A\)</span></em> is defined as the transpose of the
+co-factors of <span class="math inline">\(A\)</span>: <span
+class="math display">\[\text{adj}(A) = \begin{pmatrix} \gamma_{11} &amp;
+\dots &amp; \gamma_{n1} \\ \vdots &amp; &amp; \vdots \\ \gamma_{1n}
+&amp; \dots &amp; \gamma_{nn}\end{pmatrix}.\]</span> <span id="idx-0296" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0297" class="book-index-anchor" aria-hidden="true"></span> We have the following
+properties for the determinant: <span
+class="math display">\[\begin{aligned}
+\det(A) &amp;= \det(A^\top) \\
+\det(AB) &amp;= \det(A)\det(B) \\
+\det(A^{-1}) &amp;= \frac{1}{\det(A)}.
+\end{aligned}\]</span></p>
+<p>There are also well defined rules for finding the determinant of a
+block matrix. <span id="idx-0298" class="book-index-anchor" aria-hidden="true"></span> Let <span
+class="math display">\[E = \begin{pmatrix} A &amp; B \\ C &amp; D
+\end{pmatrix}\]</span> where <span
+class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>, <span
+class="math inline">\(B\in\mathbb{R}^{n\times p}\)</span>, <span
+class="math inline">\(C\in\mathbb{R}^{m\times n}\)</span> and <span
+class="math inline">\(D\in\mathbb{R}^{m\times m}\)</span>, then it can
+be shown that if <span class="math inline">\(A\)</span> is invertible,
+then <span class="math display">\[\det(E) = \det(A)
+\det\left(D-CA^{-1}B\right).\]</span> As a special case, if either <span
+class="math inline">\(B=0\)</span> or <span
+class="math inline">\(C=0\)</span>, then <span
+class="math display">\[\det(E) = \det(A)\det(D).\]</span> For example,
+<span class="math display">\[\det\begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\
+2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\
+3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 \\
+0 &amp; 0 &amp; 0 &amp; 8 &amp; 9 \\
+0 &amp; 0 &amp; 0 &amp; 9 &amp; 10
+\end{pmatrix}
+= \det\begin{pmatrix}
+1 &amp; 2 &amp; 3 \\
+2 &amp; 3 &amp; 4 \\
+3 &amp; 4 &amp; 5
+\end{pmatrix}
+\cdot\det\begin{pmatrix}
+8 &amp; 9 \\
+9 &amp; 10
+\end{pmatrix}.\]</span></p>
+<h2 data-number="P.7.4" id="matrix-inverses"><span class="header-section-number">P.7.4</span> Matrix Inverses</h2>
+<p><span id="idx-0299" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0300" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>If <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>,
+and there exists a matrix <span
+class="math inline">\(B\in\mathbb{R}^{n\times n}\)</span> such that
+<span class="math display">\[AB = BA = I,\]</span> then <span
+class="math inline">\(B\)</span> is said to be the inverse of <span
+class="math inline">\(A\)</span> and is denoted as <span
+class="math inline">\(B=A^{-1}\)</span>.</p>
+<p>The inverse of any square matrix can be expressed in terms of its
+adjugate and its determinant as <span class="math display">\[A^{-1} =
+\frac{\text{adj}(A)}{\text{det}(A)}.\]</span> For a <span
+class="math inline">\(2\times 2\)</span> matrix we have the simple
+formula <span class="math display">\[\begin{pmatrix} a &amp; b \\ c
+&amp; d \end{pmatrix}^{-1} =\frac{\text{adj}\begin{pmatrix} a &amp; b \\
+c &amp; d\end{pmatrix}}{\text{det}\begin{pmatrix} a &amp; b \\ c &amp; d
+\end{pmatrix}}= \frac{\begin{pmatrix} d &amp; -b \\ -c &amp;
+a\end{pmatrix}}{ad-bc}.\]</span> If <span
+class="math inline">\(\det(A)\neq 0\)</span>, then <span
+class="math inline">\(A\)</span> is called <em>non-singular</em>.
+<span id="idx-0301" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>If <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> are nonsingular, then <span
+class="math display">\[(AB)^{-1} = B^{-1}A^{-1}.\]</span></p>
+<p>For block matrices it can be verified by direct substitution that
+<span class="math display">\[\begin{aligned}
+\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix}^{-1}
+&amp;= \begin{pmatrix}
+(A-BD^{-1}C)^{-1} &amp;
+-(A-BD^{-1}C)^{-1}BD^{-1} \\
+-D^{-1}C(A-BD^{-1}C)^{-1} &amp;
+D^{-1}+D^{-1}C(A-BD^{-1}C)^{-1}BD^{-1}
+\end{pmatrix}
+\label{eq:matrix_inversion_lemma_1}\\
+&amp;= \begin{pmatrix}
+A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} &amp;
+-A^{-1}B(D-CA^{-1}B)^{-1} \\
+-(D-CA^{-1}B)^{-1}CA^{-1} &amp;
+(D-CA^{-1}B)^{-1}
+\end{pmatrix},
+\label{eq:matrix_inversion_lemma_2}
+\end{aligned}\]</span> from which we get the famous matrix inversion
+lemma <span class="math display">\[\label{eq:matrix_inversion_lemma_3}
+(A-BD^{-1}C)^{-1} = A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1}.\]</span>
+When <span class="math inline">\(C=0\)</span> we get the simple formula
+<span class="math display">\[\begin{pmatrix} A &amp; B \\ 0 &amp;
+D\end{pmatrix}^{-1} = \begin{pmatrix} A^{-1} &amp; -A^{-1}BD^{-1} \\ 0
+&amp; D^{-1} \end{pmatrix}.\]</span></p>
+<h2 data-number="P.7.5" id="eigenvalues-and-eigenvectors"><span class="header-section-number">P.7.5</span> Eigenvalues and
+Eigenvectors</h2>
+<p><span id="idx-0302" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0303" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0304" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>The pair <span class="math inline">\((\lambda, v)\)</span> where
+<span class="math inline">\(\lambda \in \mathbb{C}\)</span> and <span
+class="math inline">\(0\neq v\in\mathbb{C}^{n\times 1}\)</span> is said
+to be an eigenvalue-eigenvector pair of the matrix <span
+class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> if <span
+class="math display">\[Av = \lambda v.\]</span> The following statements
+are equivalent</p>
+<ol>
+<li><p><span class="math inline">\((\lambda, v)\)</span> are an
+eigenvalue-eigenvector pair of <span
+class="math inline">\(A\)</span>,</p></li>
+<li><p><span class="math inline">\(Av = \lambda v\)</span>,</p></li>
+<li><p><span class="math inline">\((\lambda I - A)v = 0\)</span>, where
+<span class="math inline">\(I\)</span> is the <span
+class="math inline">\(n\times n\)</span> identity matrix,</p></li>
+<li><p><span class="math inline">\(v\)</span> is in the null space of
+<span class="math inline">\((\lambda I - A)\)</span>,</p></li>
+<li><p><span class="math inline">\(\det(\lambda
+I-A)=0\)</span>.</p></li>
+</ol>
+<p>For example, to find the eigenvalues and eigenvectors of <span
+class="math display">\[A = \begin{pmatrix} 0 &amp; 1 \\ -2 &amp; -3
+\end{pmatrix},\]</span> first compute <span
+class="math display">\[\begin{aligned}
+\det(\lambda I - A)
+    &amp;= \det\begin{pmatrix} \lambda &amp; -1 \\ 2 &amp; \lambda+3
+\end{pmatrix} \\
+    &amp;= \lambda^2 + 3\lambda + 2 = (\lambda+2)(\lambda+1).
+\end{aligned}\]</span> Setting <span class="math inline">\(\det(\lambda
+I - A)=0\)</span> implies that the eigenvalues are <span
+class="math display">\[\lambda_1 = -2, \qquad \lambda_2 = -1.\]</span>
+To find the eigenvector associated with <span
+class="math inline">\(\lambda_1\)</span> we need to find a vector <span
+class="math inline">\(v_1\)</span> that is in the null space of <span
+class="math inline">\((\lambda_1 I -A)\)</span>. Since <span
+class="math display">\[(\lambda_1 I - A)v_1 = \begin{pmatrix} -2 &amp;
+-1 \\ 2 &amp; 1 \end{pmatrix}\begin{pmatrix} v_{11} \\ v_{12}
+\end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix},\]</span> we have
+that <span class="math inline">\(2v_{11}=-v_{12}\)</span>. Therefore
+<span class="math inline">\(v_1 = (1, -2)^\top\)</span> is in the null
+space of <span class="math inline">\((\lambda_1 I -A)\)</span> and is an
+eigenvector of <span class="math inline">\(A\)</span> associated with
+eigenvalue <span class="math inline">\(\lambda_1\)</span>.</p>
+<p>To find the eigenvector associated with <span
+class="math inline">\(\lambda_2\)</span> we need to find a vector <span
+class="math inline">\(v_2\)</span> that is in the null space of <span
+class="math inline">\((\lambda_2 I -A)\)</span>. Since <span
+class="math display">\[(\lambda_2 I - A)v_2 = \begin{pmatrix} -1 &amp;
+-1 \\ 2 &amp; 2 \end{pmatrix}\begin{pmatrix} v_{21} \\ v_{22}
+\end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix},\]</span> we have
+that <span class="math inline">\(v_{21}=-v_{22}\)</span>. Therefore
+<span class="math inline">\(v_2 = (-1, 1)^\top\)</span> is in the null
+space of <span class="math inline">\((\lambda_2 I -A)\)</span> and is an
+eigenvector of <span class="math inline">\(A\)</span> associated with
+eigenvalue <span class="math inline">\(\lambda_2\)</span>.</p>
+<p>Since <span class="math inline">\(Av_1=\lambda_1 v_1\)</span> and
+<span class="math inline">\(Av_2=\lambda_2 v_2\)</span> we can write
+<span class="math display">\[A\begin{pmatrix}v_1 &amp; v_2\end{pmatrix}
+=  \begin{pmatrix}v_1 &amp; v_2\end{pmatrix} \begin{pmatrix} \lambda_1
+&amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}.\]</span> Defining <span
+class="math inline">\(M = \begin{pmatrix} v_1 &amp; v_2
+\end{pmatrix}\)</span> and <span class="math inline">\(\Lambda =
+\begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2
+\end{pmatrix}\)</span> we have <span class="math display">\[AM =
+M\Lambda.\]</span> When <span class="math inline">\(M\)</span> is
+invertible, we have <span class="math display">\[A = M\Lambda
+M^{-1}.\]</span> <span class="math inline">\(M\)</span> will always be
+invertible when the eigenvalues are distinct. <span id="idx-0305" class="book-index-anchor" aria-hidden="true"></span> For example, it can be
+verified that <span class="math display">\[\begin{pmatrix} 0 &amp; 1 \\
+-2 &amp; -3 \end{pmatrix} = \begin{pmatrix} 1 &amp; -1 \\ -2 &amp; 1
+\end{pmatrix} \begin{pmatrix} -2 &amp; 0 \\ 0 &amp; 11 \end{pmatrix}
+\begin{pmatrix} 1 &amp; -1 \\ -2 &amp; 1 \end{pmatrix}^{-1}.\]</span>
+The formula <span class="math inline">\(A=M\Lambda M^{-1}\)</span> is
+called the eigen-decomposition of <span
+class="math inline">\(A\)</span>. <span id="idx-0306" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>The trace and the determinant of <span
+class="math inline">\(A\)</span> can be written in terms of the
+eigenvalues of <span class="math inline">\(A\)</span> as <span
+class="math display">\[\begin{aligned}
+\text{tr}(A) &amp;= \sum_{i=1}^n \lambda_i(A), \\
+\det(A) &amp;= \Pi_{i=1}^n \lambda_i(A).
+\end{aligned}\]</span> where <span
+class="math inline">\(\lambda_i(A)\)</span> is the <span
+class="math inline">\(i^{th}\)</span> eigenvalue of <span
+class="math inline">\(A\)</span>.</p>
+<h2 data-number="P.7.6" id="linear-independence-and-rank"><span class="header-section-number">P.7.6</span> Linear Independence and
+Rank</h2>
+<p><span id="idx-0307" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0308" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0309" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>The vectors <span class="math inline">\(x_1, x_2, \dots,
+x_p\in\mathbb{R}^{n\times 1}\)</span> are said to be <em>linearly
+independent</em> if <span class="math display">\[c_1 x_1 + c_2 x_2 +
+\dots + c_px_p=0,\]</span> implies that <span
+class="math inline">\(c_1=c_2=\dots=c_p=0\)</span>. For example, the
+vectors <span class="math inline">\((1,0)^\top\)</span> and <span
+class="math inline">\((0,1)^\top\)</span> are linearly independent since
+<span class="math display">\[c_1\begin{pmatrix} 1 \\ 0 \end{pmatrix} +
+c_2\begin{pmatrix} 0 \\ 1 \end{pmatrix}
+= \begin{pmatrix} c_1 \\ c_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0
+\end{pmatrix}\]</span> implies that <span
+class="math inline">\(c_1=c_2=0\)</span>. Alternatively, the vectors
+<span class="math inline">\((1,0)^\top\)</span> and <span
+class="math inline">\((3, 0)^\top\)</span> are not linearly independent
+since <span class="math display">\[c_1\begin{pmatrix} 1 \\ 0
+\end{pmatrix} + c_2\begin{pmatrix} 3 \\ 0 \end{pmatrix}
+= \begin{pmatrix} c_1+3c_0 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 0
+\end{pmatrix}\]</span> is true if <span
+class="math inline">\(c_1=-3c_2\)</span> for any <span
+class="math inline">\(c_2\)</span>.</p>
+<p>The <em>rank</em> of a matrix is defined to be the number of linearly
+independent rows or columns. For example <span
+class="math display">\[\begin{aligned}
+\text{rank}\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} &amp;= 2
+\\
+\text{rank}\begin{pmatrix} 1 &amp; 3 \\ 0 &amp; 0 \end{pmatrix} &amp;=
+1.
+\end{aligned}\]</span></p>
+<h2 data-number="P.7.7" id="special-matrices"><span class="header-section-number">P.7.7</span> Special Matrices</h2>
+<p>The matrix <span class="math inline">\(A\in\mathbb{R}^{n\times
+n}\)</span> is said to be <em>diagonal</em> if <span
+class="math display">\[A = \begin{pmatrix}
+a_{11} &amp; 0 &amp; \dots &amp; 0 \\
+0 &amp; a_{22} &amp; \dots &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \dots &amp; a_{nn} \end{pmatrix}.\]</span> For example,
+<span class="math display">\[A = \begin{pmatrix}
+    2 &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 3 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 4 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 5
+    \end{pmatrix}\]</span> is a diagonal matrix. <span id="idx-0310" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>The matrix <span class="math inline">\(A\in\mathbb{R}^{n\times
+n}\)</span> is said to be <em>upper triangular</em> if <span
+class="math display">\[A = \begin{pmatrix}
+a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
+0 &amp; a_{22} &amp; \dots &amp; a_{2n} \\
+\vdots &amp; &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \dots &amp; a_{nn} \end{pmatrix}.\]</span> For example,
+<span class="math display">\[A = \begin{pmatrix}
+    2 &amp; 3 &amp; 4 &amp; 5 \\
+    0 &amp; 6 &amp; 7 &amp; 8 \\
+    0 &amp; 0 &amp; 9 &amp; 10 \\
+    0 &amp; 0 &amp; 0 &amp; 11
+    \end{pmatrix}\]</span> is an upper triangular matrix. <span id="idx-0311" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>The matrix <span class="math inline">\(A\in\mathbb{R}^{n\times
+n}\)</span> is said to be in <em>upper companion form</em> if <span
+class="math display">\[A = \begin{pmatrix}
+-a_1 &amp; -a_2 &amp; \dots &amp; -a_{n-1} &amp; -a_n \\
+1    &amp; 0    &amp; \dots &amp; 0 &amp; 0 \\
+\vdots &amp; \ddots &amp; &amp; \vdots &amp; 0 \\
+0 &amp; 0 &amp; \dots &amp; 1 &amp; 0 \end{pmatrix}.\]</span> For
+example, <span class="math display">\[A = \begin{pmatrix}
+    -2 &amp; -3 &amp; -4 &amp; -5 \\
+    1 &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 1 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 1 &amp; 0
+    \end{pmatrix}\]</span> is in upper companion form. <span id="idx-0312" class="book-index-anchor" aria-hidden="true"></span> <span id="idx-0313" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>The matrix <span class="math inline">\(A\in\mathbb{R}^{n\times
+n}\)</span> is said to be a <em>Vandermonde matrix</em> if <span
+class="math display">\[A = \begin{pmatrix}
+1 &amp; a_1 &amp; a_1^2 &amp; \dots &amp; a_1^{n-1} \\
+1 &amp; a_2 &amp; a_2^2 &amp; \dots &amp; a_2^{n-1} \\
+1 &amp; a_3 &amp; a_3^2 &amp; \dots &amp; a_3^{n-1} \\
+1 &amp; a_4 &amp; a_4^2 &amp; \dots &amp; a_4^{n-1}
+\end{pmatrix}.\]</span> For example, <span class="math display">\[A =
+\begin{pmatrix}
+    1 &amp; 2 &amp; 4 &amp; 9 \\
+    1 &amp; 3 &amp; 9 &amp; 27 \\
+    1 &amp; 4 &amp; 16 &amp; 64 \\
+    1 &amp; 5 &amp; 25 &amp; 125
+    \end{pmatrix}\]</span> is a Vandermonde matrix. <span id="idx-0314" class="book-index-anchor" aria-hidden="true"></span></p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

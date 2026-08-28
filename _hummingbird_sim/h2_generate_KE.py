@@ -1,7 +1,15 @@
 # %%
-# these are libraries and functions that will help us with the calculations for h2
+################################################################################
+# This file is meant to be run interactively with VSCode's Jupyter extension.
+# It works as a regular Python script as well, but the printed results will not
+# display as nicely.
+################################################################################
+# %%
 import sympy as sp
-from sympy.physics.vector import dynamicsymbols
+from sympy.physics.vector import dynamicsymbols  # for time-varying symbols
+
+# %%
+# These are for pretty printing in Jupyter environments (not terminals)
 from sympy.physics.vector.printing import vlatex
 from IPython.display import Math, display
 
@@ -21,7 +29,7 @@ from EL_helper_functions import rotx, roty, rotz, calc_omega, find_coeffs
 
 # Defining necessary symbols and variables to use in the calculations
 t, ell_1, ell_2, ell_3x, ell_3y, ell_3z, m1, m2, m3 = sp.symbols(
-    "t, ell_1, ell_2, ell_3x, ell_3y, ell_3z, m1, m2, m3"
+    "t, ell_1, ell_2, ell_3x, ell_3y, ell_3z, m_1, m_2, m_3"
 )
 
 # We have to tell SymPy that these are functions of time
@@ -88,7 +96,8 @@ q_dot = q.diff(t)
 
 
 # %%
-# TODO: define the inertia tensors for each rigid body
+# TODO: define symbols for the diagonal inertia terms then define the inertia
+# tensors for each rigid body
 
 # J1 = sp.zeros(3,3)
 
@@ -105,9 +114,32 @@ M = sp.zeros(3, 3)
 
 
 # %%
-# Simplify and display the result
+# Simplify the result
 M = sp.trigsimp(M)
-printsym(M)
+
+# %% [markdown]
+# # Display the result of M
+# %%
+# Print longer terms separately (matches lab manual more closely)
+M22 = M[1, 1]
+M23 = M[1, 2]
+M33 = M[2, 2]
+
+# The M33 term can be simplified a bit more, but it doesn't quite match the lab manual:
+# M33 = sp.collect(M33, M33.free_symbols)
+# M33 = sp.trigsimp(M33)
+
+long_terms = {
+    M[1, 1]: sp.Symbol("M_22"),
+    M[1, 2]: sp.Symbol("M_23"),
+    M[2, 2]: sp.Symbol("M_33"),
+}
+printsym(M.subs(long_terms))
+print("M22:")
+printsym(M22)
+print("M23:")
+printsym(M23)
+print("M33:")
+printsym(M33)
 
 # %%
-

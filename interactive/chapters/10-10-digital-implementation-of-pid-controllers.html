@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="27-p-5-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="10" id="digital-implementation-of-pid-controllers"><span class="header-section-number">10</span> Digital Implementation of PID
+Controllers</h1>
+<h2 data-number="10.1" id="theory-8"><span class="header-section-number">10.1</span> Theory</h2>
+<p>In this book we work primarily with continuous time systems and
+continuous time controllers. However, almost all modern control
+strategies are implemented digitally on a micro-controller or a
+micro-processor, typically implemented using C-code. In this chapter, we
+describe how PID controllers<span id="idx-0109" class="book-index-anchor" aria-hidden="true"></span> can be implemented in
+a sampled data system using computer code.<span id="idx-0110" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>A general PID control signal is given by <span
+class="math display">\[u(t) = k_P e(t) + k_I\int_{-\infty}^t
+e(\tau)d\tau + k_D \frac{de}{dt}(t),\]</span> where <span
+class="math inline">\(e(t)=r(t)-y(t)\)</span> is the error between the
+desired reference output <span class="math inline">\(r(t)\)</span> and
+the current output <span class="math inline">\(y(t)\)</span>. Define
+<span class="math inline">\(u_P(t) = e(t)\)</span>, <span
+class="math inline">\(u_I(t) = \int_{-\infty}^t e(\tau)d\tau\)</span>,
+and <span class="math inline">\(u_D(t) = \frac{de}{dt}(t)\)</span>. The
+PID controller is therefore given by <span class="math inline">\(u(t) =
+k_p u_P(t) + k_I u_I(t) + k_D u_D(t)\)</span>. In the following
+paragraphs we will derive discrete sampled-time equivalents for <span
+class="math inline">\(u_P(t)\)</span>, <span
+class="math inline">\(u_I(t)\)</span>, and <span
+class="math inline">\(u_D(t)\)</span>.</p>
+<p>First consider a sampled time implementation of <span
+class="math inline">\(u_P(t)\)</span>. When <span
+class="math inline">\(t=nT_s\)</span>, where <span
+class="math inline">\(T_s\)</span> is the sample period and <span
+class="math inline">\(n\)</span> is the sample time, we have <span
+class="math inline">\(u_P(nT_s) = e(nT_s)\)</span>, or using discrete
+time notation <span class="math display">\[u_P[n] = e[n].\]</span></p>
+<p>To derive the sample-time implementation of an integrator,<span id="idx-0111" class="book-index-anchor" aria-hidden="true"></span> note that <span
+class="math display">\[\begin{aligned}
+u_I(nT_s) &amp;= \int_{-\infty}^{nT_s} e(\tau) d\tau \\
+&amp;= \int_{-\infty}^{(n-1)T_s} e(\tau)d\tau + \int_{(n-1)T_s}^{nT_s}
+e(\tau) d\tau \\
+&amp;= u_I((n-1)T_s) + \int_{(n-1)T_s}^{nT_s} e(\tau) d\tau.
+\end{aligned}\]</span> As shown in
+<strong>Fig.</strong> <a href="#fig:pid_digital_integrator" data-reference-type="ref"
+data-reference="fig:pid_digital_integrator">10.1</a> a trapezoidal
+approximation of the integral between <span
+class="math inline">\((n-1)T_s\)</span> and <span
+class="math inline">\(nT_s\)</span> is given by <span
+class="math display">\[\int_{(n-1)T_s}^{n T_s} e(\tau) d\tau \approx
+\frac{T_s}{2}\left(e(nT_s)+e((n-1)T_s)\right).\]</span></p>
+<figure id="fig:pid_digital_integrator">
+<img src="3_PID/figures/pid_digital_integrator.png"
+style="width:80.0%" alt="Trapezoidal rule for digital integration." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 10.1. </span>Trapezoidal rule for digital
+integration.</figcaption>
+</figure>
+<p>Therefore <span class="math display">\[u_I(nT_s) \approx
+u_I((n-1)T_s) + \frac{T_s}{2}\left(e(nT_s)+e((n-1)T_s)\right).\]</span>
+Taking the z-transform<span id="idx-0112" class="book-index-anchor" aria-hidden="true"></span> we get <span
+class="math display">\[U_I(z) = z^{-1}U_I(z) +
+\frac{T_s}{2}(E(z)+z^{-1}E(z)).\]</span> Solving for <span
+class="math inline">\(U_I(z)\)</span> gives <span
+class="math display">\[\label{eq:U_I(z)}
+U_I(z) = \frac{T_s}{2}
+\left(\frac{1+z^{-1}}{1-z^{-1}}\right)E(z).\]</span> Since in the
+Laplace domain we have <span class="math display">\[U_I(s) =
+\frac{1}{s}E(s),\]</span> we have derived the so-called Tustin
+approximation<span id="idx-0113" class="book-index-anchor" aria-hidden="true"></span> where <span
+class="math inline">\(s\)</span> in the Laplace domain is replaced with
+the <span class="math inline">\(z\)</span>-transform approximation <span
+class="math display">\[\label{eq:tustin_approximation}
+s \mapsto \frac{2}{T_s}\left(\frac{1-z^{-1}}{1+z^{-1}}\right),\]</span>
+where <span class="math inline">\(T_s\)</span> is the sample
+period [18].<span id="idx-0114" class="book-index-anchor" aria-hidden="true"></span> Taking the inverse
+<span class="math inline">\(z\)</span>-transform of
+Equation <a href="#theory-8" data-reference-type="eqref"
+data-reference="eq:U_I(z)"><a href="#digital-implementation-of-pid-controllers">10.1</a></a> gives the discrete time
+implementation of an integrator as <span
+class="math display">\[\label{eq:loop-discrete-integrator}
+u_I[n] = u_I[n-1] + \frac{T_s}{2}\left(e[n] +
+e[n-1]\right).\]</span><span id="idx-0115" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>In the Laplace domain, a pure differentiator is given by <span
+class="math inline">\(U_D(s) = s E(s)\)</span>. However, since a pure
+differentiator is not causal, the standard approach is to use the
+band-limited, or dirty derivative <span class="math display">\[U_D(s) =
+\frac{s}{\sigma s + 1}E(s),\]</span> where <span
+class="math inline">\(\sigma\)</span> is small, and <span
+class="math inline">\(\frac{1}{\sigma}\)</span> defines the bandwidth of
+the differentiator. In practical terms, the dirty derivative<span id="idx-0116" class="book-index-anchor" aria-hidden="true"></span> differentiates signals
+with frequency content less than <span
+class="math inline">\(\frac{1}{\sigma}\)</span> radians per second.
+Using the Tustin
+approximation <a href="#design-study-a-single-link-robot-arm-8" data-reference-type="eqref"
+data-reference="eq:tustin_approximation"><a href="#digital-implementation-of-pid-controllers">10.2</a></a>,
+the dirty derivative in the <span
+class="math inline">\(z\)</span>-domain becomes <span
+class="math display">\[\begin{aligned}
+U_D(z) &amp;=
+\frac{\frac{2}{T_s}\left(\frac{1-z^{-1}}{1+z^{-1}}\right)}{\frac{2\sigma}{T_s}\left(\frac{1-z^{-1}}{1+z^{-1}}\right)+1}E(z)
+=
+\frac{\left(\frac{2}{2\sigma+T_s}\right)(1-z^{-1})}{1-\left(\frac{2\sigma-T_s}{2\sigma+T_s}\right)z^{-1}}E(z).
+\end{aligned}\]</span> Transforming to the time domain, we have <span
+class="math display">\[\label{eq:loop-discrete-differentiator}
+u_D[n] = \left(\frac{2\sigma-T_s}{2\sigma+T_s}\right) u_D[n-1] +
+\left(\frac{2}{2\sigma+T_s}\right)\left(e[n]-e[n-1]\right).\]</span><span id="idx-0117" class="book-index-anchor" aria-hidden="true"></span></p>
+<section id="pid-ch10-dirty-derivative-figure" class="advanced-activity" data-advanced-activity="dirty-derivative">
+<p class="advanced-kicker">
+Interactive Figure 10.I1
+</p>
+<h3>
+Dirty derivative noise filtering
+</h3>
+<p>
+A pure finite-difference derivative reacts strongly to measurement
+noise. The dirty derivative keeps the derivative causal and
+band-limited; increasing sigma lowers the differentiator bandwidth and
+smooths the derivative estimate.
+</p>
+<div class="advanced-grid ch10-dirty-derivative-layout"> <div
+class="advanced-controls ch10-dirty-derivative-controls">
+<label>Dirty-derivative sigma: <span
+data-output="dirty-sigma"></span> <input type="range"
+data-input="dirty-sigma" min="0.01" max="1.0" step="0.01"
+value="0.06"> </label> </div> <div class="advanced-visual"
+role="figure" aria-label="Interactive Figure 10.I1. Dirty derivative
+response to a noisy input signal"> <canvas
+data-plot="dirty-derivative" width="920" height="430" role="img"
+aria-label="Noisy input signal, true derivative, raw derivative, and
+dirty derivative plot"></canvas> <p
+class="advanced-caption">Interactive Figure 10.I1. The upper plot
+shows the noisy input signal v(t) and the true signal before measurement
+noise is added. The lower plot compares the true derivative with the raw
+finite-difference derivative and the dirty derivative. Use sigma to see
+the tradeoff between noise rejection and lag.</p> </div> </div>
+<section class="advanced-solution">
+<h4>
+Interpretation
+</h4>
+<p class="advanced-equation">
+Bandwidth proxy: 1/sigma =
+<span data-output="dirty-bandwidth"></span> rad/s; filter
+coefficient beta = <span data-output="dirty-beta"></span>
+</p>
+<p class="advanced-equation">
+<span data-output="dirty-note"></span>
+</p>
+</section>
+</section>
+<h3 data-number="10.1.1" id="integrator-anti-windup"><span class="header-section-number">10.1.1</span> Integrator Anti-Windup</h3>
+<p><span id="idx-0118" class="book-index-anchor" aria-hidden="true"></span> A potential problem
+with a straight-forward implementation of PID controllers is integrator
+wind up. When the error <span class="math inline">\(r-y\)</span> is
+large and a large error persists for an extended period of time, the
+value of the integrator can become large, or “wind up.” A large
+integrator will cause <span class="math inline">\(u\)</span> to
+saturate, which will cause the system to push with maximum effort in the
+direction needed to correct the error. Since the value of the integrator
+will continue to wind up until the error signal changes sign, the
+control signal may not come out of saturation until well after the error
+has changed sign, which can cause a large overshoot and may potentially
+destabilize the system.</p>
+<p>Since integrator wind up can destabilize the system, it is important
+to add an anti-windup scheme. A number of different anti-windup schemes
+are possible. In this section we will discuss two schemes that are
+commonly used in practice. The first scheme is based on the fact that
+integrators are typically used to correct for steady state error and the
+fact that overshoot is caused by integrating error during the transients
+of the step response. Therefore, the integrator can be turned off when
+the derivative of the error is large. This anti-windup scheme is
+implemented by an <code>if</code>-statement conditioned on the size of
+<span class="math inline">\(\dot{e}\)</span>.</p>
+<p>The second anti-windup scheme is to subtract from the integrator
+exactly the amount needed to keep <span class="math inline">\(u\)</span>
+at the saturation bound. In particular, let <span
+class="math display">\[u_{\text{unsat}}=k_P e + k_D u_D + k_I
+u_I\]</span> denote the unsaturated control value before applying the
+anti-windup scheme. After the saturation block we get <span
+class="math display">\[u = \text{sat}(u_{\text{unsat}}) = \text{sat}(k_P
+e + k_D u_D + k_I u_I).\]</span> The idea of anti-windup is to modify
+the output of the integrator from <span
+class="math inline">\(u_I\)</span> to <span
+class="math inline">\(u_I^{+}\)</span> so that <span
+class="math display">\[k_P e + k_D u_D + k_I u_I^{+} = \text{sat}(k_P e
++ k_D u_D + k_I u_I) = u.\]</span> Subtracting <span
+class="math inline">\(u_{\text{unsat}}\)</span> from <span
+class="math inline">\(u\)</span> gives <span
+class="math display">\[\begin{aligned}
+u-u_{\text{unsat}} &amp;= (k_P e + k_D u_D + k_I u_I^{+})-(k_P e + k_D
+u_D + k_I u_I) \\
+&amp;= k_I(u_I^{+}-u_I).
+\end{aligned}\]</span> Solving for <span
+class="math inline">\(u_I^{+}\)</span> gives <span
+class="math display">\[u_I^{+} = u_I +
+\frac{1}{k_I}(u-u_{\text{unsat}}),\]</span> which is the updated value
+of the integrator that ensures that the control signal remains just out
+of saturation. Note that if the control value is not in saturation then
+<span class="math inline">\(u=u_{\text{unsat}}\)</span> and the
+integrator value remains unchanged. <span id="idx-0119" class="book-index-anchor" aria-hidden="true"></span></p>
+<section id="pid-ch10-anti-windup-figure" class="advanced-activity" data-advanced-activity="anti-windup">
+<p class="advanced-kicker">
+Interactive Figure 10.I2
+</p>
+<h3>
+Anti-windup response under actuator saturation
+</h3>
+<p>
+Compare a saturated PI controller with and without anti-windup on an
+intentionally underdamped second-order plant. The dashed traces show the
+no-anti-windup baseline; the colored traces show the selected
+controller. Use the actuator limit and integral gain to make windup more
+or less severe.
+</p>
+<div class="advanced-grid ch10-anti-windup-layout"> <div
+class="advanced-controls ch10-anti-windup-controls">
+<label><span class="advanced-control-label">Anti-windup
+enabled</span><input
+type="checkbox" data-input="aw-enabled" checked></label>
+<label><span class="advanced-control-label">Anti-windup
+method</span> <select data-select="aw-method"> <option
+value="conditional">Conditional integration</option> <option
+value="backcalc">Back-calculation correction</option> </select>
+</label> <label><span class="advanced-control-label">Actuator limit
+u<sub>max</sub>:
+<span data-output="aw-limit-value"></span></span><input type="range"
+data-input="aw-limit" min="0.7" max="1.3" step="0.05"
+value="0.9"></label>
+<label><span class="advanced-control-label">Integral gain
+k<sub>I</sub>:
+<span data-output="aw-ki-value"></span></span><input
+type="range" data-input="aw-ki" min="1" max="10" step="0.5"
+value="6"></label>
+</div>
+<div class="advanced-visual"
+role="figure" aria-label="Interactive Figure 10.I2. Anti-windup
+response with actuator saturation"> <canvas data-plot="anti-windup"
+width="920" height="600" role="img" aria-label="Step response,
+actuator effort, and integrator state with and without
+anti-windup"></canvas> <p class="advanced-caption">Interactive
+Figure 10.I2. The top plot shows the step response, the middle plot
+shows u<sub>unsat</sub> and u<sub>sat</sub>, and the bottom plot
+shows the integrator state. Without anti-windup, the controller keeps
+integrating error while the actuator is saturated, so
+u<sub>unsat</sub> stays far beyond the actuator limit and the stored
+integrator drives a large overshoot. The axes rescale so this growth
+remains visible.</p> </div>
+</div>
+<section
+class="advanced-readout advanced-readout-lines"> <div
+class="advanced-metric"><strong>Overshoot</strong><span
+data-output="aw-overshoot"></span></div> <div
+class="advanced-metric"><strong>Time in saturation</strong><span
+data-output="aw-saturation-time"></span></div> <div
+class="advanced-metric"><strong>Final error</strong><span
+data-output="aw-final-error"></span></div> <div
+class="advanced-metric"><strong>Peak integrator
+state</strong><span
+data-output="aw-peak-integrator"></span></div> </section>
+<p class="advanced-callout">
+Interpretation: windup is visible when u<sub>unsat</sub> remains far
+outside the actuator limit and the integrator state keeps growing.
+Anti-windup changes the stored integrator state, so the controller
+leaves saturation sooner and overshoots less.
+</p>
+</section>
+<h3 data-number="10.1.2" id="implementation"><span class="header-section-number">10.1.2</span> Implementation</h3>
+<p>Python code that implements a general class for a PID loop is shown
+below.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="18-18-compensator-design.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="18-18-compensator-design.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="18-18-compensator-design.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PIDControl:</span>
+<span id="cb2-4"><a href="18-18-compensator-design.html#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, kp, ki, kd, limit, sigma, Ts, flag<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb2-5"><a href="18-18-compensator-design.html#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp <span class="op">=</span> kp  <span class="co"># Proportional control gain</span></span>
+<span id="cb2-6"><a href="18-18-compensator-design.html#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ki <span class="op">=</span> ki  <span class="co"># Integral control gain</span></span>
+<span id="cb2-7"><a href="18-18-compensator-design.html#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd <span class="op">=</span> kd  <span class="co"># Derivative control gain</span></span>
+<span id="cb2-8"><a href="18-18-compensator-design.html#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.limit <span class="op">=</span> limit  <span class="co"># The output saturates at this limit</span></span>
+<span id="cb2-9"><a href="18-18-compensator-design.html#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sigma <span class="op">=</span> sigma  <span class="co"># dirty derivative bandwidth is 1/sigma</span></span>
+<span id="cb2-10"><a href="18-18-compensator-design.html#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.beta <span class="op">=</span> (<span class="fl">2.0</span><span class="op">*</span>sigma<span class="op">-</span>Ts)<span class="op">/</span>(<span class="fl">2.0</span><span class="op">*</span>sigma<span class="op">+</span>Ts)</span>
+<span id="cb2-11"><a href="18-18-compensator-design.html#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Ts <span class="op">=</span> Ts          <span class="co"># sample rate</span></span>
+<span id="cb2-12"><a href="18-18-compensator-design.html#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flag <span class="op">=</span> flag</span>
+<span id="cb2-13"><a href="18-18-compensator-design.html#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># if flag == True, then returns</span></span>
+<span id="cb2-14"><a href="18-18-compensator-design.html#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">#    u = kp * error + ki * integral(error) + kd * error_dot.</span></span>
+<span id="cb2-15"><a href="18-18-compensator-design.html#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># else returns</span></span>
+<span id="cb2-16"><a href="18-18-compensator-design.html#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># u = kp * error + ki * integral(error) - kd * y_dot.</span></span>
+<span id="cb2-17"><a href="18-18-compensator-design.html#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_dot <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># estimated derivative of y</span></span>
+<span id="cb2-18"><a href="18-18-compensator-design.html#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_d1 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Signal y delayed by one sample</span></span>
+<span id="cb2-19"><a href="18-18-compensator-design.html#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_dot <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># estimated derivative of error</span></span>
+<span id="cb2-20"><a href="18-18-compensator-design.html#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_d1 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Error delayed by one sample</span></span>
+<span id="cb2-21"><a href="18-18-compensator-design.html#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># integrator</span></span>
+<span id="cb2-22"><a href="18-18-compensator-design.html#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="18-18-compensator-design.html#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> PID(<span class="va">self</span>, r, y):</span>
+<span id="cb2-24"><a href="18-18-compensator-design.html#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the current error</span></span>
+<span id="cb2-25"><a href="18-18-compensator-design.html#cb2-25" aria-hidden="true" tabindex="-1"></a>        error <span class="op">=</span> r <span class="op">-</span> y</span>
+<span id="cb2-26"><a href="18-18-compensator-design.html#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error using trapazoidal rule</span></span>
+<span id="cb2-27"><a href="18-18-compensator-design.html#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator <span class="op">=</span> <span class="va">self</span>.integrator <span class="op"></span></span>
+<span id="cb2-28"><a href="18-18-compensator-design.html#cb2-28" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (<span class="va">self</span>.Ts<span class="op">/</span><span class="dv">2</span>) <span class="op">*</span> (error <span class="op">+</span> <span class="va">self</span>.error_d1)</span>
+<span id="cb2-29"><a href="18-18-compensator-design.html#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PID Control</span></span>
+<span id="cb2-30"><a href="18-18-compensator-design.html#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> flag <span class="kw">is</span> <span class="va">True</span>:</span>
+<span id="cb2-31"><a href="18-18-compensator-design.html#cb2-31" aria-hidden="true" tabindex="-1"></a>            <span class="co"># differentiate error</span></span>
+<span id="cb2-32"><a href="18-18-compensator-design.html#cb2-32" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.error_dot <span class="op">=</span> <span class="va">self</span>.beta <span class="op">*</span> <span class="va">self</span>.error_dot <span class="op"></span></span>
+<span id="cb2-33"><a href="18-18-compensator-design.html#cb2-33" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span><span class="va">self</span>.beta)<span class="op">/</span><span class="va">self</span>.Ts <span class="op">*</span> (error <span class="op">-</span> <span class="va">self</span>.error_d1)</span>
+<span id="cb2-34"><a href="18-18-compensator-design.html#cb2-34" aria-hidden="true" tabindex="-1"></a>            <span class="co"># PID control</span></span>
+<span id="cb2-35"><a href="18-18-compensator-design.html#cb2-35" aria-hidden="true" tabindex="-1"></a>            u_unsat <span class="op">=</span> <span class="va">self</span>.kp<span class="op">*</span>error <span class="op"></span></span>
+<span id="cb2-36"><a href="18-18-compensator-design.html#cb2-36" aria-hidden="true" tabindex="-1"></a>                      <span class="op">+</span> <span class="va">self</span>.ki<span class="op">*</span><span class="va">self</span>.integrator <span class="op"></span></span>
+<span id="cb2-37"><a href="18-18-compensator-design.html#cb2-37" aria-hidden="true" tabindex="-1"></a>                      <span class="op">+</span> <span class="va">self</span>.kd<span class="op">*</span><span class="va">self</span>.error_dot</span>
+<span id="cb2-38"><a href="18-18-compensator-design.html#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb2-39"><a href="18-18-compensator-design.html#cb2-39" aria-hidden="true" tabindex="-1"></a>            <span class="co"># differentiate y</span></span>
+<span id="cb2-40"><a href="18-18-compensator-design.html#cb2-40" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.y_dot <span class="op">=</span> <span class="va">self</span>.beta <span class="op">*</span> <span class="va">self</span>.y_dot <span class="op"></span></span>
+<span id="cb2-41"><a href="18-18-compensator-design.html#cb2-41" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span><span class="va">self</span>.beta)<span class="op">/</span><span class="va">self</span>.Ts <span class="op">*</span> (y <span class="op">-</span> <span class="va">self</span>.y_d1)</span>
+<span id="cb2-42"><a href="18-18-compensator-design.html#cb2-42" aria-hidden="true" tabindex="-1"></a>            <span class="co"># PID control</span></span>
+<span id="cb2-43"><a href="18-18-compensator-design.html#cb2-43" aria-hidden="true" tabindex="-1"></a>            u_unsat <span class="op">=</span> <span class="va">self</span>.kp<span class="op">*</span>error <span class="op"></span></span>
+<span id="cb2-44"><a href="18-18-compensator-design.html#cb2-44" aria-hidden="true" tabindex="-1"></a>                      <span class="op">+</span> <span class="va">self</span>.ki<span class="op">*</span><span class="va">self</span>.integrator <span class="op"></span></span>
+<span id="cb2-45"><a href="18-18-compensator-design.html#cb2-45" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span> <span class="va">self</span>.kd<span class="op">*</span><span class="va">self</span>.y_dot</span>
+<span id="cb2-46"><a href="18-18-compensator-design.html#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return saturated control signal</span></span>
+<span id="cb2-47"><a href="18-18-compensator-design.html#cb2-47" aria-hidden="true" tabindex="-1"></a>        u_sat <span class="op">=</span> <span class="va">self</span>.saturate(u_unsat)</span>
+<span id="cb2-48"><a href="18-18-compensator-design.html#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrator anti - windup</span></span>
+<span id="cb2-49"><a href="18-18-compensator-design.html#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.ki <span class="op">!=</span> <span class="fl">0.0</span>:</span>
+<span id="cb2-50"><a href="18-18-compensator-design.html#cb2-50" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.integrator <span class="op">=</span> <span class="va">self</span>.integrator <span class="op"></span></span>
+<span id="cb2-51"><a href="18-18-compensator-design.html#cb2-51" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> <span class="va">self</span>.Ts <span class="op">/</span> <span class="va">self</span>.ki <span class="op">*</span> (u_sat <span class="op">-</span> u_unsat)</span>
+<span id="cb2-52"><a href="18-18-compensator-design.html#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update delayed variables</span></span>
+<span id="cb2-53"><a href="18-18-compensator-design.html#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_d1 <span class="op">=</span> error</span>
+<span id="cb2-54"><a href="18-18-compensator-design.html#cb2-54" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_d1 <span class="op">=</span> y</span>
+<span id="cb2-55"><a href="18-18-compensator-design.html#cb2-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> u_sat</span>
+<span id="cb2-56"><a href="18-18-compensator-design.html#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="18-18-compensator-design.html#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> PD(<span class="va">self</span>, r, y):</span>
+<span id="cb2-58"><a href="18-18-compensator-design.html#cb2-58" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the current error</span></span>
+<span id="cb2-59"><a href="18-18-compensator-design.html#cb2-59" aria-hidden="true" tabindex="-1"></a>        error <span class="op">=</span> r <span class="op">-</span> y</span>
+<span id="cb2-60"><a href="18-18-compensator-design.html#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PD Control</span></span>
+<span id="cb2-61"><a href="18-18-compensator-design.html#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> flag <span class="kw">is</span> <span class="va">True</span>:</span>
+<span id="cb2-62"><a href="18-18-compensator-design.html#cb2-62" aria-hidden="true" tabindex="-1"></a>            <span class="co"># differentiate error</span></span>
+<span id="cb2-63"><a href="18-18-compensator-design.html#cb2-63" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.error_dot <span class="op">=</span> <span class="va">self</span>.beta <span class="op">*</span> <span class="va">self</span>.error_dot <span class="op"></span></span>
+<span id="cb2-64"><a href="18-18-compensator-design.html#cb2-64" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span><span class="va">self</span>.beta)<span class="op">/</span><span class="va">self</span>.Ts <span class="op">*</span> (error <span class="op">-</span> <span class="va">self</span>.error_d1)</span>
+<span id="cb2-65"><a href="18-18-compensator-design.html#cb2-65" aria-hidden="true" tabindex="-1"></a>            <span class="co"># PD control</span></span>
+<span id="cb2-66"><a href="18-18-compensator-design.html#cb2-66" aria-hidden="true" tabindex="-1"></a>            u_unsat <span class="op">=</span> <span class="va">self</span>.kp<span class="op">*</span>error <span class="op"></span></span>
+<span id="cb2-67"><a href="18-18-compensator-design.html#cb2-67" aria-hidden="true" tabindex="-1"></a>                      <span class="op">+</span> <span class="va">self</span>.kd<span class="op">*</span><span class="va">self</span>.error_dot</span>
+<span id="cb2-68"><a href="18-18-compensator-design.html#cb2-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb2-69"><a href="18-18-compensator-design.html#cb2-69" aria-hidden="true" tabindex="-1"></a>            <span class="co"># differentiate y</span></span>
+<span id="cb2-70"><a href="18-18-compensator-design.html#cb2-70" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.y_dot <span class="op">=</span> <span class="va">self</span>.beta <span class="op">*</span> <span class="va">self</span>.y_dot <span class="op"></span></span>
+<span id="cb2-71"><a href="18-18-compensator-design.html#cb2-71" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span><span class="va">self</span>.beta)<span class="op">/</span><span class="va">self</span>.Ts <span class="op">*</span> (y <span class="op">-</span> <span class="va">self</span>.y_d1)</span>
+<span id="cb2-72"><a href="18-18-compensator-design.html#cb2-72" aria-hidden="true" tabindex="-1"></a>            <span class="co"># PD control</span></span>
+<span id="cb2-73"><a href="18-18-compensator-design.html#cb2-73" aria-hidden="true" tabindex="-1"></a>            u_unsat <span class="op">=</span> <span class="va">self</span>.kp<span class="op">*</span>error <span class="op"></span></span>
+<span id="cb2-74"><a href="18-18-compensator-design.html#cb2-74" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span> <span class="va">self</span>.kd<span class="op">*</span><span class="va">self</span>.y_dot</span>
+<span id="cb2-75"><a href="18-18-compensator-design.html#cb2-75" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return saturated control signal</span></span>
+<span id="cb2-76"><a href="18-18-compensator-design.html#cb2-76" aria-hidden="true" tabindex="-1"></a>        u_sat <span class="op">=</span> <span class="va">self</span>.saturate(u_unsat)</span>
+<span id="cb2-77"><a href="18-18-compensator-design.html#cb2-77" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update delayed variables</span></span>
+<span id="cb2-78"><a href="18-18-compensator-design.html#cb2-78" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_d1 <span class="op">=</span> error</span>
+<span id="cb2-79"><a href="18-18-compensator-design.html#cb2-79" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y_d1 <span class="op">=</span> y</span>
+<span id="cb2-80"><a href="18-18-compensator-design.html#cb2-80" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> u_sat</span>
+<span id="cb2-81"><a href="18-18-compensator-design.html#cb2-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-82"><a href="18-18-compensator-design.html#cb2-82" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> saturate(<span class="va">self</span>,u):</span>
+<span id="cb2-83"><a href="18-18-compensator-design.html#cb2-83" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> <span class="va">self</span>.limit:</span>
+<span id="cb2-84"><a href="18-18-compensator-design.html#cb2-84" aria-hidden="true" tabindex="-1"></a>            u <span class="op">=</span> <span class="va">self</span>.limit<span class="op">*</span>np.sign(u)</span>
+<span id="cb2-85"><a href="18-18-compensator-design.html#cb2-85" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> u</span>
+<span id="cb2-86"><a href="18-18-compensator-design.html#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-87"><a href="18-18-compensator-design.html#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-88"><a href="18-18-compensator-design.html#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="18-18-compensator-design.html#cb2-89" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<p>The PID controller class is initialized on lines 4–21, where
+<code>kp</code>, <code>ki</code>, and <code>kd</code> are the control
+gains, <code>limit</code> is the saturation limit for the control
+signal, <code>sigma</code> is the dirty derivative gain, <code>Ts</code>
+is the sample rate, and <code>flag</code> is a flag that indicates
+whether the controller differentiates the error or the output. The
+internal memory used to implement the differentiators and integrators
+are initialized to zero in lines 17–21, where <code>y_d1</code> is the
+signal <span class="math inline">\(y\)</span> delayed by one sample and
+<code>error_d1</code> is the error delayed by one signal. PID control is
+implemented in lines 23–55 and PD control is implemented in lines 57–80.
+The integrator update is shown in lines 50–51.</p>
+<h3 data-number="10.1.3" id="gain-selection-for-pid-control"><span class="header-section-number">10.1.3</span> Gain Selection for PID
+control</h3>
+<p>Gain selection for PID control usually proceeds in the following
+manner. The proportional and derivative gains <span
+class="math inline">\(k_P\)</span> and <span
+class="math inline">\(k_D\)</span> are first selected according to the
+methods discussed in
+Chapter <a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>. The integral gain <span
+class="math inline">\(k_I\)</span> is then tuned by starting with zero
+and then slowly increasing the gain until the steady state error is
+removed. The parameters associated with the anti-windup scheme,
+especially <span class="math inline">\(\bar{v}\)</span>, are also
+adjusted during this phase. The proportional and derivative gains can
+then be adjusted if necessary by retuning <span
+class="math inline">\(\omega_n\)</span> and <span
+class="math inline">\(\zeta\)</span>. In the case of successive loop
+closure<span id="idx-0120" class="book-index-anchor" aria-hidden="true"></span>, integrators are only
+added on the outer loop.</p>
+<p>The addition of an integrator has a destabilizing effect on the
+feedback system. This effect is most easily understood by using the root
+locus method described in
+Appendix <a href="28-p-6-root-locus.html#----root-locus" data-reference-type="ref"
+data-reference="chap:PID-root-locus">30</a>, where it can be seen that
+for second-order systems, a large <span
+class="math inline">\(k_I\)</span> will always result in closed-loop
+poles in the right half plane. The root locus can also be used to aid in
+the selection of the integral gain <span
+class="math inline">\(k_I\)</span>, where the value of <span
+class="math inline">\(k_I\)</span> is selected so that integrator has
+minimal impact on the closed-loop poles designed using PD control. A
+more effective method for selecting integral gains will be discussed in
+Chapter <a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a>.</p>
+<h2 data-number="10.2" id="design-study-a-single-link-robot-arm-8" class="section-design-study"><span class="header-section-number">10.2</span> Design Study <a
+href="01-1-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
+<h3 data-number="10.2.1" id="-example-problem-3113" class="section-example"><span class="header-section-number">10.2.1</span> <a
+href="01-1-introduction.html#design-study-single-link-robot-arm"><img src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a></h3>
+<p>The objective of this problem is to implement the PID controller
+using only measured outputs of the system.</p>
+<p>(a) Modify the system dynamics file so that the parameters vary by up to 20%
+each time they are run (uncertainty parameter = 0.2).</p>
+<p>(b) Change the simulation files so that the input to the controller is the
+output and not the state. The controller should only assume knowledge of
+the angle <span class="math inline">\(\theta\)</span> and the reference
+angle <span class="math inline">\(r_\theta\)</span>.</p>
+<p>(c) Implement the PID controller designed in
+Problems <a href="01-1-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>. Use the dirty derivative
+gain of <span class="math inline">\(\sigma=0.05\)</span>. Tune the
+integrator to remove the steady state error caused by the uncertain
+parameters.</p>
+<section id="design-study-a-ch10-digital-pid">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw10-digital-pid"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Assemble the digital PID controller before viewing the
+solution</h3> <p>Identify the implementation pieces that belong in
+the sampled controller class.</p>
+
+<section class="guided-step" data-dsa-step="signals">
+<h4>Step 1. Available feedback signal</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Measured output used by the controller</span><input
+type="text" data-dsa-input="measurement"
+data-dsa-accept="theta\|angle\|measured theta" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="signals">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="signals"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="signals" hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The controller uses the
+measured arm angle <span class="math inline">\(\theta\)</span> and
+the reference command.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="discretization">
+<h4>Step 2. Discrete implementation choices</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Integrator approximation</span><input type="text"
+data-dsa-input="integrator" data-dsa-accept="trapezoidal\|tustin"
+placeholder="short answer"></label> <label><span>Derivative
+implementation</span><input type="text"
+data-dsa-input="derivative" data-dsa-accept="dirty
+derivative\|filtered derivative" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="discretization">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="discretization"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="discretization" hidden><summary>Show solution for
+Step 2</summary><p><strong>Answer:</strong> Use trapezoidal
+integration for the integral term and a dirty derivative for the
+derivative term.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="uncertainty">
+<h4>Step 3. Why simulate with uncertainty?</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Key robustness issue</span><input type="text"
+data-dsa-input="issue" data-dsa-accept="parameter
+uncertainty\|uncertainty\|model uncertainty" placeholder="short answer"></label> </div> <button type="button"
+data-dsa-check="uncertainty">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="uncertainty"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="uncertainty" hidden><summary>Show solution for
+Step 3</summary><p><strong>Answer:</strong> The implementation
+should be checked against parameter uncertainty and actuator limits, not
+only the nominal continuous-time equations.</p></details>
+</section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes PID
+implementation code. Before opening it, outline how you would update the
+integrator, compute the dirty derivative, apply anti-windup, and return
+the control torque.</p> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="Write pseudocode for one sampled PID controller update."></textarea> <p
+class="advanced-caption">This prompt is ungraded. It is intended to
+connect the digital PID concepts to the implementation code in the
+complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>A Python class that implements a PID controller for the single link
+robot arm is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlPID.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> armParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlPID:</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#  tuning parameters</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        tr <span class="op">=</span> <span class="fl">0.6</span>  </span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        zeta <span class="op">=</span> <span class="fl">0.90</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ki <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># integrator gain</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># desired natural frequency</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">#wn = 2.2 / tr</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        wn <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>np.pi<span class="op">/</span>(tr<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>zeta<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute PD gains</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        alpha1 <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> zeta <span class="op">*</span> wn</span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        alpha0 <span class="op">=</span> wn<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp <span class="op">=</span> alpha0 <span class="op">*</span> (P.m <span class="op">*</span> P.ell<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="fl">3.0</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd <span class="op">=</span> (P.m <span class="op">*</span> P.ell<span class="op">**</span><span class="dv">2</span>) <span class="op">\</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="op">/</span> <span class="fl">3.0</span> <span class="op">*</span> (alpha1 <span class="op">-</span> <span class="fl">3.0</span> <span class="op">*</span> P.b <span class="op">/</span> (P.m <span class="op">*</span> P.ell<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print gains</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp: &#39;</span>, <span class="va">self</span>.kp)</span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;ki: &#39;</span>, <span class="va">self</span>.ki)</span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd: &#39;</span>, <span class="va">self</span>.kd)       </span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># dirty derivative gain</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sigma <span class="op">=</span> <span class="fl">0.05</span>  </span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">#----------------------------------------------------------</span></span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># variables for integrator and differentiator</span></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_dot <span class="op">=</span> P.thetadot0  <span class="co"># estimated derivative of theta</span></span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_dot_prev <span class="op">=</span> P.thetadot0</span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_prev <span class="op">=</span> P.theta0  <span class="co"># theta delayed by one sample</span></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_dot <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># estimated derivative of error</span></span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_prev <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Error delayed by one sample</span></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># integrator</span></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, theta_r, y):</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> y[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute feedback linearized torque tau_fl</span></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        tau_fl <span class="op">=</span> P.m <span class="op">*</span> P.g <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">2.0</span>) <span class="op">*</span> np.cos(theta)</span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute the linearized torque using PID</span></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the current error</span></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        error <span class="op">=</span> theta_r <span class="op">-</span> theta</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># differentiate theta</span></span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_dot <span class="op">=</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">-</span> P.Ts) <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts) <span class="op">*</span> <span class="va">self</span>.theta_dot_prev <span class="op">\</span></span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (<span class="fl">2.0</span> <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts)) <span class="op">*</span> ((theta <span class="op">-</span> <span class="va">self</span>.theta_prev))</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Anti-windup scheme: only integrate theta when theta_dot is small</span></span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(<span class="va">self</span>.theta_dot <span class="op">&lt;</span> <span class="fl">0.08</span>):</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.integrator <span class="op">=</span> <span class="va">self</span>.integrator <span class="op">\</span></span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> (P.Ts <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> (error <span class="op">+</span> <span class="va">self</span>.error_prev)</span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PID control</span></span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>        tau_tilde <span class="op">=</span> <span class="va">self</span>.kp <span class="op">*</span> error <span class="op">\</span></span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> <span class="va">self</span>.ki <span class="op">*</span> <span class="va">self</span>.integrator <span class="op">\</span></span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span> <span class="va">self</span>.kd <span class="op">*</span> <span class="va">self</span>.theta_dot</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute total torque</span></span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>        tau_unsat <span class="op">=</span> tau_fl <span class="op">+</span> tau_tilde</span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> saturate(tau_unsat, P.tau_max)</span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update delayed variables</span></span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_prev <span class="op">=</span> error</span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_prev <span class="op">=</span> theta</span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_dot_prev <span class="op">=</span> <span class="va">self</span>.theta_dot </span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tau</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="10.3" id="design-study-b-inverted-pendulum-6" class="section-design-study"><span class="header-section-number">10.3</span> Design Study <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
+<h3 data-number="10.3.1" id="-example-problem-3213" class="section-example"><span class="header-section-number">10.3.1</span> <a
+href="01-1-introduction.html#design-study-pendulum-on-a-cart"><img src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a></h3>
+<p>The objective of this problem is to implement the PID controller
+using only measured outputs of the system.</p>
+<p>(a) Modify the system dynamics file so that the parameters <span
+class="math inline">\(m_1\)</span>, <span
+class="math inline">\(m_2\)</span>, <span
+class="math inline">\(\ell\)</span> and <span
+class="math inline">\(b\)</span> vary by up to 20% of their nominal
+value each time they are run (uncertainty parameter = 0.2).</p>
+<p>(b) Change the simulation files so that the input to the controller is the
+output and not the state. The controller should only assume knowledge of
+the position <span class="math inline">\(z\)</span> and the angle <span
+class="math inline">\(\theta\)</span>, as well as the reference position
+<span class="math inline">\(r_z\)</span>. Track a square wave with
+amplitude of 0.5 meters and a frequency of 0.04 Hz.</p>
+<p>(c) Implement the nested PID loops designed in
+Problems <a href="01-1-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>. Use the dirty derivative
+gain of <span class="math inline">\(\sigma=0.05\)</span>. Tune the
+integrator to remove the steady state error caused by the uncertain
+parameters.</p>
+<section id="design-study-b-ch10-digital-pid">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw10"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Prepare the nested digital PID
+implementation before viewing the solution</h3> <p>Identify measured
+signals, dirty derivatives, uncertainty, and integral tuning.</p>
+<section class="guided-step" data-dsa-step="signals">
+<h4>Step 1. Available controller inputs</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Measured outputs</span><input type="text"
+data-dsa-input="outputs" data-dsa-accept="z,theta\|theta,z\|cart
+position and pendulum angle" placeholder="variables"></label>
+<label><span>Reference</span><input type="text"
+data-dsa-input="ref" data-dsa-accept="rz\|r_z\|cart position
+reference\|position reference" placeholder="variable"></label>
+</div> <button type="button" data-dsa-check="signals">Check Step
+1</button> <p class="quiz-feedback" data-dsa-feedback="signals"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="signals"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The controller uses
+measured z, measured theta, and the cart-position
+reference.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="derivatives">
+<h4>Step 2. Derivative implementation</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Derivative method</span><input type="text"
+data-dsa-input="method" data-dsa-accept="dirty derivative\|filtered
+derivative" placeholder="short answer"></label>
+<label><span>Sigma</span><input type="text"
+data-dsa-input="sigma" data-dsa-accept="0.05"
+placeholder="value"></label> </div> <button type="button"
+data-dsa-check="derivatives">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="derivatives"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="derivatives"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The implementation uses
+dirty derivatives with sigma = 0.05.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="uncertainty">
+<h4>Step 3. Robustness check</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Uncertainty
+level</span><input type="text" data-dsa-input="alpha"
+data-dsa-accept="0.2\|20 </div> <button type="button"
+data-dsa-check="uncertainty">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="uncertainty"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="uncertainty"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The simulation varies
+parameters by up to 20 percent and tunes integral action for
+steady-state error.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes a nested PID
+controller class and a zero-canceling filter class. Before opening it,
+outline each component separately.</p> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="ctrlPID class: write pseudocode for one nested PID update using measured z, measured theta, dirty derivatives, saturation, and anti-windup."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="zeroCancelingFilter class: write pseudocode for filtering the reference command before it enters the nested PID controller."></textarea> <p class="advanced-caption">These
+prompts are ungraded. They are intended to connect the derivation to the
+implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>A Python class that implements a PID controller for the inverted
+pendulum is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlPID.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pendulumParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlPID:</span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># dirty derivative parameters</span></span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sigma <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># cutoff freq for dirty derivative</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">####################################################</span></span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">#       PD Control: Time Design Strategy</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">####################################################</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tuning parameters</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        tr_th <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># Rise time: inner loop (theta)</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.707</span>  <span class="co"># Damping Coefficient: inner loop (theta)</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> <span class="fl">10.0</span>  <span class="co"># Time scale separation between inner &amp; outer loop</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        zeta_z <span class="op">=</span> <span class="fl">0.707</span>  <span class="co"># Damping Coefficient: outer loop (z)</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ki_z <span class="op">=</span> <span class="op">-</span><span class="fl">0.05</span>  <span class="co"># select integrator gain</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturation limits</span></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_max <span class="op">=</span> <span class="fl">30.0</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="fl">180.0</span>  <span class="co"># Max theta, rads</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="co">#                    Inner Loop</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># parameters of the open loop transfer function</span></span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        b0_th <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span> <span class="op">/</span> (P.m1 <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">6.0</span>) <span class="op">\</span></span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> P.m2 <span class="op">*</span> (<span class="fl">2.0</span> <span class="op">*</span> P.ell <span class="op">/</span> <span class="fl">3.0</span>))</span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>        a1_th <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        a0_th <span class="op">=</span> <span class="op">-</span>(P.m1 <span class="op">+</span> P.m2) <span class="op">*</span> P.g <span class="op">/</span> (P.m1 <span class="op">*</span> (P.ell <span class="op">/</span> <span class="fl">6.0</span>) <span class="op">\</span></span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> P.m2 <span class="op">*</span> (<span class="fl">2.0</span> <span class="op">*</span> P.ell <span class="op">/</span> <span class="fl">3.0</span>))</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># coefficients for desired inner loop</span></span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr_th     <span class="co"># Natural frequency</span></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        alpha1_th <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th</span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a>        alpha0_th <span class="op">=</span> wn_th<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute gains</span></span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp_th <span class="op">=</span> (alpha0_th <span class="op">-</span> a0_th) <span class="op">/</span> b0_th</span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd_th <span class="op">=</span> (alpha1_th <span class="op">-</span> a1_th) <span class="op">/</span> b0_th</span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        DC_gain <span class="op">=</span> <span class="va">self</span>.kp_th <span class="op">/</span> ((P.m1 <span class="op">+</span> P.m2) <span class="op">*</span> P.g <span class="op">+</span> <span class="va">self</span>.kp_th)</span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="co">#                    Outer Loop</span></span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># coefficients for desired outer loop</span></span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>        tr_z <span class="op">=</span> M <span class="op">*</span> tr_th  <span class="co"># desired rise time, s</span></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>        wn_z <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr_z  <span class="co"># desired natural frequency</span></span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute gains</span></span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>        a  <span class="op">=</span> <span class="op">-</span>(wn_z<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> np.sqrt(<span class="fl">2.0</span> <span class="op">*</span> P.ell <span class="op">/</span> (<span class="fl">3.0</span> <span class="op">*</span> P.g))</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> (a <span class="op">-</span> <span class="fl">2.0</span> <span class="op">*</span> zeta_z <span class="op">*</span> wn_z) <span class="op">\</span></span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>            <span class="op">*</span> np.sqrt(<span class="fl">2.0</span> <span class="op">*</span> P.ell <span class="op">/</span> (<span class="fl">3.0</span> <span class="op">*</span> P.g))</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd_z <span class="op">=</span> b <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> b)</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp_z <span class="op">=</span> a <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> <span class="va">self</span>.kd_z)</span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print control gains to terminal        </span></span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;DC_gain&#39;</span>, DC_gain)</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp_th: &#39;</span>, <span class="va">self</span>.kp_th)</span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd_th: &#39;</span>, <span class="va">self</span>.kd_th)</span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp_z: &#39;</span>, <span class="va">self</span>.kp_z)</span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;ki_z: &#39;</span>, <span class="va">self</span>.ki_z)</span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd_z: &#39;</span>, <span class="va">self</span>.kd_z)</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>        <span class="co"># initialize zero canceling filter</span></span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">filter</span> <span class="op">=</span> zeroCancelingFilter(DC_gain)</span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>        <span class="co"># initialize variables for integrator and differentiators</span></span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_z <span class="op">=</span> <span class="fl">0.</span></span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_z_prev <span class="op">=</span> <span class="fl">0.</span></span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.z_dot <span class="op">=</span> P.zdot0</span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.z_prev <span class="op">=</span> P.z0</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_dot <span class="op">=</span> P.thetadot0</span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_prev <span class="op">=</span> P.theta0</span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, z_r, y):</span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> y[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> y[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update Outer Loop (z-control)</span></span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the error in z</span></span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a>        error_z <span class="op">=</span> z_r <span class="op">-</span> z</span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a>        <span class="co"># differentiate z</span></span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.z_dot <span class="op">=</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">-</span> P.Ts) <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts) <span class="op">*</span> <span class="va">self</span>.z_dot <span class="op">\</span></span>
+<span id="cb1-89"><a href="18-18-compensator-design.html#cb1-89" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (<span class="fl">2.0</span> <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts)) <span class="op">*</span> ((z <span class="op">-</span> <span class="va">self</span>.z_prev))</span>
+<span id="cb1-90"><a href="18-18-compensator-design.html#cb1-90" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-91"><a href="18-18-compensator-design.html#cb1-91" aria-hidden="true" tabindex="-1"></a>        <span class="co"># if z_dot is small, integrate z</span></span>
+<span id="cb1-92"><a href="18-18-compensator-design.html#cb1-92" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.<span class="bu">abs</span>(<span class="va">self</span>.z_dot) <span class="op">&lt;</span> <span class="fl">0.07</span>:</span>
+<span id="cb1-93"><a href="18-18-compensator-design.html#cb1-93" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.integrator_z <span class="op">=</span> <span class="va">self</span>.integrator_z <span class="op">\</span></span>
+<span id="cb1-94"><a href="18-18-compensator-design.html#cb1-94" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> (P.Ts <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> (error_z <span class="op">+</span> <span class="va">self</span>.error_z_prev)</span>
+<span id="cb1-95"><a href="18-18-compensator-design.html#cb1-95" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-96"><a href="18-18-compensator-design.html#cb1-96" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PID control - unsaturated</span></span>
+<span id="cb1-97"><a href="18-18-compensator-design.html#cb1-97" aria-hidden="true" tabindex="-1"></a>        theta_r_unsat <span class="op">=</span> <span class="va">self</span>.kp_z <span class="op">*</span> error_z <span class="op">\</span></span>
+<span id="cb1-98"><a href="18-18-compensator-design.html#cb1-98" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> <span class="va">self</span>.ki_z <span class="op">*</span> <span class="va">self</span>.integrator_z <span class="op">\</span></span>
+<span id="cb1-99"><a href="18-18-compensator-design.html#cb1-99" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span> <span class="va">self</span>.kd_z <span class="op">*</span> <span class="va">self</span>.z_dot</span>
+<span id="cb1-100"><a href="18-18-compensator-design.html#cb1-100" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-101"><a href="18-18-compensator-design.html#cb1-101" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturate theta_r</span></span>
+<span id="cb1-102"><a href="18-18-compensator-design.html#cb1-102" aria-hidden="true" tabindex="-1"></a>        theta_r <span class="op">=</span> saturate(theta_r_unsat, <span class="va">self</span>.theta_max)</span>
+<span id="cb1-103"><a href="18-18-compensator-design.html#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-104"><a href="18-18-compensator-design.html#cb1-104" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrator anti - windup</span></span>
+<span id="cb1-105"><a href="18-18-compensator-design.html#cb1-105" aria-hidden="true" tabindex="-1"></a>        <span class="co"># if self.ki_z != 0.0:</span></span>
+<span id="cb1-106"><a href="18-18-compensator-design.html#cb1-106" aria-hidden="true" tabindex="-1"></a>        <span class="co">#     self.integrator_z = self.integrator_z \</span></span>
+<span id="cb1-107"><a href="18-18-compensator-design.html#cb1-107" aria-hidden="true" tabindex="-1"></a>        <span class="co">#         + P.Ts / self.ki_z * (theta_r - theta_r_unsat)</span></span>
+<span id="cb1-108"><a href="18-18-compensator-design.html#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="18-18-compensator-design.html#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-110"><a href="18-18-compensator-design.html#cb1-110" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-111"><a href="18-18-compensator-design.html#cb1-111" aria-hidden="true" tabindex="-1"></a>        <span class="co"># zero canceling filter applied to theta_r to cancel</span></span>
+<span id="cb1-112"><a href="18-18-compensator-design.html#cb1-112" aria-hidden="true" tabindex="-1"></a>        <span class="co"># left-half plane zero and DC-gain</span></span>
+<span id="cb1-113"><a href="18-18-compensator-design.html#cb1-113" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-114"><a href="18-18-compensator-design.html#cb1-114" aria-hidden="true" tabindex="-1"></a>        theta_r <span class="op">=</span> <span class="va">self</span>.<span class="bu">filter</span>.update(theta_r)</span>
+<span id="cb1-115"><a href="18-18-compensator-design.html#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-116"><a href="18-18-compensator-design.html#cb1-116" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-117"><a href="18-18-compensator-design.html#cb1-117" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update Inner Loop (theta-control)</span></span>
+<span id="cb1-118"><a href="18-18-compensator-design.html#cb1-118" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-119"><a href="18-18-compensator-design.html#cb1-119" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the error in theta</span></span>
+<span id="cb1-120"><a href="18-18-compensator-design.html#cb1-120" aria-hidden="true" tabindex="-1"></a>        error_th <span class="op">=</span> theta_r <span class="op">-</span> theta</span>
+<span id="cb1-121"><a href="18-18-compensator-design.html#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-122"><a href="18-18-compensator-design.html#cb1-122" aria-hidden="true" tabindex="-1"></a>        <span class="co"># differentiate theta</span></span>
+<span id="cb1-123"><a href="18-18-compensator-design.html#cb1-123" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_dot <span class="op">=</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">-</span> P.Ts) <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts) <span class="op">*</span> <span class="va">self</span>.theta_dot <span class="op">\</span></span>
+<span id="cb1-124"><a href="18-18-compensator-design.html#cb1-124" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (<span class="fl">2.0</span> <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts)) <span class="op">*</span> ((theta <span class="op">-</span> <span class="va">self</span>.theta_prev))</span>
+<span id="cb1-125"><a href="18-18-compensator-design.html#cb1-125" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-126"><a href="18-18-compensator-design.html#cb1-126" aria-hidden="true" tabindex="-1"></a>         <span class="co"># PD control on theta</span></span>
+<span id="cb1-127"><a href="18-18-compensator-design.html#cb1-127" aria-hidden="true" tabindex="-1"></a>        F_unsat <span class="op">=</span> <span class="va">self</span>.kp_th <span class="op">*</span> error_th <span class="op">\</span></span>
+<span id="cb1-128"><a href="18-18-compensator-design.html#cb1-128" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span> <span class="va">self</span>.kd_th <span class="op">*</span> <span class="va">self</span>.theta_dot</span>
+<span id="cb1-129"><a href="18-18-compensator-design.html#cb1-129" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-130"><a href="18-18-compensator-design.html#cb1-130" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturate the force</span></span>
+<span id="cb1-131"><a href="18-18-compensator-design.html#cb1-131" aria-hidden="true" tabindex="-1"></a>        F <span class="op">=</span> saturate(F_unsat, P.F_max)</span>
+<span id="cb1-132"><a href="18-18-compensator-design.html#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-133"><a href="18-18-compensator-design.html#cb1-133" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update delayed variables</span></span>
+<span id="cb1-134"><a href="18-18-compensator-design.html#cb1-134" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_z_prev <span class="op">=</span> error_z</span>
+<span id="cb1-135"><a href="18-18-compensator-design.html#cb1-135" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.z_prev <span class="op">=</span> z</span>
+<span id="cb1-136"><a href="18-18-compensator-design.html#cb1-136" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_prev <span class="op">=</span> theta</span>
+<span id="cb1-137"><a href="18-18-compensator-design.html#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-138"><a href="18-18-compensator-design.html#cb1-138" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return computed force</span></span>
+<span id="cb1-139"><a href="18-18-compensator-design.html#cb1-139" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> F</span>
+<span id="cb1-140"><a href="18-18-compensator-design.html#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="18-18-compensator-design.html#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-142"><a href="18-18-compensator-design.html#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> zeroCancelingFilter:</span>
+<span id="cb1-143"><a href="18-18-compensator-design.html#cb1-143" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, DC_gain):</span>
+<span id="cb1-144"><a href="18-18-compensator-design.html#cb1-144" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a <span class="op">=</span> <span class="op">-</span><span class="fl">3.0</span> <span class="op">/</span> (<span class="fl">2.0</span> <span class="op">*</span> P.ell <span class="op">*</span> DC_gain)</span>
+<span id="cb1-145"><a href="18-18-compensator-design.html#cb1-145" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b <span class="op">=</span> np.sqrt(<span class="fl">3.0</span> <span class="op">*</span> P.g <span class="op">/</span> (<span class="fl">2.0</span> <span class="op">*</span> P.ell))</span>
+<span id="cb1-146"><a href="18-18-compensator-design.html#cb1-146" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-147"><a href="18-18-compensator-design.html#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-148"><a href="18-18-compensator-design.html#cb1-148" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, <span class="bu">input</span>):</span>
+<span id="cb1-149"><a href="18-18-compensator-design.html#cb1-149" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate using RK1</span></span>
+<span id="cb1-150"><a href="18-18-compensator-design.html#cb1-150" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state <span class="op">=</span> <span class="va">self</span>.state <span class="op">\</span></span>
+<span id="cb1-151"><a href="18-18-compensator-design.html#cb1-151" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> P.Ts <span class="op">*</span> (<span class="op">-</span><span class="va">self</span>.b <span class="op">*</span> <span class="va">self</span>.state <span class="op">+</span> <span class="va">self</span>.a <span class="op">*</span> <span class="bu">input</span>)</span>
+<span id="cb1-152"><a href="18-18-compensator-design.html#cb1-152" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.state</span>
+<span id="cb1-153"><a href="18-18-compensator-design.html#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-154"><a href="18-18-compensator-design.html#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-155"><a href="18-18-compensator-design.html#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-156"><a href="18-18-compensator-design.html#cb1-156" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-157"><a href="18-18-compensator-design.html#cb1-157" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-158"><a href="18-18-compensator-design.html#cb1-158" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span>
+<span id="cb1-159"><a href="18-18-compensator-design.html#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="18-18-compensator-design.html#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-161"><a href="18-18-compensator-design.html#cb1-161" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="10.4"
+id="design-study-c-satellite-attitude-control-7" class="section-design-study"><span class="header-section-number">10.4</span> Design Study <a
+href="01-1-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<h3 data-number="10.4.1" id="-example-problem-3313" class="section-example"><span class="header-section-number">10.4.1</span> <a href="01-1-introduction.html#design-study-satellite-attitude-control"><img
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example Problem
+<a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a></h3>
+<p>The objective of this problem is to implement the PID controller
+using only measured outputs of the system.</p>
+<p>(a) Modify the system dynamics file so that the parameters <span
+class="math inline">\(J_s\)</span>, <span
+class="math inline">\(J_p\)</span>, <span
+class="math inline">\(k\)</span> and <span
+class="math inline">\(b\)</span> vary by up to 20% of their nominal
+value each time they are run (uncertainty parameter = 0.2).</p>
+<p>(b) Change the simulation files so that the input to the controller is the
+output and not the state. Assume that the controller only has knowledge
+of the angles <span class="math inline">\(\phi\)</span> and <span
+class="math inline">\(\theta\)</span> as well as the reference angle
+<span class="math inline">\(r_\phi\)</span>.</p>
+<p>(c) Implement the nested PID loops designed in
+Problems <a href="01-1-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">11</a>. Use the dirty derivative
+gain of <span class="math inline">\(\sigma=0.05\)</span>. Tune the
+integrator to remove the steady state error caused by the uncertain
+parameters.</p>
+<section id="design-study-c-ch10-digital-pid">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw10" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Plan the measured-output satellite PID implementation before
+viewing the solution</h3> <p>This implementation uses uncertain
+plant parameters and measured angles rather than full state
+feedback.</p> <section class="guided-step"
+data-dsa-step="uncertainty"> <h4>Step 1. Plant uncertainty</h4>
+<div class="guided-input-grid guided-input-grid-scalars">
+<label><span>Parameter variation</span><input type="text"
+data-dsa-input="alpha" data-dsa-accept="20 <label><span>Varied
+parameters</span><input type="text" data-dsa-input="params"
+data-dsa-accept="js,jp,k,b\|j_s j_p k b\|inertias stiffness damping"
+placeholder="parameters"></label> </div> <button type="button"
+data-dsa-check="uncertainty" data-dsa-hint="The dynamics file varies
+both inertias plus spring and damping constants.">Check Step
+1</button> <p class="quiz-feedback"
+data-dsa-feedback="uncertainty" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="uncertainty" hidden><summary>Show solution for
+Step 1</summary><p><strong>Answer:</strong> The plant parameters
+<span class="math inline">\(J_s\)</span>, <span class="math
+inline">\(J_p\)</span>, <span class="math inline">\(k\)</span>,
+and <span class="math inline">\(b\)</span> vary by up to 20
+percent.</p></details> </section> <section class="guided-step"
+data-dsa-step="measurements"> <h4>Step 2. Measured signals</h4>
+<div class="guided-input-grid guided-input-grid-scalars">
+<label><span>Measured angles</span><input type="text"
+data-dsa-input="angles" data-dsa-accept="theta,phi\|phi,theta\|body
+and panel angles" placeholder="variables"></label>
+<label><span>Derivative method</span><input type="text"
+data-dsa-input="derivative" data-dsa-accept="dirty
+derivative\|filtered derivative\|dirty"
+placeholder="method"></label> </div> <button type="button"
+data-dsa-check="measurements" data-dsa-hint="The controller estimates
+rates from measured angles.">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="measurements"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="measurements"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The controller uses
+measured <span class="math inline">\(\theta\)</span>, <span
+class="math inline">\(\phi\)</span>, and <span class="math
+inline">\(r_\phi\)</span>, with dirty derivatives for rate
+estimates.</p></details> </section> <section
+class="guided-step" data-dsa-step="integrator"> <h4>Step 3.
+Integrator purpose</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Integrator
+removes</span><input type="text" data-dsa-input="purpose"
+data-dsa-accept="steady state error\|steady-state error\|offset"
+placeholder="short answer"></label> </div> <button
+type="button" data-dsa-check="integrator" data-dsa-hint="Uncertain
+parameters create residual offset unless integral action is
+tuned.">Check Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="integrator" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="integrator" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The integrator is tuned
+to remove steady-state error caused by uncertain
+parameters.</p></details> </section> <section class="guided-step
+guided-step--reflection"> <h4>Pseudocode</h4> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="Write pseudocode for reading measured angles, computing dirty derivatives, nested PID torque, saturation, and integrator update."></textarea>
+</section> <div class="advanced-button-row"><button
+type="button" data-dsa-reveal-all>Show complete
+solution</button></div> <p class="quiz-feedback"
+data-dsa-complete-feedback aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>A Python class that implements a PID controller for the satellite is
+shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="ctrlPID.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="18-18-compensator-design.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="18-18-compensator-design.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> satelliteParam <span class="im">as</span> P</span>
+<span id="cb1-3"><a href="18-18-compensator-design.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="18-18-compensator-design.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="18-18-compensator-design.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ctrlPID:</span>
+<span id="cb1-6"><a href="18-18-compensator-design.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-7"><a href="18-18-compensator-design.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sigma <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># cutoff freq for dirty derivative</span></span>
+<span id="cb1-8"><a href="18-18-compensator-design.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.beta <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> <span class="va">self</span>.sigma <span class="op">-</span> P.Ts) <span class="op">\</span></span>
+<span id="cb1-9"><a href="18-18-compensator-design.html#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="va">self</span>.sigma <span class="op">+</span> P.Ts)  </span>
+<span id="cb1-10"><a href="18-18-compensator-design.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">####################################################</span></span>
+<span id="cb1-11"><a href="18-18-compensator-design.html#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">#       PD Control: Time Design Strategy</span></span>
+<span id="cb1-12"><a href="18-18-compensator-design.html#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">####################################################</span></span>
+<span id="cb1-13"><a href="18-18-compensator-design.html#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tuning parameters</span></span>
+<span id="cb1-14"><a href="18-18-compensator-design.html#cb1-14" aria-hidden="true" tabindex="-1"></a>        tr_th <span class="op">=</span> <span class="fl">0.4</span>  <span class="co"># rise time for inner loop</span></span>
+<span id="cb1-15"><a href="18-18-compensator-design.html#cb1-15" aria-hidden="true" tabindex="-1"></a>        zeta_th <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio for inner loop</span></span>
+<span id="cb1-16"><a href="18-18-compensator-design.html#cb1-16" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> <span class="fl">15.0</span>  <span class="co"># Time scale separation between inner &amp; outer loop</span></span>
+<span id="cb1-17"><a href="18-18-compensator-design.html#cb1-17" aria-hidden="true" tabindex="-1"></a>        zeta_phi <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># damping ratio for outer loop</span></span>
+<span id="cb1-18"><a href="18-18-compensator-design.html#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ki_phi <span class="op">=</span> <span class="fl">0.15</span>  <span class="co"># integral gain for outer loop</span></span>
+<span id="cb1-19"><a href="18-18-compensator-design.html#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="18-18-compensator-design.html#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturation limits</span></span>
+<span id="cb1-21"><a href="18-18-compensator-design.html#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_max <span class="op">=</span> <span class="fl">30.0</span><span class="op">*</span>np.pi<span class="op">/</span><span class="fl">180.0</span>  </span>
+<span id="cb1-22"><a href="18-18-compensator-design.html#cb1-22" aria-hidden="true" tabindex="-1"></a>            <span class="co"># maximum commanded base angle</span></span>
+<span id="cb1-23"><a href="18-18-compensator-design.html#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="18-18-compensator-design.html#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-25"><a href="18-18-compensator-design.html#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="co">#                    Inner Loop</span></span>
+<span id="cb1-26"><a href="18-18-compensator-design.html#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-27"><a href="18-18-compensator-design.html#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PD design for inner loop</span></span>
+<span id="cb1-28"><a href="18-18-compensator-design.html#cb1-28" aria-hidden="true" tabindex="-1"></a>        wn_th <span class="op">=</span> <span class="fl">2.2</span> <span class="op">/</span> tr_th</span>
+<span id="cb1-29"><a href="18-18-compensator-design.html#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp_th <span class="op">=</span> wn_th<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (P.Js <span class="op">+</span> P.Jp)</span>
+<span id="cb1-30"><a href="18-18-compensator-design.html#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd_th <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> zeta_th <span class="op">*</span> wn_th <span class="op">*</span> (P.Js <span class="op">+</span> P.Jp)</span>
+<span id="cb1-31"><a href="18-18-compensator-design.html#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="18-18-compensator-design.html#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># DC gain for inner loop</span></span>
+<span id="cb1-33"><a href="18-18-compensator-design.html#cb1-33" aria-hidden="true" tabindex="-1"></a>        k_DC_th <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-34"><a href="18-18-compensator-design.html#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="18-18-compensator-design.html#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-36"><a href="18-18-compensator-design.html#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="co">#                    Outer Loop</span></span>
+<span id="cb1-37"><a href="18-18-compensator-design.html#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-38"><a href="18-18-compensator-design.html#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PD design for outer loop</span></span>
+<span id="cb1-39"><a href="18-18-compensator-design.html#cb1-39" aria-hidden="true" tabindex="-1"></a>        tr_phi <span class="op">=</span> M <span class="op">*</span> tr_th  <span class="co"># rise time for outer loop</span></span>
+<span id="cb1-40"><a href="18-18-compensator-design.html#cb1-40" aria-hidden="true" tabindex="-1"></a>        wn_phi <span class="op">=</span><span class="fl">2.2</span> <span class="op">/</span> tr_phi</span>
+<span id="cb1-41"><a href="18-18-compensator-design.html#cb1-41" aria-hidden="true" tabindex="-1"></a>        AA <span class="op">=</span> np.array([</span>
+<span id="cb1-42"><a href="18-18-compensator-design.html#cb1-42" aria-hidden="true" tabindex="-1"></a>                [P.k <span class="op">*</span> k_DC_th, <span class="op">\</span></span>
+<span id="cb1-43"><a href="18-18-compensator-design.html#cb1-43" aria-hidden="true" tabindex="-1"></a>                    <span class="op">-</span>P.b <span class="op">*</span> k_DC_th <span class="op">*</span> wn_phi<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-44"><a href="18-18-compensator-design.html#cb1-44" aria-hidden="true" tabindex="-1"></a>                [P.b <span class="op">*</span> k_DC_th, <span class="op">\</span></span>
+<span id="cb1-45"><a href="18-18-compensator-design.html#cb1-45" aria-hidden="true" tabindex="-1"></a>                    P.k <span class="op">*</span> k_DC_th <span class="op">\</span></span>
+<span id="cb1-46"><a href="18-18-compensator-design.html#cb1-46" aria-hidden="true" tabindex="-1"></a>                        <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> zeta_phi <span class="op">*</span> wn_phi <span class="op">*</span> P.b <span class="op">*</span> k_DC_th]])    </span>
+<span id="cb1-47"><a href="18-18-compensator-design.html#cb1-47" aria-hidden="true" tabindex="-1"></a>        bb <span class="op">=</span> np.array([</span>
+<span id="cb1-48"><a href="18-18-compensator-design.html#cb1-48" aria-hidden="true" tabindex="-1"></a>                    [<span class="op">-</span>P.k <span class="op">+</span> P.Jp <span class="op">*</span> wn_phi<span class="op">**</span><span class="dv">2</span>],</span>
+<span id="cb1-49"><a href="18-18-compensator-design.html#cb1-49" aria-hidden="true" tabindex="-1"></a>                    [<span class="op">-</span>P.b <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> P.Jp <span class="op">*</span> zeta_phi <span class="op">*</span> wn_phi]])</span>
+<span id="cb1-50"><a href="18-18-compensator-design.html#cb1-50" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> np.linalg.inv(AA) <span class="op">@</span> bb</span>
+<span id="cb1-51"><a href="18-18-compensator-design.html#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kp_phi <span class="op">=</span> tmp[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-52"><a href="18-18-compensator-design.html#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kd_phi <span class="op">=</span> tmp[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-53"><a href="18-18-compensator-design.html#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="18-18-compensator-design.html#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="co"># DC gain for outer loop</span></span>
+<span id="cb1-55"><a href="18-18-compensator-design.html#cb1-55" aria-hidden="true" tabindex="-1"></a>        k_DC_phi <span class="op">=</span> P.k <span class="op">*</span> k_DC_th <span class="op">*</span> <span class="va">self</span>.kp_phi <span class="op">\</span></span>
+<span id="cb1-56"><a href="18-18-compensator-design.html#cb1-56" aria-hidden="true" tabindex="-1"></a>            <span class="op">/</span> (P.k <span class="op">+</span> P.k <span class="op">*</span> k_DC_th <span class="op">*</span> <span class="va">self</span>.kp_phi)</span>
+<span id="cb1-57"><a href="18-18-compensator-design.html#cb1-57" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-58"><a href="18-18-compensator-design.html#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print control gains to terminal        </span></span>
+<span id="cb1-59"><a href="18-18-compensator-design.html#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;k_DC_phi&#39;</span>, k_DC_phi)</span>
+<span id="cb1-60"><a href="18-18-compensator-design.html#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp_th: &#39;</span>, <span class="va">self</span>.kp_th)</span>
+<span id="cb1-61"><a href="18-18-compensator-design.html#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd_th: &#39;</span>, <span class="va">self</span>.kd_th)</span>
+<span id="cb1-62"><a href="18-18-compensator-design.html#cb1-62" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kp_phi: &#39;</span>, <span class="va">self</span>.kp_phi)</span>
+<span id="cb1-63"><a href="18-18-compensator-design.html#cb1-63" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;ki_phi:&#39;</span>, <span class="va">self</span>.ki_phi)</span>
+<span id="cb1-64"><a href="18-18-compensator-design.html#cb1-64" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;kd_phi: &#39;</span>, <span class="va">self</span>.kd_phi)</span>
+<span id="cb1-65"><a href="18-18-compensator-design.html#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="18-18-compensator-design.html#cb1-66" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-67"><a href="18-18-compensator-design.html#cb1-67" aria-hidden="true" tabindex="-1"></a>        <span class="co"># initialize variables for integrator &amp; differentiators</span></span>
+<span id="cb1-68"><a href="18-18-compensator-design.html#cb1-68" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-69"><a href="18-18-compensator-design.html#cb1-69" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_phi <span class="op">=</span> <span class="fl">0.</span></span>
+<span id="cb1-70"><a href="18-18-compensator-design.html#cb1-70" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_phi_prev <span class="op">=</span> <span class="fl">0.</span></span>
+<span id="cb1-71"><a href="18-18-compensator-design.html#cb1-71" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.phi_dot <span class="op">=</span> P.phidot0</span>
+<span id="cb1-72"><a href="18-18-compensator-design.html#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.phi_prev <span class="op">=</span> P.phi0</span>
+<span id="cb1-73"><a href="18-18-compensator-design.html#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_dot <span class="op">=</span> P.thetadot0</span>
+<span id="cb1-74"><a href="18-18-compensator-design.html#cb1-74" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_prev <span class="op">=</span> P.theta0</span>
+<span id="cb1-75"><a href="18-18-compensator-design.html#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="18-18-compensator-design.html#cb1-76" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(<span class="va">self</span>, phi_r, y):</span>
+<span id="cb1-77"><a href="18-18-compensator-design.html#cb1-77" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> y[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-78"><a href="18-18-compensator-design.html#cb1-78" aria-hidden="true" tabindex="-1"></a>        phi <span class="op">=</span> y[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-79"><a href="18-18-compensator-design.html#cb1-79" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-80"><a href="18-18-compensator-design.html#cb1-80" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update Outer Loop (phi-control)</span></span>
+<span id="cb1-81"><a href="18-18-compensator-design.html#cb1-81" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-82"><a href="18-18-compensator-design.html#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the error in z</span></span>
+<span id="cb1-83"><a href="18-18-compensator-design.html#cb1-83" aria-hidden="true" tabindex="-1"></a>        error_phi <span class="op">=</span> phi_r <span class="op">-</span> phi</span>
+<span id="cb1-84"><a href="18-18-compensator-design.html#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="18-18-compensator-design.html#cb1-85" aria-hidden="true" tabindex="-1"></a>        <span class="co"># integrate error in phi</span></span>
+<span id="cb1-86"><a href="18-18-compensator-design.html#cb1-86" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.integrator_phi <span class="op">=</span> <span class="va">self</span>.integrator_phi <span class="op">\</span></span>
+<span id="cb1-87"><a href="18-18-compensator-design.html#cb1-87" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (P.Ts <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> (error_phi <span class="op">+</span> <span class="va">self</span>.error_phi_prev)     </span>
+<span id="cb1-88"><a href="18-18-compensator-design.html#cb1-88" aria-hidden="true" tabindex="-1"></a>           </span>
+<span id="cb1-89"><a href="18-18-compensator-design.html#cb1-89" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute derivative of phi</span></span>
+<span id="cb1-90"><a href="18-18-compensator-design.html#cb1-90" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.phi_dot <span class="op">=</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">-</span> P.Ts) <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts) <span class="op">*</span> <span class="va">self</span>.phi_dot <span class="op">\</span></span>
+<span id="cb1-91"><a href="18-18-compensator-design.html#cb1-91" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (<span class="fl">2.0</span> <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts)) <span class="op">*</span> ((phi <span class="op">-</span> <span class="va">self</span>.phi_prev))</span>
+<span id="cb1-92"><a href="18-18-compensator-design.html#cb1-92" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-93"><a href="18-18-compensator-design.html#cb1-93" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PID control - unsaturated</span></span>
+<span id="cb1-94"><a href="18-18-compensator-design.html#cb1-94" aria-hidden="true" tabindex="-1"></a>        theta_r_unsat <span class="op">=</span> <span class="va">self</span>.kp_phi <span class="op">*</span> error_phi <span class="op">\</span></span>
+<span id="cb1-95"><a href="18-18-compensator-design.html#cb1-95" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> <span class="va">self</span>.ki_phi <span class="op">*</span> <span class="va">self</span>.integrator_phi <span class="op">\</span></span>
+<span id="cb1-96"><a href="18-18-compensator-design.html#cb1-96" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span> <span class="va">self</span>.kd_phi <span class="op">*</span> <span class="va">self</span>.phi_dot</span>
+<span id="cb1-97"><a href="18-18-compensator-design.html#cb1-97" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-98"><a href="18-18-compensator-design.html#cb1-98" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturate theta_r</span></span>
+<span id="cb1-99"><a href="18-18-compensator-design.html#cb1-99" aria-hidden="true" tabindex="-1"></a>        theta_r <span class="op">=</span> saturate(theta_r_unsat, <span class="va">self</span>.theta_max)</span>
+<span id="cb1-100"><a href="18-18-compensator-design.html#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="18-18-compensator-design.html#cb1-101" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Integrator anti - windup</span></span>
+<span id="cb1-102"><a href="18-18-compensator-design.html#cb1-102" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.ki_phi <span class="op">!=</span> <span class="fl">0.0</span>:</span>
+<span id="cb1-103"><a href="18-18-compensator-design.html#cb1-103" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.integrator_phi <span class="op">=</span> <span class="va">self</span>.integrator_phi <span class="op">\</span></span>
+<span id="cb1-104"><a href="18-18-compensator-design.html#cb1-104" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> P.Ts <span class="op">/</span> <span class="va">self</span>.ki_phi <span class="op">*</span> (theta_r <span class="op">-</span> theta_r_unsat)</span>
+<span id="cb1-105"><a href="18-18-compensator-design.html#cb1-105" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-106"><a href="18-18-compensator-design.html#cb1-106" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-107"><a href="18-18-compensator-design.html#cb1-107" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update Inner Loop (theta-control)</span></span>
+<span id="cb1-108"><a href="18-18-compensator-design.html#cb1-108" aria-hidden="true" tabindex="-1"></a>        <span class="co">#---------------------------------------------------</span></span>
+<span id="cb1-109"><a href="18-18-compensator-design.html#cb1-109" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute the error in theta</span></span>
+<span id="cb1-110"><a href="18-18-compensator-design.html#cb1-110" aria-hidden="true" tabindex="-1"></a>        error_th <span class="op">=</span> theta_r <span class="op">-</span> theta</span>
+<span id="cb1-111"><a href="18-18-compensator-design.html#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="18-18-compensator-design.html#cb1-112" aria-hidden="true" tabindex="-1"></a>        <span class="co"># differentiate theta</span></span>
+<span id="cb1-113"><a href="18-18-compensator-design.html#cb1-113" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_dot <span class="op">=</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">-</span> P.Ts) <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts) <span class="op">*</span> <span class="va">self</span>.theta_dot <span class="op">\</span></span>
+<span id="cb1-114"><a href="18-18-compensator-design.html#cb1-114" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> (<span class="fl">2.0</span> <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span><span class="va">self</span>.sigma <span class="op">+</span> P.Ts)) <span class="op">*</span> ((theta <span class="op">-</span> <span class="va">self</span>.theta_prev))</span>
+<span id="cb1-115"><a href="18-18-compensator-design.html#cb1-115" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-116"><a href="18-18-compensator-design.html#cb1-116" aria-hidden="true" tabindex="-1"></a>         <span class="co"># PD control on theta</span></span>
+<span id="cb1-117"><a href="18-18-compensator-design.html#cb1-117" aria-hidden="true" tabindex="-1"></a>        tau_unsat <span class="op">=</span> <span class="va">self</span>.kp_th <span class="op">*</span> error_th <span class="op">\</span></span>
+<span id="cb1-118"><a href="18-18-compensator-design.html#cb1-118" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span> <span class="va">self</span>.kd_th <span class="op">*</span> <span class="va">self</span>.theta_dot</span>
+<span id="cb1-119"><a href="18-18-compensator-design.html#cb1-119" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-120"><a href="18-18-compensator-design.html#cb1-120" aria-hidden="true" tabindex="-1"></a>        <span class="co"># saturate the torque</span></span>
+<span id="cb1-121"><a href="18-18-compensator-design.html#cb1-121" aria-hidden="true" tabindex="-1"></a>        tau <span class="op">=</span> saturate(tau_unsat, P.tau_max)</span>
+<span id="cb1-122"><a href="18-18-compensator-design.html#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="18-18-compensator-design.html#cb1-123" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update delayed variables</span></span>
+<span id="cb1-124"><a href="18-18-compensator-design.html#cb1-124" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.error_phi_prev <span class="op">=</span> error_phi</span>
+<span id="cb1-125"><a href="18-18-compensator-design.html#cb1-125" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.phi_prev <span class="op">=</span> phi</span>
+<span id="cb1-126"><a href="18-18-compensator-design.html#cb1-126" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta_prev <span class="op">=</span> theta</span>
+<span id="cb1-127"><a href="18-18-compensator-design.html#cb1-127" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-128"><a href="18-18-compensator-design.html#cb1-128" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return computed force</span></span>
+<span id="cb1-129"><a href="18-18-compensator-design.html#cb1-129" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tau</span>
+<span id="cb1-130"><a href="18-18-compensator-design.html#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-131"><a href="18-18-compensator-design.html#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="18-18-compensator-design.html#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saturate(u, limit):</span>
+<span id="cb1-133"><a href="18-18-compensator-design.html#cb1-133" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(u) <span class="op">&gt;</span> limit:</span>
+<span id="cb1-134"><a href="18-18-compensator-design.html#cb1-134" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> limit <span class="op">*</span> np.sign(u)</span>
+<span id="cb1-135"><a href="18-18-compensator-design.html#cb1-135" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span>
+<span id="cb1-136"><a href="18-18-compensator-design.html#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="18-18-compensator-design.html#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-138"><a href="18-18-compensator-design.html#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="18-18-compensator-design.html#cb1-139" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<p>Complete simulation code for Matlab, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="10.5" id="interactive-implementation-check"><span class="header-section-number">10.5</span> Interactive Implementation
+Check</h2>
+<section id="pid-ch10-digital-implementation-check">
+<article class="advanced-activity" data-advanced-activity="digital-pid">
+<p class="advanced-kicker">
+Chapter 10 activity
+</p>
+<h3>
+Sample-time and discrete PID terms
+</h3>
+<p>
+Vary the sample time and consecutive error samples. The readouts show
+the trapezoidal integrator increment, a finite-difference derivative,
+and the dirty-derivative coefficient.
+</p>
+
+<label><span class="advanced-control-label">Sample time
+T<sub>s</sub></span><input type="range" data-input="ts"
+min="0.01" max="0.25" step="0.01" value="0.05"></label>
+<label><span class="advanced-control-label">Current error
+e<sub>k</sub></span><input type="range" data-input="error"
+min="-2" max="2" step="0.1" value="1"></label>
+<label><span class="advanced-control-label">Previous error
+e<sub>k-1</sub></span><input type="range"
+data-input="prev-error" min="-2" max="2" step="0.1"
+value="0.6"></label>
+<label><span class="advanced-control-label">Dirty-derivative
+sigma</span><input
+type="range" data-input="sigma" min="0.01" max="0.2"
+step="0.01" value="0.05"></label>
+
+<strong>Integrator
+increment</strong><span data-output="trap"></span>
+
+<strong>Finite
+difference</strong><span data-output="diff"></span>
+
+<strong>Dirty derivative
+beta</strong><span data-output="beta"></span>
+
+<strong>Sample-time
+effect</strong><span data-output="sample-note"></span>
+
+<p class="advanced-callout">
+Coding-lab preparation: a discrete PID controller must store the
+previous error, previous measurement, differentiator state, and
+integrator state. Without that memory, the trapezoidal integral,
+derivative estimate, and anti-windup correction cannot be implemented
+correctly.
+</p>
+</article>
+</section>
+<h2 data-number="10.6" id="coding-lab-discrete-pid-implementation"><span class="header-section-number">10.6</span> Coding Lab: Discrete PID
+Implementation</h2>
+<div class="knowledge-check coding-lab-copy">
+<p><strong>Objective:</strong> implement a sampled-data PID
+controller using the Chapter 10 update equations.</p>
+<p><strong>Evaluation criteria:</strong> the lab checks
+proportional action, trapezoidal integration, derivative-on-output,
+saturation, anti-windup behavior, and step-response tracking.</p>
+<p>Use the code editor to complete the controller class, then use the
+automatic checks and plots to debug the implementation.</p> </div>
+<figure id="fig:pid_ch10_discrete_pid_lab" class="marimo-figure">
+<iframe src="../marimo/lab_10_discrete_pid/index.html?v=20260604a"
+loading="lazy" title="Chapter 10 discrete PID coding lab"
+style="width:min(98vw,1100px);height:1900px;border:1px solid
+#d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
+auto;"></iframe>
+<figcaption>
+Figure 10.1 (Interactive). Discrete PID coding lab with automatic
+implementation checks.
+</figcaption>
+</figure>
+<h2 data-number="10.7" id="knowledge-check-9"><span class="header-section-number">10.7</span> Knowledge Check</h2>
+<section id="pid-ch10-knowledge-check" class="quiz-list">
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Continuous time is the model used
+for analysis; the digital controller updates at samples."
+data-feedback-b="B is correct. A digital controller computes new values
+at discrete sample instants." data-feedback-c="C is not correct.
+Waiting until final time would not produce feedback control."
+data-feedback-d="D is not correct. The controller updates whether the
+reference is zero or nonzero."> <h4>Q1. Controller update
+timing</h4> <p class="quiz-prompt">A digital PID controller
+updates at:</p> <div class="quiz-options"> <label><input
+type="radio" name="pid-ch10-q1" value="A"><span class="quiz-option-text">A) Continuous
+time</span></label> <label><input type="radio" name="pid-ch10-q1"
+value="B"><span class="quiz-option-text">B) Discrete sample instants</span></label> <label><input
+type="radio" name="pid-ch10-q1" value="C"><span class="quiz-option-text">C) Only final
+time</span></label> <label><input type="radio" name="pid-ch10-q1"
+value="D"><span class="quiz-option-text">D) Only when the reference is zero</span></label> </div>
+<div class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Saturation plus continued integration
+can store a large error that causes overshoot after the actuator leaves
+saturation." data-feedback-b="B is not correct. Saturation does not
+guarantee pole cancellation." data-feedback-c="C is not correct.
+Saturation changes the actual control input applied to the plant."
+data-feedback-d="D is not correct. Saturation is unrelated to making
+sample time zero."> <h4>Q2. Saturation effect</h4> <p
+class="quiz-prompt">Actuator saturation can cause:</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch10-q2" value="A"><span class="quiz-option-text">A) Integrator windup</span></label>
+<label><input type="radio" name="pid-ch10-q2" value="B"><span class="quiz-option-text">B)
+Guaranteed pole cancellation</span></label> <label><input type="radio"
+name="pid-ch10-q2" value="C"><span class="quiz-option-text">C) No effect on control</span></label>
+<label><input type="radio" name="pid-ch10-q2" value="D"><span class="quiz-option-text">D)
+Zero sample time</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card ch10-numeric-check"
+data-quiz-type="short" data-answer-number="0.08"
+data-tolerance="0.001"> <h4>Q3. Trapezoidal integral
+increment</h4> <p class="quiz-prompt">Compute the trapezoidal
+integrator increment for these samples.</p> <ul
+class="quiz-given-list"> <li>T<sub>s</sub> = 0.1</li>
+<li>e<sub>k</sub> = 1.0</li> <li>e<sub>k-1</sub> =
+0.6</li> </ul> <div class="quiz-options"><label
+class="ch10-numeric-answer"><span>Increment:</span><input
+type="text" name="pid-ch10-q3" placeholder="numeric value"></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> 0.08 because
+0.1(1.0 + 0.6)/2 = 0.08.</p></details></div> </article>
+<article class="quiz-card ch10-numeric-check"
+data-quiz-type="short" data-answer-number="4"
+data-tolerance="0.001"> <h4>Q4. Finite-difference derivative</h4>
+<p class="quiz-prompt">Compute the finite-difference derivative
+estimate for these samples.</p> <ul class="quiz-given-list">
+<li>T<sub>s</sub> = 0.1</li> <li>e<sub>k</sub> =
+1.0</li> <li>e<sub>k-1</sub> = 0.6</li> </ul> <div
+class="quiz-options"><label
+class="ch10-numeric-answer"><span>Derivative
+estimate:</span><input type="text" name="pid-ch10-q4"
+placeholder="numeric value"></label></div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> 4 because (1.0 -
+0.6)/0.1 = 4.</p></details></div> </article>
+<article class="quiz-card" data-quiz-type="short"
+data-answers="stored state\|memory\|previous values\|previous
+samples"> <h4>Q5. Implementation memory</h4> <p
+class="quiz-prompt">What must a digital PID controller keep between
+sample updates to compute integrals and derivatives?</p> <div
+class="quiz-options"><label><span>Answer:</span><input
+type="text" name="pid-ch10-q5" placeholder="short phrase"></label></div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div> <p
+class="quiz-feedback" aria-live="polite"></p> <div
+class="quiz-answer"><details><summary>Show
+solution</summary><p><strong>Answer:</strong> Stored state,
+memory, or previous samples. The controller needs delayed
+error/measurement values plus integrator and differentiator
+state.</p></details></div> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. A dirty derivative is still an
+approximation to a derivative; it does not remove derivative action."
+data-feedback-b="B is correct. The band-limited derivative avoids the
+non-causal ideal differentiator and reduces high-frequency noise
+amplification." data-feedback-c="C is not correct. The dirty
+derivative does not create integral action." data-feedback-d="D is not
+correct. The dirty derivative does not eliminate the need to choose a
+sampling period."> <h4>Q6. Dirty derivative purpose</h4> <p
+class="quiz-prompt">Why is a dirty derivative used instead of an
+ideal derivative in a digital PID implementation?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch10-exam-q1" value="A"><span class="quiz-option-text">A) To remove derivative action
+from the controller.</span></label> <label><input type="radio"
+name="pid-ch10-exam-q1" value="B"><span class="quiz-option-text">B) To make the derivative
+realizable and reduce high-frequency noise amplification.</span></label>
+<label><input type="radio" name="pid-ch10-exam-q1" value="C"><span class="quiz-option-text">C) To replace proportional control with integral control.</span></label>
+<label><input type="radio" name="pid-ch10-exam-q1" value="D"><span class="quiz-option-text">D) To make the controller independent of sampling time.</span></label>
+</div> <div class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. Integral action accumulates error and is
+commonly used to remove constant steady-state tracking or disturbance
+errors." data-feedback-b="B is not correct. Integral action is not
+primarily a high-frequency noise filter." data-feedback-c="C is not
+correct. Integral action generally adds state and can slow or
+destabilize the response if tuned poorly." data-feedback-d="D is not
+correct. Integral action does not remove actuator limits."> <h4>Q7.
+Integral action role</h4> <p class="quiz-prompt">What is the main
+purpose of the integral term in a PID controller?</p> <div
+class="quiz-options"> <label><input type="radio"
+name="pid-ch10-exam-q2" value="A"><span class="quiz-option-text">A) Reduce or remove constant
+steady-state error.</span></label> <label><input type="radio"
+name="pid-ch10-exam-q2" value="B"><span class="quiz-option-text">B) Amplify high-frequency
+measurement noise.</span></label> <label><input type="radio"
+name="pid-ch10-exam-q2" value="C"><span class="quiz-option-text">C) Guarantee faster transients
+for all gains.</span></label> <label><input type="radio"
+name="pid-ch10-exam-q2" value="D"><span class="quiz-option-text">D) Eliminate actuator
+saturation.</span></label> </div> <div class="quiz-actions"> <button
+type="button" class="quiz-check">Check</button> <button
+type="button" class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. Quantization is a sampling effect,
+not the specific effect of a growing integral state during saturation."
+data-feedback-b="B is not correct. Aliasing is caused by inadequate
+sampling, not accumulated integral error." data-feedback-c="C is
+correct. Windup occurs when the integrator keeps accumulating error
+while the actuator is saturated." data-feedback-d="D is not correct. A
+derivative kick is a separate issue tied to differentiating abrupt
+setpoint changes."> <h4>Q8. Saturation and stored integral
+state</h4> <p class="quiz-prompt">If an actuator saturates while
+the integral state continues to grow, what problem is the controller
+experiencing?</p> <div class="quiz-options"> <label><input
+type="radio" name="pid-ch10-exam-q3" value="A"><span class="quiz-option-text">A)
+Quantization</span></label> <label><input type="radio"
+name="pid-ch10-exam-q3" value="B"><span class="quiz-option-text">B) Aliasing</span></label>
+<label><input type="radio" name="pid-ch10-exam-q3" value="C"><span class="quiz-option-text">C) Integrator windup</span></label> <label><input type="radio"
+name="pid-ch10-exam-q3" value="D"><span class="quiz-option-text">D) Derivative kick</span></label>
+</div> <div class="quiz-actions"> <button type="button"
+class="quiz-check">Check</button> <button type="button"
+class="quiz-reset">Reset</button> </div> <p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="10.8" id="notes-and-references-8" class="section-notes"><span class="header-section-number">10.8</span> Notes and References</h2>
+<p>A standard reference for digital implementation of PID controllers
+is [18]. Simple anti-wind-up schemes are discussed in [4, 18].</p>
+<h2 data-number="10.9" id="notes-and-references-9" class="section-notes"><span class="header-section-number">10.9</span> Notes and References</h2>
+<p>A standard reference for digital implementation of PID controllers
+is [18]. Simple anti-wind-up schemes are discussed in [4, 18].</p>
+<section id="part:observer_based" class="book-part" aria-labelledby="part-observer_based-title"><p class="part-kicker">Part IV</p><p class="part-title" id="part-observer_based-title">Observer Based Control Design</p></section>
+<p>In Part <a href="06-6-state-space-models.html#part:PID" data-reference-type="ref"
+data-reference="part:PID">III</a> we focused on designing
+feedback control systems for second-order systems. Since second-order
+systems have two poles, we saw that it is possible to use feedback
+control with two gains to place the closed-loop poles at any desired
+location. In
+Chapter <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> of this book we will see
+that for an <span class="math inline">\(n^{th}\)</span> order system it
+is possible to arbitrarily place the closed-loop poles, but that this
+will require <span class="math inline">\(n\)</span> feedback
+gains.<span id="idx-0121" class="book-index-anchor" aria-hidden="true"></span> In that sense, the
+full state feedback controllers that we will derive in
+Chapter <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a> are a generalization of PD
+control to higher order systems. This generalization is most easily
+accomplished using the state space model of the system derived in
+Chapter <a href="06-6-state-space-models.html#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">9</a>.<span id="idx-0122" class="book-index-anchor" aria-hidden="true"></span> In fact, the state
+space model leads to efficient numerical routines for designing and
+implementing the feedback controller.</p>
+<p>In
+Chapter <a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a> we show how
+integral control<span id="idx-0123" class="book-index-anchor" aria-hidden="true"></span> can be added to the
+state feedback controllers designed in
+Chapter <a href="11-11-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">14</a>. The method introduced in
+Chapter <a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">15</a> has a significant
+advantage over the integrator tuning method discussed in
+Chapter <a href="#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a> in the sense
+that tuning the integral gain will not impact the other closed-loop
+poles and therefore allows for greater design flexibility.</p>
+<p>We saw in
+Chapter <a href="#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">13</a> that in order to
+implement PD/PID control, the derivative of the output needs to be
+reconstructed using a digital differentiator.<span id="idx-0124" class="book-index-anchor" aria-hidden="true"></span> The generalization of
+this idea to state feedback control is that the full state of the system
+must be reconstructed. The tool that we will use to reconstruct the
+system state is called an <em>observer</em>. The observer design problem
+will be discussed in
+Chapter <a href="13-13-observers.html#observers" data-reference-type="ref"
+data-reference="chap:observers">16</a>. <span id="idx-0125" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>It turns out that observers can be used in a variety of different
+contexts outside of feedback control. In particular, observers can be
+used to solve target tracking problems and to estimate the system
+parameters of complex dynamic systems. In the setting of feedback
+control where unknown input and output disturbances act on the system,
+observers can be used to estimate the unknown disturbances. In
+Chapter <a href="14-14-disturbance-observers.html#disturbance-observers" data-reference-type="ref"
+data-reference="chap:disturbance_observers">17</a> we will show how to
+design the observer to estimate both the system state and the unknown
+constant input disturbance. We will also show that estimating the input
+disturbance is mathematically and functionally similar to adding an
+integrator. <span id="idx-0126" class="book-index-anchor" aria-hidden="true"></span></p>
+<p>The design tools developed in
+Part <a href="#part:observer_based" data-reference-type="ref"
+data-reference="part:observer_based">IV</a> of this
+book use state space models and require the use of linear algebra and
+matrix analysis. A brief review of linear algebra concepts that will be
+used in Part <a href="#part:observer_based" data-reference-type="ref"
+data-reference="part:observer_based">IV</a> are given
+in Appendix <a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
+data-reference="chap:linear_algebra">31</a>.</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="../web/book.css?v=20260611b" />
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="01-1-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="01-1-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="01-1-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="01-1-introduction.html#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="02-2-kinetic-energy-of-mechanical-systems.html#kinetic-energy-of-mechanical-systems">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="03-3-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="03-3-the-euler-lagrange-equations.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="04-4-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="05-5-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="06-6-state-space-models.html#state-space-models">6 State Space Models</a></li></ul></li><li class="toc-part"><a href="06-6-state-space-models.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="07-7-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="08-8-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="09-9-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="10-10-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="10-10-digital-implementation-of-pid-controllers.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="11-11-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="12-12-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="13-13-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="14-14-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="14-14-disturbance-observers.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="15-15-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="16-16-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="17-17-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="18-18-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="18-18-compensator-design.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="19-d-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="20-e-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="21-f-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="22-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="23-p-1-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="24-p-2-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in Matlab</a></li><li class="toc-chapter"><a href="25-p-3-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="26-p-4-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="28-p-6-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="29-p-7-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="30-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="31-index.html#index">Index</a></li></ul></nav></aside><main id="book-content"><h1 data-number="P.5"
+id="review-of-ordinary-differential-equations"><span class="header-section-number">P.5</span> Review of Ordinary Differential
+Equations</h1>
+<p>This appendix provides a refresher on how to solve linear ordinary
+differential equations<span id="idx-0270" class="book-index-anchor" aria-hidden="true"></span> with constant
+coefficients. In particular, we focus on the step response<span id="idx-0271" class="book-index-anchor" aria-hidden="true"></span> of such system.</p>
+<h2 data-number="P.5.1" id="first-order-odes"><span class="header-section-number">P.5.1</span> First order ODE’s</h2>
+<p>This section provides a review of how to use an integrating
+factor<span id="idx-0272" class="book-index-anchor" aria-hidden="true"></span> to find the solution
+to a scalar first order differential equations.</p>
+<p>Consider the first order linear constant coefficient ordinary
+differential equation <span class="math display">\[\label{eq:ode_1}
+\frac{dy}{dt}(t) = ay(t) + bu(t),\]</span> with initial condition <span
+class="math inline">\(y(0)=y_0\)</span>, where <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> are constants.
+Equation <a href="#first-order-odes" data-reference-type="eqref"
+data-reference="eq:ode_1"><a href="#review-of-ordinary-differential-equations">P.5.1</a></a> can be rearranged as <span
+class="math display">\[\label{eq:ode_2}
+\frac{dy}{dt}(t) - ay(t) = bu(t).\]</span> Multiplying both sides of
+Equation <a href="#inverse-laplace-transform" data-reference-type="eqref"
+data-reference="eq:ode_2"><a href="#review-of-ordinary-differential-equations">P.5.2</a></a> by the integrating factor <span
+class="math inline">\(e^{-at}\)</span> gives <span
+class="math display">\[\label{eq:ode_3}
+e^{-at}\left(\frac{dy}{dt}(t) - ay(t)\right) = e^{-at}bu(t).\]</span>
+Noting that the left hand side of
+Equation <a href="#partial-fraction-expansion" data-reference-type="eqref"
+data-reference="eq:ode_3"><a href="#review-of-ordinary-differential-equations">P.5.3</a></a> is the derivative of <span
+class="math inline">\(e^{-at}y(t)\)</span> gives <span
+class="math display">\[\label{eq:ode_4}
+\frac{d}{dt}\left(e^{-at}y(t)\right) = e^{-at}bu(t).\]</span>
+Integrating both sides of
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_4"><a href="#review-of-ordinary-differential-equations">P.5.4</a></a> from <span
+class="math inline">\(0\)</span> to <span
+class="math inline">\(t\)</span> yields <span
+class="math display">\[\int_0^t
+\frac{d}{d\tau}\left(e^{-a\tau}y(\tau)\right)d\tau =
+\int_0^te^{-a\tau}bu(\tau)d\tau,\]</span> which implies that <span
+class="math display">\[e^{-at}y(t) - e^{-a\cdot 0}y(0) =
+\int_0^te^{-a\tau}bu(\tau)d\tau.\]</span> Solving for <span
+class="math inline">\(y(t)\)</span> gives <span
+class="math display">\[\label{eq:ode_5}
+y(t) = \underbrace{e^{at}y_0}_{\text{homogeneous response}} +
+\underbrace{\int_0^t e^{a(t-\tau)}bu(\tau)d\tau}_{\text{forced
+response}},\]</span> where the first term on the right is the homogenous
+response<span id="idx-0273" class="book-index-anchor" aria-hidden="true"></span>, or the response to
+initial conditions, and the second term on the right is the forced
+response<span id="idx-0274" class="book-index-anchor" aria-hidden="true"></span>, or the response to
+the input <span class="math inline">\(u(t)\)</span>, which should be
+noted is the convolution of <span class="math inline">\(u(t)\)</span>
+with the impulse response <span
+class="math inline">\(e^{at}\)</span>.</p>
+<p>For the discussion to follow, it is important to note that if <span
+class="math inline">\(a\)</span> is a complex number, then
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_5"><a href="#review-of-ordinary-differential-equations">P.5.5</a></a> still holds, but that <span
+class="math inline">\(y(t)\)</span> will be a complex function of time.
+To see this, assume that <span
+class="math inline">\(a=\sigma+j\omega\)</span>, then <span
+class="math display">\[\begin{aligned}
+e^{at} &amp;= e^{(\sigma+j\omega)t} \\
+        &amp;= e^{\sigma t} e^{j\omega t} \\
+        &amp;= e^{\sigma t}(\cos(\omega t) + j\sin(\omega t)) \\
+        &amp;= e^{\sigma t}\cos(\omega t) + je^{\sigma t}\sin(\omega t),
+\end{aligned}\]</span> substituting into
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_5"><a href="#review-of-ordinary-differential-equations">P.5.5</a></a> yields the complex function
+<span class="math display">\[\begin{gathered}
+y(t) = \left(e^{\sigma t}\cos(\omega t) y_0 + \int_0^t e^{\sigma
+(t-\tau)} \cos(\omega \tau) bu(\tau)d\tau\right) \\
+        + j\left( e^{\sigma t}\sin(\omega t) y_0 + \int_0^t e^{\sigma
+(t-\tau)} \sin(\omega (t-\tau)) bu(\tau)d\tau \right).
+\end{gathered}\]</span> Note that if the real part of <span
+class="math inline">\(a\)</span> is negative, or in other words if <span
+class="math inline">\(a\)</span> is in the left half of the complex
+plane, then the homogeneous response decays to zero and the forced
+response is bounded if <span class="math inline">\(u(t)\)</span> is
+bounded.</p>
+<h2 data-number="P.5.2" id="inverse-laplace-transform"><span class="header-section-number">P.5.2</span> Inverse Laplace Transform</h2>
+<p>Taking the Laplace transform<span id="idx-0275" class="book-index-anchor" aria-hidden="true"></span> of
+Equation <a href="#first-order-odes" data-reference-type="eqref"
+data-reference="eq:ode_1"><a href="#review-of-ordinary-differential-equations">P.5.1</a></a> gives <span
+class="math display">\[(sY(s) - y_0) = aY(s) + bU(s).\]</span> Solving
+for <span class="math inline">\(Y(s)\)</span> yields <span
+class="math display">\[Y(s) = \left(\frac{1}{s-a}\right)y_0 +
+\left(\frac{b}{s-a}\right)U(s).\]</span> Taking the inverse Laplace
+transform<span id="idx-0276" class="book-index-anchor" aria-hidden="true"></span> gives <span
+class="math display">\[\label{eq:ode_6}
+y(t) = \mathcal{L}^{-1}\left(\frac{1}{s-a}\right) y_0 +
+\mathcal{L}^{-1}\left(\frac{b}{s-a}\right)*\mathcal{L}^{-1}(U(s)),\]</span>
+where <span class="math inline">\(*\)</span> denotes the convolution
+operator. Comparing
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_5"><a href="#review-of-ordinary-differential-equations">P.5.5</a></a> with
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_6"><a href="#review-of-ordinary-differential-equations">P.5.6</a></a> implies that <span
+class="math display">\[\label{eq:ode_inverse_laplace}
+\mathcal{L}^{-1}\left(\frac{b}{s-a}\right) = be^{at}, \quad t\geq
+0.\]</span> In the limit, as <span class="math inline">\(a\to 0\)</span>
+we get <span class="math display">\[\label{eq:ode_inverse_laplace_step}
+\mathcal{L}^{-1}\left(\frac{b}{s}\right) = b, \quad t\geq 0.\]</span>
+Again we note that
+Equations <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_inverse_laplace"><a href="#review-of-ordinary-differential-equations">P.5.7</a></a>
+and <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_inverse_laplace_step"><a href="#review-of-ordinary-differential-equations">P.5.8</a></a>
+are true even when <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> are complex numbers.</p>
+<h2 data-number="P.5.3" id="partial-fraction-expansion"><span class="header-section-number">P.5.3</span> Partial Fraction
+Expansion</h2>
+<p>The inverse Laplace transform<span id="idx-0277" class="book-index-anchor" aria-hidden="true"></span> for first order
+systems can be used to find the response to step inputs, for first order
+and for higher order systems, through the use of partial fraction
+expansion<span id="idx-0278" class="book-index-anchor" aria-hidden="true"></span>. For example, consider
+the task of finding the step response<span id="idx-0279" class="book-index-anchor" aria-hidden="true"></span> for the first order
+system <span class="math display">\[\label{eq:ode_7}
+\dot{y} = -ay + bu,\]</span> where <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> are real positive constants, where
+<span class="math inline">\(u\)</span> is a step input of size <span
+class="math inline">\(A\)</span>, i.e., <span
+class="math display">\[u(t) = \begin{cases} A &amp; t\geq 0 \\ 0 &amp;
+\text{~otherwise} \end{cases}.\]</span> The Laplace transform of <span
+class="math inline">\(u(t)\)</span> is <span class="math inline">\(U(s)
+= \frac{A}{s}\)</span>. Similarly, taking the Laplace transform of
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_7"><a href="#review-of-ordinary-differential-equations">P.5.9</a></a> and solving for <span
+class="math inline">\(Y(s)\)</span> gives <span
+class="math display">\[\label{eq:ode_8}
+Y(s) = \left(\frac{b}{s+a}\right)U(s) = \frac{bA}{s(s+a)}.\]</span> The
+partial fraction expansion of <span class="math inline">\(Y(s)\)</span>
+expresses <span class="math inline">\(Y(s)\)</span> as a linear
+combination of each factor in the denominator, i.e., <span
+class="math display">\[\label{eq:ode_9}
+Y(s) = \frac{c_1}{s} + \frac{c_2}{s+a}.\]</span> To find the
+coefficients <span class="math inline">\(c_1\)</span> and <span
+class="math inline">\(c_2\)</span>, set
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_9"><a href="#review-of-ordinary-differential-equations">P.5.11</a></a> equal to
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_8"><a href="#review-of-ordinary-differential-equations">P.5.10</a></a> to obtain <span
+class="math display">\[\label{eq:ode_10}
+\frac{c_1}{s} + \frac{c_2}{s+a} = \frac{bA}{s(s+a)}.\]</span> To find
+<span class="math inline">\(c_1\)</span> multiply both sides of
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_10"><a href="#review-of-ordinary-differential-equations">P.5.12</a></a> by <span
+class="math inline">\(s\)</span> to obtain <span
+class="math display">\[\label{eq:ode_11}
+c_1 + \frac{s c_2}{s+a} = \frac{bA}{s+a}.\]</span> To remove the term
+involving <span class="math inline">\(c_2\)</span> in
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_11"><a href="#review-of-ordinary-differential-equations">P.5.13</a></a>, set <span
+class="math inline">\(s=0\)</span> to obtain <span
+class="math display">\[c_1 = \frac{bA}{a}.\]</span> To find <span
+class="math inline">\(c_2\)</span> multiply both sides of
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_10"><a href="#review-of-ordinary-differential-equations">P.5.12</a></a> by <span
+class="math inline">\(s+a\)</span> to obtain <span
+class="math display">\[\label{eq:ode_12}
+\frac{c_1(s+a)}{s} + c_2 = \frac{bA}{s}.\]</span> To remove the term
+involving <span class="math inline">\(c_1\)</span> in
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_12"><a href="#review-of-ordinary-differential-equations">P.5.14</a></a>, set <span
+class="math inline">\(s=-a\)</span> to obtain <span
+class="math display">\[c_2 = -\frac{bA}{a}.\]</span> Therefore, <span
+class="math display">\[\label{eq:ode_13}
+Y(s) = \frac{\frac{bA}{a}}{s} - \frac{\frac{bA}{a}}{s+a}.\]</span> Since
+the inverse Laplace transform is a linear operator, we get <span
+class="math display">\[\begin{aligned}
+y(t) &amp;= \mathcal{L}^{-1}\left(\frac{\frac{bA}{a}}{s}\right) -
+\mathcal{L}^{-1}\left(\frac{\frac{bA}{a}}{s+a}\right) \\
+     &amp;= \frac{bA}{a} - \frac{bA}{a}e^{-at}, \qquad t\geq 0 \\
+     &amp;= \frac{bA}{a}(1-e^{-at}), \qquad t\geq 0.
+\end{aligned}\]</span></p>
+<p>The same technique works for finding the step response for higher
+order systems. As an example, find the unit step response of the system
+described by <span class="math display">\[y^{(4)} + 10y^{(3)} +
+35\ddot{y} + 50\dot{y} + 24 y = u.\]</span> Taking the Laplace transform
+and solving for <span class="math inline">\(Y(s)\)</span>, and using the
+fact that <span class="math inline">\(U(s)=\frac{1}{s}\)</span> gives
+<span class="math display">\[\begin{aligned}
+Y(s) &amp;= \left(\frac{1}{s^4+10s^3+35s^2+50s+24}\right)U(s) \notag \\
+     &amp;=
+\left(\frac{1}{s^4+10s^3+35s^2+50s+24}\right)\frac{1}{s}  \notag \\
+     &amp; =
+\frac{1}{s}\left(\frac{1}{s+1}\right)\left(\frac{1}{s+2}\right)\left(\frac{1}{s+3}\right)\left(\frac{1}{s+4}\right).
+     \label{eq:ode_14}
+\end{aligned}\]</span> Using partial fraction expansion we have that
+<span class="math display">\[\label{eq:ode_15}
+Y(s) =  \frac{c_1}{s} + \frac{c_2}{s+1} + \frac{c_3}{s+2} +
+\frac{c_4}{s+3} + \frac{c_5}{s+4}.\]</span> Setting
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_15"><a href="#review-of-ordinary-differential-equations">P.5.17</a></a> equal to
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_14"><a href="#review-of-ordinary-differential-equations">P.5.16</a></a> gives <span
+class="math display">\[\begin{gathered}
+\label{eq:ode_16}
+\frac{c_1}{s} + \frac{c_2}{s+1} + \frac{c_3}{s+2} + \frac{c_4}{s+3} +
+\frac{c_5}{s+4} \\
+    =
+\frac{1}{s}\left(\frac{1}{s+1}\right)\left(\frac{1}{s+2}\right)\left(\frac{1}{s+3}\right)\left(\frac{1}{s+4}\right).
+\end{gathered}\]</span> The coefficient <span
+class="math inline">\(c_1\)</span> is found by multiplying both sides of
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_16"><a href="#review-of-ordinary-differential-equations">P.5.18</a></a> by <span
+class="math inline">\(s\)</span> and then setting <span
+class="math inline">\(s=0\)</span> to remove the coefficients <span
+class="math inline">\(c_2\)</span>–<span
+class="math inline">\(c_5\)</span> to obtain <span
+class="math inline">\(c_1 = 1/24\)</span>. Following a similar procedure
+for each coefficient yields <span
+class="math inline">\(c_2=-1/6\)</span>, <span
+class="math inline">\(c_3=1/4\)</span>, <span
+class="math inline">\(c_4=-1/6\)</span>, and <span
+class="math inline">\(c_5=1/24\)</span>. The step response is therefore
+given by <span class="math display">\[\begin{aligned}
+y(t) &amp;= \mathcal{L}^{-1}\left(\frac{1/24}{s}\right) +
+\mathcal{L}^{-1}\left(\frac{-1/6}{s+1}\right) +
+\mathcal{L}^{-1}\left(\frac{1/4}{s+2}\right)
+    \\ &amp;\qquad
+    + \mathcal{L}^{-1}\left(\frac{-1/6}{s+3}\right) +
+\mathcal{L}^{-1}\left(\frac{1/24}{s+4}\right) \\
+    &amp;= \frac{1}{24} -\frac{1}{6}e^{-t} + \frac{1}{4}e^{-2t} -
+\frac{1}{6}e^{-3t} + \frac{1}{24}e^{-4t}, \qquad t\geq 0 \\
+    &amp;= \frac{1}{24}\left(1 -4e^{-t} + 6e^{-2t} - 4e^{-3t} +
+e^{-4t}\right), \qquad t\geq 0.
+\end{aligned}\]</span></p>
+<p>In Matlab, the coefficients can be found by using the
+<code>residue</code><span id="idx-0280" class="book-index-anchor" aria-hidden="true"></span> command. For the
+problem above we could use the matlab commands</p>
+<pre><code>num = 1;  %
+%
+den = poly([0,-1,-2,-3,-4]); 
+%
+[R,P,K] = residue(num,den);  </code></pre>
+<p>The vector <code>R</code> will contain the coefficients <span
+class="math inline">\(c_1\)</span>–<span
+class="math inline">\(c_5\)</span>, the vector <code>P</code> contains
+the associated roots, and <code>K</code> will be the remainder
+polynomial if the numerator is a higher order polynomial than the
+denominator.</p>
+<p>The method of partial fraction expansion is also valid if the poles
+of the system are complex. For example, consider finding the response of
+the second-order differential equation <span
+class="math display">\[\ddot{y} + 2\zeta\omega_n\dot{y} + \omega_n^2y =
+\omega_n^2u,\]</span> to as step of size <span
+class="math inline">\(A\)</span>. Taking the Laplace transform and
+letting <span class="math inline">\(U(s)=A/s\)</span> gives <span
+class="math display">\[\begin{aligned}
+Y(s) &amp;=
+\left(\frac{\omega_n^2}{s^2+2\zeta\omega_ns+2\omega_n^2}\right)\frac{A}{s}
+\notag \\
+     &amp; =
+\frac{A\omega_n^2}{s}\left(\frac{1}{s+\zeta\omega_n+j\omega_n\sqrt{1-\zeta^2}}\right)
+     \\ &amp;\qquad \cdot
+     \left(\frac{1}{s+\zeta\omega_n-j\omega_n\sqrt{1-\zeta^2}}\right).
+\label{eq:ode_17}
+\end{aligned}\]</span> Expanding <span
+class="math inline">\(Y(s)\)</span> as a sum of partial fractions yields
+<span class="math display">\[\begin{gathered}
+\label{eq:ode_18}
+Y(s) = \frac{c_1}{s} +
+\left(\frac{c_2}{s+\zeta\omega_n+j\omega_n\sqrt{1-\zeta^2}}\right)
+    \\ +
+\left(\frac{c_3}{s+\zeta\omega_n-j\omega_n\sqrt{1-\zeta^2}}\right).
+\end{gathered}\]</span> Setting
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_18"><a href="#review-of-ordinary-differential-equations">P.5.21</a></a> equal to
+Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
+data-reference="eq:ode_17"><a href="#review-of-ordinary-differential-equations">P.5.20</a></a> gives <span
+class="math display">\[\begin{gathered}
+\frac{c_1}{s} +
+\left(\frac{c_2}{s+\zeta\omega_n+j\omega_n\sqrt{1-\zeta^2}}\right) +
+\left(\frac{c_3}{s+\zeta\omega_n-j\omega_n\sqrt{1-\zeta^2}}\right) \\
+=
+\frac{A\omega_n^2}{s}\left(\frac{1}{s+\zeta\omega_n+j\omega_n\sqrt{1-\zeta^2}}\right)\left(\frac{1}{s+\zeta\omega_n-j\omega_n\sqrt{1-\zeta^2}}\right).
+\end{gathered}\]</span> Solving for <span
+class="math inline">\(c_1\)</span>, <span
+class="math inline">\(c_2\)</span>, and <span
+class="math inline">\(c_3\)</span> gives <span
+class="math display">\[\begin{aligned}
+c_1 &amp;= A \\
+c_2 &amp;= -\frac{A}{2}\left(1+j\frac{\zeta}{\sqrt{1+\zeta^2}}\right)\\
+c_3 &amp;= -\frac{A}{2}\left(1-j\frac{\zeta}{\sqrt{1-\zeta^2}}\right).
+\end{aligned}\]</span> Therefore, <span class="math display">\[Y(s) =
+\frac{A}{s} +
+\frac{-\frac{A}{2}\left(1+j\frac{\zeta}{\sqrt{1+\zeta^2}}\right)}{s+\zeta\omega_n+j\omega_n\sqrt{1-\zeta^2}}
++
+\frac{-\frac{A}{2}\left(1-j\frac{\zeta}{\sqrt{1-\zeta^2}}\right)}{s+\zeta\omega_n-j\omega_n\sqrt{1-\zeta^2}}.\]</span>
+Taking the inverse Laplace transform gives <span
+class="math display">\[\begin{aligned}
+y(t) &amp;= A -
+\frac{A}{2}\left(1+j\frac{\zeta}{\sqrt{1+\zeta^2}}\right)e^{-\zeta\omega_nt-j\omega_n\sqrt{1-\zeta^2}t}
+\\ &amp;\qquad\qquad -
+\frac{A}{2}\left(1-j\frac{\zeta}{\sqrt{1-\zeta^2}}\right)e^{-\zeta\omega_nt+j\omega_n\sqrt{1-\zeta^2}t}  \\
+    &amp;= A\Bigg(1 -
+\frac{1}{2}\left|1+j\frac{\zeta}{\sqrt{1+\zeta^2}}\right|e^{-\zeta\omega_nt}
+    \\ &amp;\qquad\qquad
+    \cdot
+\left(e^{-j\omega_n\sqrt{1-\zeta^2}t}e^{j\angle\left(1+j\frac{\zeta}{\sqrt{1+\zeta^2}}\right)}
++
+e^{+j\omega_n\sqrt{1-\zeta^2}t}e^{j\angle\left(1-j\frac{\zeta}{\sqrt{1+\zeta^2}}\right)}
+\right)\Bigg) \\
+    &amp;= A\Bigg(1 - \frac{1}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_nt}
+    \\ &amp;\qquad\qquad
+    \cdot
+\left(\frac{e^{-j\left(\omega_n\sqrt{1-\zeta^2}t-\tan^{-1}\left(\frac{\zeta}{\sqrt{1-\zeta^2}}\right)\right)}
++
+e^{j\left(\omega_n\sqrt{1-\zeta^2}t-\tan^{-1}\left(\frac{\zeta}{\sqrt{1-\zeta^2}}\right)\right)}}{2}
+\right)\Bigg) \\
+    &amp;= A\left(1 - \frac{1}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_nt}
+\cos\left(\omega_n\sqrt{1-\zeta^2}t-\tan^{-1}\left(\frac{\zeta}{\sqrt{1-\zeta^2}}\right)\right)\right),
+\end{aligned}\]</span> for <span class="math inline">\(t\geq 0\)</span>.
+In general, complex conjugate poles<span id="idx-0281" class="book-index-anchor" aria-hidden="true"></span> will always lead to
+complex conjugate coefficients that end up canceling to produce a
+decaying exponential multiplied by a cosine term with a phase shift. If
+the coefficients of the original ordinary differential equation are
+real, then the response will always be real.</p>
+<p>second-order</p>
+</main></div>  <script src="../web/book.js?v=20260610ae"></script></body>
+</html>
