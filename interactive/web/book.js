@@ -7133,14 +7133,34 @@
   initDesignStudyAActivities();
   if (!navWrap || !toc) return;
 
-  if (window.matchMedia("(max-width: 980px)").matches) {
-    navWrap.classList.add("is-collapsed");
+  // The collapsed grid lives on .site-shell (a parent), so both elements carry the class.
+  const shell = navWrap.closest(".site-shell");
+  const STORAGE_KEY = "controlbook-toc";
+  const narrow = () => window.matchMedia("(max-width: 980px)").matches;
+  const setCollapsed = (collapsed) => {
+    navWrap.classList.toggle("is-collapsed", collapsed);
+    if (shell) shell.classList.toggle("is-collapsed", collapsed);
+    if (toggle) toggle.setAttribute("aria-expanded", String(!collapsed));
+  };
+
+  let stored = null;
+  try {
+    stored = localStorage.getItem(STORAGE_KEY);
+  } catch (e) {
+    /* private window or blocked storage: fall back to the default */
   }
+  setCollapsed(narrow() ? true : stored === "collapsed");
 
   if (toggle) {
     toggle.addEventListener("click", () => {
-      const collapsed = navWrap.classList.toggle("is-collapsed");
-      toggle.setAttribute("aria-expanded", String(!collapsed));
+      const collapsed = !navWrap.classList.contains("is-collapsed");
+      setCollapsed(collapsed);
+      if (narrow()) return; // the narrow layout always starts collapsed
+      try {
+        localStorage.setItem(STORAGE_KEY, collapsed ? "collapsed" : "open");
+      } catch (e) {
+        /* nothing to do: the choice just will not persist */
+      }
     });
   }
 

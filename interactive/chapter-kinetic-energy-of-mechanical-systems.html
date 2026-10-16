@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>controlbook_nb</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="web/book.css?v=20260613c-c7034105" />
+<!-- generated by scripts/split_html_chapters.py -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch (e) { return; }
+  if (!id || document.getElementById(id)) return;
+  fetch("anchors.json")
+    .then((r) => (r.ok ? r.json() : null))
+    .then((map) => {
+      const file = map && map[id];
+      const here = location.pathname.split("/").pop() || "index.html";
+      if (file && file !== here) location.replace(file + location.hash);
+    })
+    .catch(() => {});
+});
+</script>
+</head>
+<body><span id="top"></span><div class="site-shell"><aside class="site-nav"><button class="toc-toggle" type="button" aria-expanded="false" aria-controls="TOC">Contents</button><nav id="TOC" class="book-toc"><h2>Table of Contents</h2><ul><li class="toc-part"><a href="index.html">Preface</a></li><li class="toc-part"><a href="chapter-introduction.html#introduction">1. Introduction</a><ul><li class="toc-chapter"><a href="chapter-introduction.html#design-study-single-link-robot-arm">Design Study A: Single Link Robot Arm</a></li><li class="toc-chapter"><a href="chapter-introduction.html#design-study-pendulum-on-a-cart">Design Study B: Pendulum on a Cart</a></li><li class="toc-chapter"><a href="chapter-introduction.html#design-study-satellite-attitude-control">Design Study C: Satellite Attitude Control</a></li></ul></li><li class="toc-part"><a href="#part:simulation_models">I Simulation Models</a><ul><li class="toc-chapter"><a href="#kinetic-energy-of-mechanical-systems" class="is-active" aria-current="page">2 Kinetic Energy</a></li><li class="toc-chapter"><a href="chapter-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3 Euler-Lagrange</a></li></ul></li><li class="toc-part"><a href="chapter-equilibria-and-linearization.html#part:design_models">II Design Models</a><ul><li class="toc-chapter"><a href="chapter-equilibria-and-linearization.html#equilibria-and-linearization">4 Linearization</a></li><li class="toc-chapter"><a href="chapter-transfer-function-models.html#transfer-function-models">5 Transfer Functions</a></li><li class="toc-chapter"><a href="chapter-state-space-models.html#state-space-models">6 State-Space Models</a></li></ul></li><li class="toc-part"><a href="chapter-pole-placement-for-second-order-systems.html#part:PID">III PID Control Design</a><ul><li class="toc-chapter"><a href="chapter-pole-placement-for-second-order-systems.html#pole-placement-for-second-order-systems">7 Second-Order Systems</a></li><li class="toc-chapter"><a href="chapter-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems">8 Second-Order Design</a></li><li class="toc-chapter"><a href="chapter-system-type-and-integrators.html#system-type-and-integrators">9 Integrators</a></li><li class="toc-chapter"><a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers">10 Digital PID</a></li></ul></li><li class="toc-part"><a href="chapter-full-state-feedback.html#part:observer_based">IV Observer Based Control Design</a><ul><li class="toc-chapter"><a href="chapter-full-state-feedback.html#full-state-feedback">11 Full State Feedback</a></li><li class="toc-chapter"><a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback">12 Full State with Integrators</a></li><li class="toc-chapter"><a href="chapter-observers.html#observers">13 Observers</a></li><li class="toc-chapter"><a href="chapter-disturbance-observers.html#disturbance-observers">14 Disturbance Observers</a></li></ul></li><li class="toc-part"><a href="chapter-frequency-response-of-lti-systems.html#part:loopshaping">V Loop-shaping Control Design</a><ul><li class="toc-chapter"><a href="chapter-frequency-response-of-lti-systems.html#frequency-response-of-lti-systems">15 Frequency Response</a></li><li class="toc-chapter"><a href="chapter-frequency-domain-specifications.html#frequency-domain-specifications">16 Frequency Specifications</a></li><li class="toc-chapter"><a href="chapter-stability-and-robustness-margins.html#stability-and-robustness-margins">17 Stability and Robustness Margins</a></li><li class="toc-chapter"><a href="chapter-compensator-design.html#compensator-design">18 Compensator Design</a></li></ul></li><li class="toc-part"><a href="chapter-design-study-mass-spring-damper.html#part:design_studies">VI Homework Problems</a><ul><li class="toc-chapter"><a href="chapter-design-study-mass-spring-damper.html#design-study-mass-spring-damper">D Design Study: Mass Spring Damper</a></li><li class="toc-chapter"><a href="chapter-design-study-block-on-beam.html#design-study-block-on-beam">E Design Study: Block on Beam</a></li><li class="toc-chapter"><a href="chapter-design-study-planar-vtol.html#design-study-planar-vtol">F Design Study: Planar VTOL</a></li></ul></li><li class="toc-part"><a href="chapter-appendices.html#appendices">Appendices</a><ul><li class="toc-chapter"><a href="chapter-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1 Simulating Control Systems in Python</a></li><li class="toc-chapter"><a href="chapter-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2 Simulating Control Systems in MATLAB</a></li><li class="toc-chapter"><a href="chapter-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3 Simulating Control Systems in Simulink</a></li><li class="toc-chapter"><a href="chapter-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations">P.4 Numerical ODE Solvers</a></li><li class="toc-chapter"><a href="chapter-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations">P.5 Differential Equations</a></li><li class="toc-chapter"><a href="chapter-root-locus.html#----root-locus">P.6 Root Locus</a></li><li class="toc-chapter"><a href="chapter-review-of-linear-algebra.html#review-of-linear-algebra">P.7 Linear Algebra</a></li></ul></li><li class="toc-part"><a href="chapter-bibliography.html#bibliography">Bibliography</a></li><li class="toc-part"><a href="chapter-index.html#index">Index</a></li></ul><p class="toc-fullbook"><a href="index-full.html" title="Loads the entire book on one page. It is slow to render; useful for searching the whole book.">Open whole book (one page)</a></p></nav></aside><main id="book-content"><section id="part:simulation_models" class="book-part" aria-labelledby="part-simulation_models-title"><p class="part-kicker">Part I</p><p class="part-title" id="part-simulation_models-title">Simulation Models</p></section>
+<p>To design efficient feedback control systems, we use mathematical
+models to understand the system, and then we design controllers that
+achieve the desired specifications. Developing suitable mathematical
+models is problem-specific and can be very complicated, requiring
+specialized knowledge. However, there are some well-known techniques for
+certain classes of systems. This book covers one general technique that
+is useful for a large class of rigid-body mechanical systems. The
+technique is known as the Euler-Lagrange method and requires a
+mathematical description of the kinetic and potential energy of the
+system, given its generalized position and velocity. The theory behind
+the Euler-Lagrange method is deep and well beyond the scope of this
+book. However, we will give a brief introduction that will enable the
+reader to apply Euler-Lagrange methods to a surprisingly large class of
+problems.</p>
+<p>As motivation for the Euler-Lagrange equations, consider a particle
+of mass <span class="math inline">\(m\)</span> in a gravity field, as
+shown in
+<strong>Fig.</strong> <a href="#fig:sm_particle" data-reference-type="ref"
+data-reference="fig:sm_particle">1.5</a>, where <span
+class="math inline">\(g\)</span> is the force of gravity at sea level,
+<span class="math inline">\(f_a\)</span> is an externally applied force,
+and the friction due to air resistance is modeled by a gain <span
+class="math inline">\(b\)</span> times the velocity <span
+class="math inline">\(\dot{y}\)</span>.</p>
+<figure id="fig:sm_particle">
+<img loading="lazy" width="1038" height="809" src="1_sim_models/figures/sm_particle_in_gravity.png"
+style="width:50.0%" alt="Point mass in a gravity field." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 1.5. </span>Point mass in a gravity
+field.</figcaption>
+</figure>
+<p>Since all of the forces are in the vertical direction, the motion of
+the vehicle can be completely described by the vertical position of
+particle <span class="math inline">\(y(t)\)</span>. From Newton’s law,
+the equations of motion are <span
+class="math display">\[\tag{1.1}
+m\ddot{y} = f_a-mg-b\dot{y},\]</span> where dots over the variable will
+be used throughout the book to denote differentiation with respect to
+time, i.e., <span
+class="math inline">\(\dot{y}\stackrel{\triangle}{=}\frac{dy}{dt}\)</span>
+and <span
+class="math inline">\(\ddot{y}\stackrel{\triangle}{=}\frac{d^2y}{dt^2}\)</span>.
+Rearranging <a href="chapter-introduction.html#introduction" data-reference-type="eqref"
+data-reference="eq:sim_particle_1"><a href="chapter-introduction.html#introduction">1.1</a></a> gives <span
+class="math display">\[\tag{1.2}
+m\ddot{y} + mg = f_a -b\dot{y}.\]</span> The kinetic energy<span id="idx-0009" class="book-index-anchor" aria-hidden="true"></span> for the particle is
+given by <span
+class="math inline">\(K(\dot{y})=\frac{1}{2}mv^2=\frac{1}{2}m\dot{y}^2\)</span>.
+The potential energy, <span id="idx-0010" class="book-index-anchor" aria-hidden="true"></span> which is induced by
+gravitational pull proportional to the distance from the center of the
+earth, is given by <span class="math inline">\(P(y)=P_0+mgy\)</span>,
+where <span class="math inline">\(P_0\)</span> is the potential energy
+of the particle when <span class="math inline">\(y=0\)</span>. Note that
+if the velocity <span class="math inline">\(\dot{y}\)</span> is thought
+of as independent of <span class="math inline">\(y\)</span>, then <span
+class="math display">\[\frac{\partial K(\dot{y})}{\partial \dot{y}} =
+m\dot{y}\]</span> and <span
+class="math display">\[\frac{d}{dt}\left(\frac{\partial
+K(\dot{y})}{\partial \dot{y}}\right) = m\ddot{y}.\]</span> Also note
+that <span class="math display">\[\frac{\partial P(y)}{\partial y} =
+mg.\]</span> Therefore,
+Equation <a href="chapter-introduction.html#introduction" data-reference-type="eqref"
+data-reference="eq:sim_particle_2"><a href="chapter-introduction.html#introduction">1.2</a></a> can be
+written as <span
+class="math display">\[\tag{1.3}
+\frac{d}{dt}\left(\frac{\partial K(\dot{y})}{\partial \dot{y}}\right) +
+\frac{\partial P(y)}{\partial y} = f_a-b\dot{y}.\]</span>
+Equation <a href="chapter-introduction.html#design-studies" data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange_1"><a href="chapter-introduction.html#introduction">1.3</a></a>
+is a particular form of the so-called Euler-Lagrange equation. The
+generalization to a more complicated system takes the form <span
+class="math display">\[\tag{1.4}
+\frac{d}{dt}\left(\frac{\partial K(y,\dot{y})}{\partial
+\dot{y}}-\frac{\partial P(y)}{\partial \dot{y}}\right) -
+\left(\frac{\partial K(y,\dot{y})}{\partial y} - \frac{\partial
+P(y)}{\partial y}\right) = f_a-b\dot{y},\]</span> which reduces to
+Equation <a href="chapter-introduction.html#design-studies" data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange_1"><a href="chapter-introduction.html#introduction">1.3</a></a>
+for our particular case since <span class="math inline">\(K\)</span> is
+only a function of <span class="math inline">\(\dot{y}\)</span>. To
+simplify the notation, we define the so-called <em>Lagrangian</em> as
+<span
+class="math display">\[L(y,\dot{y})\stackrel{\triangle}{=}K(y,\dot{y})-P(y),\]</span>
+and write
+Equation <a href="chapter-introduction.html#introduction" data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange_2"><a href="chapter-introduction.html#introduction">1.4</a></a>
+as <span class="math display">\[\tag{1.5}
+\frac{d}{dt}\left(\frac{\partial L(y,\dot{y})}{\partial \dot{y}}\right)
+- \left(\frac{\partial L(y,\dot{y})}{\partial y}\right) =
+f_a-b\dot{y}.\]</span> The position of the system can be generalized to
+both positions and angles, and the velocity can be generalized to both
+linear and angular velocities. Throughout the book we will use the
+notation <span class="math inline">\(\mathbf{q} = (q_1, q_2, \dots,
+q_n)^\top\)</span> to denote the general configuration of the mechanical
+system that we are modeling. The vector <span
+class="math inline">\(\mathbf{q}\)</span> is called the
+generalized-coordinate vector<span id="idx-0011" class="book-index-anchor" aria-hidden="true"></span>. The kinetic energy of
+the system is generally a function of both the generalized coordinates
+<span class="math inline">\(\mathbf{q}\)</span> and the generalized
+velocity<span id="idx-0012" class="book-index-anchor" aria-hidden="true"></span> <span
+class="math inline">\(\dot{\mathbf{q}}\)</span>. Therefore, we denote
+the kinetic energy as <span
+class="math inline">\(K(\mathbf{q},\dot{\mathbf{q}})\)</span>. On the
+other hand, in this book we will only consider potential fields that are
+conservative and depend only on the configuration variable <span
+class="math inline">\(\mathbf{q}\)</span>. Under these assumptions, the
+general form of the Euler-Lagrange equations is given by <span
+class="math display">\begin{align}
+\frac{d}{dt}\left(\frac{\partial
+L(\mathbf{q},\dot{\mathbf{q}})}{\partial \dot{q}_1}\right) -
+\frac{\partial L(\mathbf{q},\dot{\mathbf{q}})}{\partial q_1} &amp;=
+\tau_1-b_{11} \dot{q}_1 - \cdots - b_{1n}\dot{q}_n \notag \\
+\frac{d}{dt}\left(\frac{\partial
+L(\mathbf{q},\dot{\mathbf{q}})}{\partial \dot{q}_2}\right) -
+\frac{\partial L(\mathbf{q},\dot{\mathbf{q}})}{\partial q_2} &amp;=
+\tau_2-b_{21} \dot{q}_1 - \cdots - b_{2n}\dot{q}_n
+\tag{1.6} \\
+\vdots \\
+\frac{d}{dt}\left(\frac{\partial
+L(\mathbf{q},\dot{\mathbf{q}})}{\partial \dot{q}_n}\right) -
+\frac{\partial L(\mathbf{q},\dot{\mathbf{q}})}{\partial q_n} &amp;=
+\tau_n-b_{n1} \dot{q}_1 - \cdots - b_{nn}\dot{q}_n, \notag
+\end{align}</span> where <span class="math inline">\(\tau_i\)</span>
+are the generalized forces and torques that are applied to the system.
+Or in vector form we can write <span
+class="math display">\[\tag{1.8}
+\frac{d}{dt}\left(\frac{\partial
+L(\mathbf{q},\dot{\mathbf{q}})}{\partial \dot{\mathbf{q}}}\right) -
+\frac{\partial L(\mathbf{q},\dot{\mathbf{q}})}{\partial \mathbf{q}} =
+\boldsymbol{\tau} -B \dot{\mathbf{q}},\]</span> where <span
+class="math inline">\(B\)</span> is a matrix with positive elements and
+<span
+class="math inline">\(\boldsymbol{\tau}=(\tau_1,\dots,\tau_n)^\top\)</span>
+are the generalized forces<span id="idx-0013" class="book-index-anchor" aria-hidden="true"></span>. The Euler-Lagrange
+equation <span id="idx-0014" class="book-index-anchor" aria-hidden="true"></span> will be discussed in
+more detail in
+Chapter <a href="chapter-the-euler-lagrange-equations.html#the-euler-lagrange-equations" data-reference-type="ref"
+data-reference="chap:euler-lagrange">6</a>. However, before showing how
+to use Equation <a href="chapter-introduction.html#introduction"
+data-reference-type="eqref"
+data-reference="eq:sim_model_euler_lagrange-vector"><a href="chapter-introduction.html#introduction">1.8</a></a>
+to derive the equations of motion for practical systems, we need to show
+how to compute the kinetic and potential energy for general (holonomic)
+rigid body systems.</p>
+<h1 data-number="2" id="kinetic-energy-of-mechanical-systems"><span class="header-section-number">2</span> Kinetic Energy of Mechanical
+Systems</h1>
+<h2 data-number="2.1" id="theory"><span class="header-section-number">2.1</span> Theory</h2>
+<p>Consider a point mass <span id="idx-0015" class="book-index-anchor" aria-hidden="true"></span> with mass <span
+class="math inline">\(m\)</span>, traveling at velocity <span
+class="math inline">\(\mathbf{v}\)</span>, as shown in
+<strong>Fig.</strong> <a href="#fig:sm_mass_at_velocity" data-reference-type="ref"
+data-reference="fig:sm_mass_at_velocity">2.1</a>. If the velocity is
+resolved with respect to a coordinate axis, then <span
+class="math inline">\(\mathbf{v}=(v_x, v_y, v_z)^\top\)</span>. The
+kinetic energy<span id="idx-0016" class="book-index-anchor" aria-hidden="true"></span> of the point mass is
+given by <span class="math display">\[\begin{aligned}
+K &amp;= \frac{1}{2} m \left|\mathbf{v}\right|^2 \\
+&amp;= \frac{1}{2} m \mathbf{v}^\top \mathbf{v} \\
+&amp; = \frac{1}{2} m (v_x^2 + v_y^2 + v_z^2).
+\end{aligned}\]</span></p>
+<figure id="fig:sm_mass_at_velocity">
+<img loading="lazy" width="446" height="234" src="1_sim_models/figures/sm_mass_at_velocity.png"
+style="width:30.0%" alt="Point mass moving at velocity \mathbf{v}." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 2.1. </span>Point mass moving at velocity <span
+class="math inline"><strong>v</strong></span>.</figcaption>
+</figure>
+<p>Now consider two point masses as shown in
+<strong>Fig.</strong> <a href="#fig:sm_two_masses" data-reference-type="ref"
+data-reference="fig:sm_two_masses">2.2</a>.</p>
+<figure id="fig:sm_two_masses">
+<img loading="lazy" width="1171" height="842" src="1_sim_models/figures/sm_two_masses2.png"
+style="width:50.0%"
+alt="Two constrained point masses spinning about a point on an adjoining axis." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 2.2. </span>Two constrained point masses spinning
+about a point on an adjoining axis.</figcaption>
+</figure>
+<p>The total kinetic energy of the system is given by summing the
+kinetic energy of each of the point masses as <span
+class="math display">\[\tag{2.1}
+K = \frac{1}{2} m_1 \mathbf{v}_1^\top \mathbf{v}_1 + \frac{1}{2} m_2
+\mathbf{v}_2^\top \mathbf{v}_2.\]</span> If the two masses are connected
+by a massless rod and the particles are spinning about a point on the
+rod, as shown in
+<strong>Fig.</strong> <a href="#fig:sm_two_masses" data-reference-type="ref"
+data-reference="fig:sm_two_masses">2.2</a>, where the angular velocity
+vector <span class="math inline">\(\boldsymbol{\omega}\)</span> points
+out of the page, and the magnitude is given by <span
+class="math inline">\(\dot{\theta}\)</span>, i.e., <span
+class="math inline">\(\boldsymbol{\omega}=(0, 0,
+\dot{\theta})^\top\)</span>, then from elementary physics, the velocity
+of point <span class="math inline">\(i\)</span> is given by <span
+class="math display">\[\mathbf{v}_i =
+\boldsymbol{\omega}\times\mathbf{p}_i,\]</span> where in our case <span
+class="math inline">\(\mathbf{p}_1 = (L_1\cos\theta, L_1\sin\theta,
+0)^\top\)</span>, and <span class="math inline">\(\mathbf{p}_2 =
+(-L_2\cos\theta, -L_2\sin\theta, 0)^\top\)</span>. Therefore <span
+class="math display">\[\begin{aligned}
+\mathbf{v}_1 &amp;= \begin{pmatrix} 0  \\ 0 \\
+\dot{\theta}\end{pmatrix}\times\begin{pmatrix}L_1\cos\theta \\
+L_1\sin\theta \\ 0\end{pmatrix} = \begin{pmatrix}
+-L_1\dot{\theta}\sin\theta \\ L_1\dot{\theta}\cos\theta \\ 0
+\end{pmatrix} \\
+\mathbf{v}_2 &amp;= \begin{pmatrix} 0 \\ 0 \\ \dot{\theta}
+\end{pmatrix}\times\begin{pmatrix}-L_2\cos\theta \\ -L_2\sin\theta \\
+0\end{pmatrix} = \begin{pmatrix} L_2\dot{\theta}\sin\theta \\
+-L_2\dot{\theta}\cos\theta \\ 0 \end{pmatrix}.
+\end{aligned}\]</span> An alternative method for computing the
+velocities <span class="math inline">\(\mathbf{v}_1\)</span> and <span
+class="math inline">\(\mathbf{v}_2\)</span> is to differentiate <span
+class="math inline">\(\mathbf{p}_1\)</span> and <span
+class="math inline">\(\mathbf{p}_2\)</span> with respect to time to
+obtain <span class="math display">\[\begin{aligned}
+\mathbf{v}_1 &amp;\stackrel{\triangle}{=}\dot{\mathbf{p}}_1
+            = \frac{d\mathbf{p}_1}{dt}
+            = \frac{d}{dt}(L_1\cos\theta, L_1\sin\theta, 0)^\top \\
+            &amp;=
+\begin{pmatrix}-L_1\left(\frac{d\theta}{dt}\right)\sin\theta, &amp;
+L_1\left(\frac{d\theta}{dt}\right)\cos\theta, &amp; 0 \end{pmatrix}^\top
+\\
+            &amp;= \begin{pmatrix}-L_1\dot{\theta}\sin\theta, &amp;
+L_1\dot{\theta}\cos\theta, &amp; 0 \end{pmatrix}^\top \\
+\mathbf{v}_2 &amp;\stackrel{\triangle}{=}\dot{\mathbf{p}}_2
+            = \frac{d\mathbf{p}_2}{dt}
+            = \frac{d}{dt}(-L_2\cos\theta, -L_2\sin\theta, 0)^\top \\
+            &amp;=
+\begin{pmatrix}L_2\left(\frac{d\theta}{dt}\right)\sin\theta, &amp;
+-L_2\left(\frac{d\theta}{dt}\right)\cos\theta, &amp; 0
+\end{pmatrix}^\top \\
+            &amp;= \begin{pmatrix}L_2\dot{\theta}\sin\theta, &amp;
+-L_2\dot{\theta}\cos\theta, &amp; 0 \end{pmatrix}^\top.
+\end{aligned}\]</span></p>
+<p>Therefore, using
+Equation <a href="#theory" data-reference-type="eqref"
+data-reference="eq:kinetic_energy_two_masses"><a href="#kinetic-energy-of-mechanical-systems">2.1</a></a>
+the kinetic energy is <span class="math display">\[\begin{aligned}
+K &amp;= \frac{1}{2} m_1 \mathbf{v}_1^\top \mathbf{v}_1 + \frac{1}{2}
+m_2 \mathbf{v}_2^\top \mathbf{v}_2 \\
+&amp;= \frac{1}{2} m_1 \left[ (-L_1\dot{\theta}\sin\theta)^2 +
+(L_1\dot{\theta}\cos\theta)^2 \right]
+    \\ &amp;\qquad
+    + \frac{1}{2} m_2 \left[ (L_2\dot{\theta}\sin\theta)^2 +
+(-L_2\dot{\theta}\cos\theta)^2 \right] \\
+&amp;= \frac{1}{2} m_1 \left[ L_1^2\dot{\theta}^2\sin^2\theta +
+L_1^2\dot{\theta}^2\cos^2\theta \right]
+%
+    + \frac{1}{2} m_2 \left[ L_2^2\dot{\theta}^2\sin^2\theta +
+L_2^2\dot{\theta}^2\cos^2\theta \right] \\
+&amp;= \frac{1}{2} (m_1 L_1^2 + m_2 L_2^2)\dot{\theta}^2.
+\end{aligned}\]</span></p>
+<p>Now consider the case where there are <span
+class="math inline">\(N\)</span> point masses spinning about a general
+angular velocity vector <span
+class="math inline">\(\boldsymbol{\omega}\)</span>, where the position
+of the <span class="math inline">\(i^{th}\)</span> point mass, <span
+class="math inline">\(i=1,\dots,N\)</span>, in a specified coordinate
+system is given by <span class="math inline">\(\mathbf{p}_i\)</span>, as
+shown in
+<strong>Fig.</strong> <a href="#fig:sm_many_masses" data-reference-type="ref"
+data-reference="fig:sm_many_masses">2.3</a>.</p>
+<figure id="fig:sm_many_masses">
+<img loading="lazy" width="1146" height="1138" src="1_sim_models/figures/sm_many_masses.png"
+style="width:40.0%"
+alt="Many masses in a rigid body spinning about a common axis and moving at velocity \mathbf{v}." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 2.3. </span>Many masses in a rigid body spinning
+about a common axis and moving at velocity <span
+class="math inline"><strong>v</strong></span>.</figcaption>
+</figure>
+<p>We will see in the discussion below that it is most convenient to
+pick the coordinate system to be at the center of mass. The kinetic
+energy of the <span class="math inline">\(i^{th}\)</span> particle is
+<span class="math inline">\(K_i =
+\frac{1}{2}m_i\mathbf{v}_i^\top\mathbf{v}_i\)</span>. Therefore, the
+kinetic energy of the total system is given by <span
+class="math display">\[K = \sum_{i=1}^N
+\frac{1}{2}m_i\mathbf{v}_i^\top\mathbf{v}_i.\]</span> Using the fact
+that <span class="math inline">\(\mathbf{v}_i =
+\boldsymbol{\omega}\times\mathbf{p}_i\)</span> gives <span
+class="math display">\[K = \sum_{i=1}^N
+\frac{1}{2}m_i\left(\boldsymbol{\omega}\times\mathbf{p}_i\right)^\top\left(\boldsymbol{\omega}\times\mathbf{p}_i\right).\]</span>
+Recalling the cross product rule <span
+class="math display">\[(\mathbf{a}\times\mathbf{b})^\top(\mathbf{c}\times\mathbf{d})
+=
+(\mathbf{a}^\top\mathbf{c})(\mathbf{b}^\top\mathbf{d})-(\mathbf{a}^\top\mathbf{d})(\mathbf{b}^\top\mathbf{c})\]</span>
+gives <span class="math display">\[\begin{aligned}
+K &amp;= \frac{1}{2} \sum_{i=1}^N m_i \left[
+(\boldsymbol{\omega}^\top\boldsymbol{\omega})(\mathbf{p}_i^\top\mathbf{p}_i)-(\boldsymbol{\omega}^\top\mathbf{p}_i)(\mathbf{p}_i^\top\boldsymbol{\omega})\right]
+\\
+&amp;= \frac{1}{2} \sum_{i=1}^N m_i \boldsymbol{\omega}^\top \left[
+(\mathbf{p}_i^\top\mathbf{p}_i) I_3 - \mathbf{p}_i \mathbf{p}_i^\top
+\right] \boldsymbol{\omega} \\
+&amp;= \frac{1}{2} \boldsymbol{\omega}^\top \left[ \sum_{i=1}^N m_i
+\left((\mathbf{p}_i^\top\mathbf{p}_i) I_3 - \mathbf{p}_i
+\mathbf{p}_i^\top \right) \right] \boldsymbol{\omega} \\
+&amp;\stackrel{\triangle}{=}\frac{1}{2} \boldsymbol{\omega}^\top J
+\boldsymbol{\omega}.
+\end{aligned}\]</span> where <span class="math inline">\(I_3\)</span> is
+the <span class="math inline">\(3 \times 3\)</span> identity matrix. The
+matrix <span class="math display">\[J = \sum_{i=1}^N m_i
+\left((\mathbf{p}_i^\top\mathbf{p}_i) I_3 - \mathbf{p}_i
+\mathbf{p}_i^\top \right)\]</span> is called the inertia matrix of the
+mass system. If the mass system is solid then there is an infinite
+number of particles, and the sum becomes an integral resulting in <span
+class="math display">\[J = \int_{\mathbf{p}\in\text{body}}
+\left((\mathbf{p}^\top\mathbf{p}) I_3 - \mathbf{p} \mathbf{p}^\top
+\right)dm(\mathbf{p}),\]</span> where <span
+class="math inline">\(dm(\mathbf{p})\)</span> is the elemental mass
+located at position <span class="math inline">\(\mathbf{p}\)</span> and
+the integral is over all elemental masses in the system.</p>
+<p>Suppose that <span class="math inline">\(\mathbf{p}=(x, y,
+z)^\top\)</span> is expressed with respect to a coordinate system fixed
+in a rigid body. Then <span class="math display">\[\begin{aligned}
+J &amp;= \int_{(x,y,z)\in\text{body}} \Bigg[ \begin{pmatrix} x &amp; y
+&amp; z \end{pmatrix}\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+\begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0
+&amp; 1 \end{pmatrix}
+%
+    - \begin{pmatrix} x \\ y \\ z \end{pmatrix} \begin{pmatrix} x &amp;
+y &amp; z \end{pmatrix} \Bigg] dm(x,y,z) \\
+&amp;= \int_{(x,y,z)\in\text{body}} \Bigg[ (x^2 + y^2 +
+z^2)\begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0
+&amp; 1 \end{pmatrix}
+%
+    - \begin{pmatrix} x^2 &amp; xy &amp; x z \\ yx &amp; y^2 &amp; yz \\
+zx &amp; zy &amp; z^2 \end{pmatrix} \Bigg] dm(x,y,z) \\
+&amp;= \int_{(x,y,z)\in\text{body}} \begin{pmatrix} y^2 + z^2 &amp; -xy
+&amp; -x z \\ -yx &amp; x^2+z^2 &amp; -yz \\ -zx &amp; -zy &amp; x^2+y^2
+\end{pmatrix} dm(x,y,z).
+\end{aligned}\]</span></p>
+<p>As an example, to compute the inertia matrix of the thin rod of mass
+<span class="math inline">\(m\)</span> about its center of mass, as
+shown in
+<strong>Fig.</strong> <a href="#fig:sm_thin_rod" data-reference-type="ref"
+data-reference="fig:sm_thin_rod">2.4</a>, the first step is to define a
+coordinate system at the center of mass, as shown in
+<strong>Fig.</strong> <a href="#fig:sm_thin_rod" data-reference-type="ref"
+data-reference="fig:sm_thin_rod">2.4</a>, where <span
+class="math inline">\(\hat{i}\)</span> and <span
+class="math inline">\(\hat{j}\)</span> are orthogonal unit vectors
+pointing parallel and perpendicular to the rod, respectively. The unit
+vector <span class="math inline">\(\hat{k}\)</span> forms a right-handed
+coordinate system and points out of the page.</p>
+<figure id="fig:sm_thin_rod">
+<img loading="lazy" width="1509" height="800" src="1_sim_models/figures/sm_thin_rod.png"
+style="width:50.0%" alt="Computing the inertia of a thin rod." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 2.4. </span>Computing the inertia of a thin
+rod.</figcaption>
+</figure>
+<p>Assuming that the rod is infinitely thin and that the mass is evenly
+distributed throughout the rod, then the elemental mass is given by
+<span class="math display">\[dm(x) = \frac{m}{\ell}dx.\]</span> Since
+the rod is infinitely thin in the <span
+class="math inline">\(\hat{j}\)</span> and <span
+class="math inline">\(\hat{k}\)</span> directions, the inertia matrix is
+given by <span class="math display">\begin{align}
+J &amp;= \int_{x=-\ell/2}^{\ell/2}\int_{y=0}^0\int_{z=0}^0
+\begin{pmatrix} y^2 + z^2 &amp; -xy &amp; -x z \\ -yx &amp; x^2+z^2
+&amp; -yz \\ -zx &amp; -zy &amp; x^2+y^2 \end{pmatrix} dz \, dy \,
+\frac{m}{\ell}dx \notag\\
+    &amp;= \frac{m}{\ell} \int_{x=-\ell/2}^{\ell/2} \begin{pmatrix} 0
+&amp; 0 &amp; 0 \\ 0 &amp; x^2  &amp; 0 \\ 0 &amp; 0 &amp; x^2
+\end{pmatrix} dx \notag\\
+    &amp;= \frac{m}{\ell} \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 0 &amp;
+\frac{x^3}{3}\big|_{x=-\frac{\ell}{2}}^{\frac{\ell}{2}}  &amp; 0 \\ 0
+&amp; 0 &amp; \frac{x^3}{3}\big|_{x=-\frac{\ell}{2}}^{\frac{\ell}{2}}
+\end{pmatrix}  
+    =  \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 0 &amp;
+\frac{m\ell^2}{12}  &amp; 0 \\ 0 &amp; 0 &amp; \frac{m\ell^2}{12}
+\end{pmatrix}. \tag{2.2}
+\end{align}</span> Note that the infinitely thin rod assumption
+implies that there is only inertia, or rotational mass, about the <span
+class="math inline">\(\hat{j}\)</span> and <span
+class="math inline">\(\hat{k}\)</span> axes.</p>
+<p>As another example, to compute the inertia matrix of the thin plate
+of mass <span class="math inline">\(m\)</span> about its center of mass,
+as shown in
+<strong>Fig.</strong> <a href="#fig:sm_thin_plate" data-reference-type="ref"
+data-reference="fig:sm_thin_plate">2.5</a>, the first step is to define
+a coordinate system at the center of mass, as shown in
+<strong>Fig.</strong> <a href="#fig:sm_thin_plate" data-reference-type="ref"
+data-reference="fig:sm_thin_plate">2.5</a>, where <span
+class="math inline">\(\hat{i}\)</span> and <span
+class="math inline">\(\hat{j}\)</span> are orthogonal unit vectors
+pointing along the length and width of the plate, respectively, and
+<span class="math inline">\(\hat{k}\)</span> forms a right-handed
+coordinate system and points perpendicular to the plate.</p>
+<figure id="fig:sm_thin_plate">
+<img loading="lazy" width="1709" height="1109" src="1_sim_models/figures/sm_thin_plate.png"
+style="width:60.0%" alt="Computing the inertia of a thin plate." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 2.5. </span>Computing the inertia of a thin
+plate.</figcaption>
+</figure>
+<p>Assuming that the plate is infinitely thin, and that the mass is
+evenly distributed throughout the plate, then the elemental mass is
+given by <span class="math display">\[dm(x,y) = \frac{m}{\ell
+w}dx\,dy.\]</span> Since the plate is infinitely thin in the <span
+class="math inline">\(\hat{k}\)</span> direction, the inertia matrix is
+given by <span class="math display">\[\begin{aligned}
+J &amp;= \int_{x=-\ell/2}^{\ell/2}\int_{y=-w/2}^{w/2}\int_{z=0}^0
+\begin{pmatrix} y^2 + z^2 &amp; -xy &amp; -x z \\ -yx &amp; x^2+z^2
+&amp; -yz \\ -zx &amp; -zy &amp; x^2+y^2 \end{pmatrix} dz \, dy \,
+\frac{m}{\ell w}\,dx \\
+    &amp;= \frac{m}{\ell w} \int_{x=-\ell/2}^{\ell/2}
+\int_{y=-w/2}^{w/2} \begin{pmatrix} y^2 &amp; -xy &amp; 0 \\ -yx &amp;
+x^2  &amp; 0 \\ 0 &amp; 0 &amp; x^2 +y^2\end{pmatrix} dy\,dx \\
+%
+    &amp;= \frac{m}{\ell w} \int_{x=-\ell/2}^{\ell/2} \begin{pmatrix}
+\frac{w^3}{12} &amp; 0 &amp; 0 \\ 0 &amp; x^2 w  &amp; 0 \\ 0 &amp; 0
+&amp; x^2 w +\frac{w^3}{12}\end{pmatrix} dx \\
+%
+    &amp;= \frac{m}{\ell w}  \begin{pmatrix} \frac{w^3}{12}\ell &amp; 0
+&amp; 0 \\ 0 &amp; \frac{\ell^3}{12} w  &amp; 0 \\ 0 &amp; 0 &amp;
+\frac{\ell^3}{12}w +\frac{w^3}{12}\ell\end{pmatrix}
+    = \begin{pmatrix} \frac{mw^2}{12} &amp; 0 &amp; 0 \\ 0 &amp;
+\frac{m\ell^2}{12} &amp; 0 \\ 0 &amp; 0 &amp; \frac{m\ell^2}{12}
++\frac{mw^2}{12}\end{pmatrix}.
+\end{aligned}\]</span></p>
+<p>The diagonal elements of <span class="math inline">\(J\)</span> are
+called the moments of inertia<span id="idx-0017" class="book-index-anchor" aria-hidden="true"></span> and represent the
+rotational mass about the <span class="math inline">\(\hat{i}\)</span>,
+<span class="math inline">\(\hat{j}\)</span>, and <span
+class="math inline">\(\hat{k}\)</span> axes respectively.</p>
+<p>We have shown that if the motion of the system of <span
+class="math inline">\(N\)</span> masses is caused purely by spinning
+about the angular velocity vector <span
+class="math inline">\(\boldsymbol{\omega}\)</span>, then the kinetic
+energy is given by <span
+class="math inline">\(K=\frac{1}{2}\boldsymbol{\omega}^\top J
+\boldsymbol{\omega}\)</span>. If the system of masses is also
+translating with velocity <span
+class="math inline">\(\mathbf{v}\)</span>, then the velocity of the
+<span class="math inline">\(i^{th}\)</span> particle is given by <span
+class="math inline">\(\mathbf{v}_i = \mathbf{v} +
+\boldsymbol{\omega}\times\mathbf{p}_i.\)</span> In that case, the
+kinetic energy is given by <span class="math display">\[\begin{aligned}
+K &amp;= \frac{1}{2}\sum_{i=1}^N m_i \mathbf{v}_i^\top\mathbf{v}_i
+= \frac{1}{2}\sum_{i=1}^N m_i (\mathbf{v} +
+\boldsymbol{\omega}\times\mathbf{p}_i)^\top(\mathbf{v} +
+\boldsymbol{\omega}\times\mathbf{p}_i) \\
+&amp;= \frac{1}{2}\sum_{i=1}^N m_i \Big(\mathbf{v}^\top\mathbf{v} +
+\mathbf{v}^\top(\boldsymbol{\omega}\times\mathbf{p}_i)+(\boldsymbol{\omega}\times\mathbf{p}_i)^\top\mathbf{v}
+%
+    +
+(\boldsymbol{\omega}\times\mathbf{p}_i)^\top(\boldsymbol{\omega}\times\mathbf{p}_i)
+\Big) \\
+&amp;= \frac{1}{2}\left(\sum_{i=1}^N m_i\right)\mathbf{v}^\top\mathbf{v}
++ \frac{1}{2} \sum_{i=1}^N m_i
+(\boldsymbol{\omega}\times\mathbf{p}_i)^\top(\boldsymbol{\omega}\times\mathbf{p}_i)
+    \\ &amp;\qquad\qquad
+    + \frac{1}{2}\sum_{i=1}^N
+m_i\left[\mathbf{v}^\top(\boldsymbol{\omega}\times\mathbf{p}_i) +
+(\boldsymbol{\omega}\times\mathbf{p}_i)^\top\mathbf{v}\right].
+\end{aligned}\]</span> Using the cross product property <span
+class="math display">\[\mathbf{a}^\top(\mathbf{b}\times\mathbf{c}) =
+\mathbf{b}^\top(\mathbf{c}\times\mathbf{a}) =
+\mathbf{c}^\top(\mathbf{a}\times\mathbf{b})\]</span> we get that <span
+class="math display">\[\begin{gathered}
+\sum_{i=1}^N
+m_i\left[\mathbf{v}^\top(\boldsymbol{\omega}\times\mathbf{p}_i) +
+(\boldsymbol{\omega}\times\mathbf{p}_i)^\top\mathbf{v}\right] =
+\\
+(\sum_{i=1}^N m_i\mathbf{p}_i)^\top(\mathbf{v}\times\boldsymbol{\omega})
++ (\sum_{i=1}^N
+m_i\mathbf{p}_i)^\top(\mathbf{v}\times\boldsymbol{\omega}).
+\end{gathered}\]</span> If we choose the center of the coordinate system
+to be the center of mass, then <span class="math inline">\(\sum_{i=1}^N
+m_i\mathbf{p}_i=0\)</span>. Defining the total mass as <span
+class="math inline">\(m=\sum_{i=1}^N m_i\)</span>, the kinetic energy is
+given by <span class="math display">\[\begin{aligned}
+K&amp;=  \frac{1}{2}\left(\sum_{i=1}^N
+m_i\right)\mathbf{v}_{cm}^\top\mathbf{v}_{cm} + \frac{1}{2} \sum_{i=1}^N
+m_i
+(\boldsymbol{\omega}\times\mathbf{p}_i)^\top(\boldsymbol{\omega}\times\mathbf{p}_i)  \notag
+\\
+&amp;= \frac{1}{2}m\mathbf{v}_{cm}^\top\mathbf{v}_{cm}
+    + \frac{1}{2} \boldsymbol{\omega}^\top J_{cm} \boldsymbol{\omega}.
+\end{aligned}\]</span></p>
+<p>Therefore, the kinetic energy of a rigid body moving with velocity
+<span class="math inline">\(\mathbf{v}_{cm}\)</span> and spinning at
+angular velocity <span
+class="math inline">\(\boldsymbol{\omega}\)</span> is <span
+class="math display">\[\tag{2.3}
+K=\frac{1}{2}m\mathbf{v}_{cm}^\top\mathbf{v}_{cm}
+    + \frac{1}{2} \boldsymbol{\omega}^\top J_{cm}
+\boldsymbol{\omega}.\]</span> If the system consists of <span
+class="math inline">\(n\)</span> rigid bodies, then the total kinetic
+energy is computed by summing the kinetic energy for each body as <span
+class="math display">\[K = \sum_{j=1}^n
+\left[\frac{1}{2}m_j\mathbf{v}_{cm,j}^\top\mathbf{v}_{cm,j}
+    + \frac{1}{2} \boldsymbol{\omega}_j^\top J_{cm,j}
+\boldsymbol{\omega}_j\right].\]</span></p>
+<h3 data-number="2.1.1" id="example-mass-spring-system"><span class="header-section-number">2.1.1</span> Example: Mass Spring
+System</h3>
+<p>As an example, consider the mass spring system shown in
+<strong>Fig.</strong> <a href="#fig:sm_mass_spring_system" data-reference-type="ref"
+data-reference="fig:sm_mass_spring_system">2.6</a> where two masses are
+moving along a surface and are connected by springs with constants <span
+class="math inline">\(k_1\)</span> and <span
+class="math inline">\(k_2\)</span> and dampers with constants <span
+class="math inline">\(b_1\)</span> and <span
+class="math inline">\(b_2\)</span>. The kinetic energy of the system is
+determined by the velocity of the two masses and is therefore given by
+<span class="math display">\[K = \frac{1}{2} m_1 \dot{z}_1^2 +
+\frac{1}{2} m_2 \dot{z}_2^2.\]</span></p>
+<figure id="fig:sm_mass_spring_system">
+<img loading="lazy" width="1842" height="842" src="1_sim_models/figures/sm_mass_spring_system.png"
+style="width:50.0%"
+alt="Mass spring system with two masses connected by springs and dampers." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 2.6. </span>Mass spring system with two masses
+connected by springs and dampers.</figcaption>
+</figure>
+<h3 data-number="2.1.2" id="example-spinning-dumbbell"><span class="header-section-number">2.1.2</span> Example: Spinning
+Dumbbell</h3>
+<p>As another simple example, consider the spinning dumbbell system
+shown in
+<strong>Fig.</strong> <a href="#fig:sm_spinning_dumbbell" data-reference-type="ref"
+data-reference="fig:sm_spinning_dumbbell">2.7</a>, where two masses are
+spinning about a point on the adjoining line between the masses. The
+angular velocity vector is pointing out of the page with magnitude <span
+class="math inline">\(\dot{\theta}\)</span> and the dumbbell system is
+moving to the right at velocity <span
+class="math inline">\(\dot{z}\)</span>.</p>
+<figure id="fig:sm_spinning_dumbbell">
+<img loading="lazy" width="1646" height="813" src="1_sim_models/figures/sm_spinning_dumbbell.png"
+style="width:60.0%"
+alt="Spinning dumbbell. The system is spinning about the axis pointing out of the page and moving to the right at velocity \dot{z}." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 2.7. </span>Spinning dumbbell. The system is spinning
+about the axis pointing out of the page and moving to the right at
+velocity <span class="math inline"><em>ż</em></span>.</figcaption>
+</figure>
+<p>The first step in computing the kinetic energy is to define an
+inertial coordinate system as shown in
+<strong>Fig.</strong> <a href="#fig:sm_spinning_dumbbell" data-reference-type="ref"
+data-reference="fig:sm_spinning_dumbbell">2.7</a> where <span
+class="math inline">\(\hat{i}\)</span> is a unit vector along the
+direction of travel, <span class="math inline">\(\hat{j}\)</span> is
+perpendicular to the direction of travel, and where <span
+class="math inline">\(\hat{k}\)</span> forms a right-handed coordinate
+system and points out of the page. In this coordinate system, the
+position of the point of rotation is given by <span
+class="math inline">\(\mathbf{p}(t)=(z(t), 0, 0)^\top\)</span>.
+Accordingly, the positions of <span class="math inline">\(m_1\)</span>
+and <span class="math inline">\(m_2\)</span> are given by <span
+class="math display">\[\begin{aligned}
+\mathbf{p}_1(t) &amp;= (z(t)+\ell_1\cos\theta(t), \ell_1\sin\theta(t),
+0)^\top, \\
+\mathbf{p}_2(t) &amp;= (z(t)-\ell_2\cos\theta(t), -\ell_2\sin\theta(t),
+0)^\top.
+\end{aligned}\]</span> Since <span class="math inline">\(z\)</span> and
+<span class="math inline">\(\theta\)</span> are functions of time, using
+the chain rule <span class="math display">\[\frac{d}{dt}f(g(t)) =
+\frac{\partial f}{\partial g}\frac{d g}{dt}\]</span> and differentiating
+with respect to time, we get the velocities of the masses as <span
+class="math display">\[\begin{aligned}
+\mathbf{v}_1 &amp;= (\dot{z} - \ell_1\dot{\theta}\sin\theta,
+\ell_1\dot{\theta}\cos\theta, 0)^\top,\\
+\mathbf{v}_2 &amp;= (\dot{z} + \ell_2\dot{\theta}\sin\theta,
+-\ell_2\dot{\theta}\cos\theta, 0)^\top.
+\end{aligned}\]</span> The kinetic energy is therefore given by <span
+class="math display">\[\begin{aligned}
+K &amp;= \frac{1}{2}m_1\mathbf{v}_1^\top \mathbf{v}_1 +
+\frac{1}{2}m_2\mathbf{v}_2^\top \mathbf{v}_2 \\
+&amp;= \frac{1}{2}m_1 \left[(\dot{z} - \ell_1\dot{\theta}\sin\theta)^2 +
+(\ell_1\dot{\theta}\cos\theta)^2 \right]
+    \\&amp;\qquad
+    + \frac{1}{2}m_2\left[(\dot{z} + \ell_2\dot{\theta}\sin\theta)^2 +
+(-\ell_2\dot{\theta}\cos\theta)^2 \right] \\
+&amp;= \frac{1}{2}m_1 \left[\dot{z}^2 -
+2\ell_1\dot{z}\dot{\theta}\sin\theta +
+\ell_1^2\dot{\theta}^2\sin^2\theta+\ell_1^2\dot{\theta}^2\cos^2\theta
+\right]
+\\ &amp;\quad
+    + \frac{1}{2}m_2\left[\dot{z}^2 +
+2\ell_2\dot{z}\dot{\theta}\sin\theta +
+\ell_2^2\dot{\theta}^2\sin^2\theta+\ell_2^2\dot{\theta}^2\cos^2\theta
+\right] \\
+&amp;= \frac{1}{2}(m_1+m_2)\dot{z}^2 +  \frac{1}{2}
+(m_1\ell_1^2+m_2\ell_2^2)\dot{\theta}^2 +
+(m_2\ell_2-m_1\ell_1)\dot{z}\dot{\theta}\sin\theta.
+\end{aligned}\]</span> Note that if the pivot point is located at the
+center of mass, then <span
+class="math inline">\(m_1\ell_1=m_2\ell_2\)</span>, and the kinetic
+energy is simply given by <span class="math display">\[K =
+\frac{1}{2}(m_1+m_2)\dot{z}^2 +  \frac{1}{2}
+(m_1\ell_1^2+m_2\ell_2^2)\dot{\theta}^2,\]</span> which is in the form
+<span class="math display">\[K =
+\frac{1}{2}m\mathbf{v}_{cm}^\top\mathbf{v}_{cm} +
+\frac{1}{2}\boldsymbol{\omega}^\top J \boldsymbol{\omega},\]</span>
+where the total mass is <span class="math inline">\(m=m_1+m_2\)</span>,
+the velocity of the center of mass is <span
+class="math inline">\(\mathbf{v}_{cm}=(\dot{z}, 0, 0)^\top\)</span>, the
+angular velocity vector is <span
+class="math inline">\(\boldsymbol{\omega} = (0, 0,
+\dot{\theta})^\top\)</span> and the <span
+class="math inline">\((3,3)\)</span> element of <span
+class="math inline">\(J\)</span> is given by <span
+class="math inline">\(J_z = m_1\ell_1^2 + m_2\ell_2^2\)</span>.</p>
+<h2 data-number="2.2" id="design-study-a-single-link-robot-arm" class="section-design-study"><span class="header-section-number">2.2</span> Design Study <a
+href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>: Single Link Robot Arm</h2>
+<p>A definition of the single-link robot arm is given in Design Study <a
+href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>.</p>
+<h3 data-number="2.2.1" id="-example-problem-31chapkinetic-energy" class="section-example"><span class="header-section-number">2.2.1</span> <a
+href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example
+Problem <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
+data-reference="ds:single_link_arm">3.1</a>.<a href="#kinetic-energy-of-mechanical-systems" data-reference-type="ref"
+data-reference="chap:kinetic-energy"><a href="#kinetic-energy-of-mechanical-systems">2</a></a></h3>
+<p>(a) Using the configuration variable <span
+class="math inline">\(\theta\)</span>, write an expression for the
+kinetic energy of the system.</p>
+<p>(b) Referring to Appendices <a href="chapter-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1</a>, <a
+href="chapter-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2</a>, and <a href="chapter-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3</a>, write
+a Python or MATLAB class, or a MATLAB function that creates an animation
+of the single-link robot arm. Simulate the animation to display a
+sinusoidal variation on the configuration variable <span
+class="math inline">\(q=\theta\)</span>.</p>
+<section id="design-study-a-ch2-kinetic-energy">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-a="hw2-kinetic-energy"> <p
+class="advanced-kicker">Design Study A guided exercise</p>
+<h3>Derive the arm kinetic energy</h3> <p>Work from the
+center-of-mass motion and the rotational inertia of the slender
+link.</p> <div class="guided-design-study-setup-figure"
+role="figure" aria-label="Single link robot arm kinetic-energy
+geometry"> <img loading="lazy" width="1434" height="859"
+src="6_design_studies/figures/hw_arm_kinetic_energy.png" alt="Single
+link robot arm with center of mass and angular velocity labels."> <p
+class="advanced-caption">Use this geometry to identify the
+center-of-mass position and the angular velocity before deriving kinetic
+energy.</p> </div>
+
+<section class="guided-step" data-dsa-step="geometry">
+<h4>Step 1. Center-of-mass position</h4> <p>Enter the horizontal
+and vertical components of <span class="math
+inline">\(p_{cm}\)</span>.</p> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span><span class="math
+inline">\(p_x\)</span></span><input type="text"
+data-dsa-input="px"
+data-dsa-accept="l/2\*cos(theta)\|ell/2\*cos(theta)\|0.5\*l\*cos(theta)"
+placeholder="expression"></label> <label><span><span
+class="math inline">\(p_y\)</span></span><input type="text"
+data-dsa-input="py"
+data-dsa-accept="l/2\*sin(theta)\|ell/2\*sin(theta)\|0.5\*l\*sin(theta)"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="geometry">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="geometry"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="geometry" hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> <span class="math
+inline">\(p_{cm}=(\ell\cos\theta/2,\ell\sin\theta/2,0)^\top\)</span>.</p></details>
+</section>
+
+<section class="guided-step" data-dsa-step="inertia"> <h4>Step
+2. Link inertia</h4> <p>Enter the moment of inertia about the center
+of mass for the slender link.</p> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span><span class="math
+inline">\(J_z\)</span></span><input type="text"
+data-dsa-input="jz"
+data-dsa-accept="m\*l\^2/12\|m\*ell\^2/12\|ml\^2/12\|mell\^2/12"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="inertia">Check Step 2</button> <p
+class="quiz-feedback" data-dsa-feedback="inertia"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="inertia" hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> <span class="math
+inline">\(J_z=m\ell^2/12\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="energy"> <h4>Step 3.
+Total kinetic energy</h4> <p>Enter the multiplier on <span
+class="math inline">\(\dot{\theta}^2\)</span> in the final kinetic
+energy expression.</p> <div class="guided-input-grid
+guided-input-grid-scalars">
+<label><span>Multiplier</span><input type="text"
+data-dsa-input="k"
+data-dsa-accept="m\*l\^2/6\|m\*ell\^2/6\|ml\^2/6\|mell\^2/6"
+placeholder="expression"></label> </div> <button type="button"
+data-dsa-check="energy">Check Step 3</button> <p
+class="quiz-feedback" data-dsa-feedback="energy"
+aria-live="polite"></p> <details class="quiz-answer"
+data-dsa-answer="energy" hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> <span class="math
+inline">\(K=\frac{1}{2}(m\ell^2/3)\dot{\theta}^2=(m\ell^2/6)\dot{\theta}^2\)</span>.</p></details>
+</section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes an animation
+class and a simulation script. Before opening it, outline each component
+separately.</p> <textarea class="guided-design-study-pseudocode"
+rows="5" placeholder="armAnimation class: write pseudocode for creating the arm geometry, initializing the plot, and updating the link from theta."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="hw02_armSim script: write pseudocode for generating theta(t), calling the animation update, and advancing time."></textarea> <p class="advanced-caption">These prompts are
+ungraded. They are intended to connect the derivation to the
+implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<figure id="fig:hw_arm_kinetic_energy">
+<img loading="lazy" width="1434" height="859" src="6_design_studies/figures/hw_arm_kinetic_energy.png"
+style="width:40.0%"
+alt="Single link robot arm. Compute the velocity of the center of mass and the angular velocity about the center of mass." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 2.8. </span>Single link robot arm. Compute the
+velocity of the center of mass and the angular velocity about the center
+of mass.</figcaption>
+</figure>
+<p>The first step is to define an inertial coordinate system as shown in
+Figure <a href="#fig:hw_arm_kinetic_energy" data-reference-type="ref"
+data-reference="fig:hw_arm_kinetic_energy">2.8</a>. If the pivot point
+is the origin of the coordinate system as shown in Figure <a
+href="#fig:hw_arm_kinetic_energy" data-reference-type="ref"
+data-reference="fig:hw_arm_kinetic_energy">2.8</a>, then the position of
+the center of mass is <span class="math display">\[\mathbf{p}_{cm}(t) =
+\begin{pmatrix} \frac{\ell}{2}\cos\theta(t) \\
+\frac{\ell}{2}\sin\theta(t) \\ 0 \end{pmatrix}.\]</span> Differentiating
+to obtain the velocity we get <span
+class="math display">\[\mathbf{v}_{cm} = \frac{\ell}{2}\dot{\theta}
+\begin{pmatrix} -\sin\theta \\ \cos\theta \\ 0 \end{pmatrix}.\]</span>
+The angular velocity about the center of mass is given by <span
+class="math display">\[\boldsymbol{\omega} = \begin{pmatrix} 0 \\ 0 \\
+\dot{\theta} \end{pmatrix}.\]</span> Observe that <span
+class="math display">\[\boldsymbol{\omega}^\top J \boldsymbol{\omega} =
+\begin{pmatrix} 0 &amp; 0 &amp; \dot{\theta}\end{pmatrix}
+\begin{pmatrix} J_x &amp; -J_{xy} &amp; -J_{xz} \\ -J_{xy} &amp; J_y
+&amp; -J_{yz} \\ -J_{xz} &amp; -J_{yz} &amp; J_z \end{pmatrix}
+\begin{pmatrix} 0 \\ 0 \\ \dot{\theta} \end{pmatrix} = J_z
+\dot{\theta}^2,\]</span> therefore we only need the moment of inertia
+about the <span class="math inline">\(\hat{k}\)</span> axis <span
+class="math inline">\(J_z\)</span>. From the inertia matrix for a thin
+rod given in Equation <a href="#design-study-a-single-link-robot-arm"
+data-reference-type="eqref"
+data-reference="eq:sm_inertia_thin_rod"><a href="#kinetic-energy-of-mechanical-systems">2.2</a></a>, we
+have that <span
+class="math inline">\(J_z=\frac{m\ell^2}{12}\)</span>.</p>
+<p>Therefore, the kinetic energy of the single-link robot arm is <span
+class="math display">\[\begin{aligned}
+K &amp;= \frac{1}{2} m \mathbf{v}_{cm}^\top \mathbf{v}_{cm} +
+\frac{1}{2}\boldsymbol{\omega}^\top J_{cm} \boldsymbol{\omega} \\
+  &amp;= \frac{1}{2} m \frac{\ell^2}{4}\dot{\theta}^2(\sin^2\theta +
+\cos^2\theta) + \frac{1}{2}\dot{\theta}^2\frac{m\ell^2}{12} \\
+  &amp;=\frac{1}{2}\frac{m\ell^2}{3}\dot{\theta}^2.
+\end{aligned}\]</span></p>
+<p>Throughout the book, we will demonstrate how to simulate the single
+link robot arm using Python object-oriented code. The Python class that
+animates the single link robot arm is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="animator.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3rd-party</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># local (controlbook)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ..common.animator <span class="im">import</span> MatplotlibAxisAnimator</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ArmAnimator(MatplotlibAxisAnimator):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    By inheriting from MatplotlibAxisAnimator, this class has access to the</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    matplotlib axis object via `self.ax`. This class just needs to implement</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    the `setup_background()`, `setup_changing_objects()`, and</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    `update_changing_objects()` methods.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setup_background(<span class="va">self</span>):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.length <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        lim <span class="op">=</span> <span class="va">self</span>.length <span class="op">*</span> <span class="fl">1.25</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.axis((<span class="op">-</span>lim, lim, <span class="op">-</span>lim, lim))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_aspect(<span class="st">&quot;equal&quot;</span>, <span class="st">&quot;box&quot;</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        (baseline,) <span class="op">=</span> <span class="va">self</span>.ax.plot([<span class="dv">0</span>, <span class="va">self</span>.length], [<span class="dv">0</span>, <span class="dv">0</span>], <span class="st">&quot;k--&quot;</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setup_changing_objects(<span class="va">self</span>, x0, r0):</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        theta0 <span class="op">=</span> x0[<span class="dv">0</span>]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> <span class="va">self</span>.get_arm_endpoints(theta0)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        (<span class="va">self</span>.arm_line,) <span class="op">=</span> <span class="va">self</span>.ax.plot(x, y, linewidth<span class="op">=</span><span class="dv">5</span>, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update_changing_objects(<span class="va">self</span>, x, r):</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> x[<span class="dv">0</span>]</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> <span class="va">self</span>.get_arm_endpoints(theta)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.arm_line.set_xdata(x)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.arm_line.set_ydata(y)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (<span class="va">self</span>.arm_line,)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_arm_endpoints(<span class="va">self</span>, theta):</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="va">self</span>.length <span class="op">*</span> np.cos(theta)])</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="va">self</span>.length <span class="op">*</span> np.sin(theta)])</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x, y</span></code></pre></div>
+<p>The Python code that implements the animation is given below.</p>
+<div class="sourceCode" id="cb2" data-language="Python"
+data-caption="chap02/animate\_arm.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3rd-party</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># local (controlbook)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> case_studies.A_arm.params <span class="im">as</span> P</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> case_studies.A_arm.visualizer <span class="im">import</span> ArmVisualizer</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> case_studies.common.signal_generator <span class="im">import</span> SignalGenerator</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize signals for generating data</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>theta_gen <span class="op">=</span> SignalGenerator(amplitude<span class="op">=</span>np.pi, frequency<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>tau_gen <span class="op">=</span> SignalGenerator(amplitude<span class="op">=</span><span class="dv">5</span>, frequency<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize data storage</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.zeros(<span class="dv">2</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>x_hist <span class="op">=</span> [x0]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>u_hist <span class="op">=</span> []</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># loop over time</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.arange(start<span class="op">=</span><span class="dv">0</span>, stop<span class="op">=</span><span class="dv">20</span>, step<span class="op">=</span>P.ts, dtype<span class="op">=</span>np.float64)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> time[<span class="dv">1</span>:]:</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generate fake state and input data</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.empty(<span class="dv">2</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">0</span>] <span class="op">=</span> theta_gen.sin(t)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">1</span>] <span class="op">=</span> theta_gen.random(t)  <span class="co"># velocity info can be anything for animation</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># inputs can be anything for animation</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.array([tau_gen.sawtooth(t)])</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># store data for visualization</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    x_hist.append(x)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    u_hist.append(u)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># convert data to numpy arrays</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>x_hist <span class="op">=</span> np.array(x_hist)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>u_hist <span class="op">=</span> np.array(u_hist)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize generated data</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>viz <span class="op">=</span> ArmVisualizer(time, x_hist, u_hist)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>viz.animate()  <span class="co"># may need to play with arguments to achieve desired animation speed</span></span></code></pre></div>
+<p>Complete simulation code for MATLAB, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="2.3" id="design-study-b-pendulum-on-cart" class="section-design-study"><span class="header-section-number">2.3</span> Design Study <a
+href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Pendulum on Cart</h2>
+<p>A definition of the pendulum on a cart (or inverted pendulum) is
+given in Design Study <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.</p>
+<h3 data-number="2.3.1" id="-example-problem-32chapkinetic-energy" class="section-example"><span class="header-section-number">2.3.1</span> <a
+href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example
+Problem <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
+data-reference="ds:pendulum">3.2</a>.<a href="#kinetic-energy-of-mechanical-systems" data-reference-type="ref"
+data-reference="chap:kinetic-energy"><a href="#kinetic-energy-of-mechanical-systems">2</a></a></h3>
+<p>(a) Using the configuration variables <span class="math inline">\(z\)</span>
+and <span class="math inline">\(\theta\)</span>, write an expression for
+the kinetic energy of the system.</p>
+<p>(b) Referring to Appendices <a href="chapter-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1</a>, <a
+href="chapter-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2</a>, and <a href="chapter-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3</a>, write
+a Python or MATLAB class, or a MATLAB function that creates an animation
+of the inverted pendulum. Simulate the animation to display sinusoidal
+variations on the configuration variables <span
+class="math inline">\(q=(z, \theta)^\top\)</span>.</p>
+<section id="design-study-b-ch2-kinetic-energy">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-b="hw2"> <p class="advanced-kicker">Design
+Study B guided exercise</p> <h3>Build the pendulum kinetic
+energy</h3> <p>Use the geometry to identify positions, velocities,
+and energy terms for the cart and rod.</p> <div
+class="guided-design-study-setup-figure
+guided-design-study-setup-figure--wide" role="figure"
+aria-label="Pendulum on a cart kinetic-energy geometry."> <img loading="lazy" width="1709" height="1042"
+src="6_design_studies/figures/hw_pendulum_kinetic_energy.png"
+alt="Pendulum on a cart kinetic-energy geometry."> <p
+class="advanced-caption">Use this geometry to identify the cart
+position, rod center-of-mass position, and pendulum angular
+velocity.</p> </div>
+
+<section class="guided-step" data-dsa-step="positions">
+<h4>Step 1. Position variables</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Rod center of mass
+includes</span><input type="text" data-dsa-input="rod"
+data-dsa-accept="z,l/2sin(theta)\|z+ell/2sin(theta)\|z+l/2\*sin(theta)\|z
+plus l/2 sin
+theta\|z+l/2\*sin(theta),l/2\*cos(theta)\|z+ell/2\*sin(theta),ell/2\*cos(theta)\|(z+l/2\*sin(theta),l/2\*cos(theta))\|(z+ell/2\*sin(theta),ell/2\*cos(theta))\|\[z+l/2\*sin(theta),l/2\*cos(theta)\]\|\[z+ell/2\*sin(theta),ell/2\*cos(theta)\]\|\[z+l/2\*sin(theta);l/2\*cos(theta)\]\|\[z+ell/2\*sin(theta);ell/2\*cos(theta)\]\|z+l/2
+sin theta,l/2 cos theta\|z+ell/2 sin theta,ell/2 cos theta\|z plus l/2
+sin theta, l/2 cos theta\|z plus ell/2 sin theta, ell/2 cos
+theta\|l/2\*sin(theta)+z,l/2\*cos(theta)\|ell/2\*sin(theta)+z,ell/2\*cos(theta)"
+placeholder="short answer"></label> <label><span>Cart
+position</span><input type="text" data-dsa-input="cart"
+data-dsa-accept="z" placeholder="variable"></label> </div>
+<button type="button" data-dsa-check="positions">Check Step
+1</button> <p class="quiz-feedback" data-dsa-feedback="positions"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="positions"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> The rod center of mass
+can be written as <span class="math
+inline">\(p_{cm}=(z+\ell/2\sin\theta,\;\ell/2\cos\theta)\)</span>; the
+cart position is <span class="math
+inline">\(z\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="velocities">
+<h4>Step 2. Velocity variables</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Rod velocity depends
+on</span><input type="text" data-dsa-input="rodv"
+data-dsa-accept="zdot,thetadot\|z dot and theta dot\|cart velocity and
+angular velocity" placeholder="short answer"></label>
+<label><span>Cart velocity</span><input type="text"
+data-dsa-input="cartv" data-dsa-accept="zdot\|z_dot\|z dot\|dot
+z\|cart velocity" placeholder="variable"></label> </div>
+<button type="button" data-dsa-check="velocities">Check Step
+2</button> <p class="quiz-feedback"
+data-dsa-feedback="velocities" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution"
+data-dsa-answer="velocities" hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> The rod velocity depends
+on both cart translation and pendulum rotation; the cart velocity is
+zdot.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="energy"> <h4>Step 3.
+Energy terms</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Energy types
+included</span><input type="text" data-dsa-input="terms"
+data-dsa-accept="cart translational,rod translational,rod
+rotational\|translational and rotational\|cart translation and rod
+translation and rod rotation" placeholder="short answer"></label>
+</div> <button type="button" data-dsa-check="energy">Check Step
+3</button> <p class="quiz-feedback" data-dsa-feedback="energy"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="energy"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> The kinetic energy
+combines cart translational energy, rod translational energy, and rod
+rotational energy.</p></details> </section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes an animation
+class and a simulation script. Before opening it, outline each component
+separately.</p> <textarea class="guided-design-study-pseudocode"
+rows="5" placeholder="pendulumAnimation class: write pseudocode for computing cart and rod geometry, initializing the plot, and updating the display from z and theta."></textarea> <textarea
+class="guided-design-study-pseudocode" rows="5"
+placeholder="hw02_pendulumSim script: write pseudocode for generating z(t) and theta(t), calling the animation update, and advancing time."></textarea> <p class="advanced-caption">These prompts are
+ungraded. They are intended to connect the derivation to the
+implementation code in the complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<figure id="fig:hw_pendulum_kinetic_energy">
+<img loading="lazy" width="1709" height="1042" src="6_design_studies/figures/hw_pendulum_kinetic_energy.png"
+style="width:50.0%"
+alt="Pendulum on a cart. Compute the velocity of the pendulum and of the cart." />
+<figcaption aria-hidden="true"><span class="fig-number">Figure 2.9. </span>Pendulum on a cart. Compute the velocity
+of the pendulum and of the cart.</figcaption>
+</figure>
+<p>Define the inertial coordinate frame as in Figure <a
+href="#fig:hw_pendulum_kinetic_energy" data-reference-type="ref"
+data-reference="fig:hw_pendulum_kinetic_energy">2.9</a>, with <span
+class="math inline">\(\hat{k}\)</span> out of the page. The position of
+the center of mass of the rod with mass <span
+class="math inline">\(m_1\)</span> is given by <span
+class="math display">\[\mathbf{p}_1 = \begin{pmatrix}  z(t) +
+\frac{\ell}{2} \sin\theta(t) \\ \frac{\ell}{2} \cos\theta(t) \\ 0
+\end{pmatrix},\]</span> and the horizontal position of the cart with
+mass <span class="math inline">\(m_2\)</span> is given by <span
+class="math display">\[\mathbf{p}_2 = \begin{pmatrix} z(t) \\ 0 \\ 0
+\end{pmatrix}.\]</span> Differentiating to obtain the velocities of
+<span class="math inline">\(m_1\)</span> and <span
+class="math inline">\(m_2\)</span> we obtain <span
+class="math display">\[\begin{aligned}
+\mathbf{v}_1 = \begin{pmatrix}  \dot{z} +
+\frac{\ell}{2}\dot{\theta}\cos\theta \\
+-\frac{\ell}{2}\dot{\theta}\sin\theta \\ 0 \end{pmatrix}, \qquad\qquad
+\mathbf{v}_2 = \begin{pmatrix}  \dot{z} \\ 0 \\ 0 \end{pmatrix}.
+\end{aligned}\]</span> We are modeling the cart as a point mass and the
+rod as being infinitely thin. Therefore, the kinetic energy of the rod
+is the summation of its translational and rotational kinetic energy
+about the center of mass. The total kinetic energy of the system is
+given by <span class="math display">\begin{align}
+K &amp;= \frac{1}{2} m_1 \mathbf{v}_1^\top \mathbf{v}_1 + \frac{1}{2}
+\boldsymbol{\omega}^\top J_{rod,cm} \boldsymbol{\omega} +
+\frac{1}{2}m_2\mathbf{v}_2^\top \mathbf{v}_2 \notag\\
+  &amp;= \frac{1}{2} m_1 \left[ (\dot{z} +
+\frac{\ell}{2}\dot{\theta}\cos\theta)^2 +
+(-\frac{\ell}{2}\dot{\theta}\sin\theta)^2 \right]
++  \frac{1}{2}\dot{\theta}^2 \frac{m_1 \ell^2}{12}
++  \frac{1}{2}m_2\dot{z}^2 \notag\\
+  &amp;= \frac{1}{2} m_1 \left[ \dot{z}^2 +
+2\frac{\ell}{2}\dot{z}\dot{\theta}\cos\theta +
+\frac{\ell^2}{4}\dot{\theta}^2\cos^2\theta +
+\frac{\ell^2}{4}\dot{\theta}^2\sin^2\theta \right] \notag
+    \\&amp;\qquad
+     +  \frac{1}{2}\dot{\theta}^2 \frac{m_1 \ell^2}{12} +
+\frac{1}{2}m_2\dot{z}^2 \notag\\
+  &amp;= \frac{1}{2}(m_1+m_2)\dot{z}^2 +
+\frac{1}{2}m_1\frac{\ell^2}{3}\dot{\theta}^2 +
+m_1\frac{\ell}{2}\dot{z}\dot{\theta}\cos\theta.
+  \tag{2.4}
+\end{align}</span></p>
+<p>Throughout the book, we will demonstrate how to simulate the pendulum
+on a cart using Python code. The Python class that animates the system
+is shown below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="animator.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3rd-party</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># local (controlbook)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ..common.animator <span class="im">import</span> MatplotlibAxisAnimator</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CartPendulumAnimator(MatplotlibAxisAnimator):</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setup_background(<span class="va">self</span>):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.color <span class="op">=</span> <span class="st">&quot;blue&quot;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.length <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cart_width <span class="op">=</span> <span class="va">self</span>.length <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cart_height <span class="op">=</span> <span class="va">self</span>.length <span class="op">*</span> <span class="fl">0.15</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gap <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">buffer</span> <span class="op">=</span> <span class="va">self</span>.length <span class="op">*</span> <span class="dv">3</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        span <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        (groundline,) <span class="op">=</span> <span class="va">self</span>.ax.plot([<span class="op">-</span>span, span], [<span class="dv">0</span>, <span class="dv">0</span>], <span class="st">&quot;k--&quot;</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        z0 <span class="op">=</span> <span class="va">self</span>.x_hist[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.grid(<span class="va">True</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_aspect(<span class="st">&quot;equal&quot;</span>, <span class="st">&quot;box&quot;</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_xlim(z0 <span class="op">-</span> <span class="va">self</span>.<span class="bu">buffer</span>, z0 <span class="op">+</span> <span class="va">self</span>.<span class="bu">buffer</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_ylim(<span class="op">-</span><span class="va">self</span>.<span class="bu">buffer</span> <span class="op">/</span> <span class="dv">2</span>, <span class="va">self</span>.<span class="bu">buffer</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setup_changing_objects(<span class="va">self</span>, x0, r0):</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        z0, theta0 <span class="op">=</span> x0[:<span class="dv">2</span>]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        bottom_left_corner <span class="op">=</span> <span class="va">self</span>.get_cart_corner(z0)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cart <span class="op">=</span> mpatches.Rectangle(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            xy<span class="op">=</span>bottom_left_corner,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            width<span class="op">=</span><span class="va">self</span>.cart_width,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            height<span class="op">=</span><span class="va">self</span>.cart_height,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>            rotation_point<span class="op">=</span><span class="st">&quot;xy&quot;</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            facecolor<span class="op">=</span><span class="va">self</span>.color,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            edgecolor<span class="op">=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.add_patch(<span class="va">self</span>.cart)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> <span class="va">self</span>.get_pendulum_data(z0, theta0)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        (<span class="va">self</span>.pendulum,) <span class="op">=</span> <span class="va">self</span>.ax.plot(x, y, lw<span class="op">=</span><span class="dv">1</span>, c<span class="op">=</span><span class="va">self</span>.color)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        (<span class="va">self</span>.bob,) <span class="op">=</span> <span class="va">self</span>.ax.plot(x[<span class="op">-</span><span class="dv">1</span>:], y[<span class="op">-</span><span class="dv">1</span>:], <span class="st">&quot;o&quot;</span>, c<span class="op">=</span><span class="va">self</span>.color)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update_changing_objects(<span class="va">self</span>, x, r):</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        z, theta <span class="op">=</span> x[:<span class="dv">2</span>]</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        bottom_left_corner <span class="op">=</span> <span class="va">self</span>.get_cart_corner(z)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cart.set_xy(bottom_left_corner)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> <span class="va">self</span>.get_pendulum_data(z, theta)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pendulum.set_data(x, y)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bob.set_data(x[<span class="op">-</span><span class="dv">1</span>:], y[<span class="op">-</span><span class="dv">1</span>:])</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (<span class="va">self</span>.cart, <span class="va">self</span>.pendulum, <span class="va">self</span>.bob)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_cart_corner(<span class="va">self</span>, z):</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        bottom_left <span class="op">=</span> (z <span class="op">-</span> <span class="va">self</span>.cart_width <span class="op">/</span> <span class="dv">2</span>, <span class="va">self</span>.gap)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> bottom_left</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_pendulum_data(<span class="va">self</span>, z, theta):</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        bottom <span class="op">=</span> <span class="va">self</span>.gap <span class="op">+</span> <span class="va">self</span>.cart_height</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> [z, z <span class="op">+</span> <span class="va">self</span>.length <span class="op">*</span> np.sin(theta)]</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> [bottom, bottom <span class="op">+</span> <span class="va">self</span>.length <span class="op">*</span> np.cos(theta)]</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x, y</span></code></pre></div>
+<p>The Python code that implements the animation functionality is given
+below.</p>
+<div class="sourceCode" id="cb2" data-language="Python"
+data-caption="chap02/animate\_pendulum.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3rd-party</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># local (controlbook)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> case_studies.B_pendulum.params <span class="im">as</span> P</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> case_studies.B_pendulum.visualizer <span class="im">import</span> CartPendulumVisualizer</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> case_studies.common.signal_generator <span class="im">import</span> SignalGenerator</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize signals for generating data</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>z_gen <span class="op">=</span> SignalGenerator(amplitude<span class="op">=</span><span class="fl">0.5</span>, frequency<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>theta_gen <span class="op">=</span> SignalGenerator(amplitude<span class="op">=</span>np.radians(<span class="dv">45</span>), frequency<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>f_gen <span class="op">=</span> SignalGenerator(amplitude<span class="op">=</span><span class="fl">5.0</span>, frequency<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize data storage</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.array([P.z0, P.theta0, P.zdot0, P.thetadot0])</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>x_hist <span class="op">=</span> [x0]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>u_hist <span class="op">=</span> []</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># loop over time</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.arange(start<span class="op">=</span><span class="dv">0</span>, stop<span class="op">=</span><span class="dv">20</span>, step<span class="op">=</span>P.ts, dtype<span class="op">=</span>np.float64)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> time[<span class="dv">1</span>:]:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generate fake state and input data</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.empty_like(x0)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">0</span>] <span class="op">=</span> z_gen.sin(t)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">1</span>] <span class="op">=</span> theta_gen.sin(t)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">2</span>] <span class="op">=</span> z_gen.sawtooth(t)  <span class="co"># velocity info can be anything for animation</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">3</span>] <span class="op">=</span> theta_gen.sawtooth(t)  <span class="co"># velocity info can be anything for animation</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># inputs can be anything for animation</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.array([f_gen.square(t)])</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># store data for visualization</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    x_hist.append(x)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    u_hist.append(u)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># convert data to numpy arrays</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>x_hist <span class="op">=</span> np.array(x_hist)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>u_hist <span class="op">=</span> np.array(u_hist)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize generated data</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>viz <span class="op">=</span> CartPendulumVisualizer(time, x_hist, u_hist)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>viz.animate()  <span class="co"># may need to play with arguments to achieve desired animation speed</span></span></code></pre></div>
+<p>Complete simulation code for MATLAB, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="2.4"
+id="design-study-c-satellite-attitude-control" class="section-design-study"><span class="header-section-number">2.4</span> Design Study <a
+href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
+<p>A definition of the satellite attitude control problem is given in
+Design Study <a href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>.</p>
+<h3 data-number="2.4.1" id="-example-problem-33chapkinetic-energy" class="section-example"><span class="header-section-number">2.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+src="6_design_studies/figures/hw_satellite_thumbnail.png"
+style="width:10.0%" alt="image" /></a> Example
+Problem <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
+data-reference="ds:satellite">3.3</a>.<a href="#kinetic-energy-of-mechanical-systems" data-reference-type="ref"
+data-reference="chap:kinetic-energy"><a href="#kinetic-energy-of-mechanical-systems">2</a></a></h3>
+<p>(a) Using the configuration variables <span
+class="math inline">\(\theta\)</span> and <span
+class="math inline">\(\phi\)</span>, write an expression for the kinetic
+energy of the system.</p>
+<p>(b) Referring to Appendices <a href="chapter-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1</a>, <a
+href="chapter-simulating-control-systems-using-matlab.html#simulating-control-systems-using-matlab">P.2</a>, and <a href="chapter-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3</a>, write
+a Python or MATLAB class, or a MATLAB function that creates an animation
+of the satellite. Simulate the animation to display sinusoidal
+variations on the configuration variables <span
+class="math inline">\(q=(\theta, \phi)^\top\)</span>.</p>
+<section id="design-study-c-ch2-kinetic-energy">
+<article
+class="guided-design-study guided-design-activity"
+data-design-study-c="hw2" data-dsa-show-solution-on-wrong> <p
+class="advanced-kicker">Design Study C guided exercise</p>
+<h3>Build the satellite kinetic energy</h3> <p>The satellite model
+has two rotational inertias: the body inertia <span class="math
+inline">\(J_s\)</span> associated with <span class="math
+inline">\(\theta\)</span>, and the panel inertia <span class="math
+inline">\(J_p\)</span> associated with <span class="math
+inline">\(\phi\)</span>.</p> <div
+class="guided-design-study-setup-figure" role="figure"
+aria-label="Satellite kinetic-energy variables."> <img loading="lazy" width="1700" height="1113"
+src="6_design_studies/figures/hw_satellite_defn.png" alt="Satellite
+with flexible solar panels."> <p class="advanced-caption">Use
+inertial angular rates for kinetic energy. The relative deflection
+<span class="math inline">\(\phi-\theta\)</span> appears in spring
+and damping terms later.</p> </div>
+
+<section class="guided-step" data-dsa-step="inertias">
+<h4>Step 1. Match inertias to coordinates</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Body inertia coordinate</span><input type="text"
+data-dsa-input="body" data-dsa-accept="theta\|body angle\|satellite
+body angle" placeholder="variable"></label> <label><span>Panel
+inertia coordinate</span><input type="text"
+data-dsa-input="panel" data-dsa-accept="phi\|panel angle\|solar panel
+angle" placeholder="variable"></label> </div> <button
+type="button" data-dsa-check="inertias" data-dsa-hint="Use theta
+for the body and phi for the panel.">Check Step 1</button> <p
+class="quiz-feedback" data-dsa-feedback="inertias"
+aria-live="polite"></p> <details class="quiz-answer
+guided-step-solution" data-dsa-answer="inertias"
+hidden><summary>Show solution for Step
+1</summary><p><strong>Answer:</strong> <span class="math
+inline">\(J_s\)</span> multiplies <span class="math
+inline">\(\dot{\theta}^2\)</span>, and <span class="math
+inline">\(J_p\)</span> multiplies <span class="math
+inline">\(\dot{\phi}^2\)</span>.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="terms"> <h4>Step 2.
+Identify the kinetic-energy terms</h4> <div class="guided-input-grid
+guided-input-grid-scalars"> <label><span>Number of rotational
+terms</span><input type="text" data-dsa-input="count"
+data-dsa-accept="2\|two" placeholder="number"></label>
+<label><span>Relative rate used directly?</span><input
+type="text" data-dsa-input="relative" data-dsa-accept="no\|not
+directly\|false" placeholder="yes or no"></label> </div>
+<button type="button" data-dsa-check="terms"
+data-dsa-hint="Kinetic energy is written using inertial body and panel
+rates.">Check Step 2</button> <p class="quiz-feedback"
+data-dsa-feedback="terms" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="terms"
+hidden><summary>Show solution for Step
+2</summary><p><strong>Answer:</strong> There are two rotational
+kinetic-energy terms. The relative rate <span class="math
+inline">\(\dot{\phi}-\dot{\theta}\)</span> is important for damping,
+but it is not used as a replacement for the inertial panel kinetic
+energy.</p></details> </section>
+
+<section class="guided-step" data-dsa-step="energy"> <h4>Step 3.
+Enter the total kinetic-energy structure</h4> <div
+class="guided-input-grid guided-input-grid-scalars">
+<label><span>Body term coefficient</span><input type="text"
+data-dsa-input="bodyterm"
+data-dsa-accept="1/2\*js\|js/2\|0.5js\|0.5\*js"
+placeholder="coefficient"></label> <label><span>Panel term
+coefficient</span><input type="text" data-dsa-input="panelterm"
+data-dsa-accept="1/2\*jp\|jp/2\|0.5jp\|0.5\*jp"
+placeholder="coefficient"></label> </div> <button
+type="button" data-dsa-check="energy" data-dsa-hint="The full
+expression is one body rotational term plus one panel rotational
+term.">Check Step 3</button> <p class="quiz-feedback"
+data-dsa-feedback="energy" aria-live="polite"></p> <details
+class="quiz-answer guided-step-solution" data-dsa-answer="energy"
+hidden><summary>Show solution for Step
+3</summary><p><strong>Answer:</strong> <span class="math
+inline">\(K=\frac{1}{2}J_s\dot{\theta}^2+\frac{1}{2}J_p\dot{\phi}^2\)</span>.</p></details>
+</section>
+
+<section class="guided-step guided-step--reflection">
+<h4>Pseudocode</h4> <p>The complete solution includes satellite
+animation code. Before opening it, outline how an animation should
+update the body and panel orientations from <span class="math
+inline">\(\theta(t)\)</span> and <span class="math
+inline">\(\phi(t)\)</span>.</p> <textarea
+class="guided-design-study-pseudocode" rows="5" placeholder="Write pseudocode for updating the body angle, panel angle, and drawing geometry."></textarea> <p class="advanced-caption">This prompt
+is ungraded. It connects the energy model to the animation code in the
+complete solution.</p> </section>
+
+<div class="advanced-button-row"><button type="button"
+data-dsa-reveal-all>Show complete solution</button></div> <p
+class="quiz-feedback" data-dsa-complete-feedback
+aria-live="polite"></p> <section
+class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
+Complete solution
+</h4>
+<p>Since the satellite consists of two rotational masses, the kinetic
+energy is the sum of the rotational kinetic energy of each mass.
+Therefore, the kinetic energy is given by <span
+class="math display">\[\tag{2.5}
+K = \frac{1}{2} J_s \dot{\theta}^2 + \frac{1}{2} J_p
+\dot{\phi}^2.\]</span></p>
+<p>Throughout the book, we will demonstrate how to simulate the
+satellite using Python code. The code that animates the satellite and
+implements the animation is given below.</p>
+<div class="sourceCode" id="cb1" data-language="Python"
+data-caption="animator.py"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3rd-party</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># local (controlbook)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ..common.animator <span class="im">import</span> MatplotlibAxisAnimator</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SatelliteAnimator(MatplotlibAxisAnimator):</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setup_background(<span class="va">self</span>):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.length <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.width <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        span <span class="op">=</span> <span class="va">self</span>.length <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        (horizontal_line,) <span class="op">=</span> <span class="va">self</span>.ax.plot([<span class="op">-</span>span, span], [<span class="dv">0</span>, <span class="dv">0</span>], <span class="st">&quot;k--&quot;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_aspect(<span class="st">&quot;equal&quot;</span>, <span class="st">&quot;box&quot;</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_xlim(<span class="op">-</span>span, span)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.set_ylim(<span class="op">-</span>span, span)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># define points for custom polygon shape for the satellite base</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base_pts <span class="op">=</span> np.array(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            [</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                [<span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>, <span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>],</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                [<span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>, <span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>],</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                [<span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span> <span class="op">+</span> <span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>, <span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>],</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                [<span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span> <span class="op">+</span> <span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>, <span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>],</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                [<span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>, <span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>],</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                [<span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>, <span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>],</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                [<span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>, <span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>],</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                [<span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>, <span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>],</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                [<span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span> <span class="op">-</span> <span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>, <span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>],</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                [<span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span> <span class="op">-</span> <span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>, <span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>],</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>                [<span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>, <span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">6.0</span>],</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                [<span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>, <span class="op">-</span><span class="va">self</span>.width <span class="op">/</span> <span class="fl">2.0</span>],</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            ]</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        ).T</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># define points for the satellite panels</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.panel_pts <span class="op">=</span> np.array([[<span class="op">-</span><span class="va">self</span>.length, <span class="va">self</span>.length], [<span class="fl">0.0</span>, <span class="fl">0.0</span>]])</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setup_changing_objects(<span class="va">self</span>, x0, r0):</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        theta0, phi0 <span class="op">=</span> x0[:<span class="dv">2</span>]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create the base of the satellite</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base <span class="op">=</span> mpatches.Polygon(</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>            xy<span class="op">=</span><span class="va">self</span>.get_base_xy(theta0),</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>            facecolor<span class="op">=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>            edgecolor<span class="op">=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ax.add_patch(<span class="va">self</span>.base)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create the satellite panels</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> <span class="va">self</span>.get_panel_data(phi0)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        (<span class="va">self</span>.panel,) <span class="op">=</span> <span class="va">self</span>.ax.plot(x, y, lw<span class="op">=</span><span class="dv">4</span>, c<span class="op">=</span><span class="st">&quot;green&quot;</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update_changing_objects(<span class="va">self</span>, x, r):</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        theta, phi <span class="op">=</span> x[:<span class="dv">2</span>]</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base.set_xy(<span class="va">self</span>.get_base_xy(theta))</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.panel.set_data(<span class="va">self</span>.get_panel_data(phi))</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (<span class="va">self</span>.base, <span class="va">self</span>.panel)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_base_xy(<span class="va">self</span>, theta):</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co">        Return the base coordinates of the satellite in the rotated frame.</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>        R <span class="op">=</span> <span class="va">self</span>.get_rotation_matrix(theta)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>        rotated_base_pts <span class="op">=</span> R <span class="op">@</span> <span class="va">self</span>.base_pts</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> rotated_base_pts.T</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_panel_data(<span class="va">self</span>, phi):</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co">        Return the panel coordinates of the satellite in the rotated frame.</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>        R <span class="op">=</span> <span class="va">self</span>.get_rotation_matrix(phi)</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>        rotated_panel_pts <span class="op">=</span> R <span class="op">@</span> <span class="va">self</span>.panel_pts</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> rotated_panel_pts</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x, y</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_rotation_matrix(<span class="va">self</span>, angle):</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="co">        Return the 2D rotation matrix for a given angle in radians. Note that</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="co">        the minus sign is used on the lower left sin term because theta and phi</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="co">        are defined as positive angles in the clockwise direction.</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> np.cos(angle)</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> np.sin(angle)</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.array([[c, s], [<span class="op">-</span>s, c]])</span></code></pre></div>
+<p>The Python code that implements the animation is given below.</p>
+<div class="sourceCode" id="cb2" data-language="Python"
+data-caption="chap02/animate\_satellite.py"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3rd-party</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># local (controlbook)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> case_studies.C_satellite.params <span class="im">as</span> P</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> case_studies.C_satellite.visualizer <span class="im">import</span> SatelliteVisualizer</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> case_studies.common.signal_generator <span class="im">import</span> SignalGenerator</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize signals for generating data</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>theta_gen <span class="op">=</span> SignalGenerator(amplitude<span class="op">=</span>np.pi, frequency<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>phi_gen <span class="op">=</span> SignalGenerator(amplitude<span class="op">=</span>np.radians(<span class="dv">45</span>), frequency<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>tau_gen <span class="op">=</span> SignalGenerator(amplitude<span class="op">=</span><span class="fl">5.0</span>, frequency<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize data storage</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.array([P.theta0, P.phi0, P.thetadot0, P.phidot0])</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>x_hist <span class="op">=</span> [x0]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>u_hist <span class="op">=</span> []</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># loop over time</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.arange(start<span class="op">=</span><span class="dv">0</span>, stop<span class="op">=</span><span class="dv">20</span>, step<span class="op">=</span>P.ts, dtype<span class="op">=</span>np.float64)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> time[<span class="dv">1</span>:]:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generate fake state and input data</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.zeros_like(x0)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">0</span>] <span class="op">=</span> theta_gen.sin(t)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">1</span>] <span class="op">=</span> phi_gen.sin(t)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># velocity info can be anything for animation</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">2</span>:] <span class="op">=</span> [theta_gen.sawtooth(t), phi_gen.sawtooth(t)]</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># inputs can be anything for animation</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.array([tau_gen.square(t)])</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># store data for visualization</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    x_hist.append(x)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    u_hist.append(u)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># convert data to numpy arrays</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>x_hist <span class="op">=</span> np.array(x_hist)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>u_hist <span class="op">=</span> np.array(u_hist)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize generated data</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>viz <span class="op">=</span> SatelliteVisualizer(time, x_hist, u_hist)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>viz.animate()  <span class="co"># may need to play with arguments to achieve desired animation speed</span></span></code></pre></div>
+<p>Complete simulation code for MATLAB, Python, and Simulink can be
+downloaded at <a href="http://controlbook.byu.edu"
+class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
+</section>
+<h2 data-number="2.5" id="interactive-inertia-check"><span class="header-section-number">2.5</span> Interactive Inertia Check</h2>
+<section id="sim-ch2-inertia-check">
+<article class="advanced-activity" data-advanced-activity="inertia">
+<p class="advanced-kicker">
+Chapter 2 activity
+</p>
+<h3>
+Mass distribution and kinetic energy
+</h3>
+<p>
+Move two equal point masses away from the rotation axis. The moment of
+inertia and rotational kinetic energy increase even when the total mass
+stays fixed.
+</p>
+<div class="advanced-grid advanced-grid--visual"> <div> <div
+class="advanced-controls advanced-controls--compact"> <label>Each
+point mass, m<input type="range" data-input="mass" min="0.2"
+max="3" step="0.1" value="1"></label> <label>Distance from
+center, r<input type="range" data-input="radius" min="0.1"
+max="2" step="0.1" value="0.5"></label> <label>Center-of-mass
+velocity, v<input type="range" data-input="velocity" min="0"
+max="3" step="0.1" value="1"></label> <label>Angular
+velocity, &omega;<input type="range" data-input="omega" min="0"
+max="5" step="0.1" value="2"></label> <label>Axis offset,
+d<input type="range" data-input="offset" min="0" max="1.5"
+step="0.1" value="0.2"></label> </div> </div> <figure
+class="advanced-visual"> <svg viewBox="0 0 300 170" role="img"
+aria-label="Two point masses connected by a rigid rod with an offset
+rotation axis"> <line data-figure="rod" x1="102" y1="82"
+x2="138" y2="82" stroke="rgb(23,45,51)" stroke-width="8"
+stroke-linecap="round"></line> <circle data-figure="mass-left"
+cx="102" cy="82" r="18" fill="rgb(213,107,53)"></circle>
+<circle data-figure="mass-right" cx="138" cy="82" r="18"
+fill="rgb(213,107,53)"></circle> <circle cx="120" cy="82"
+r="5" fill="rgb(23,45,51)"></circle> <line data-figure="axis"
+x1="128" y1="28" x2="128" y2="140" stroke="rgb(14,109,119)"
+stroke-width="4" stroke-dasharray="7 6"></line> <line
+data-figure="radius-line" x1="120" y1="118" x2="138" y2="118"
+stroke="rgb(82,96,71)" stroke-width="2"></line> <line
+data-figure="offset-line" x1="120" y1="145" x2="128" y2="145"
+stroke="rgb(82,96,71)" stroke-width="2"></line> <text
+data-figure="axis-label" x="128" y="24" fill="rgb(14,109,119)"
+font-size="13">rotation axis</text> <text x="145" y="117"
+fill="rgb(82,96,71)" font-size="13">r</text> <text x="137"
+y="160" fill="rgb(82,96,71)" font-size="13">d</text> <path
+data-figure="omega-arc" d="M 152 82 A 24 24 0 1 0 104 82 A 24 24 0 1
+0 152 82" fill="none" stroke="rgb(14,109,119)"
+stroke-width="3"></path> <path data-figure="omega-head" d="M
+145 86 L 152 72 L 159 86 Z" fill="rgb(14,109,119)"></path> <text
+data-figure="omega-label" x="170" y="72" fill="rgb(14,109,119)"
+font-size="16">&omega;</text> <line x1="203" y1="116"
+x2="260" y2="116" stroke="rgb(23,45,51)"
+stroke-width="3"></line> <path d="M260 116 L248 109 L248 123 Z"
+fill="rgb(23,45,51)"></path> <text x="232" y="108"
+fill="rgb(23,45,51)" font-size="15">v</text> </svg>
+<figcaption><span class="fig-number">Figure 1.1. </span>The sliders control two point masses, their radius from
+the center, the offset rotation axis, translational velocity, and
+angular velocity.</figcaption> </figure> </div>
+<section class="advanced-solution">
+<h4>
+Computed values
+</h4>
+<p class="advanced-equation">
+Each mass: <span data-output="mass-value"></span> kg;
+radius: <span data-output="radius-value"></span> m;
+offset: <span data-output="offset-value"></span> m
+</p>
+<p class="advanced-equation">
+I = 2 m r<sup>2</sup> =
+<span data-output="inertia"></span> kg m<sup>2</sup>
+</p>
+<p class="advanced-equation">
+I<sub>offset</sub> = I + 2 m d<sup>2</sup> =
+<span data-output="shifted"></span> kg m<sup>2</sup>
+</p>
+<p class="advanced-equation">
+K<sub>trans</sub> = ½ (2m) v<sup>2</sup> =
+<span data-output="trans"></span> J
+</p>
+<p class="advanced-equation">
+K<sub>rot</sub> = ½ I<sub>offset</sub> ω<sup>2</sup> =
+<span data-output="rot"></span> J
+</p>
+</section>
+<p class="advanced-callout">
+The parallel-axis theorem adds md<sup>2</sup> for each point mass when
+the axis is shifted by distance d.
+</p>
+</article>
+</section>
+<h2 data-number="2.6" id="knowledge-check-1"><span class="header-section-number">2.6</span> Knowledge Check</h2>
+<section id="sim-ch2-knowledge-check" class="quiz-list">
+<article
+class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Moving mass farther from the axis
+increases rotational resistance." data-feedback-b="B is correct.
+Moment of inertia grows with distance squared." data-feedback-c="C is
+not correct. Physical moment of inertia is not negative."
+data-feedback-d="D is not correct. Angular velocity is a motion
+variable, not removed by mass placement."> <h4>Q1. Mass
+distribution</h4> <p class="quiz-prompt">Moving mass farther from
+a rotation axis usually does what to moment of inertia?</p> <div
+class="quiz-options"><label><input type="radio"
+name="sim-ch2-q1" value="A"><span class="quiz-option-text">A) Decreases
+it</span></label><label><input type="radio" name="sim-ch2-q1"
+value="B"><span class="quiz-option-text">B) Increases it</span></label><label><input type="radio"
+name="sim-ch2-q1" value="C"><span class="quiz-option-text">C) Makes it
+negative</span></label><label><input type="radio" name="sim-ch2-q1"
+value="D"><span class="quiz-option-text">D) Removes angular velocity</span></label></div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. Position alone does not determine
+translational kinetic energy." data-feedback-b="B is correct.
+Translational kinetic energy depends on speed squared."
+data-feedback-c="C is not correct. Spring constant appears in potential
+energy." data-feedback-d="D is not correct. Damping dissipates energy
+but is not the translational kinetic energy formula."> <h4>Q2.
+Translational energy</h4> <p class="quiz-prompt">Translational
+kinetic energy depends directly on:</p> <div
+class="quiz-options"><label><input type="radio"
+name="sim-ch2-q2" value="A"><span class="quiz-option-text">A) Position
+only</span></label><label><input type="radio" name="sim-ch2-q2"
+value="B"><span class="quiz-option-text">B) Velocity magnitude</span></label><label><input
+type="radio" name="sim-ch2-q2" value="C"><span class="quiz-option-text">C) Spring constant
+only</span></label><label><input type="radio" name="sim-ch2-q2"
+value="D"><span class="quiz-option-text">D) Damping only</span></label></div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="4" data-tolerance="0.001">
+<h4>
+Q3. Point-mass inertia
+</h4>
+<p class="quiz-prompt">
+A point mass m = 2 kg is 1.414 m from an axis. Enter the inertia of this
+point mass.
+</p>
+
+<label>I:<input type="text" name="sim-ch2-q3" placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> Approximately 4 kg m<sup>2</sup>, since
+2(1.414)<sup>2</sup> is about 4.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="short" data-answer-number="9" data-tolerance="0.001">
+<h4>
+Q4. Rotational kinetic energy
+</h4>
+<p class="quiz-prompt">
+If I = 2 kg m<sup>2</sup> and ω = 3 rad/s, enter the rotational kinetic
+energy.
+</p>
+
+<label>Energy:<input type="text" name="sim-ch2-q4" placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 9 J because ½(2)(3<sup>2</sup>) = 9.
+</p>
+</details>
+
+</article>
+<article id="sim-ch2-cart-flywheel-toy-system" class="quiz-card" data-quiz-type="short" data-answer-number="16.75" data-tolerance="0.01">
+<h4>
+Q5. Toy system: warehouse cart and flywheel
+</h4>
+<p class="quiz-prompt">
+A 6 kg cart moves at 1.5 m/s while a flywheel with I = 0.8 kg
+m<sup>2</sup> spins at ω = 5 rad/s. Enter the total kinetic energy.
+</p>
+
+<svg viewBox="0 0 460 170" role="img" aria-label="Warehouse cart
+translating while a flywheel rotates">
+<line x1="38" y1="130" x2="420" y2="130"
+stroke="rgb(82,96,71)" stroke-width="3"></line> <rect x="94"
+y="64" width="150" height="58" rx="8" fill="rgb(244,248,249)"
+stroke="rgb(23,45,51)" stroke-width="3"></rect> <circle
+cx="124" cy="130" r="15" fill="rgb(23,45,51)"></circle>
+<circle cx="214" cy="130" r="15"
+fill="rgb(23,45,51)"></circle> <circle cx="169" cy="93"
+r="24" fill="none" stroke="rgb(213,107,53)"
+stroke-width="5"></circle> <circle cx="169" cy="93" r="5"
+fill="rgb(213,107,53)"></circle> <path d="M186 77 A24 24 0 1 1 185
+76" fill="none" stroke="rgb(14,109,119)" stroke-width="3"></path>
+<path d="M187 69 L198 77 L185 84 Z" fill="rgb(14,109,119)"></path>
+<line x1="260" y1="93"
+x2="372" y2="93" stroke="rgb(23,45,51)"
+stroke-width="4"></line> <path d="M372 93 L358 85 L358 101 Z"
+fill="rgb(23,45,51)"></path> <text x="122" y="52"
+fill="rgb(23,45,51)" font-size="15">cart mass = 6 kg</text>
+<text x="112" y="38" fill="rgb(213,107,53)" font-size="15">I =
+0.8 kg m<tspan baseline-shift="super"
+font-size="10">2</tspan></text> <text x="207" y="77"
+fill="rgb(14,109,119)" font-size="15">ω = 5 rad/s</text>
+<text x="300" y="82" fill="rgb(23,45,51)" font-size="15">v = 1.5
+m/s</text> </svg>
+<p class="advanced-note">
+Compute the total kinetic energy, by computing both the cart’s
+translational kinetic energy and the flywheel’s rotational kinetic
+energy.
+</p>
+
+<label>Total K:<input type="text" name="sim-ch2-q5"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 16.75 J because ½(6)(1.5<sup>2</sup>) +
+½(0.8)(5<sup>2</sup>) = 6.75 + 10.
+</p>
+</details>
+
+</article>
+<article id="sim-ch2-puck-rotor-toy-system" class="quiz-card" data-quiz-type="short" data-answer-number="11.8" data-tolerance="0.01">
+<h4>
+Q6. Toy system: puck and rotor
+</h4>
+<p class="quiz-prompt">
+A 0.4 kg puck slides at 3 m/s while a small rotor sitting on top of the
+puck spins at ω = 20 rad/s. The rotor has a moment of inertia of I =
+0.05 kg m<sup>2</sup>. Enter the total kinetic energy.
+</p>
+
+<svg viewBox="0 0 620 300" role="img" aria-label="Three-quarter view of
+a sliding puck with a rotor spinning about its own vertical axle">
+<defs> <linearGradient id="puckTopView" x1="0 <stop offset="0 <stop
+offset="58 <stop offset="100 </linearGradient> <linearGradient
+id="puckSideView" x1="0 <stop offset="0 <stop offset="100
+</linearGradient> <linearGradient id="rotorTopView" x1="0 <stop
+offset="0 <stop offset="52 <stop offset="100 </linearGradient>
+<marker id="ch2PuckArrow" markerWidth="12"
+markerHeight="10" refX="10" refY="5" orient="auto"
+markerUnits="strokeWidth"> <path d="M0 0 L10 5 L0 10 Z"
+fill="rgb(31,48,56)"></path> </marker> <marker
+id="ch2SpinArrow" markerWidth="10" markerHeight="9" refX="8"
+refY="4.5" orient="auto" markerUnits="strokeWidth"> <path d="M0 0
+L8 4.5 L0 9 Z" fill="rgb(14,109,119)"></path> </marker> </defs>
+<rect x="36" y="240" width="332" height="7"
+rx="3.5" fill="rgb(214,222,218)"></rect> <ellipse cx="214"
+cy="225" rx="148" ry="23" fill="rgb(72,88,98)"
+opacity="0.18"></ellipse>
+
+<g aria-label="puck translating to the right"> <path d="M 84 162 L
+344 162 L 344 201 C 344 232 84 232 84 201 Z" fill="url(#puckSideView)"
+stroke="rgb(31,48,56)" stroke-width="3"></path>
+<ellipse cx="214" cy="162" rx="130"
+ry="35" fill="url(#puckTopView)" stroke="rgb(31,48,56)"
+stroke-width="3"></ellipse> <ellipse cx="214" cy="162"
+rx="94" ry="22" fill="none" stroke="rgb(31,48,56)"
+stroke-opacity="0.25" stroke-width="2"></ellipse> <rect
+x="183" y="188" width="62" height="24" rx="7"
+fill="rgb(246,249,251)" stroke="rgb(200,210,216)"
+stroke-width="1"></rect> <text x="196" y="205"
+fill="rgb(31,48,56)" font-size="15"
+font-weight="700">puck</text> </g>
+
+<g aria-label="rotor mounted on top of puck"> <line x1="214"
+y1="82" x2="214" y2="162" stroke="rgb(31,48,56)"
+stroke-width="3"></line> <ellipse cx="214" cy="124" rx="48"
+ry="18" fill="rgb(127,57,24)" opacity="0.42"></ellipse>
+<ellipse cx="214" cy="112" rx="54" ry="22"
+fill="url(#rotorTopView)" stroke="rgb(104,53,25)"
+stroke-width="3"></ellipse> <rect x="160" y="112"
+width="108" height="20" fill="rgb(191,89,39)"
+opacity="0.42"></rect> <ellipse cx="214" cy="132" rx="54"
+ry="22" fill="rgb(160,75,31)" stroke="rgb(104,53,25)"
+stroke-width="3"></ellipse> <circle cx="214" cy="112" r="6"
+fill="rgb(31,48,56)"></circle> </g>
+
+<path d="M 267 108 C 286 120 285 142 264 153 C 237 168 187 165 168 147
+C 151 131 163 111 190 104" fill="none" stroke="rgb(14,109,119)"
+stroke-width="4" marker-end="url(#ch2SpinArrow)"></path> <polygon
+points="190,104 175,99 181,114" fill="rgb(14,109,119)"></polygon>
+<line x1="371" y1="170"
+x2="462" y2="170" stroke="rgb(31,48,56)" stroke-width="5"
+marker-end="url(#ch2PuckArrow)"></line> <polygon points="484,170
+458,156 458,184" fill="rgb(31,48,56)"></polygon>
+
+<g aria-label="motion labels"> <rect x="380" y="123"
+width="156" height="33" rx="8" fill="rgb(246,249,251)"
+stroke="rgb(197,209,216)" stroke-width="1.5"></rect> <text
+x="394" y="145" fill="rgb(31,48,56)" font-size="16">v = 3
+m/s</text> <rect x="286" y="72" width="166" height="33"
+rx="8" fill="rgb(247,252,253)" stroke="rgb(178,218,223)"
+stroke-width="1.5"></rect> <text x="300" y="94"
+fill="rgb(14,109,119)" font-size="16">ω = 20 rad/s</text> </g>
+
+<g aria-label="parameter labels"> <rect x="32" y="24"
+width="200" height="38" rx="9" fill="rgb(247,249,250)"
+stroke="rgb(200,210,216)" stroke-width="1.5"></rect> <text
+x="46" y="48" fill="rgb(31,48,56)" font-size="15">puck mass m =
+0.4 kg</text> <rect x="252" y="24" width="260" height="38"
+rx="9" fill="rgb(255,248,242)" stroke="rgb(229,190,164)"
+stroke-width="1.5"></rect> <text x="266" y="48"
+fill="rgb(104,53,25)" font-size="15">rotor inertia I = 0.05 kg
+m<tspan baseline-shift="super" font-size="10">2</tspan></text> </g>
+
+<g aria-label="energy decomposition boxes"> <rect x="392"
+y="190" width="190" height="38" rx="9" fill="rgb(247,249,250)"
+stroke="rgb(200,210,216)" stroke-width="1.5"></rect> <text
+x="407" y="214" fill="rgb(31,48,56)" font-size="15">puck: ½ m
+v<tspan baseline-shift="super"
+font-size="10">2</tspan></text> <rect x="392" y="239"
+width="190" height="38" rx="9" fill="rgb(255,248,242)"
+stroke="rgb(229,190,164)" stroke-width="1.5"></rect> <text
+x="407" y="263" fill="rgb(104,53,25)" font-size="15">rotor: ½ I
+ω<tspan baseline-shift="super"
+font-size="10">2</tspan></text> </g> </svg>
+<p class="advanced-note">
+The puck translates to the right, while the rotor spins about its own
+vertical axle. Add the puck’s translational energy and the rotor’s
+rotational energy.
+</p>
+
+<label>Total K:<input type="text" name="sim-ch2-q6"
+placeholder="numeric value"></label>
+
+<button type="button" class="quiz-check">
+Check
+</button>
+<button type="button" class="quiz-reset">
+Reset
+</button>
+
+<p class="quiz-feedback" aria-live="polite">
+</p>
+
+<details>
+<summary>
+Show solution
+</summary>
+<p>
+<strong>Answer:</strong> 11.8 J because ½(0.4)(3<sup>2</sup>) +
+½(0.05)(20<sup>2</sup>) = 1.8 + 10.
+</p>
+</details>
+
+</article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="C"
+data-feedback-a="A is not correct. Moving mass toward the axis reduces
+the r squared contribution." data-feedback-b="B is not correct.
+Lowering angular speed reduces rotational kinetic energy."
+data-feedback-c="C is correct. Rotational kinetic energy grows with
+inertia, and inertia grows with distance squared." data-feedback-d="D
+is not correct. Coordinate labels do not change the physical mass
+distribution."> <h4>Q7. Mass distribution</h4> <p
+class="quiz-prompt">Two equal point masses rotate with the same
+angular velocity. Which change most directly increases rotational
+kinetic energy?</p> <div class="quiz-options"> <label><input
+type="radio" name="sim-ch2-exam-q1" value="A"><span class="quiz-option-text">A) Move both
+masses closer to the rotation axis</span></label> <label><input
+type="radio" name="sim-ch2-exam-q1" value="B"><span class="quiz-option-text">B) Decrease the
+angular velocity</span></label> <label><input type="radio"
+name="sim-ch2-exam-q1" value="C"><span class="quiz-option-text">C) Move more mass farther from
+the rotation axis</span></label> <label><input type="radio"
+name="sim-ch2-exam-q1" value="D"><span class="quiz-option-text">D) Rename the radial
+coordinate</span></label> </div> <div class="quiz-actions"><button
+type="button" class="quiz-check">Check</button><button
+type="button" class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="B"
+data-feedback-a="A is not correct. This omits the rotational energy of
+the spinning disk." data-feedback-b="B is correct. The cart
+translation and disk rotation both store kinetic energy."
+data-feedback-c="C is not correct. Spring potential energy is not
+kinetic energy." data-feedback-d="D is not correct. This omits the
+translational kinetic energy of the cart."> <h4>Q8. Combined kinetic
+energy</h4> <p class="quiz-prompt">A cart of mass m translates at
+speed v while a disk on the cart spins with inertia J and angular speed
+&omega;. Which kinetic energy expression includes both effects?</p>
+<div class="quiz-options"> <label><input type="radio"
+name="sim-ch2-exam-q2" value="A"><span class="quiz-option-text">A) K =
+&frac12;mv<sup>2</sup></span></label> <label><input type="radio"
+name="sim-ch2-exam-q2" value="B"><span class="quiz-option-text">B) K =
+&frac12;mv<sup>2</sup> + &frac12;J&omega;<sup>2</sup></span></label>
+<label><input type="radio" name="sim-ch2-exam-q2" value="C"><span class="quiz-option-text">C) K = &frac12;kx<sup>2</sup> +
+&frac12;J&omega;<sup>2</sup></span></label> <label><input
+type="radio" name="sim-ch2-exam-q2" value="D"><span class="quiz-option-text">D) K =
+&frac12;J&omega;<sup>2</sup></span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="A"
+data-feedback-a="A is correct. The parallel-axis theorem shifts inertia
+from the center of mass to a parallel displaced axis."
+data-feedback-b="B is not correct. Changing velocity changes kinetic
+energy, not the inertia reference axis." data-feedback-c="C is not
+correct. Spring force comes from potential energy, not the parallel-axis
+theorem." data-feedback-d="D is not correct. State-space conversion is
+a model representation step."> <h4>Q9. Parallel-axis theorem</h4>
+<p class="quiz-prompt">When is the parallel-axis theorem
+needed?</p> <div class="quiz-options"> <label><input
+type="radio" name="sim-ch2-exam-q3" value="A"><span class="quiz-option-text">A) To compute
+inertia about an axis shifted from the center of mass</span></label>
+<label><input type="radio" name="sim-ch2-exam-q3" value="B"><span class="quiz-option-text">B) To change translational velocity into angular velocity</span></label>
+<label><input type="radio" name="sim-ch2-exam-q3" value="C"><span class="quiz-option-text">C) To find the force from a linear spring</span></label> <label><input
+type="radio" name="sim-ch2-exam-q3" value="D"><span class="quiz-option-text">D) To convert a
+state-space model to a transfer function</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+<article class="quiz-card" data-quiz-type="mcq" data-answer="D"
+data-feedback-a="A is not correct. Center-of-mass position is geometry,
+not a diagonal inertia entry." data-feedback-b="B is not correct.
+Damping dissipates energy and is not a moment of inertia."
+data-feedback-c="C is not correct. Potential-energy direction is not
+the diagonal inertia meaning." data-feedback-d="D is correct. A
+diagonal inertia entry is the rotational mass-like quantity about that
+axis."> <h4>Q10. Inertia matrix meaning</h4> <p
+class="quiz-prompt">What does a diagonal entry of an inertia matrix
+represent?</p> <div class="quiz-options"> <label><input
+type="radio" name="sim-ch2-exam-q4" value="A"><span class="quiz-option-text">A) The
+center-of-mass position along that axis</span></label> <label><input
+type="radio" name="sim-ch2-exam-q4" value="B"><span class="quiz-option-text">B) The damping
+coefficient about that axis</span></label> <label><input type="radio"
+name="sim-ch2-exam-q4" value="C"><span class="quiz-option-text">C) The direction of potential
+energy</span></label> <label><input type="radio"
+name="sim-ch2-exam-q4" value="D"><span class="quiz-option-text">D) The resistance to rotation
+about that axis</span></label> </div> <div
+class="quiz-actions"><button type="button"
+class="quiz-check">Check</button><button type="button"
+class="quiz-reset">Reset</button></div><p
+class="quiz-feedback" aria-live="polite"></p> </article>
+</section>
+<h2 data-number="2.7" id="notes-and-references" class="section-notes"><span class="header-section-number">2.7</span> Notes and References</h2>
+<p>The inertia matrix in
+Equation <a href="#kinetic-energy-of-mechanical-systems" data-reference-type="eqref"
+data-reference="eq:sm_kinetic_energy_cm"><a href="#kinetic-energy-of-mechanical-systems">2.3</a></a>
+is computed about the center of mass of the object. When an object is
+composed of several connected rigid bodies and the inertia matrix is
+known for each body, the parallel axis theorem<span id="idx-0018" class="book-index-anchor" aria-hidden="true"></span> provides a convenient
+way to find the total inertia about the center of mass. The theorem
+states that if <span class="math inline">\(J_{cm}\)</span> is the
+inertia matrix about the center of mass, then the inertia matrix about a
+point located at vector <span class="math inline">\(\mathbf{r}\)</span>
+from the center of mass is <span class="math display">\[J(\mathbf{r}) =
+J_{cm} + m\left(\mathbf{r}^\top\mathbf{r} I_3 -
+\mathbf{r}\mathbf{r}^\top\right).\]</span> For the moment of inertia
+about a single axis, where the axis is shifted from the center of mass
+by distance <span class="math inline">\(d\)</span>, the parallel axis
+theorem implies that <span class="math display">\[I(d) = I_{cm} +
+md^2.\]</span></p>
+<nav class="chapter-nav" aria-label="Chapter"><a class="chapter-nav-prev" href="chapter-introduction.html" rel="prev"><span class="chapter-nav-dir">Previous</span><span class="chapter-nav-title">1 Introduction</span></a><a class="chapter-nav-next" href="chapter-the-euler-lagrange-equations.html" rel="next"><span class="chapter-nav-dir">Next</span><span class="chapter-nav-title">3 The Euler-Lagrange Equations</span></a></nav><footer class="site-footer"><a class="back-to-top" href="#top">Back to top</a></footer></main></div>  <script src="web/book.js?v=20260613c"></script>
+</body>
+</html>

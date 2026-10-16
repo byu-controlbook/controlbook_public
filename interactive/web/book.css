@@ -46,6 +46,32 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* Title page. It is authored as raw HTML in the LaTeX source, so it arrives ahead of
+   the site shell with no classes of its own and none of the column rules reach it --
+   which left it pinned to the left edge with the copyright notice touching the window.
+   Center the two pieces it is made of: the source's flex row (thumbnails + title and
+   authors) and the copyright paragraphs that follow it.
+
+   Style those children, never the .cell.markdown wrapper: Pandoc leaves that div
+   unclosed, so the browser auto-closes it at </body> and the whole site shell ends up
+   inside it -- capping the wrapper would shrink the entire book. Neither selector can
+   reach .site-shell, which is not a <p> and carries no inline flex style.
+   These rules key on structure alone, so edits to the title, authors or dates are safe. */
+body > .cell.markdown > div[style*="flex"],
+body > .cell.markdown > p {
+  box-sizing: border-box;
+  max-width: min(62rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.1rem, 2.8vw, 3.2rem);
+  padding-right: clamp(1.1rem, 2.8vw, 3.2rem);
+}
+
+/* A little air between the copyright notice and the table of contents below it. */
+body > .cell.markdown > p:last-of-type {
+  margin-bottom: 1.6rem;
+}
+
 .site-shell {
   display: grid;
   grid-template-columns: clamp(15rem, 18vw, 20rem) minmax(0, 1fr);
@@ -80,6 +106,23 @@ button:focus-visible {
   color: #0e5560;
   text-align: left;
   cursor: pointer;
+}
+
+/* Chevron beside the "Contents" label, so it is clear the panel can be collapsed.
+   It follows the button's own aria-expanded state (book.js keeps that current in both
+   layouts), pointing left to close and right to reopen. Floated rather than flexed so
+   the button keeps the display: block the media queries give it. */
+.toc-toggle::after {
+  content: "\00AB";
+  float: right;
+  margin-left: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  opacity: 0.7;
+}
+
+.toc-toggle[aria-expanded="false"]::after {
+  content: "\00BB";
 }
 
 #TOC.book-toc {
@@ -135,6 +178,9 @@ button:focus-visible {
 }
 
 #book-content {
+  /* border-box so the side padding stays inside the grid column: with content-box,
+     width: 100% plus the padding made the panel wider than the page. */
+  box-sizing: border-box;
   min-width: 0;
   width: 100%;
   background: var(--panel);
@@ -156,6 +202,25 @@ button:focus-visible {
 #book-content > blockquote,
 #book-content > pre {
   max-width: min(112ch, 100%);
+}
+
+/* Embedded apps are authored in the LaTeX source with viewport-relative widths
+   (e.g. width:min(98vw,1100px)), which ignores the text column. Cap them here so
+   they fit whatever column they land in; the inline width still governs below the cap. */
+#book-content iframe,
+#book-content embed,
+#book-content video {
+  max-width: 100%;
+}
+
+/* A few displayed equations (wide matrices) are simply wider than a narrow text
+   column. Let those scroll inside their own box rather than making the whole page
+   scroll sideways. Equations that already fit are unchanged, down to the pixel. */
+#book-content .math.display,
+#book-content mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 #book-content > div,
@@ -300,13 +365,6 @@ blockquote {
   font-family: var(--ui-font);
 }
 
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.38rem 0.62rem;
-}
-
-.footer-links a,
 .back-to-top {
   font-size: 0.84rem;
 }
@@ -3747,5 +3805,152 @@ blockquote {
 
   .book-index {
     column-count: 1;
+  }
+}
+
+/* Link at the foot of the TOC to the unsplit single-page book. Understated on
+   purpose: it is the heavy path. Added by scripts/split_html_chapters.py. */
+.toc-fullbook {
+  margin: 1rem 0 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+
+.toc-fullbook a {
+  display: block;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  background: #fffefb;
+  font: 600 0.78rem/1.3 var(--ui-font);
+  color: var(--muted);
+  text-align: center;
+  text-decoration: none;
+  cursor: help;
+}
+
+.toc-fullbook a:hover,
+.toc-fullbook a:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Previous/next links at the foot of each chapter page. Added by
+   scripts/split_html_chapters.py. */
+.chapter-nav {
+  max-width: min(112ch, 100%);
+  margin: 2.6rem auto 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 1rem;
+  font-family: var(--ui-font);
+}
+
+.chapter-nav a {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.chapter-nav a:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.chapter-nav-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.chapter-nav-dir {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.chapter-nav-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Images carry width/height attributes (scripts/add_image_attrs.py) so the browser
+   reserves their space; keep proportions wherever CSS or an inline style sets width. */
+img[width][height] {
+  height: auto;
+}
+
+/* Collapsible table of contents on wide screens. Open, it is the sticky column.
+   Collapsed, the column is gone -- the text uses the full width -- and the sidebar
+   becomes a small button pinned over the text's left edge. book.js puts .is-collapsed
+   on both .site-shell and .site-nav, and remembers the reader's choice. */
+@media (min-width: 981px) {
+  .toc-toggle {
+    display: block;
+  }
+
+  .site-shell.is-collapsed {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-shell.is-collapsed .site-nav {
+    position: fixed;
+    top: 0.35rem;
+    left: 0.35rem;
+    z-index: 20;
+    width: auto;
+    max-height: none;
+    overflow: visible;
+    border: 0;
+    border-radius: 0.5rem;
+    background: none;
+    box-shadow: none;
+  }
+
+  .site-shell.is-collapsed #TOC {
+    display: none;
+  }
+
+  /* Icon-only button when collapsed. font-size: 0 hides the "Contents" label while
+     keeping it as the button's accessible name for screen readers. */
+  /* Small and tucked into the corner: while reading, the button sits beside the first
+     words of every line, so it stays quiet until pointed at. */
+  .site-shell.is-collapsed .toc-toggle {
+    width: auto;
+    border: 1px solid var(--border);
+    border-radius: 0.45rem;
+    padding: 0.26rem 0.36rem;
+    box-shadow: var(--shadow);
+    font-size: 0;
+    opacity: 0.55;
+    transition: opacity 0.15s ease-in-out;
+  }
+
+  .site-shell.is-collapsed .toc-toggle:hover,
+  .site-shell.is-collapsed .toc-toggle:focus-visible {
+    opacity: 1;
+  }
+
+  .site-shell.is-collapsed .toc-toggle::before {
+    content: "\2630";
+    display: block;
+    font-size: 1.425rem;
+    line-height: 1.05;
+  }
+
+  /* Collapsed to the corner button, the menu icon says it all: drop the chevron. */
+  .site-shell.is-collapsed .toc-toggle::after {
+    content: none;
   }
 }
