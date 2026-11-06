@@ -281,7 +281,7 @@ system.</figcaption>
 differential equation <span
 class="math display">\[\tag{P.1.1}
 \ddot{y} + 2\dot{y} + 3 y = 4 u,\]</span> and using the PID controller
-<span class="math display">\[\tag{P.3.2}
+<span class="math display">\[
 u(t) = k_p (r(t)-y(t)) + k_i \int_{-\infty}^t (r(\tau)-y(\tau))d\tau -
 k_d \dot{y}.\]</span></p>
 <p>The feedback control system shown in
@@ -377,14 +377,14 @@ update their displays each time through the loop.</p>
 <p>This section will describe how to implement the system dynamics given
 in
 Equation <a href="#system-dynamics" data-reference-type="eqref"
-data-reference="eq:python_system_dynamics"><a href="#simulating-control-systems-using-python">P.1.1</a></a>.
+data-reference="eq:python_system_dynamics">P.1.1</a>.
 The first step is to convert the dynamics to the state-space form <span
 class="math display">\[\begin{aligned}
 \dot{x} &amp;= f(x, u) \\
 y &amp;= h(x,u).    
 \end{aligned}\]</span> For the differential equation in
 Equation <a href="#system-dynamics" data-reference-type="eqref"
-data-reference="eq:python_system_dynamics"><a href="#simulating-control-systems-using-python">P.1.1</a></a>
+data-reference="eq:python_system_dynamics">P.1.1</a>
 let <span class="math inline">\(x = (y, \dot{y})^\top\)</span>, which
 gives <span class="math display">\begin{align}
 \dot{x}&amp; = \begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \end{pmatrix} =
@@ -483,9 +483,9 @@ y &amp;= h(x, u).
 <span class="math inline">\(f(x,u)\)</span>, and lines 34–38 define
 <span class="math inline">\(h(x, u)\)</span>, as given by
 Equations <a href="#signal-generator" data-reference-type="eqref"
-data-reference="eq:python_f"><a href="#simulating-control-systems-using-python">P.1.3</a></a>
+data-reference="eq:python_f">P.1.3</a>
 and <a href="#data-plotter" data-reference-type="eqref"
-data-reference="eq:python_h"><a href="#simulating-control-systems-using-python">P.1.4</a></a> respectively.</p>
+data-reference="eq:python_h">P.1.4</a> respectively.</p>
 <p>The main feedback loop calls the <code>update</code> routine in
 lines 40–46. The <code>update</code> function first saturates the input
 in line 43, where the <code>saturation</code> function is defined in
@@ -494,13 +494,13 @@ sample time <span class="math inline">\(T_s\)</span> using the
 fourth-order Runge-Kutta algorithm in line 44, where the RK4 algorithm
 is specified in lines 48–54, as described in
 Appendix <a href="chapter-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations" data-reference-type="ref"
-data-reference="chap:runge_kutta">28</a>. The <code>update</code>
+data-reference="chap:runge_kutta">P.4</a>. The <code>update</code>
 function finally computes and returns the output <span
 class="math inline">\(y\)</span> in lines 45–46.</p>
 <h2 data-number="P.1.2" id="controller"><span class="header-section-number">P.1.2</span> Controller</h2>
 <p>This section will describe how to implement the PID controller given
-in Equation <a href="chapter-simulating-control-systems-using-simulink.html#controller-2" data-reference-type="eqref"
-data-reference="eq:python_PID_control"><a href="chapter-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3.2</a></a>. The
+in Equation <a href="#eq:python_PID_control" data-reference-type="eqref"
+data-reference="eq:python_PID_control"></a>. The
 controller is implemented in <code>systemController.py</code>, which is
 listed below.</p>
 <div class="sourceCode" id="cb26"><pre
@@ -555,33 +555,33 @@ variable <span class="math inline">\(T_s\)</span> in line 9. The dirty
 derivative gain <span class="math inline">\(\sigma\)</span>, described
 in
 Chapter <a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>, is specified in
+data-reference="chap:PID-digital-implementation">10</a>, is specified in
 line 10, and the intermediate gain <span class="math inline">\(\beta =
 \frac{2\sigma-T_s}{2\sigma+T_s}\)</span> is specified on line 11.
 Internal storage variables for the differentiator and the integrator, as
 explained in
 Chapter <a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>, are given in
+data-reference="chap:PID-digital-implementation">10</a>, are given in
 lines 13–18. The PID control <code>update</code> routine is specified in
 lines 20–27. The error <span class="math inline">\(e=r-y\)</span>, as
 shown in
 Figure <a href="#fig:python_feedback_block_diagram" data-reference-type="ref"
 data-reference="fig:python_feedback_block_diagram">1.1</a>, is defined
 in line 21. The PID controller in
-Equation <a href="chapter-simulating-control-systems-using-simulink.html#controller-2" data-reference-type="eqref"
-data-reference="eq:python_PID_control"><a href="chapter-simulating-control-systems-using-simulink.html#simulating-control-systems-using-simulink">P.3.2</a></a> uses
+Equation <a href="#eq:python_PID_control" data-reference-type="eqref"
+data-reference="eq:python_PID_control"></a> uses
 the integral of <span class="math inline">\(e\)</span> and the
 derivative of <span class="math inline">\(y\)</span>. The integral of
 <span class="math inline">\(e\)</span> is computed on line 22 using the
 routine specified in lines 29–33. A derivation of the integral equations
 is given in
 Chapter <a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>. The derivative
+data-reference="chap:PID-digital-implementation">10</a>. The derivative
 of <span class="math inline">\(y\)</span> is computed in line 23 using
 the routine specified in lines 35–39. A derivation of the dirty
 derivative equations is given in
 Chapter <a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>. Finally, the
+data-reference="chap:PID-digital-implementation">10</a>. Finally, the
 PID controller is computed, the value is saturated, and the result is
 returned in lines 25, 26, and 27, respectively.</p>
 <h2 data-number="P.1.3" id="signal-generator"><span class="header-section-number">P.1.3</span> Signal Generator</h2>

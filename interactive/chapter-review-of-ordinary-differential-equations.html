@@ -268,23 +268,23 @@ class="math inline">\(y(0)=y_0\)</span>, where <span
 class="math inline">\(a\)</span> and <span
 class="math inline">\(b\)</span> are constants.
 Equation <a href="#first-order-odes" data-reference-type="eqref"
-data-reference="eq:ode_1"><a href="#review-of-ordinary-differential-equations">P.5.1</a></a> can be rearranged as <span
+data-reference="eq:ode_1">P.5.1</a> can be rearranged as <span
 class="math display">\[\tag{P.5.2}
 \frac{dy}{dt}(t) - ay(t) = bu(t).\]</span> Multiplying both sides of
 Equation <a href="#inverse-laplace-transform" data-reference-type="eqref"
-data-reference="eq:ode_2"><a href="#review-of-ordinary-differential-equations">P.5.2</a></a> by the integrating factor <span
+data-reference="eq:ode_2">P.5.2</a> by the integrating factor <span
 class="math inline">\(e^{-at}\)</span> gives <span
 class="math display">\[\tag{P.5.3}
 e^{-at}\left(\frac{dy}{dt}(t) - ay(t)\right) = e^{-at}bu(t).\]</span>
 Noting that the left-hand side of
 Equation <a href="#partial-fraction-expansion" data-reference-type="eqref"
-data-reference="eq:ode_3"><a href="#review-of-ordinary-differential-equations">P.5.3</a></a> is the derivative of <span
+data-reference="eq:ode_3">P.5.3</a> is the derivative of <span
 class="math inline">\(e^{-at}y(t)\)</span> gives <span
 class="math display">\[\tag{P.5.4}
 \frac{d}{dt}\left(e^{-at}y(t)\right) = e^{-at}bu(t).\]</span>
 Integrating both sides of
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_4"><a href="#review-of-ordinary-differential-equations">P.5.4</a></a> from <span
+data-reference="eq:ode_4">P.5.4</a> from <span
 class="math inline">\(0\)</span> to <span
 class="math inline">\(t\)</span> yields <span
 class="math display">\[\int_0^t
@@ -307,7 +307,7 @@ class="math inline">\(e^{at}\)</span>.</p>
 <p>For the discussion to follow, it is important to note that if <span
 class="math inline">\(a\)</span> is a complex number, then
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_5"><a href="#review-of-ordinary-differential-equations">P.5.5</a></a> still holds, but <span
+data-reference="eq:ode_5">P.5.5</a> still holds, but <span
 class="math inline">\(y(t)\)</span> will be a complex function of time.
 To see this, assume that <span
 class="math inline">\(a=\sigma+j\omega\)</span>. Then <span
@@ -318,7 +318,7 @@ e^{at} &amp;= e^{(\sigma+j\omega)t} \\
         &amp;= e^{\sigma t}\cos(\omega t) + je^{\sigma t}\sin(\omega t),
 \end{aligned}\]</span> substituting into
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_5"><a href="#review-of-ordinary-differential-equations">P.5.5</a></a> yields the complex function
+data-reference="eq:ode_5">P.5.5</a> yields the complex function
 <span class="math display">\[\begin{gathered}
 y(t) = \left(e^{\sigma t}\cos(\omega t) y_0 + \int_0^t e^{\sigma
 (t-\tau)} \cos(\omega \tau) bu(\tau)d\tau\right) \\
@@ -333,7 +333,7 @@ bounded.</p>
 <h2 data-number="P.5.2" id="inverse-laplace-transform"><span class="header-section-number">P.5.2</span> Inverse Laplace Transform</h2>
 <p>Taking the Laplace transform<span id="idx-0275" class="book-index-anchor" aria-hidden="true"></span> of
 Equation <a href="#first-order-odes" data-reference-type="eqref"
-data-reference="eq:ode_1"><a href="#review-of-ordinary-differential-equations">P.5.1</a></a> gives <span
+data-reference="eq:ode_1">P.5.1</a> gives <span
 class="math display">\[(sY(s) - y_0) = aY(s) + bU(s).\]</span> Solving
 for <span class="math inline">\(Y(s)\)</span> yields <span
 class="math display">\[Y(s) = \left(\frac{1}{s-a}\right)y_0 +
@@ -345,9 +345,9 @@ y(t) = \mathcal{L}^{-1}\left(\frac{1}{s-a}\right) y_0 +
 where <span class="math inline">\(*\)</span> denotes the convolution
 operator. Comparing
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_5"><a href="#review-of-ordinary-differential-equations">P.5.5</a></a> with
+data-reference="eq:ode_5">P.5.5</a> with
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_6"><a href="#review-of-ordinary-differential-equations">P.5.6</a></a> implies that <span
+data-reference="eq:ode_6">P.5.6</a> implies that <span
 class="math display">\[\tag{P.5.7}
 \mathcal{L}^{-1}\left(\frac{b}{s-a}\right) = be^{at}, \quad t\geq
 0.\]</span> In the limit, as <span class="math inline">\(a\to 0\)</span>
@@ -355,9 +355,9 @@ we get <span class="math display">\[\tag{P.5.8}
 \mathcal{L}^{-1}\left(\frac{b}{s}\right) = b, \quad t\geq 0.\]</span>
 Again we note that
 Equations <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_inverse_laplace"><a href="#review-of-ordinary-differential-equations">P.5.7</a></a>
+data-reference="eq:ode_inverse_laplace">P.5.7</a>
 and <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_inverse_laplace_step"><a href="#review-of-ordinary-differential-equations">P.5.8</a></a>
+data-reference="eq:ode_inverse_laplace_step">P.5.8</a>
 are true even when <span class="math inline">\(a\)</span> and <span
 class="math inline">\(b\)</span> are complex numbers.</p>
 <h2 data-number="P.5.3" id="partial-fraction-expansion"><span class="header-section-number">P.5.3</span> Partial Fraction
@@ -377,7 +377,7 @@ class="math display">\[u(t) = \begin{cases} A &amp; t\geq 0 \\ 0 &amp;
 class="math inline">\(u(t)\)</span> is <span class="math inline">\(U(s)
 = \frac{A}{s}\)</span>. Similarly, taking the Laplace transform of
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_7"><a href="#review-of-ordinary-differential-equations">P.5.9</a></a> and solving for <span
+data-reference="eq:ode_7">P.5.9</a> and solving for <span
 class="math inline">\(Y(s)\)</span> gives <span
 class="math display">\[\tag{P.5.10}
 Y(s) = \left(\frac{b}{s+a}\right)U(s) = \frac{bA}{s(s+a)}.\]</span> The
@@ -389,31 +389,31 @@ Y(s) = \frac{c_1}{s} + \frac{c_2}{s+a}.\]</span> To find the
 coefficients <span class="math inline">\(c_1\)</span> and <span
 class="math inline">\(c_2\)</span>, set
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_9"><a href="#review-of-ordinary-differential-equations">P.5.11</a></a> equal to
+data-reference="eq:ode_9">P.5.11</a> equal to
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_8"><a href="#review-of-ordinary-differential-equations">P.5.10</a></a> to obtain <span
+data-reference="eq:ode_8">P.5.10</a> to obtain <span
 class="math display">\[\tag{P.5.12}
 \frac{c_1}{s} + \frac{c_2}{s+a} = \frac{bA}{s(s+a)}.\]</span> To find
 <span class="math inline">\(c_1\)</span>, multiply both sides of
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_10"><a href="#review-of-ordinary-differential-equations">P.5.12</a></a> by <span
+data-reference="eq:ode_10">P.5.12</a> by <span
 class="math inline">\(s\)</span> to obtain <span
 class="math display">\[\tag{P.5.13}
 c_1 + \frac{s c_2}{s+a} = \frac{bA}{s+a}.\]</span> To remove the term
 involving <span class="math inline">\(c_2\)</span> in
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_11"><a href="#review-of-ordinary-differential-equations">P.5.13</a></a>, set <span
+data-reference="eq:ode_11">P.5.13</a>, set <span
 class="math inline">\(s=0\)</span> to obtain <span
 class="math display">\[c_1 = \frac{bA}{a}.\]</span> To find <span
 class="math inline">\(c_2\)</span>, multiply both sides of
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_10"><a href="#review-of-ordinary-differential-equations">P.5.12</a></a> by <span
+data-reference="eq:ode_10">P.5.12</a> by <span
 class="math inline">\(s+a\)</span> to obtain <span
 class="math display">\[\tag{P.5.14}
 \frac{c_1(s+a)}{s} + c_2 = \frac{bA}{s}.\]</span> To remove the term
 involving <span class="math inline">\(c_1\)</span> in
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_12"><a href="#review-of-ordinary-differential-equations">P.5.14</a></a>, set <span
+data-reference="eq:ode_12">P.5.14</a>, set <span
 class="math inline">\(s=-a\)</span> to obtain <span
 class="math display">\[c_2 = -\frac{bA}{a}.\]</span> Therefore, <span
 class="math display">\[\tag{P.5.15}
@@ -443,9 +443,9 @@ Y(s) &amp;= \left(\frac{1}{s^4+10s^3+35s^2+50s+24}\right)U(s) \notag \\
 Y(s) =  \frac{c_1}{s} + \frac{c_2}{s+1} + \frac{c_3}{s+2} +
 \frac{c_4}{s+3} + \frac{c_5}{s+4}.\]</span> Setting
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_15"><a href="#review-of-ordinary-differential-equations">P.5.17</a></a> equal to
+data-reference="eq:ode_15">P.5.17</a> equal to
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_14"><a href="#review-of-ordinary-differential-equations">P.5.16</a></a> gives <span
+data-reference="eq:ode_14">P.5.16</a> gives <span
 class="math display">\begin{gather}
 \tag{P.5.18}
 \frac{c_1}{s} + \frac{c_2}{s+1} + \frac{c_3}{s+2} + \frac{c_4}{s+3} +
@@ -455,7 +455,7 @@ class="math display">\begin{gather}
 \end{gather}</span> The coefficient <span
 class="math inline">\(c_1\)</span> is found by multiplying both sides of
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_16"><a href="#review-of-ordinary-differential-equations">P.5.18</a></a> by <span
+data-reference="eq:ode_16">P.5.18</a> by <span
 class="math inline">\(s\)</span> and then setting <span
 class="math inline">\(s=0\)</span> to remove the coefficients <span
 class="math inline">\(c_2\)</span>–<span
@@ -518,9 +518,9 @@ Y(s) = \frac{c_1}{s} +
 \left(\frac{c_3}{s+\zeta\omega_n-j\omega_n\sqrt{1-\zeta^2}}\right).
 \end{gather}</span> Setting
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_18"><a href="#review-of-ordinary-differential-equations">P.5.21</a></a> equal to
+data-reference="eq:ode_18">P.5.21</a> equal to
 Equation <a href="#review-of-ordinary-differential-equations" data-reference-type="eqref"
-data-reference="eq:ode_17"><a href="#review-of-ordinary-differential-equations">P.5.20</a></a> gives <span
+data-reference="eq:ode_17">P.5.20</a> gives <span
 class="math display">\[\begin{gathered}
 \frac{c_1}{s} +
 \left(\frac{c_2}{s+\zeta\omega_n+j\omega_n\sqrt{1-\zeta^2}}\right) +

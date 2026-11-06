@@ -366,14 +366,14 @@ updated on lines 33–34.</p>
 <p>This section will describe how to implement the system dynamics given
 in
 Equation <a href="#system-dynamics-1" data-reference-type="eqref"
-data-reference="eq:matlab_system_dynamics"><a href="#simulating-control-systems-using-matlab">P.2.1</a></a>.
+data-reference="eq:matlab_system_dynamics">P.2.1</a>.
 The first step is to convert the dynamics to the state-space form <span
 class="math display">\[\begin{aligned}
 \dot{x} &amp;= f(x, u) \\
 y &amp;= h(x,u).    
 \end{aligned}\]</span> For the differential equation in
 Equation <a href="#system-dynamics-1" data-reference-type="eqref"
-data-reference="eq:matlab_system_dynamics"><a href="#simulating-control-systems-using-matlab">P.2.1</a></a>
+data-reference="eq:matlab_system_dynamics">P.2.1</a>
 let <span class="math inline">\(x = (y, \dot{y})^\top\)</span>, which
 gives <span class="math display">\begin{align}
 \dot{x}&amp; = \begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \end{pmatrix} =
@@ -492,9 +492,9 @@ y &amp;= h(x, u).
 <span class="math inline">\(f(x,u)\)</span>, and lines 42–45 define
 <span class="math inline">\(h(x, u)\)</span>, as given by
 Equations <a href="chapter-simulating-control-systems-using-python.html#signal-generator" data-reference-type="eqref"
-data-reference="eq:python_f"><a href="chapter-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1.3</a></a>
+data-reference="eq:python_f">P.1.3</a>
 and <a href="chapter-simulating-control-systems-using-python.html#data-plotter" data-reference-type="eqref"
-data-reference="eq:python_h"><a href="chapter-simulating-control-systems-using-python.html#simulating-control-systems-using-python">P.1.4</a></a> respectively.</p>
+data-reference="eq:python_h">P.1.4</a> respectively.</p>
 <p>The main feedback loop calls the <code>update</code> method on
 lines 47–53. The <code>update</code> function first saturates the input
 on line 50, where the <code>saturation</code> function is defined in
@@ -503,13 +503,13 @@ sample time <span class="math inline">\(T_s\)</span> using the
 fourth-order Runge-Kutta algorithm on line 51, where the RK4 algorithm
 is specified on lines 55–62, as described in
 Appendix <a href="chapter-numerical-solutions-to-differential-equations.html#numerical-solutions-to-differential-equations" data-reference-type="ref"
-data-reference="chap:runge_kutta">28</a>. The <code>update</code>
+data-reference="chap:runge_kutta">P.4</a>. The <code>update</code>
 function finally computes and returns the output <span
 class="math inline">\(y\)</span> on line 52.</p>
 <h2 data-number="P.2.2" id="controller-1"><span class="header-section-number">P.2.2</span> Controller</h2>
 <p>This section will describe how to implement the PID controller given
 in Equation <a href="#controller-1" data-reference-type="eqref"
-data-reference="eq:matlab_PID_control"><a href="#simulating-control-systems-using-matlab">P.2.2</a></a>. The
+data-reference="eq:matlab_PID_control">P.2.2</a>. The
 controller is implemented in <code>systemController.m</code>, which is
 listed below.</p>
 <div class="sourceCode" id="cb32"><pre
@@ -587,13 +587,13 @@ variable <span class="math inline">\(T_s\)</span> in line 9. The dirty
 derivative gain <span class="math inline">\(\sigma\)</span>, described
 in
 Chapter <a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>, is specified on
+data-reference="chap:PID-digital-implementation">10</a>, is specified on
 line 22, and the intermediate gain <span class="math inline">\(\beta =
 \frac{2\sigma-T_s}{2\sigma+T_s}\)</span> is specified on line 24.
 Internal storage variables for the differentiator and the integrator, as
 explained in
 Chapter <a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>, are given in
+data-reference="chap:PID-digital-implementation">10</a>, are given in
 lines 27–31. The PID control <code>update</code> routine is specified in
 lines 34–41. The error <span class="math inline">\(e=r-y\)</span>, as
 shown in
@@ -601,19 +601,19 @@ Figure <a href="#fig:matlab_feedback_block_diagram" data-reference-type="ref"
 data-reference="fig:matlab_feedback_block_diagram">2.1</a>, is defined
 on line 35. The PID controller in
 Equation <a href="#controller-1" data-reference-type="eqref"
-data-reference="eq:matlab_PID_control"><a href="#simulating-control-systems-using-matlab">P.2.2</a></a> uses
+data-reference="eq:matlab_PID_control">P.2.2</a> uses
 the integral of <span class="math inline">\(e\)</span> and the
 derivative of <span class="math inline">\(y\)</span>. The integral of
 <span class="math inline">\(e\)</span> is computed on line 36 using the
 routine specified on lines 43–48. A derivation of the integral equations
 is given in
 Chapter <a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>. The derivative
+data-reference="chap:PID-digital-implementation">10</a>. The derivative
 of <span class="math inline">\(y\)</span> is computed in line 37 using
 the routine specified in lines 50–53. A derivation of the dirty
 derivative equations is given in
 Chapter <a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>. Finally, the
+data-reference="chap:PID-digital-implementation">10</a>. Finally, the
 PID controller is computed, the value is saturated, and the result is
 returned on lines 39 and 40.</p>
 <h2 data-number="P.2.3" id="signal-generator-1"><span class="header-section-number">P.2.3</span> Signal Generator</h2>

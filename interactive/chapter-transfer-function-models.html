@@ -347,12 +347,12 @@ class="math inline">\(5s+6=0\)</span> or <span class="math inline">\(z_1
 = -6/5\)</span>.</p>
 <h2 data-number="5.2" id="design-study-a-single-link-robot-arm-3" class="section-design-study"><span class="header-section-number">5.2</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="5.2.1" id="-example-problem-318" class="section-example"><span class="header-section-number">5.2.1</span> <a
+<h3 data-number="5.2.1" id="-example-problem-1315" class="section-example"><span class="header-section-number">5.2.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">5</a></h3>
 <p>For the single-link robot arm, find the transfer function of the
 system from the torque <span class="math inline">\(\tau\)</span> to the
 angle <span class="math inline">\(\theta\)</span>.</p>
@@ -434,17 +434,17 @@ aria-live="polite"></p> <section
 class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
 Complete solution
 </h4>
-<p>As shown in Section <a href="chapter-equilibria-and-linearization.html#-example-problem-317"
-data-reference-type="ref" data-reference="hw:arm_linearization">7.2</a>,
+<p>As shown in Section <a href="chapter-equilibria-and-linearization.html#-example-problem-1314"
+data-reference-type="ref" data-reference="hw:arm_linearization">4.2</a>,
 the feedback linearized model for the single-link robot arm is given by
 Equation <a href="chapter-equilibria-and-linearization.html#notes-and-references-2"
 data-reference-type="eqref"
-data-reference="eq:arm_linearized_eom_feedback_linarization"><a href="chapter-equilibria-and-linearization.html#equilibria-and-linearization">4.7</a></a>
+data-reference="eq:arm_linearized_eom_feedback_linarization">4.7</a>
 as <span class="math display">\[\tag{5.1}
 \frac{m\ell^2}{3}\ddot{\theta} = \tilde{\tau} - b\dot{\theta}.\]</span>
 Taking the Laplace transform of Equation <a href="#theory-3"
 data-reference-type="eqref"
-data-reference="eq:soln_a6_1"><a href="#transfer-function-models">5.1</a></a> and setting all initial
+data-reference="eq:soln_a6_1">5.1</a> and setting all initial
 conditions to zero we get <span
 class="math display">\[\frac{m\ell^2}{3}s^2\Theta(s) + b s\Theta(s) =
 \tilde{\tau}(s).\]</span> Solving for <span
@@ -462,10 +462,10 @@ class="math inline">\(\theta\)</span>, where <span
 class="math inline">\(\tilde{\tau}\)</span> indicates that we are
 working with the feedback linearized control in Equation <a
 href="chapter-equilibria-and-linearization.html#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:arm_feedback_linarization_control"><a href="chapter-equilibria-and-linearization.html#equilibria-and-linearization">4.6</a></a>.
+data-reference="eq:arm_feedback_linarization_control">4.6</a>.
 The block diagram associated with Equation <a href="#design-study-a-single-link-robot-arm-3"
 data-reference-type="eqref"
-data-reference="eq:soln_a6_2"><a href="#transfer-function-models">5.2</a></a> is shown in
+data-reference="eq:soln_a6_2">5.2</a> is shown in
 <strong>Fig.</strong> <a href="#fig:dm_arm_block_diagram"
 data-reference-type="ref"
 data-reference="fig:dm_arm_block_diagram">5.1</a>.</p>
@@ -473,7 +473,7 @@ data-reference="fig:dm_arm_block_diagram">5.1</a>.</p>
 <img loading="lazy" width="1113" height="313" src="6_design_studies/figures/hw_arm_block_diagram.png"
 style="width:50.0%"
 alt="A block diagram of the single-link robot arm." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 5.1. </span>A block diagram of the single-link robot
+<figcaption aria-hidden="true">A block diagram of the single-link robot
 arm.</figcaption>
 </figure></section> </article>
 </section>
@@ -501,7 +501,7 @@ left-hand side by inverting the matrix on the left. Using the inverse
 formula for a <span class="math inline">\(2\times 2\)</span> matrix
 derived in
 Appendix <a href="chapter-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
-data-reference="chap:linear_algebra">31</a> <span
+data-reference="chap:linear_algebra">P.7</a> <span
 class="math display">\[\begin{pmatrix} a &amp; b \\ c &amp; d
 \end{pmatrix}^{-1} = \frac{\begin{pmatrix} d &amp; -b \\ -c &amp;
 a\end{pmatrix}}{ad-bc}\]</span> we get <span
@@ -609,12 +609,12 @@ behavior of the system you are controlling, the better your control
 system designs will be.</p>
 <h2 data-number="5.4" id="design-study-b-inverted-pendulum-2" class="section-design-study"><span class="header-section-number">5.4</span> Design Study <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
-<h3 data-number="5.4.1" id="-example-problem-328" class="section-example"><span class="header-section-number">5.4.1</span> <a
+<h3 data-number="5.4.1" id="-example-problem-1325" class="section-example"><span class="header-section-number">5.4.1</span> <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a></h3>
+data-reference="ds:pendulum">1.3.2</a>.<a href="#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">5</a></h3>
 <p>For the inverted pendulum:</p>
 <p>(a) Start with the linearized equations and use the Laplace transform to
 convert the equations of motion to the s-domain.</p>
@@ -707,7 +707,7 @@ class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
 Complete solution
 </h4>
 <p>From HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.4, the linearized equations of
+data-reference="ds:pendulum">1.3.2</a>.4, the linearized equations of
 motion are given by <span class="math display">\[\begin{pmatrix}
 (m_1+m_2) &amp; m_1 \frac{\ell}{2} \\
 m_1 \frac{\ell}{2} &amp; m_1 \frac{\ell^2}{3}
@@ -789,7 +789,7 @@ data-reference-type="ref" data-reference="fig:dm_soln_b6">5.2</a>.</p>
 <img loading="lazy" width="2317" height="567" src="6_design_studies/figures/hw_pendulum_block_diagram.png"
 style="width:90.0%"
 alt="The inverted pendulum dynamics are approximated by a cascade of fast and slow subsystems. The fast subsystem is the transfer function from the force to the angle, and the slow subsystem is the transfer function from the angle to the position." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 5.2. </span>The inverted pendulum dynamics are
+<figcaption aria-hidden="true">The inverted pendulum dynamics are
 approximated by a cascade of fast and slow subsystems. The fast
 subsystem is the transfer function from the force to the angle, and the
 slow subsystem is the transfer function from the angle to the
@@ -825,12 +825,12 @@ slow subsystems.</p>
 <h2 data-number="5.5"
 id="design-study-c-satellite-attitude-control-3" class="section-design-study"><span class="header-section-number">5.5</span> Design Study <a
 href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
-<h3 data-number="5.5.1" id="-example-problem-338" class="section-example"><span class="header-section-number">5.5.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+<h3 data-number="5.5.1" id="-example-problem-1335" class="section-example"><span class="header-section-number">5.5.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
 src="6_design_studies/figures/hw_satellite_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a></h3>
+data-reference="ds:satellite">1.3.3</a>.<a href="#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">5</a></h3>
 <p>For the satellite attitude control problem:</p>
 <p>(a) Start with the linearized equations for the satellite attitude problem
 and use the Laplace transform to convert the equations of motion to the
@@ -953,7 +953,7 @@ class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
 Complete solution
 </h4>
 <p>From HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.3, the linearized equations of
+data-reference="ds:satellite">1.3.3</a>.3, the linearized equations of
 motion are given by <span
 class="math display">\[\begin{pmatrix}\ddot{\theta} \\ \ddot{\phi}
 \end{pmatrix}
@@ -980,9 +980,9 @@ class="math display">\begin{align}
 class="math inline">\(\tau\)</span> to <span
 class="math inline">\((\Theta, \Phi)^\top\)</span>, write Equation <a
 href="#transfer-function-models" data-reference-type="eqref"
-data-reference="eq:soln_c6_1"><a href="#transfer-function-models">5.3</a></a> and <a
+data-reference="eq:soln_c6_1">5.3</a> and <a
 href="#design-study-b-inverted-pendulum-2" data-reference-type="eqref"
-data-reference="eq:soln_c6_2"><a href="#transfer-function-models">5.4</a></a> in matrix form as <span
+data-reference="eq:soln_c6_2">5.4</a> in matrix form as <span
 class="math display">\[\left(\begin{array}{c|c}
 s^2+\frac{b}{J_s}s+\frac{k}{J_s} &amp; -\frac{b}{J_s}s-\frac{k}{J_s}
 \\\hline
@@ -1033,7 +1033,7 @@ data-reference="fig:dm_soln_c6">5.3</a>.</p>
 <img loading="lazy" width="2192" height="488" src="6_design_studies/figures/hw_satellite_block_diagram.png"
 style="width:80.0%"
 alt="The satellite attitude dynamics are approximated by a cascade of the satellite and panel subsystems." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 5.3. </span>The satellite attitude dynamics are
+<figcaption aria-hidden="true">The satellite attitude dynamics are
 approximated by a cascade of the satellite and panel
 subsystems.</figcaption>
 </figure>

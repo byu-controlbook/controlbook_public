@@ -262,17 +262,17 @@ closed-loop system. This chapter examines the design problem of how to
 select the pole locations<span id="idx-0072" class="book-index-anchor" aria-hidden="true"></span> to achieve desired
 behavior. In
 Section <a href="#first-order-response" data-reference-type="ref"
-data-reference="sec:first-order-response">11.1.1</a> we derive the
+data-reference="sec:first-order-response">8.1.1</a> we derive the
 relationship between a single pole location and the step
 response<span id="idx-0073" class="book-index-anchor" aria-hidden="true"></span> of the system. In
 Section <a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
-data-reference="sec:second-order-response">11.1.2</a> we show that the
+data-reference="sec:second-order-response">8.1.2</a> we show that the
 time-domain response for a second-order system can be understood in
 terms of natural frequency<span id="idx-0074" class="book-index-anchor" aria-hidden="true"></span> and damping
 ratio<span id="idx-0075" class="book-index-anchor" aria-hidden="true"></span>. Finally, in
 Section <a href="#effect-of-a-zero-on-the-step-response" data-reference-type="ref"
-data-reference="sec:effect-of-zeros">11.1.3</a> we show the effect that
-a zero has on the step response of a second-order system.</p>
+data-reference="sec:effect-of-zeros">8.1.3</a> we show the effect that a
+zero has on the step response of a second-order system.</p>
 <h3 data-number="8.1.1" id="first-order-response"><span class="header-section-number">8.1.1</span> First Order Response</h3>
 <p>Consider a first-order system given by<span id="idx-0076" class="book-index-anchor" aria-hidden="true"></span> <span
 class="math display">\[Y(s) = \frac{p}{s+p} U(s),\]</span> where <span
@@ -282,7 +282,7 @@ first-order system is at <span class="math inline">\(-p\)</span>. If
 magnitude <span class="math inline">\(A\)</span>, then <span
 class="math display">\[Y(s) = \frac{Ap}{s(s+p)}.\]</span> As shown in
 Appendix <a href="chapter-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations" data-reference-type="ref"
-data-reference="chap:differential_equations">29</a>, the inverse Laplace
+data-reference="chap:differential_equations">P.5</a>, the inverse Laplace
 transform<span id="idx-0077" class="book-index-anchor" aria-hidden="true"></span> is given by <span
 class="math display">\[\tag{8.1}
 y(t) = \begin{cases} A(1-e^{-pt}), &amp; t\geq 0 \\ 0, &amp;
@@ -364,7 +364,7 @@ data-reference="fig:pid_first_order_response">8.1</a>
 that the rise time is independent of the step size <span
 class="math inline">\(A\)</span>. Also, by differentiating
 Equation <a href="#theory-6" data-reference-type="eqref"
-data-reference="eq:PID_first_order_response"><a href="#design-strategies-for-second-order-systems">8.1</a></a>
+data-reference="eq:PID_first_order_response">8.1</a>
 at time <span class="math inline">\(t=0\)</span>, it is straightforward
 to show that the slope of the response at <span
 class="math inline">\(t=0\)</span> is equal to <span
@@ -387,7 +387,7 @@ title="Interactive step response with adjustable p"
 style="width:min(98vw,980px);height:640px;border:1px solid
 #d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
 auto;"></iframe>
-<figcaption><span class="fig-number">Figure 8.2. </span>
+<figcaption>
 Interactive step response of a first-order system. Use the slider to
 vary pole location <span class="math inline">(p)</span>; larger <span
 class="math inline">(p)</span> values move the pole further left and
@@ -524,7 +524,7 @@ title="Interactive second-order response with adjustable natural
 frequency" style="width:min(98vw,980px);height:640px;border:1px solid
 #d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
 auto;"></iframe>
-<figcaption><span class="fig-number">Figure 8.3. </span>
+<figcaption>
 Interactive second-order step response with fixed damping ratio ζ =
 0.707. Use the slider to vary natural frequency ω_n; increasing ω_n
 decreases rise time.
@@ -536,7 +536,7 @@ loading="lazy" title="Interactive second-order response with adjustable
 damping ratio" style="width:min(98vw,980px);height:640px;border:1px
 solid #d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
 auto;"></iframe>
-<figcaption><span class="fig-number">Figure 8.4. </span>
+<figcaption>
 Interactive second-order step response with fixed natural frequency ω_n
 = 1. Use the slider to vary damping ratio ζ; lower ζ increases overshoot
 and ringing.
@@ -544,7 +544,7 @@ and ringing.
 </figure>
 <p>Note from
 Equation <a href="#design-study-a-single-link-robot-arm-6" data-reference-type="eqref"
-data-reference="eq:complex_poles"><a href="#design-strategies-for-second-order-systems">8.2</a></a> that when <span
+data-reference="eq:complex_poles">8.2</a> that when <span
 class="math inline">\(\zeta = 0.707 = \frac{1}{\sqrt{2}}\)</span>, the
 poles are at <span class="math display">\[p_{1,2} =
 -\frac{\omega_n}{\sqrt{2}} \pm j\frac{\omega_n}{\sqrt{2}}.\]</span> In
@@ -560,7 +560,7 @@ class="math inline">\(45\)</span> degrees.</p>
 <img loading="lazy" width="1105" height="1271" src="3_PID/figures/pid_complex_poles.png"
 style="width:50.0%"
 alt="Complex conjugate poles in the left half-plane." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.5. </span>Complex conjugate poles in the left
+<figcaption aria-hidden="true">Complex conjugate poles in the left
 half-plane.</figcaption>
 </figure>
 <p>In rectangular coordinates, the poles are given by <span
@@ -569,9 +569,9 @@ p_{1,2} = -\sigma \pm j\omega_d,\]</span> as shown in
 <strong>Fig.</strong> <a href="#fig:pid_complex_poles" data-reference-type="ref"
 data-reference="fig:pid_complex_poles">8.5</a>.
 Equations <a href="#design-study-a-single-link-robot-arm-6" data-reference-type="eqref"
-data-reference="eq:complex_poles"><a href="#design-strategies-for-second-order-systems">8.2</a></a>
+data-reference="eq:complex_poles">8.2</a>
 and <a href="#design-strategies-for-second-order-systems" data-reference-type="eqref"
-data-reference="eq:complex_rectangular"><a href="#design-strategies-for-second-order-systems">8.3</a></a>
+data-reference="eq:complex_rectangular">8.3</a>
 give <span class="math display">\[\begin{aligned}
 \sigma &amp;= \zeta \omega_n \\
 \omega_d &amp;= \omega_n\sqrt{1-\zeta^2}.
@@ -601,7 +601,7 @@ class="math inline">\(0&lt;\zeta&lt;1\)</span>.</p>
 <img loading="lazy" width="1258" height="902" src="3_PID/figures/pid_damping_ratio.png"
 style="width:90.0%"
 alt="Second-order response as a function of the damping ratio \zeta." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.6. </span>Second-order response as a function of
+<figcaption aria-hidden="true">Second-order response as a function of
 the damping ratio <span
 class="math inline"><em>ζ</em></span>.</figcaption>
 </figure>
@@ -622,7 +622,7 @@ transform of <span class="math display">\[Y(s) =
 \frac{A\omega_n^2}{s(s^2+2\zeta\omega_n s + \omega_n^2)},\]</span>
 which, as shown in
 Appendix <a href="chapter-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations" data-reference-type="ref"
-data-reference="chap:differential_equations">29</a>, when the poles are
+data-reference="chap:differential_equations">P.5</a>, when the poles are
 complex results in <span
 class="math display">\[\tag{8.4}
 y(t) = A\left[ 1-\frac{1}{\sqrt{1-\zeta^2}}e^{-\sigma
@@ -635,7 +635,7 @@ data-reference="fig:pid_second_order_response_3">8.7</a>.</p>
 <img loading="lazy" width="2334" height="1750" src="3_PID/figures/pid_second_order_response_3.png"
 style="width:80.0%"
 alt="Second-order response. The steady-state value is A. The response envelope decays exponentially, and the oscillation frequency and phase shift are set by the complex pole locations." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.7. </span>Second-order response. The steady-state
+<figcaption aria-hidden="true">Second-order response. The steady-state
 value is <span class="math inline"><em>A</em></span>. The response
 envelope decays exponentially, and the oscillation frequency and phase
 shift are set by the complex pole locations.</figcaption>
@@ -648,7 +648,7 @@ when <span class="math inline">\(y(t)\)</span> reaches its first peak.
 To find the peak time <span class="math inline">\(t_p\)</span>,
 differentiate <span class="math inline">\(y(t)\)</span> in
 Equation <a href="#design-strategies-for-second-order-systems" data-reference-type="eqref"
-data-reference="eq:y_time_response"><a href="#design-strategies-for-second-order-systems">8.4</a></a> and then
+data-reference="eq:y_time_response">8.4</a> and then
 solve for the first instance when the derivative is zero. The result is
 <span class="math display">\[t_p = \frac{\pi}{\omega_d} =
 \frac{\pi}{\omega_n\sqrt{1-\zeta^2}}.\]</span> Therefore, the rise time
@@ -686,7 +686,7 @@ class="math inline">\(D(s)=0\)</span>.</p>
 that zeros have on the partial fraction expansion<span id="idx-0093" class="book-index-anchor" aria-hidden="true"></span> of a transfer
 function. For a review of partial fraction expansion, see
 Appendix <a href="chapter-review-of-ordinary-differential-equations.html#review-of-ordinary-differential-equations" data-reference-type="ref"
-data-reference="chap:differential_equations">29</a>. First consider a
+data-reference="chap:differential_equations">P.5</a>. First consider a
 two-pole system with characteristic equation given by <span
 class="math inline">\(\Delta(s) = (s+2)(s+3)\)</span>. The transfer
 function with DC gain equal to one and without zeros is given by <span
@@ -727,7 +727,7 @@ y(t) &amp;=
      &amp;= 1 - 2.9e^{-2t} + 1.9e^{-3t}, \quad t\geq 0.
 \end{aligned}\]</span> In this case, the response is similar to
 Equation <a href="#knowledge-check-7" data-reference-type="eqref"
-data-reference="eq:response_no_zero"><a href="#design-strategies-for-second-order-systems">8.6</a></a>.</p>
+data-reference="eq:response_no_zero">8.6</a>.</p>
 <p>Another way to understand the effect of zeros on the system is to
 recall that an <span class="math inline">\(s\)</span> in the numerator
 is essentially a differentiator. Therefore <span
@@ -773,7 +773,7 @@ title="Interactive response to a zero"
 style="width:min(98vw,980px);height:640px;border:1px solid
 #d8dfe2;border-radius:8px;background:#fff;display:block;margin:0
 auto;"></iframe>
-<figcaption><span class="fig-number">Figure 8.8. </span>
+<figcaption>
 Interactive step response of a second-order system with a single zero.
 Vary tau to see the effect of left-half-plane and right-half-plane zero
 behavior.
@@ -790,7 +790,7 @@ higher-order systems through a technique called successive loop
 closure<span id="idx-0095" class="book-index-anchor" aria-hidden="true"></span>, or inner-loop,
 outer-loop design. When we derived the Laplace transform in
 Chapter <a href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>, we saw that for
+data-reference="chap:transfer_function_models">5</a>, we saw that for
 many systems, the transfer functions can be arranged in cascade form as
 shown in
 <strong>Fig.</strong> <a href="#fig:pid_loop-SLC-OL" data-reference-type="ref"
@@ -805,7 +805,7 @@ physical systems can be represented by a cascade of systems.</p>
 <img loading="lazy" width="996" height="192" src="3_PID/figures/pid_loop-SLC-OL.png"
 style="width:40.0%"
 alt="Open-loop transfer function modeled as a cascade of two transfer functions." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.9. </span>Open-loop transfer function modeled as a
+<figcaption aria-hidden="true">Open-loop transfer function modeled as a
 cascade of two transfer functions.</figcaption>
 </figure>
 <p>When the system is represented as a cascade, the control strategy can
@@ -814,8 +814,8 @@ close feedback loops in succession around the open-loop plant dynamics
 rather than designing a single control system. To illustrate this
 approach, consider the open-loop system shown in
 <strong>Fig.</strong> <a href="#fig:pid_loop-SLC-OL" data-reference-type="ref"
-data-reference="fig:pid_loop-SLC-OL">8.9</a>. The open-loop dynamics
-are given by the product of two transfer functions in series: <span
+data-reference="fig:pid_loop-SLC-OL">8.9</a>. The open-loop dynamics are
+given by the product of two transfer functions in series: <span
 class="math inline">\(P(s)=P_1(s)P_2(s)\)</span>. We assume that each of
 the transfer functions has an output (<span
 class="math inline">\(y_1\)</span>, <span
@@ -834,7 +834,7 @@ data-reference="fig:pid_loop-SLC-12">8.10</a>.</p>
 <figure id="fig:pid_loop-SLC-12">
 <img loading="lazy" width="2146" height="492" src="3_PID/figures/pid_loop-SLC-12.png"
 style="width:80.0%" alt="Successive loop closure design." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.10. </span>Successive loop closure
+<figcaption aria-hidden="true">Successive loop closure
 design.</figcaption>
 </figure>
 <p>We will design the compensators <span
@@ -874,7 +874,7 @@ class="math inline">\(k_{DC_1}\)</span>.</p>
 <img loading="lazy" width="1646" height="488" src="3_PID/figures/pid_loop-SLC-2.png"
 style="width:80.0%"
 alt="Successive loop closure design with inner loop modeled as a unity gain." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.11. </span>Successive loop closure design with inner
+<figcaption aria-hidden="true">Successive loop closure design with inner
 loop modeled as a unity gain.</figcaption>
 </figure>
 <p>Because both plant models <span class="math inline">\(P_1(s)\)</span>
@@ -905,7 +905,7 @@ block in conjunction with a PD control scheme.</p>
 <img loading="lazy" width="2163" height="521" src="3_PID/figures/pid_loop_sat_example.png"
 style="width:80.0%"
 alt="Control system with input saturation. The input saturation places a lower bound on the achievable rise time." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.12. </span>Control system with input saturation. The
+<figcaption aria-hidden="true">Control system with input saturation. The
 input saturation places a lower bound on the achievable rise
 time.</figcaption>
 </figure>
@@ -1005,7 +1005,7 @@ can be written as <span class="math display">\[\tilde{u}_{\max} =
 <img loading="lazy" width="1267" height="1759" src="3_PID/figures/pid_input_saturation.png"
 style="width:50.0%"
 alt="The saturation constraint for \tilde{u} depends on the value of the equilibrium input u_e." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.13. </span>The saturation constraint for <span
+<figcaption aria-hidden="true">The saturation constraint for <span
 class="math inline"><em>ũ</em></span> depends on the value of the
 equilibrium input <span
 class="math inline"><em>u</em><sub><em>e</em></sub></span>.</figcaption>
@@ -1017,12 +1017,12 @@ system has the fastest possible rise time without driving the plant
 input into saturation.</p>
 <h2 data-number="8.2" id="design-study-a-single-link-robot-arm-6" class="section-design-study"><span class="header-section-number">8.2</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="8.2.1" id="-example-problem-3111" class="section-example"><span class="header-section-number">8.2.1</span> <a
+<h3 data-number="8.2.1" id="-example-problem-1318" class="section-example"><span class="header-section-number">8.2.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
-data-reference="chap:PID-design-specs">11</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">8</a></h3>
 <p>For the single-link robot arm, do the following:</p>
 <p>(a) Suppose that the design requirements are that the rise time is <span
 class="math inline">\(t_r \approx 0.8\)</span> seconds, with a damping
@@ -1034,7 +1034,7 @@ class="math inline">\(k_P\)</span> and <span
 class="math inline">\(k_D\)</span> to achieve these specifications, and
 modify the simulation from
 HW <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.8 to verify that the step
+data-reference="ds:single_link_arm">1.3.1</a>.8 to verify that the step
 response satisfies the requirements.</p>
 <p>(b) Suppose that the input torque for the robot arm is limited to <span
 class="math inline">\(\left|\tau\right|\leq\tau_{\max}=1\)</span> Nm.
@@ -1129,13 +1129,14 @@ the desired characteristic polynomial is <span
 class="math display">\[\tag{8.9}
 \Delta_{cl}^d = s^2 + 2\zeta\omega_n s + \omega_n^2 = s^2 + 3.889 s +
 7.5625.\]</span> From HW <a href="chapter-introduction.html#design-study-single-link-robot-arm"
-data-reference-type="ref" data-reference="ds:single_link_arm">3.1</a>.7
-the actual closed-loop characteristic polynomial is <span
+data-reference-type="ref"
+data-reference="ds:single_link_arm">1.3.1</a>.7 the actual closed-loop
+characteristic polynomial is <span
 class="math display">\[\tag{8.10}
 \Delta_{cl}(s) = s^2 + (0.667 + 66.67k_D)s + 66.67k_P.\]</span> Equating
 Equations <a href="#design-strategies-for-second-order-systems" data-reference-type="eqref"
-data-reference="eq:hwa10_1"><a href="#design-strategies-for-second-order-systems">8.9</a></a> and <a href="#design-strategies-for-second-order-systems"
-data-reference-type="eqref" data-reference="eq:hwa10_2"><a href="#design-strategies-for-second-order-systems">8.10</a></a>
+data-reference="eq:hwa10_1">8.9</a> and <a href="#design-strategies-for-second-order-systems"
+data-reference-type="eqref" data-reference="eq:hwa10_2">8.10</a>
 and solving for the gains gives <span
 class="math display">\[\begin{aligned}
 k_P &amp;=  0.1134 \\
@@ -1234,12 +1235,12 @@ class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
 </section>
 <h2 data-number="8.3" id="design-study-b-inverted-pendulum-4" class="section-design-study"><span class="header-section-number">8.3</span> Design Study <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
-<h3 data-number="8.3.1" id="-example-problem-3211" class="section-example"><span class="header-section-number">8.3.1</span> <a
+<h3 data-number="8.3.1" id="-example-problem-1328" class="section-example"><span class="header-section-number">8.3.1</span> <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
-data-reference="chap:PID-design-specs">11</a></h3>
+data-reference="ds:pendulum">1.3.2</a>.<a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">8</a></h3>
 <p>For the inverted pendulum, do the following:</p>
 <p>(a) Using the principle of successive loop closure, draw a block diagram
 that uses PD control for both inner loop control and outer loop control.
@@ -1355,7 +1356,7 @@ data-reference="fig:hw_pendulum_PD_inner">8.14</a>.</p>
 <img loading="lazy" width="1780" height="555"  style="width:62%;max-width:70ch;display:block;margin:0.15rem auto 0.7rem;"src="6_design_studies/figures/hw_pendulum_PD_inner.png"
 style="width:80.0%"
 alt="Block diagram for inner loop of inverted pendulum control" />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.14. </span>Block diagram for inner loop of inverted
+<figcaption aria-hidden="true">Block diagram for inner loop of inverted
 pendulum control</figcaption>
 </figure>
 <p>The closed-loop transfer function from <span
@@ -1395,7 +1396,7 @@ data-reference="fig:hw_pendulum_PD_outer">8.15</a>.</p>
 <img loading="lazy" width="2067" height="550"  style="width:62%;max-width:70ch;display:block;margin:0.15rem auto 0.7rem;"src="6_design_studies/figures/hw_pendulum_PD_outer.png"
 style="width:80.0%"
 alt="Block diagram for outer loop of inverted pendulum control." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.15. </span>Block diagram for outer loop of inverted
+<figcaption aria-hidden="true">Block diagram for outer loop of inverted
 pendulum control.</figcaption>
 </figure>
 <p>The closed-loop transfer function from <span
@@ -1435,7 +1436,7 @@ not one.</p>
 <img loading="lazy" width="2825" height="967" src="6_design_studies/figures/hw_pendulum_PD_outer_w_lpf_v02.png"
 style="width:95.0%"
 alt="Block diagram for outer loop of inverted pendulum control, with low-pass filter to cancel the LHP zero." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.16. </span>Block diagram for outer loop of inverted
+<figcaption aria-hidden="true">Block diagram for outer loop of inverted
 pendulum control, with low-pass filter to cancel the LHP
 zero.</figcaption>
 </figure>
@@ -1447,7 +1448,7 @@ data-reference="fig:hw_pendulum_PD_outer_eq">8.17</a>.</p>
 <img loading="lazy" width="1634" height="542" src="6_design_studies/figures/hw_pendulum_PD_outer_eq.png"
 style="width:60.0%"
 alt="Block diagram for the equivalent outer loop of inverted pendulum control with low-pass filter." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.17. </span>Block diagram for the equivalent outer
+<figcaption aria-hidden="true">Block diagram for the equivalent outer
 loop of inverted pendulum control with low-pass filter.</figcaption>
 </figure>
 <p>In this case, the closed-loop characteristic equation from <span
@@ -1463,7 +1464,7 @@ k_{D_z}\sqrt{\frac{3g}{2\ell}}}{1+k_{D_z}}\right)s -
 characteristic equation equal to the desired closed-loop characteristic
 equation in Equation <a href="#design-strategies-for-second-order-systems"
 data-reference-type="eqref"
-data-reference="eq:delta_cl_d_pendulum_outer"><a href="#design-strategies-for-second-order-systems">8.11</a></a>
+data-reference="eq:delta_cl_d_pendulum_outer">8.11</a>
 gives <span class="math display">\[\begin{aligned}
 - \sqrt{\frac{3g}{2\ell}} \frac{k_{P_z}}{1+k_{D_z}} &amp;=
 \omega_{n_z}^2  \\
@@ -1589,12 +1590,12 @@ class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
 <h2 data-number="8.4"
 id="design-study-c-satellite-attitude-control-5" class="section-design-study"><span class="header-section-number">8.4</span> Design Study <a
 href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
-<h3 data-number="8.4.1" id="-example-problem-3311" class="section-example"><span class="header-section-number">8.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+<h3 data-number="8.4.1" id="-example-problem-1338" class="section-example"><span class="header-section-number">8.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
 src="6_design_studies/figures/hw_satellite_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
-data-reference="chap:PID-design-specs">11</a></h3>
+data-reference="ds:satellite">1.3.3</a>.<a href="#design-strategies-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-design-specs">8</a></h3>
 <p>(a) For the simple satellite system, using the principle of successive loop
 closure, draw a block diagram that uses PD control for the inner and the
 outer loop control. The input to the outer loop controller is the
@@ -1722,7 +1723,7 @@ data-reference="fig:hw_satellite_PD_inner">8.18</a>.</p>
 <img loading="lazy" width="1767" height="542" src="6_design_studies/figures/hw_satellite_PD_inner.png"
 style="width:80.0%"
 alt="Block diagram for inner loop of satellite control" />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.18. </span>Block diagram for inner loop of satellite
+<figcaption aria-hidden="true">Block diagram for inner loop of satellite
 control</figcaption>
 </figure>
 <p>The closed-loop transfer function from <span
@@ -1761,7 +1762,7 @@ data-reference="fig:hw_satellite_PD_outer">8.19</a>.</p>
 <img loading="lazy" width="2050" height="588" src="6_design_studies/figures/hw_satellite_PD_outer.png"
 style="width:80.0%"
 alt="Block diagram for outer loop of satellite attitude control" />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.19. </span>Block diagram for outer loop of satellite
+<figcaption aria-hidden="true">Block diagram for outer loop of satellite
 attitude control</figcaption>
 </figure>
 <p>To find the closed-loop transfer function from <span
@@ -1836,7 +1837,7 @@ Feedforward control will be discussed in a later chapter.</p>
 src="6_design_studies/figures/hw_satellite_PD_outer_feedforward.png"
 style="width:80.0%"
 alt="Block diagram for outer loop of satellite attitude control with a feedforward term." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 8.20. </span>Block diagram for outer loop of satellite
+<figcaption aria-hidden="true">Block diagram for outer loop of satellite
 attitude control with a feedforward term.</figcaption>
 </figure>
 <p>A Python class that implements a PD controller using state feedback

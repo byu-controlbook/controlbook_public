@@ -409,7 +409,7 @@ Tracking</h3>
 <figure id="fig:pid_reference_tracking">
 <img loading="lazy" width="1413" height="363" src="3_PID/figures/pid_reference_tracking.png"
 style="width:50.0%" alt="Block diagram for reference tracking." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.1. </span>Block diagram for reference
+<figcaption aria-hidden="true">Block diagram for reference
 tracking.</figcaption>
 </figure>
 <p>Consider the closed-loop system shown in
@@ -509,8 +509,8 @@ class="math display">\[\lim_{t\to\infty}e(t) = \lim_{s\to 0} s E(s) =
 \lim_{s\to 0}
 \left(\frac{1}{1+P(s)C(s)}\right)\left(\frac{1}{s^q}\right).\]</span>
 Table <a href="#table:system_type" data-reference-type="ref"
-data-reference="table:system_type">12.1</a> summarizes the tracking
-error for different inputs as a function of system type, where <span
+data-reference="table:system_type">9.1</a> summarizes the tracking error
+for different inputs as a function of system type, where <span
 class="math display">\[\begin{aligned}
 M_p &amp;= \lim_{s\to 0}P(s)C(s) \\
 M_v &amp;= \lim_{s\to 0}sP(s)C(s) \\
@@ -647,7 +647,7 @@ fill="rgb(29,102,112)" font-size="16">output y(t)</text> <text
 data-ch9-response-error-label x="515" y="110"
 fill="rgb(170,82,58)" font-size="16"></text> <text x="610"
 y="265" fill="rgb(77,90,69)" font-size="15">time</text>
-</svg> <figcaption><span class="fig-number">Figure 1.3. </span>Reference and output. Finite steady-state error
+</svg> <figcaption>Reference and output. Finite steady-state error
 appears as a persistent vertical gap.</figcaption> </figure>
 <figure class="ch9-plot ch9-error-plot"> <svg viewBox="0 0 740
 280" role="img" aria-label="Conceptual tracking error for selected
@@ -665,7 +665,7 @@ font-size="16">tracking error e(t) = r(t) - y(t)</text> <text
 data-ch9-error-plot-label x="70" y="88" fill="rgb(126,91,30)"
 font-size="16"></text> <text x="610" y="265"
 fill="rgb(77,90,69)" font-size="15">time</text> </svg>
-<figcaption><span class="fig-number">Figure 1.4. </span>Error response. This is the plot that determines zero,
+<figcaption>Error response. This is the plot that determines zero,
 finite, or infinite steady-state error.</figcaption> </figure>
 </section>
 <span class="ch9-badge" data-ch9-reference-badge=""></span>
@@ -690,14 +690,14 @@ data-reference="fig:pid_system_type_ex1">9.2</a>.</p>
 <img loading="lazy" width="1321" height="359" src="3_PID/figures/pid_system_type_ex1.png"
 style="width:60.0%"
 alt="The system type for reference tracking for this system is type 1." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.2. </span>The system type for reference tracking
+<figcaption aria-hidden="true">The system type for reference tracking
 for this system is type 1.</figcaption>
 </figure>
 <p>The open-loop system <span class="math display">\[P(s)C(s) =
 \frac{k_P}{s(s+2)}\]</span> has one free integrator<span id="idx-0102" class="book-index-anchor" aria-hidden="true"></span> (pole at zero) and
 therefore the system is type 1. From
 Table <a href="#table:system_type" data-reference-type="ref"
-data-reference="table:system_type">12.1</a> the tracking error when the
+data-reference="table:system_type">9.1</a> the tracking error when the
 input is a step is zero, and the tracking error when the input is a ramp
 of slope one is <span class="math display">\[\lim_{t\to\infty}e(t) =
 \frac{1}{M_v} = \frac{1}{\lim_{s\to 0} sP(s)C(s)} =
@@ -714,7 +714,7 @@ data-reference="fig:pid_system_type_ex2">9.3</a>.</p>
 <img loading="lazy" width="1480" height="388" src="3_PID/figures/pid_system_type_ex2.png"
 style="width:70.0%"
 alt="The system type for reference tracking for this system is type 0." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.3. </span>The system type for reference tracking
+<figcaption aria-hidden="true">The system type for reference tracking
 for this system is type 0.</figcaption>
 </figure>
 <p>In this case, the open-loop system <span
@@ -722,7 +722,7 @@ class="math display">\[P(s)C(s) = \frac{k_D s +
 k_P}{(s+3)(s+4)}\]</span> does not have any free integrators<span id="idx-0103" class="book-index-anchor" aria-hidden="true"></span> (poles at zero) and
 therefore the system is type 0. From
 Table <a href="#table:system_type" data-reference-type="ref"
-data-reference="table:system_type">12.1</a> the tracking error when the
+data-reference="table:system_type">9.1</a> the tracking error when the
 input is a step is <span class="math display">\[\lim_{t\to\infty}e(t) =
 \frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0} P(s)C(s)} =
 \frac{1}{1+\frac{k_P}{12}} = \frac{12}{12+k_P}.\]</span> The tracking
@@ -741,7 +741,7 @@ k_I}{s}\right)E(s),\]</span></p>
 <img loading="lazy" width="1750" height="384" src="3_PID/figures/pid_system_type_ex3.png"
 style="width:70.0%"
 alt="The system type for reference tracking for this system is type 1." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.4. </span>The system type for reference tracking
+<figcaption aria-hidden="true">The system type for reference tracking
 for this system is type 1.</figcaption>
 </figure>
 <p>then the open-loop system <span class="math display">\[P(s)C(s) =
@@ -749,7 +749,7 @@ for this system is type 1.</figcaption>
 integrator (pole at zero) and therefore the system becomes type 1 by
 design. From
 Table <a href="#table:system_type" data-reference-type="ref"
-data-reference="table:system_type">12.1</a> the tracking error when the
+data-reference="table:system_type">9.1</a> the tracking error when the
 input is a step is zero, and the tracking error when the input is a ramp
 is <span class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_v} =
 \frac{1}{\lim_{s\to 0} sP(s)C(s)} = \frac{1}{\frac{k_I}{12}} =
@@ -779,7 +779,7 @@ noise terms is for notational convenience.</p>
 <img loading="lazy" width="1984" height="650" src="3_PID/figures/pid_general_feedback_loop.png"
 style="width:80.0%"
 alt="General feedback loop with reference input r(t), input disturbance d_{in}(t), output disturbance d_{out}(t), and sensor noise n(t)." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.5. </span>General feedback loop with reference
+<figcaption aria-hidden="true">General feedback loop with reference
 input <span class="math inline"><em>r</em>(<em>t</em>)</span>, input
 disturbance <span
 class="math inline"><em>d</em><sub><em>i</em><em>n</em></sub>(<em>t</em>)</span>,
@@ -827,7 +827,7 @@ input is type 1.</p>
 <img loading="lazy" width="1750" height="605" src="3_PID/figures/pid_system_type_ex4.png"
 style="width:70.0%"
 alt="The system type for input disturbances for this system is type 0." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.6. </span>The system type for input disturbances
+<figcaption aria-hidden="true">The system type for input disturbances
 for this system is type 0.</figcaption>
 </figure>
 <p>For the input disturbance we have <span
@@ -873,7 +873,7 @@ input disturbance is infinite.</p>
 <img loading="lazy" width="1971" height="605" src="3_PID/figures/pid_system_type_ex5.png"
 style="width:80.0%"
 alt="The system type for input disturbances for this system is type 1." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.7. </span>The system type for input disturbances
+<figcaption aria-hidden="true">The system type for input disturbances
 for this system is type 1.</figcaption>
 </figure>
 <p>Therefore, the system type with respect to input disturbances is
@@ -1331,12 +1331,12 @@ gives 0 for step, ramp, and parabola.</p></details></div>
 </article> </section>
 <h2 data-number="9.2" id="design-study-a-single-link-robot-arm-7" class="section-design-study"><span class="header-section-number">9.2</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="9.2.1" id="-example-problem-3112" class="section-example"><span class="header-section-number">9.2.1</span> <a
+<h3 data-number="9.2.1" id="-example-problem-1319" class="section-example"><span class="header-section-number">9.2.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#system-type-and-integrators" data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">9</a></h3>
 <p>When the controller for the single-link robot arm is PD control, what
 is the system type? Characterize the steady-state error when the
 reference input is a step, a ramp, and a parabola. How does this change
@@ -1415,19 +1415,19 @@ href="#fig:hw_arm_system_type" data-reference-type="ref"
 data-reference="fig:hw_arm_system_type">9.8</a>.</p>
 <figure id="fig:hw_arm_system_type">
 <img loading="lazy" width="1992" height="625" src="6_design_studies/figures/hw_arm_system_type.png"
-style="width:80.0%" alt="Closed loop system for problem HW 3.1.12." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.8. </span>Closed loop system for problem HW <a
+style="width:80.0%" alt="Closed loop system for problem HW 1.3.1.9." />
+<figcaption aria-hidden="true">Closed loop system for problem HW <a
 href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a
+data-reference="ds:single_link_arm">1.3.1</a>.<a
 href="#system-type-and-integrators" data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a>.</figcaption>
+data-reference="chap:PID-system-type">9</a>.</figcaption>
 </figure>
 <p>Without the integrator, the open-loop transfer function is given by
 <span class="math display">\[P(s)C(s) =
 \left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)\left(k_D
 s + k_P\right).\]</span> The system has one free integrator and is
 therefore type 1, which, from Table <a href="#table:system_type"
-data-reference-type="ref" data-reference="table:system_type">12.1</a>
+data-reference-type="ref" data-reference="table:system_type">9.1</a>
 implies that the tracking error when the input is a step is zero, and
 the tracking error when the input is a ramp is <span
 class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_v} =
@@ -1443,9 +1443,9 @@ class="math display">\[P(s)C(s) =
 \left(\frac{\frac{3}{m\ell^2}}{s(s+\frac{3b}{m\ell^2})}\right)\left(\frac{k_D
 s^2 + k_Ps + k_I}{s}\right).\]</span> which has two free integrators and
 is therefore type 2. Therefore, from Table <a href="#table:system_type"
-data-reference-type="ref" data-reference="table:system_type">12.1</a>
-the tracking error when the input is either a step or a ramp is zero,
-and the tracking error when the input is a parabola is <span
+data-reference-type="ref" data-reference="table:system_type">9.1</a> the
+tracking error when the input is either a step or a ramp is zero, and
+the tracking error when the input is a parabola is <span
 class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_a} =
 \frac{1}{\lim_{s\to 0} s^2P(s)C(s)} = \frac{1}{\frac{k_I}{b}} =
 \frac{b}{k_I}.\]</span> The tracking error when the input is <span
@@ -1497,12 +1497,12 @@ class="math inline">\(\frac{A}{k_I}\)</span>.</p></section> </article>
 </section>
 <h2 data-number="9.3" id="design-study-b-inverted-pendulum-5" class="section-design-study"><span class="header-section-number">9.3</span> Design Study <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
-<h3 data-number="9.3.1" id="-example-problem-3212" class="section-example"><span class="header-section-number">9.3.1</span> <a
+<h3 data-number="9.3.1" id="-example-problem-1329" class="section-example"><span class="header-section-number">9.3.1</span> <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#system-type-and-integrators" data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a></h3>
+data-reference="ds:pendulum">1.3.2</a>.<a href="#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">9</a></h3>
 <p>When the inner loop controller for the inverted pendulum is PD
 control, what is the system type with respect to tracking of the inner
 loop? Characterize the steady-state error when <span
@@ -1583,19 +1583,19 @@ data-reference-type="ref"
 data-reference="fig:hw_pendulum_system_type_inner">9.9</a>.</p>
 <figure id="fig:hw_pendulum_system_type_inner">
 <img loading="lazy" width="2088" height="625" src="6_design_studies/figures/hw_pendulum_system_type_inner.png"
-style="width:80.0%" alt="Inner loop system for problem HW 3.2.12." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.9. </span>Inner loop system for problem HW <a
+style="width:80.0%" alt="Inner loop system for problem HW 1.3.2.9." />
+<figcaption aria-hidden="true">Inner loop system for problem HW <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#system-type-and-integrators"
+data-reference="ds:pendulum">1.3.2</a>.<a href="#system-type-and-integrators"
 data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a>.</figcaption>
+data-reference="chap:PID-system-type">9</a>.</figcaption>
 </figure>
 <p>The open-loop system is given by <span
 class="math display">\[P(s)C(s) =
 \left(\frac{-\frac{1}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}{s^2-\frac{(m_1+m_2)g}{m_1\frac{\ell}{6}+m_2\frac{2\ell}{3}}}\right)\left(k_Ds+k_P\right).\]</span>
 Since there are no free integrators, the system is type 0, and from
 Table <a href="#table:system_type" data-reference-type="ref"
-data-reference="table:system_type">12.1</a> the tracking error when the
+data-reference="table:system_type">9.1</a> the tracking error when the
 input is a step is <span class="math display">\[\lim_{t\to\infty}e(t) =
 \frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0} P(s)C(s)} =
 \frac{1}{1+\frac{k_P}{(m_1+m_2)g}}.\]</span> The tracking error when the
@@ -1622,12 +1622,12 @@ data-reference-type="ref"
 data-reference="fig:hw_pendulum_system_type_outer">9.10</a>.</p>
 <figure id="fig:hw_pendulum_system_type_outer">
 <img loading="lazy" width="2063" height="625" src="6_design_studies/figures/hw_pendulum_system_type_outer.png"
-style="width:80.0%" alt="Outer loop system for problem HW 3.2.12." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.10. </span>Outer loop system for problem HW <a
+style="width:80.0%" alt="Outer loop system for problem HW 1.3.2.9." />
+<figcaption aria-hidden="true">Outer loop system for problem HW <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#system-type-and-integrators"
+data-reference="ds:pendulum">1.3.2</a>.<a href="#system-type-and-integrators"
 data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a>.</figcaption>
+data-reference="chap:PID-system-type">9</a>.</figcaption>
 </figure>
 <p>The open-loop system is given by <span
 class="math display">\[P(s)C(s) = \left(\frac{\frac{-2\ell
@@ -1635,8 +1635,8 @@ s^2}{3}+g}{s^2}\right)\left(\frac{k_Ds^2+k_Ps+k_I}{s}\right).\]</span>
 When <span class="math inline">\(k_I=0\)</span> there are two free
 integrators in <span class="math inline">\(P(s)C(s)\)</span> and the
 system is type 2, and from Table <a href="#table:system_type"
-data-reference-type="ref" data-reference="table:system_type">12.1</a>
-the tracking error when the input is a parabola is <span
+data-reference-type="ref" data-reference="table:system_type">9.1</a> the
+tracking error when the input is a parabola is <span
 class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_a} =
 \frac{1}{\lim_{s\to 0} s^2P(s)C(s)} = \frac{1}{k_Pg}.\]</span> When
 <span class="math inline">\(k_I\neq 0\)</span>, there are three free
@@ -1678,12 +1678,12 @@ class="math inline">\(1/k_I\)</span>.</p></section> </article>
 <h2 data-number="9.4"
 id="design-study-c-satellite-attitude-control-6" class="section-design-study"><span class="header-section-number">9.4</span> Design Study <a
 href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
-<h3 data-number="9.4.1" id="-example-problem-3312" class="section-example"><span class="header-section-number">9.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+<h3 data-number="9.4.1" id="-example-problem-1339" class="section-example"><span class="header-section-number">9.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
 src="6_design_studies/figures/hw_satellite_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#system-type-and-integrators" data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a></h3>
+data-reference="ds:satellite">1.3.3</a>.<a href="#system-type-and-integrators" data-reference-type="ref"
+data-reference="chap:PID-system-type">9</a></h3>
 <p>When the inner loop controller of the satellite system is PD control,
 what is the system type of the inner loop with respect to the reference
 input and with respect to the disturbance input? Characterize the
@@ -1767,19 +1767,19 @@ data-reference-type="ref"
 data-reference="fig:hw_satellite_system_type_inner">9.11</a>.</p>
 <figure id="fig:hw_satellite_system_type_inner">
 <img loading="lazy" width="2067" height="625" src="6_design_studies/figures/hw_satellite_system_type_inner.png"
-style="width:80.0%" alt="Inner loop system for problem HW 3.3.12." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.11. </span>Inner loop system for problem HW <a
+style="width:80.0%" alt="Inner loop system for problem HW 1.3.3.9." />
+<figcaption aria-hidden="true">Inner loop system for problem HW <a
 href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#system-type-and-integrators"
+data-reference="ds:satellite">1.3.3</a>.<a href="#system-type-and-integrators"
 data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a>.</figcaption>
+data-reference="chap:PID-system-type">9</a>.</figcaption>
 </figure>
 <p>The open-loop system is given by <span class="math display">\[%
 P(s)C(s) = \left(\frac{1}{(J_s +
 J_p)s^2}\right)\left(k_Ds+k_P\right).\]</span> Since there are two free
 integrators, the system is type 2, and from Table <a
 href="#table:system_type" data-reference-type="ref"
-data-reference="table:system_type">12.1</a> the tracking error when the
+data-reference="table:system_type">9.1</a> the tracking error when the
 input is a step is <span class="math display">\[%
 \lim_{t\to\infty}e(t) = \frac{1}{1+M_p} = \frac{1}{1+\lim_{s\to 0}
 P(s)C(s)} = 0.\]</span> The tracking error when the input is a ramp is
@@ -1811,12 +1811,12 @@ data-reference-type="ref"
 data-reference="fig:hw_satellite_system_type_outer">9.12</a>.</p>
 <figure id="fig:hw_satellite_system_type_outer">
 <img loading="lazy" width="2142" height="625" src="6_design_studies/figures/hw_satellite_system_type_outer.png"
-style="width:80.0%" alt="Outer loop system for problem HW 3.3.12." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 9.12. </span>Outer loop system for problem HW <a
+style="width:80.0%" alt="Outer loop system for problem HW 1.3.3.9." />
+<figcaption aria-hidden="true">Outer loop system for problem HW <a
 href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#system-type-and-integrators"
+data-reference="ds:satellite">1.3.3</a>.<a href="#system-type-and-integrators"
 data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a>.</figcaption>
+data-reference="chap:PID-system-type">9</a>.</figcaption>
 </figure>
 <p>The open-loop system is given by <span
 class="math display">\[P(s)C(s) =
@@ -1824,16 +1824,16 @@ class="math display">\[P(s)C(s) =
 When <span class="math inline">\(k_I=0\)</span> there are no free
 integrators in <span class="math inline">\(P(s)C(s)\)</span> and the
 system is type 0, and from Table <a href="#table:system_type"
-data-reference-type="ref" data-reference="table:system_type">12.1</a>
-the tracking error when the input is a step is <span
+data-reference-type="ref" data-reference="table:system_type">9.1</a> the
+tracking error when the input is a step is <span
 class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{1+M_p} =
 \frac{1}{1+\lim_{s\to 0} P(s)C(s)} = \frac{1}{1+k_P}.\]</span> When the
 reference is a ramp or higher order polynomial, the tracking error is
 infinite. When <span class="math inline">\(k_I\neq 0\)</span>, there is
 one free integrator in <span class="math inline">\(P(s)C(s)\)</span> and
 the system is type 1. From Table <a href="#table:system_type"
-data-reference-type="ref" data-reference="table:system_type">12.1</a>
-the tracking error when the input is a ramp is <span
+data-reference-type="ref" data-reference="table:system_type">9.1</a> the
+tracking error when the input is a ramp is <span
 class="math display">\[\lim_{t\to\infty}e(t) = \frac{1}{M_v} =
 \frac{1}{\lim_{s\to 0} sP(s)C(s)} = \frac{1}{k_I}.\]</span> The tracking
 error when <span class="math inline">\(\phi_r\)</span> is a step is
@@ -2156,8 +2156,8 @@ class="quiz-feedback" aria-live="polite"></p> </article>
 <p>The PID structure analyzed in this chapter uses a differentiator on
 the error as shown in
 <strong>Fig.</strong> <a href="chapter-pole-placement-for-second-order-systems.html#fig:pid_PD_control_2" data-reference-type="ref"
-data-reference="fig:pid_PD_control_2">7.1</a> instead of
-differentiating the output variable as shown in
+data-reference="fig:pid_PD_control_2">7.1</a> instead of differentiating
+the output variable as shown in
 <strong>Fig.</strong> <a href="chapter-pole-placement-for-second-order-systems.html#fig:pid_PD_control_3" data-reference-type="ref"
 data-reference="fig:pid_PD_control_3">7.2</a>. It is straightforward to
 show, using the final value theorem, that the system type does not
@@ -2165,7 +2165,7 @@ change under the two configurations. However, the value of the
 steady-state error does change and is not necessarily given by the
 simple formulas in
 Table <a href="#table:system_type" data-reference-type="ref"
-data-reference="table:system_type">12.1</a>.</p>
+data-reference="table:system_type">9.1</a>.</p>
 <nav class="chapter-nav" aria-label="Chapter"><a class="chapter-nav-prev" href="chapter-design-strategies-for-second-order-systems.html" rel="prev"><span class="chapter-nav-dir">Previous</span><span class="chapter-nav-title">8 Design Strategies for Second-Order Systems</span></a><a class="chapter-nav-next" href="chapter-digital-implementation-of-pid-controllers.html" rel="next"><span class="chapter-nav-dir">Next</span><span class="chapter-nav-title">10 Digital Implementation of PID Controllers</span></a></nav><footer class="site-footer"><a class="back-to-top" href="#top">Back to top</a></footer></main></div>  <script src="web/book.js?v=20260613c"></script>
 </body>
 </html>

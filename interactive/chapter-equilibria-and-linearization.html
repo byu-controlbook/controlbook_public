@@ -276,15 +276,15 @@ namely</p>
 <p>Both forms will have advantages and disadvantages that will be
 explained throughout the remaining parts of the book. In
 Chapter <a href="#equilibria-and-linearization" data-reference-type="ref"
-data-reference="chap:linearization">7</a> we will define the important
+data-reference="chap:linearization">4</a> we will define the important
 concept of equilibrium and show how the equations of motion can be
 linearized about the equilibrium.
 Chapter <a href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a> will show how to
+data-reference="chap:transfer_function_models">5</a> will show how to
 transform the linearized equations of motion into transfer function
 models, and
 Chapter <a href="chapter-state-space-models.html#state-space-models" data-reference-type="ref"
-data-reference="chap:state_space_models">9</a> will show how to put the
+data-reference="chap:state_space_models">6</a> will show how to put the
 equations of motion in state-space form.</p>
 <p>The remaining parts of the book will use the design models to develop
 feedback controllers for the system of interest. In
@@ -353,7 +353,7 @@ data-ch4-taylor-degree-value></span></span> </label> </div>
 <figure class="advanced-visual"> <canvas data-ch4-taylor-canvas
 width="760" height="440" role="img" aria-label="Taylor polynomial
 approximation of a selected nonlinear function"></canvas>
-<figcaption><span class="fig-number">Figure 4.1. </span>The blue curve is the nonlinear function. The orange curve
+<figcaption>The blue curve is the nonlinear function. The orange curve
 is the selected Taylor polynomial about &omega;<sub>0</sub>. The
 dashed black line shows the first-order term used for
 linearization.</figcaption> </figure> </div> <section
@@ -429,7 +429,7 @@ words, when <span class="math display">\[y_e = \text{~anything~}, \qquad
 equilibrium there is no motion in the system, which implies that <span
 class="math inline">\(\ddot{y}_e=\dot{y}_e=0\)</span>, which from
 Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
-data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> implies
+data-reference="eq:dm_example_system">4.2</a> implies
 that <span class="math inline">\(u_e = by_e+g(y_e,0)\)</span>.</p>
 <p>Jacobian linearization<span id="idx-0033" class="book-index-anchor" aria-hidden="true"></span> then proceeds by
 replacing each term in the nonlinear differential equations describing
@@ -437,7 +437,7 @@ the system by the first two terms in the Taylor series expansion about
 the equilibrium point.</p>
 <p>For example, since the first term in
 Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
-data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> is
+data-reference="eq:dm_example_system">4.2</a> is
 already linear, it can be expanded exactly as <span
 class="math display">\[\ddot{y} = \ddot{y}_e + \frac{\partial
 \ddot{y}}{\partial \ddot{y}}\Big|_e (\ddot{y}-\ddot{y}_e) =
@@ -448,7 +448,7 @@ and we have used the fact that <span
 class="math inline">\(\ddot{y}_e=0\)</span>. Similarly, the remaining
 terms in
 Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
-data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> are
+data-reference="eq:dm_example_system">4.2</a> are
 linearized as <span class="math display">\[\begin{aligned}
 a\dot{y} &amp;= a\dot{y}_e + a\frac{\partial \dot{y}}{\partial
 \dot{y}}\Big|_e (\dot{y}-\dot{y}_e) = a\dot{\tilde{y}} \\
@@ -463,7 +463,7 @@ u &amp;= u_e + \frac{\partial u}{\partial u}\Big|_e (u-u_e) = u_e +
 \tilde{u}.
 \end{aligned}\]</span> Substituting these expressions into
 Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
-data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> the
+data-reference="eq:dm_example_system">4.2</a> the
 resulting linearized equations of motion are <span
 class="math display">\[[\ddot{\tilde{y}}] + [a\dot{\tilde{y}}] + [by_e +
 b\tilde{y}] + \left[g(y_e,0) + \frac{\partial g}{\partial
@@ -475,7 +475,7 @@ gives <span class="math display">\[\ddot{\tilde{y}} +
 + \left(b+\frac{\partial g}{\partial y}\Big|_e\right)\tilde{y}  =
 \tilde{u}.\]</span> A block diagram that shows the design model for
 Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
-data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> using
+data-reference="eq:dm_example_system">4.2</a> using
 Jacobian linearization is shown in
 <strong>Fig.</strong> <a href="#fig:dm_jacobian_linearization" data-reference-type="ref"
 data-reference="fig:dm_jacobian_linearization">4.2</a>.</p>
@@ -483,7 +483,7 @@ data-reference="fig:dm_jacobian_linearization">4.2</a>.</p>
 <img loading="lazy" width="2275" height="1200"
 src="2_design_models/figures/dm_jacobian_linearization.png"
 style="width:70.0%" alt="Linear model using Jacobian linearization." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 4.2. </span>Linear model using Jacobian
+<figcaption aria-hidden="true">Linear model using Jacobian
 linearization.</figcaption>
 </figure>
 <h3 data-number="4.1.2" id="feedback-linearization"><span class="header-section-number">4.1.2</span> Feedback Linearization</h3>
@@ -491,7 +491,7 @@ linearization.</figcaption>
 directly canceled by a judicious choice for the input variable. Consider
 again the nonlinear equations of motion in
 Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
-data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a>. If
+data-reference="eq:dm_example_system">4.2</a>. If
 <span class="math inline">\(u\)</span> is selected as <span
 class="math display">\[u = g(y,\dot{y}) + \tilde{u}\]</span> then the
 resulting equation of motion is <span class="math display">\[\ddot{y} +
@@ -507,7 +507,7 @@ and therefore may not be completely canceled by <span
 class="math inline">\(u\)</span>. A block diagram that shows the design
 model for
 Equation <a href="#design-study-a-single-link-robot-arm-2" data-reference-type="eqref"
-data-reference="eq:dm_example_system"><a href="#equilibria-and-linearization">4.2</a></a> using
+data-reference="eq:dm_example_system">4.2</a> using
 feedback linearization is shown in
 <strong>Fig.</strong> <a href="#fig:dm_feedback_linearization" data-reference-type="ref"
 data-reference="fig:dm_feedback_linearization">4.3</a>.</p>
@@ -515,17 +515,17 @@ data-reference="fig:dm_feedback_linearization">4.3</a>.</p>
 <img loading="lazy" width="2046" height="1046"
 src="2_design_models/figures/dm_feedback_linearization.png"
 style="width:70.0%" alt="Linear model using feedback linearization." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 4.3. </span>Linear model using feedback
+<figcaption aria-hidden="true">Linear model using feedback
 linearization.</figcaption>
 </figure>
 <h2 data-number="4.2" id="design-study-a-single-link-robot-arm-2" class="section-design-study"><span class="header-section-number">4.2</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="4.2.1" id="-example-problem-317" class="section-example"><span class="header-section-number">4.2.1</span> <a
+<h3 data-number="4.2.1" id="-example-problem-1314" class="section-example"><span class="header-section-number">4.2.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#equilibria-and-linearization" data-reference-type="ref"
-data-reference="chap:linearization">7</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#equilibria-and-linearization" data-reference-type="ref"
+data-reference="chap:linearization">4</a></h3>
 <p>For the single-link robot arm:</p>
 <p>(a) Find the equilibria of the system.</p>
 <p>(b) Linearize the system about the equilibria using Jacobian
@@ -604,7 +604,7 @@ Complete solution
 </h4>
 <p>The differential equation describing the single-link robot arm
 derived in HW <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.3 is <span
+data-reference="ds:single_link_arm">1.3.1</a>.3 is <span
 class="math display">\[\tag{4.3}
 \frac{m\ell^2}{3}\ddot{\theta} + \frac{mg\ell}{2}\cos\theta = \tau -
 b\dot{\theta}.\]</span> Defining <span class="math inline">\(x=(\theta,
@@ -623,7 +623,7 @@ there is no motion in the system, which implies that <span
 class="math inline">\(\ddot{\theta}_e = \dot{\theta}_e=0\)</span>, which
 from Equation <a href="#equilibria-and-linearization"
 data-reference-type="eqref"
-data-reference="eq:dm_diff_eq_robot_arm_1"><a href="#equilibria-and-linearization">4.3</a></a>
+data-reference="eq:dm_diff_eq_robot_arm_1">4.3</a>
 implies that <span class="math inline">\(\tau_e =
 \frac{mg\ell}{2}\cos\theta_e\)</span>.</p>
 <p>Therefore, any pair <span class="math inline">\((\theta_e,
@@ -646,7 +646,7 @@ class="math inline">\(\ddot{\tilde{\theta}}=\ddot{\theta}-\ddot{\theta}_e=\ddot{
 and <span class="math inline">\(\tilde{\tau}=\tau-\tau_e\)</span>, each
 term in Equation <a href="#equilibria-and-linearization"
 data-reference-type="eqref"
-data-reference="eq:dm_diff_eq_robot_arm_1"><a href="#equilibria-and-linearization">4.3</a></a>
+data-reference="eq:dm_diff_eq_robot_arm_1">4.3</a>
 can be expanded about the equilibrium as follows: <span
 class="math display">\[\begin{aligned}
 \frac{m\ell^2}{3}\ddot{\theta} &amp;= \frac{m\ell^2}{3}\ddot{\theta}_e +
@@ -667,7 +667,7 @@ b\dot{\theta} &amp;= b\dot{\theta}_e + b\frac{\partial
 (\dot{\theta}-\dot{\theta}_e) = b\dot{\tilde{\theta}}.  
 \end{aligned}\]</span> Substituting into Equation <a
 href="#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:dm_diff_eq_robot_arm_1"><a href="#equilibria-and-linearization">4.3</a></a>
+data-reference="eq:dm_diff_eq_robot_arm_1">4.3</a>
 gives <span
 class="math display">\[\frac{m\ell^2}{3}\left[\ddot{\theta}_e +
 \ddot{\tilde{\theta}}\right] + \frac{mg\ell}{2}\left[\cos\theta_e -
@@ -686,7 +686,7 @@ control <span
 class="math display">\[\tag{4.6}
 \tau = \frac{mg\ell}{2}\cos\theta + \tilde{\tau}\]</span> in Equation <a
 href="#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:dm_diff_eq_robot_arm_1"><a href="#equilibria-and-linearization">4.3</a></a>
+data-reference="eq:dm_diff_eq_robot_arm_1">4.3</a>
 to obtain the feedback linearized equations of motion <span
 class="math display">\[\tag{4.7}
 \frac{m\ell^2}{3}\ddot{\theta} = \tilde{\tau} - b\dot{\theta},\]</span>
@@ -695,29 +695,29 @@ class="math inline">\(\theta\)</span> and <span
 class="math inline">\(\dot{\theta}\)</span> and not just in a small
 region about an equilibrium. It is interesting to compare Equation <a
 href="#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:arm_feedback_linarization_control"><a href="#equilibria-and-linearization">4.6</a></a>
+data-reference="eq:arm_feedback_linarization_control">4.6</a>
 to the control signal using Jacobian linearization which is <span
 class="math display">\[\tag{4.8}
 \tau = \tau_e+\tilde{\tau} = \frac{mg\ell}{2}\cos\theta_e +
 \tilde{\tau}.\]</span> The control signal in <a
 href="#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:arm_jacobian_linarization_control"><a href="#equilibria-and-linearization">4.8</a></a>
+data-reference="eq:arm_jacobian_linarization_control">4.8</a>
 uses the equilibrium angle <span class="math inline">\(\theta_e\)</span>
 whereas the control signal in <a
 href="#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:arm_feedback_linarization_control"><a href="#equilibria-and-linearization">4.6</a></a>
+data-reference="eq:arm_feedback_linarization_control">4.6</a>
 uses the actual angle <span class="math inline">\(\theta\)</span>. For
 the single-link robot arm we will use the design model obtained using
 feedback linearization.</p></section> </article>
 </section>
 <h2 data-number="4.3" id="design-study-b-inverted-pendulum-1" class="section-design-study"><span class="header-section-number">4.3</span> Design Study <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
-<h3 data-number="4.3.1" id="-example-problem-327" class="section-example"><span class="header-section-number">4.3.1</span> <a
+<h3 data-number="4.3.1" id="-example-problem-1324" class="section-example"><span class="header-section-number">4.3.1</span> <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#equilibria-and-linearization" data-reference-type="ref"
-data-reference="chap:linearization">7</a></h3>
+data-reference="ds:pendulum">1.3.2</a>.<a href="#equilibria-and-linearization" data-reference-type="ref"
+data-reference="chap:linearization">4</a></h3>
 <p>For the inverted pendulum,</p>
 <p>(a) Find the equilibria of the system.</p>
 <p>(b) Linearize the system about the equilibria using Jacobian
@@ -793,7 +793,7 @@ Complete solution
 </h4>
 <p>The differential equations describing the inverted pendulum derived
 in HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.3 are <span
+data-reference="ds:pendulum">1.3.2</a>.3 are <span
 class="math display">\begin{align}
 (m_1+m_2)\ddot{z} + m_1 \frac{\ell}{2} \ddot{\theta} \cos\theta  &amp;=
      m_1 \frac{\ell}{2} \dot{\theta}^2\sin\theta -b\dot{z} + F
@@ -807,7 +807,7 @@ class="math inline">\((z_e,\theta_e,F_e)\)</span> are found by setting
 class="math inline">\(\dot{z}=\ddot{z}=\dot{\theta}=\ddot{\theta}=0\)</span>
 in Equation <a href="#equilibria-and-linearization"
 data-reference-type="eqref"
-data-reference="eq:dm_pendulum_nonlinear_eq"><a href="#equilibria-and-linearization">4.9</a></a>
+data-reference="eq:dm_pendulum_nonlinear_eq">4.9</a>
 to obtain <span class="math display">\begin{align}
 F_e &amp;= 0 \tag{4.10} \\
 m_1g\frac{\ell}{2}\sin\theta_e &amp;=
@@ -816,9 +816,9 @@ m_1g\frac{\ell}{2}\sin\theta_e &amp;=
 class="math inline">\((z_e, \theta_e, F_e)\)</span> satisfying
 Equations <a href="#equilibria-and-linearization"
 data-reference-type="eqref"
-data-reference="eq:dm_pendulum_equilibria_1"><a href="#equilibria-and-linearization">4.10</a></a>
+data-reference="eq:dm_pendulum_equilibria_1">4.10</a>
 and <a href="#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:dm_pendulum_equilibria_2"><a href="#equilibria-and-linearization">4.11</a></a>
+data-reference="eq:dm_pendulum_equilibria_2">4.11</a>
 is an equilibrium. In other words, <span
 class="math inline">\(z_e\)</span> can be any value, <span
 class="math inline">\(F_e=0\)</span>, and <span
@@ -885,7 +885,7 @@ z &amp;= z_e + \tilde{z} \\
 F &amp;= F_e + \tilde{F} = \tilde{F},
 \end{aligned}\]</span> we can write Equation <a
 href="#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:dm_pendulum_nonlinear_eq"><a href="#equilibria-and-linearization">4.9</a></a>
+data-reference="eq:dm_pendulum_nonlinear_eq">4.9</a>
 in its linearized form as <span class="math display">\[\begin{aligned}
 (m_1+m_2)[\ddot{z}_e+\ddot{\tilde{z}}] + m_1 \frac{\ell}{2}
 [\ddot{\tilde{\theta}}]  &amp;=
@@ -909,12 +909,12 @@ are the linearized equations of motion.</p></section> </article>
 <h2 data-number="4.4"
 id="design-study-c-satellite-attitude-control-2" class="section-design-study"><span class="header-section-number">4.4</span> Design Study <a
 href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
-<h3 data-number="4.4.1" id="-example-problem-337" class="section-example"><span class="header-section-number">4.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+<h3 data-number="4.4.1" id="-example-problem-1334" class="section-example"><span class="header-section-number">4.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
 src="6_design_studies/figures/hw_satellite_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#equilibria-and-linearization" data-reference-type="ref"
-data-reference="chap:linearization">7</a></h3>
+data-reference="ds:satellite">1.3.3</a>.<a href="#equilibria-and-linearization" data-reference-type="ref"
+data-reference="chap:linearization">4</a></h3>
 <p>For the satellite system:</p>
 <p>(a) Find the equilibria of the system.</p>
 <section id="design-study-c-ch4-equilibria">
@@ -990,7 +990,7 @@ Complete solution
 </h4>
 <p>The differential equations describing the motion of the satellite
 system derived in HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.3 are</p>
+data-reference="ds:satellite">1.3.3</a>.3 are</p>
 <p><span class="math display">\begin{align}
 \tag{4.13}
 J_s\ddot{\theta} + b(\dot{\theta}-\dot{\phi}) + k(\theta-\phi)  &amp;=
@@ -1364,7 +1364,7 @@ linear system <span class="math display">\[\ddot{q} = \nu,\]</span>
 where the new control variable <span class="math inline">\(\nu\)</span>
 can be designed to stabilize the system. The control law in
 Equation <a href="#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:feedback_linearization_general"><a href="#equilibria-and-linearization">4.16</a></a>
+data-reference="eq:feedback_linearization_general">4.16</a>
 is the feedback linearizing control. This is a standard technique for
 robot manipulators and is often called the method of <em>computed
 torque</em><span id="idx-0036" class="book-index-anchor" aria-hidden="true"></span> [8–10].</p>

@@ -281,7 +281,7 @@ system.</figcaption>
 differential equation <span
 class="math display">\[\tag{P.3.1}
 \ddot{y} + 2\dot{y} + 3 y = 4 u,\]</span> and using the PID controller
-<span class="math display">\[\tag{P.3.2}
+<span class="math display">\[
 u(t) = k_p (r(t)-y(t)) + k_i \int_{-\infty}^t (r(\tau)-y(\tau))d\tau -
 k_d \dot{y}.\]</span></p>
 <p>The Simulink diagram that corresponds to
@@ -293,7 +293,7 @@ data-reference="fig:simulink_system_diagram">3.2</a>.</p>
 <figure id="fig:simulink_system_diagram">
 <img loading="lazy" width="2878" height="1746" src="app_simulink/figures/system_diagram.png"
 style="width:90.0%"
-alt="Simulink diagram implementing the feedback control loop in Figure 27.1." />
+alt="Simulink diagram implementing the feedback control loop in Figure 24.1." />
 <figcaption aria-hidden="true">Simulink diagram implementing the
 feedback control loop in Figure <a
 href="#fig:simulink_feedback_block_diagram" data-reference-type="ref"
@@ -389,7 +389,7 @@ provide an overview of the method that uses a Level-1 M-file
 s-function.</p>
 <p>The system given in
 Equation <a href="#system-dynamics-2" data-reference-type="eqref"
-data-reference="eq:simulink_system_dynamics"><a href="#simulating-control-systems-using-simulink">P.3.1</a></a>
+data-reference="eq:simulink_system_dynamics">P.3.1</a>
 is implemented using the s-function shown below.</p>
 <div class="sourceCode" id="cb35"><pre
 class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> [<span class="va">sys</span><span class="op">,</span><span class="va">x0</span><span class="op">,</span><span class="va">str</span><span class="op">,</span><span class="va">ts</span><span class="op">,</span><span class="va">simStateCompliance</span>]<span class="op">...</span></span>

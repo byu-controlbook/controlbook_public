@@ -278,19 +278,19 @@ constrained to second-order systems and do not depend on a cascade
 structure. In fact, they do not even require a transfer function of the
 system, as long as the frequency response, or Bode plot, is known.</p>
 <p>Chapter <a href="#frequency-response-of-lti-systems" data-reference-type="ref"
-data-reference="chap:bode_plots">18</a> is a review of frequency
+data-reference="chap:bode_plots">15</a> is a review of frequency
 response models of linear time-invariant systems and develops intuition
 concerning the Bode plot of the input-output response. In
 Chapter <a href="chapter-frequency-domain-specifications.html#frequency-domain-specifications" data-reference-type="ref"
-data-reference="chap:tracking_disturbance_noise">19</a> we show how
+data-reference="chap:tracking_disturbance_noise">16</a> we show how
 performance specifications for reference tracking, disturbance
 rejection, and noise attenuation can be related to the frequency
 response of the open loop control-plant pair.
 Chapter <a href="chapter-stability-and-robustness-margins.html#stability-and-robustness-margins" data-reference-type="ref"
-data-reference="chap:margins">20</a> addresses stability of the
+data-reference="chap:margins">17</a> addresses stability of the
 closed-loop system from a frequency response point of view.
 Chapter <a href="chapter-compensator-design.html#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a> represents the
+data-reference="chap:loopshaping_design">18</a> represents the
 culminating chapter in this part of the book and describes how to design
 the controller to achieve closed-loop stability and to satisfy design
 specifications on reference tracking, disturbance rejection, and noise
@@ -324,7 +324,7 @@ data-reference="fig:ls_complex_number">15.1</a>.</p>
 <img loading="lazy" width="1105" height="892" src="5_loopshaping/figures/ls_complex_number.png"
 style="width:40.0%"
 alt="Relationship between the real and imaginary parts of z, and the magnitude and phase of z." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.1. </span>Relationship between the real and
+<figcaption aria-hidden="true">Relationship between the real and
 imaginary parts of <span class="math inline"><em>z</em></span>, and the
 magnitude and phase of <span
 class="math inline"><em>z</em></span>.</figcaption>
@@ -339,7 +339,7 @@ class="math display">\[\begin{aligned}
 class="math display">\[e^{j\theta} = \cos\theta + j\sin\theta,\]</span>
 we have from
 Equation <a href="#theory-13" data-reference-type="eqref"
-data-reference="eq:loop_polar_form"><a href="#frequency-response-of-lti-systems">15.1</a></a> that <span
+data-reference="eq:loop_polar_form">15.1</a> that <span
 class="math display">\[z = \left|z\right|e^{j\angle z} =
 \left|z\right|\cos\angle z + j \left|z\right|\sin\angle z\]</span> which
 implies that <span class="math display">\[\begin{aligned}
@@ -431,7 +431,7 @@ data-reference="fig:ls_transfer_function">15.2</a>.</p>
 <img loading="lazy" width="725" height="209" src="5_loopshaping/figures/ls_transfer_function.png"
 style="width:30.0%"
 alt="LTI system represented by the transfer function H(s) with input u(t) and output y(t)." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.2. </span>LTI system represented by the transfer
+<figcaption aria-hidden="true">LTI system represented by the transfer
 function <span class="math inline"><em>H</em>(<em>s</em>)</span> with
 input <span class="math inline"><em>u</em>(<em>t</em>)</span> and output
 <span class="math inline"><em>y</em>(<em>t</em>)</span>.</figcaption>
@@ -460,7 +460,7 @@ class="math inline">\(u(t)=\sin(\omega_0 t)\)</span> where <span
 class="math inline">\(\omega_0\)</span> changes in each subplot. The
 output signal is shown in blue and is given by
 Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
-data-reference="eq:loop_output_of_lti"><a href="#frequency-response-of-lti-systems">15.4</a></a>. Note
+data-reference="eq:loop_output_of_lti">15.4</a>. Note
 that in subplot (a) the time scale is different from that of the other
 subplots. When <span class="math inline">\(\omega_0=0.1\)</span>, <span
 class="math inline">\(H(j\omega_0)\approx 0.995e^{j5^\circ}\)</span>.
@@ -475,7 +475,7 @@ class="math inline">\(90\)</span> degrees.</p>
 <img loading="lazy" width="2334" height="2380" src="5_loopshaping/figures/ls_sin_in_out.png"
 style="width:95.0%"
 alt="Frequency response to LTI system with transfer function H(s)=1/(s+1)." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.3. </span>Frequency response to LTI system with
+<figcaption aria-hidden="true">Frequency response to LTI system with
 transfer function <span
 class="math inline"><em>H</em>(<em>s</em>) = 1/(<em>s</em> + 1)</span>.</figcaption>
 </figure>
@@ -547,7 +547,7 @@ frequency response of the system. <span id="idx-0205" class="book-index-anchor" 
 <img loading="lazy" width="2759" height="1234" src="5_loopshaping/figures/ls_freq_response.png"
 style="width:95.0%"
 alt="Frequency response of H(s)=1/(s+1) on a linear scale (a), and a logarithmic scale (b)." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.4. </span>Frequency response of <span
+<figcaption aria-hidden="true">Frequency response of <span
 class="math inline"><em>H</em>(<em>s</em>) = 1/(<em>s</em> + 1)</span>
 on a linear scale (a), and a logarithmic scale (b).</figcaption>
 </figure>
@@ -681,9 +681,9 @@ H(s) &amp;=
 p_n}\frac{(1+s/z_1)(1+s/z_2)\dots(1+s/z_m)}{(1+s/p_1)(1+s/p_2)\dots(1+s/p_n)}.
 \end{aligned}\]</span> Therefore, following
 Equations <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
-data-reference="eq:loop_mag_H_1"><a href="#frequency-response-of-lti-systems">15.2</a></a> and
+data-reference="eq:loop_mag_H_1">15.2</a> and
 <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
-data-reference="eq:loop_phase_H_1"><a href="#frequency-response-of-lti-systems">15.3</a></a> we have <span
+data-reference="eq:loop_phase_H_1">15.3</a> we have <span
 class="math display">\begin{align}
 \left|H(j\omega)\right| &amp;= \left|\frac{Kz_1z_2\dots z_m}{p_1p_2\dots
 p_m}\right|
@@ -695,7 +695,7 @@ z_m}{p_1p_2\dots p_m}\right) + \sum_{i=1}^m \angle (1+j\omega/z_i) -
 \end{align}</span> Since <span
 class="math inline">\(20\log\left|AB\right|=20\log\left|A\right|+20\log\left|B\right|\)</span>,
 Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
-data-reference="eq:loop_mag_H_2"><a href="#frequency-response-of-lti-systems">15.5</a></a> gives <span
+data-reference="eq:loop_mag_H_2">15.5</a> gives <span
 class="math display">\begin{gather}
 \tag{15.7}
 20\log\left|H(j\omega)\right| = 20\log \left|\frac{Kz_1z_2\dots
@@ -726,7 +726,7 @@ transfer function in Bode canonical form as <span
 class="math display">\[H(j\omega) = z(1+j\frac{\omega}{z}).\]</span>
 Therefore, from
 Equation <a href="#knowledge-check-14" data-reference-type="eqref"
-data-reference="eq:loop_mag_H_3"><a href="#frequency-response-of-lti-systems">15.7</a></a> we have <span
+data-reference="eq:loop_mag_H_3">15.7</a> we have <span
 class="math display">\[\begin{aligned}
 20\log\left|H(j\omega)\right| &amp;= 20\log\left|z\right| +
 20\log\left|1+j\frac{\omega}{z}\right| \\&amp;= 20\log\left|z\right| +
@@ -758,7 +758,7 @@ plot produced by MATLAB.</p>
 <img loading="lazy" width="2225" height="1625" src="5_loopshaping/figures/ls_zero_straight_line.png"
 style="width:80.0%"
 alt="Straight-line approximation for a single zero." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.5. </span>Straight-line approximation for a single
+<figcaption aria-hidden="true">Straight-line approximation for a single
 zero.</figcaption>
 </figure>
 <p>Note that the largest mismatch between the straight-line
@@ -800,7 +800,7 @@ that <span class="math inline">\(z&gt;0\)</span>, i.e., that the zero is
 in the left half of the complex plane. For right-half-plane zeros when
 <span class="math inline">\(z&lt;0\)</span>, the phase as calculated in
 Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
-data-reference="eq:loop_phase_H_2"><a href="#frequency-response-of-lti-systems">15.6</a></a> is <span
+data-reference="eq:loop_phase_H_2">15.6</a> is <span
 class="math display">\[\angle H(j\omega) = \angle z + \angle
 (1+j\omega/z) = 180^\circ -
 \tan^{-1}\frac{\omega}{\left|z\right|}.\]</span> Therefore, the phase
@@ -819,7 +819,7 @@ frequencies.</p>
 src="5_loopshaping/figures/ls_zero_rhp_straight_line.png"
 style="width:80.0%"
 alt="Straight-line approximation for a zero in the right half of the complex plane." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.6. </span>Straight-line approximation for a zero in
+<figcaption aria-hidden="true">Straight-line approximation for a zero in
 the right half of the complex plane.</figcaption>
 </figure>
 <p>Now consider drawing the Bode plot for a single pole, i.e., <span
@@ -830,7 +830,7 @@ canonical form <span class="math inline">\(H(s)\)</span> becomes <span
 class="math display">\[H(j\omega) =
 \frac{1}{1+j\frac{\omega}{p}}.\]</span> Therefore, from
 Equation <a href="#knowledge-check-14" data-reference-type="eqref"
-data-reference="eq:loop_mag_H_3"><a href="#frequency-response-of-lti-systems">15.7</a></a> we have <span
+data-reference="eq:loop_mag_H_3">15.7</a> we have <span
 class="math display">\[\begin{aligned}
 20\log\left|H(j\omega)\right| &amp;= 20\log\left|1\right| -
 20\log\left|1+j\frac{\omega}{p}\right| \\&amp;= -
@@ -862,7 +862,7 @@ plot produced by MATLAB.</p>
 <img loading="lazy" width="2434" height="1805" src="5_loopshaping/figures/ls_pole_straight_line.png"
 style="width:80.0%"
 alt="Straight-line approximation for a single pole." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.7. </span>Straight-line approximation for a single
+<figcaption aria-hidden="true">Straight-line approximation for a single
 pole.</figcaption>
 </figure>
 <p>Note that the largest mismatch between the straight-line
@@ -903,7 +903,7 @@ that <span class="math inline">\(p&gt;0\)</span>, i.e., that the pole is
 in the left half of the complex plane. For right-half-plane poles when
 <span class="math inline">\(p&lt;0\)</span>, the phase as calculated in
 Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
-data-reference="eq:loop_phase_H_2"><a href="#frequency-response-of-lti-systems">15.6</a></a> is <span
+data-reference="eq:loop_phase_H_2">15.6</a> is <span
 class="math display">\[\angle H(j\omega) =  -\angle (1+j\omega/p) =
 \tan^{-1}\frac{\omega}{\left|p\right|}.\]</span> Therefore, the phase
 starts at <span class="math inline">\(0\)</span> degrees and increases
@@ -919,7 +919,7 @@ from the shapes of the magnitude and phase plots.</p>
 src="5_loopshaping/figures/ls_pole_rhp_straight_line.png"
 style="width:80.0%"
 alt="Straight-line approximation for a pole in the right half of the complex plane." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.8. </span>Straight-line approximation for a pole in
+<figcaption aria-hidden="true">Straight-line approximation for a pole in
 the right half of the complex plane.</figcaption>
 </figure>
 <article class="advanced-activity" data-advanced-activity="ch15-pole-zero-builder">
@@ -1035,7 +1035,7 @@ data-reference="fig:ls_2nd_order_bode">15.9</a>.</p>
 <img loading="lazy" width="2663" height="2021" src="5_loopshaping/figures/ls_2nd_order_bode.png"
 style="width:70.0%"
 alt="The Bode plot for a second-order system for various values of \zeta." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.9. </span>The Bode plot for a second-order system
+<figcaption aria-hidden="true">The Bode plot for a second-order system
 for various values of <span
 class="math inline"><em>ζ</em></span>.</figcaption>
 </figure>
@@ -1135,10 +1135,10 @@ data-reference="fig:ls_bode_example_1">15.10</a>.</p>
 <img loading="lazy" width="2842" height="1988" src="5_loopshaping/figures/ls_bode_example_1.png"
 style="width:95.0%"
 alt="Bode plot for the transfer function given in Equation 15.10." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.10. </span>Bode plot for the transfer function given
+<figcaption aria-hidden="true">Bode plot for the transfer function given
 in Equation <a href="#frequency-response-of-lti-systems"
 data-reference-type="eqref"
-data-reference="eq:loop_bode_example_1_tf"><a href="#frequency-response-of-lti-systems">15.10</a></a>.</figcaption>
+data-reference="eq:loop_bode_example_1_tf">15.10</a>.</figcaption>
 </figure>
 <article class="advanced-activity" data-advanced-activity="ch15-example-1-builder">
 <p class="advanced-kicker">
@@ -1244,10 +1244,10 @@ data-reference="fig:ls_bode_example_2">15.11</a>.</p>
 <img loading="lazy" width="2738" height="2000" src="5_loopshaping/figures/ls_bode_example_2.png"
 style="width:70.0%"
 alt="Bode plot for the transfer function given in Equation 15.12." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.11. </span>Bode plot for the transfer function given
+<figcaption aria-hidden="true">Bode plot for the transfer function given
 in Equation <a href="#frequency-response-of-lti-systems"
 data-reference-type="eqref"
-data-reference="eq:loop_bode_example_2_tf"><a href="#frequency-response-of-lti-systems">15.12</a></a>.</figcaption>
+data-reference="eq:loop_bode_example_2_tf">15.12</a>.</figcaption>
 </figure>
 <article class="advanced-activity" data-advanced-activity="ch15-bode-example-builder">
 <p class="advanced-kicker">
@@ -1342,12 +1342,12 @@ data-output="example-probe-phase"></span></div> </div>
 <h2 data-number="15.2"
 id="design-study-a-single-link-robot-arm-13" class="section-design-study"><span class="header-section-number">15.2</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="15.2.1" id="-example-problem-3118" class="section-example"><span class="header-section-number">15.2.1</span> <a
+<h3 data-number="15.2.1" id="-example-problem-13115" class="section-example"><span class="header-section-number">15.2.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#frequency-response-of-lti-systems" data-reference-type="ref"
-data-reference="chap:bode_plots">18</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#frequency-response-of-lti-systems" data-reference-type="ref"
+data-reference="chap:bode_plots">15</a></h3>
 <p>Draw by hand the Bode plot of the single-link robot arm from torque
 <span class="math inline">\(\tilde{\tau}\)</span> to angle <span
 class="math inline">\(\tilde{\theta}\)</span> given that the equilibrium
@@ -1435,9 +1435,9 @@ class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
 Complete solution
 </h4>
 <p>From HW <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a
+data-reference="ds:single_link_arm">1.3.1</a>.<a
 href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>, the transfer
+data-reference="chap:transfer_function_models">5</a>, the transfer
 function for the single-link robot arm is <span
 class="math display">\[\tag{15.14}
 P(s) = \frac{3/m\ell^2}{s(s+3b/m\ell^2)} =
@@ -1460,9 +1460,9 @@ P(j\omega) =
 <figure id="fig:hw_arm_bode">
 <img loading="lazy" width="2455" height="1988" src="6_design_studies/figures/hw_arm_bode.png" style="width:95.0%"
 alt="Bode plot for the transfer function given in Equation 15.14." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.12. </span>Bode plot for the transfer function given
+<figcaption aria-hidden="true">Bode plot for the transfer function given
 in Equation <a href="#frequency-response-of-lti-systems" data-reference-type="eqref"
-data-reference="eq:hw_arm_bode_tf"><a href="#frequency-response-of-lti-systems">15.14</a></a>.</figcaption>
+data-reference="eq:hw_arm_bode_tf">15.14</a>.</figcaption>
 </figure>
 <p>Python commands to generate the Bode plots are:</p>
 <div class="sourceCode" id="cb1" data-language="Python"
@@ -1491,12 +1491,12 @@ data-caption="chap15/arm.py"><pre class="sourceCode python"><code class="sourceC
 </section>
 <h2 data-number="15.3" id="design-study-b-inverted-pendulum-11" class="section-design-study"><span class="header-section-number">15.3</span> Design Study <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
-<h3 data-number="15.3.1" id="-example-problem-3218" class="section-example"><span class="header-section-number">15.3.1</span> <a
+<h3 data-number="15.3.1" id="-example-problem-13215" class="section-example"><span class="header-section-number">15.3.1</span> <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#frequency-response-of-lti-systems" data-reference-type="ref"
-data-reference="chap:bode_plots">18</a></h3>
+data-reference="ds:pendulum">1.3.2</a>.<a href="#frequency-response-of-lti-systems" data-reference-type="ref"
+data-reference="chap:bode_plots">15</a></h3>
 <p>(a) Draw by hand the Bode plot of the inner loop transfer function from
 force <span class="math inline">\(F\)</span> to angle <span
 class="math inline">\(\theta\)</span> for the inverted pendulum. Use the
@@ -1588,9 +1588,9 @@ class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
 Complete solution
 </h4>
 <p>From HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a
+data-reference="ds:pendulum">1.3.2</a>.<a
 href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>, the transfer
+data-reference="chap:transfer_function_models">5</a>, the transfer
 function for the inner loop of the inverted pendulum is <span
 class="math display">\[\tag{15.16}
 %
@@ -1622,17 +1622,17 @@ data-reference="fig:hw_pendulum_bode_in">15.13</a>.</p>
 <img loading="lazy" width="1920" height="1440" src="6_design_studies/figures/hw_pendulum_bode_in_v02.png"
 style="width:95.0%"
 alt="Bode plot for the transfer function given in Equation 15.17." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.13. </span>Bode plot for the transfer function given
+<figcaption aria-hidden="true">Bode plot for the transfer function given
 in Equation <a href="#frequency-response-of-lti-systems"
 data-reference-type="eqref"
-data-reference="eq:loop_bode_pendulum_in"><a href="#frequency-response-of-lti-systems">15.17</a></a>.</figcaption>
+data-reference="eq:loop_bode_pendulum_in">15.17</a>.</figcaption>
 </figure>
 <p><span class="math display">\[\tilde{Z}(s) = \left(\frac{-\frac{2
 \ell}{3} s^2 + g}{s^2} \right) \tilde{\Theta}(s).\]</span></p>
 <p>From HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a
+data-reference="ds:pendulum">1.3.2</a>.<a
 href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>, the transfer
+data-reference="chap:transfer_function_models">5</a>, the transfer
 function for the outer loop of the inverted pendulum is <span
 class="math display">\[\tag{15.18}
 P_{out}(s) = -\frac{\frac{2 \ell}{3} s^2 - g}{s^2} =
@@ -1663,10 +1663,10 @@ data-reference="fig:hw_pendulum_bode_out">15.14</a>.</p>
 src="6_design_studies/figures/hw_pendulum_bode_out_v2_no_straight_lines.png"
 style="width:95.0%"
 alt="Bode plot for the transfer function given in Equation 15.19." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.14. </span>Bode plot for the transfer function given
+<figcaption aria-hidden="true">Bode plot for the transfer function given
 in Equation <a href="#frequency-response-of-lti-systems"
 data-reference-type="eqref"
-data-reference="eq:loop_bode_pendulum_out"><a href="#frequency-response-of-lti-systems">15.19</a></a>.</figcaption>
+data-reference="eq:loop_bode_pendulum_out">15.19</a>.</figcaption>
 </figure>
 <p>Python code to generate Bode plots for the previous two figures is as
 follows:</p>
@@ -1699,12 +1699,12 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <h2 data-number="15.4"
 id="design-study-c-satellite-attitude-control-12" class="section-design-study"><span class="header-section-number">15.4</span> Design Study <a
 href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
-<h3 data-number="15.4.1" id="-example-problem-3318" class="section-example"><span class="header-section-number">15.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+<h3 data-number="15.4.1" id="-example-problem-13315" class="section-example"><span class="header-section-number">15.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
 src="6_design_studies/figures/hw_satellite_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#frequency-response-of-lti-systems" data-reference-type="ref"
-data-reference="chap:bode_plots">18</a></h3>
+data-reference="ds:satellite">1.3.3</a>.<a href="#frequency-response-of-lti-systems" data-reference-type="ref"
+data-reference="chap:bode_plots">15</a></h3>
 <p>(a) Draw by hand the Bode plot of the inner loop transfer function from
 torque <span class="math inline">\(\tau\)</span> to angle <span
 class="math inline">\(\theta\)</span> for the satellite attitude
@@ -1781,9 +1781,9 @@ class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
 Complete solution
 </h4>
 <p>From HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a
+data-reference="ds:satellite">1.3.3</a>.<a
 href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>, the transfer
+data-reference="chap:transfer_function_models">5</a>, the transfer
 function for the inner loop of the satellite attitude problem is <span
 class="math display">\[\tag{15.20}
 %
@@ -1818,15 +1818,15 @@ the Bode plot in this case.</p>
 <img loading="lazy" width="2174" height="1576" src="6_design_studies/figures/hw_satellite_bode_in.png"
 style="width:80.0%"
 alt="Bode plot for the transfer function given in Equation 15.21." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.15. </span>Bode plot for the transfer function given
+<figcaption aria-hidden="true">Bode plot for the transfer function given
 in Equation <a href="#frequency-response-of-lti-systems"
 data-reference-type="eqref"
-data-reference="eq:hw_bode_satellite_in"><a href="#frequency-response-of-lti-systems">15.21</a></a>.</figcaption>
+data-reference="eq:hw_bode_satellite_in">15.21</a>.</figcaption>
 </figure>
 <p>From HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a
+data-reference="ds:satellite">1.3.3</a>.<a
 href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>, the transfer
+data-reference="chap:transfer_function_models">5</a>, the transfer
 function for the outer loop of the satellite is <span
 class="math display">\[\tag{15.22}
 P_{out}(s) =
@@ -1855,10 +1855,10 @@ data-reference="fig:hw_satellite_bode_out">15.16</a>.</p>
 <img loading="lazy" width="2559" height="2009" src="6_design_studies/figures/hw_satellite_bode_out.png"
 style="width:95.0%"
 alt="Bode plot for the transfer function given in Equation 15.23." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 15.16. </span>Bode plot for the transfer function given
+<figcaption aria-hidden="true">Bode plot for the transfer function given
 in Equation <a href="#frequency-response-of-lti-systems"
 data-reference-type="eqref"
-data-reference="eq:hw_bode_satellite_out"><a href="#frequency-response-of-lti-systems">15.23</a></a>.</figcaption>
+data-reference="eq:hw_bode_satellite_out">15.23</a>.</figcaption>
 </figure>
 <p>The Python code to generate similar Bode plots is</p>
 <div class="sourceCode" id="cb1" data-language="Python"
@@ -1914,7 +1914,7 @@ value="1"></label>
 <figure class="advanced-visual
 advanced-visual--auto ch15-complex-figure"> <svg viewBox="0 0 420
 210" role="img" aria-label="Complex number vector"> <g
-data-auto-visual></g> </svg> <figcaption><span class="fig-number">Figure 1.5. </span>The sliders move the
+data-auto-visual></g> </svg> <figcaption>The sliders move the
 complex frequency-response vector and change its magnitude and
 phase.</figcaption> </figure>
 <div class="advanced-readout

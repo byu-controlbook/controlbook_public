@@ -267,13 +267,13 @@ infinity. However, models are never precise, and there are almost always
 disturbances on the system, which implies that there will be
 steady-state error in the response. In
 Chapter <a href="chapter-system-type-and-integrators.html#system-type-and-integrators" data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a> we showed that adding an
+data-reference="chap:PID-system-type">9</a> we showed that adding an
 integrator to the controller is an effective way of eliminating
 steady-state error caused by model mismatch and input/output
 disturbances. In this section we will show how to add an integrator to
 the full state feedback controller derived in
 Chapter <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a>. <span id="idx-0153" class="book-index-anchor" aria-hidden="true"></span></p>
+data-reference="chap:state-feedback">11</a>. <span id="idx-0153" class="book-index-anchor" aria-hidden="true"></span></p>
 <p>A block diagram of the system with full state feedback and an
 integrator is shown in
 <strong>Fig.</strong> <a href="#fig:ss_full_state_feedback_integrator"
@@ -283,7 +283,7 @@ data-reference="fig:ss_full_state_feedback_integrator">12.1</a>.</p>
 <img loading="lazy" width="2034" height="605"
 src="4_observer_based/figures/ss_full_state_feedback_integrator.png"
 style="width:80.0%" alt="Full state feedback with integrator." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 12.1. </span>Full state feedback with
+<figcaption aria-hidden="true">Full state feedback with
 integrator.</figcaption>
 </figure>
 <p>Let the state of the integrator be defined as <span
@@ -293,7 +293,7 @@ data-reference-type="ref"
 data-reference="fig:ss_full_state_feedback_integrator">12.1</a>. Then
 <span class="math display">\[\dot{x}_I = r-y_r = r-C_rx.\]</span> In
 Appendix <a href="chapter-root-locus.html#----root-locus" data-reference-type="ref"
-data-reference="chap:PID-root-locus">30</a> we argue, using the root
+data-reference="chap:PID-root-locus">P.6</a> we argue, using the root
 locus<span id="idx-0154" class="book-index-anchor" aria-hidden="true"></span>, that adding an
 integrator after the other gains are selected will change all of the
 pole locations. Since the pole placement<span id="idx-0155" class="book-index-anchor" aria-hidden="true"></span> design methods
@@ -303,10 +303,10 @@ systems, we did not have an effective method for placing the system
 poles and the integrator pole simultaneously. On the other hand, the
 pole placement technique described in
 Chapter <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a> was not limited to
+data-reference="chap:state-feedback">11</a> was not limited to
 second-order systems. As such, there should be a way to use the methods
 of Chapter <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a> to simultaneously place both
+data-reference="chap:state-feedback">11</a> to simultaneously place both
 the system poles and the integrator pole. To do so, we augment the
 states of the original system with the integrator state <span
 class="math inline">\(x_I\)</span>. Since the dynamics of the original
@@ -344,7 +344,7 @@ class="math inline">\(C_rA^{n-1}B \neq 0\)</span>. When the augmented
 system is controllable, we can use the pole placement technique
 described in
 Chapter <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a> to place the system poles
+data-reference="chap:state-feedback">11</a> to place the system poles
 and the pole of the integrator simultaneously using the augmented
 system. For example, letting <span class="math inline">\(A_1\)</span>
 and <span class="math inline">\(B_1\)</span> represent the augmented
@@ -364,7 +364,7 @@ K &amp; k_I \end{pmatrix}\begin{pmatrix}x \\ x_I \end{pmatrix}
 gain<span id="idx-0160" class="book-index-anchor" aria-hidden="true"></span> of the closed-loop
 system is equal to one. Indeed, from
 Equation <a href="#theory-10" data-reference-type="eqref"
-data-reference="eq:ss_augmented_system"><a href="#integrator-with-full-state-feedback">12.1</a></a> the
+data-reference="eq:ss_augmented_system">12.1</a> the
 augmented closed-loop system is <span
 class="math display">\[\begin{aligned}
 \begin{pmatrix} \dot{x} \\ \dot{x}_I \end{pmatrix} &amp;=
@@ -392,9 +392,9 @@ k_{DC} &amp;=   -\begin{pmatrix} C_r &amp; 0
 class="math inline">\(M\stackrel{\triangle}{=}(A-BK)^{-1}\)</span>, and
 using the Matrix inversion formula for block matrices given in
 Appendix <a href="chapter-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
-data-reference="chap:linear_algebra">31</a>
+data-reference="chap:linear_algebra">P.7</a>
 Equation <a href="chapter-review-of-linear-algebra.html#trace" data-reference-type="eqref"
-data-reference="eq:matrix_inversion_lemma_2"><a href="chapter-review-of-linear-algebra.html#review-of-linear-algebra">P.7.2</a></a>
+data-reference="eq:matrix_inversion_lemma_2">P.7.2</a>
 we get <span class="math display">\[\begin{aligned}
 k_{DC} &amp;=   -\begin{pmatrix} C_r &amp; 0
 \end{pmatrix}  \begin{pmatrix} M-MBk_I(C_rMBk_I)^{-1}C_rM &amp;
@@ -470,7 +470,7 @@ B_1 &amp;= \begin{pmatrix}B \\ \mathbf{0}\end{pmatrix}
 <p>Step 2.<br />
 Follow the pole placement procedure outlined in
 Chapter <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a> to find <span
+data-reference="chap:state-feedback">11</a> to find <span
 class="math inline">\(K_1\)</span> that places the poles of the
 augmented system at <span class="math inline">\(p_1, p_2, \dots,
 p_n\)</span>, and <span class="math inline">\(p_I\)</span>.</p>
@@ -899,16 +899,16 @@ Show solution
 <h2 data-number="12.3"
 id="design-study-a-single-link-robot-arm-10" class="section-design-study"><span class="header-section-number">12.3</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="12.3.1" id="-example-problem-3115" class="section-example"><span class="header-section-number">12.3.1</span> <a
+<h3 data-number="12.3.1" id="-example-problem-13112" class="section-example"><span class="header-section-number">12.3.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#integrator-with-full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">12</a></h3>
 <p>Modify the state feedback solution developed in
 Homework <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a> to add an integrator with
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">11</a> to add an integrator with
 anti-windup.</p>
 <p>Add a 0.25 Newton disturbance to the system and allow the system
 parameters to change up to 20%.</p>
@@ -1004,9 +1004,10 @@ B_1 &amp;= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} =
 <dt>Step 2.</dt>
 <dd>
 <p>After the design in HW <a href="chapter-introduction.html#design-study-single-link-robot-arm"
-data-reference-type="ref" data-reference="ds:single_link_arm">3.1</a>.<a
+data-reference-type="ref"
+data-reference="ds:single_link_arm">1.3.1</a>.<a
 href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a>, the closed-loop poles were
+data-reference="chap:state-feedback">11</a>, the closed-loop poles were
 located at <span class="math inline">\(p_{1,2} = -3.18 \pm j
 3.18\)</span>. We will add the integrator pole at <span
 class="math inline">\(p_I=-5\)</span>. The new controllability matrix is
@@ -1149,16 +1150,16 @@ class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
 </section>
 <h2 data-number="12.4" id="design-study-b-inverted-pendulum-8" class="section-design-study"><span class="header-section-number">12.4</span> Design Study <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
-<h3 data-number="12.4.1" id="-example-problem-3215" class="section-example"><span class="header-section-number">12.4.1</span> <a
+<h3 data-number="12.4.1" id="-example-problem-13212" class="section-example"><span class="header-section-number">12.4.1</span> <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#integrator-with-full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a></h3>
+data-reference="ds:pendulum">1.3.2</a>.<a href="#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">12</a></h3>
 <p>(a) Modify the state feedback solution developed in
 Homework <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a> to add an integrator with
+data-reference="ds:pendulum">1.3.2</a>.<a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">11</a> to add an integrator with
 anti-windup to the position feedback.</p>
 <p>(b) Add a constant input disturbance of 0.5 Newtons to the input of the
 plant and allow the system parameters to change up to 20%.</p>
@@ -1276,9 +1277,9 @@ B_1 &amp;= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} =
 <dt>Step 2.</dt>
 <dd>
 <p>After the design in HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart"
-data-reference-type="ref" data-reference="ds:pendulum">3.2</a>.<a
+data-reference-type="ref" data-reference="ds:pendulum">1.3.2</a>.<a
 href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a>, the closed-loop poles were
+data-reference="chap:state-feedback">11</a>, the closed-loop poles were
 located at <span class="math inline">\(p_{1,2} = -1.4140 \pm
 j1.4144\)</span>, <span class="math inline">\(p_{3,4}=  -0.8000 \pm j
 0.6000\)</span>. We will add the integrator pole at <span
@@ -1452,16 +1453,16 @@ class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
 <h2 data-number="12.5"
 id="design-study-c-satellite-attitude-control-9" class="section-design-study"><span class="header-section-number">12.5</span> Design Study <a
 href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
-<h3 data-number="12.5.1" id="-example-problem-3315" class="section-example"><span class="header-section-number">12.5.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+<h3 data-number="12.5.1" id="-example-problem-13312" class="section-example"><span class="header-section-number">12.5.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
 src="6_design_studies/figures/hw_satellite_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#integrator-with-full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a></h3>
+data-reference="ds:satellite">1.3.3</a>.<a href="#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">12</a></h3>
 <p>Modify the state feedback solution developed in
 Homework <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a> to add an integrator with
+data-reference="ds:satellite">1.3.3</a>.<a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback">11</a> to add an integrator with
 anti-windup to the feedback loop for <span
 class="math inline">\(\phi\)</span>.</p>
 <p>Add a constant input disturbance of 1 Newton-meter to the input of
@@ -1572,9 +1573,9 @@ B_1 &amp;= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} =
 <dt>Step 2.</dt>
 <dd>
 <p>After the design in HW <a href="chapter-introduction.html#design-study-satellite-attitude-control"
-data-reference-type="ref" data-reference="ds:satellite">3.3</a>.<a
+data-reference-type="ref" data-reference="ds:satellite">1.3.3</a>.<a
 href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a>, the closed-loop poles were
+data-reference="chap:state-feedback">11</a>, the closed-loop poles were
 located at <span class="math inline">\(p_{1,2} = -1.0605 \pm j
 1.0608\)</span>, <span class="math inline">\(p_{3,4}=  -0.7016 \pm j
 0.7018\)</span>. We will add the integrator pole at <span

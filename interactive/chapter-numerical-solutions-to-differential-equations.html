@@ -269,25 +269,25 @@ that unique solutions to the differential equation exist for every <span
 class="math inline">\(x_0\)</span>.</p>
 <p>Integrating both sides of
 Equation <a href="#python-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
-data-reference="eq:rk_diff_eq"><a href="#numerical-solutions-to-differential-equations">P.4.1</a></a> from <span
+data-reference="eq:rk_diff_eq">P.4.1</a> from <span
 class="math inline">\(t_0\)</span> to <span
 class="math inline">\(t&lt;t_f\)</span> gives <span
 class="math display">\[\tag{P.4.2}
 x(t) = x(t_0) + \int_{t_0}^t f(x(\tau), u(\tau))\,d\tau.\]</span> The
 difficulty with solving
 Equation <a href="#matlab-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
-data-reference="eq:rk_integral_solution"><a href="#numerical-solutions-to-differential-equations">P.4.2</a></a>
+data-reference="eq:rk_integral_solution">P.4.2</a>
 is that <span class="math inline">\(x(t)\)</span> appears on both sides
 of the equation, and cannot therefore be solved explicitly for <span
 class="math inline">\(x(t)\)</span>. All numerical solution techniques
 attempt to approximate the solution to
 Equation <a href="#matlab-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
-data-reference="eq:rk_integral_solution"><a href="#numerical-solutions-to-differential-equations">P.4.2</a></a>.
+data-reference="eq:rk_integral_solution">P.4.2</a>.
 Most techniques break the solution into small time increments, usually
 equal to the sample rate of the computer, which we denote by <span
 class="math inline">\(T_s\)</span>. Accordingly we write
 Equation <a href="#matlab-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
-data-reference="eq:rk_integral_solution"><a href="#numerical-solutions-to-differential-equations">P.4.2</a></a>
+data-reference="eq:rk_integral_solution">P.4.2</a>
 as <span class="math display">\begin{align}
 x(t) &amp;= x(t_0) + \int_{t_0}^{t-T_s} f(x(\tau), u(\tau))\,d\tau
               + \int_{t-T_s}^t f(x(\tau), u(\tau))\,d\tau \notag \\
@@ -296,18 +296,18 @@ x(t) &amp;= x(t_0) + \int_{t_0}^{t-T_s} f(x(\tau), u(\tau))\,d\tau
 \end{align}</span></p>
 <p>The simplest form of numerical approximation for the integral in
 Equation <a href="#simulink-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
-data-reference="eq:rk_integral_solution2"><a href="#numerical-solutions-to-differential-equations">P.4.3</a></a>
+data-reference="eq:rk_integral_solution2">P.4.3</a>
 is to use the left endpoint method, where <span
 class="math display">\[\int_{t-T_s}^t f(x(\tau), u(\tau))\,d\tau \approx
 T_s f(x(t-T_s), u(t-T_s)).\]</span> Using the notation <span
 class="math inline">\(x_k \stackrel{\triangle}{=}x(t_0+k T_s)\)</span>
 we get the numerical approximation to the differential equation in
 Equation <a href="#python-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
-data-reference="eq:rk_diff_eq"><a href="#numerical-solutions-to-differential-equations">P.4.1</a></a> as <span
+data-reference="eq:rk_diff_eq">P.4.1</a> as <span
 class="math display">\[\tag{P.4.4}
 x_k = x_{k-1} + T_s f(x_k, u_k), \quad x_0 = x(t_0).\]</span>
 Equation <a href="#notes-and-references-18" data-reference-type="eqref"
-data-reference="eq:rk_euler"><a href="#numerical-solutions-to-differential-equations">P.4.4</a></a> is called the Euler
+data-reference="eq:rk_euler">P.4.4</a> is called the Euler
 method, or a Runge-Kutta first order method (RK1).</p>
 <p>While the RK1 method is often effective for numerically solving ODEs,
 it typically requires a small sample size <span
@@ -317,7 +317,7 @@ class="math inline">\(f(\cdot, \cdot)\)</span>.</p>
 <p>To improve the numerical accuracy of the solution, a second-order
 method can be derived by approximating the integral in
 Equation <a href="#simulink-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
-data-reference="eq:rk_integral_solution2"><a href="#numerical-solutions-to-differential-equations">P.4.3</a></a>
+data-reference="eq:rk_integral_solution2">P.4.3</a>
 using the trapezoidal rule shown in
 Figure <a href="chapter-digital-implementation-of-pid-controllers.html#fig:pid_digital_integrator" data-reference-type="ref"
 data-reference="fig:pid_digital_integrator">10.1</a>, where <span
@@ -342,7 +342,7 @@ F_2 &amp; = f(x_{k-1} + T_sF_1, u_{k-1}) \notag \\
 x_k &amp;= x_{k-1} + \frac{T_s}{2} \left( F_1 + F_2 \right). \notag
 \end{align}</span>
 Equation <a href="#numerical-solutions-to-differential-equations" data-reference-type="eqref"
-data-reference="eq:rk_RK2"><a href="#numerical-solutions-to-differential-equations">P.4.5</a></a> is the Runge-Kutta
+data-reference="eq:rk_RK2">P.4.5</a> is the Runge-Kutta
 second-order method, or RK2. It requires two function calls to <span
 class="math inline">\(f(\cdot, \cdot)\)</span> for every time
 sample.</p>
@@ -375,7 +375,7 @@ x_k &amp;= x_{k-1} + \frac{T_s}{6} \left( F_1 + 2F_2 + 2F_3 + F_4
 <p>It can be shown that the RK4 method matches the Taylor series
 approximation of the integral in
 Equation <a href="#simulink-implementation-of-numerical-ode-solvers" data-reference-type="eqref"
-data-reference="eq:rk_integral_solution2"><a href="#numerical-solutions-to-differential-equations">P.4.3</a></a>
+data-reference="eq:rk_integral_solution2">P.4.3</a>
 up to the fourth order term. Higher order methods can be derived, but
 generally do not result in significantly better numerical approximations
 to the ODE. The step size <span class="math inline">\(T_s\)</span> must

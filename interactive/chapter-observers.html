@@ -292,14 +292,14 @@ class="math inline">\(\hat{x}\)</span><span id="idx-0166" class="book-index-anch
 state <span class="math inline">\(x\)</span>. In other words, the
 controller in Equation <a href="chapter-full-state-feedback.html#full-state-feedback"
 data-reference-type="eqref"
-data-reference="eq:ss_full_state_feedback_controller"><a href="chapter-full-state-feedback.html#full-state-feedback">11.37</a></a>
+data-reference="eq:ss_full_state_feedback_controller">11.37</a>
 becomes <span class="math display">\[u=-K\hat{x} + k_r r.\]</span></p>
 <figure id="fig:ss_observer_based_feedback">
 <img loading="lazy" width="2267" height="655"
 src="4_observer_based/figures/ss_observer_based_feedback.png"
 style="width:80.0%"
 alt="Closed-loop system with observer-based feedback." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 13.1. </span>Closed-loop system with observer-based
+<figcaption aria-hidden="true">Closed-loop system with observer-based
 feedback.</figcaption>
 </figure>
 <p>In this chapter we will design a so-called Luenberger observer that
@@ -309,11 +309,11 @@ class="math display">\[\tag{13.3}
 \underbrace{L \left(y - C \hat{x} \right)}_{\text{corrector}}.\]</span>
 The first term in
 Equation <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_luenberger_observer"><a href="#observers">13.3</a></a>,
+data-reference="eq:ss_luenberger_observer">13.3</a>,
 i.e., <span class="math inline">\(\dot{\hat{x}}=A\hat{x}+Bu\)</span> is
 a copy of the equations of motion for the plant given in
 Equation <a href="#theory-11" data-reference-type="eqref"
-data-reference="eq:ss_luenberger_observer_1"><a href="#observers">13.1</a></a>.
+data-reference="eq:ss_luenberger_observer_1">13.1</a>.
 The second term given by <span
 class="math inline">\(L(y-C\hat{x})\)</span> is a correction term, where
 <span class="math inline">\(L\)</span> is the observer gain,<span id="idx-0167" class="book-index-anchor" aria-hidden="true"></span> and <span
@@ -342,7 +342,7 @@ control engineer. The derivation of a formula for the observer gain
 the derivation of the feedback gain <span
 class="math inline">\(K\)</span> in
 Chapter <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a>.</p>
+data-reference="chap:state-feedback">11</a>.</p>
 <h3 data-number="13.1.1"
 id="observer-design-using-observer-canonic-form"><span class="header-section-number">13.1.1</span> Observer Design using
 Observer Canonic Form</h3>
@@ -378,7 +378,7 @@ a_0 y\right) \Big]\dots\Big]\dots\Big].
 \end{gather}</span></p>
 <p>The analog computer<span id="idx-0171" class="book-index-anchor" aria-hidden="true"></span> implementation of
 Equation <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_observer_1"><a href="#observers">13.5</a></a> is shown in
+data-reference="eq:ss_observer_1">13.5</a> is shown in
 <strong>Fig.</strong> <a href="#fig:ss_observer_canonic_form_block_diagram"
 data-reference-type="ref"
 data-reference="fig:ss_observer_canonic_form_block_diagram">13.2</a>.</p>
@@ -387,10 +387,10 @@ data-reference="fig:ss_observer_canonic_form_block_diagram">13.2</a>.</p>
 src="4_observer_based/figures/ss_observer_canonic_form_block_diagram.png"
 style="width:90.0%"
 alt="Block diagram showing the analog computer implementation of Equation 13.5." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 13.2. </span>Block diagram showing the analog computer
+<figcaption aria-hidden="true">Block diagram showing the analog computer
 implementation of Equation <a href="#observers"
 data-reference-type="eqref"
-data-reference="eq:ss_observer_1"><a href="#observers">13.5</a></a>.</figcaption>
+data-reference="eq:ss_observer_1">13.5</a>.</figcaption>
 </figure>
 <p>Labeling the states as the output of the integrators, as shown in
 <strong>Fig.</strong> <a href="#fig:ss_observer_canonic_form_block_diagram"
@@ -438,12 +438,12 @@ C_o &amp;\stackrel{\triangle}{=}\begin{pmatrix} 1 &amp; 0 &amp; \dots
 \end{align}</span> Comparing the state-space equations in observer
 canonic form in
 Equations <a href="#knowledge-check-12" data-reference-type="eqref"
-data-reference="eq:ss_observer_canonic_form_Ao"><a href="#observers">13.8</a></a>–<a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_observer_canonic_form_Co"><a href="#observers">13.10</a></a>
+data-reference="eq:ss_observer_canonic_form_Ao">13.8</a>–<a href="#observers" data-reference-type="eqref"
+data-reference="eq:ss_observer_canonic_form_Co">13.10</a>
 with the state-space equations for control canonic form in
 Equations <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="eqref"
-data-reference="eq:ss_companion_form"><a href="chapter-full-state-feedback.html#full-state-feedback">11.14</a></a>-<a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="eqref"
-data-reference="eq:ss_control_canonic_form_Cc"><a href="chapter-full-state-feedback.html#full-state-feedback">11.16</a></a>,
+data-reference="eq:ss_companion_form">11.14</a>-<a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="eqref"
+data-reference="eq:ss_control_canonic_form_Cc">11.16</a>,
 we see that <span class="math display">\[\begin{aligned}
 A_o &amp;= A_c^\top \\
 B_o &amp;= C_c^\top \\
@@ -451,17 +451,17 @@ C_o &amp;= B_c^\top.
 \end{aligned}\]</span></p>
 <p>Comparing the state equation in
 Equation <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_observer_2"><a href="#observers">13.6</a></a> with the
+data-reference="eq:ss_observer_2">13.6</a> with the
 transfer function in
 Equation <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_observer_transfer_function"><a href="#observers">13.4</a></a>
+data-reference="eq:ss_observer_transfer_function">13.4</a>
 we see that the eigenvalues of <span class="math inline">\(A_o\)</span>
 are the roots of the open-loop characteristic polynomial <span
 class="math display">\[\Delta_{ol}(s) = \det(sI-A_o) = s^n +
 a_{n-1}s^{n-1} + \dots + a_1 s + a_0.\]</span> Since <span
 class="math inline">\(C_o\)</span> in
 Equation <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_observer_3"><a href="#observers">13.7</a></a> has the
+data-reference="eq:ss_observer_3">13.7</a> has the
 structure of one in the first element followed by zeros, we see that the
 structure of <span class="math inline">\(A_o-L_oC_o\)</span> is given by
 <span class="math display">\[A_o-L_oC_o = \begin{pmatrix}
@@ -536,23 +536,23 @@ State-Space Equations</h3>
 <p>The formula given in
 Equation <a href="#observers"
 data-reference-type="eqref"
-data-reference="eq:ss_observer_gain_observer_canonic_form"><a href="#observers">13.12</a></a>
+data-reference="eq:ss_observer_gain_observer_canonic_form">13.12</a>
 assumes that the state-space equations are in observer canonic form.
 Similar to the general full state feedback case discussed in
 Section <a href="chapter-full-state-feedback.html#full-state-feedback-general-case"
 data-reference-type="ref"
-data-reference="sec:full_state_feedback_general_case">14.1.3</a>, a
+data-reference="sec:full_state_feedback_general_case">11.1.3</a>, a
 formula for the observer gains can be derived for general state-space
 equations. Following the method used in
 Section <a href="chapter-full-state-feedback.html#full-state-feedback-general-case"
 data-reference-type="ref"
-data-reference="sec:full_state_feedback_general_case">14.1.3</a>, the
+data-reference="sec:full_state_feedback_general_case">11.1.3</a>, the
 strategy is to find a state transformation matrix that converts the
 general state-space equations into observer canonic form. Rather than
 repeating the steps in
 Section <a href="chapter-full-state-feedback.html#full-state-feedback-general-case"
 data-reference-type="ref"
-data-reference="sec:full_state_feedback_general_case">14.1.3</a> we will
+data-reference="sec:full_state_feedback_general_case">11.1.3</a> we will
 derive the formula for the observer gain by noting the similarities
 between the design problem for full state feedback and the design
 problem for the observer gain.</p>
@@ -562,10 +562,10 @@ class="math inline">\(A-BK\)</span> at the roots of the desired
 characteristic equation given in
 Equation <a href="chapter-full-state-feedback.html#full-state-feedback"
 data-reference-type="eqref"
-data-reference="eq:ss_desired_closed_loop_char_polynomial"><a href="chapter-full-state-feedback.html#full-state-feedback">11.20</a></a>
+data-reference="eq:ss_desired_closed_loop_char_polynomial">11.20</a>
 are given by
 Equation <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="eqref"
-data-reference="eq:ss_ackermanns_formula"><a href="chapter-full-state-feedback.html#full-state-feedback">11.32</a></a>
+data-reference="eq:ss_ackermanns_formula">11.32</a>
 or <span class="math display">\[\tag{13.13}
 K =
 (\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1},\]</span>
@@ -592,10 +592,10 @@ class="math inline">\(L\)</span> that places the eigenvalues of <span
 class="math inline">\(A-LC\)</span> at the roots of
 Equation <a href="#observers"
 data-reference-type="eqref"
-data-reference="eq:ss_desired_closed_loop_observer_char_eq"><a href="#observers">13.11</a></a>.
+data-reference="eq:ss_desired_closed_loop_observer_char_eq">13.11</a>.
 Recalling from
 Appendix <a href="chapter-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
-data-reference="chap:linear_algebra">31</a> that for a general square
+data-reference="chap:linear_algebra">P.7</a> that for a general square
 matrix <span class="math inline">\(M\)</span>, the eigenvalues of <span
 class="math inline">\(M\)</span> equal the eigenvalues of <span
 class="math inline">\(M^\top\)</span>, the observer problem can be posed
@@ -604,7 +604,7 @@ eigenvalues of <span class="math inline">\(A^\top - C^\top
 L^\top\)</span> at the roots of
 Equation <a href="#observers"
 data-reference-type="eqref"
-data-reference="eq:ss_desired_closed_loop_observer_char_eq"><a href="#observers">13.11</a></a>.
+data-reference="eq:ss_desired_closed_loop_observer_char_eq">13.11</a>.
 This problem is identical to the full state feedback gain problem with
 <span class="math inline">\(A\)</span> replaced by <span
 class="math inline">\(A^\top\)</span>, <span
@@ -614,7 +614,7 @@ class="math inline">\(K\)</span> replaced by <span
 class="math inline">\(L^\top\)</span>. Making the appropriate
 substitutions in Ackermann’s
 formula <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_ackermanns_formula_2"><a href="#observers">13.13</a></a>
+data-reference="eq:ss_ackermanns_formula_2">13.13</a>
 gives <span class="math display">\[\tag{13.14}
 L^\top =
 (\boldsymbol{\beta}-\mathbf{a}_{A})\mathcal{A}_{A^\top}^{-1}\mathcal{C}_{A^\top,C^\top}^{-1}\]</span>
@@ -626,7 +626,7 @@ class="math inline">\(\mathbf{a}_A=\mathbf{a}_{A^\top}\)</span> and
 <span class="math inline">\(\mathcal{A}_A=\mathcal{A}_{A^\top}\)</span>.
 Taking the transpose of
 Equation <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_ackermann_observer_1"><a href="#observers">13.14</a></a>
+data-reference="eq:ss_ackermann_observer_1">13.14</a>
 gives <span class="math display">\[\tag{13.15}
 L =
 \mathcal{C}_{A^\top,C^\top}^{-\top}\mathcal{A}_{A}^{-\top}(\boldsymbol{\beta}-\mathbf{a}_{A})^\top,\]</span>
@@ -644,7 +644,7 @@ class="math display">\[\begin{aligned}
 CA^{n-1}\end{pmatrix},
 \end{aligned}\]</span> the observer
 gain <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_ackermann_observer_2"><a href="#observers">13.15</a></a>
+data-reference="eq:ss_ackermann_observer_2">13.15</a>
 can be written as <span
 class="math display">\[\tag{13.16}
 L =
@@ -656,7 +656,7 @@ Accordingly, the system <span class="math inline">\((A,C)\)</span> is
 said to be <em>observable</em><span id="idx-0176" class="book-index-anchor" aria-hidden="true"></span> if <span
 class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>.
 Equation <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_ackermann_observer_3"><a href="#observers">13.16</a></a>
+data-reference="eq:ss_ackermann_observer_3">13.16</a>
 is Ackermann’s formula<span id="idx-0177" class="book-index-anchor" aria-hidden="true"></span> for the observer gain
 <span class="math inline">\(L\)</span>. Ackermann’s formula is only
 valid for single output systems. For multi-output systems there are more
@@ -679,10 +679,10 @@ class="math inline">\(\text{rank}(\mathcal{O}_{A,C})=n\)</span>. When
 finding the gain <span class="math inline">\(L\)</span> it is important
 to note the three transposes which correspond to the transposes in
 Equation <a href="#observers" data-reference-type="eqref"
-data-reference="eq:ss_ackermann_observer_1"><a href="#observers">13.14</a></a>.</p>
+data-reference="eq:ss_ackermann_observer_1">13.14</a>.</p>
 <p>If an integrator is used in the control law, as discussed in
 Chapter <a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a>, then the
+data-reference="chap:state-feedback-integrator">12</a>, then the
 complete observer-based controller is shown in
 <strong>Fig.</strong> <a href="#fig:ss_observer_based_feedback_w_integrator"
 data-reference-type="ref"
@@ -697,7 +697,7 @@ reference output.</p>
 src="4_observer_based/figures/ss_observer_based_feedback_w_integrator.png"
 style="width:90.0%"
 alt="Closed-loop system with observer-based feedback, including integral feedback." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 13.3. </span>Closed-loop system with observer-based
+<figcaption aria-hidden="true">Closed-loop system with observer-based
 feedback, including integral feedback.</figcaption>
 </figure>
 <h3 data-number="13.1.3" id="separation-principle"><span class="header-section-number">13.1.3</span> Separation Principle</h3>
@@ -764,7 +764,7 @@ class="math display">\[\begin{pmatrix} \dot{x} \\ \dot{e} \end{pmatrix}
 \begin{pmatrix} x \\ e \end{pmatrix}.\]</span> Using the determinant
 properties for block diagonal matrices discussed in
 Appendix <a href="chapter-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
-data-reference="chap:linear_algebra">31</a>, it is straightforward to
+data-reference="chap:linear_algebra">P.7</a>, it is straightforward to
 show that <span class="math display">\[\text{eig}\begin{pmatrix} A-BK
 &amp; BK \\ \mathbf{0} &amp; A-LC \end{pmatrix} = \text{eig}(A-BK)\cup
 \text{eig}(A-LC).\]</span></p>
@@ -966,7 +966,7 @@ def observer_f(self, x_hat, y_m):
     return xhat_dot</code></pre>
 <p>Digital implementation<span id="idx-0182" class="book-index-anchor" aria-hidden="true"></span> of the observer in
 Equation <a href="#observers" data-reference-type="eqref"
-data-reference="eq:observer_example"><a href="#observers">13.17</a></a> requires
+data-reference="eq:observer_example">13.17</a> requires
 two persistent (or member) variables, one for <span
 class="math inline">\(\hat{x}\)</span> and one for <span
 class="math inline">\(u\)</span>. The observer is updated using the RK4
@@ -1196,18 +1196,18 @@ s<sup>2</sup> + 8s + 25, giving poles -4 ± j3.
 <h2 data-number="13.3"
 id="design-study-a-single-link-robot-arm-11" class="section-design-study"><span class="header-section-number">13.3</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="13.3.1" id="-example-problem-3116" class="section-example"><span class="header-section-number">13.3.1</span> <a
+<h3 data-number="13.3.1" id="-example-problem-13113" class="section-example"><span class="header-section-number">13.3.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#observers" data-reference-type="ref"
-data-reference="chap:observers">16</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#observers" data-reference-type="ref"
+data-reference="chap:observers">13</a></h3>
 <p>The objective of this problem is to design an observer that estimates
 the state of the system and uses the estimated state in the controller
 designed in
 Homework <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a>.</p>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">12</a>.</p>
 <p>For the sake of understanding the function of the observer, for this
 problem we will use exact parameters, without an input disturbance.
 Modify the arm dynamics so that the parameters known to the controller
@@ -1425,7 +1425,7 @@ class="math inline">\(\hat{x}\)</span> is used in the controller instead
 of <span class="math inline">\(x\)</span>, but otherwise this controller
 is identical to the controller in Chapter <a
 href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a>. The observer is
+data-reference="chap:state-feedback-integrator">12</a>. The observer is
 updated using the RK4 algorithm (see line 48). The differential
 equations for the observer are also specified on lines 64–66.</p>
 <p>Complete simulation code for MATLAB, Python, and Simulink can be
@@ -1434,17 +1434,17 @@ class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
 </section>
 <h2 data-number="13.4" id="design-study-b-inverted-pendulum-9" class="section-design-study"><span class="header-section-number">13.4</span> Design Study <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
-<h3 data-number="13.4.1" id="-example-problem-3216" class="section-example"><span class="header-section-number">13.4.1</span> <a
+<h3 data-number="13.4.1" id="-example-problem-13213" class="section-example"><span class="header-section-number">13.4.1</span> <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#observers" data-reference-type="ref"
-data-reference="chap:observers">16</a></h3>
+data-reference="ds:pendulum">1.3.2</a>.<a href="#observers" data-reference-type="ref"
+data-reference="chap:observers">13</a></h3>
 <p>The objective of this problem is to design an observer that estimates
 the state of the system and to use the estimated state in the controller
 designed in Homework <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a>.</p>
+data-reference="ds:pendulum">1.3.2</a>.<a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">12</a>.</p>
 <p>For the sake of understanding the function of the observer, for this
 problem we will use exact parameters, without an input disturbance.
 Modify the pendulum dynamics so that the parameters known to the
@@ -1674,7 +1674,7 @@ class="math inline">\(\hat{x}\)</span> is used in the controller instead
 of <span class="math inline">\(x\)</span> but otherwise is identical to
 the controller in Chapter <a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback"
 data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a>. The observer is
+data-reference="chap:state-feedback-integrator">12</a>. The observer is
 updated on lines 40–48 using the RK4 algorithm. The differential
 equations for the observer are specified on lines 50–56.</p>
 <p>Complete simulation code for MATLAB, Python, and Simulink can be
@@ -1684,17 +1684,17 @@ class="uri">http://controlbook.byu.edu</a>.</p></section> </article>
 <h2 data-number="13.5"
 id="design-study-c-satellite-attitude-control-10" class="section-design-study"><span class="header-section-number">13.5</span> Design Study <a
 href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
-<h3 data-number="13.5.1" id="-example-problem-3316" class="section-example"><span class="header-section-number">13.5.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+<h3 data-number="13.5.1" id="-example-problem-13313" class="section-example"><span class="header-section-number">13.5.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
 src="6_design_studies/figures/hw_satellite_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#observers" data-reference-type="ref"
-data-reference="chap:observers">16</a></h3>
+data-reference="ds:satellite">1.3.3</a>.<a href="#observers" data-reference-type="ref"
+data-reference="chap:observers">13</a></h3>
 <p>The objective of this problem is to design an observer that estimates
 the state of the system and to use the estimated state in the controller
 designed in Homework <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a>.</p>
+data-reference="ds:satellite">1.3.3</a>.<a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback" data-reference-type="ref"
+data-reference="chap:state-feedback-integrator">12</a>.</p>
 <p>For the sake of understanding the function of the observer, for this
 problem we will use exact parameters, without an input disturbance.
 Modify the satellite dynamics so that the parameters known to the
@@ -1925,7 +1925,7 @@ class="math inline">\(\hat{x}\)</span> is used in the controller instead
 of <span class="math inline">\(x\)</span> but otherwise is identical to
 the controller in Chapter <a href="chapter-integrator-with-full-state-feedback.html#integrator-with-full-state-feedback"
 data-reference-type="ref"
-data-reference="chap:state-feedback-integrator">15</a>. The observer is
+data-reference="chap:state-feedback-integrator">12</a>. The observer is
 updated on lines 41–49 using the RK4 algorithm. The differential
 equations for the observer are specified on lines 51–57.</p>
 <p>Complete simulation code for MATLAB, Python, and Simulink can be

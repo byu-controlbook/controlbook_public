@@ -285,7 +285,7 @@ gain<span id="idx-0057" class="book-index-anchor" aria-hidden="true"></span>.</p
 <img loading="lazy" width="1296" height="521" src="3_PID/figures/pid_proportional_control.png"
 style="width:50.0%"
 alt="Proportional Control. The feedback control is a gain k_p multiplied by the error." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 6.1. </span>Proportional Control. The feedback
+<figcaption aria-hidden="true">Proportional Control. The feedback
 control is a gain <span
 class="math inline"><em>k</em><sub><em>p</em></sub></span> multiplied by
 the error.</figcaption>
@@ -301,7 +301,7 @@ called the integral gain<span id="idx-0060" class="book-index-anchor" aria-hidde
 <img loading="lazy" width="1759" height="859" src="3_PID/figures/pid_PI_control.png"
 style="width:60.0%"
 alt="Proportional plus Integral (PI) Control. The feedback control is a linear combination of proportional and integral control." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 6.2. </span>Proportional plus Integral (PI) Control.
+<figcaption aria-hidden="true">Proportional plus Integral (PI) Control.
 The feedback control is a linear combination of proportional and
 integral control.</figcaption>
 </figure>
@@ -316,7 +316,7 @@ derivative gain<span id="idx-0062" class="book-index-anchor" aria-hidden="true">
 <img loading="lazy" width="1759" height="667" src="3_PID/figures/pid_PD_control.png"
 style="width:60.0%"
 alt="Proportional plus Derivative (PD) Control. The feedback control is a linear combination of proportional and derivative control." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 6.3. </span>Proportional plus Derivative (PD)
+<figcaption aria-hidden="true">Proportional plus Derivative (PD)
 Control. The feedback control is a linear combination of proportional
 and derivative control.</figcaption>
 </figure>
@@ -334,7 +334,7 @@ concepts.</p>
 <img loading="lazy" width="1759" height="1000" src="3_PID/figures/pid_PID_control.png"
 style="width:60.0%"
 alt="Proportional plus Integral plus Derivative (PID) Control. The feedback control is a linear combination of proportional, integral, and derivative control." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 6.4. </span>Proportional plus Integral plus
+<figcaption aria-hidden="true">Proportional plus Integral plus
 Derivative (PID) Control. The feedback control is a linear combination
 of proportional, integral, and derivative control.</figcaption>
 </figure>
@@ -364,7 +364,7 @@ the wind to maintain its desired flight path.</p>
 <figure id="fig:pid_meaning">
 <img loading="lazy" width="2830" height="1475" src="3_PID/figures/pid_meaning.png" style="width:95.0%"
 alt="Intuitive interpretation of PID control. Proportional control acts on the current error, integral control acts on accrued past error, and derivative control acts on anticipated future error." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 6.5. </span>Intuitive interpretation of PID control.
+<figcaption aria-hidden="true">Intuitive interpretation of PID control.
 Proportional control acts on the current error, integral control acts on
 accrued past error, and derivative control acts on anticipated future
 error.</figcaption>
@@ -373,23 +373,23 @@ error.</figcaption>
 data-reference="part:PID">III</a> of the book is organized as
 follows. In
 Chapter <a href="#pole-placement-for-second-order-systems" data-reference-type="ref"
-data-reference="chap:PID-pole-placement">10</a> we will show how PD
+data-reference="chap:PID-pole-placement">7</a> we will show how PD
 control can be used to specify the desired closed-loop poles of a
 second-order system. In
 Chapter <a href="chapter-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
-data-reference="chap:PID-design-specs">11</a> we introduce the concepts
+data-reference="chap:PID-design-specs">8</a> we introduce the concepts
 of rise time, natural frequency, and damping ratio for second-order
 systems and show how these concepts relate to the location of the
 closed-loop poles. We also show how these quantities can be used to
 design PD controllers for second-order systems and cascades of
 second-order systems. In
 Chapter <a href="chapter-system-type-and-integrators.html#system-type-and-integrators" data-reference-type="ref"
-data-reference="chap:PID-system-type">12</a> we use the final value
+data-reference="chap:PID-system-type">9</a> we use the final value
 theorem to show the effect of integrators on the closed-loop system. We
 introduce the notion of <em>system type</em> in the context of reference
 tracking and disturbance rejection. Finally, in
 Chapter <a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a> we show how to
+data-reference="chap:PID-digital-implementation">10</a> we show how to
 write computer code to implement PID controllers.</p>
 <h1 data-number="7" id="pole-placement-for-second-order-systems"><span class="header-section-number">7</span> Pole Placement for Second-Order
 Systems</h1>
@@ -413,7 +413,7 @@ data-reference="fig:pid_PD_control_2">7.1</a>.</p>
 <figure id="fig:pid_PD_control_2">
 <img loading="lazy" width="1792" height="525" src="3_PID/figures/pid_PD_control_2.png"
 style="width:60.0%" alt="PD control of a second-order system." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 7.1. </span>PD control of a second-order
+<figcaption aria-hidden="true">PD control of a second-order
 system.</figcaption>
 </figure>
 <p>The transfer function for the closed-loop system can be derived by
@@ -432,7 +432,7 @@ s\right)\right]Y(s) \\
 (a_0+b_0k_P)}R(s). \tag{7.4}
 \end{align}</span>
 Equation <a href="#pole-placement-for-second-order-systems" data-reference-type="eqref"
-data-reference="eq:PD_closed_loop_example"><a href="#pole-placement-for-second-order-systems">7.4</a></a>
+data-reference="eq:PD_closed_loop_example">7.4</a>
 constitutes the closed-loop transfer function<span id="idx-0068" class="book-index-anchor" aria-hidden="true"></span> for the system under
 the influence of PD control. The <em>closed-loop poles</em><span id="idx-0069" class="book-index-anchor" aria-hidden="true"></span> are given by the roots
 of the <em>closed-loop characteristic polynomial</em><span id="idx-0070" class="book-index-anchor" aria-hidden="true"></span> <span
@@ -461,10 +461,10 @@ k_D &amp;= \frac{\alpha_1-a_1}{b_0}.
 data-reference="fig:pid_PD_control_2">7.1</a> is the introduction of a
 zero in the closed-loop transfer function. Note that while the open-loop
 system <a href="#theory-5" data-reference-type="eqref"
-data-reference="eq:PD_open_loop_example"><a href="#pole-placement-for-second-order-systems">7.1</a></a>
+data-reference="eq:PD_open_loop_example">7.1</a>
 does not have a zero, the closed-loop
 system <a href="#pole-placement-for-second-order-systems" data-reference-type="eqref"
-data-reference="eq:PD_closed_loop_example"><a href="#pole-placement-for-second-order-systems">7.4</a></a>
+data-reference="eq:PD_closed_loop_example">7.4</a>
 has a zero at <span class="math display">\[z_{cl} = -
 \frac{k_P}{k_D}.\]</span> The presence of the zero will modify the
 closed-loop response of the system. A simple trick that removes the zero
@@ -479,7 +479,7 @@ signal coming from the differentiator.</p>
 <img loading="lazy" width="1792" height="525" src="3_PID/figures/pid_PD_control_3.png"
 style="width:70.0%"
 alt="PD control of a second-order system, where the derivative control only differentiates the output y and not the error e." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 7.2. </span>PD control of a second-order system,
+<figcaption aria-hidden="true">PD control of a second-order system,
 where the derivative control only differentiates the output <span
 class="math inline"><em>y</em></span> and not the error <span
 class="math inline"><em>e</em></span>.</figcaption>
@@ -498,10 +498,10 @@ s\right)\right]Y(s) = b_0k_P R(s) \notag \\
 (a_0+b_0k_P)}R(s). \tag{7.5}
 \end{align}</span> Note that the closed-loop transfer
 function <a href="#notes-and-references-5" data-reference-type="eqref"
-data-reference="eq:PD_closed_loop_example_2"><a href="#pole-placement-for-second-order-systems">7.5</a></a>
+data-reference="eq:PD_closed_loop_example_2">7.5</a>
 has the same poles as
 Equation <a href="#pole-placement-for-second-order-systems" data-reference-type="eqref"
-data-reference="eq:PD_closed_loop_example"><a href="#pole-placement-for-second-order-systems">7.4</a></a>,
+data-reference="eq:PD_closed_loop_example">7.4</a>,
 but that the zero has been removed. An added benefit to the structure
 shown in
 <strong>Fig.</strong> <a href="#fig:pid_PD_control_3" data-reference-type="ref"
@@ -513,16 +513,16 @@ only differentiating <span class="math inline">\(y(t)\)</span> instead
 of <span class="math inline">\(e(t)=r(t)-y(t)\)</span>.</p>
 <h2 data-number="7.2" id="design-study-a-single-link-robot-arm-5" class="section-design-study"><span class="header-section-number">7.2</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="7.2.1" id="-example-problem-3110" class="section-example"><span class="header-section-number">7.2.1</span> <a
+<h3 data-number="7.2.1" id="-example-problem-1317" class="section-example"><span class="header-section-number">7.2.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#pole-placement-for-second-order-systems" data-reference-type="ref"
-data-reference="chap:PID-pole-placement">10</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#pole-placement-for-second-order-systems" data-reference-type="ref"
+data-reference="chap:PID-pole-placement">7</a></h3>
 <p>(a) Given the open-loop transfer function found in problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.6, find the open-loop poles
-of the system, when the equilibrium angle is <span
+data-reference="ds:single_link_arm">1.3.1</a>.6, find the open-loop
+poles of the system, when the equilibrium angle is <span
 class="math inline">\(\theta_e=0\)</span>.</p>
 <p>(b) Using the PD control architecture shown in
 <strong>Fig.</strong> <a href="#fig:pid_PD_control_3" data-reference-type="ref"
@@ -608,11 +608,11 @@ Complete solution
 </h4>
 <p>The open-loop transfer function from homework <a
 href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.6 is <span
+data-reference="ds:single_link_arm">1.3.1</a>.6 is <span
 class="math display">\[\Theta(s) =
 \left(\frac{\frac{3}{m\ell^2}}{s^2+\frac{3b}{m\ell^2}s}\right)\tilde{\tau}(s).\]</span>
 Using the parameters from Section <a href="chapter-introduction.html#design-study-single-link-robot-arm"
-data-reference-type="ref" data-reference="ds:single_link_arm">3.1</a>
+data-reference-type="ref" data-reference="ds:single_link_arm">1.3.1</a>
 gives <span class="math display">\[\Theta(s) =
 \left(\frac{66.67}{s^2+0.667s}\right)\tilde{\tau}(s).\]</span> The
 open-loop poles are therefore the roots of the open loop polynomial
@@ -625,7 +625,7 @@ data-reference="fig:hw_arm_block_diagram_PD">7.3</a>.</p>
 <figure id="fig:hw_arm_block_diagram_PD">
 <img loading="lazy" width="1842" height="521" src="6_design_studies/figures/hw_arm_block_diagram_PD.png"
 style="width:70.0%" alt="PD control of the single-link robot arm." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 7.3. </span>PD control of the single-link robot
+<figcaption aria-hidden="true">PD control of the single-link robot
 arm.</figcaption>
 </figure>
 <p>The transfer function of the closed-loop system is given by <span
@@ -1039,7 +1039,7 @@ system. In general, to assign <span class="math inline">\(n\)</span>
 poles will require <span class="math inline">\(n\)</span> gains. We will
 discuss pole placement in more detail in
 Chapter <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a> of this book.</p>
+data-reference="chap:state-feedback">11</a> of this book.</p>
 <nav class="chapter-nav" aria-label="Chapter"><a class="chapter-nav-prev" href="chapter-state-space-models.html" rel="prev"><span class="chapter-nav-dir">Previous</span><span class="chapter-nav-title">6 State-Space Models</span></a><a class="chapter-nav-next" href="chapter-design-strategies-for-second-order-systems.html" rel="next"><span class="chapter-nav-dir">Next</span><span class="chapter-nav-title">8 Design Strategies for Second-Order Systems</span></a></nav><footer class="site-footer"><a class="back-to-top" href="#top">Back to top</a></footer></main></div>  <script src="web/book.js?v=20260613c"></script>
 </body>
 </html>

@@ -282,10 +282,10 @@ system are written as <span class="math display">\begin{align}
 y &amp;= h(x,u), \tag{6.2}
 \end{align}</span> where
 Equation <a href="#theory-4" data-reference-type="eqref"
-data-reference="eq:dm_state_evolution_nonlinear"><a href="#state-space-models">6.1</a></a>
+data-reference="eq:dm_state_evolution_nonlinear">6.1</a>
 is the state evolution equation and
 Equation <a href="#design-study-a-single-link-robot-arm-4" data-reference-type="eqref"
-data-reference="eq:dm_output_equation_nonlinear"><a href="#state-space-models">6.2</a></a>
+data-reference="eq:dm_output_equation_nonlinear">6.2</a>
 is the output equation. Note that for continuous time systems the state
 evolution equation is a system of coupled first order nonlinear
 differential equations. The general state-space equations for a discrete
@@ -297,12 +297,12 @@ y[k] &amp;= h(x[k],u[k]),
 \end{align}</span> where again
 Equation <a href="#state-space-models"
 data-reference-type="eqref"
-data-reference="eq:dm_state_evolution_nonlinear_discrete"><a href="#state-space-models">6.3</a></a>
+data-reference="eq:dm_state_evolution_nonlinear_discrete">6.3</a>
 is the state evolution equation, this time given by a system of coupled
 first order difference equations, and
 Equation <a href="#state-space-models"
 data-reference-type="eqref"
-data-reference="eq:dm_output_equation_nonlinear_discrete"><a href="#state-space-models">6.4</a></a>
+data-reference="eq:dm_output_equation_nonlinear_discrete">6.4</a>
 is the output equation.</p>
 <p>Any nonlinear <span class="math inline">\(n^{th}\)</span> order
 differential equation can be transformed into state-space form. For
@@ -360,9 +360,9 @@ class="math inline">\(f(x_e,u_e)=0\)</span>. In other words, equilibrium
 points are combinations of states and inputs where the state stops
 evolving in time. To linearize about an equilibrium point,
 Equations <a href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_state_evolution_nonlinear_2"><a href="#state-space-models">6.5</a></a>
+data-reference="eq:dm_state_evolution_nonlinear_2">6.5</a>
 and <a href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_output_equation_nonlinear_2"><a href="#state-space-models">6.6</a></a>
+data-reference="eq:dm_output_equation_nonlinear_2">6.6</a>
 can be expanded in a Taylor series about <span
 class="math inline">\((x_e,u_e)\)</span> as <span
 class="math display">\begin{align}
@@ -428,9 +428,9 @@ h}{\partial x}\right|_e\)</span> and <span
 class="math inline">\(D\stackrel{\triangle}{=}\left.\frac{\partial
 h}{\partial u}\right|_e\)</span>, then using
 Equation <a href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_taylor_series_h"><a href="#state-space-models">6.8</a></a>
+data-reference="eq:dm_taylor_series_h">6.8</a>
 in <a href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_output_equation_nonlinear_2"><a href="#state-space-models">6.6</a></a>
+data-reference="eq:dm_output_equation_nonlinear_2">6.6</a>
 gives <span class="math display">\[\begin{aligned}
 \tilde{y} &amp;= y-y_e \\
 &amp;\approx h(x_e,u_e)+C\tilde{x} + D\tilde{u} - h(x_e,u_e) \\
@@ -461,9 +461,9 @@ Laplace transform is a linear operator, which implies that <span
 class="math display">\[\mathcal{L}\{Ax\} = A\mathcal{L}\{x\},\]</span>
 taking the Laplace transform of
 Equations <a href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_linear_ss_evolution"><a href="#state-space-models">6.9</a></a>
+data-reference="eq:dm_linear_ss_evolution">6.9</a>
 and <a href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_linear_ss_output"><a href="#state-space-models">6.10</a></a>,
+data-reference="eq:dm_linear_ss_output">6.10</a>,
 and setting the initial conditions to zero, gives <span
 class="math display">\begin{align}
 sX(s) &amp;= AX(s) + BU(s)
@@ -473,7 +473,7 @@ Y(s) &amp;= CX(s) + DU(s).
 \end{align}</span>
 Solving <a href="#state-space-models"
 data-reference-type="eqref"
-data-reference="eq:dm_linear_ss_laplace_evolution_1"><a href="#state-space-models">6.11</a></a>
+data-reference="eq:dm_linear_ss_laplace_evolution_1">6.11</a>
 for <span class="math inline">\(X(s)\)</span> gives <span
 class="math display">\begin{align}
 &amp; sX(s)-AX(s) = BU(s) \notag \\
@@ -484,9 +484,9 @@ class="math display">\begin{align}
 the <span class="math inline">\(n\times n\)</span> identity matrix.
 Substituting <a href="#state-space-models"
 data-reference-type="eqref"
-data-reference="eq:dm_linear_ss_laplace_evolution_2"><a href="#state-space-models">6.13</a></a>
+data-reference="eq:dm_linear_ss_laplace_evolution_2">6.13</a>
 into <a href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_linear_ss_laplace_output_1"><a href="#state-space-models">6.12</a></a>
+data-reference="eq:dm_linear_ss_laplace_output_1">6.12</a>
 gives <span class="math display">\[\begin{aligned}
 &amp; Y(s) = C(sI-A)^{-1}BU(s) + DU(s) \\
 \implies &amp; Y(s) = \left[ C(sI-A)^{-1}B + D\right]U(s).
@@ -520,12 +520,12 @@ H(s) &amp;= C(sI-A)^{-1}B + D \\
 \end{aligned}\]</span></p>
 <p>The form of the transfer function in
 Equation <a href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_tf_from_ss"><a href="#state-space-models">6.14</a></a> allows us to
+data-reference="eq:dm_tf_from_ss">6.14</a> allows us to
 derive a simple relationship between the poles of the transfer function
 <span class="math inline">\(H(s)\)</span> and the eigenvalues of <span
 class="math inline">\(A\)</span>. Recall (see
 Appendix <a href="chapter-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
-data-reference="chap:linear_algebra">31</a>) that for any square
+data-reference="chap:linear_algebra">P.7</a>) that for any square
 invertible matrix <span class="math inline">\(M\)</span>, we have that
 <span class="math display">\[M^{-1} =
 \frac{\text{adj}(M)}{\text{det}(M)},\]</span> where <span
@@ -547,32 +547,32 @@ class="math inline">\(H(s)\)</span> are given by the roots of the
 polynomial <span class="math display">\[\tag{6.15}
 \text{det}(sI-A) = 0.\]</span> Recall from linear algebra (see
 Appendix <a href="chapter-review-of-linear-algebra.html#review-of-linear-algebra" data-reference-type="ref"
-data-reference="chap:linear_algebra">31</a>) that
+data-reference="chap:linear_algebra">P.7</a>) that
 Equation <a href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_poles_tf_eig"><a href="#state-space-models">6.15</a></a> also
+data-reference="eq:dm_poles_tf_eig">6.15</a> also
 defines the eigenvalues of <span class="math inline">\(A\)</span>.
 Therefore, the poles of <span class="math inline">\(H(s)\)</span> are
 equivalent to the eigenvalues of <span
 class="math inline">\(A\)</span>.<span id="idx-0052" class="book-index-anchor" aria-hidden="true"></span></p>
 <p>In Chapters <a href="chapter-full-state-feedback.html#full-state-feedback" data-reference-type="ref"
-data-reference="chap:state-feedback">14</a>
+data-reference="chap:state-feedback">11</a>
 and <a href="chapter-observers.html#observers" data-reference-type="ref"
-data-reference="chap:observers">16</a> we will show two general
+data-reference="chap:observers">13</a> we will show two general
 techniques for converting SISO transfer function models into state-space
 models.</p>
 <h2 data-number="6.2" id="design-study-a-single-link-robot-arm-4" class="section-design-study"><span class="header-section-number">6.2</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="6.2.1" id="-example-problem-319" class="section-example"><span class="header-section-number">6.2.1</span> <a
+<h3 data-number="6.2.1" id="-example-problem-1316" class="section-example"><span class="header-section-number">6.2.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#state-space-models" data-reference-type="ref"
-data-reference="chap:state_space_models">9</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">6</a></h3>
 <p>For the feedback linearized equations of motion for the single-link
 robot arm given in
 Equation <a href="chapter-equilibria-and-linearization.html#notes-and-references-2"
 data-reference-type="eqref"
-data-reference="eq:arm_linearized_eom_feedback_linarization"><a href="chapter-equilibria-and-linearization.html#equilibria-and-linearization">4.7</a></a>,
+data-reference="eq:arm_linearized_eom_feedback_linarization">4.7</a>,
 define the states as <span
 class="math inline">\(x=(\theta,\dot{\theta})^{\top}\)</span>, the input
 as <span class="math inline">\(\tilde{u}=\tilde{\tau}\)</span>, and the
@@ -705,7 +705,7 @@ linearizing the nonlinear equations of motion.</p>
 <p>Starting with the feedback linearized equation in Equation <a
 href="chapter-equilibria-and-linearization.html#notes-and-references-2"
 data-reference-type="eqref"
-data-reference="eq:arm_linearized_eom_feedback_linarization"><a href="chapter-equilibria-and-linearization.html#equilibria-and-linearization">4.7</a></a>
+data-reference="eq:arm_linearized_eom_feedback_linarization">4.7</a>
 and solving for <span class="math inline">\(\ddot{\theta}\)</span> gives
 <span class="math display">\[\ddot{\theta} =
 \frac{3}{m\ell^2}\tilde{\tau} - \frac{3b}{m\ell^2}\dot{\theta}.\]</span>
@@ -737,7 +737,7 @@ y &amp;= \begin{pmatrix} 1 &amp; 0\end{pmatrix} x.
 <p>Alternatively, the state-space equations can be found directly from
 the nonlinear equations of motion given in Equation <a
 href="chapter-the-euler-lagrange-equations.html#theory-1" data-reference-type="eqref"
-data-reference="eq:sm_arm_nonlinear_eom"><a href="chapter-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3.1</a></a>,
+data-reference="eq:sm_arm_nonlinear_eom">3.1</a>,
 by forming the nonlinear state-space model as <span
 class="math display">\[\begin{aligned}
 \dot{x} &amp;\stackrel{\triangle}{=}\begin{pmatrix} \dot{x}_1 \\
@@ -783,12 +783,12 @@ therefore given by <span class="math display">\[\begin{aligned}
 \tilde{y} &amp;= \begin{pmatrix} 1 &amp; 0\end{pmatrix} \tilde{x},
 \end{aligned}\]</span> which is similar to Equation <a
 href="#state-space-models" data-reference-type="eqref"
-data-reference="eq:dm_arm_linearized_ss"><a href="#state-space-models">6.16</a></a>
+data-reference="eq:dm_arm_linearized_ss">6.16</a>
 but with linearized state and output.</p>
 <p>The transfer function can be found from the linearized state-space
 equations using Equation <a href="#state-space-models"
 data-reference-type="eqref"
-data-reference="eq:dm_tf_from_ss"><a href="#state-space-models">6.14</a></a> as <span
+data-reference="eq:dm_tf_from_ss">6.14</a> as <span
 class="math display">\[\begin{aligned}
 H(s) &amp;= C(sI-A)^{-1}B+D \\
     &amp;= \begin{pmatrix} 1 &amp; 0 \end{pmatrix}
@@ -807,16 +807,16 @@ s+\frac{3b}{m\ell^2} &amp; 1 \\ 0 &amp; s \end{pmatrix} \begin{pmatrix}
     &amp;= \frac{\frac{3}{m\ell^2}}{s^2 + \frac{3b}{m\ell^2}s},
 \end{aligned}\]</span> which is identical to Equation <a
 href="chapter-transfer-function-models.html#design-study-a-single-link-robot-arm-3" data-reference-type="eqref"
-data-reference="eq:soln_a6_2"><a href="chapter-transfer-function-models.html#transfer-function-models">5.2</a></a>.</p></section> </article>
+data-reference="eq:soln_a6_2">5.2</a>.</p></section> </article>
 </section>
 <h2 data-number="6.3" id="design-study-b-inverted-pendulum-3" class="section-design-study"><span class="header-section-number">6.3</span> Design Study <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
-<h3 data-number="6.3.1" id="-example-problem-329" class="section-example"><span class="header-section-number">6.3.1</span> <a
+<h3 data-number="6.3.1" id="-example-problem-1326" class="section-example"><span class="header-section-number">6.3.1</span> <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#state-space-models" data-reference-type="ref"
-data-reference="chap:state_space_models">9</a></h3>
+data-reference="ds:pendulum">1.3.2</a>.<a href="#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">6</a></h3>
 <p>Defining the states as <span
 class="math inline">\(\tilde{x}=(\tilde{z},\tilde{\theta},\dot{\tilde{z}},\dot{\tilde{\theta}})^{\top}\)</span>,
 the input as <span class="math inline">\(\tilde{u}=\tilde{F}\)</span>,
@@ -895,7 +895,7 @@ ways: (1) directly from the linearized equations of motion and (2) by
 linearizing the nonlinear equations of motion.</p>
 <p>Starting with the linear state-space equation in Equation <a
 href="chapter-equilibria-and-linearization.html#equilibria-and-linearization" data-reference-type="eqref"
-data-reference="eq:pendulum_linearized_eom"><a href="chapter-equilibria-and-linearization.html#equilibria-and-linearization">4.12</a></a>
+data-reference="eq:pendulum_linearized_eom">4.12</a>
 and solving for <span class="math inline">\((\ddot{\tilde{z}},
 \ddot{\tilde{\theta}})^\top\)</span> gives <span
 class="math display">\[\begin{aligned}
@@ -963,7 +963,7 @@ m_1g}{\frac{1}{4}m_1 + m_2} &amp; -\frac{b}{\frac{1}{4}m_1 + m_2} &amp;
 <p>Alternatively, the linearized state-space equations can be derived
 from the nonlinear equations of motion. Starting with Equation <a
 href="chapter-the-euler-lagrange-equations.html#design-study-a-single-link-robot-arm-1" data-reference-type="eqref"
-data-reference="eq:pendulum_sim_model"><a href="chapter-the-euler-lagrange-equations.html#the-euler-lagrange-equations">3.2</a></a> and
+data-reference="eq:pendulum_sim_model">3.2</a> and
 solving for <span class="math inline">\((\ddot{z},
 \ddot{\theta})^\top\)</span> gives <span
 class="math display">\[\begin{aligned}
@@ -1044,17 +1044,17 @@ u}\right|_e = \begin{pmatrix} 0 \\ 0 \end{pmatrix},
 \end{aligned}\]</span> resulting in the linearized state-space equations
 given in Equation <a href="#state-space-models"
 data-reference-type="eqref"
-data-reference="eq:dm_pendulum_linearized_ss"><a href="#state-space-models">6.17</a></a>.</p></section> </article>
+data-reference="eq:dm_pendulum_linearized_ss">6.17</a>.</p></section> </article>
 </section>
 <h2 data-number="6.4"
 id="design-study-c-satellite-attitude-control-4" class="section-design-study"><span class="header-section-number">6.4</span> Design Study <a
 href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
-<h3 data-number="6.4.1" id="-example-problem-339" class="section-example"><span class="header-section-number">6.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+<h3 data-number="6.4.1" id="-example-problem-1336" class="section-example"><span class="header-section-number">6.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
 src="6_design_studies/figures/hw_satellite_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#state-space-models" data-reference-type="ref"
-data-reference="chap:state_space_models">9</a></h3>
+data-reference="ds:satellite">1.3.3</a>.<a href="#state-space-models" data-reference-type="ref"
+data-reference="chap:state_space_models">6</a></h3>
 <p>Suppose that a star tracker is used to measure <span
 class="math inline">\(\theta\)</span> and a strain gauge is used to
 approximate <span class="math inline">\(\phi-\theta\)</span>. Defining
@@ -1179,7 +1179,7 @@ class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
 Complete solution
 </h4>
 <p>The equations of motion from HW <a href="chapter-introduction.html#design-study-satellite-attitude-control"
-data-reference-type="ref" data-reference="ds:satellite">3.3</a>.3 are
+data-reference-type="ref" data-reference="ds:satellite">1.3.3</a>.3 are
 given by <span class="math display">\[\begin{aligned}
 \ddot{\theta} &amp;= \frac{1}{J_s}\tau - \frac{b}{J_s}\dot{\theta} +
 \frac{b}{J_s}\dot{\phi} - \frac{k}{J_s}\theta + \frac{k}{J_s}\phi \\

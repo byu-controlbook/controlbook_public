@@ -315,7 +315,7 @@ data-reference="fig:ls_loopshape_P">18.1</a> for different values of
 <img loading="lazy" width="2534" height="1838" src="5_loopshaping/figures/ls_loopshape_P.png"
 style="width:80.0%"
 alt="The Bode plot for proportional gain at different values of k_P. The proportional gain adds a constant to the loop shape at all frequencies and does not affect the phase at any frequency." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.1. </span>The Bode plot for proportional gain at
+<figcaption aria-hidden="true">The Bode plot for proportional gain at
 different values of <span
 class="math inline"><em>k</em><sub><em>P</em></sub></span>. The
 proportional gain adds a constant to the loop shape at all frequencies
@@ -350,7 +350,7 @@ class="math inline">\(k_I \ll \omega_{co}\)</span>.<span id="idx-0256" class="bo
 <img loading="lazy" width="2575" height="1809" src="5_loopshaping/figures/ls_loopshape_PI.png"
 style="width:80.0%"
 alt="The Bode plot for integral control at different values of k_I. Integral control changes the system type by decreasing the slope of the loop shape by -20 dB/dec for frequencies below k_I, while leaving high frequencies unaffected." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.2. </span>The Bode plot for integral control at
+<figcaption aria-hidden="true">The Bode plot for integral control at
 different values of <span
 class="math inline"><em>k</em><sub><em>I</em></sub></span>. Integral
 control changes the system type by decreasing the slope of the loop
@@ -379,7 +379,7 @@ attenuation. <span id="idx-0258" class="book-index-anchor" aria-hidden="true"></
 <img loading="lazy" width="2563" height="1809" src="5_loopshaping/figures/ls_loopshape_LPF.png"
 style="width:80.0%"
 alt="The Bode plot for a low-pass filter at different values of the pole p. A low-pass filter decreases the slope of the loop shape by -20 dB/dec for frequencies above p, while leaving low frequencies unaffected." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.3. </span>The Bode plot for a low-pass filter at
+<figcaption aria-hidden="true">The Bode plot for a low-pass filter at
 different values of the pole <span
 class="math inline"><em>p</em></span>. A low-pass filter decreases the
 slope of the loop shape by <span class="math inline">−20</span> dB/dec
@@ -419,14 +419,14 @@ class="math inline">\(z\)</span> where the effect of the lag ends and
 the pole-zero separation <span class="math inline">\(M\)</span> which
 indicates the maximum gain at low frequencies. Accordingly, the lag
 filter <a href="#theory-16" data-reference-type="eqref"
-data-reference="eq:ls_phase_lag"><a href="#compensator-design">18.1</a></a> can be written as
+data-reference="eq:ls_phase_lag">18.1</a> can be written as
 <span class="math display">\[C_{Lag}(s) =
 \frac{s+z}{s+z/M}.\]</span></p>
 <figure id="fig:ls_loopshape_Lag">
 <img loading="lazy" width="2500" height="1805" src="5_loopshaping/figures/ls_loopshape_Lag.png"
 style="width:80.0%"
 alt="The Bode plot for a phase-lag filter when the zero is at z=1 and the pole is at p=z/M, for different values of M. A phase-lag filter increases the loop gain at low frequencies while leaving high frequencies unaffected." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.4. </span>The Bode plot for a phase-lag filter when
+<figcaption aria-hidden="true">The Bode plot for a phase-lag filter when
 the zero is at <span class="math inline"><em>z</em> = 1</span> and the
 pole is at <span
 class="math inline"><em>p</em> = <em>z</em>/<em>M</em></span>, for
@@ -479,13 +479,13 @@ frequencies. Since phase-lead filters are typically added at the
 frequency giving the desired bump in phase, it is convenient to write
 the transfer
 function <a href="#compensator-design" data-reference-type="eqref"
-data-reference="eq:ls_phase_lead"><a href="#compensator-design">18.2</a></a> in terms of the
+data-reference="eq:ls_phase_lead">18.2</a> in terms of the
 center frequency <span class="math inline">\(\omega_{Lead}\)</span> and
 the lead ratio <span class="math inline">\(M\)</span>. Using the
 relationship <span class="math inline">\(p=Mz\)</span> and <span
 class="math inline">\(\omega_{Lead}=\sqrt{pz}\)</span> we can write
 Equation <a href="#compensator-design" data-reference-type="eqref"
-data-reference="eq:ls_phase_lead"><a href="#compensator-design">18.2</a></a> as <span
+data-reference="eq:ls_phase_lead">18.2</a> as <span
 class="math display">\[\begin{aligned}
     C_{Lead}(s) &amp;= M
 \left(\frac{s+\frac{\omega_{Lead}}{\sqrt{M}}}{s+\omega_{Lead}\sqrt{M}}\right)
@@ -497,7 +497,7 @@ class="math display">\[\begin{aligned}
 <img loading="lazy" width="2509" height="1880" src="5_loopshaping/figures/ls_loopshape_Lead.png"
 style="width:80.0%"
 alt="The Bode plot for a phase-lead filter when \omega_{Lead}=1, for different values of M. A phase-lead filter increases the phase around \omega_{Lead}. It also increases the loop gain at high frequencies." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.5. </span>The Bode plot for a phase-lead filter
+<figcaption aria-hidden="true">The Bode plot for a phase-lead filter
 when <span
 class="math inline"><em>ω</em><sub><em>L</em><em>e</em><em>a</em><em>d</em></sub> = 1</span>,
 for different values of <span class="math inline"><em>M</em></span>. A
@@ -704,7 +704,7 @@ data-reference="fig:ls_loopshaping_example_1">18.6</a>.</p>
 <img loading="lazy" width="2730" height="1725" src="5_loopshaping/figures/ls_loopshaping_example_1.png"
 style="width:95.0%"
 alt="The Bode plot for the open-loop plant in Example 1, together with the design specifications." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.6. </span>The Bode plot for the open-loop plant in
+<figcaption aria-hidden="true">The Bode plot for the open-loop plant in
 Example 1, together with the design specifications.</figcaption>
 </figure>
 <p>To increase the type of the system so that the slope of <span
@@ -722,7 +722,7 @@ class="math display">\[C(s) = C_{P}(s)C_{PI}(s) =
 src="5_loopshaping/figures/ls_loopshaping_example_2_W2021.png"
 style="width:95.0%"
 alt="The Bode gain plot of P and PC when C includes proportional and integral control." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.7. </span>The Bode gain plot of <span
+<figcaption aria-hidden="true">The Bode gain plot of <span
 class="math inline"><em>P</em></span> and <span
 class="math inline"><em>P</em><em>C</em></span> when <span
 class="math inline"><em>C</em></span> includes proportional and integral
@@ -747,7 +747,7 @@ specifications.</p>
 src="5_loopshaping/figures/ls_loopshaping_example_3_W2021.png"
 style="width:95.0%"
 alt="The Bode gain plot of P and PC when C includes proportional, integral, and lag filters." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.8. </span>The Bode gain plot of <span
+<figcaption aria-hidden="true">The Bode gain plot of <span
 class="math inline"><em>P</em></span> and <span
 class="math inline"><em>P</em><em>C</em></span> when <span
 class="math inline"><em>C</em></span> includes proportional, integral,
@@ -773,7 +773,7 @@ data-reference="fig:ls_loopshaping_example_4">18.9</a>.</p>
 src="5_loopshaping/figures/ls_loopshaping_example_4_W2021.png"
 style="width:95.0%"
 alt="The Bode gain plot of P and PC when C includes proportional, integral, lag, and low-pass filters." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.9. </span>The Bode gain plot of <span
+<figcaption aria-hidden="true">The Bode gain plot of <span
 class="math inline"><em>P</em></span> and <span
 class="math inline"><em>P</em><em>C</em></span> when <span
 class="math inline"><em>C</em></span> includes proportional, integral,
@@ -996,7 +996,7 @@ class="math inline">\(y\)</span>, and the current time <span
 class="math inline">\(t\)</span>. The error signal is computed on
 Line 5. The control
 dynamics <a href="#compensator-design" data-reference-type="eqref"
-data-reference="eq:loop_control_ss_zdot"><a href="#compensator-design">18.3</a></a>
+data-reference="eq:loop_control_ss_zdot">18.3</a>
 are integrated using <span class="math inline">\(N\)</span> Euler steps
 in Lines 11–13, and the control output equation is computed in
 Line 14.</p>
@@ -1020,7 +1020,7 @@ data-reference="fig:ls_prefilter">18.10</a>.</p>
 <img loading="lazy" width="2246" height="663" src="5_loopshaping/figures/ls_prefilter.png"
 style="width:80.0%"
 alt="The closed-loop system with a prefilter F(s) on the reference command r." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.10. </span>The closed-loop system with a prefilter
+<figcaption aria-hidden="true">The closed-loop system with a prefilter
 <span class="math inline"><em>F</em>(<em>s</em>)</span> on the reference
 command <span class="math inline"><em>r</em></span>.</figcaption>
 </figure>
@@ -1050,7 +1050,7 @@ equations, and the filtered reference signal <span
 class="math inline">\(r_f(t)\)</span> is the output. For the transfer
 function given in
 Equation <a href="#compensator-design" data-reference-type="eqref"
-data-reference="eq:ls_prefilter"><a href="#compensator-design">18.5</a></a> we get <span
+data-reference="eq:ls_prefilter">18.5</a> we get <span
 class="math display">\[\begin{aligned}
 \dot{z}_F &amp;= -p z_F + r  \\
 r_f &amp;= p z_F.
@@ -1095,8 +1095,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a h
 <span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> <span class="va">self</span>.C_C <span class="op">*</span> <span class="va">self</span>.z_C <span class="op">+</span> <span class="va">self</span>.D_C <span class="op">*</span> error</span>
 <span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u</span></code></pre></div>
-<h4 data-number="17.1.8.1" id="prefilter-example"><span
-class="header-section-number">17.1.8.1</span> Prefilter Example</h4>
+<h4 data-number="18.1.8.1" id="prefilter-example"><span
+class="header-section-number">18.1.8.1</span> Prefilter Example</h4>
 <p>As an example, consider the open-loop system <span
 class="math inline">\(PC\)</span> shown in
 <strong>Fig.</strong> <a href="#fig:ls_prefilter_example_loopgain" data-reference-type="ref"
@@ -1132,7 +1132,7 @@ be seen that the ringing has been significantly reduced.</p>
 src="5_loopshaping/figures/ls_prefilter_example_loopgain.png"
 style="width:95.0%"
 alt="The loop gain for the open-loop system PC, the closed-loop system PC/(1+PC), the prefilter F, and the closed-loop system with the prefilter FPC/(1+PC)." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.11. </span>The loop gain for the open-loop system
+<figcaption aria-hidden="true">The loop gain for the open-loop system
 <span class="math inline"><em>P</em><em>C</em></span>, the closed-loop
 system <span
 class="math inline"><em>P</em><em>C</em>/(1 + <em>P</em><em>C</em>)</span>,
@@ -1145,7 +1145,7 @@ class="math inline"><em>F</em><em>P</em><em>C</em>/(1 + <em>P</em><em>C</em>
 src="5_loopshaping/figures/ls_prefilter_example_step.png"
 style="width:80.0%"
 alt="The step response of the closed-loop system PC/(1+PC) and the closed-loop system with the prefilter FPC/(1+PC)." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.12. </span>The step response of the closed-loop
+<figcaption aria-hidden="true">The step response of the closed-loop
 system <span
 class="math inline"><em>P</em><em>C</em>/(1 + <em>P</em><em>C</em>)</span>
 and the closed-loop system with the prefilter <span
@@ -1197,7 +1197,7 @@ closure design, the design of the outer loop can take into account the
 complete dynamics of the inner loop. This is in contrast to the design
 of PID controllers in
 Chapter <a href="chapter-design-strategies-for-second-order-systems.html#design-strategies-for-second-order-systems" data-reference-type="ref"
-data-reference="chap:PID-design-specs">11</a> where the inner loop was
+data-reference="chap:PID-design-specs">8</a> where the inner loop was
 replaced with the DC gain.
 <strong>Fig.</strong> <a href="#fig:ls_slc" data-reference-type="ref"
 data-reference="fig:ls_slc">18.13</a> shows the system architecture for
@@ -1208,7 +1208,7 @@ which is only on the outer loop.</p>
 <img loading="lazy" width="2521" height="492" src="5_loopshaping/figures/ls_slc.png"
 style="width:80.0%"
 alt="The control architecture for a successive loop closure design, with prefilter." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.13. </span>The control architecture for a successive
+<figcaption aria-hidden="true">The control architecture for a successive
 loop closure design, with prefilter.</figcaption>
 </figure>
 <article class="advanced-activity" data-advanced-activity="ch18-slc">
@@ -1296,21 +1296,21 @@ Examples will be given in the sections below.</p>
 <h2 data-number="18.2"
 id="design-study-a-single-link-robot-arm-16" class="section-design-study"><span class="header-section-number">18.2</span> Design Study <a
 href="chapter-introduction.html#design-study-single-link-robot-arm">A</a>. Single Link Robot Arm</h2>
-<h3 data-number="18.2.1" id="-example-problem-3121" class="section-example"><span class="header-section-number">18.2.1</span> <a
+<h3 data-number="18.2.1" id="-example-problem-13118" class="section-example"><span class="header-section-number">18.2.1</span> <a
 href="chapter-introduction.html#design-study-single-link-robot-arm"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_arm_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a></h3>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a></h3>
 <p>For this homework assignment we will use loopshaping to improve the
 PID controllers developed in
 HW <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>. Let <span
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">10</a>. Let <span
 class="math inline">\(C_{pid}(s)\)</span> be the PID controller designed
 in HW <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>. The final
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">10</a>. The final
 control will be <span class="math inline">\(C(s) =
 C_{pid}(s)C_{l}(s)\)</span> where <span
 class="math inline">\(C_l\)</span> is designed using loopshaping
@@ -1327,8 +1327,8 @@ class="math inline">\(PM=60\)</span> degrees.</p>
 <p>(b) Add zero mean Gaussian noise with standard deviation <span
 class="math inline">\(\sigma^2=0.01\)</span> to the simulation developed
 in HW <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>.</p>
+data-reference="ds:single_link_arm">1.3.1</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">10</a>.</p>
 <p>(c) Implement the controller <span class="math inline">\(C(s)\)</span> in
 simulation using its state-space equivalent.</p>
 <p>(d) Note that despite having a good phase margin, there is still significant
@@ -1450,12 +1450,12 @@ data-reference="fig:hw_arm_compensator_design_1">18.14</a>.</p>
 <figure id="fig:hw_arm_compensator_design_1">
 <img loading="lazy" width="2255" height="1925" src="6_design_studies/figures/hw_arm_compensator_design_1.png"
 style="width:95.0%"
-alt="The Bode plot for the open-loop plant in HW 3.1.21, together with the design specifications." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.14. </span>The Bode plot for the open-loop plant in
+alt="The Bode plot for the open-loop plant in HW 1.3.1.18, together with the design specifications." />
+<figcaption aria-hidden="true">The Bode plot for the open-loop plant in
 HW <a href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a
+data-reference="ds:single_link_arm">1.3.1</a>.<a
 href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, together with the
+data-reference="chap:loopshaping_design">18</a>, together with the
 design specifications.</figcaption>
 </figure>
 <p>To increase the loop gain below <span
@@ -1479,12 +1479,12 @@ specifications.</p>
 <img loading="lazy" width="1920" height="1440"
 src="6_design_studies/figures/hw_arm_compensator_design_2_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for HW 3.1.21 where C=C_{PID}C_{lag}." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.15. </span>The Bode plot for HW <a
+alt="The Bode plot for HW 1.3.1.18 where C=C_{PID}C_{lag}." />
+<figcaption aria-hidden="true">The Bode plot for HW <a
 href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a
+data-reference="ds:single_link_arm">1.3.1</a>.<a
 href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a> where <span
+data-reference="chap:loopshaping_design">18</a> where <span
 class="math inline">\(C=C_{PID}C_{lag}\)</span>.</figcaption>
 </figure>
 <p>The phase margin after adding the lag filter is <span
@@ -1509,12 +1509,12 @@ data-reference="fig:hw_arm_compensator_design_3">18.16</a>.</p>
 <img loading="lazy" width="1866" height="1557"
 src="6_design_studies/figures/hw_arm_compensator_design_3_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for HW 3.1.21 where C=C_{PID}C_{lag}C_{lead}." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.16. </span>The Bode plot for HW <a
+alt="The Bode plot for HW 1.3.1.18 where C=C_{PID}C_{lag}C_{lead}." />
+<figcaption aria-hidden="true">The Bode plot for HW <a
 href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a
+data-reference="ds:single_link_arm">1.3.1</a>.<a
 href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a> where <span
+data-reference="chap:loopshaping_design">18</a> where <span
 class="math inline">\(C=C_{PID}C_{lag}C_{lead}\)</span>.</figcaption>
 </figure>
 <p>In order to satisfy the noise attenuation specification, we start by
@@ -1544,24 +1544,24 @@ controller.</p>
 <img loading="lazy" width="1839" height="1569"
 src="6_design_studies/figures/hw_arm_compensator_design_4_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for HW 3.1.21 where C=C_{PID}C_{lag}C_{lead}C_{lpf}." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.17. </span>The Bode plot for HW <a
+alt="The Bode plot for HW 1.3.1.18 where C=C_{PID}C_{lag}C_{lead}C_{lpf}." />
+<figcaption aria-hidden="true">The Bode plot for HW <a
 href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a
+data-reference="ds:single_link_arm">1.3.1</a>.<a
 href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a> where <span
+data-reference="chap:loopshaping_design">18</a> where <span
 class="math inline">\(C=C_{PID}C_{lag}C_{lead}C_{lpf}\)</span>.</figcaption>
 </figure>
 <figure id="fig:hw_arm_compensator_design_5">
 <img loading="lazy" width="1845" height="1585"
 src="6_design_studies/figures/hw_arm_compensator_design_5_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for HW 3.1.21 where C=C_{PID}C_{lag}C_{lead}C_{lpf}C_{lpf2}." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.18. </span>The Bode plot for HW <a
+alt="The Bode plot for HW 1.3.1.18 where C=C_{PID}C_{lag}C_{lead}C_{lpf}C_{lpf2}." />
+<figcaption aria-hidden="true">The Bode plot for HW <a
 href="chapter-introduction.html#design-study-single-link-robot-arm" data-reference-type="ref"
-data-reference="ds:single_link_arm">3.1</a>.<a
+data-reference="ds:single_link_arm">1.3.1</a>.<a
 href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a> where <span
+data-reference="chap:loopshaping_design">18</a> where <span
 class="math inline">\(C=C_{PID}C_{lag}C_{lead}C_{lpf}C_{lpf2}\)</span>.</figcaption>
 </figure>
 <p>The closed-loop frequency response <span
@@ -1588,7 +1588,7 @@ prefilter reduces the overshoot and lowers the control effort.</p>
 src="6_design_studies/figures/hw_arm_compensator_design_6_W2021.png"
 style="width:95.0%"
 alt="On the left is the closed-loop frequency response in blue, and the prefiltered closed-loop frequency response in red. In the middle is the associated closed-loop step response. On the right is the associated control effort." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.19. </span>On the left is the closed-loop frequency
+<figcaption aria-hidden="true">On the left is the closed-loop frequency
 response in blue, and the prefiltered closed-loop frequency response in
 red. In the middle is the associated closed-loop step response. On the
 right is the associated control effort.</figcaption>
@@ -1745,12 +1745,12 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 </section>
 <h2 data-number="18.3" id="design-study-b-inverted-pendulum-14" class="section-design-study"><span class="header-section-number">18.3</span> Design Study <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart">B</a>. Inverted Pendulum</h2>
-<h3 data-number="18.3.1" id="-example-problem-3221" class="section-example"><span class="header-section-number">18.3.1</span> <a
+<h3 data-number="18.3.1" id="-example-problem-13218" class="section-example"><span class="header-section-number">18.3.1</span> <a
 href="chapter-introduction.html#design-study-pendulum-on-a-cart"><img loading="lazy" width="971" height="813" src="6_design_studies/figures/hw_pendulum_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a></h3>
+data-reference="ds:pendulum">1.3.2</a>.<a href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a></h3>
 <p>For this homework assignment we will use the loopshaping design
 technique to design a successive loop closure controller for the
 inverted pendulum.</p>
@@ -1759,8 +1759,8 @@ inverted pendulum.</p>
 class="math inline">\(P_{in}(s)\)</span> is the transfer function of the
 inner loop derived in
 HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>. Using a
+data-reference="ds:pendulum">1.3.2</a>.<a href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">5</a>. Using a
 proportional and phase-lead controller, design <span
 class="math inline">\(C_{in}(s)\)</span> to stabilize the system with a
 phase margin close to 60 deg, and to ensure that noise above <span
@@ -1872,12 +1872,12 @@ specification on the noise attenuation.</p>
 <img loading="lazy" width="1920" height="1440"
 src="6_design_studies/figures/hw_pendulum_compensator_in_design_1_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the inner loop plant in HW 3.2.21, together with the design specification." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.20. </span>The Bode plot for the inner loop plant in
+alt="The Bode plot for the inner loop plant in HW 1.3.2.18, together with the design specification." />
+<figcaption aria-hidden="true">The Bode plot for the inner loop plant in
 HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, together with the
+data-reference="ds:pendulum">1.3.2</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, together with the
 design specification.</figcaption>
 </figure>
 <p>The first step is to add a negative proportional gain of 1 to account
@@ -1893,12 +1893,12 @@ all frequencies.</p>
 <img loading="lazy" width="1920" height="1440"
 src="6_design_studies/figures/hw_pendulum_compensator_in_design_2_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the inner loop plant in HW 3.2.21, with a gain of -1 applied." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.21. </span>The Bode plot for the inner loop plant in
+alt="The Bode plot for the inner loop plant in HW 1.3.2.18, with a gain of -1 applied." />
+<figcaption aria-hidden="true">The Bode plot for the inner loop plant in
 HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, with a gain of <span
+data-reference="ds:pendulum">1.3.2</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, with a gain of <span
 class="math inline">\(-1\)</span> applied.</figcaption>
 </figure>
 <p>We want the bandwidth of the inner loop to be approximately 40 rad/s,
@@ -1918,12 +1918,12 @@ compensation alone also satisfies the noise specification.</p>
 <img loading="lazy" width="1920" height="1440"
 src="6_design_studies/figures/hw_pendulum_compensator_in_design_3_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the inner loop system in HW 3.2.21, with proportional gain and phase-lead compensation." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.22. </span>The Bode plot for the inner loop system
+alt="The Bode plot for the inner loop system in HW 1.3.2.18, with proportional gain and phase-lead compensation." />
+<figcaption aria-hidden="true">The Bode plot for the inner loop system
 in HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, with proportional gain
+data-reference="ds:pendulum">1.3.2</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, with proportional gain
 and phase-lead compensation.</figcaption>
 </figure>
 <p>Notice that the DC gain is not equal to one. The closed-loop
@@ -1938,13 +1938,13 @@ data-reference="fig:hw_pendulum_compensator_in_design_4">18.23</a>.</p>
 <img loading="lazy" width="2019" height="1740"
 src="6_design_studies/figures/hw_pendulum_compensator_in_design_4_W2021.png"
 style="width:95.0%"
-alt="The closed-loop Bode response, the unit step response for the output, and the unit step response for the input of the inner loop design in HW 3.2.21." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.23. </span>The closed-loop Bode response, the unit
+alt="The closed-loop Bode response, the unit step response for the output, and the unit step response for the input of the inner loop design in HW 1.3.2.18." />
+<figcaption aria-hidden="true">The closed-loop Bode response, the unit
 step response for the output, and the unit step response for the input
 of the inner loop design in HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart"
-data-reference-type="ref" data-reference="ds:pendulum">3.2</a>.<a
+data-reference-type="ref" data-reference="ds:pendulum">1.3.2</a>.<a
 href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>.</figcaption>
+data-reference="chap:loopshaping_design">18</a>.</figcaption>
 </figure>
 <p>The Python code used to design the inner loop is shown below.</p>
 <div class="sourceCode" id="cb1" data-language="Python"
@@ -2153,12 +2153,12 @@ attenuation.</p>
 <img loading="lazy" width="1920" height="1440"
 src="6_design_studies/figures/hw_pendulum_compensator_out_design_1_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the outer loop plant in HW 3.2.21, together with the design specification." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.24. </span>The Bode plot for the outer loop plant in
+alt="The Bode plot for the outer loop plant in HW 1.3.2.18, together with the design specification." />
+<figcaption aria-hidden="true">The Bode plot for the outer loop plant in
 HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, together with the
+data-reference="ds:pendulum">1.3.2</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, together with the
 design specification.</figcaption>
 </figure>
 <p>We want a rise time of 2 sec for the system, so this leads us to
@@ -2179,12 +2179,12 @@ crossover at 1.1 rad/s.</p>
 <img loading="lazy" width="2067" height="1881"
 src="6_design_studies/figures/hw_pendulum_compensator_out_design_2_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the outer loop system in HW 3.2.21, with lead compensation and proportional gain." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.25. </span>The Bode plot for the outer loop system
+alt="The Bode plot for the outer loop system in HW 1.3.2.18, with lead compensation and proportional gain." />
+<figcaption aria-hidden="true">The Bode plot for the outer loop system
 in HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, with lead compensation
+data-reference="ds:pendulum">1.3.2</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, with lead compensation
 and proportional gain.</figcaption>
 </figure>
 <p>As can be seen from <strong>Fig.</strong> <a
@@ -2207,12 +2207,12 @@ data-reference="fig:hw_pendulum_compensator_out_design_3">18.26</a>.</p>
 <img loading="lazy" width="2313" height="2226"
 src="6_design_studies/figures/hw_pendulum_compensator_out_design_3_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the outer loop system in HW 3.2.21, with lead, and lag control." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.26. </span>The Bode plot for the outer loop system
+alt="The Bode plot for the outer loop system in HW 1.3.2.18, with lead, and lag control." />
+<figcaption aria-hidden="true">The Bode plot for the outer loop system
 in HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart" data-reference-type="ref"
-data-reference="ds:pendulum">3.2</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, with lead, and lag
+data-reference="ds:pendulum">1.3.2</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, with lead, and lag
 control.</figcaption>
 </figure>
 <p>Finally, we can apply a low-pass filter to reduce the effects of
@@ -2239,13 +2239,13 @@ data-reference="fig:hw_pendulum_compensator_out_design_5">18.27</a>.</p>
 <img loading="lazy" width="2718" height="2193"
 src="6_design_studies/figures/hw_pendulum_compensator_out_design_5_W2021.png"
 style="width:95.0%"
-alt="The closed-loop bode response, the unit-step response for the output, and the unit step response for the input of the inner loop design in HW 3.2.21." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.27. </span>The closed-loop bode response, the
+alt="The closed-loop bode response, the unit-step response for the output, and the unit step response for the input of the inner loop design in HW 1.3.2.18." />
+<figcaption aria-hidden="true">The closed-loop bode response, the
 unit-step response for the output, and the unit step response for the
 input of the inner loop design in HW <a href="chapter-introduction.html#design-study-pendulum-on-a-cart"
-data-reference-type="ref" data-reference="ds:pendulum">3.2</a>.<a
+data-reference-type="ref" data-reference="ds:pendulum">1.3.2</a>.<a
 href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>.</figcaption>
+data-reference="chap:loopshaping_design">18</a>.</figcaption>
 </figure>
 <p>A prefilter <span class="math display">\[F(s) =
 \frac{2}{s+2}\]</span> has been added to the system. Note the
@@ -2454,12 +2454,12 @@ solution.</p></section> </article>
 <h2 data-number="18.4"
 id="design-study-c-satellite-attitude-control-15" class="section-design-study"><span class="header-section-number">18.4</span> Design Study <a
 href="chapter-introduction.html#design-study-satellite-attitude-control">C</a>. Satellite Attitude Control</h2>
-<h3 data-number="18.4.1" id="-example-problem-3321" class="section-example"><span class="header-section-number">18.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
+<h3 data-number="18.4.1" id="-example-problem-13318" class="section-example"><span class="header-section-number">18.4.1</span> <a href="chapter-introduction.html#design-study-satellite-attitude-control"><img loading="lazy" width="1125" height="909"
 src="6_design_studies/figures/hw_satellite_thumbnail.png"
 style="width:10.0%" alt="image" /></a> Example Problem
 <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a></h3>
+data-reference="ds:satellite">1.3.3</a>.<a href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a></h3>
 <p>For this homework assignment we will use the loopshaping design
 technique to design a successive loop closure controller for the
 satellite attitude problem.</p>
@@ -2468,8 +2468,8 @@ satellite attitude problem.</p>
 class="math inline">\(P_{in}(s)\)</span> is the transfer function of the
 inner loop derived in
 HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>. The Bode plot for
+data-reference="ds:satellite">1.3.3</a>.<a href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">5</a>. The Bode plot for
 this system shows an underdamped resonant mode. We have seen in previous
 chapters that this resonant mode can be removed by introducing rate
 feedback of the form <span class="math display">\[u = - k_D \dot{y} +
@@ -2478,8 +2478,8 @@ output signal and <span class="math inline">\(u&#39;\)</span> is the
 additional control signal to be designed. Using the derivative gain
 <span class="math inline">\(k_{D_\theta}\)</span> found in
 HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a>, find the
+data-reference="ds:satellite">1.3.3</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">10</a>, find the
 revised transfer function from <span
 class="math inline">\(\tau&#39;\)</span> to <span
 class="math inline">\(\theta\)</span>, and use this transfer function
@@ -2502,13 +2502,13 @@ class="math inline">\(PM=60\)</span> degrees.</p></li>
 </ul></li>
 <li><p>Now consider the design of the controller for the outer-loop
 system. As shown in HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>, the transfer
+data-reference="ds:satellite">1.3.3</a>.<a href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
+data-reference="chap:transfer_function_models">5</a>, the transfer
 function for the outer loop also has a strong resonant mode. As with the
 inner loop, use the derivative gain found in
 HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
-data-reference="chap:PID-digital-implementation">13</a> to introduce
+data-reference="ds:satellite">1.3.3</a>.<a href="chapter-digital-implementation-of-pid-controllers.html#digital-implementation-of-pid-controllers" data-reference-type="ref"
+data-reference="chap:PID-digital-implementation">10</a> to introduce
 rate damping and find the associated transfer function <span
 class="math inline">\(P_{out}(s)\)</span>. The “plant” for the design of
 the outer-loop controller is <span class="math display">\[P =
@@ -2605,9 +2605,9 @@ class="guided-design-study-solution" data-dsa-complete-solution hidden><h4>
 Complete solution
 </h4>
 <p>From HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a
+data-reference="ds:satellite">1.3.3</a>.<a
 href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a>, the transfer
+data-reference="chap:transfer_function_models">5</a>, the transfer
 function model for the inner loop is given by <span
 class="math display">\[\Theta(s)  =
 \frac{\frac{1}{J_s}}{s^2+\frac{b}{J_s}s+\frac{k}{J_s}}\tau(s).\]</span>
@@ -2632,12 +2632,12 @@ specification on input tracking and noise attenuation.</p>
 <img loading="lazy" width="2103" height="1650"
 src="6_design_studies/figures/hw_satellite_compensator_in_design_1_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the inner loop plant in HW 3.3.21, together with the design specification." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.28. </span>The Bode plot for the inner loop plant in
+alt="The Bode plot for the inner loop plant in HW 1.3.3.18, together with the design specification." />
+<figcaption aria-hidden="true">The Bode plot for the inner loop plant in
 HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, together with the
+data-reference="ds:satellite">1.3.3</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, together with the
 design specification.</figcaption>
 </figure>
 <p>The first step is to add a proportional gain to satisfy the tracking
@@ -2651,12 +2651,12 @@ class="math inline">\(k_P=45\)</span>.</p>
 <img loading="lazy" width="1992" height="1800"
 src="6_design_studies/figures/hw_satellite_compensator_in_design_2_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the inner loop plant in HW 3.3.21, with proportional gain." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.29. </span>The Bode plot for the inner loop plant in
+alt="The Bode plot for the inner loop plant in HW 1.3.3.18, with proportional gain." />
+<figcaption aria-hidden="true">The Bode plot for the inner loop plant in
 HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, with proportional
+data-reference="ds:satellite">1.3.3</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, with proportional
 gain.</figcaption>
 </figure>
 <p>Since the phase margin is over <span
@@ -2673,12 +2673,12 @@ and satisfies the noise specification.</p>
 <img loading="lazy" width="1974" height="1782"
 src="6_design_studies/figures/hw_satellite_compensator_in_design_3_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the inner loop system in HW 3.3.21, with proportional gain and low-pass filter." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.30. </span>The Bode plot for the inner loop system
+alt="The Bode plot for the inner loop system in HW 1.3.3.18, with proportional gain and low-pass filter." />
+<figcaption aria-hidden="true">The Bode plot for the inner loop system
 in HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, with proportional gain
+data-reference="ds:satellite">1.3.3</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, with proportional gain
 and low-pass filter.</figcaption>
 </figure>
 <p>The resulting compensator is <span class="math display">\[C_{in}(s) =
@@ -2694,13 +2694,13 @@ data-reference="fig:hw_satellite_compensator_in_design_4">18.31</a>.</p>
 <img loading="lazy" width="1914" height="1854"
 src="6_design_studies/figures/hw_satellite_compensator_in_design_4_W2021.png"
 style="width:95.0%"
-alt="The closed-loop Bode response, the unit step response for the output, and the unit step response for the input of the inner loop design in HW 3.3.21." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.31. </span>The closed-loop Bode response, the unit
+alt="The closed-loop Bode response, the unit step response for the output, and the unit step response for the input of the inner loop design in HW 1.3.3.18." />
+<figcaption aria-hidden="true">The closed-loop Bode response, the unit
 step response for the output, and the unit step response for the input
 of the inner loop design in HW <a href="chapter-introduction.html#design-study-satellite-attitude-control"
-data-reference-type="ref" data-reference="ds:satellite">3.3</a>.<a
+data-reference-type="ref" data-reference="ds:satellite">1.3.3</a>.<a
 href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>.</figcaption>
+data-reference="chap:loopshaping_design">18</a>.</figcaption>
 </figure>
 <p>The Python code used to design the inner loop is shown below.</p>
 <div class="sourceCode" id="cb1" data-language="Python"
@@ -2788,9 +2788,9 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div>
 <p>The transfer function model for the outer loop was derived in HW <a
 href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a
+data-reference="ds:satellite">1.3.3</a>.<a
 href="chapter-transfer-function-models.html#transfer-function-models" data-reference-type="ref"
-data-reference="chap:transfer_function_models">8</a> to be <span
+data-reference="chap:transfer_function_models">5</a> to be <span
 class="math display">\[\Phi(s) =
 \frac{\frac{b}{J_p}s+\frac{k}{J_p}}{s^2+\frac{b}{J_p}s+\frac{k}{J_p}}\Theta^r(s).\]</span>
 Rate damping is added by designing the control signal so that <span
@@ -2821,12 +2821,12 @@ data-reference="fig:hw_satellite_compensator_out_design_1">18.32</a>.</p>
 <img loading="lazy" width="1947" height="1647"
 src="6_design_studies/figures/hw_satellite_compensator_out_design_1_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the outer loop plant in HW 3.3.21, together with the design specifications." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.32. </span>The Bode plot for the outer loop plant in
+alt="The Bode plot for the outer loop plant in HW 1.3.3.18, together with the design specifications." />
+<figcaption aria-hidden="true">The Bode plot for the outer loop plant in
 HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, together with the
+data-reference="ds:satellite">1.3.3</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, together with the
 design specifications.</figcaption>
 </figure>
 <p>The first step is to add an integrator to meet the steady-state
@@ -2851,12 +2851,12 @@ C_{int}C_{lead}C_{lag}=\left(\frac{s+0.1}{s}\right)\left(\frac{120s +
 <img loading="lazy" width="2280" height="1929"
 src="6_design_studies/figures/hw_satellite_compensator_out_design_2_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the outer loop system in HW 3.3.21, with integral, lead, and lag control." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.33. </span>The Bode plot for the outer loop system
+alt="The Bode plot for the outer loop system in HW 1.3.3.18, with integral, lead, and lag control." />
+<figcaption aria-hidden="true">The Bode plot for the outer loop system
 in HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, with integral, lead,
+data-reference="ds:satellite">1.3.3</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, with integral, lead,
 and lag control.</figcaption>
 </figure>
 <p>Without adding an overall gain to shift the crossover frequency
@@ -2882,12 +2882,12 @@ of tradeoffs between noise attenuation and tracking performance.</p>
 <img loading="lazy" width="1926" height="1878"
 src="6_design_studies/figures/hw_satellite_compensator_out_design_3_W2021.png"
 style="width:95.0%"
-alt="The Bode plot for the outer loop system in HW 3.3.21, with the final controller." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.34. </span>The Bode plot for the outer loop system
+alt="The Bode plot for the outer loop system in HW 1.3.3.18, with the final controller." />
+<figcaption aria-hidden="true">The Bode plot for the outer loop system
 in HW <a href="chapter-introduction.html#design-study-satellite-attitude-control" data-reference-type="ref"
-data-reference="ds:satellite">3.3</a>.<a href="#compensator-design"
-data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>, with the final
+data-reference="ds:satellite">1.3.3</a>.<a
+href="#compensator-design" data-reference-type="ref"
+data-reference="chap:loopshaping_design">18</a>, with the final
 controller.</figcaption>
 </figure>
 <p>The final compensator is defined as: <span
@@ -2911,13 +2911,13 @@ closed-loop response.</p>
 <img loading="lazy" width="721" height="640"
 src="6_design_studies/figures/hw_satellite_compensator_out_design_4_W2021.png"
 style="width:95.0%"
-alt="The closed-loop Bode response, the unit step response for the output, and the unit step response for the input of the inner loop design in HW 3.3.21." />
-<figcaption aria-hidden="true"><span class="fig-number">Figure 18.35. </span>The closed-loop Bode response, the unit
+alt="The closed-loop Bode response, the unit step response for the output, and the unit step response for the input of the inner loop design in HW 1.3.3.18." />
+<figcaption aria-hidden="true">The closed-loop Bode response, the unit
 step response for the output, and the unit step response for the input
 of the inner loop design in HW <a href="chapter-introduction.html#design-study-satellite-attitude-control"
-data-reference-type="ref" data-reference="ds:satellite">3.3</a>.<a
+data-reference-type="ref" data-reference="ds:satellite">1.3.3</a>.<a
 href="#compensator-design" data-reference-type="ref"
-data-reference="chap:loopshaping_design">21</a>.</figcaption>
+data-reference="chap:loopshaping_design">18</a>.</figcaption>
 </figure>
 <p>The time response of the outer loop is fairly slow, but this is
 because of the chosen crossover frequency.</p>
